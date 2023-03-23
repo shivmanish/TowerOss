@@ -253,6 +253,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:paddingBottom="@dimen/dp60"
             android:orientation="vertical"
             tools:itemCount="3"
             android:id="@+id/list_item"

@@ -22,7 +22,7 @@ class UtilitySMPSEquipment{
     var OUSizeL: String?=null
     var OUWeight: String?=null
     var OperationStatus: ArrayList<Int>?=null
-    var ProtectionMode: Int?=null
+    var ProtectionMode: String?=null
     var RackNo: String?=null
     var RackUSpaceUsed: Int?=null
     var Remark: String?=null

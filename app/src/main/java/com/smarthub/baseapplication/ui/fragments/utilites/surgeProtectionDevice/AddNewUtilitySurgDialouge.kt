@@ -57,7 +57,7 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
                 it.Count=binding.CountEdit.text.toString().toIntOrNull()
                 it.Remark=binding.remarksEdit.text.toString()
                 it.LocationMark=binding.InstallationPointEdit.text.toString()
-                it.ProtectionMode=binding.ProtectionModeEdit.text.toString().toIntOrNull()
+                it.ProtectionMode=binding.ProtectionModeEdit.text.toString()
             }
             insData.let {
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())

@@ -1,19 +1,20 @@
 package com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
-import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
 
-class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData: ArrayList<UtilityEquipmentSurgeProtectionDevice>?) : RecyclerView.Adapter<UtilitySurgFragAdapter.ViewHold>() {
-    private var datalist: UtilityEquipmentAC?=null
-    private var equipmentData: UtilitySMPSEquipment?=null
-    private var InsAccepData: UtiltyInstallationAcceptence?=null
+class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgListListener, surgDataData: ArrayList<UtilityEquipmentSurgeProtectionDevice>?) : RecyclerView.Adapter<UtilitySurgFragAdapter.ViewHold>() {
+//    private var equipmentData: UtilitySMPSEquipment?=null
+//    private var InsAccepData: UtiltyInstallationAcceptence?=null
 
     var list = ArrayList<Any>()
 
@@ -23,9 +24,9 @@ class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData
         notifyDataSetChanged()
     }
     init {
-        if (surgDataData!=null && surgDataData?.isNotEmpty()==true){
+        if (surgDataData!=null && surgDataData.isNotEmpty()){
             list.clear()
-            list.addAll(surgDataData!!)
+            list.addAll(surgDataData)
         }
         else
         {
@@ -39,7 +40,7 @@ class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     
     class EquipViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : UtilityAcEquipmentBinding = UtilityAcEquipmentBinding.bind(itemView)
+        var binding : UtilitySurgProtectionDeviceDetailsBinding = UtilitySurgProtectionDeviceDetailsBinding.bind(itemView)
 
         init {
             binding.collapsingLayout.tag = false
@@ -62,7 +63,7 @@ class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         return if (viewType == 1){
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.utility_ac_equipment, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.utility_surg_protection_device_details, parent, false)
             return EquipViewHold(view)
         }
         else{
@@ -74,6 +75,9 @@ class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is EquipViewHold -> {
+                var equipmentData: UtilitySMPSEquipment?=null
+                var InsAccepData: UtiltyInstallationAcceptence?=null
+                val datalist=list[position] as UtilityEquipmentSurgeProtectionDevice
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -103,99 +107,83 @@ class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-//                holder.binding.itemTitleStr.text = list[position]
-//                if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true){
-//                    equipmentData=datalist?.Equipment?.get(0)
-//                }
-//                if (equipmentData!=null){
-//                    // view mode
-//                    holder.binding.Type.text=equipmentData?.Type
-//                    holder.binding.SerialNumber.text=equipmentData?.SerialNumber
-//                    holder.binding.Make.text=equipmentData?.Make
-//                    holder.binding.Model.text=equipmentData?.Model
-//                    holder.binding.MaxPowerRating.text=equipmentData?.MaxPowerRating
-//                    holder.binding.OULocationMark.text=equipmentData?.LocationMark
-//                    holder.binding.CapacityRating.text=equipmentData?.CapacityRating
-//                    holder.binding.CopperTubing.text= equipmentData?.CopperTubing
-//                    holder.binding.CoolingTempSetting.text=equipmentData?.CoolingTempSetting
-//                    holder.binding.IUSizeL.text=equipmentData?.SizeL
-//                    holder.binding.IUSizeB.text=equipmentData?.SizeB
-//                    holder.binding.IUSizeH.text=equipmentData?.SizeH
-//                    holder.binding.OUSizeL.text=equipmentData?.OUSizeL
-//                    holder.binding.OUSizeB.text=equipmentData?.OUSizeB
-//                    holder.binding.OUSizeH.text=equipmentData?.OUSizeH
-//                    holder.binding.IUWeight.text=equipmentData?.Weight
-//                    holder.binding.OUWeight.text=equipmentData?.OUWeight
-//                    holder.binding.ManufacturingMonthYear.text= Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
-//                    holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
-//                    holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
-//                    holder.binding.remarks.text=equipmentData?.Remark
-//                    if (equipmentData?.OperationStatus?.isNotEmpty()==true)
-//                        AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
-//
-//                    // edit mode
-//                    holder.binding.TypeEdit.setText(equipmentData?.Type)
-//                    holder.binding.SerialNumberEdit.setText(equipmentData?.SerialNumber)
-//                    holder.binding.MakeEdit.setText(equipmentData?.Make)
-//                    holder.binding.ModelEdit.setText(equipmentData?.Model)
-//                    holder.binding.CapacityRatingEdit.setText(equipmentData?.CapacityRating)
-//                    holder.binding.IUSizeLEdit.setText(equipmentData?.SizeL)
-//                    holder.binding.IUSizeBEdit.setText(equipmentData?.SizeB)
-//                    holder.binding.IUSizeHEdit.setText(equipmentData?.SizeH)
-//                    holder.binding.IuWeightEdit.setText(equipmentData?.Weight)
-//                    holder.binding.OUSizeLEdit.setText(equipmentData?.OUSizeL)
-//                    holder.binding.OUSizeBEdit.setText(equipmentData?.OUSizeB)
-//                    holder.binding.OUSizeHEdit.setText(equipmentData?.OUSizeH)
-//                    holder.binding.OUWeightEdit.setText(equipmentData?.OUWeight)
-//                    holder.binding.OULocationMarkEdit.setText(equipmentData?.LocationMark)
-//                    holder.binding.CopperTubingEdit.setText(equipmentData?.CopperTubing)
-//                    holder.binding.CoolingTempSettingEdit.setText(equipmentData?.CoolingTempSetting)
-//                    holder.binding.ManufacturingMonthYearEdit.text= Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
-//                    holder.binding.WarrantyPeriodEdit.setText(equipmentData?.WarrantyPeriod)
-//                    holder.binding.WarrantyExpiryDateEdit.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
-//                    holder.binding.remarksEdit.setText(equipmentData?.Remark)
-//                }
-//                if (equipmentData!=null && equipmentData?.OperationStatus?.isNotEmpty()==true)
-//                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-//                        DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
-//                else
-//                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-//                        DropDowns.OperationStatus.name)
-//
-//                holder.binding.update.setOnClickListener {
-//                    val tempEquipData=UtilitySMPSEquipment()
-//                    tempEquipData.let {
-//                        it.Type=holder.binding.TypeEdit.text.toString()
-//                        it.SerialNumber=holder.binding.SerialNumberEdit.text.toString()
-//                        it.Make=holder.binding.MakeEdit.text.toString()
-//                        it.Model=holder.binding.ModelEdit.text.toString()
-//                        it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
-//                        it.SizeL=holder.binding.IUSizeLEdit.text.toString()
-//                        it.SizeB=holder.binding.IUSizeBEdit.text.toString()
-//                        it.SizeH=holder.binding.IUSizeHEdit.text.toString()
-//                        it.Weight=holder.binding.IuWeightEdit.text.toString()
-//                        it.OUSizeL=holder.binding.OUSizeLEdit.text.toString()
-//                        it.OUSizeB=holder.binding.OUSizeBEdit.text.toString()
-//                        it.OUSizeH=holder.binding.OUSizeHEdit.text.toString()
-//                        it.OUWeight=holder.binding.OUWeightEdit.text.toString()
-//                        it.LocationMark=holder.binding.OULocationMarkEdit.text.toString()
-//                        it.CopperTubing=holder.binding.CopperTubingEdit.text.toString()
-//                        it.MaxPowerRating=holder.binding.MaxPowerRatingEdit.text.toString()
-//                        it.CoolingTempSetting=holder.binding.CoolingTempSettingEdit.text.toString()
-//                        it.ManufacturedOn= Utils.getFullFormatedDate(holder.binding.ManufacturingMonthYearEdit.text.toString())
-//                        it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
-//                        it.WarrantyExpiryDate= Utils.getFullFormatedDate(holder.binding.WarrantyExpiryDateEdit.text.toString())
-//                        it.Remark=holder.binding.remarksEdit.text.toString()
-//                        it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
-//                        if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)
-//                            it.id=datalist?.Equipment?.get(0)?.id
-//                        val utilityACData= UtilityEquipmentAC()
-//                        utilityACData.Equipment= arrayListOf(it)
-//                        if (datalist!=null)
-//                            utilityACData.id=datalist?.id
-//                        listener.updateACData(utilityACData)
-//                    }
-//                }
+                if (datalist.Equipment?.isNotEmpty()==true)
+                    equipmentData=datalist.Equipment?.get(0)
+                if (datalist.InstallationAndAcceptence?.isNotEmpty()==true)
+                    InsAccepData=datalist.InstallationAndAcceptence?.get(0)
+
+                if (equipmentData!=null && InsAccepData!=null)
+                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),equipmentData.SerialNumber,equipmentData.Model, Utils.getFormatedDate(InsAccepData.InstallationDate,"ddMMMyyyy"))
+                if (equipmentData!=null){
+                    // view mode
+                    holder.binding.Type.text=equipmentData.Type
+                    holder.binding.SerialNumber.text=equipmentData.SerialNumber
+                    holder.binding.Make.text=equipmentData.Make
+                    holder.binding.Model.text=equipmentData.Model
+                    holder.binding.ProtectionMode.text=equipmentData.ProtectionMode
+                    holder.binding.InstallationPoint.text=equipmentData.LocationMark
+                    holder.binding.CapacityRating.text=equipmentData.CapacityRating
+                    holder.binding.Count.text= equipmentData.Count.toString()
+                    holder.binding.remarks.text=equipmentData.Remark
+
+                    // edit mode
+                    holder.binding.TypeEdit.setText(equipmentData.Type)
+                    holder.binding.SerialNumberEdit.setText(equipmentData.SerialNumber)
+                    holder.binding.MakeEdit.setText(equipmentData.Make)
+                    holder.binding.ModelEdit.setText(equipmentData.Model)
+                    holder.binding.CapacityRatingEdit.setText(equipmentData.CapacityRating)
+                    holder.binding.CountEdit.setText(equipmentData.Count.toString())
+                    holder.binding.ProtectionModeEdit.setText(equipmentData.ProtectionMode)
+                    holder.binding.InstallationPointEdit.setText(equipmentData.LocationMark)
+                    holder.binding.remarksEdit.setText(equipmentData.Remark)
+                }
+                if (InsAccepData!=null){
+                    // view mode
+                    holder.binding.VendorCode.text=InsAccepData.VendorCode
+                    holder.binding.InstallationDate.text= Utils.getFormatedDate(InsAccepData.InstallationDate,"dd-MMM-yyyy")
+                    if (InsAccepData.VendorCompany?.isNotEmpty()==true){
+                        AppPreferences.getInstance().setDropDown(holder.binding.VendorName, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString())
+                    }
+
+                    // edit code
+                    holder.binding.VendorCodeEdit.setText(InsAccepData.VendorCode)
+                    holder.binding.InstallationDateEdit.text= Utils.getFormatedDate(InsAccepData.InstallationDate,"dd-MMM-yyyy")
+                }
+
+                if (InsAccepData!=null && InsAccepData.VendorCompany?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name)
+                holder.binding.update.setOnClickListener {
+                    val tempEquipData=UtilitySMPSEquipment()
+                    val tempInsData=UtiltyInstallationAcceptence()
+                    tempEquipData.let {
+                        it.Type=holder.binding.TypeEdit.text.toString()
+                        it.SerialNumber=holder.binding.SerialNumberEdit.text.toString()
+                        it.Make=holder.binding.MakeEdit.text.toString()
+                        it.Model=holder.binding.ModelEdit.text.toString()
+                        it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
+                        it.ProtectionMode=holder.binding.ProtectionModeEdit.text.toString()
+                        it.LocationMark=holder.binding.InstallationPointEdit.text.toString()
+                        it.Count=holder.binding.Count.text.toString().toIntOrNull()
+                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        if (equipmentData!=null)
+                            it.id=equipmentData.id
+                    }
+                    tempInsData.let {
+                        it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                        it.InstallationDate=Utils.getFullFormatedDate(holder.binding.InstallationDateEdit.text.toString())
+                        it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                        if (InsAccepData!=null)
+                            it.id=InsAccepData.id
+                    }
+
+                    val utilitySurgData= UtilityEquipmentSurgeProtectionDevice()
+                    utilitySurgData.Equipment= arrayListOf(tempEquipData)
+                    utilitySurgData.InstallationAndAcceptence= arrayListOf(tempInsData)
+                    utilitySurgData.id=datalist.id
+                    listener.updateUtilitySurgeData(utilitySurgData)
+                }
 //                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
 //                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
 
@@ -218,7 +206,7 @@ class UtilitySurgFragAdapter(var listener: UtilitySurgListListener, surgDataData
 
 
     interface UtilitySurgListListener {
-        fun updateACData(updatedData: UtilityEquipmentAC)
+        fun updateUtilitySurgeData(updatedData: UtilityEquipmentSurgeProtectionDevice)
     }
 
 }
