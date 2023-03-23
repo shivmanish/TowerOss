@@ -1,11 +1,17 @@
 package com.smarthub.baseapplication.model.siteInfo.planAndDesign
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
 data class PlanAndDesignDataItem(
-    val NOCAndComp: List<NOCAndComp>,
+    @SerializedName("PlanningAndDesignNocAndComplianceRequirement")
+    @Expose val NOCAndComp: List<NOCAndComp>,
     val PlanningAndDesignEquipRoomEquipmentRoom: List<PlanningAndDesignEquipRoomEquipmentRoom>,
     val PlanningAndDesignPowerRequirements: List<PlanningAndDesignPowerRequirement>,
     val PlanningAndDesignTowerAndCivil: List<PlanningAndDesignTowerAndCivil>,
-    val UtilityEquip: List<UtilityEquip>,
+
+    @SerializedName("PlanningAndDesignUtilityEquipment")
+    @Expose val UtilityEquip: List<UtilityEquip>,
     val created_at: String,
     val id: String,
     val isActive: String,
