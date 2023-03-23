@@ -27,6 +27,8 @@ import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.A
 import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.UtilityPowerDisBoxActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.AddNewUtilitySurgDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.UtilitySurgeProtectionActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.utilityCables.AddNewUtilityCableDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.utilityCables.UtilityCableActivity
 import com.smarthub.baseapplication.ui.utilites.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -140,6 +142,8 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     }
 
     override fun CableItemClicked(data: UtilityEquipmentAllData?) {
+        UtilityCableActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), UtilityCableActivity::class.java))
     }
 
     override fun addNewSMPS() {
@@ -200,6 +204,17 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewPDB(data: UtilityEquipmentAllData?) {
         val bm = AddNewUtilityPowerBoxDialouge(data,
             object : AddNewUtilityPowerBoxDialouge.AddUtilityPowerBoxDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewCable(data: UtilityEquipmentAllData?) {
+        val bm = AddNewUtilityCableDialouge(data,
+            object : AddNewUtilityCableDialouge.AddUtilityCableDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)

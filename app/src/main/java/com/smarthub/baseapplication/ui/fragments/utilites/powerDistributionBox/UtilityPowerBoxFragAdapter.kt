@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowerBoxListListener, surgDataData: ArrayList<UtilityEquipmentPowerDistributionBox>?) : RecyclerView.Adapter<UtilityPowerBoxFragAdapter.ViewHold>() {
+class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowerBoxListListener, powerDataData: ArrayList<UtilityEquipmentPowerDistributionBox>?) : RecyclerView.Adapter<UtilityPowerBoxFragAdapter.ViewHold>() {
 //    private var equipmentData: UtilitySMPSEquipment?=null
 //    private var InsAccepData: UtiltyInstallationAcceptence?=null
 
@@ -24,9 +24,9 @@ class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowe
         notifyDataSetChanged()
     }
     init {
-        if (surgDataData!=null && surgDataData.isNotEmpty()){
+        if (powerDataData!=null && powerDataData.isNotEmpty()){
             list.clear()
-            list.addAll(surgDataData)
+            list.addAll(powerDataData)
         }
         else
         {
