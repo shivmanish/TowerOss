@@ -11,14 +11,12 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
-import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.equipment.UtilityFireEquipActivityAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
 class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: FireExtListListener, FireExtData: UtilityEquipmentFireExtinguisher?) : RecyclerView.Adapter<FireExtinguisherFragAdapter.ViewHold>() {
     private var datalist: UtilityEquipmentFireExtinguisher?=null
-    private var equipmentData: UtilitySMPSEquipment?=null
     private var InsAccepData: UtiltyInstallationAcceptence?=null
 
     fun setData(data: UtilityEquipmentFireExtinguisher?) {
@@ -220,7 +218,8 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
-                holder.binding.itemTitleStr.text = list[position]
+                if (datalist!=null && datalist?.Equipment!=null)
+                holder.binding.itemTitleStr.text = String.format("%s (%s)",list[position],datalist?.Equipment?.size)
                 holder.binding.imgAdd.setOnClickListener {
                     listener.addEquipmentClicked()
                 }

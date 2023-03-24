@@ -1,18 +1,18 @@
 package com.smarthub.baseapplication.ui.fragments.utilites.utilityCables
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.UtilityCableDetailsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityCableDetail
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class UtilityCableActivityAdapter(var context: Context, var listener: UtilityCableListListener, cableDataData: ArrayList<UtilityCableDetail>?) : RecyclerView.Adapter<UtilityCableActivityAdapter.ViewHold>() {
+class UtilityCableActivityAdapter(var baseActivity: BaseActivity, var listener: UtilityCableListListener, cableDataData: ArrayList<UtilityCableDetail>?) : RecyclerView.Adapter<UtilityCableActivityAdapter.ViewHold>() {
 
     var list = ArrayList<Any>()
 
@@ -105,7 +105,7 @@ class UtilityCableActivityAdapter(var context: Context, var listener: UtilityCab
                 }
 
                 if (dataList.CableName?.isNotEmpty()==true)
-                  holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),
+                  holder.binding.itemTitleStr.text = String.format(baseActivity.resources.getString(R.string.rf_antenna_title_str_formate),
                       AppPreferences.getInstance().getDropDownValue(DropDowns.CableName.name,dataList.CableName?.get(0).toString()),
                       dataList.CableType, Utils.getFormatedDate(dataList.InstallationDate,"ddMMMyyyy"))
 
@@ -155,8 +155,7 @@ class UtilityCableActivityAdapter(var context: Context, var listener: UtilityCab
 
                     listener.updateUtilityCableData(tempCableData)
                 }
-//                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
-//                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
+                baseActivity.setDatePickerView(holder.binding.InstallationDateEdit)
 
             }
 

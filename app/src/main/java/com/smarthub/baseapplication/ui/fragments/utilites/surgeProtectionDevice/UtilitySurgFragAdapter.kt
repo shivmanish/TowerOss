@@ -1,18 +1,20 @@
 package com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.activities.BaseActivity
+import com.smarthub.baseapplication.databinding.UtilitySurgProtectionDeviceDetailsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSurgeProtectionDevice
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilitySMPSEquipment
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtiltyInstallationAcceptence
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgListListener, surgDataData: ArrayList<UtilityEquipmentSurgeProtectionDevice>?) : RecyclerView.Adapter<UtilitySurgFragAdapter.ViewHold>() {
+class UtilitySurgFragAdapter(var baseActivity: BaseActivity, var listener: UtilitySurgListListener, surgDataData: ArrayList<UtilityEquipmentSurgeProtectionDevice>?) : RecyclerView.Adapter<UtilitySurgFragAdapter.ViewHold>() {
 //    private var equipmentData: UtilitySMPSEquipment?=null
 //    private var InsAccepData: UtiltyInstallationAcceptence?=null
 
@@ -113,7 +115,7 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
                     InsAccepData=datalist.InstallationAndAcceptence?.get(0)
 
                 if (equipmentData!=null && InsAccepData!=null)
-                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),equipmentData.SerialNumber,equipmentData.Model, Utils.getFormatedDate(InsAccepData.InstallationDate,"ddMMMyyyy"))
+                    holder.binding.itemTitleStr.text = String.format(baseActivity.resources.getString(R.string.rf_antenna_title_str_formate),equipmentData.SerialNumber,equipmentData.Model, Utils.getFormatedDate(InsAccepData.InstallationDate,"ddMMMyyyy"))
                 if (equipmentData!=null){
                     // view mode
                     holder.binding.Type.text=equipmentData.Type
@@ -184,8 +186,7 @@ class UtilitySurgFragAdapter(var context: Context, var listener: UtilitySurgList
                     utilitySurgData.id=datalist.id
                     listener.updateUtilitySurgeData(utilitySurgData)
                 }
-//                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
-//                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
+                baseActivity.setDatePickerView(holder.binding.InstallationDateEdit)
 
             }
 

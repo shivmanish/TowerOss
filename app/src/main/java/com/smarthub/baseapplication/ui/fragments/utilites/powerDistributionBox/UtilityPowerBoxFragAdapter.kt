@@ -1,18 +1,20 @@
 package com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.*
+import com.smarthub.baseapplication.activities.BaseActivity
+import com.smarthub.baseapplication.databinding.UtilityPowerDistributionBoxDetailsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentPowerDistributionBox
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilitySMPSEquipment
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtiltyInstallationAcceptence
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowerBoxListListener, powerDataData: ArrayList<UtilityEquipmentPowerDistributionBox>?) : RecyclerView.Adapter<UtilityPowerBoxFragAdapter.ViewHold>() {
+class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: UtilityPowerBoxListListener, powerDataData: ArrayList<UtilityEquipmentPowerDistributionBox>?) : RecyclerView.Adapter<UtilityPowerBoxFragAdapter.ViewHold>() {
 //    private var equipmentData: UtilitySMPSEquipment?=null
 //    private var InsAccepData: UtiltyInstallationAcceptence?=null
 
@@ -113,7 +115,7 @@ class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowe
                     InsAccepData=datalist.InstallationAndAcceptence?.get(0)
 
                 if (equipmentData!=null && InsAccepData!=null)
-                    holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),equipmentData.SerialNumber,equipmentData.Model, Utils.getFormatedDate(InsAccepData.InstallationDate,"ddMMMyyyy"))
+                    holder.binding.itemTitleStr.text = String.format(this.baseActivity.resources.getString(R.string.rf_antenna_title_str_formate),equipmentData.SerialNumber,equipmentData.Model, Utils.getFormatedDate(InsAccepData.InstallationDate,"ddMMMyyyy"))
                 if (equipmentData!=null){
                     // view mode
                     holder.binding.Type.text=equipmentData.Type
@@ -190,8 +192,7 @@ class UtilityPowerBoxFragAdapter(var context: Context, var listener: UtilityPowe
                     utilityPowerBoxData.id=datalist.id
                     listener.updateUtilityPowerBoxData(utilityPowerBoxData)
                 }
-//                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
-//                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
+                baseActivity.setDatePickerView(holder.binding.InstallationDateEdit)
 
             }
 
