@@ -1,16 +1,16 @@
 package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
 
-data class UtilityAccessory(
-    val InstallationDate: String,
-    val ItemName: String,
-    val Make: String,
-    val Model: String,
-    val Quantity: String,
-    val Remark: String,
-    val SrNumber: Int,
-    val Type: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class UtilityAccessory{
+    var InstallationDate: String?=null
+    var ItemName: String?=null
+    var Make: String?=null
+    var Model: String?=null
+    var Quantity: String?=null
+    var Remark: String?=null
+    var SrNumber: Int?=null
+    var Type: String?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
+//    var modified_at: String
+}

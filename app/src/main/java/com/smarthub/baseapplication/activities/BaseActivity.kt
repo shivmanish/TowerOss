@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.smarthub.baseapplication.utils.Utils
 import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
@@ -19,13 +20,13 @@ open class BaseActivity : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(true)
     }
 
-    protected open fun setDatePickerView(view : TextView) {
+    open fun setDatePickerView(view : TextView) {
         view.setOnClickListener {
             openDatePicker(view)
         }
     }
 
-    protected open fun openDatePicker(view : TextView) {
+    private fun openDatePicker(view : TextView) {
         var year = 0
         var month = 0
         var day = 0
@@ -42,11 +43,13 @@ open class BaseActivity : AppCompatActivity() {
                 // arg3 = day
                 showDate(arg1, arg2 + 1, arg3,view)
             }, year, month, day
-        )
+        ).show()
     }
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
-        textView.text = StringBuilder().append(day).append("/").append(month).append("/").append(year)
+        textView.text = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"dd-MMM-yyyy")
+//        textView.text =
+//            StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
     }
 
 

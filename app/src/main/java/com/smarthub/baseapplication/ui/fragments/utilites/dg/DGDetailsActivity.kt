@@ -1,20 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.utilites.dg
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.ActivityDgDetailsBinding
 import com.smarthub.baseapplication.databinding.ActivitySmpsdetailsBinding
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
-import com.smarthub.baseapplication.ui.utilites.adapter.DGViewpagerAdapter
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SMPSViewpagerAdapter
-import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
-import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.adapters.BatterryBankViewpagerAdapter
-import com.smarthub.baseapplication.ui.utilites.fragment.DGFragment
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.adapters.DGViewpagerAdapter
 
 class DGDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivitySmpsdetailsBinding
@@ -33,9 +27,9 @@ class DGDetailsActivity : AppCompatActivity() {
         super.onPostCreate(savedInstanceState)
 
         if (utilityData !=null)
-            binding.viewpager.adapter = BatterryBankViewpagerAdapter(supportFragmentManager, utilityData?.UtilityEquipmentBatteryBank, utilityData?.id)
+            binding.viewpager.adapter = DGViewpagerAdapter(supportFragmentManager, utilityData?.UtilityEquipmentDG, utilityData?.id)
         else
-            binding.viewpager.adapter = SMPSViewpagerAdapter(supportFragmentManager, ArrayList(), utilityData?.id)
+            binding.viewpager.adapter = DGViewpagerAdapter(supportFragmentManager, ArrayList(), utilityData?.id)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
             binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))

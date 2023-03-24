@@ -14,6 +14,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.Utility
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.AddNewACDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.UtilitesNocDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.utilites.addNewDialouge.AddNewSMPSDialouge
@@ -21,6 +23,14 @@ import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.AddNewBatt
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.AddNewDGDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.AddNewFireExtDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.FireExtinguisherActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.AddNewUtilityPowerBoxDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.powerDistributionBox.UtilityPowerDisBoxActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.AddNewUtilitySurgDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.surgeProtectionDevice.UtilitySurgeProtectionActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.utilityCables.AddNewUtilityCableDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.utilityCables.UtilityCableActivity
 import com.smarthub.baseapplication.ui.utilites.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -33,7 +43,7 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     var isDataLoaded = false
     var utilitydatalist: ArrayList<UtilityEquipmentAllData>? = ArrayList()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentUtilitesNocBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
@@ -114,22 +124,29 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
         requireActivity().startActivity(Intent(requireContext(), DGDetailsActivity::class.java))
     }
 
-    override fun ACItemClickedItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), DGDetailsActivity::class.java))
+    override fun ACItemClicked(data: UtilityEquipmentAllData?) {
+        ACDetailsActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), ACDetailsActivity::class.java))
     }
 
     override fun FireExtinguisherItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), FireExtinguisherDetailsActivity::class.java))
+        FireExtinguisherActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), FireExtinguisherActivity::class.java))
     }
 
     override fun SuregeProtectionDeviceItemClicked(data: UtilityEquipmentAllData?) {
-        requireActivity().startActivity(Intent(requireContext(), SurgeProtectionDeviceDetailsActivity::class.java))
+        UtilitySurgeProtectionActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), UtilitySurgeProtectionActivity::class.java))
     }
 
     override fun PowerDistributionBoxItemClicked(data: UtilityEquipmentAllData?) {
+        UtilityPowerDisBoxActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), UtilityPowerDisBoxActivity::class.java))
     }
 
     override fun CableItemClicked(data: UtilityEquipmentAllData?) {
+        UtilityCableActivity.utilityData=data
+        requireActivity().startActivity(Intent(requireContext(), UtilityCableActivity::class.java))
     }
 
     override fun addNewSMPS() {
@@ -157,6 +174,61 @@ class UtilitiesNocMainTabFragment(var id:String) : BaseFragment(), UtilitesNocDa
     override fun addNewDG() {
         val bm = AddNewDGDialouge(utilitydatalist,
             object : AddNewDGDialouge.AddDGDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewAC() {
+        val bm = AddNewACDialouge(utilitydatalist,
+            object : AddNewACDialouge.AddACDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewFireExt() {
+        val bm = AddNewFireExtDialouge(utilitydatalist,
+            object : AddNewFireExtDialouge.AddFireExtDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewSurgeProtectionDevice(data: UtilityEquipmentAllData?) {
+        val bm = AddNewUtilitySurgDialouge(data,
+            object : AddNewUtilitySurgDialouge.AddUtilitySurgeDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewPDB(data: UtilityEquipmentAllData?) {
+        val bm = AddNewUtilityPowerBoxDialouge(data,
+            object : AddNewUtilityPowerBoxDialouge.AddUtilityPowerBoxDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel?.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun addNewCable(data: UtilityEquipmentAllData?) {
+        val bm = AddNewUtilityCableDialouge(data,
+            object : AddNewUtilityCableDialouge.AddUtilityCableDataListener {
                 override fun addNewData(){
                     showLoader()
                     viewmodel?.utilityRequestAll(AppController.getInstance().siteid)

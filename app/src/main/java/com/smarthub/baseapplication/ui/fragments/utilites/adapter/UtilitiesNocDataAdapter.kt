@@ -148,32 +148,67 @@ class UtilitesNocDataAdapter(var listener: UtilitesNocDataAdapterListener) : Ada
                 }
                 else if (list[position]==type4){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentAC!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentAC?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.ACItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewAC()
                     }
                 }
                 else if (list[position]==type5){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentFireExtinguisher!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentFireExtinguisher?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.FireExtinguisherItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewFireExt()
                     }
                 }
                 else if (list[position]==type6){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentSurgeProtectionDevice!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentSurgeProtectionDevice?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.SuregeProtectionDeviceItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewSurgeProtectionDevice(utilitydata)
                     }
                 }
                 else if (list[position]==type7){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.UtilityEquipmentPowerDistributionBox!=null)
+                        holder.binding.countItem.text= utilitydata?.UtilityEquipmentPowerDistributionBox?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.PowerDistributionBoxItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewPDB(utilitydata)
                     }
                 }
                 else if (list[position]==type8){
                     holder.binding.titel.text=list[position]
+                    if (utilitydata!=null && utilitydata?.CableDetail!=null)
+                        holder.binding.countItem.text= utilitydata?.CableDetail?.size.toString()
+                    else
+                        holder.binding.countItem.text= "0"
                     holder.binding.cardItem.setOnClickListener {
-//                        listener.clickedItem(position)
+                        listener.CableItemClicked(utilitydata)
+                    }
+                    holder.binding.addNewItem.setOnClickListener {
+                        listener.addNewCable(utilitydata)
                     }
                 }
             }
@@ -190,7 +225,7 @@ interface UtilitesNocDataAdapterListener {
     fun SMPSItemClicked(data:UtilityEquipmentAllData?)
     fun BateeryItemClicked(data:UtilityEquipmentAllData?)
     fun DGItemClicked(data:UtilityEquipmentAllData?)
-    fun ACItemClickedItemClicked(data:UtilityEquipmentAllData?)
+    fun ACItemClicked(data:UtilityEquipmentAllData?)
     fun FireExtinguisherItemClicked(data:UtilityEquipmentAllData?)
     fun SuregeProtectionDeviceItemClicked(data:UtilityEquipmentAllData?)
     fun PowerDistributionBoxItemClicked(data:UtilityEquipmentAllData?)
@@ -198,4 +233,9 @@ interface UtilitesNocDataAdapterListener {
     fun addNewSMPS()
     fun addNewBatterryBank()
     fun addNewDG()
+    fun addNewAC()
+    fun addNewFireExt()
+    fun addNewSurgeProtectionDevice(data:UtilityEquipmentAllData?)
+    fun addNewPDB(data:UtilityEquipmentAllData?)
+    fun addNewCable(data:UtilityEquipmentAllData?)
 }
