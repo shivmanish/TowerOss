@@ -14,11 +14,11 @@
       ]
     },
     {
-      "name": "installationType",
+      "name": "InstallationType",
       "data": [
         {
           "id": 1,
-          "name": "Fixed)"
+          "name": "Fixed"
         },
         {
           "id": 2,
@@ -31,7 +31,7 @@
       "data": [
         {
           "id": 1,
-          "name": "AC)"
+          "name": "AC"
         },
         {
           "id": 2,
@@ -57,7 +57,7 @@
       "data": [
         {
           "id": 1,
-          "name": "Framed Structure)"
+          "name": "Framed Structure"
         },
         {
           "id": 2,
@@ -70,7 +70,7 @@
       "data": [
         {
           "id": 1,
-          "name": "Yes)"
+          "name": "Yes"
         },
         {
           "id": 2,
@@ -87,7 +87,7 @@
       "data": [
         {
           "id": 1,
-          "name": "Yes)"
+          "name": "Yes"
         },
         {
           "id": 2,
@@ -104,7 +104,7 @@
       "data": [
         {
           "id": 1,
-          "name": "Yes)"
+          "name": "Yes"
         },
         {
           "id": 2,
@@ -316,11 +316,27 @@
       "data": [
         {
           "id": 1,
-          "name": "Indoor"
+          "name": "Water"
         },
         {
           "id": 2,
-          "name": "Outdoor"
+          "name": "Foam"
+        },
+        {
+          "id": 3,
+          "name": "CO2"
+        },
+        {
+          "id": 4,
+          "name": "Powder"
+        },
+        {
+          "id": 5,
+          "name": "Water Mist"
+        },
+        {
+          "id": 6,
+          "name": "Wet Chemical"
         }
       ]
     },
@@ -533,11 +549,11 @@
         },
         {
           "id": 5,
-          "name": "Class E "
+          "name": "Electrical "
         },
         {
           "id": 6,
-          "name": "Class E"
+          "name": "Class F "
         }
       ]
     },
@@ -559,6 +575,45 @@
         {
           "id": 4,
           "name": "Powder"
+        }
+      ]
+    },
+    {
+      "name": "InstallationLocationType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Indoor"
+        },
+        {
+          "id": 2,
+          "name": "OutDoor"
+        }
+      ]
+    },
+    {
+      "name": "Canopy",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "PDBType",
+      "data": [
+        {
+          "id": 1,
+          "name": "ACDB"
+        },
+        {
+          "id": 2,
+          "name": "DCDB"
         }
       ]
     }

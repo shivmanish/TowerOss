@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilitySmpsConnLoadsTableItemBinding
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityConnectedLoad
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityRectifierModule
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SmpsUtilityFragAdapter
 import com.smarthub.baseapplication.utils.Utils
 
 class SmpsConnLoadsTableAdapter (var context : Context, var listener : SmpsUtilityFragAdapter.SmpsInfoListListener, var list:ArrayList<UtilityConnectedLoad>?): RecyclerView.Adapter<SmpsConnLoadsTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
+    fun addItem(){
         val data=UtilityConnectedLoad()
         list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))

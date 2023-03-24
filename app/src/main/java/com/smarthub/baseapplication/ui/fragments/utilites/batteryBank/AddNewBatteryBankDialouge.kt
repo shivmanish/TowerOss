@@ -37,6 +37,7 @@ class AddNewBatteryBankDialouge (var fullData:ArrayList<UtilityEquipmentAllData>
         }
         
         AppPreferences.getInstance().setDropDown(binding.OperationalStatusEdit,DropDowns.OperationStatus.name)
+        AppPreferences.getInstance().setDropDown(binding.InstallationLocationTypeEdit,DropDowns.InstallationLocationType.name)
 
 
         setDatePickerView(binding.WarrantyExpiryDateEdit)
@@ -62,7 +63,7 @@ class AddNewBatteryBankDialouge (var fullData:ArrayList<UtilityEquipmentAllData>
                 it.ManufacturedOn=Utils.getFullFormatedDate(binding.ManufacturingMonthYearEdit.text.toString())
                 it.WarrantyExpiryDate=Utils.getFullFormatedDate(binding.WarrantyExpiryDateEdit.text.toString())
                 it.WarrantyPeriod=binding.WarrantyPeriodEdit.text.toString()
-                it.InstalledLocationType=binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                it.InstalledLocationType=binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
                 it.RackUSpaceUsed=binding.BatteryCellCountEdit.text.toString().toIntOrNull()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
                 it.Remark=binding.remarksEdit.text.toString()

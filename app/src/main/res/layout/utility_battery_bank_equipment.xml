@@ -773,13 +773,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Installation_Location_Type_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text="0"
-                        android:drawableEnd="@drawable/down_arrow"
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Installed_Location_Type_edit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View
@@ -787,7 +783,7 @@
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
+                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
 
                 <LinearLayout

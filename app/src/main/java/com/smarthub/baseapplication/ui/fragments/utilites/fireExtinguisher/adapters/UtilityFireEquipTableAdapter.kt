@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,8 +109,6 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                       dataList.Model, Utils.getFormatedDate(dataList.WarrantyExpiryDate,"ddMMMyyyy"))
 
                 // view mode
-                holder.binding.Type.text=dataList.Type
-                holder.binding.Class.text=dataList.Class.toString()
                 holder.binding.SerialNumber.text=dataList.SerialNumber
                 holder.binding.Make.text=dataList.Make
                 holder.binding.Model.text=dataList.Model
@@ -120,7 +117,6 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                 holder.binding.SizeB.text=dataList.SizeB
                 holder.binding.SizeH.text=dataList.SizeH
                 holder.binding.Weight.text=dataList.Weight
-                holder.binding.InstalledLocationType.text=dataList.InstalledLocationType.toString()
                 holder.binding.LocationMark.text=dataList.LocationMark
                 holder.binding.ManufacturingMonthYear.text= Utils.getFormatedDateMonthYear(dataList.ManufacturedOn,"MMM-yyyy")
                 holder.binding.WarrantyPeriod.text=dataList.WarrantyPeriod
@@ -128,9 +124,13 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                 holder.binding.remarks.text=dataList.Remark
                 if (dataList.OperationStatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,dataList.OperationStatus?.get(0).toString())
+                if (dataList.Type!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.Type, DropDowns.Type.name,dataList.Type)
+                if (dataList.Class!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.Class, DropDowns.Class.name,dataList.Class.toString())
+                if (dataList.InstalledLocationType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledLocationType, DropDowns.InstallationLocationType.name,dataList.InstalledLocationType.toString())
                 // edit mode
-                holder.binding.TypeEdit.text=dataList.Type
-                holder.binding.ClassEdit.text=dataList.Class.toString()
                 holder.binding.SerialNumberEdit.setText(dataList.SerialNumber)
                 holder.binding.MakeEdit.setText(dataList.Make)
                 holder.binding.ModelEdit.setText(dataList.Model)
@@ -139,7 +139,6 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                 holder.binding.SizeBEdit.setText(dataList.SizeB)
                 holder.binding.SizeHEdit.setText(dataList.SizeH)
                 holder.binding.WeightEdit.setText(dataList.Weight)
-                holder.binding.InstallationLocationTypeEdit.text=dataList.InstallationType.toString()
                 holder.binding.LocationMarkEdit.setText(dataList.LocationMark)
                 holder.binding.ManufacturingMonthYearEdit.text= Utils.getFormatedDateMonthYear(dataList.ManufacturedOn,"MMM-yyyy")
                 holder.binding.WarrantyPeriodEdit.setText(dataList.WarrantyPeriod)
@@ -150,15 +149,28 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name,dataList.OperationStatus?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name)
+                if (dataList.Class!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.ClassEdit, DropDowns.Class.name,dataList.Class.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.ClassEdit, DropDowns.Class.name)
+                if (dataList.InstalledLocationType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationTypeEdit, DropDowns.InstallationLocationType.name,dataList.InstalledLocationType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationTypeEdit, DropDowns.InstallationLocationType.name)
+                if (dataList.Type!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit, DropDowns.Type.name,dataList.Type)
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit, DropDowns.Type.name)
+
                 holder.binding.update.setOnClickListener {
                     val tempCableData=UtilitySMPSEquipment()
                     tempCableData.let {
-                        it.Type=holder.binding.TypeEdit.text.toString()
-                        it.Class=holder.binding.ClassEdit.text.toString().toIntOrNull()
+                        it.Type=holder.binding.TypeEdit.selectedValue.id
+                        it.Class=holder.binding.ClassEdit.selectedValue.id.toIntOrNull()
                         it.SerialNumber=holder.binding.SerialNumberEdit.text.toString()
                         it.Make=holder.binding.MakeEdit.text.toString()
                         it.Model=Utils.getFullFormatedDate(holder.binding.ModelEdit.text.toString())
-                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
                         it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
                         it.SizeL=holder.binding.SizeLEdit.text.toString()
                         it.SizeB=holder.binding.SizeBEdit.text.toString()
@@ -176,8 +188,8 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                     listener.updateUtilityFireEquipData(tempCableData)
                     AppPreferences.getInstance().saveInteger("UtilityFireEquipTableAdapter",currentOpened)
                 }
-//                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
-//                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
+                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
+                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
 
             }
 

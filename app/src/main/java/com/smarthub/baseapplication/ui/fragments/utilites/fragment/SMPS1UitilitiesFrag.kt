@@ -17,8 +17,6 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SmpsUtilityFragAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.editdialouge.*
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.*
-import com.smarthub.baseapplication.ui.utilites.editdialouge.BatteryEquipmentDialouge
-import com.smarthub.baseapplication.ui.utilites.editdialouge.InstalationAcceptanceDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -28,7 +26,7 @@ class SMPS1UitilitiesFrag(var smpsAllData: UtilityEquipmentSmp?,var smpsIndex:In
     lateinit var binding: Smps1TabUtilitiesFragmentBinding
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: SmpsUtilityFragAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = Smps1TabUtilitiesFragmentBinding.inflate(inflater,container,false)
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         return binding.root

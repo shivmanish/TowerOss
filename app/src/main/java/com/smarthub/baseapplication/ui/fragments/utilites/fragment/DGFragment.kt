@@ -21,7 +21,6 @@ class DGFragment:Fragment() {
         setView()
         return binding.root
     }
-
     fun setView(){
         binding.equipmentEdit.setOnClickListener{
             val dalouge = DgBottomSheetDialog()

@@ -38,6 +38,7 @@ class AddNewUtilityPowerBoxDialouge (var fullData:UtilityEquipmentAllData?, var 
         }
         
         AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+        AppPreferences.getInstance().setDropDown(binding.TypeEdit,DropDowns.PDBType.name)
 
 
         setDatePickerView(binding.InstallationDateEdit)
@@ -49,7 +50,7 @@ class AddNewUtilityPowerBoxDialouge (var fullData:UtilityEquipmentAllData?, var 
             val equipData=UtilitySMPSEquipment()
             val insData= UtiltyInstallationAcceptence()
             equipData.let {
-                it.Type=binding.TypeEdit.text.toString()
+                it.Type=binding.TypeEdit.selectedValue.id
                 it.SerialNumber=binding.SerialNumberEdit.text.toString()
                 it.Make=binding.MakeEdit.text.toString()
                 it.Model=binding.ModelEdit.text.toString()
