@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge
+package com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.editDialouge
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UtilityMaitenanceEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAC
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentFireExtinguisher
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPreventiveMaintenance
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
@@ -19,7 +19,7 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class UtilityFireExtMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, var fullData: UtilityEquipmentAC?, var UtilityAllDataId: Int?, var listner:UtilityMaintenanceUpdateListener) : BaseBottomSheetDialogFragment(){
+class UtilityFireExtMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, var fullData: UtilityEquipmentFireExtinguisher?, var UtilityAllDataId: Int?, var listner:UtilityMaintenanceUpdateListener) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: UtilityMaitenanceEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
@@ -57,12 +57,12 @@ class UtilityFireExtMaintenanceEditDialouge (var data: UtilityPreventiveMaintena
                 it.PMDate=Utils.getFullFormatedDate(binding.PMDateEdit.text.toString())
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
 
-                val tempACData= UtilityEquipmentAC()
-                tempACData.PreventiveMaintenance= arrayListOf(it)
+                val tempFireExtData= UtilityEquipmentFireExtinguisher()
+                tempFireExtData.PreventiveMaintenance= arrayListOf(it)
                 if (fullData!=null)
-                    tempACData.id=fullData?.id
+                    tempFireExtData.id=fullData?.id
                 val utilityAllDataModel = UpdateUtilityEquipmentAllData()
-                utilityAllDataModel.UtilityEquipmentAC= arrayListOf(tempACData)
+                utilityAllDataModel.UtilityEquipmentFireExtinguisher= arrayListOf(tempFireExtData)
                 if (UtilityAllDataId!=null)
                     utilityAllDataModel.id=UtilityAllDataId
                 viewmodel.updateUtilityEquip(utilityAllDataModel)
@@ -77,11 +77,11 @@ class UtilityFireExtMaintenanceEditDialouge (var data: UtilityPreventiveMaintena
         }
         viewmodel.updateUtilityDataResponse?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
-                AppLogger.log("SmpsRectifierEditDialouge data loading in progress ")
+                AppLogger.log("UtilityFireExtMaintenanceEditDialouge data Updating in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentAC==200) {
-                AppLogger.log("SmpsRectifierEditDialouge card Data fetched successfully")
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentFireExtinguisher==200) {
+                AppLogger.log("UtilityFireExtMaintenanceEditDialouge card Data Updated successfully")
                 listner.updatedData()
                 hideProgressLayout()
                 dismiss()
@@ -90,12 +90,12 @@ class UtilityFireExtMaintenanceEditDialouge (var data: UtilityPreventiveMaintena
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
                 Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
-                AppLogger.log("SmpsRectifierEditDialouge  Something went wrong")
+                AppLogger.log("UtilityFireExtMaintenanceEditDialouge  Something went wrong in updating data")
             }
             else if (it != null) {
-                AppLogger.log("SmpsRectifierEditDialouge error :${it.message}, data : ${it.data}")
+                AppLogger.log("UtilityFireExtMaintenanceEditDialouge error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("SmpsRectifierEditDialouge Something went wrong")
+                AppLogger.log("UtilityFireExtMaintenanceEditDialouge Something went wrong in updating data")
 
             }
         }

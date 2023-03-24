@@ -16,8 +16,8 @@ import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomShe
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACFragAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.ACConsumMaterialEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.UtilityFireExtMaintenanceEditDialouge
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.UtilityFireExtPoEditDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.UtilityACMaintenanceEditDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.editDialouge.UtilityACPoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.SmpsConsuMaterialViewDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilityMaintenanceViewDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilitySmpsPoViewDialouge
@@ -88,8 +88,8 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
     }
 
     override fun editPoClicked(position: Int,data: UtilityPoDetails) {
-        val bm = UtilityFireExtPoEditDialouge(data,ACAllData,utilityAllDataId,
-            object : UtilityFireExtPoEditDialouge.UtilityPoUpdateListener {
+        val bm = UtilityACPoEditDialouge(data,ACAllData,utilityAllDataId,
+            object : UtilityACPoEditDialouge.UtilityPoUpdateListener {
                 override fun updatedData() {
                     viewmodel.utilityRequestAll(AppController.getInstance().siteid)
                 }
@@ -121,8 +121,8 @@ class ACFragment(var ACAllData: UtilityEquipmentAC?, var smpsIndex:Int, var util
         bm.show(childFragmentManager,"smpsRectifierView")      }
 
     override fun editMaintenamceTableItem(position: Int, data: UtilityPreventiveMaintenance) {
-        val bm = UtilityFireExtMaintenanceEditDialouge(data,ACAllData,utilityAllDataId,
-            object : UtilityFireExtMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
+        val bm = UtilityACMaintenanceEditDialouge(data,ACAllData,utilityAllDataId,
+            object : UtilityACMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
                 override fun updatedData() {
                     viewmodel.utilityRequestAll(AppController.getInstance().siteid)
                 }

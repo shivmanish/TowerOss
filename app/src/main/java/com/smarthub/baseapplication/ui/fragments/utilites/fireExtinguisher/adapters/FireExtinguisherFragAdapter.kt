@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
-import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACConsumeMaterialTableAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.equipment.UtilityFireEquipActivityAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -38,14 +38,12 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
     var currentOpened = -1
     var type1 = "Equipments"
     var type2 = "Installation & Acceptance"
-    var type3 = "Consumable Materials"
-    var type4= "PO Details"
-    var type5="Preventive Maintenance"
-    var type6="Attachments"
+    var type3= "PO Details"
+    var type4="Preventive Maintenance"
+    var type5="Attachments"
     init {
         list.add("Equipments")
         list.add("Installation & Acceptance")
-        list.add("Consumable Materials")
         list.add("PO Details")
         list.add("Preventive Maintenance")
         list.add("Attachments")
@@ -54,7 +52,8 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
     
     class EquipViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : UtilityAcEquipmentBinding = UtilityAcEquipmentBinding.bind(itemView)
+        var binding : UtilityFireExtEquipmentsBinding = UtilityFireExtEquipmentsBinding.bind(itemView)
+        var equipTableList:RecyclerView=binding.fireExtEquipTable
 
         init {
             binding.collapsingLayout.tag = false
@@ -78,30 +77,6 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-        }
-    }
-    class ConsumMaterilViewHold(itemView: View) : ViewHold(itemView) {
-        var binding : UtilitySmpsConnsumMaterialBinding = UtilitySmpsConnsumMaterialBinding.bind(itemView)
-        val consumTableList:RecyclerView=binding.smpsConsumTable
-        init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
-
-            binding.imgAdd.setOnClickListener {
-                addTableItem()
-            }
-        }
-        private fun addTableItem(){
-            if (consumTableList.adapter!=null && consumTableList.adapter is ACConsumeMaterialTableAdapter){
-                val adapter = consumTableList.adapter as ACConsumeMaterialTableAdapter
-                adapter.addItem()
             }
         }
     }
@@ -189,8 +164,6 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
             return 4
         else if (list[position]==type5)
             return 5
-        else if (list[position]==type6)
-            return 6
         return 0
     }
 
@@ -198,7 +171,7 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_ac_equipment, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_fire_ext_equipments, parent, false)
                 return EquipViewHold(view)
             }
 
@@ -206,20 +179,16 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_installation_accep, parent, false)
                 return InstAccepViewHold(view)
             }
-            3-> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_connsum_material, parent, false)
-                return ConsumMaterilViewHold(view)
-            }
-            4 -> {
+            3 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_po_details, parent, false)
                 return PoDetailsViewHold(view)
             }
 
-            5-> {
+            4-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_smps_maintenence, parent, false)
                 return MaintenanceViewHold(view)
             }
-            6-> {
+            5-> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.utility_attachments, parent, false)
                 return Attachments(view)
             }
@@ -236,18 +205,8 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
-                    holder.binding.viewLayout.visibility = View.VISIBLE
-                    holder.binding.editLayout.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.VISIBLE
 
-                    holder.binding.imgEdit.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.GONE
-                        holder.binding.editLayout.visibility = View.VISIBLE
-                    }
-                    holder.binding.cancel.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.VISIBLE
-                        holder.binding.editLayout.visibility = View.GONE
-                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -255,106 +214,39 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
+                    AppPreferences.getInstance().saveInteger("UtilityFireEquipTableAdapter",currentOpened)
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true){
-                    equipmentData=datalist?.Equipment?.get(0)
+                holder.binding.imgAdd.setOnClickListener {
+                    listener.addEquipmentClicked()
                 }
-                if (equipmentData!=null){
-                    // view mode
-                    holder.binding.Type.text=equipmentData?.Type
-                    holder.binding.SerialNumber.text=equipmentData?.SerialNumber
-                    holder.binding.Make.text=equipmentData?.Make
-                    holder.binding.Model.text=equipmentData?.Model
-                    holder.binding.MaxPowerRating.text=equipmentData?.MaxPowerRating
-                    holder.binding.OULocationMark.text=equipmentData?.LocationMark
-                    holder.binding.CapacityRating.text=equipmentData?.CapacityRating
-                    holder.binding.CopperTubing.text= equipmentData?.CopperTubing
-                    holder.binding.CoolingTempSetting.text=equipmentData?.CoolingTempSetting
-                    holder.binding.IUSizeL.text=equipmentData?.SizeL
-                    holder.binding.IUSizeB.text=equipmentData?.SizeB
-                    holder.binding.IUSizeH.text=equipmentData?.SizeH
-                    holder.binding.OUSizeL.text=equipmentData?.OUSizeL
-                    holder.binding.OUSizeB.text=equipmentData?.OUSizeB
-                    holder.binding.OUSizeH.text=equipmentData?.OUSizeH
-                    holder.binding.IUWeight.text=equipmentData?.Weight
-                    holder.binding.OUWeight.text=equipmentData?.OUWeight
-                    holder.binding.ManufacturingMonthYear.text= Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
-                    holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
-                    holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
-                    holder.binding.remarks.text=equipmentData?.Remark
-                    if (equipmentData?.OperationStatus?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
+                if (datalist!=null && datalist?.Equipment!=null){
+                    holder.equipTableList.adapter=UtilityFireEquipTableAdapter(baseFragment,datalist?.Equipment,
+                        object :UtilityFireEquipTableAdapter.UtilityFireEquipListListener{
+                            override fun updateUtilityFireEquipData(updatedData: UtilitySMPSEquipment) {
+                                val utilityFireExtData= UtilityEquipmentFireExtinguisher()
+                                utilityFireExtData.Equipment= arrayListOf(updatedData)
+                                utilityFireExtData.id=datalist?.id
+                                listener.updateFireExtData(utilityFireExtData)
+                            }
+                        }
+                    )
+                }
+                else {
+                    holder.equipTableList.adapter=UtilityFireEquipTableAdapter(baseFragment,
+                        ArrayList(),
+                        object :UtilityFireEquipTableAdapter.UtilityFireEquipListListener{
+                            override fun updateUtilityFireEquipData(updatedData: UtilitySMPSEquipment) {
 
-                    // edit mode
-                    holder.binding.TypeEdit.setText(equipmentData?.Type)
-                    holder.binding.SerialNumberEdit.setText(equipmentData?.SerialNumber)
-                    holder.binding.MakeEdit.setText(equipmentData?.Make)
-                    holder.binding.ModelEdit.setText(equipmentData?.Model)
-                    holder.binding.CapacityRatingEdit.setText(equipmentData?.CapacityRating)
-                    holder.binding.IUSizeLEdit.setText(equipmentData?.SizeL)
-                    holder.binding.IUSizeBEdit.setText(equipmentData?.SizeB)
-                    holder.binding.IUSizeHEdit.setText(equipmentData?.SizeH)
-                    holder.binding.IuWeightEdit.setText(equipmentData?.Weight)
-                    holder.binding.OUSizeLEdit.setText(equipmentData?.OUSizeL)
-                    holder.binding.OUSizeBEdit.setText(equipmentData?.OUSizeB)
-                    holder.binding.OUSizeHEdit.setText(equipmentData?.OUSizeH)
-                    holder.binding.OUWeightEdit.setText(equipmentData?.OUWeight)
-                    holder.binding.OULocationMarkEdit.setText(equipmentData?.LocationMark)
-                    holder.binding.CopperTubingEdit.setText(equipmentData?.CopperTubing)
-                    holder.binding.CoolingTempSettingEdit.setText(equipmentData?.CoolingTempSetting)
-                    holder.binding.ManufacturingMonthYearEdit.text= Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
-                    holder.binding.WarrantyPeriodEdit.setText(equipmentData?.WarrantyPeriod)
-                    holder.binding.WarrantyExpiryDateEdit.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
-                    holder.binding.remarksEdit.setText(equipmentData?.Remark)
+                            }
+                        }
+                    )
                 }
-                if (equipmentData!=null && equipmentData?.OperationStatus?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-                        DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-                        DropDowns.OperationStatus.name)
 
-                holder.binding.update.setOnClickListener {
-                    val tempEquipData=UtilitySMPSEquipment()
-                    tempEquipData.let {
-                        it.Type=holder.binding.TypeEdit.text.toString()
-                        it.SerialNumber=holder.binding.SerialNumberEdit.text.toString()
-                        it.Make=holder.binding.MakeEdit.text.toString()
-                        it.Model=holder.binding.ModelEdit.text.toString()
-                        it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
-                        it.SizeL=holder.binding.IUSizeLEdit.text.toString()
-                        it.SizeB=holder.binding.IUSizeBEdit.text.toString()
-                        it.SizeH=holder.binding.IUSizeHEdit.text.toString()
-                        it.Weight=holder.binding.IuWeightEdit.text.toString()
-                        it.OUSizeL=holder.binding.OUSizeLEdit.text.toString()
-                        it.OUSizeB=holder.binding.OUSizeBEdit.text.toString()
-                        it.OUSizeH=holder.binding.OUSizeHEdit.text.toString()
-                        it.OUWeight=holder.binding.OUWeightEdit.text.toString()
-                        it.LocationMark=holder.binding.OULocationMarkEdit.text.toString()
-                        it.CopperTubing=holder.binding.CopperTubingEdit.text.toString()
-                        it.MaxPowerRating=holder.binding.MaxPowerRatingEdit.text.toString()
-                        it.CoolingTempSetting=holder.binding.CoolingTempSettingEdit.text.toString()
-                        it.ManufacturedOn= Utils.getFullFormatedDate(holder.binding.ManufacturingMonthYearEdit.text.toString())
-                        it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
-                        it.WarrantyExpiryDate= Utils.getFullFormatedDate(holder.binding.WarrantyExpiryDateEdit.text.toString())
-                        it.Remark=holder.binding.remarksEdit.text.toString()
-                        it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
-                        if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)
-                            it.id=datalist?.Equipment?.get(0)?.id
-                        val utilityFireExtData= UtilityEquipmentFireExtinguisher()
-                        utilityFireExtData.Equipment= arrayListOf(it)
-                        if (datalist!=null)
-                            utilityFireExtData.id=datalist?.id
-                        listener.updateFireExtData(utilityFireExtData)
-                    }
-                }
-                baseFragment.setDatePickerView(holder.binding.WarrantyExpiryDateEdit)
-                baseFragment.setDatePickerView(holder.binding.ManufacturingMonthYearEdit)
 
             }
             is InstAccepViewHold -> {
@@ -458,32 +350,6 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                     }
                 }
 
-            }
-            is ConsumMaterilViewHold -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgAdd.visibility = View.VISIBLE
-
-                }
-                else {
-                    holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgAdd.visibility = View.GONE
-                }
-                holder.binding.collapsingLayout.setOnClickListener {
-                    updateList(position)
-                }
-                holder.binding.itemTitleStr.text = list[position]
-//                if (datalist!=null)
-//                    holder.consumTableList.adapter=ACConsumeMaterialTableAdapter(baseFragment.requireContext(),listener,datalist?.)
-//                else
-//                    holder.consumTableList.adapter=ACConsumeMaterialTableAdapter(baseFragment.requireContext(),listener, ArrayList())
             }
             is PoDetailsViewHold -> {
                 if (currentOpened == position) {
@@ -592,11 +458,10 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
 
     interface FireExtListListener {
         fun attachmentItemClicked()
+        fun addEquipmentClicked()
         fun addAttachment(childIndex:Int?)
         fun editPoClicked(position:Int,data:UtilityPoDetails)
         fun viewPoClicked(position:Int,data:UtilityPoDetails)
-        fun editConsumMaterialTableItem(position: Int,data: UtilityConsumableMaterial)
-        fun viewConsumMaterialTableItem(position: Int,data:UtilityConsumableMaterial)
         fun editMaintenamceTableItem(position: Int,data:UtilityPreventiveMaintenance)
         fun viewMaintenanceTableItem(position: Int,data:UtilityPreventiveMaintenance)
         fun updateFireExtData(updatedData: UtilityEquipmentFireExtinguisher)

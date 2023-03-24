@@ -11,5 +11,6 @@ data class Status(
     val UtilityEquipmentDG: Int,
     val UtilityEquipmentSurgeProtectionDevice: Int,
     val UtilityEquipmentPowerDistributionBox: Int,
+    val UtilityEquipmentFireExtinguisher: Int,
     val CableDetail: Int,
 )

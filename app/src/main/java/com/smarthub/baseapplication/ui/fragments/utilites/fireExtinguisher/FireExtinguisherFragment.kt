@@ -10,19 +10,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.BatteryFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentFireExtinguisher
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPoDetails
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPreventiveMaintenance
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters.FireExtinguisherFragAdapter
-import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.SmpsConsuMaterialViewDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.editDialouge.UtilityFireExtMaintenanceEditDialouge
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.editDialouge.UtilityFireExtPoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilityMaintenanceViewDialouge
 import com.smarthub.baseapplication.ui.fragments.utilites.viewDialouge.UtilitySmpsPoViewDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?, var fireExtIndex:Int, var utilityAllDataId: Int?):BaseFragment(),
+class FireExtinguisherFragment(var FireExtAllData: UtilityEquipmentFireExtinguisher?, var fireExtIndex:Int, var utilityAllDataId: Int?):BaseFragment(),
     FireExtinguisherFragAdapter.FireExtListListener {
 
     lateinit var binding:BatteryFragmentBinding
@@ -38,7 +41,7 @@ class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listItem.layoutManager = LinearLayoutManager(requireContext())
-        adapter= FireExtinguisherFragAdapter(this@FireExtinguisherFragment,this@FireExtinguisherFragment,ACAllData)
+        adapter= FireExtinguisherFragAdapter(this@FireExtinguisherFragment,this@FireExtinguisherFragment,FireExtAllData)
         binding.listItem.adapter=adapter
 
         if (viewmodel.utilityEquipResponse?.hasActiveObservers() == true){
@@ -53,7 +56,7 @@ class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?,
                 hideLoader()
                 AppLogger.log("FireExtinguisherFragment card Data fetched successfully")
                 try {
-                    ACAllData=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentFireExtinguisher?.get(fireExtIndex)
+                    FireExtAllData=it.data.UtilityEquipment?.get(0)?.UtilityEquipmentFireExtinguisher?.get(fireExtIndex)
                     adapter.setData(it.data.UtilityEquipment?.get(0)?.UtilityEquipmentFireExtinguisher?.get(fireExtIndex))
                 }catch (e:java.lang.Exception){
                     AppLogger.log("FireExtinguisherFragment error : ${e.localizedMessage}")
@@ -73,9 +76,21 @@ class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?,
         Toast.makeText(requireContext(),"attechments item clicked", Toast.LENGTH_SHORT).show()
     }
 
+    override fun addEquipmentClicked() {
+        val bm = AddNewUtilityFireEquipDialouge(
+            FireExtAllData, utilityAllDataId,
+            object : AddNewUtilityFireEquipDialouge.AddUtilityFireEquipDataListener {
+                override fun addNewData(){
+                    showLoader()
+                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
 
     override fun addAttachment(childIndex:Int?) {
-        val bm = AttachmentCommonDialogBottomSheet("UtilityEquipmentAC",childIndex.toString(),
+        val bm = AttachmentCommonDialogBottomSheet("UtilityEquipmentFireExtinguisher",childIndex.toString(),
             object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel.utilityRequestAll(AppController.getInstance().siteid)
@@ -85,14 +100,14 @@ class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?,
     }
 
     override fun editPoClicked(position: Int,data: UtilityPoDetails) {
-//        val bm = UtilityACPoEditDialouge(data,ACAllData,utilityAllDataId,
-//            object : UtilityACPoEditDialouge.UtilityPoUpdateListener {
-//                override fun updatedData() {
-//                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
-//                }
-//
-//            })
-//        bm.show(childFragmentManager,"sdg")
+        val bm = UtilityFireExtPoEditDialouge(data,FireExtAllData,utilityAllDataId,
+            object : UtilityFireExtPoEditDialouge.UtilityPoUpdateListener {
+                override fun updatedData() {
+                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
 
@@ -102,30 +117,15 @@ class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?,
         bm.show(childFragmentManager,"smpsRectifierView")
     }
 
-    override fun editConsumMaterialTableItem(position: Int,data: UtilityConsumableMaterial) {
-//        val bm = ACConsumMaterialEditDialouge(data,ACAllData,utilityAllDataId,
-//            object : ACConsumMaterialEditDialouge.ACConsumMaterialUpdateListener {
-//                override fun updatedData() {
-//                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
-//                }
-//
-//            })
-//        bm.show(childFragmentManager,"sdg")
-    }
-
-    override fun viewConsumMaterialTableItem(position: Int,data: UtilityConsumableMaterial) {
-        val bm= SmpsConsuMaterialViewDialouge(R.layout.utility_smpsconsu_material_view_dialouge,data)
-        bm.show(childFragmentManager,"smpsRectifierView")      }
-
     override fun editMaintenamceTableItem(position: Int, data: UtilityPreventiveMaintenance) {
-//        val bm = UtilityACMaintenanceEditDialouge(data,ACAllData,utilityAllDataId,
-//            object : UtilityACMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
-//                override fun updatedData() {
-//                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
-//                }
-//
-//            })
-//        bm.show(childFragmentManager,"sdg")
+        val bm = UtilityFireExtMaintenanceEditDialouge(data,FireExtAllData,utilityAllDataId,
+            object : UtilityFireExtMaintenanceEditDialouge.UtilityMaintenanceUpdateListener {
+                override fun updatedData() {
+                    viewmodel.utilityRequestAll(AppController.getInstance().siteid)
+                }
+
+            })
+        bm.show(childFragmentManager,"sdg")
     }
 
     override fun viewMaintenanceTableItem(position: Int, data: UtilityPreventiveMaintenance) {
@@ -148,7 +148,7 @@ class FireExtinguisherFragment(var ACAllData: UtilityEquipmentFireExtinguisher?,
                 AppLogger.log("FireExtinguisherFragment data updating in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status.Equipment==200 || it.data.status.InstallationAndAcceptence==200)) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.UtilityEquipmentFireExtinguisher==200) {
                 AppLogger.log("FireExtinguisherFragment Data Updated successfully")
                 viewmodel.utilityRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
