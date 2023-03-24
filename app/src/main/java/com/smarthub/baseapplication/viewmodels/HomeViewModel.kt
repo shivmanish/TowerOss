@@ -99,6 +99,7 @@ class HomeViewModel : ViewModel() {
     var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
     var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
     var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
+    var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -138,6 +139,7 @@ class HomeViewModel : ViewModel() {
         siteInfoDataResponse=homeRepo?.siteInfoDataModel
         acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
         updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
+        updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
