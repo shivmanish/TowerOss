@@ -9,11 +9,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.tableAdapters.*
-import com.smarthub.baseapplication.ui.utilites.tableAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -92,7 +90,7 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
         }
         private fun addTableItem(){
             if (RectifireTableList.adapter!=null && RectifireTableList.adapter is SmpsRectifireTableAdapter){
-                var adapter = RectifireTableList.adapter as SmpsRectifireTableAdapter
+                val adapter = RectifireTableList.adapter as SmpsRectifireTableAdapter
                 adapter.addItem()
             }
         }
@@ -111,13 +109,13 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (ConnLoadTableList.adapter!=null && ConnLoadTableList.adapter is SmpsConnLoadsTableAdapter){
-                var adapter = ConnLoadTableList.adapter as SmpsConnLoadsTableAdapter
-                adapter.addItem(item)
+                val adapter = ConnLoadTableList.adapter as SmpsConnLoadsTableAdapter
+                adapter.addItem()
             }
         }
     }
@@ -154,7 +152,7 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
         }
         private fun addTableItem(){
             if (ConsumTableList.adapter!=null && ConsumTableList.adapter is SmpsConsumeTableAdapter){
-                var adapter = ConsumTableList.adapter as SmpsConsumeTableAdapter
+                val adapter = ConsumTableList.adapter as SmpsConsumeTableAdapter
                 adapter.addItem()
             }
         }
@@ -342,15 +340,14 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     holder.binding.CabinetSizeB.text=equipmentData?.SizeB
                     holder.binding.CabinetSizeH.text=equipmentData?.SizeH
                     holder.binding.Weight.text=equipmentData?.Weight
-                    holder.binding.ManufacturingMonthYear.text=Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn?.substring(0,7)!!,"MMM-yyyy")
+                    holder.binding.ManufacturingMonthYear.text=Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
                     holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
-                    if (equipmentData?.WarrantyExpiryDate?.length!! >=10)
-                        holder.binding.WarrantyExpiryDate.text=Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate?.substring(0,10)!!,"dd-MMM-yyyy")
-                    else
-                        holder.binding.WarrantyExpiryDate.text=equipmentData?.WarrantyExpiryDate
+                    holder.binding.WarrantyExpiryDate.text=Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
                     holder.binding.RackNo.text=equipmentData?.RackNo
                     holder.binding.remarks.text=equipmentData?.Remark
                     holder.binding.RackUSpaceUsed.text=equipmentData?.RackUSpaceUsed.toString()
+                    if (equipmentData?.InstalledLocationType!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationType,DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
                     if (equipmentData?.OperationStatus?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus,DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
 
@@ -362,17 +359,13 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     holder.binding.minVoltageRatingEdit.setText(equipmentData?.VoltageMin)
                     holder.binding.maxVoltageRatingEdit.setText(equipmentData?.VoltageMax)
                     holder.binding.CapacityRatingEdit.setText(equipmentData?.CapacityRating)
-                    holder.binding.InstallationLocationTypeEdit.text=equipmentData?.InstalledLocationType.toString()
                     holder.binding.CabinetSizeLEdit.setText(equipmentData?.SizeL)
                     holder.binding.CabinetSizeBEdit.setText(equipmentData?.SizeB)
                     holder.binding.CabinetSizeHEdit.setText(equipmentData?.SizeH)
                     holder.binding.WeightEdit.setText(equipmentData?.Weight)
-                    holder.binding.ManufacturingMonthYearEdit.text=Utils.getFormatedDate(equipmentData?.ManufacturedOn?.substring(0,10)!!,"dd-MMM-yyyy")
+                    holder.binding.ManufacturingMonthYearEdit.text=Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
                     holder.binding.WarrantyPeriodEdit.setText(equipmentData?.WarrantyPeriod)
-                    if (equipmentData?.WarrantyExpiryDate?.length!! >=10)
-                        holder.binding.WarrantyExpiryDateEdit.text=Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate?.substring(0,10)!!,"dd-MMM-yyyy")
-                    else
-                        holder.binding.WarrantyExpiryDateEdit.text=equipmentData?.WarrantyExpiryDate
+                    holder.binding.WarrantyExpiryDateEdit.text=Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
                     holder.binding.RackNoEdit.setText(equipmentData?.RackNo)
                     holder.binding.remarksEdit.setText(equipmentData?.Remark)
                     holder.binding.RackUSpaceUsedEdit.setText(equipmentData?.RackUSpaceUsed.toString())
@@ -381,6 +374,11 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,DropDowns.OperationStatus.name)
+
+                if (equipmentData!=null && equipmentData?.InstalledLocationType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledLocationTypeEdit,DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledLocationTypeEdit,DropDowns.InstallationLocationType.name)
 
                 holder.binding.update.setOnClickListener {
                     val tempEquipData=UtilitySMPSEquipment()
@@ -392,7 +390,7 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                         it.VoltageMax=holder.binding.maxVoltageRatingEdit.text.toString()
                         it.VoltageMin=holder.binding.minVoltageRatingEdit.text.toString()
                         it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
-                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                        it.InstalledLocationType=holder.binding.InstalledLocationTypeEdit.selectedValue.id.toIntOrNull()
                         it.SizeL=holder.binding.CabinetSizeLEdit.text.toString()
                         it.SizeB=holder.binding.CabinetSizeHEdit.text.toString()
                         it.SizeH=holder.binding.CabinetSizeHEdit.text.toString()

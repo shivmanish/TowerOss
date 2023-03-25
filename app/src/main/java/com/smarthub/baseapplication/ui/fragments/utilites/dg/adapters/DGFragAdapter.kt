@@ -305,10 +305,6 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                     holder.binding.minVoltageRating.text=equipmentData?.VoltageMin
                     holder.binding.maxVoltageRating.text=equipmentData?.VoltageMax
                     holder.binding.CapacityRating.text=equipmentData?.CapacityRating
-                    holder.binding.Canopy.text= equipmentData?.BatteryCellCount.toString()
-                    holder.binding.InstallationLocationType.text=equipmentData?.InstalledLocationType.toString()
-                    holder.binding.InstallationType.text=equipmentData?.InstalledLocationType.toString()
-                    holder.binding.FuelType.text=equipmentData?.InstalledLocationType.toString()
                     holder.binding.SizeL.text=equipmentData?.SizeL
                     holder.binding.SizeB.text=equipmentData?.SizeB
                     holder.binding.SizeH.text=equipmentData?.SizeH
@@ -321,6 +317,14 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                     holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
                     holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
                     holder.binding.remarks.text=equipmentData?.Remark
+                    if (equipmentData?.Canopy!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.Canopy, DropDowns.Canopy.name,equipmentData?.Canopy.toString())
+                    if (equipmentData?.InstalledLocationType!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationType, DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
+                    if (equipmentData?.InstallationType!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.InstallationType, DropDowns.InstallationType.name,equipmentData?.InstallationType.toString())
+                    if (equipmentData?.FuelType!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.FuelType, DropDowns.FuelType.name,equipmentData?.FuelType.toString())
                     if (equipmentData?.OperationStatus?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
 
@@ -332,10 +336,6 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                     holder.binding.minVoltageRatingEdit.setText(equipmentData?.VoltageMin)
                     holder.binding.maxVoltageRatingEdit.setText(equipmentData?.VoltageMax)
                     holder.binding.CapacityRatingEdit.setText(equipmentData?.CapacityRating)
-                    holder.binding.InstallationLocationTypeEdit.text=equipmentData?.InstalledLocationType.toString()
-                    holder.binding.CanopyEdit.text=equipmentData?.Canopy.toString()
-                    holder.binding.InstallationTypeEdit.text=equipmentData?.InstallationType.toString()
-                    holder.binding.FuelTypeEdit.text=equipmentData?.FuelType.toString()
                     holder.binding.SizeLEdit.setText(equipmentData?.SizeL)
                     holder.binding.SizeBEdit.setText(equipmentData?.SizeB)
                     holder.binding.SizeHEdit.setText(equipmentData?.SizeH)
@@ -350,11 +350,25 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                     holder.binding.HourlyConsumptionEdit.setText(equipmentData?.FuelConsumption)
                 }
                 if (equipmentData!=null && equipmentData?.OperationStatus?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-                        DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-                        DropDowns.OperationStatus.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name)
+                if (equipmentData!=null && equipmentData?.Canopy!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.CanopyEdit, DropDowns.Canopy.name,equipmentData?.Canopy.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.CanopyEdit, DropDowns.Canopy.name)
+                if (equipmentData!=null && equipmentData?.InstalledLocationType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationTypeEdit, DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationTypeEdit, DropDowns.InstallationLocationType.name)
+                if (equipmentData!=null && equipmentData?.InstallationType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationTypeEdit, DropDowns.InstallationType.name,equipmentData?.InstallationType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstallationTypeEdit, DropDowns.InstallationType.name)
+                if (equipmentData!=null && equipmentData?.FuelType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.FuelTypeEdit, DropDowns.FuelType.name,equipmentData?.FuelType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.FuelTypeEdit, DropDowns.FuelType.name)
 
                 holder.binding.update.setOnClickListener {
                     val tempEquipData=UtilitySMPSEquipment()
@@ -366,7 +380,7 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                         it.VoltageMax=holder.binding.maxVoltageRatingEdit.text.toString()
                         it.VoltageMin=holder.binding.minVoltageRatingEdit.text.toString()
                         it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
-                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
                         it.SizeL=holder.binding.SizeLEdit.text.toString()
                         it.SizeB=holder.binding.SizeBEdit.text.toString()
                         it.SizeH=holder.binding.SizeHEdit.text.toString()
@@ -376,9 +390,9 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                         it.ManufacturedOn= Utils.getFullFormatedDate(holder.binding.ManufacturingMonthYearEdit.text.toString())
                         it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
                         it.WarrantyExpiryDate= Utils.getFullFormatedDate(holder.binding.WarrantyExpiryDateEdit.text.toString())
-                        it.Canopy=holder.binding.CanopyEdit.text.toString().toIntOrNull()
-                        it.InstallationType=holder.binding.InstallationTypeEdit.text.toString().toIntOrNull()
-                        it.FuelType=holder.binding.FuelTypeEdit.text.toString().toIntOrNull()
+                        it.Canopy=holder.binding.CanopyEdit.selectedValue.id.toIntOrNull()
+                        it.InstallationType=holder.binding.InstallationTypeEdit.selectedValue.id.toIntOrNull()
+                        it.FuelType=holder.binding.FuelTypeEdit.selectedValue.id.toIntOrNull()
                         it.Remark=holder.binding.remarksEdit.text.toString()
                         it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
                         if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)

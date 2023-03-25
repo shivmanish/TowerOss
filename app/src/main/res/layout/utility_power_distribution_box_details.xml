@@ -448,19 +448,17 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/TypeEdit"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Type_edit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
+                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="@dimen/dp1"

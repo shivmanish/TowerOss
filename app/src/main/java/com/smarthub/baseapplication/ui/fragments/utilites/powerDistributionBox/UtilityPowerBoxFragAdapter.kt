@@ -118,7 +118,6 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                     holder.binding.itemTitleStr.text = String.format(this.baseActivity.resources.getString(R.string.rf_antenna_title_str_formate),equipmentData.SerialNumber,equipmentData.Model, Utils.getFormatedDate(InsAccepData.InstallationDate,"ddMMMyyyy"))
                 if (equipmentData!=null){
                     // view mode
-                    holder.binding.Type.text=equipmentData.Type
                     holder.binding.SerialNumber.text=equipmentData.SerialNumber
                     holder.binding.Make.text=equipmentData.Make
                     holder.binding.Model.text=equipmentData.Model
@@ -129,9 +128,10 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                     holder.binding.CapacityRating.text=equipmentData.CapacityRating
                     holder.binding.Count.text= equipmentData.Count.toString()
                     holder.binding.remarks.text=equipmentData.Remark
+                    if (equipmentData.Type!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.Type,DropDowns.PDBType.name,equipmentData.Type)
 
                     // edit mode
-                    holder.binding.TypeEdit.setText(equipmentData.Type)
                     holder.binding.SerialNumberEdit.setText(equipmentData.SerialNumber)
                     holder.binding.MakeEdit.setText(equipmentData.Make)
                     holder.binding.ModelEdit.setText(equipmentData.Model)
@@ -160,11 +160,15 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                     AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name)
+                if (equipmentData?.Type!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit, DropDowns.PDBType.name,equipmentData.Type)
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit, DropDowns.PDBType.name)
                 holder.binding.update.setOnClickListener {
                     val tempEquipData=UtilitySMPSEquipment()
                     val tempInsData=UtiltyInstallationAcceptence()
                     tempEquipData.let {
-                        it.Type=holder.binding.TypeEdit.text.toString()
+                        it.Type=holder.binding.TypeEdit.selectedValue.id
                         it.SerialNumber=holder.binding.SerialNumberEdit.text.toString()
                         it.Make=holder.binding.MakeEdit.text.toString()
                         it.Model=holder.binding.ModelEdit.text.toString()

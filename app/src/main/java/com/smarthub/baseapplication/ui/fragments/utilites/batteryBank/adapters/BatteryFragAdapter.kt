@@ -273,7 +273,6 @@ class BatteryFragAdapter(var baseFragment: BaseFragment, var listener: BatterryB
                     holder.binding.maxVoltageRating.text=equipmentData?.VoltageMax
                     holder.binding.CapacityRating.text=equipmentData?.CapacityRating
                     holder.binding.BatteryCellCount.text=equipmentData?.BatteryCellCount.toString()
-                    holder.binding.InstallationLocationType.text=equipmentData?.InstalledLocationType.toString()
                     holder.binding.SizeL.text=equipmentData?.SizeL
                     holder.binding.SizeB.text=equipmentData?.SizeB
                     holder.binding.SizeH.text=equipmentData?.SizeH
@@ -282,6 +281,8 @@ class BatteryFragAdapter(var baseFragment: BaseFragment, var listener: BatterryB
                     holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
                     holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
                     holder.binding.remarks.text=equipmentData?.Remark
+                    if (equipmentData?.InstalledLocationType!=null)
+                        AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationType,DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
                     if (equipmentData?.OperationStatus?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
 
@@ -293,7 +294,6 @@ class BatteryFragAdapter(var baseFragment: BaseFragment, var listener: BatterryB
                     holder.binding.minVoltageRatingEdit.setText(equipmentData?.VoltageMin)
                     holder.binding.maxVoltageRatingEdit.setText(equipmentData?.VoltageMax)
                     holder.binding.CapacityRatingEdit.setText(equipmentData?.CapacityRating)
-                    holder.binding.InstallationLocationTypeEdit.text=equipmentData?.InstalledLocationType.toString()
                     holder.binding.SizeLEdit.setText(equipmentData?.SizeL)
                     holder.binding.SizeBEdit.setText(equipmentData?.SizeB)
                     holder.binding.SizeHEdit.setText(equipmentData?.SizeH)
@@ -305,11 +305,14 @@ class BatteryFragAdapter(var baseFragment: BaseFragment, var listener: BatterryB
                     holder.binding.BatteryCellCountEdit.setText(equipmentData?.RackUSpaceUsed.toString())
                 }
                 if (equipmentData!=null && equipmentData?.OperationStatus?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-                        DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
-                        DropDowns.OperationStatus.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name)
+                if (equipmentData!=null && equipmentData?.InstalledLocationType!=null)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledLocationTypeEdit,DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledLocationTypeEdit,DropDowns.InstallationLocationType.name)
+
 
                 holder.binding.update.setOnClickListener {
                     val tempEquipData=UtilitySMPSEquipment()
@@ -321,7 +324,7 @@ class BatteryFragAdapter(var baseFragment: BaseFragment, var listener: BatterryB
                         it.VoltageMax=holder.binding.maxVoltageRatingEdit.text.toString()
                         it.VoltageMin=holder.binding.minVoltageRatingEdit.text.toString()
                         it.CapacityRating=holder.binding.CapacityRatingEdit.text.toString()
-                        it.InstalledLocationType=holder.binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                        it.InstalledLocationType=holder.binding.InstalledLocationTypeEdit.selectedValue.id.toIntOrNull()
                         it.SizeL=holder.binding.SizeLEdit.text.toString()
                         it.SizeB=holder.binding.SizeBEdit.text.toString()
                         it.SizeH=holder.binding.SizeHEdit.text.toString()

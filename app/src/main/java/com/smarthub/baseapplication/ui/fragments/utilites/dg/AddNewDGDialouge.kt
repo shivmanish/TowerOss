@@ -37,6 +37,10 @@ class AddNewDGDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, var li
         }
         
         AppPreferences.getInstance().setDropDown(binding.OperationalStatusEdit,DropDowns.OperationStatus.name)
+        AppPreferences.getInstance().setDropDown(binding.InstallationLocationTypeEdit,DropDowns.InstallationLocationType.name)
+        AppPreferences.getInstance().setDropDown(binding.FuelTypeEdit,DropDowns.FuelType.name)
+        AppPreferences.getInstance().setDropDown(binding.CanopyEdit,DropDowns.Canopy.name)
+        AppPreferences.getInstance().setDropDown(binding.InstallationTypeEdit,DropDowns.InstallationType.name)
 
 
         setDatePickerView(binding.WarrantyExpiryDateEdit)
@@ -65,9 +69,10 @@ class AddNewDGDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, var li
                 it.ManufacturedOn=Utils.getFullFormatedDate(binding.ManufacturingMonthYearEdit.text.toString())
                 it.WarrantyExpiryDate=Utils.getFullFormatedDate(binding.WarrantyExpiryDateEdit.text.toString())
                 it.WarrantyPeriod=binding.WarrantyPeriodEdit.text.toString()
-                it.InstalledLocationType=binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
-                it.InstallationType=binding.InstallationTypeEdit.text.toString().toIntOrNull()
-                it.Canopy=binding.CanopyEdit.text.toString().toIntOrNull()
+                it.InstalledLocationType=binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
+                it.InstallationType=binding.InstallationTypeEdit.selectedValue.id.toIntOrNull()
+                it.Canopy=binding.CanopyEdit.selectedValue.id.toIntOrNull()
+                it.FuelType=binding.FuelTypeEdit.selectedValue.id.toIntOrNull()
                 it.FuelConsumption=binding.HourlyConsumptionEdit.text.toString()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
                 it.Remark=binding.remarksEdit.text.toString()

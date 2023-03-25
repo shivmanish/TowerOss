@@ -37,7 +37,9 @@ class AddNewFireExtDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, v
         }
         
         AppPreferences.getInstance().setDropDown(binding.OperationalStatusEdit,DropDowns.OperationStatus.name)
-
+        AppPreferences.getInstance().setDropDown(binding.ClassEdit,DropDowns.Class.name)
+        AppPreferences.getInstance().setDropDown(binding.TypeEdit,DropDowns.Type.name)
+        AppPreferences.getInstance().setDropDown(binding.InstallationLocationTypeEdit,DropDowns.InstallationLocationType.name)
 
         setDatePickerView(binding.WarrantyExpiryDateEdit)
         setMonthYearView(binding.ManufacturingMonthYearEdit)
@@ -48,12 +50,12 @@ class AddNewFireExtDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, v
             showProgressLayout()
             val data=UtilitySMPSEquipment()
             data.let {
-                it.Type=binding.TypeEdit.text.toString()
-                it.Class=binding.ClassEdit.text.toString().toIntOrNull()
+                it.Type=binding.TypeEdit.selectedValue.id
+                it.Class=binding.ClassEdit.selectedValue.id.toIntOrNull()
                 it.SerialNumber=binding.SerialNumberEdit.text.toString()
                 it.Make=binding.MakeEdit.text.toString()
                 it.Model=Utils.getFullFormatedDate(binding.ModelEdit.text.toString())
-                it.InstalledLocationType=binding.InstallationLocationTypeEdit.text.toString().toIntOrNull()
+                it.InstalledLocationType=binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
                 it.CapacityRating=binding.CapacityRatingEdit.text.toString()
                 it.SizeL=binding.SizeLEdit.text.toString()
                 it.SizeB=binding.SizeBEdit.text.toString()
