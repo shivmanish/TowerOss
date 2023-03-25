@@ -5,6 +5,8 @@ data class TaskDataListItem(
     val Auto: String,
     val Automaticescalationofoverdueitems: String,
     val FeatureName: String,
+    var ModuleName: String,
+    var ModuleId: String,
     val NotificationSettingfornewaction: String,
     val PrerequisiteTask: String,
     val Processname: String,

@@ -56,18 +56,15 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                     nocDataAdapter.setData(it.data.NOCCompliance!!)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"Noc Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
                 AppLogger.log("size :${it.data.NOCCompliance?.size}")
                 isDataLoaded = true
             }
             else if (it!=null) {
-                Toast.makeText(requireContext(),"NocAndComp Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("NocAndComp Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("NocAndComp Fragment Something went wrong")
-                Toast.makeText(requireContext(),"NocAndComp Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
         NocCompBinding.swipeLayout.setOnRefreshListener {

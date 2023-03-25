@@ -7,19 +7,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.NocCompCommonFragBinding
 import com.smarthub.baseapplication.databinding.RfAntinaFragmentBinding
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAnteena.RfAnteenaItemsEditDialouge
 
-class NocFeePaymentFragment(var nocdata: NocCompAllData?) :Fragment(), NocFeePayDetailsAdapter.NocFeePayClickListener {
+class NocFeePaymentFragment(var nocdata: NocCompAllData?) :BaseFragment(), NocFeePayDetailsAdapter.NocFeePayClickListener {
 
-    var binding : RfAntinaFragmentBinding?=null
+    var binding : NocCompCommonFragBinding?=null
     lateinit var adapter: NocFeePayDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = RfAntinaFragmentBinding.inflate(inflater, container, false)
+        binding = NocCompCommonFragBinding.inflate(inflater, container, false)
         return binding?.root
     }
 

@@ -19,9 +19,10 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
     var list : ArrayList<NocApplicationInitial> = cableDetails!!
     var currentOpened = -1
 
-    fun updateItem(pos : Int,data : NocApplicationInitial){
-        list[pos] = data
-        notifyItemChanged(pos)
+    fun setData(data : ArrayList<NocApplicationInitial>){
+        this.list.clear()
+        this.list.addAll(data)
+        notifyDataSetChanged()
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)

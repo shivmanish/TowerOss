@@ -38,6 +38,8 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel;
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel;
@@ -72,6 +74,8 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
+import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel;
+import com.smarthub.baseapplication.model.workflow.UpdatedTaskResponseModel;
 import com.smarthub.baseapplication.network.pojo.RefreshToken;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.alert.model.UpdateAlertData;
@@ -87,20 +91,16 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeRes
 import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
 import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Url;
 
@@ -218,6 +218,10 @@ public interface APIClient {
     Call<NocCompAllDataModel> fetchNocAndCompRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<UpdateNocCompResponseModel> updateNocCompRequest(@Body UpdateNocCompModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
     Call<TowerCivilAllDataModel> fetchTowerCivilInfraRequest(@Body JsonObject data);
 
@@ -301,6 +305,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.WORKFLOW_DATA_URL)
     Call<TaskDataList> getTaskDataById(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<UpdatedTaskResponseModel> updateTaskData(@Body TaskDataUpdateModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SERVICE_REQUEST_SEND_ALERT)

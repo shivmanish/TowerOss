@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityTaskDetailBinding
 import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabNewFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
@@ -24,6 +25,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var lattitude:String = "20.735566"
     var longitude:String = "85.853400"
     var trackingId:String = "474"
+    var taskDetailId:String ? = null
     var tempWhere = "[41,42,43]"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +39,15 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 //        }
         checkLocationPermission()
         if (intent.hasExtra("url")){
-            val id = intent.getStringExtra("url")
+             taskDetailId = intent.getStringExtra("url")
 //            binding.titleText.text = id
 //            showLoader()
-            viewModel.fetchTaskDetails(id!!)
+//            viewModel.fetchTaskDetails(taskDetailId)
         }
         if (intent.hasExtra("siteId")){
             siteId = intent.getStringExtra("siteId")!!
+            AppController.getInstance().taskSiteId=siteId
+            AppController.getInstance().siteid=siteId
         }
         if (intent.hasExtra("lattitude")){
             lattitude = intent.getStringExtra("lattitude")!!
@@ -151,7 +155,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
     private fun mapUIData(){
-        setFragment(TaskSearchTabNewFragment(siteId,trackingId,lattitude,longitude,tempWhere))
+        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)

@@ -22,6 +22,9 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompAllData
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AcquisitionSurveyData
@@ -100,6 +103,7 @@ class HomeViewModel : ViewModel() {
     var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
     var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
     var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
+    var updateNocCompDataResponse:SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -140,6 +144,7 @@ class HomeViewModel : ViewModel() {
         acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
         updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
         updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
+        updateNocCompDataResponse=updateIBoardRepo?.updateNocCompResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -357,5 +362,10 @@ class HomeViewModel : ViewModel() {
         tempList.add(data)
         dataModel.UtilityEquipment=tempList
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
+    }
+    fun updateNocAndComp(data: UpdateNocCompAllData) {
+        val dataModel= UpdateNocCompModel()
+        dataModel.NOCCompliance= arrayListOf(data)
+        updateIBoardRepo?.updateNocCompData(dataModel)
     }
 }

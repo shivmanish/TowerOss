@@ -1,12 +1,17 @@
 package com.smarthub.baseapplication.network.repo
 
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown
 import com.smarthub.baseapplication.model.search.SearchList
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.taskModel.*
+import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
+import com.smarthub.baseapplication.model.workflow.UpdatedTaskResponseModel
 import com.smarthub.baseapplication.network.APIClient
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse
 import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew
@@ -22,12 +27,14 @@ class TaskActivityRepo(private var apiClient: APIClient) {
     val TAG = "TaskActivityRepo"
     val createNewTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     val assignTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
+    var updatedTaskResponse: SingleLiveEvent<Resource<UpdatedTaskResponseModel>>? = null
     var geoGraphyDropDownDataResponse: SingleLiveEvent<Resource<GeoGraphyLevelData>>? = null
     var taskInfoResponse: SingleLiveEvent<Resource<TaskInfo>>? = null
 
     init {
         geoGraphyDropDownDataResponse=SingleLiveEvent<Resource<GeoGraphyLevelData>>()
         taskInfoResponse=SingleLiveEvent<Resource<TaskInfo>>()
+        updatedTaskResponse=SingleLiveEvent<Resource<UpdatedTaskResponseModel>>()
     }
 
     
@@ -173,6 +180,40 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                         AppConstants.GENERIC_ERROR
                     )
                 )
+            }
+        })
+    }
+
+    fun updateTaskData(data: TaskDataUpdateModel?) {
+        AppLogger.log("updateTaskData==> : ${Gson().toJson(data)}")
+        apiClient.updateTaskData(data!!).enqueue(object : Callback<UpdatedTaskResponseModel> {
+            override fun onResponse(
+                call: Call<UpdatedTaskResponseModel?>,
+                response: Response<UpdatedTaskResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdatedTaskResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdatedTaskResponseModel?>) {
+                if (response.body() != null) {
+                    updatedTaskResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updatedTaskResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null) updatedTaskResponse?.postValue(
+                    Resource.error(iThrowableLocalMessage, null, 500)
+                ) else updatedTaskResponse?.postValue(
+                    Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

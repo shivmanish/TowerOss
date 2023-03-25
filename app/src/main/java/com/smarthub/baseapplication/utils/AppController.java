@@ -17,6 +17,7 @@ public class AppController extends MyApplication {
     public AllsiteInfoDataModel newSiteInfoModel;
     public String ownerName = "SMRT";
     public String siteid = "448";
+    public String taskSiteId = "448";
     public String siteName = "448";
 
     @Override
