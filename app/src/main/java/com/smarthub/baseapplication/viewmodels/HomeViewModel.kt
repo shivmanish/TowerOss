@@ -55,51 +55,51 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
 class HomeViewModel : ViewModel() {
 
-    var homeRepo: HomeRepo?=null
-    var updateIBoardRepo: UpdateIBoardRepo?=null
-    var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
-    var getHomeDataResponse : SingleLiveEvent<Resource<HomeResponse>>?=null
-    var getProjectDataResponse : SingleLiveEvent<Resource<ProjectModelData>>?=null
-    var getTaskDataResponse : SingleLiveEvent<Resource<TaskModelData>>?=null
-    var getServiceRequest : SingleLiveEvent<Resource<ServiceRequestAllData>>?=null
-    var myTeamTask : SingleLiveEvent<List<MyTeamTask>?>?=null
-    var myTask : SingleLiveEvent<List<MyTeamTask>?>?=null
-    var siteInfoResponse : SingleLiveEvent<Resource<SiteInfoModel?>>?=null
-    var serviceRequestModelResponse : SingleLiveEvent<Resource<ServiceRequestModel?>>?=null
-    var acquisitionSurveyAllDataItem : SingleLiveEvent<Resource<AcquisitionSurveyModel?>>?=null
-    var loglivedata : SingleLiveEvent<Resource<LogsDataModel?>>?=null
-    var opcoTenancyListResponse : SingleLiveEvent<Resource<OpcoDataList?>>?=null
-    var serviceRequestAllData : SingleLiveEvent<Resource<ServiceRequestAllData?>>?=null
-    var siteSearchResponse : SingleLiveEvent<Resource<SearchList>>?=null
+    var homeRepo: HomeRepo? = null
+    var updateIBoardRepo: UpdateIBoardRepo? = null
+    var updateUtilityDataResponse: SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
+    var getHomeDataResponse: SingleLiveEvent<Resource<HomeResponse>>? = null
+    var getProjectDataResponse: SingleLiveEvent<Resource<ProjectModelData>>? = null
+    var getTaskDataResponse: SingleLiveEvent<Resource<TaskModelData>>? = null
+    var getServiceRequest: SingleLiveEvent<Resource<ServiceRequestAllData>>? = null
+    var myTeamTask: SingleLiveEvent<List<MyTeamTask>?>? = null
+    var myTask: SingleLiveEvent<List<MyTeamTask>?>? = null
+    var siteInfoResponse: SingleLiveEvent<Resource<SiteInfoModel?>>? = null
+    var serviceRequestModelResponse: SingleLiveEvent<Resource<ServiceRequestModel?>>? = null
+    var acquisitionSurveyAllDataItem: SingleLiveEvent<Resource<AcquisitionSurveyModel?>>? = null
+    var loglivedata: SingleLiveEvent<Resource<LogsDataModel?>>? = null
+    var opcoTenancyListResponse: SingleLiveEvent<Resource<OpcoDataList?>>? = null
+    var serviceRequestAllData: SingleLiveEvent<Resource<ServiceRequestAllData?>>? = null
+    var siteSearchResponse: SingleLiveEvent<Resource<SearchList>>? = null
     var basicinfoModel: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
-    var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoTenencyAllDataModel?>>?=null
-    var NocAndCompModelResponse : SingleLiveEvent<Resource<NocCompAllDataModel?>>?=null
-    var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilAllDataModel?>>?=null
-    var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
-    var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
-    var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
-    var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
-    var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
-    var siteAgreementModel:SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
-    var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
-    var utilityEquipResponse:SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
-    var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
-    var userDataListResponse:SingleLiveEvent<Resource<UserDataResponse>>? = null
-    var addNotiResponse:SingleLiveEvent<Resource<AddNotificationResponse>>? = null
-    var siteInfoDataResponse:SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
-    var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
-    var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
-    var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
+    var opcoTenencyModelResponse: SingleLiveEvent<Resource<OpcoTenencyAllDataModel?>>? = null
+    var NocAndCompModelResponse: SingleLiveEvent<Resource<NocCompAllDataModel?>>? = null
+    var TowerCivilInfraModelResponse: SingleLiveEvent<Resource<TowerCivilAllDataModel?>>? = null
+    var PlanDesignModelResponse: SingleLiveEvent<Resource<PlanAndDesignModel?>>? = null
+    var QatModelResponse: SingleLiveEvent<Resource<QatMainModel?>>? = null
+    var dropDownResponse: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
+    var dropDownResponseNew: SingleLiveEvent<Resource<DropDownNew>>? = null
+    var powerAndFuelResponse: SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
+    var siteAgreementModel: SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
+    var siteInfoModelNew: SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
+    var utilityEquipResponse: SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
+    var notificationNew: SingleLiveEvent<Resource<NotificationNew>>? = null
+    var userDataListResponse: SingleLiveEvent<Resource<UserDataResponse>>? = null
+    var addNotiResponse: SingleLiveEvent<Resource<AddNotificationResponse>>? = null
+    var siteInfoDataResponse: SingleLiveEvent<Resource<AllsiteInfoDataModel>>? = null
+    var updateSiteAcqDataResponse: SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
+    var addAttachmentModel: SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -108,8 +108,8 @@ class HomeViewModel : ViewModel() {
         getProjectDataResponse = homeRepo?.projectResponse
         getTaskDataResponse = homeRepo?.taskResponse
         getServiceRequest = homeRepo?.serviceRequest
-        myTeamTask  = SingleLiveEvent<List<MyTeamTask>?>()
-        myTask  = SingleLiveEvent<List<MyTeamTask>?>()
+        myTeamTask = SingleLiveEvent<List<MyTeamTask>?>()
+        myTask = SingleLiveEvent<List<MyTeamTask>?>()
         siteSearchResponse = homeRepo?.siteSearchResponseData
         siteInfoResponse = homeRepo?.siteInfoResponse
         siteDropData = homeRepo?.siteDropDownDataResponse
@@ -119,150 +119,154 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
-        updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
+        updateUtilityDataResponse = updateIBoardRepo?.updateUtilityEquipResponse
         loglivedata = homeRepo?.getloglivedata()
-        opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
-        NocAndCompModelResponse=homeRepo?.noCandCompModel
-        TowerCivilInfraModelResponse=homeRepo?.towerAndCivilInfraModel
+        opcoTenencyModelResponse = homeRepo?.opcoTenencyModel
+        NocAndCompModelResponse = homeRepo?.noCandCompModel
+        TowerCivilInfraModelResponse = homeRepo?.towerAndCivilInfraModel
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
-        PlanDesignModelResponse=homeRepo?.planAndDesignModel
-        QatModelResponse=homeRepo?.qatMainModelResponse
-        powerAndFuelResponse=homeRepo?.powerFuelModel
+        PlanDesignModelResponse = homeRepo?.planAndDesignModel
+        QatModelResponse = homeRepo?.qatMainModelResponse
+        powerAndFuelResponse = homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
         dropDownResponseNew = homeRepo?.dropDownResponseNew
-        utilityEquipResponse=homeRepo?.utilityEquipModel
+        utilityEquipResponse = homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
         siteInfoModelNew = homeRepo?.siteInfoModelNew
         notificationNew = homeRepo?.notificationNew
-        userDataListResponse=homeRepo?.userDataResponse
-        addNotiResponse=homeRepo?.addNotificationResponse
-        siteInfoDataResponse=homeRepo?.siteInfoDataModel
-        acquisitionSurveyAllDataItem=homeRepo?.acquisitionSurveyAllDataItem
-        updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
-        updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
-        addAttachmentModel=homeRepo?.addAttachmentModel
+        userDataListResponse = homeRepo?.userDataResponse
+        addNotiResponse = homeRepo?.addNotificationResponse
+        siteInfoDataResponse = homeRepo?.siteInfoDataModel
+        acquisitionSurveyAllDataItem = homeRepo?.acquisitionSurveyAllDataItem
+        updateSiteAcqDataResponse = updateIBoardRepo?.updateSiteAcqResponse
+        updateUtilityDataResponse = updateIBoardRepo?.updateUtilityEquipResponse
+        addAttachmentModel = homeRepo?.addAttachmentModel
     }
 
-    fun updateData(basicinfoModel: BasicinfoModel){
+    fun updateData(basicinfoModel: BasicinfoModel) {
         homeRepo?.updateData(basicinfoModel)
     }
 
-    fun addAttachmentData(addAttachmentModel : AddAttachmentModel){
+    fun addAttachmentData(addAttachmentModel: AddAttachmentModel) {
         homeRepo?.addAttachmentData(addAttachmentModel)
     }
 
-    fun updateOperationInfo(basicinfoModel: UpdateOperationInfo){
+    fun updateOperationInfo(basicinfoModel: UpdateOperationInfo) {
         homeRepo?.updateOperationInfo(basicinfoModel)
     }
 
-    fun generateSiteId(basicinfoModel: GenerateSiteIdResponse){
+    fun generateSiteId(basicinfoModel: GenerateSiteIdResponse) {
         homeRepo?.generateSiteId(basicinfoModel)
     }
 
-    fun updateBasicInfo(basicinfoModel: BasicinfoModel){
+    fun updateBasicInfo(basicinfoModel: BasicinfoModel) {
         homeRepo?.updateSiteInfo(basicinfoModel)
     }
 
-    fun createSite(basicinfoModel: CreateSiteModel){
+    fun createSite(basicinfoModel: CreateSiteModel) {
         homeRepo?.createSite(basicinfoModel)
     }
 
-    fun getNotifications(){
+    fun getNotifications() {
         homeRepo?.getAllNotification()
     }
 
-    fun getUsers(){
+    fun getUsers() {
         homeRepo?.getUserData()
     }
-    fun addNotification(data:AddNotificationModel){
+
+    fun addNotification(data: AddNotificationModel) {
         homeRepo?.addNotification(data)
     }
 
-    fun updateMyTeamTask(data : List<MyTeamTask>?){
+    fun updateMyTeamTask(data: List<MyTeamTask>?) {
         AppLogger.log("updateMyTeamTask : data ${data?.size}")
         myTeamTask?.postValue(data)
     }
 
-    fun updateMyTask(data : List<MyTeamTask>?){
+    fun updateMyTask(data: List<MyTeamTask>?) {
         AppLogger.log("updateMyTask : data ${data?.size}")
         myTask?.postValue(data)
     }
 
-    fun homeData(): SingleLiveEvent<Resource<HomeResponse>>?{
+    fun homeData(): SingleLiveEvent<Resource<HomeResponse>>? {
         return getHomeDataResponse
     }
 
-    fun fetchHomeData(){
+    fun fetchHomeData() {
         homeRepo?.fetchHomeData()
     }
 
 
-    fun fetchProjectsData(){
+    fun fetchProjectsData() {
         homeRepo?.fetchProjectData()
     }
 
-    fun fetchTaskData(templateName : String){
+    fun fetchTaskData(templateName: String) {
         homeRepo?.fetchTaskData(templateName)
     }
-    fun fetchServiceRequestData(id : String){
+
+    fun fetchServiceRequestData(id: String) {
         homeRepo?.fetchServiceRequestData(id)
     }
 
-    fun fetchSiteInfoData(id : String){
+    fun fetchSiteInfoData(id: String) {
         homeRepo?.siteInfoById(id)
     }
 
-    fun siteInfoRequestAll(id : String){
+    fun siteInfoRequestAll(id: String) {
         homeRepo?.SiteInfoRequestAll(id)
     }
 
-    fun siteAcquisitionSurveyById(id : String){
+    fun siteAcquisitionSurveyById(id: String) {
         homeRepo?.siteAcquisitionSurveyById(id)
     }
 
-    fun serviceRequestAll(id : String){
+    fun serviceRequestAll(id: String) {
         homeRepo?.serviceRequestAll(id)
     }
 
-    fun opcoTenancyRequestAll(id : String){
+    fun opcoTenancyRequestAll(id: String) {
         homeRepo?.opcoRequestAll(id)
     }
-    fun planAndDesignRequestAll(id : String){
+
+    fun planAndDesignRequestAll(id: String) {
         homeRepo?.planDesignRequestAll(id)
     }
 
-    fun qatRequestAll(id : String){
+    fun qatRequestAll(id: String) {
         homeRepo?.qatRequestAll(id)
     }
 
-    fun qatMainRequestAll(id : String){
+    fun qatMainRequestAll(id: String) {
         homeRepo?.qatMainRequestAll(id)
     }
 
-    fun qatLaunchMain(data : QalLaunchModel){
+    fun qatLaunchMain(data: QalLaunchModel) {
         homeRepo?.qatMainRequestAll(data)
     }
 
-    fun qatLaunchMain(data : QatPunchPointModel){
+    fun qatLaunchMain(data: QatPunchPointModel) {
         homeRepo?.qatMainRequestAll(data)
     }
 
-    fun saveQatPunchPoint(data : SaveCheckpointModel){
+    fun saveQatPunchPoint(data: SaveCheckpointModel) {
         homeRepo?.saveQatPunchPointRequestAll(data)
     }
 
-    fun fetchSiteAgreementModelRequest(id : String){
+    fun fetchSiteAgreementModelRequest(id: String) {
         homeRepo?.siteAgreementRequestAll(id)
     }
 
-    fun utilityRequestAll(id : String){
+    fun utilityRequestAll(id: String) {
         homeRepo?.utilitiEquipRequestAll(id)
     }
 
-    fun NocAndCompRequestAll(id : String){
+    fun NocAndCompRequestAll(id: String) {
         homeRepo?.NocAndCompRequestAll(id)
     }
-    fun TowerAndCivilRequestAll(id : String){
+
+    fun TowerAndCivilRequestAll(id: String) {
         homeRepo?.TowerCivilInfraRequestAll(id)
     }
 
@@ -274,22 +278,23 @@ class HomeViewModel : ViewModel() {
 //        homeRepo?.siteSearchDataNew(id)
 //    }
 
-    fun fetchSiteSearchData(id:String,category :String) {
-        homeRepo?.searchSiteAll(id,category)
+    fun fetchSiteSearchData(id: String, category: String) {
+        homeRepo?.searchSiteAll(id, category)
     }
 
     fun fetchSiteDropDownData() {
         homeRepo?.siteInfoDropDown()
     }
 
-    fun fetchPowerAndFuel(id:String) {
+    fun fetchPowerAndFuel(id: String) {
         homeRepo?.powerAndFuelRequestAll(id)
     }
-    fun fetchChangeLog(id:String) {
+
+    fun fetchChangeLog(id: String) {
         homeRepo?.chamgeLogAll(id)
     }
 
-    fun postChangeLog(data:PostLogData){
+    fun postChangeLog(data: PostLogData) {
         homeRepo?.UpdateLogData(data)
     }
 
@@ -304,61 +309,79 @@ class HomeViewModel : ViewModel() {
     fun updateSiteInfo(siteAgreementsData: SiteacquisitionAgreement) {
         homeRepo?.updateAgreementSiteInfo(siteAgreementsData)
     }
-    fun updateSiteAcq(data: UpdateSiteAcquiAllData) {
-        if(!Utils.isNetworkConnected()) {
-            val value = AppPreferences.getInstance().getString("siteAgreementRequestAll${data.id}")
-            var cache_model = SiteAcquisitionAllDataModel()
-            if(value!=null && !value.isEmpty()) {
-            //Save the Service fot later updatation when online
-                try {
-                    cache_model = Gson().fromJson(value,SiteAcquisitionAllDataModel::class.java)
 
-                }catch (e:Exception){
+    fun updateSiteAcq(data: UpdateSiteAcquiAllData) {
+        if (!Utils.isNetworkConnected()) {
+            val value = AppPreferences.getInstance().getString("siteAgreementRequestAll${data.id}")
+            val site_id = AppController.getInstance().siteid
+            var position = 0
+            println("Preference id is siteAgreementRequestAll${site_id}")
+            var cache_model = SiteAcquisitionAllDataModel()
+            if (value != null && !value.isEmpty()) {
+                //Save the Service fot later updatation when online
+                try {
+                    cache_model = Gson().fromJson(value, SiteAcquisitionAllDataModel::class.java)
+                    for ((index, value) in cache_model.SAcqSiteAcquisition!!.withIndex()) {
+                        if (value.id == data.id) {
+                            position = index
+                            break
+                        }
+                    }
+
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
-            cache_model.SAcqSiteAcquisition = ArrayList()
-            cache_model.SAcqSiteAcquisition?.add(NewSiteAcquiAllData(
-                null,null,null,null,"",0,false,""
-            )!!)
-            if(data.SAcqAcquitionSurvey!=null){
-                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAcquitionSurvey = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAcquitionSurvey?.addAll(data.SAcqAcquitionSurvey!!)
+            if (cache_model.SAcqSiteAcquisition == null) {
+                cache_model.SAcqSiteAcquisition = ArrayList()
             }
-            if(data.SAcqAgreement!=null){
-                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAgreement = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAgreement?.addAll(data.SAcqAgreement!!)
+            if (cache_model.SAcqSiteAcquisition?.size == 0) {
+                cache_model.SAcqSiteAcquisition?.add(
+                    NewSiteAcquiAllData(
+                        null, null, null, null, "", 0, false, ""
+                    )!!
+                )
+            }
+            if (data.SAcqAcquitionSurvey != null) {
+                cache_model.SAcqSiteAcquisition?.get(position)?.SAcqAcquitionSurvey = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(position).SAcqAcquitionSurvey?.addAll(data.SAcqAcquitionSurvey!!)
+            }
+            if (data.SAcqAgreement != null) {
+                cache_model.SAcqSiteAcquisition?.get(position)?.SAcqAgreement = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(position).SAcqAgreement?.addAll(data.SAcqAgreement!!)
 
             }
-            if(data.SAcqAssignACQTeam!=null){
-                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAssignACQTeam = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAssignACQTeam?.addAll(data.SAcqAssignACQTeam!!)
+            if (data.SAcqAssignACQTeam != null) {
+                cache_model.SAcqSiteAcquisition?.get(position)?.SAcqAssignACQTeam = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(position).SAcqAssignACQTeam?.addAll(data.SAcqAssignACQTeam!!)
 
             }
-            if(data.SAcqSoftAcquisition!=null){
-                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqSoftAcquisition = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqSoftAcquisition?.addAll(data.SAcqSoftAcquisition!!)
+            if (data.SAcqSoftAcquisition != null) {
+                cache_model.SAcqSiteAcquisition?.get(position)?.SAcqSoftAcquisition = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(position).SAcqSoftAcquisition?.addAll(data.SAcqSoftAcquisition!!)
 
             }
 
             val jsonStringData = Gson().toJson(cache_model)
-            AppPreferences.getInstance().saveString("siteAgreementRequestAll${data.id}",jsonStringData)
+            AppPreferences.getInstance()
+                .saveString("siteAgreementRequestAll${site_id}", jsonStringData)
             return
         }
-            val dataModel = UpdateSiteAcqModel()
-            val tempList: ArrayList<UpdateSiteAcquiAllData> = ArrayList()
-            tempList.clear()
-            tempList.add(data)
-            dataModel.SAcqSiteAcquisition = tempList
-            updateIBoardRepo?.updateSiteAcqData(dataModel)
-
-    }
-    fun updateUtilityEquip(data: UpdateUtilityEquipmentAllData) {
-        val dataModel= UpdateUtilityEquipmentModel()
-        val tempList:ArrayList<UpdateUtilityEquipmentAllData> =ArrayList()
+        val dataModel = UpdateSiteAcqModel()
+        val tempList: ArrayList<UpdateSiteAcquiAllData> = ArrayList()
         tempList.clear()
         tempList.add(data)
-        dataModel.UtilityEquipment=tempList
+        dataModel.SAcqSiteAcquisition = tempList
+        updateIBoardRepo?.updateSiteAcqData(dataModel)
+
+    }
+
+    fun updateUtilityEquip(data: UpdateUtilityEquipmentAllData) {
+        val dataModel = UpdateUtilityEquipmentModel()
+        val tempList: ArrayList<UpdateUtilityEquipmentAllData> = ArrayList()
+        tempList.clear()
+        tempList.add(data)
+        dataModel.UtilityEquipment = tempList
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
     }
 

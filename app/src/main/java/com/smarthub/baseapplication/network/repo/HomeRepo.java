@@ -1348,6 +1348,7 @@ public class HomeRepo {
                     if (response.body() != null) {
                         String data_json = new Gson().toJson(response.body());
                         AppPreferences.getInstance().saveString("siteAgreementRequestAll" + id, data_json);
+                        System.out.println("Preference id is "+"siteAgreementRequestAll" + id);
                         AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                         siteAgreementModel.postValue(Resource.success(response.body(), 200));
                     }
