@@ -36,8 +36,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
     }
     init {
         try {
-            if (data!=null && data.SAcqAssignACQTeam.isNotEmpty()){
-                datalist=data.SAcqAcquitionSurvey.get(0)
+            if (data!=null && data.SAcqAssignACQTeam?.isNotEmpty()!!){
+                datalist=data.SAcqAcquitionSurvey?.get(0)
             }
         }catch (e:java.lang.Exception){
             AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")

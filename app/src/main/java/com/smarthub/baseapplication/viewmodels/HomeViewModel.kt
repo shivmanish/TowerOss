@@ -24,8 +24,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AcquisitionSurveyData
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
@@ -56,7 +55,6 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
@@ -64,6 +62,7 @@ class HomeViewModel : ViewModel() {
 
     var homeRepo: HomeRepo?=null
     var updateIBoardRepo: UpdateIBoardRepo?=null
+    var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var getHomeDataResponse : SingleLiveEvent<Resource<HomeResponse>>?=null
     var getProjectDataResponse : SingleLiveEvent<Resource<ProjectModelData>>?=null
     var getTaskDataResponse : SingleLiveEvent<Resource<TaskModelData>>?=null
@@ -119,6 +118,7 @@ class HomeViewModel : ViewModel() {
         generateSiteId = homeRepo?.generateSiteIdResponse
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
+        updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
         loglivedata = homeRepo?.getloglivedata()
         opcoTenencyModelResponse=homeRepo?.opcoTenencyModel
         NocAndCompModelResponse=homeRepo?.noCandCompModel
@@ -316,23 +316,26 @@ class HomeViewModel : ViewModel() {
                 }
             }
             cache_model.SAcqSiteAcquisition = ArrayList()
+            cache_model.SAcqSiteAcquisition?.add(NewSiteAcquiAllData(
+                null,null,null,null,"",0,false,""
+            )!!)
             if(data.SAcqAcquitionSurvey!=null){
                 cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAcquitionSurvey = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAcquitionSurvey.addAll(data.SAcqAcquitionSurvey!!)
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAcquitionSurvey?.addAll(data.SAcqAcquitionSurvey!!)
             }
             if(data.SAcqAgreement!=null){
                 cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAgreement = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAgreement.addAll(data.SAcqAgreement!!)
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAgreement?.addAll(data.SAcqAgreement!!)
 
             }
             if(data.SAcqAssignACQTeam!=null){
                 cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAssignACQTeam = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAssignACQTeam.addAll(data.SAcqAssignACQTeam!!)
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAssignACQTeam?.addAll(data.SAcqAssignACQTeam!!)
 
             }
             if(data.SAcqSoftAcquisition!=null){
                 cache_model.SAcqSiteAcquisition?.get(0)?.SAcqSoftAcquisition = ArrayList()
-                cache_model.SAcqSiteAcquisition!!.get(0).SAcqSoftAcquisition.addAll(data.SAcqSoftAcquisition!!)
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqSoftAcquisition?.addAll(data.SAcqSoftAcquisition!!)
 
             }
 
@@ -356,4 +359,5 @@ class HomeViewModel : ViewModel() {
         dataModel.UtilityEquipment=tempList
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
     }
+
 }

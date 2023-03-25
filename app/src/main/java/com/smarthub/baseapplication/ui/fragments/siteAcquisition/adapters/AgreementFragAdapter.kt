@@ -28,8 +28,8 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
     }
     init {
         try {
-            if (data!=null && data.SAcqAgreement.isNotEmpty()){
-                datalist= data.SAcqAgreement[0]
+            if (data!=null && data.SAcqAgreement?.isNotEmpty()!!){
+                datalist= data?.SAcqAgreement!![0]
             }
         }catch (e:java.lang.Exception){
             AppLogger.log("AgreementFragAdapter error :${e.localizedMessage}")
