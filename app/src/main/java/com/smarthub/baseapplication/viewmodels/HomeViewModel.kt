@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.viewmodels
 
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
@@ -22,6 +24,7 @@ import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteId
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AcquisitionSurveyData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
@@ -50,7 +53,9 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 
 class HomeViewModel : ViewModel() {
 
@@ -295,11 +300,51 @@ class HomeViewModel : ViewModel() {
         homeRepo?.updateAgreementSiteInfo(siteAgreementsData)
     }
     fun updateSiteAcq(data: UpdateSiteAcquiAllData) {
-        val dataModel= UpdateSiteAcqModel()
-        val tempList:ArrayList<UpdateSiteAcquiAllData> =ArrayList()
-        tempList.clear()
-        tempList.add(data)
-        dataModel.SAcqSiteAcquisition=tempList
-        updateIBoardRepo?.updateSiteAcqData(dataModel)
+        if(!Utils.isNetworkConnected()) {
+            val value = AppPreferences.getInstance().getString("siteAgreementRequestAll${data.id}")
+            var cache_model = SiteAcquisitionAllDataModel()
+            if(value!=null && !value.isEmpty()) {
+            //Save the Service fot later updatation when online
+                try {
+                    cache_model = Gson().fromJson(value,SiteAcquisitionAllDataModel::class.java)
+
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+            cache_model.SAcqSiteAcquisition = ArrayList()
+            if(data.SAcqAcquitionSurvey!=null){
+                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAcquitionSurvey = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAcquitionSurvey.addAll(data.SAcqAcquitionSurvey!!)
+            }
+            if(data.SAcqAgreement!=null){
+                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAgreement = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAgreement.addAll(data.SAcqAgreement!!)
+
+            }
+            if(data.SAcqAssignACQTeam!=null){
+                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqAssignACQTeam = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqAssignACQTeam.addAll(data.SAcqAssignACQTeam!!)
+
+            }
+            if(data.SAcqSoftAcquisition!=null){
+                cache_model.SAcqSiteAcquisition?.get(0)?.SAcqSoftAcquisition = ArrayList()
+                cache_model.SAcqSiteAcquisition!!.get(0).SAcqSoftAcquisition.addAll(data.SAcqSoftAcquisition!!)
+
+            }
+
+            val jsonStringData = Gson().toJson(cache_model)
+            AppPreferences.getInstance().saveString("siteAgreementRequestAll${data.id}",jsonStringData)
+            return
+        }
+            val dataModel = UpdateSiteAcqModel()
+            val tempList: ArrayList<UpdateSiteAcquiAllData> = ArrayList()
+            tempList.clear()
+            tempList.add(data)
+            dataModel.SAcqSiteAcquisition = tempList
+            updateIBoardRepo?.updateSiteAcqData(dataModel)
+
     }
+
+
 }

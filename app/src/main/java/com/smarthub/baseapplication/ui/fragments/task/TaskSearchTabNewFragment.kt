@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
@@ -39,6 +40,9 @@ import com.smarthub.baseapplication.ui.fragments.services_request.ServicesReques
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskServicesDataAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAcqTabActivity
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.TaskSiteAcqsitionFragAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
@@ -355,6 +359,46 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.planAndDesignRequestAll("1526")
     }
+
+    fun setUpSiteAcqusitionData() {
+        if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskSiteAcqsitionFragAdapter(requireContext(),object : TaskSiteAcqsitionFragAdapter.SiteAcqListListener {
+            override fun clickedItem(data: NewSiteAcquiAllData, parentIndex: Int) {
+                //this is for the listiner
+
+                SiteAcqTabActivity.siteacquisition = data
+                SiteAcqTabActivity.parentIndex = parentIndex
+                binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, data,parentIndex)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+        })
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.siteAgreementModel?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(), "planDesign Fragment Something went wrong", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.fetchSiteAgreementModelRequest("1526")
+    }
+
 
     fun setUpOpcoData() {
         if (homeViewModel.opcoTenencyModelResponse?.hasActiveObservers() == true) {
