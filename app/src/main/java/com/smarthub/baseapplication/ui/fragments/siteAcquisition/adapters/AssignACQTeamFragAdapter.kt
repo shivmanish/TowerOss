@@ -26,8 +26,8 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
     }
     init {
         try {
-            if (data!=null && data.SAcqAssignACQTeam.isNotEmpty()){
-                datalist=data.SAcqAssignACQTeam.get(0)
+            if (data!=null && data.SAcqAssignACQTeam?.isNotEmpty()!!){
+                datalist=data.SAcqAssignACQTeam!!.get(0)
             }
         }catch (e:java.lang.Exception){
             AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
