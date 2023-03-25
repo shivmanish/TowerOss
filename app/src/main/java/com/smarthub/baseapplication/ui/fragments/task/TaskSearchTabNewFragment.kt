@@ -23,11 +23,17 @@ import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
+import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.*
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTenancyActivity
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTenancyPageAdapter
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.TaskCustomerDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.opcoTenancy.TaskOpcoTanancyFragAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailPageAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
@@ -37,6 +43,9 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.*
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskServicesDataAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAcqTabActivity
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.TaskSiteAcqsitionFragAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
@@ -397,6 +406,111 @@ class TaskSearchTabNewFragment(
         }
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.NocAndCompRequestAll("1526")
+    }
+
+    fun setUpSiteAcqusitionData() {
+        if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskSiteAcqsitionFragAdapter(requireContext(),object : TaskSiteAcqsitionFragAdapter.SiteAcqListListener {
+            override fun clickedItem(data: NewSiteAcquiAllData, parentIndex: Int) {
+                //this is for the listiner
+
+                SiteAcqTabActivity.siteacquisition = data
+                SiteAcqTabActivity.parentIndex = parentIndex
+                binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, data,parentIndex)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+        })
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.siteAgreementModel?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(), "planDesign Fragment Something went wrong", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.fetchSiteAgreementModelRequest("1526")
+    }
+
+
+    fun setUpOpcoData() {
+        if (homeViewModel.opcoTenencyModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskOpcoTanancyFragAdapter(requireContext(),object :
+            TaskCustomerDataAdapterListener {
+
+            override fun clickedItem(data: OpcoTenencyAllData, parentIndex: Int) {
+                OpcoTenancyActivity.parentIndex = parentIndex
+                    OpcoTenancyActivity.Opcodata = data
+                binding.viewpager.adapter =
+                    OpcoTenancyPageAdapter(childFragmentManager, data, parentIndex)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+        })
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.opcoTenencyModelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setOpData(it.data.Operator!!)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(), "planDesign Fragment Something went wrong", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+/*
+        homeViewModel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            (requireActivity() as BaseActivity).hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.ServiceRequestMain!=null && it.data.ServiceRequestMain.isNotEmpty()){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                val listData = it.data.ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>
+                serviceFragAdapterAdapter.setData(listData)
+                AppLogger.log("size :${it.data.ServiceRequestMain.size}")
+
+                if (listData.isNotEmpty())
+                    clickedItem(listData[0],siteID.toString())
+                isDataLoaded = true
+            }
+            else if (it!=null) {
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+*/
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.opcoTenancyRequestAll("1526")
     }
 
     var isDataLoaded = false

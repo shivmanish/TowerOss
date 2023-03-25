@@ -211,6 +211,17 @@ object Utils {
             false
         }
     }
+    fun isNetworkConnected(): Boolean {
+        val cm = AppController.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        val isConnected = activeNetwork != null && activeNetwork.isConnected
+        return if (isConnected) {
+            true
+        } else {
+            Log.d("Network", "Not Connected")
+            false
+        }
+    }
 
     fun validatePass(password: String): Boolean {
         if (password.length < 8) return false

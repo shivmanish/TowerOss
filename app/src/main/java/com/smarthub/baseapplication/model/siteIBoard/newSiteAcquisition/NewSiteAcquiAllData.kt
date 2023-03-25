@@ -1,12 +1,12 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class NewSiteAcquiAllData(
-    val SAcqAcquitionSurvey: ArrayList<AcquisitionSurveyData>,
-    val SAcqAgreement: ArrayList<SiteAcqAgreement>,
-    val SAcqAssignACQTeam: ArrayList<AssignACQTeamDAta>,
-    val SAcqSoftAcquisition: ArrayList<SoftAcquisitionData>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var SAcqAcquitionSurvey: ArrayList<AcquisitionSurveyData>,
+    var SAcqAgreement: ArrayList<SiteAcqAgreement>,
+    var SAcqAssignACQTeam: ArrayList<AssignACQTeamDAta>,
+    var SAcqSoftAcquisition: ArrayList<SoftAcquisitionData>,
+    var created_at: String,
+    var id: Int,
+    var isActive: Boolean,
+    var modified_at: String
 )

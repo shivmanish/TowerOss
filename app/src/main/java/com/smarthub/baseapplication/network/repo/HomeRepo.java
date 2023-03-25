@@ -2,8 +2,10 @@ package com.smarthub.baseapplication.network.repo;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
@@ -60,6 +62,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeRes
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -68,7 +71,6 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -125,6 +127,7 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<LogsDataModel>> getloglivedata() {
         return loglivedata;
     }
+
     public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
         return siteInfoModelNew;
     }
@@ -152,24 +155,31 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
         return serviceRequestModel;
     }
+
     public SingleLiveEvent<Resource<AcquisitionSurveyModel>> getAcquisitionSurveyAllDataItem() {
         return acquisitionSurveyAllDataItem;
     }
+
     public SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> getOpcoTenencyModel() {
         return opcoTenencyModel;
     }
+
     public SingleLiveEvent<Resource<NocCompAllDataModel>> getNOCandCompModel() {
         return noCandCompModel;
     }
+
     public SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>> getUtilityEquipModel() {
         return utilityEquipModel;
     }
+
     public SingleLiveEvent<Resource<TowerCivilAllDataModel>> getTowerAndCivilInfraModel() {
         return towerAndCivilInfraModel;
     }
+
     public SingleLiveEvent<Resource<PlanAndDesignModel>> getPlanAndDesignModel() {
         return planAndDesignModel;
     }
+
     public SingleLiveEvent<Resource<QatModel>> getQatModelResponse() {
         return qatModelResponse;
     }
@@ -181,6 +191,7 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
         return opcoDataResponse;
     }
+
     public SingleLiveEvent<Resource<ServiceRequestAllData>> getServiceRequestAllData() {
         return serviceRequestAllData;
     }
@@ -192,6 +203,7 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<BasicInfoDialougeResponse>> getBasicInfoUpdate() {
         return basicInfoUpdate;
     }
+
     public SingleLiveEvent<Resource<UserDataResponse>> getUserDataResponse() {
         return userDataResponse;
     }
@@ -211,12 +223,12 @@ public class HomeRepo {
         generateSiteIdResponse = new SingleLiveEvent<>();
         taskDataList = new SingleLiveEvent<>();
         serviceRequestModel = new SingleLiveEvent<>();
-        opcoTenencyModel=new SingleLiveEvent<>();
-        noCandCompModel=new SingleLiveEvent<>();
-        towerAndCivilInfraModel=new SingleLiveEvent<>();
+        opcoTenencyModel = new SingleLiveEvent<>();
+        noCandCompModel = new SingleLiveEvent<>();
+        towerAndCivilInfraModel = new SingleLiveEvent<>();
         powerFuelModel = new SingleLiveEvent<>();
-        planAndDesignModel=new SingleLiveEvent<>();
-        utilityEquipModel=new SingleLiveEvent<>();
+        planAndDesignModel = new SingleLiveEvent<>();
+        utilityEquipModel = new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
         siteAgreementModel = new SingleLiveEvent<>();
@@ -225,28 +237,33 @@ public class HomeRepo {
         notificationNew = new SingleLiveEvent<>();
         qatModelResponse = new SingleLiveEvent<>();
         qatMainModelResponse = new SingleLiveEvent<>();
-        userDataResponse=new SingleLiveEvent<>();
-        addNotificationResponse=new SingleLiveEvent<>();
-        siteInfoDataModel=new SingleLiveEvent<>();
-        acquisitionSurveyAllDataItem=new SingleLiveEvent<>();
-        addAttachmentModel=new SingleLiveEvent<>();
+        userDataResponse = new SingleLiveEvent<>();
+        addNotificationResponse = new SingleLiveEvent<>();
+        siteInfoDataModel = new SingleLiveEvent<>();
+        acquisitionSurveyAllDataItem = new SingleLiveEvent<>();
+        addAttachmentModel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
         return homeResponse;
     }
+
     public SingleLiveEvent<Resource<AddNotificationResponse>> getAddNotificationResponse() {
         return addNotificationResponse;
     }
+
     public SingleLiveEvent<Resource<AllsiteInfoDataModel>> getSiteInfoDataModel() {
         return siteInfoDataModel;
     }
+
     public SingleLiveEvent<Resource<AddAttachmentModel>> getAddAttachmentModel() {
         return addAttachmentModel;
     }
+
     public SingleLiveEvent<Resource<TaskDataList>> getTaskDataList() {
         return taskDataList;
     }
+
     public SingleLiveEvent<Resource<SiteInfoModelUpdate>> getSiteInfoUpdateData() {
         return siteInfoUpdate;
     }
@@ -268,17 +285,16 @@ public class HomeRepo {
     }
 
 
-
     public SingleLiveEvent<Resource<TaskModelData>> getTaskResponse() {
         return taskResponse;
     }
 
-   public SingleLiveEvent<Resource<ServiceRequestAllData>> getServiceRequest() {
+    public SingleLiveEvent<Resource<ServiceRequestAllData>> getServiceRequest() {
         return serRequestData;
     }
 
     public void updateData(BasicinfoModel basicinfoModel) {
-        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue() != null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.updateBasicInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
             @Override
@@ -343,12 +359,12 @@ public class HomeRepo {
         map.put("title", RequestBody.create(MediaType.parse("multipart/form-data"), model.getTitle()));
         map.put("type", RequestBody.create(MediaType.parse("multipart/form-data"), model.getType()));
 
-        apiClient.addAttachmentData("http://49.50.77.81:8126/fms/create",map).enqueue(new Callback<List<AddAttachmentModel>>() {
+        apiClient.addAttachmentData("http://49.50.77.81:8126/fms/create", map).enqueue(new Callback<List<AddAttachmentModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<AddAttachmentModel>> call, Response<List<AddAttachmentModel>> response) {
-                if (response.isSuccessful() && response.body()!=null && !response.body().isEmpty()) {
+                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     reportSuccessResponse(response.body().get(0));
-                    AppLogger.INSTANCE.log("addAttachmentData:"+response.body().size());
+                    AppLogger.INSTANCE.log("addAttachmentData:" + response.body().size());
                 } else if (response.errorBody() != null) {
                     AppLogger.INSTANCE.log("error :" + response);
                 } else {
@@ -359,7 +375,7 @@ public class HomeRepo {
             @Override
             public void onFailure(@NonNull Call<List<AddAttachmentModel>> call, Throwable t) {
                 reportErrorResponse(null, t.getLocalizedMessage());
-                AppLogger.INSTANCE.log("addAttachmentData onFailure:"+t.getLocalizedMessage());
+                AppLogger.INSTANCE.log("addAttachmentData onFailure:" + t.getLocalizedMessage());
             }
 
             private void reportSuccessResponse(AddAttachmentModel response) {
@@ -422,7 +438,7 @@ public class HomeRepo {
     }
 
     public void generateSiteId(GenerateSiteIdResponse basicinfoModel) {
-        GenerateSiteIdResponse d = (generateSiteIdResponse.getValue()!=null) ? generateSiteIdResponse.getValue().data : null;
+        GenerateSiteIdResponse d = (generateSiteIdResponse.getValue() != null) ? generateSiteIdResponse.getValue().data : null;
         generateSiteIdResponse.postValue(Resource.loading(d, 200));
         apiClient.generateSiteId(basicinfoModel).enqueue(new Callback<GenerateSiteIdResponse>() {
             @Override
@@ -462,7 +478,7 @@ public class HomeRepo {
     }
 
     public void updateSiteInfo(BasicinfoModel basicinfoModel) {
-        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue() != null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.updateSiteInfo(basicinfoModel).enqueue(new Callback<BasicInfoDialougeResponse>() {
             @Override
@@ -498,8 +514,9 @@ public class HomeRepo {
             }
         });
     }
+
     public void updateAgreementSiteInfo(SiteacquisitionAgreement siteacquisitionAgreement) {
-        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue()!=null) ? basicInfoUpdate.getValue().data : null;
+        BasicInfoDialougeResponse d = (basicInfoUpdate.getValue() != null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
         apiClient.updateAgreementSiteInfo(siteacquisitionAgreement).enqueue(new Callback<SiteacquisitionAgreement>() {
             @Override
@@ -574,8 +591,8 @@ public class HomeRepo {
 
     public void getAllNotification() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("Get","all");
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty("Get", "all");
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.getNotification(jsonObject).enqueue(new Callback<NotificationNew>() {
             @Override
             public void onResponse(@NonNull Call<NotificationNew> call, Response<NotificationNew> response) {
@@ -613,8 +630,8 @@ public class HomeRepo {
 
     public void getUserData() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("getuser","All");
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty("getuser", "All");
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.getUsersData(jsonObject).enqueue(new Callback<UserDataResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserDataResponse> call, Response<UserDataResponse> response) {
@@ -651,7 +668,7 @@ public class HomeRepo {
     }
 
     public void addNotification(AddNotificationModel data) {
-        AppLogger.INSTANCE.log("add notification data===>"+data);
+        AppLogger.INSTANCE.log("add notification data===>" + data);
         apiClient.addNotification(data).enqueue(new Callback<AddNotificationResponse>() {
             @Override
             public void onResponse(@NonNull Call<AddNotificationResponse> call, Response<AddNotificationResponse> response) {
@@ -689,17 +706,17 @@ public class HomeRepo {
 
     public void fetchHomeData() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.addProperty("homepage","");
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.addProperty("homepage", "");
         apiClient.fetchHomeData(jsonObject).enqueue(new Callback<HomeResponse>() {
             @Override
             public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -711,7 +728,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<HomeResponse> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
                     homeResponse.postValue(Resource.success(response.body(), 200));
 
                 }
@@ -730,17 +747,17 @@ public class HomeRepo {
 
     public void fetchProjectData() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("Getprocess","all");
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty("Getprocess", "all");
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.fetchProjectData(jsonObject).enqueue(new Callback<ProjectModelData>() {
             @Override
             public void onResponse(Call<ProjectModelData> call, Response<ProjectModelData> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -752,7 +769,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<ProjectModelData> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     projectResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -770,17 +787,17 @@ public class HomeRepo {
 
     public void fetchTaskData(String templateName) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("Gettemplate",templateName);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty("Gettemplate", templateName);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.fetchTaskData(jsonObject).enqueue(new Callback<TaskModelData>() {
             @Override
             public void onResponse(@NonNull Call<TaskModelData> call, @NonNull Response<TaskModelData> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -792,7 +809,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<TaskModelData> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     taskResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -810,18 +827,18 @@ public class HomeRepo {
 
     public void fetchServiceRequestData(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         Call<ServiceRequestAllData> request = apiClient.fetchsServiceRequestData(jsonObject);
         request.enqueue(new Callback<ServiceRequestAllData>() {
             @Override
             public void onResponse(@NonNull Call<ServiceRequestAllData> call, @NonNull Response<ServiceRequestAllData> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -833,7 +850,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<ServiceRequestAllData> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     serRequestData.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -850,17 +867,17 @@ public class HomeRepo {
     }
 
     public void siteInfoById(String id) {
-        opcoDataResponse.postValue(Resource.loading((opcoDataResponse.getValue()!=null)?opcoDataResponse.getValue().data:null, 200));
-        siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue()!=null)?siteInfoResponse.getValue().data:null, 200));
-        apiClient.fetchSiteInfoById(new IdData(id,AppController.getInstance().ownerName)).enqueue(new Callback<SiteInfoModel>() {
+        opcoDataResponse.postValue(Resource.loading((opcoDataResponse.getValue() != null) ? opcoDataResponse.getValue().data : null, 200));
+        siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue() != null) ? siteInfoResponse.getValue().data : null, 200));
+        apiClient.fetchSiteInfoById(new IdData(id, AppController.getInstance().ownerName)).enqueue(new Callback<SiteInfoModel>() {
             @Override
             public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -872,15 +889,15 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<SiteInfoModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     SiteInfoModel data = response.body();
 //                    AppController.getInstance().siteInfoModel = data;
                     siteInfoResponse.postValue(Resource.success(response.body(), 200));
 //                   data update
-                    if (data.getItem()!=null && !data.getItem().isEmpty()) {
+                    if (data.getItem() != null && !data.getItem().isEmpty()) {
                         opcoDataResponse.postValue(Resource.success(new OpcoDataList(data.getItem().get(0).getOperator()), 200));
                         serviceRequestAllData.postValue(Resource.success(data.getItem().get(0).getServiceRequestMain(), 200));
-                        AppLogger.INSTANCE.log("Service request Fragment data error :"+ data.getItem().get(0).getServiceRequestMain());
+                        AppLogger.INSTANCE.log("Service request Fragment data error :" + data.getItem().get(0).getServiceRequestMain());
 
                     }
                 }
@@ -897,24 +914,24 @@ public class HomeRepo {
 
     public void SiteInfoRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("Basicinfo",new JsonObject());
-        jsonObject.add("OperationalInfo",new JsonObject());
-        jsonObject.add("GeoCondition",new JsonObject());
-        jsonObject.add("SafetyAndAccess",new JsonObject());
-        jsonObject.add("Siteaddress",new JsonObject());
-        AllsiteInfoDataModel siteModel = (siteInfoDataModel!=null && siteInfoDataModel.getValue()!=null)?siteInfoDataModel.getValue().data:null;
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("Basicinfo", new JsonObject());
+        jsonObject.add("OperationalInfo", new JsonObject());
+        jsonObject.add("GeoCondition", new JsonObject());
+        jsonObject.add("SafetyAndAccess", new JsonObject());
+        jsonObject.add("Siteaddress", new JsonObject());
+        AllsiteInfoDataModel siteModel = (siteInfoDataModel != null && siteInfoDataModel.getValue() != null) ? siteInfoDataModel.getValue().data : null;
         siteInfoDataModel.postValue(Resource.loading(siteModel, 200));
         apiClient.fetchSiteInfo(jsonObject).enqueue(new Callback<AllsiteInfoDataModel>() {
             @Override
             public void onResponse(Call<AllsiteInfoDataModel> call, Response<AllsiteInfoDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -926,9 +943,9 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<AllsiteInfoDataModel> response) {
 
                 if (response.body() != null) {
-                    AllsiteInfoDataModel data =response.body();
+                    AllsiteInfoDataModel data = response.body();
                     AppController.getInstance().newSiteInfoModel = data;
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     siteInfoDataModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -945,19 +962,19 @@ public class HomeRepo {
     public void siteAcquisitionSurveyById(String id) {
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("SAcqSiteAcquisition",jsonArray);
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("SAcqSiteAcquisition", jsonArray);
         apiClient.fetchAcquisitionSurveyAllDataItemRequest(jsonObject).enqueue(new Callback<AcquisitionSurveyAllDataItem>() {
             @Override
             public void onResponse(Call<AcquisitionSurveyAllDataItem> call, Response<AcquisitionSurveyAllDataItem> response) {
-                if (response.isSuccessful() && response.body()!=null && response.body().getSAcqSiteAcquisition()!=null &&
-                !response.body().getSAcqSiteAcquisition().isEmpty()){
+                if (response.isSuccessful() && response.body() != null && response.body().getSAcqSiteAcquisition() != null &&
+                        !response.body().getSAcqSiteAcquisition().isEmpty()) {
                     reportSuccessResponse(response.body().getSAcqSiteAcquisition().get(0));
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -969,7 +986,7 @@ public class HomeRepo {
             private void reportSuccessResponse(AcquisitionSurveyModel response) {
 
                 if (response != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     acquisitionSurveyAllDataItem.postValue(Resource.success(response, 200));
                 }
             }
@@ -986,18 +1003,18 @@ public class HomeRepo {
     public void serviceRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("ServiceRequestMain",jsonArray);
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("ServiceRequestMain", jsonArray);
         apiClient.fetchServiceRequest(jsonObject).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1009,7 +1026,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<ServiceRequestModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     serviceRequestModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1025,18 +1042,18 @@ public class HomeRepo {
 
     public void opcoRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("Operator",new JsonObject());
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("Operator", new JsonObject());
         apiClient.fetchOpcoInfoRequest(jsonObject).enqueue(new Callback<OpcoTenencyAllDataModel>() {
             @Override
             public void onResponse(Call<OpcoTenencyAllDataModel> call, Response<OpcoTenencyAllDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1048,7 +1065,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<OpcoTenencyAllDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     opcoTenencyModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1068,19 +1085,19 @@ public class HomeRepo {
 //        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("PlanningAndDesign",jsonArray);
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("PlanningAndDesign", jsonArray);
 
         apiClient.fetchPlanDesignRequest(jsonObject).enqueue(new Callback<PlanAndDesignModel>() {
             @Override
             public void onResponse(Call<PlanAndDesignModel> call, Response<PlanAndDesignModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1092,7 +1109,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<PlanAndDesignModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     planAndDesignModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1105,19 +1122,20 @@ public class HomeRepo {
             }
         });
     }
+
     public void qatRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("QATTemplateMain");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list, Integer.parseInt(id), AppController.getInstance().ownerName);
         apiClient.fetchQatRequest(siteInfoParam).enqueue(new Callback<QatModel>() {
             @Override
             public void onResponse(Call<QatModel> call, Response<QatModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1129,7 +1147,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<QatModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse on qatRequestAll :"+response+"===>:"+response.body());
+                    AppLogger.INSTANCE.log("reportSuccessResponse on qatRequestAll :" + response + "===>:" + response.body());
                     qatModelResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1146,16 +1164,16 @@ public class HomeRepo {
     public void qatMainRequestAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("QATMainLaunch");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list, Integer.parseInt(id), AppController.getInstance().ownerName);
         apiClient.fetchQatMainRequest(siteInfoParam).enqueue(new Callback<QatMainModel>() {
             @Override
             public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1167,7 +1185,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<QatMainModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     qatMainModelResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1185,12 +1203,12 @@ public class HomeRepo {
         apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
             @Override
             public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1202,7 +1220,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<QatMainModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     qatMainModelResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1215,16 +1233,17 @@ public class HomeRepo {
             }
         });
     }
+
     public void qatMainRequestAll(QatPunchPointModel data) {
         apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
             @Override
             public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1236,7 +1255,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<QatMainModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     qatMainModelResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1254,12 +1273,12 @@ public class HomeRepo {
         apiClient.saveQatPunchPointRequest(data).enqueue(new Callback<QatMainModel>() {
             @Override
             public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1271,7 +1290,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<QatMainModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     qatMainModelResponse.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1287,59 +1306,93 @@ public class HomeRepo {
 
     public void siteAgreementRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("SAcqSiteAcquisition",new JsonArray());
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("SAcqSiteAcquisition", new JsonArray());
+        String cache_data = AppPreferences.getInstance().getString("siteAgreementRequestAll" + id);
 
-        apiClient.fetchSiteAgreementModelRequest(jsonObject).enqueue(new Callback<SiteAcquisitionAllDataModel>() {
-            @Override
-            public void onResponse(Call<SiteAcquisitionAllDataModel> call, Response<SiteAcquisitionAllDataModel> response) {
-                if (response.isSuccessful()){
-                    reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+        if (Utils.INSTANCE.isNetworkConnected(AppController.getInstance())) {
+            apiClient.fetchSiteAgreementModelRequest(jsonObject).enqueue(new Callback<SiteAcquisitionAllDataModel>() {
+                @Override
+                public void onResponse(Call<SiteAcquisitionAllDataModel> call, Response<SiteAcquisitionAllDataModel> response) {
+                    if (response.isSuccessful()) {
+                        reportSuccessResponse(response);
+                    } else if (response.errorBody() != null) {
+                        AppLogger.INSTANCE.log("error :" + response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SiteAcquisitionAllDataModel> call, Throwable t) {
+                    if (cache_data != null && !cache_data.isEmpty()) {
+                        try {
+                            SiteAcquisitionAllDataModel cacheobject = new Gson().fromJson(cache_data, SiteAcquisitionAllDataModel.class);
+                            if (cacheobject != null) {
+                                siteAgreementModel.postValue(Resource.success(cacheobject, 200));
+                                return;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                        }
+                    }
+                    reportErrorResponse(t.getLocalizedMessage());
+
+
+                }
+
+                private void reportSuccessResponse(Response<SiteAcquisitionAllDataModel> response) {
+
+                    if (response.body() != null) {
+                        String data_json = new Gson().toJson(response.body());
+                        AppPreferences.getInstance().saveString("siteAgreementRequestAll" + id, data_json);
+                        AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
+                        siteAgreementModel.postValue(Resource.success(response.body(), 200));
+                    }
+                }
+
+                private void reportErrorResponse(String iThrowableLocalMessage) {
+                    if (iThrowableLocalMessage != null)
+                        siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    else
+                        siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                }
+            });
+        } else {
+            if (cache_data != null && !cache_data.isEmpty()) {
+                try {
+                    SiteAcquisitionAllDataModel cacheobject = new Gson().fromJson(cache_data, SiteAcquisitionAllDataModel.class);
+                    if (cacheobject != null) {
+                        siteAgreementModel.postValue(Resource.success(cacheobject, 200));
+                        return;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
                 }
             }
+            siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+        }
 
-            @Override
-            public void onFailure(Call<SiteAcquisitionAllDataModel> call, Throwable t) {
-                reportErrorResponse(t.getLocalizedMessage());
-            }
-
-            private void reportSuccessResponse(Response<SiteAcquisitionAllDataModel> response) {
-
-                if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
-                    siteAgreementModel.postValue(Resource.success(response.body(), 200));
-                }
-            }
-
-            private void reportErrorResponse(String iThrowableLocalMessage) {
-                if (iThrowableLocalMessage != null)
-                    siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                else
-                    siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-            }
-        });
     }
 
     public void utilitiEquipRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("UtilityEquipment",new JsonArray());
-        AppLogger.INSTANCE.log("id :"+id);
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("UtilityEquipment", new JsonArray());
+        AppLogger.INSTANCE.log("id :" + id);
         apiClient.fetchUtilitiesEquipRequest(jsonObject).enqueue(new Callback<UtilityEquipmentAllDataModel>() {
             @Override
             public void onResponse(Call<UtilityEquipmentAllDataModel> call, Response<UtilityEquipmentAllDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1351,7 +1404,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<UtilityEquipmentAllDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     utilityEquipModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1367,18 +1420,18 @@ public class HomeRepo {
 
     public void NocAndCompRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("NOCCompliance",new JsonArray());
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("NOCCompliance", new JsonArray());
         apiClient.fetchNocAndCompRequest(jsonObject).enqueue(new Callback<NocCompAllDataModel>() {
             @Override
             public void onResponse(Call<NocCompAllDataModel> call, Response<NocCompAllDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1390,7 +1443,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<NocCompAllDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     noCandCompModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1406,18 +1459,18 @@ public class HomeRepo {
 
     public void TowerCivilInfraRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("TowerAndCivilInfra",new JsonArray());
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("TowerAndCivilInfra", new JsonArray());
         apiClient.fetchTowerCivilInfraRequest(jsonObject).enqueue(new Callback<TowerCivilAllDataModel>() {
             @Override
             public void onResponse(Call<TowerCivilAllDataModel> call, Response<TowerCivilAllDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1429,7 +1482,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<TowerCivilAllDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     towerAndCivilInfraModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1445,19 +1498,19 @@ public class HomeRepo {
 
     public void powerAndFuelRequestAll(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
-        jsonObject.add("PowerAndFuel",new JsonArray());
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("PowerAndFuel", new JsonArray());
 
         apiClient.fetchPowerFuelRequest(jsonObject).enqueue(new Callback<PowerFuelAllDataModel>() {
             @Override
             public void onResponse(Call<PowerFuelAllDataModel> call, Response<PowerFuelAllDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1469,7 +1522,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<PowerFuelAllDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     powerFuelModel.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1486,16 +1539,16 @@ public class HomeRepo {
     public void chamgeLogAll(String id) {
         ArrayList<String> list = new ArrayList<>();
         list.add("ChangeLog");
-        SiteInfoParam siteInfoParam = new SiteInfoParam(list,Integer.parseInt(id),AppController.getInstance().ownerName);
+        SiteInfoParam siteInfoParam = new SiteInfoParam(list, Integer.parseInt(id), AppController.getInstance().ownerName);
         apiClient.fetchLogData(siteInfoParam).enqueue(new Callback<LogsDataModel>() {
             @Override
             public void onResponse(Call<LogsDataModel> call, Response<LogsDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1507,7 +1560,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<LogsDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse on get logs :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse on get logs :" + response);
                     loglivedata.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1525,12 +1578,12 @@ public class HomeRepo {
         apiClient.postLogData(data).enqueue(new Callback<LogsDataModel>() {
             @Override
             public void onResponse(Call<LogsDataModel> call, Response<LogsDataModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1542,7 +1595,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<LogsDataModel> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse on post logs :"+response);
+                    AppLogger.INSTANCE.log("reportSuccessResponse on post logs :" + response);
                     loglivedata.postValue(Resource.success(response.body(), 200));
                 }
             }
@@ -1556,18 +1609,18 @@ public class HomeRepo {
         });
     }
 
-    public void searchSiteAll(String category,String id) {
+    public void searchSiteAll(String category, String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(category,id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty(category, id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         if (category.equalsIgnoreCase("name"))
             apiClient.searchSiteByName(jsonObject).enqueue(new Callback<List<SearchListItem>>() {
                 @Override
                 public void onResponse(Call<List<SearchListItem>> call, Response<List<SearchListItem>> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         reportSuccessResponse(response);
-                    }else {
-                        AppLogger.INSTANCE.log("error :"+response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
                     }
                 }
 
@@ -1577,7 +1630,7 @@ public class HomeRepo {
                 }
 
                 private void reportSuccessResponse(Response<List<SearchListItem>> response) {
-                    if (response != null && response.body()!=null) {
+                    if (response != null && response.body() != null) {
                         SearchList searchList = new SearchList();
                         searchList.addAll(response.body());
                         siteSearchResponse.postValue(Resource.success(searchList, 200));
@@ -1597,10 +1650,10 @@ public class HomeRepo {
             apiClient.searchSiteBySiteId(jsonObject).enqueue(new Callback<List<SearchSiteIdItem>>() {
                 @Override
                 public void onResponse(Call<List<SearchSiteIdItem>> call, Response<List<SearchSiteIdItem>> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         reportSuccessResponse(response);
-                    }else {
-                        AppLogger.INSTANCE.log("error :"+response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
                     }
                 }
 
@@ -1610,7 +1663,7 @@ public class HomeRepo {
                 }
 
                 private void reportSuccessResponse(Response<List<SearchSiteIdItem>> response) {
-                    if (response != null && response.body()!=null) {
+                    if (response != null && response.body() != null) {
                         SearchList searchList = new SearchList();
                         searchList.addAll(response.body());
                         siteSearchResponse.postValue(Resource.success(searchList, 200));
@@ -1630,10 +1683,10 @@ public class HomeRepo {
             apiClient.searchSiteBySiteName(jsonObject).enqueue(new Callback<List<SearchSiteNameItem>>() {
                 @Override
                 public void onResponse(Call<List<SearchSiteNameItem>> call, Response<List<SearchSiteNameItem>> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         reportSuccessResponse(response);
-                    }else {
-                        AppLogger.INSTANCE.log("error :"+response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
                     }
                 }
 
@@ -1643,7 +1696,7 @@ public class HomeRepo {
                 }
 
                 private void reportSuccessResponse(Response<List<SearchSiteNameItem>> response) {
-                    if (response != null && response.body()!=null) {
+                    if (response != null && response.body() != null) {
                         SearchList searchList = new SearchList();
                         searchList.addAll(response.body());
                         siteSearchResponse.postValue(Resource.success(searchList, 200));
@@ -1663,10 +1716,10 @@ public class HomeRepo {
             apiClient.searchSiteByAliasName(jsonObject).enqueue(new Callback<List<SearchAliasNameItem>>() {
                 @Override
                 public void onResponse(Call<List<SearchAliasNameItem>> call, Response<List<SearchAliasNameItem>> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         reportSuccessResponse(response);
-                    }else {
-                        AppLogger.INSTANCE.log("error :"+response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
                     }
                 }
 
@@ -1676,7 +1729,7 @@ public class HomeRepo {
                 }
 
                 private void reportSuccessResponse(Response<List<SearchAliasNameItem>> response) {
-                    if (response != null && response.body()!=null) {
+                    if (response != null && response.body() != null) {
                         SearchList searchList = new SearchList();
                         searchList.addAll(response.body());
                         siteSearchResponse.postValue(Resource.success(searchList, 200));
@@ -1696,10 +1749,10 @@ public class HomeRepo {
             apiClient.searchSiteByOpcoName(jsonObject).enqueue(new Callback<List<SearchSiteOpcoName>>() {
                 @Override
                 public void onResponse(Call<List<SearchSiteOpcoName>> call, Response<List<SearchSiteOpcoName>> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         reportSuccessResponse(response);
-                    }else {
-                        AppLogger.INSTANCE.log("error :"+response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
                     }
                 }
 
@@ -1709,7 +1762,7 @@ public class HomeRepo {
                 }
 
                 private void reportSuccessResponse(Response<List<SearchSiteOpcoName>> response) {
-                    if (response != null && response.body()!=null) {
+                    if (response != null && response.body() != null) {
                         SearchList searchList = new SearchList();
                         searchList.addAll(response.body());
                         siteSearchResponse.postValue(Resource.success(searchList, 200));
@@ -1729,10 +1782,10 @@ public class HomeRepo {
             apiClient.searchSiteByOpcoSiteId(jsonObject).enqueue(new Callback<List<SearchSiteOpcoSiteId>>() {
                 @Override
                 public void onResponse(Call<List<SearchSiteOpcoSiteId>> call, Response<List<SearchSiteOpcoSiteId>> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         reportSuccessResponse(response);
-                    }else {
-                        AppLogger.INSTANCE.log("error :"+response);
+                    } else {
+                        AppLogger.INSTANCE.log("error :" + response);
                     }
                 }
 
@@ -1742,7 +1795,7 @@ public class HomeRepo {
                 }
 
                 private void reportSuccessResponse(Response<List<SearchSiteOpcoSiteId>> response) {
-                    if (response != null && response.body()!=null) {
+                    if (response != null && response.body() != null) {
                         SearchList searchList = new SearchList();
                         searchList.addAll(response.body());
                         siteSearchResponse.postValue(Resource.success(searchList, 200));
@@ -1765,12 +1818,12 @@ public class HomeRepo {
         apiClient.siteInfoDropDown().enqueue(new Callback<SiteInfoDropDownData>() {
             @Override
             public void onResponse(Call<SiteInfoDropDownData> call, Response<SiteInfoDropDownData> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1782,7 +1835,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<SiteInfoDropDownData> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
 //                    Logger.getLogger("ProfileRepo").warning(response.toString());
                     dropDownResoonse.postValue(Resource.success(response.body(), 200));
 
@@ -1805,12 +1858,12 @@ public class HomeRepo {
         apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
             @Override
             public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1822,7 +1875,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<DropDownNew> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
                     dropDownResponseNew.postValue(Resource.success(response.body(), 200));
 
                 }
@@ -1841,17 +1894,17 @@ public class HomeRepo {
 
     public void getTaskById(String id) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("gettaskdata",id);
-        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        jsonObject.addProperty("gettaskdata", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.getTaskDataById(jsonObject).enqueue(new Callback<TaskDataList>() {
             @Override
             public void onResponse(Call<TaskDataList> call, Response<TaskDataList> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     reportSuccessResponse(response);
-                } else if (response.errorBody()!=null){
-                    AppLogger.INSTANCE.log("error :"+response);
-                }else {
-                    AppLogger.INSTANCE.log("error :"+response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
                 }
             }
 
@@ -1863,7 +1916,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<TaskDataList> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
 //                    Logger.getLogger("ProfileRepo").warning(response.toString());
                     taskDataList.postValue(Resource.success(response.body(), 200));
 
