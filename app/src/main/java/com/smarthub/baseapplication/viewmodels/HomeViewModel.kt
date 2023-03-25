@@ -312,8 +312,9 @@ class HomeViewModel : ViewModel() {
 
     fun updateSiteAcq(data: UpdateSiteAcquiAllData) {
         if (!Utils.isNetworkConnected()) {
-            val value = AppPreferences.getInstance().getString("siteAgreementRequestAll${data.id}")
             val site_id = AppController.getInstance().siteid
+            val value = AppPreferences.getInstance().getString("siteAgreementRequestAll${site_id}")
+
             var position = 0
             println("Preference id is siteAgreementRequestAll${site_id}")
             var cache_model = SiteAcquisitionAllDataModel()
