@@ -66,7 +66,6 @@ class HomeViewModel : ViewModel() {
 
     var homeRepo: HomeRepo? = null
     var updateIBoardRepo: UpdateIBoardRepo? = null
-    var updateUtilityDataResponse: SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var getHomeDataResponse: SingleLiveEvent<Resource<HomeResponse>>? = null
     var getProjectDataResponse: SingleLiveEvent<Resource<ProjectModelData>>? = null
     var getTaskDataResponse: SingleLiveEvent<Resource<TaskModelData>>? = null
