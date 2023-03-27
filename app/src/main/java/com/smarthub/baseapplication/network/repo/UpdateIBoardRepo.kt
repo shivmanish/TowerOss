@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
@@ -20,10 +22,12 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     val TAG = "UpdateSiteIBoardRepo"
     var updateSiteAcqResponse: SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
     var updateUtilityEquipResponse: SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
+    var updateNocCompResponse: SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
 
     init {
         updateSiteAcqResponse=SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>()
         updateUtilityEquipResponse=SingleLiveEvent<Resource<UpdateUtilityResponseModel>>()
+        updateNocCompResponse=SingleLiveEvent<Resource<UpdateNocCompResponseModel>>()
     }
 
 
@@ -91,6 +95,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                 } else if (iThrowableLocalMessage != null) updateSiteAcqResponse?.postValue(
                     Resource.error(iThrowableLocalMessage, null, 500)
                 ) else updateUtilityEquipResponse?.postValue(
+                    Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updateNocCompData(data: UpdateNocCompModel?) {
+        AppLogger.log("updateNocCompData==> : ${Gson().toJson(data)}")
+        apiClient.updateNocCompRequest(data!!).enqueue(object : Callback<UpdateNocCompResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateNocCompResponseModel?>,
+                response: Response<UpdateNocCompResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateNocCompResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateNocCompResponseModel?>) {
+                if (response.body() != null) {
+                    updateNocCompResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateNocCompResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null) updateSiteAcqResponse?.postValue(
+                    Resource.error(iThrowableLocalMessage, null, 500)
+                ) else updateNocCompResponse?.postValue(
                     Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
