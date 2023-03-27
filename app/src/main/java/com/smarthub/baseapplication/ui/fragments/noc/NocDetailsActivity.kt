@@ -26,7 +26,7 @@ class NocDetailsActivity : BaseActivity() {
     lateinit var viewmodel: HomeViewModel
     companion object{
         var NocAndCompAlldata : NocCompAllData?=null
-        var Id : String?="448"
+        var childIndex : Int?=null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class NocDetailsActivity : BaseActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initViews()
-        adapter=NocCompPageAdapter(supportFragmentManager,NocAndCompAlldata)
+        adapter=NocCompPageAdapter(supportFragmentManager,NocAndCompAlldata, childIndex)
         binding.subTitle.text=AppController.getInstance().siteName
         binding.viewpager.adapter=adapter
         binding.tabs.setupWithViewPager(binding.viewpager)

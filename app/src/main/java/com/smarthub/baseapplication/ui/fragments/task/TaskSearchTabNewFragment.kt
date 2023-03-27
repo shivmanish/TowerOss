@@ -383,13 +383,13 @@ class TaskSearchTabNewFragment(
         AppLogger.log("opened task details : ======> ${Gson().toJson(taskDetailData)}")
         val nocDataAdapterListener = TaskNocDataAdapter(requireContext(),object :
             TaskNocDataAdapterListener {
-            override fun clickedItem(data: NocCompAllData, id: String, parentIndex: Int) {
-                binding.viewpager.adapter = NocCompPageAdapter(childFragmentManager, data)
+            override fun clickedItem(data: NocCompAllData, id: String, dataIndex: Int?) {
+                binding.viewpager.adapter = NocCompPageAdapter(childFragmentManager, data,dataIndex)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
             }
             override fun addNew() {
-                homeViewModel.updateNocAndComp(UpdateNocCompAllData())
+                homeViewModel.updateNocAndComp(NocCompAllData())
                 if (homeViewModel.updateNocCompDataResponse?.hasActiveObservers() == true){
                     homeViewModel.updateNocCompDataResponse?.removeObservers(viewLifecycleOwner)
                 }
@@ -435,13 +435,15 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("NocAndComp Fragment card Data fetched successfully")
                 if (taskDetailData?.ModuleId!="0" && it.data.NOCCompliance?.size!!>0){
                     var data:NocCompAllData?=null
+                    var dataIndex:Int?=null
                     for (item in it.data.NOCCompliance!!){
                         if (item.id.toString()==taskDetailData?.ModuleId){
                             data=item
+                            dataIndex=it.data.NOCCompliance?.indexOf(item)
                             break
                         }
                     }
-                    binding.viewpager.adapter = NocCompPageAdapter(childFragmentManager, data)
+                    binding.viewpager.adapter = NocCompPageAdapter(childFragmentManager, data,dataIndex)
                     binding.tabs.setupWithViewPager(binding.viewpager)
                     setViewPager()
                 }

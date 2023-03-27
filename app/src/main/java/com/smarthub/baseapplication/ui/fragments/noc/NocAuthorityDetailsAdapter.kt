@@ -11,19 +11,28 @@ import com.smarthub.baseapplication.databinding.NocAuthorityItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityDetail
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAC
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, authorityDetails: ArrayList<NocAuthorityDetail>?, var context: Context) : RecyclerView.Adapter<NocAuthorityDetailsAdapter.ViewHold>() {
-
-    var list : ArrayList<NocAuthorityDetail> = authorityDetails!!
+class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, var authorityDetails: ArrayList<NocAuthorityDetail>?, var context: Context) : RecyclerView.Adapter<NocAuthorityDetailsAdapter.ViewHold>() {
+    private var datalist: NocAuthorityDetail?=null
+    var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-
-    fun updateItem(pos : Int,data : NocAuthorityDetail){
-        list[pos] = data
-        notifyItemChanged(pos)
+    fun setData(data : ArrayList<NocAuthorityDetail>?){
+        if (data!=null && data.isNotEmpty()){
+            datalist= data[0]
+            notifyDataSetChanged()
+        }
+    }
+    var type1 = "Authority Details"
+    init {
+        list.add("Authority Details")
+        if (authorityDetails!=null && authorityDetails?.isNotEmpty()==true ){
+            datalist=authorityDetails?.get(0)
+        }
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -36,14 +45,14 @@ class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, author
 //            }
 //        })
         init {
-            binding.collapsingLayout.tag = false
-            if ((binding.collapsingLayout.tag as Boolean)) {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-            } else {
-                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-            }
+//            binding.collapsingLayout.tag = false
+//            if ((binding.collapsingLayout.tag as Boolean)) {
+//                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+//                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+//            } else {
+//                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+//                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+//            }
 
 //            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
 //            recyclerListener.adapter = adapter
@@ -75,34 +84,18 @@ class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, author
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: NocAuthorityDetail=list[position]
-            holder.binding.imgEdit.setOnClickListener {
-//                listener.editModeCliked(data,position)
-            }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
             }
-            if (currentOpened == position) {
-                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                holder.binding.itemLine.visibility = View.GONE
-                holder.binding.itemCollapse.visibility = View.VISIBLE
-                holder.binding.imgEdit.visibility = View.VISIBLE
-            } else {
-                holder.binding.collapsingLayout.tag = false
-                holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                holder.binding.itemLine.visibility = View.VISIBLE
-                holder.binding.itemCollapse.visibility = View.GONE
-                holder.binding.imgEdit.visibility = View.GONE
+            holder.binding.imgEdit.setOnClickListener {
+
             }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.two_string_format),data.Name,data.ContactNumber)
-                holder.binding.Name.text=data.Name
-                holder.binding.EmailID.text=data.EmailId
-                holder.binding.ContactNumber.text=data.ContactNumber
-                holder.binding.PreferredLaungauge.text=data.PreferredLangauage
-                holder.binding.Address.text=data.Address
+                holder.binding.Name.text=datalist?.Name
+                holder.binding.EmailID.text=datalist?.EmailId
+                holder.binding.ContactNumber.text=datalist?.ContactNumber
+                holder.binding.PreferredLaungauge.text=datalist?.PreferredLangauage
+                holder.binding.Address.text=datalist?.Address
             }catch (e:Exception){
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
@@ -112,10 +105,10 @@ class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, author
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list.isEmpty() || list.get(position)==null)
-            2
-        else
+        return if (list[position]=="Authority Details")
             1
+        else
+            2
     }
 
     override fun getItemCount(): Int {
@@ -132,6 +125,6 @@ class NocAuthorityDetailsAdapter(var listener: NocauthorityClickListener, author
 
     interface NocauthorityClickListener{
         fun attachmentItemClicked()
-        fun editModeCliked(data :RfAnteenaData,pos:Int)
+        fun updataDataClicked(data :NocAuthorityDetail)
     }
 }

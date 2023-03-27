@@ -18,13 +18,14 @@ import com.smarthub.baseapplication.utils.Utils
 
 class TaskNocDataAdapter(var context:Context, var listener: TaskNocDataAdapterListener, var taskDetails: TaskDataListItem?) : RecyclerView.Adapter<nocEmptyDataViewHolder>() {
     var list = ArrayList<Any>()
-
+    var dataIndex:Int?=null
     fun setData(data: ArrayList<NocCompAllData>) {
         if (taskDetails?.ModuleId!="0"){
             this.list.clear()
             for (item in data){
                 if (item.id.toString()==taskDetails?.ModuleId){
                     this.list.add(item)
+                    dataIndex=data.indexOf(item)
                     notifyDataSetChanged()
                     break
                 }
@@ -80,9 +81,9 @@ class TaskNocDataAdapter(var context:Context, var listener: TaskNocDataAdapterLi
             is TaskNocDataViewHolder->{
                 try {
                     val item = list[position] as NocCompAllData
-                    holder.binding.cardTitle.text=String.format(context.resources.getString(R.string.two_string_format),item.id,Utils.getFormatedDate(item.modified_at.substring(0,10),"ddMMMyyyy"))
+                    holder.binding.cardTitle.text=String.format(context.resources.getString(R.string.two_string_format),item.id,Utils.getFormatedDate(item.modified_at,"ddMMMyyyy"))
                     holder.itemview.setOnClickListener {
-                        listener.clickedItem(item, AppController.getInstance().taskSiteId,position)
+                        listener.clickedItem(item, AppController.getInstance().taskSiteId,dataIndex)
                     }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
@@ -109,7 +110,7 @@ class TaskAddNewData(itemview: View):nocEmptyDataViewHolder(itemview){
     var binding=AddStartTaskBinding.bind(itemView)
 }
 interface TaskNocDataAdapterListener{
-    fun clickedItem(data:NocCompAllData,id:String,parentIndex:Int)
+    fun clickedItem(data:NocCompAllData,id:String,parentIndex:Int?)
     fun addNew()
 
 }

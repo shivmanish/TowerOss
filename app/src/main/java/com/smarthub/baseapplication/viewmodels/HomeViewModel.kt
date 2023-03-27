@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
@@ -385,7 +386,7 @@ class HomeViewModel : ViewModel() {
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
     }
 
-    fun updateNocAndComp(data: UpdateNocCompAllData) {
+    fun updateNocAndComp(data: NocCompAllData) {
         val dataModel= UpdateNocCompModel()
         dataModel.NOCCompliance= arrayListOf(data)
         updateIBoardRepo?.updateNocCompData(dataModel)

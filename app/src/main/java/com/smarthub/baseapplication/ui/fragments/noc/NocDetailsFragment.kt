@@ -9,14 +9,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocCompCommonFragBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
+import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompAllData
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAnteena.RfAnteenaItemsEditDialouge
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class NocDetailsFragment(var nocdata: NocCompAllData?) :BaseFragment(), NocApplicationDetailsAdapter.NocApplicationClickListener {
+class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :BaseFragment(), NocApplicationDetailsAdapter.NocApplicationClickListener {
 
     var binding : NocCompCommonFragBinding?=null
     lateinit var viewmodel: HomeViewModel
@@ -30,9 +34,19 @@ class NocDetailsFragment(var nocdata: NocCompAllData?) :BaseFragment(), NocAppli
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = NocApplicationDetailsAdapter(this@NocDetailsFragment,nocdata?.ApplicationInitial,requireContext())
+        setObserber()
+        adapter = NocApplicationDetailsAdapter(this@NocDetailsFragment,nocdata?.ApplicationInitial,this@NocDetailsFragment)
         binding?.listItem?.adapter=adapter
 
+        binding?.addItemsLayout?.setOnClickListener {
+            updataDataClicked(NocApplicationInitial())
+//            val dalouge = AddNewRfAntennaAdapter(R.layout.rf_anteena_list_item_dialouge)
+//            dalouge.show(childFragmentManager,"")
+        }
+    }
+
+
+    fun setObserber(){
         if (viewmodel.NocAndCompModelResponse?.hasActiveObservers() == true){
             viewmodel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -42,42 +56,60 @@ class NocDetailsFragment(var nocdata: NocCompAllData?) :BaseFragment(), NocAppli
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
-                AppLogger.log("NocAndComp Fragment card Data fetched successfully")
-                try {
-//                    adapter.setData(it.data.NOCCompliance!!)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("Noc Fragment error : ${e.localizedMessage}")
+                AppLogger.log("NocDetailsFragment card Data fetched successfully")
+                if (it.data.NOCCompliance?.isNotEmpty()==true && childIndex!=null){
+                    AppLogger.log("childIndex===>: $childIndex")
+                    nocdata=it.data.NOCCompliance?.get(childIndex!!)
+                    adapter.setData(it.data.NOCCompliance?.get(childIndex!!)?.ApplicationInitial)
                 }
                 AppLogger.log("size :${it.data.NOCCompliance?.size}")
 //                isDataLoaded = true
             }
             else if (it!=null) {
-                AppLogger.log("NocAndComp Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("NocDetailsFragment error :${it.message}, data : ${it.data}")
             }
             else {
-                AppLogger.log("NocAndComp Fragment Something went wrong")
+                AppLogger.log("NocDetailsFragment Something went wrong")
             }
         }
-
-//        binding?.addItemsLayout?.setOnClickListener {
-//            val dalouge = AddNewRfAntennaAdapter(R.layout.rf_anteena_list_item_dialouge)
-//            dalouge.show(childFragmentManager,"")
-//        }
     }
-
-
     override fun attachmentItemClicked() {
         Toast.makeText(requireContext(),"Attachment Item clicked",Toast.LENGTH_SHORT).show()
     }
 
-    override fun editModeCliked(data : RfAnteenaData, pos:Int){
-        val bottomSheetDialogFragment = RfAnteenaItemsEditDialouge(R.layout.rf_anteena_list_item_dialouge,data,nocdata?.id.toString(),
-            object : RfAnteenaItemsEditDialouge.rfAntenaListener {
-                override fun updatedData(data: RfAnteenaData) {
-//                    adapter.updateItem(pos,data)
-                }
+    override fun updataDataClicked(updatedData: NocApplicationInitial) {
+        showLoader()
+        val tempNocCompAllData = NocCompAllData()
+        tempNocCompAllData.ApplicationInitial= arrayListOf(updatedData)
+        if (nocdata!=null)
+            tempNocCompAllData.id=nocdata?.id
+        viewmodel.updateNocAndComp(tempNocCompAllData)
+        if (viewmodel.updateNocCompDataResponse?.hasActiveObservers() == true) {
+            viewmodel.updateNocCompDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.updateNocCompDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("NocDetailsFragment data updating in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200) {
+                AppLogger.log("NocDetailsFragment Data Updated successfully")
+                setObserber()
+                viewmodel.NocAndCompRequestAll(AppController.getInstance().siteid)
+                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+                AppLogger.log("NocDetailsFragment Something went wrong in data update")
+            }
+            else if (it != null) {
+                AppLogger.log("NocDetailsFragment in updateData error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("NocDetailsFragment Something went wrong in data update")
 
-            })
-        bottomSheetDialogFragment.show(childFragmentManager,"category")
+            }
+        }
     }
+
 }

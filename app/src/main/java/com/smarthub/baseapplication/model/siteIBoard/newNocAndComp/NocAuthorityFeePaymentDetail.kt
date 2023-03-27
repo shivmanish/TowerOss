@@ -1,14 +1,14 @@
 package com.smarthub.baseapplication.model.siteIBoard.newNocAndComp
 
-data class NocAuthorityFeePaymentDetail(
-    val Amount: String,
-    val ApplicationNo: String,
-    val PaymentMode: Int,
-    val PaymentStatus: List<Int>,
-    val Type: String,
-    val created_at: String,
-    val StatusDate: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class NocAuthorityFeePaymentDetail{
+    var Amount: String?=null
+    var ApplicationNo: String?=null
+    var PaymentMode: Int?=null
+    var PaymentStatus: ArrayList<Int>?=null
+    var Type: String?=null
+    var created_at: String?=null
+    var StatusDate: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

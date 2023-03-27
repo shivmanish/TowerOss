@@ -179,6 +179,15 @@
         <item name="android:orientation">vertical</item>
         <item name="android:layout_columnWeight">1</item>
     </style>
+    <style name="ColumnItemWithoutMarginInfo">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_columnWeight">1</item>
+    </style>
     <style name="RowItemInfo">
     <item name="android:layout_margin">10dp</item>
     <item name="android:paddingTop">10dp</item>

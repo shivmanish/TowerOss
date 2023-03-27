@@ -16,18 +16,21 @@ import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityD
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityFeePaymentDetail
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocPODetail
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, feePayDetails: ArrayList<NocAuthorityFeePaymentDetail>?, var context: Context) : RecyclerView.Adapter<NocFeePayDetailsAdapter.ViewHold>() {
+class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, var list : ArrayList<NocAuthorityFeePaymentDetail>?, var baseFragment: BaseFragment) : RecyclerView.Adapter<NocFeePayDetailsAdapter.ViewHold>() {
 
-    var list : ArrayList<NocAuthorityFeePaymentDetail> = feePayDetails!!
     var currentOpened = -1
 
-    fun updateItem(pos : Int,data : NocAuthorityFeePaymentDetail){
-        list[pos] = data
-        notifyItemChanged(pos)
+    fun setData(data : ArrayList<NocAuthorityFeePaymentDetail>?){
+        if (data!=null){
+            this.list?.clear()
+            this.list?.addAll(data)
+            notifyDataSetChanged()
+        }
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -79,10 +82,8 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, feePayDetail
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
-            val data: NocAuthorityFeePaymentDetail=list[position]
-            holder.binding.imgEdit.setOnClickListener {
-//                listener.editModeCliked(data,position)
-            }
+            val data: NocAuthorityFeePaymentDetail=list!![position]
+
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
             }
@@ -92,6 +93,17 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, feePayDetail
                 holder.binding.itemLine.visibility = View.GONE
                 holder.binding.itemCollapse.visibility = View.VISIBLE
                 holder.binding.imgEdit.visibility = View.VISIBLE
+                holder.binding.viewLayout.visibility = View.VISIBLE
+                holder.binding.editLayout.visibility = View.GONE
+
+                holder.binding.imgEdit.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+                }
             } else {
                 holder.binding.collapsingLayout.tag = false
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
@@ -100,32 +112,62 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, feePayDetail
                 holder.binding.itemCollapse.visibility = View.GONE
                 holder.binding.imgEdit.visibility = View.GONE
             }
-            try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.ApplicationNo,data.Type,AppPreferences.getInstance().getDropDownValue(DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString()))
-                if (data.PaymentStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.paymentStatus,DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString())
-                holder.binding.ApplicationNo.text=data.ApplicationNo
-                holder.binding.statusDate.text=Utils.getFormatedDate(data.StatusDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.PaymentType.text=data.Type
-                holder.binding.Amount.text=data.Amount
-                holder.binding.paymentMode.text=data.PaymentMode.toString()
-            }catch (e:Exception){
-                AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
-                e.localizedMessage?.let { AppLogger.log(it) }
+            holder.binding.itemTitleStr.text = String.format(baseFragment.resources.getString(R.string.rf_antenna_title_str_formate),position.plus(1).toString(),data.ApplicationNo,data.Type)
+            // view mode
+            if (data.PaymentStatus?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.paymentStatus,DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
+            if (data.PaymentMode!=null && data.PaymentMode!=0)
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentMode,DropDowns.PaymentMode.name,data.PaymentMode.toString())
+            holder.binding.ApplicationNo.text=data.ApplicationNo
+            holder.binding.statusDate.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
+            holder.binding.PaymentType.text=data.Type
+            holder.binding.Amount.text=data.Amount
+
+            // edit mode
+            holder.binding.ApplicationNumberEdit.setText(data.ApplicationNo)
+            holder.binding.PaymentTypeEdit.setText(data.Type)
+            holder.binding.AmountEdit.setText(data.Amount)
+            holder.binding.StatusDateEdit.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
+
+            if (data.PaymentStatus?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatusEdit,DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
+            else
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatusEdit,DropDowns.PaymentStatus.name)
+
+            if (data.PaymentMode!=null && data.PaymentMode!=0)
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentMode,DropDowns.PaymentMode.name,data.PaymentMode.toString())
+            else
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentModeEdit,DropDowns.PaymentMode.name)
+
+            baseFragment.setDatePickerView(holder.binding.StatusDateEdit)
+
+            holder.binding.update.setOnClickListener {
+                val tempFeeData=NocAuthorityFeePaymentDetail()
+                tempFeeData.let {
+                    it.ApplicationNo=holder.binding.ApplicationNumberEdit.text.toString()
+                    it.Type=holder.binding.PaymentTypeEdit.text.toString()
+                    it.Amount=holder.binding.AmountEdit.text.toString()
+                    it.StatusDate=Utils.getFullFormatedDate(holder.binding.StatusDateEdit.text.toString())
+                    it.PaymentMode= holder.binding.PaymentModeEdit.selectedValue.id.toIntOrNull()
+                    it.PaymentStatus= arrayListOf(holder.binding.PaymentStatusEdit.selectedValue.id.toInt())
+                    it.id=data.id
+                    listener.updataDataClicked(it)
+                }
             }
+
         }
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list.isEmpty() || list.get(position)==null)
+        return if (list?.isEmpty()==true)
             2
         else
             1
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.size!!
     }
 
     var recyclerView: RecyclerView?=null
@@ -138,6 +180,6 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, feePayDetail
 
     interface NocFeePayClickListener{
         fun attachmentItemClicked()
-        fun editModeCliked(data :RfAnteenaData,pos:Int)
+        fun updataDataClicked(data :NocAuthorityFeePaymentDetail)
     }
 }

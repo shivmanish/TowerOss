@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 
-class NocCompPageAdapter(fm:FragmentManager, var nocdata: NocCompAllData?) : FragmentPagerAdapter(fm) {
+class NocCompPageAdapter(fm:FragmentManager, var nocdata: NocCompAllData?,var childIndex:Int?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 4
 
@@ -15,21 +15,21 @@ class NocCompPageAdapter(fm:FragmentManager, var nocdata: NocCompAllData?) : Fra
     override fun getItem(position: Int): Fragment {
         when(position) {
             0 -> {
-                return NocDetailsFragment(nocdata)
+                return NocDetailsFragment(nocdata,childIndex)
             }
 
             1 -> {
-                return NocAuthorityDetailsFragment(nocdata)
+                return NocAuthorityDetailsFragment(nocdata,childIndex)
             }
 
             2 -> {
-                return NocPoDetailsFragment(nocdata)
+                return NocPoDetailsFragment(nocdata,childIndex)
             }
             3 -> {
-                return NocFeePaymentFragment(nocdata)
+                return NocFeePaymentFragment(nocdata,childIndex)
             }
             else -> {
-                return NocDetailsFragment(nocdata)
+                return NocDetailsFragment(nocdata,childIndex)
             }
 
         }

@@ -1,12 +1,12 @@
 package com.smarthub.baseapplication.model.siteIBoard.newNocAndComp
 
 data class NocCompAllData(
-    val ApplicationInitial: ArrayList<NocApplicationInitial>,
-    val AuthorityDetail: ArrayList<NocAuthorityDetail>,
-    val AuthorityFeePaymentDetail: ArrayList<NocAuthorityFeePaymentDetail>,
-    val PODetail: ArrayList<NocPODetail>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var ApplicationInitial: ArrayList<NocApplicationInitial>?=null,
+    var AuthorityDetail: ArrayList<NocAuthorityDetail>?=null,
+    var AuthorityFeePaymentDetail: ArrayList<NocAuthorityFeePaymentDetail>?=null,
+    var PODetail: ArrayList<NocPODetail>?=null,
+    var id: Int?=null,
+    val created_at: String?=null,
+    val isActive: Boolean?=null,
+    val modified_at: String?=null
 )

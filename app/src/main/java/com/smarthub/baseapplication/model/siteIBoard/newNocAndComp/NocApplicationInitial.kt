@@ -1,18 +1,18 @@
 package com.smarthub.baseapplication.model.siteIBoard.newNocAndComp
 
-data class NocApplicationInitial(
-    val ApplicationDate: String,
-    val ApplicationNumber: String,
-    val AuthorityApplicationType: List<Int>,
-    val Category: Int,
-    val DocumentNo: String,
-    val ExpiryDate: String,
-    val IssueDate: String,
-    val ApplicationStatus: List<Int>,
-    val SrNumber: Int,
-    val StatusDate: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class NocApplicationInitial{
+    var ApplicationDate: String?=null
+    var ApplicationNumber: String?=null
+    var AuthorityApplicationType: ArrayList<Int>?=null
+    var Category: Int?=null
+    var DocumentNo: String?=null
+    var ExpiryDate: String?=null
+    var IssueDate: String?=null
+    var ApplicationStatus: ArrayList<Int>?=null
+    var SrNumber: Int?=null
+    var StatusDate: String?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

@@ -616,6 +616,19 @@
           "name": "DCDB"
         }
       ]
+    },
+    {
+      "name": "ApplicationCategory",
+      "data": [
+        {
+          "id": 1,
+          "name": "Initial"
+        },
+        {
+          "id": 2,
+          "name": "Renewal"
+        }
+      ]
     }
   ]
 }

@@ -49,7 +49,7 @@ class NocDataAdapter(var context:Context, var listener: NocDataAdapterListener, 
         if (holder is NocDataViewHolder){
             try {
                 var item = list[position] as NocCompAllData
-                holder.binding.itemTitleStr.text=String.format(context.resources.getString(R.string.two_string_format),item.id,Utils.getFormatedDate(item.modified_at.substring(0,10),"ddMMMyyyy"))
+                holder.binding.itemTitleStr.text=String.format(context.resources.getString(R.string.two_string_format),item.id,Utils.getFormatedDate(item.modified_at?.substring(0,10),"ddMMMyyyy"))
                 holder.itemview.setOnClickListener {
                     listener.clickedItem(item, Id!!,position)
                 }

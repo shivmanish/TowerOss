@@ -96,7 +96,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
 
     override fun clickedItem(data:NocCompAllData,id:String,parentIndex:Int) {
         NocDetailsActivity.NocAndCompAlldata=data
-        NocDetailsActivity.Id=id
+        NocDetailsActivity.childIndex=parentIndex
         requireActivity().startActivity(Intent(requireContext(), NocDetailsActivity::class.java))
 
     }
