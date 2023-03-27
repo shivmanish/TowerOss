@@ -51,6 +51,7 @@ import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceReques
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
+import com.smarthub.baseapplication.network.EndPoints
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
 import com.smarthub.baseapplication.network.repo.UpdateIBoardRepo
@@ -315,7 +316,7 @@ class HomeViewModel : ViewModel() {
         if (!Utils.isNetworkConnected()) {
             val site_id = AppController.getInstance().siteid
             val value = AppPreferences.getInstance().getString("siteAgreementRequestAll${site_id}")
-
+            AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(data), "http://49.50.77.81:8686${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","siteAgreementRequestAll${site_id}")
             var position = 0
             println("Preference id is siteAgreementRequestAll${site_id}")
             var cache_model = SiteAcquisitionAllDataModel()

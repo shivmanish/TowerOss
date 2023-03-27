@@ -21,6 +21,7 @@ import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
@@ -89,6 +90,7 @@ class TaskSearchTabNewFragment(
         taskAndCardList.addAll(tempWhere.split(","))
         binding = FragmentSearchTaskBinding.inflate(inflater, container, false)
         initVariable()
+        AppPreferences.getInstance().saveTaskId(taskId)
         return binding.root
     }
 
@@ -181,7 +183,8 @@ class TaskSearchTabNewFragment(
 //                }else{
 //                    setUpServiceRequestData()
 //                }
-                setUpNocComplianceData()
+//                setUpNocComplianceData()
+                setUpSiteAcqusitionData()
 //                setUpPnanigAndDesignData()
             }
         }

@@ -374,5 +374,9 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<QatMainModel> saveQatPunchPointRequest(@Body SaveCheckpointModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST
+    Call<JsonObject> updateOfflineData(@Url String url,@Body JsonObject data);
 }
 

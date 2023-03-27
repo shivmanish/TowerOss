@@ -75,6 +75,7 @@ class TaskSearchTabFragment(
         tempWhere = tempWhere.replace("]", "")
         initVariable()
         taskAndCardList.addAll(tempWhere.split(","))
+        AppPreferences.getInstance().saveTaskId(taskId)
 //        if (siteDetailViewModel.taskUiModelResoonse?.hasActiveObservers() == true)
 //            siteDetailViewModel.taskUiModelResoonse?.removeObservers(viewLifecycleOwner)
 //        siteDetailViewModel.taskUiModelResoonse?.observe(viewLifecycleOwner){

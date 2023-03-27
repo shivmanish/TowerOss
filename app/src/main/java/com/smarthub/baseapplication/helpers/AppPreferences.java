@@ -7,7 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.smarthub.baseapplication.model.dropdown.DropDownItem;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
@@ -15,9 +19,12 @@ import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
 import com.smarthub.baseapplication.model.home.MyTeamTask;
 import com.smarthub.baseapplication.model.home.MyTeamTaskModel;
 import com.smarthub.baseapplication.model.search.SearchHistoryList;
-import com.smarthub.baseapplication.model.search.SearchList;
+import com.smarthub.baseapplication.model.taskModel.OfflineTaskList;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
+import com.smarthub.baseapplication.network.APIClient;
+import com.smarthub.baseapplication.network.APIInterceptor;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 import com.smarthub.baseapplication.utils.DropDowns;
@@ -28,6 +35,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AppPreferences {
 public static String DROPDOWNDATA = "dropdowndata";
@@ -46,66 +57,173 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         return mInstance;
     }
 
-    public  HashMap<String, String> getTaskOfflineQueue(){
-        //get from shared prefs
-        String storedHashMapString = mPrefs.getString("hashString", "");
-        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        HashMap<String, String> testHashMap2 = new HashMap<>();
-        try {
-            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+//    public  HashMap<String, String> getTaskOfflineQueue(){
+//        //get from shared prefs
+//        String storedHashMapString = mPrefs.getString("hashString", "");
+//        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+//        HashMap<String, String> testHashMap2 = new HashMap<>();
+//        try {
+//            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+//        }catch (Exception e){
+//            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+//        }
+//        return testHashMap2;
+//    }
+//
+//    public  String getNextTaskOfflineQueue(){
+//        //get from shared prefs
+//        String storedHashMapString = mPrefs.getString("hashString", "");
+//        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+//        HashMap<String, String> testHashMap2 = new HashMap<>();
+//        try {
+//            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+//        }catch (Exception e){
+//            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+//        }
+//        if (testHashMap2.size()>0){
+//            return  (new ArrayList<>(testHashMap2.keySet())).get(0);
+//        }
+//        return "";
+//    }
+//
+//    public void removeTaskOfflineQueue(String taskId){
+//        String createdId = "getTaskOfflineQueue"+taskId;
+//        //get from shared prefs
+//        String storedHashMapString = mPrefs.getString("hashString", "");
+//        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+//        HashMap<String, String> testHashMap2 = new HashMap<>();
+//        try {
+//            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+//        }catch (Exception e){
+//            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+//        }
+//        if (testHashMap2.containsKey(createdId)){
+//            testHashMap2.remove(createdId);
+//            saveHashMapData(testHashMap2);
+//        }
+//    }
+
+//    public void addTaskOfflineQueue(String taskId,Context context){
+//        String createdId = "getTaskOfflineQueue"+taskId;
+//        //get from shared prefs
+//        String storedHashMapString = mPrefs.getString("hashString", "");
+//        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+//        HashMap<String, String> testHashMap2 = new HashMap<>();
+//        try {
+//            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+//        }catch (Exception e){
+//            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+//        }
+//        String uiJson = getTaskUiModelJson(taskId,context);
+//        testHashMap2.put(createdId,uiJson);
+//        saveHashMapData(testHashMap2);
+//    }
+
+    public OfflineTaskList getOfflineTaskList() {
+        OfflineTaskList list = new OfflineTaskList();
+        String listJson=getString("OfflineTask");
+        try{
+            list=new Gson().fromJson(listJson, OfflineTaskList.class);
         }catch (Exception e){
-            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+            e.printStackTrace();
         }
-        return testHashMap2;
+        if(list==null)
+            list=new OfflineTaskList();
+        return list;
     }
 
-    public  String getNextTaskOfflineQueue(){
-        //get from shared prefs
-        String storedHashMapString = mPrefs.getString("hashString", "");
-        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        HashMap<String, String> testHashMap2 = new HashMap<>();
-        try {
-            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
+    public void saveTaskId(String task){
+        saveString("savedTaskId",task);
+    }
+
+    public OfflineTaskList saveOfflineTaskById() {
+        String task = getString("savedTaskId");
+        OfflineTaskList list = getOfflineTaskList();
+        if (!list.contains(task))
+            list.add(task);
+        saveOfflineTaskList(list);
+        return list;
+    }
+
+    public String getNextOfflineTask() {
+        OfflineTaskList list = new OfflineTaskList();
+        String listJson=getString("OfflineTask");
+        try{
+            list=new Gson().fromJson(listJson, OfflineTaskList.class);
         }catch (Exception e){
-            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
+            e.printStackTrace();
         }
-        if (testHashMap2.size()>0){
-            return  (new ArrayList<>(testHashMap2.keySet())).get(0);
-        }
+        if(list==null)
+            list=new OfflineTaskList();
+        if (list.size()>0)
+            return list.get(0);
         return "";
     }
 
-    public void removeTaskOfflineQueue(String taskId){
-        String createdId = "getTaskOfflineQueue"+taskId;
-        //get from shared prefs
-        String storedHashMapString = mPrefs.getString("hashString", "");
-        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        HashMap<String, String> testHashMap2 = new HashMap<>();
-        try {
-            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
-        }catch (Exception e){
-            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
-        }
-        if (testHashMap2.containsKey(createdId)){
-            testHashMap2.remove(createdId);
-            saveHashMapData(testHashMap2);
-        }
+    public void saveOfflineTaskList(OfflineTaskList iValue) {
+        String searchhistoryJson= new Gson().toJson(iValue);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString("OfflineTask",searchhistoryJson);
+        prefsEditor.apply();
     }
 
-    public void addTaskOfflineQueue(String taskId,Context context){
-        String createdId = "getTaskOfflineQueue"+taskId;
-        //get from shared prefs
-        String storedHashMapString = mPrefs.getString("hashString", "");
-        java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        HashMap<String, String> testHashMap2 = new HashMap<>();
-        try {
-            testHashMap2 = new Gson().fromJson(storedHashMapString, type);
-        }catch (Exception e){
-            AppLogger.INSTANCE.log("e :"+e.getLocalizedMessage());
-        }
-        String uiJson = getTaskUiModelJson(taskId,context);
-        testHashMap2.put(createdId,uiJson);
-        saveHashMapData(testHashMap2);
+    public void saveTaskOfflineApi(String json,String url,String key){
+        String taskId = getString("savedTaskId");
+        AppPreferences.getInstance().saveString(key+"Data"+taskId,json);
+        AppPreferences.getInstance().saveString(key+"Task",taskId);
+        AppPreferences.getInstance().saveString(key+"Url"+taskId,url);
+        OfflineTaskList list = getOfflineTaskList();
+        if (!list.contains(key))
+            list.add(key);
+        AppLogger.INSTANCE.log("offline saved:"+list.size());
+        offlineTask.postValue(list.size());
+        saveOfflineTaskList(list);
+    }
+
+    void removeTaskStatus(String key){
+        String taskId = getString(key+"Task");
+        AppPreferences.getInstance().removeString(key+"Data"+taskId);
+        AppPreferences.getInstance().removeString(key+"Task");
+        AppPreferences.getInstance().removeString(key+"Url"+taskId);
+        OfflineTaskList list = getOfflineTaskList();
+        list.remove(key);
+        saveOfflineTaskList(list);
+    }
+
+    public SingleLiveEvent<Integer> offlineTask = new SingleLiveEvent<>();
+    public void callAPI(){
+        APIClient apiClient = APIInterceptor.get();
+        String key = getNextOfflineTask();
+        String taskId = getString(key+"Task");
+        if (taskId.isEmpty())
+            return;
+        String data = getString(key+"Data"+taskId);
+        String apiUrl = getString(key+"Url"+taskId);
+        AppLogger.INSTANCE.log("callAPI url:"+apiUrl);
+        AppLogger.INSTANCE.log("callAPI data:"+data);
+        JsonObject jsonObject = new Gson().fromJson(data,JsonObject.class);
+        apiClient.updateOfflineData(apiUrl,jsonObject).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    removeTaskStatus(key);
+                    int size = getOfflineTaskList().size();
+                    offlineTask.postValue(size);
+                    callAPI();
+                    AppLogger.INSTANCE.log("next api call,"+taskId+",size:"+size);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                t.printStackTrace();
+                AppLogger.INSTANCE.log("callAPI,"+taskId+" error:"+t.getLocalizedMessage());
+            }
+        });
     }
 
     void saveHashMapData(HashMap<String, String> testHashMap){
@@ -309,6 +427,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
     public void saveString(String iKey, String iValue) {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(iKey, iValue);
+        prefsEditor.apply();
+    }
+    public void removeString(String iKey) {
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.remove(iKey);
         prefsEditor.apply();
     }
     public boolean getBoolean(String iKey) {

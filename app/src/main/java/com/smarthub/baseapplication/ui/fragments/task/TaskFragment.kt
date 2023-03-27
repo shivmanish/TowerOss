@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentTaskBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
@@ -65,12 +66,15 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             homeViewModel.fetchHomeData()
         }
         homeViewModel.fetchHomeData()
-//        if (requireActivity().intent.hasExtra("isFromHome")){
-//            var isFromHome=requireActivity().intent.getBooleanExtra("isFromHome",false)
-//            if(isFromHome){
-//                binding.homePager.currentItem=1
-//            }
-//        }
+        if (AppPreferences.getInstance().offlineTask.hasActiveObservers())
+            AppPreferences.getInstance().offlineTask.removeObservers(viewLifecycleOwner)
+        AppPreferences.getInstance().offlineTask.observe(viewLifecycleOwner){
+            binding.tasks.text = "$it"
+        }
+        binding.refresh.setOnClickListener {
+            AppPreferences.getInstance().callAPI()
+        }
+        binding.tasks.text = AppPreferences.getInstance().offlineTaskList.size.toString()
     }
 
     private fun mapUIData(data: HomeResponse){
