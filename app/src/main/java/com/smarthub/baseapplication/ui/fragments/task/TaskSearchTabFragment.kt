@@ -190,7 +190,7 @@ class TaskSearchTabFragment(
             TaskListmodel[parentIndex].tabs,
             taskAndCardList[0]
         )].list
-        setViewPager(list)
+        setViewPager(list!!)
         try {
             horizontalTabAdapter =
                 HorizontalTabAdapter(this@TaskSearchTabFragment, createHoriZentalList())
@@ -262,7 +262,7 @@ class TaskSearchTabFragment(
             TaskListmodel[parentIndex].tabs,
             taskAndCardList[0]
         )].list
-        setViewPager(list)
+        setViewPager(list!!)
 
         if (siteDetailViewModel.dropDownResponse?.hasActiveObservers() == true)
             siteDetailViewModel.dropDownResponse?.removeObservers(viewLifecycleOwner)
@@ -413,7 +413,7 @@ class TaskSearchTabFragment(
 
 
     override fun taskCardItemClicked(selectedCollectionItemData: CollectionItem) {
-        setViewPager(selectedCollectionItemData.list)
+        setViewPager(selectedCollectionItemData.list!!)
     }
 
     override fun taskSiteInfoItemClicked() {

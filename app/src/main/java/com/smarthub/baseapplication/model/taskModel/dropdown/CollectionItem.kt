@@ -7,5 +7,5 @@ data class CollectionItem(
     val disabled: Boolean,
     val id: Int,
     val name: String,
-    var list : ArrayList<TitleItem>
+    var list : ArrayList<TitleItem>?=null
 )

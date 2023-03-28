@@ -30,6 +30,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyA
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
+import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
@@ -57,6 +58,7 @@ import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapte
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 import okhttp3.internal.notify
@@ -68,6 +70,7 @@ class TaskSearchTabNewFragment(
     TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener{
     private lateinit var binding: FragmentSearchTaskBinding
     lateinit var taskViewModel: TaskViewModel
+    lateinit var TaskTabListmodel: TaskDropDownModel
     lateinit var homeViewModel: HomeViewModel
     var taskDetailData: TaskDataListItem?=null
     var taskAndCardList: ArrayList<String> = ArrayList()
@@ -85,6 +88,8 @@ class TaskSearchTabNewFragment(
     ): View {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
+        val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
+        TaskTabListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         tempWhere = tempWhere.replace("[", "")
         tempWhere = tempWhere.replace("]", "")
         taskAndCardList.addAll(tempWhere.split(","))
@@ -99,6 +104,7 @@ class TaskSearchTabNewFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setDataObserver()
+        AppLogger.log("TaskTAbList===>: ${Gson().toJson(TaskTabListmodel)}")
         binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
@@ -170,22 +176,53 @@ class TaskSearchTabNewFragment(
     }
 
     fun setParentData() {
-        var splittedData = tempWhere.split(",")
+        AppLogger.log("Where Tab list====>:$tempWhere")
+        val splittedData = tempWhere.split(",")
+        AppLogger.log("Where Tab list spiletted====>:$splittedData")
+        var parentId: Int=0
         if (splittedData.isNotEmpty()) {
             val firstIdx = splittedData[0]
-            if (firstIdx.length > 1) {
-                val parentId = firstIdx[0].toInt()
-                AppLogger.log("parentId${parentId}")
-//                if (parentId == 2) {
-//                    setUpServiceRequestData()
-//                } else if(parentId == 3) {
-//                    setUpPnanigAndDesignData()
-//                }else{
-//                    setUpServiceRequestData()
-//                }
-//                setUpNocComplianceData()
-                setUpSiteAcqusitionData()
-//                setUpPnanigAndDesignData()
+            AppLogger.log("Where Tab list first index data====>:$firstIdx")
+            if (firstIdx.isNotEmpty()) {
+                parentId = firstIdx.toInt().div(10)
+                AppLogger.log("parentId=====>:${parentId}")
+            }
+
+            when (parentId){
+                1->{
+                    AppLogger.log("Selected TAb is OpcoTenency")
+                }
+                2->{
+                    setUpSiteAcqusitionData()
+                }
+                3->{
+                    AppLogger.log("Selected TAb is Utility Equipments")
+                }
+                4->{
+                    AppLogger.log("Selected TAb is Site Info")
+                }
+                5->{
+                    setUpPnanigAndDesignData()
+                    AppLogger.log("Selected TAb is Planning & Design")
+                }
+                6->{
+                    setUpNocComplianceData()
+                    AppLogger.log("Selected TAb is NOC & Compliance")
+                }
+                7->{
+                    AppLogger.log("Selected TAb is Tower & Civil Infra")
+                }
+                8->{
+                    AppLogger.log("Selected TAb is Power & Fuel")
+                }
+                9->{
+                    setUpServiceRequestData()
+                    AppLogger.log("Selected TAb is Service Request")
+                }
+                else ->{
+                    setUpNocComplianceData()
+                    AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
+                }
             }
         }
     }

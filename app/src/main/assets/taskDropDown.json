@@ -1,0 +1,276 @@
+[
+    {
+        "id": 4,
+        "name": "Site iBoard",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 41,
+                "name": "Basic Info",
+                "checked": false,
+                "disabled": true
+            },
+            {
+                "id": 42,
+                "name": "Operational Info",
+                "checked": false
+            },
+            {
+                "id": 43,
+                "name": "Geo Conditions",
+                "checked": false
+            },
+            {
+                "id": 44,
+                "name": "Safety/Access",
+                "checked": false
+            },
+            {
+                "id": 45,
+                "name": "Picture/Layout",
+                "checked": false
+            },
+            {
+                "id": 46,
+                "name": "Map View",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Service Request",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 91,
+                "name": "SR Detail",
+                "checked": false
+            },
+            {
+                "id": 94,
+                "name": "OPCO TSSR",
+                "checked": false
+            },
+            {
+                "id": 95,
+                "name": "Feasibility Planning",
+                "checked": false
+            },
+            {
+                "id": 97,
+                "name": "Site Proposal",
+                "checked": false
+            },
+            {
+                "id": 98,
+                "name": "SP Approval/SO",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "OPCO Tenancy",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 11,
+                "name": "OPCO Info",
+                "checked": false
+            },
+            {
+                "id": 12,
+                "name": "Commercials",
+                "checked": false
+            },
+            {
+                "id": 13,
+                "name": "RF Equipment",
+                "checked": false
+            },
+            {
+                "id": 14,
+                "name": "RF Antenna",
+                "checked": false
+            },
+            {
+                "id": 15,
+                "name": "Backhaul Link",
+                "checked": false
+            },
+            {
+                "id": 16,
+                "name": "Power Load",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Planning & Design",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 51,
+                "name": "Tower & Civil",
+                "checked": false
+            },
+            {
+                "id": 52,
+                "name": "Power",
+                "checked": false
+            },
+            {
+                "id": 53,
+                "name": "Utility Equip",
+                "checked": false
+            },
+            {
+                "id": 54,
+                "name": "NOC & Comp",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Site Acquisition",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 21,
+                "name": "Assign ACQ Team",
+                "checked": false
+            },
+            {
+                "id": 22,
+                "name": "Acquisition Survery",
+                "checked": false
+            },
+            {
+                "id": 23,
+                "name": "Soft Acquisition",
+                "checked": false
+            },
+            {
+                "id": 24,
+                "name": "Agreements",
+                "checked": false
+            },
+            {
+                "id": 25,
+                "name": "Payments",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Utility Equipments",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 31,
+                "name": "SMPS",
+                "checked": false
+            },
+            {
+                "id": 32,
+                "name": "Battery Bank",
+                "checked": false
+            },
+            {
+                "id": 33,
+                "name": "AC",
+                "checked": false
+            },
+            {
+                "id": 34,
+                "name": "DG",
+                "checked": false
+            },
+            {
+                "id": 35,
+                "name": "Fire Extinguisher",
+                "checked": false
+            },
+            {
+                "id": 36,
+                "name": "Surge Protection",
+                "checked": false
+            },
+            {
+                "id": 37,
+                "name": "Power Distribution Box",
+                "checked": false
+            },
+            {
+                "id": 38,
+                "name": "Cables",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Tower & Civil Infra",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 71,
+                "name": "Tower",
+                "checked": false
+            },
+            {
+                "id": 72,
+                "name": "Pole",
+                "checked": false
+            },
+            {
+                "id": 73,
+                "name": "Equipment Room",
+                "checked": false
+            },
+            {
+                "id": 74,
+                "name": "Earthing",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Power & Fuel",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 81,
+                "name": "EB Connection",
+                "checked": false
+            },
+            {
+                "id": 82,
+                "name": "EB Bills",
+                "checked": false
+            },
+            {
+                "id": 83,
+                "name": "EB Payments",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "NOC & Compliance",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 61,
+                "name": "Application Details",
+                "checked": false
+            }
+        ]
+    }
+]

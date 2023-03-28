@@ -450,7 +450,7 @@ class HomeViewModel : ViewModel() {
                 }
                 else{
                     for ((index, value) in cache_model.NOCCompliance?.get(position)?.PODetail!!.withIndex()) {
-                        if (value.id == data.id) {
+                        if (value.id == data.ApplicationInitial?.get(0)?.id) {
                             cache_model.NOCCompliance?.get(position)?.PODetail!![index] = data.PODetail?.get(0)!!
                             break
                         }
@@ -466,7 +466,7 @@ class HomeViewModel : ViewModel() {
                 }
                 else{
                     for ((index, value) in cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail!!.withIndex()) {
-                        if (value.id == data.id) {
+                        if (value.id == data.ApplicationInitial?.get(0)?.id) {
                             cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail!![index] = data.AuthorityFeePaymentDetail?.get(0)!!
                             break
                         }
@@ -482,7 +482,7 @@ class HomeViewModel : ViewModel() {
             val jsonStringData = Gson().toJson(cache_model)
             AppPreferences.getInstance().saveString("NocAndCompRequestAll${site_id}", jsonStringData)
             if (cache_model.NOCCompliance != null)
-                dataModel.NOCCompliance=cache_model.NOCCompliance
+                dataModel.NOCCompliance= arrayListOf(cache_model.NOCCompliance?.get(position)!!)
             AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","NocAndCompRequestAll${site_id}")
             AppLogger.log("saved data size with id:$site_id ====>: ${cache_model.NOCCompliance?.size}")
             AppLogger.log("saved data with id:$site_id ====>: ${Gson().toJson(cache_model)}")
