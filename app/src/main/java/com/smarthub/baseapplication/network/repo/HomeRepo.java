@@ -705,6 +705,20 @@ public class HomeRepo {
     }
 
     public void fetchHomeData() {
+        if (!Utils.INSTANCE.isNetworkConnected()){
+            try {
+                String data = AppPreferences.getInstance().getString("fetchHomeData");
+                if (data!=null && !data.isEmpty()) {
+                    HomeResponse model = new Gson().fromJson(data, HomeResponse.class);
+                    if (model != null)
+                        homeResponse.postValue(Resource.success(model, 200));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+            }
+            return;
+        }
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         jsonObject.addProperty("homepage", "");
@@ -728,9 +742,10 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<HomeResponse> response) {
 
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     homeResponse.postValue(Resource.success(response.body(), 200));
-
+                    String json = new Gson().toJson(response.body());
+                    AppPreferences.getInstance().saveString("fetchHomeData",json);
                 }
             }
 
@@ -789,6 +804,20 @@ public class HomeRepo {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("Gettemplate", templateName);
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        if (!Utils.INSTANCE.isNetworkConnected()){
+            try {
+                String data = AppPreferences.getInstance().getString("fetchTaskData"+templateName);
+                if (data!=null && !data.isEmpty()) {
+                    TaskModelData model = new Gson().fromJson(data, TaskModelData.class);
+                    if (model != null)
+                        taskResponse.postValue(Resource.success(model, 200));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+            }
+            return;
+        }
         apiClient.fetchTaskData(jsonObject).enqueue(new Callback<TaskModelData>() {
             @Override
             public void onResponse(@NonNull Call<TaskModelData> call, @NonNull Response<TaskModelData> response) {
@@ -809,6 +838,7 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<TaskModelData> response) {
 
                 if (response.body() != null) {
+                    AppPreferences.getInstance().saveString("fetchTaskData"+templateName,new Gson().toJson(response.body()));
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     taskResponse.postValue(Resource.success(response.body(), 200));
                 }
@@ -826,6 +856,20 @@ public class HomeRepo {
     }
 
     public void fetchServiceRequestData(String id) {
+        if (!Utils.INSTANCE.isNetworkConnected()){
+            try {
+                String data = AppPreferences.getInstance().getString("fetchServiceRequestData"+id);
+                if (data!=null && !data.isEmpty()) {
+                    ServiceRequestAllData model = new Gson().fromJson(data, ServiceRequestAllData.class);
+                    if (model != null)
+                        serRequestData.postValue(Resource.success(model, 200));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+            }
+            return;
+        }
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
@@ -850,6 +894,8 @@ public class HomeRepo {
             private void reportSuccessResponse(Response<ServiceRequestAllData> response) {
 
                 if (response.body() != null) {
+                    AppPreferences.getInstance().saveString("fetchServiceRequestData"+id,new Gson().toJson(response.body()));
+
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     serRequestData.postValue(Resource.success(response.body(), 200));
                 }
@@ -869,6 +915,20 @@ public class HomeRepo {
     public void siteInfoById(String id) {
         opcoDataResponse.postValue(Resource.loading((opcoDataResponse.getValue() != null) ? opcoDataResponse.getValue().data : null, 200));
         siteInfoResponse.postValue(Resource.loading((siteInfoResponse.getValue() != null) ? siteInfoResponse.getValue().data : null, 200));
+        if (!Utils.INSTANCE.isNetworkConnected()){
+            try {
+                String data = AppPreferences.getInstance().getString("siteInfoById"+id);
+                if (data!=null && !data.isEmpty()) {
+                    SiteInfoModel model = new Gson().fromJson(data, SiteInfoModel.class);
+                    if (model != null)
+                        siteInfoResponse.postValue(Resource.success(model, 200));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+            }
+            return;
+        }
         apiClient.fetchSiteInfoById(new IdData(id, AppController.getInstance().ownerName)).enqueue(new Callback<SiteInfoModel>() {
             @Override
             public void onResponse(Call<SiteInfoModel> call, Response<SiteInfoModel> response) {
@@ -891,7 +951,7 @@ public class HomeRepo {
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     SiteInfoModel data = response.body();
-//                    AppController.getInstance().siteInfoModel = data;
+                    AppPreferences.getInstance().saveString("siteInfoById"+id,new Gson().toJson(response.body()));
                     siteInfoResponse.postValue(Resource.success(response.body(), 200));
 //                   data update
                     if (data.getItem() != null && !data.getItem().isEmpty()) {
