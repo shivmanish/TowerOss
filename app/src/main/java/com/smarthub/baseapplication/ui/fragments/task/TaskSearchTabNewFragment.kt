@@ -183,8 +183,8 @@ class TaskSearchTabNewFragment(
 //                }else{
 //                    setUpServiceRequestData()
 //                }
-                setUpNocComplianceData()
-//                setUpSiteAcqusitionData()
+//                setUpNocComplianceData()
+                setUpSiteAcqusitionData()
 //                setUpPnanigAndDesignData()
             }
         }
@@ -524,6 +524,13 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
                 serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
+                if (it.data.SAcqSiteAcquisition?.isNotEmpty() == true){
+                    SiteAcqTabActivity.siteacquisition = it.data.SAcqSiteAcquisition!![0]
+                    SiteAcqTabActivity.parentIndex = 0
+                    binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, SiteAcqTabActivity.siteacquisition,0)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
             } else if (it != null) {
                 Toast.makeText(
                     requireContext(),
