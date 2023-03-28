@@ -66,8 +66,10 @@ open class BaseFragment : Fragment(){
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun showLoader(){
-        if (progressDialog!=null && progressDialog?.isShowing == false){
-            progressDialog?.show()
+        if (Utils.isNetworkConnected()) {
+            if (progressDialog != null && progressDialog?.isShowing == false) {
+                progressDialog?.show()
+            }
         }
     }
 

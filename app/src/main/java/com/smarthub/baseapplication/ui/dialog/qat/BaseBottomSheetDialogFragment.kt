@@ -99,8 +99,10 @@ open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
     }
 
     fun showLoader(){
-        if (progressDialog!=null && progressDialog?.isShowing == false){
-            progressDialog?.show()
+        if (Utils.isNetworkConnected()) {
+            if (progressDialog != null && progressDialog?.isShowing == false) {
+                progressDialog?.show()
+            }
         }
     }
 
