@@ -1365,63 +1365,8 @@ public class HomeRepo {
     }
 
     public void siteAgreementRequestAll(String id) {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id", id);
-        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
-        jsonObject.add("SAcqSiteAcquisition", new JsonArray());
-        String cache_data = AppPreferences.getInstance().getString("siteAgreementRequestAll" + id);
-
-        if (Utils.INSTANCE.isNetworkConnected(AppController.getInstance())) {
-            apiClient.fetchSiteAgreementModelRequest(jsonObject).enqueue(new Callback<SiteAcquisitionAllDataModel>() {
-                @Override
-                public void onResponse(Call<SiteAcquisitionAllDataModel> call, Response<SiteAcquisitionAllDataModel> response) {
-                    if (response.isSuccessful()) {
-                        reportSuccessResponse(response);
-                    } else if (response.errorBody() != null) {
-                        AppLogger.INSTANCE.log("error :" + response);
-                    } else {
-                        AppLogger.INSTANCE.log("error :" + response);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<SiteAcquisitionAllDataModel> call, Throwable t) {
-                    if (cache_data != null && !cache_data.isEmpty()) {
-                        try {
-                            SiteAcquisitionAllDataModel cacheobject = new Gson().fromJson(cache_data, SiteAcquisitionAllDataModel.class);
-                            if (cacheobject != null) {
-                                siteAgreementModel.postValue(Resource.success(cacheobject, 200));
-                                return;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-
-                        }
-                    }
-                    reportErrorResponse(t.getLocalizedMessage());
-
-
-                }
-
-                private void reportSuccessResponse(Response<SiteAcquisitionAllDataModel> response) {
-
-                    if (response.body() != null) {
-                        String data_json = new Gson().toJson(response.body());
-                        AppPreferences.getInstance().saveString("siteAgreementRequestAll" + id, data_json);
-                        System.out.println("Preference id is "+"siteAgreementRequestAll" + id);
-                        AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
-                        siteAgreementModel.postValue(Resource.success(response.body(), 200));
-                    }
-                }
-
-                private void reportErrorResponse(String iThrowableLocalMessage) {
-                    if (iThrowableLocalMessage != null)
-                        siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
-                    else
-                        siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
-                }
-            });
-        } else {
+        if (!Utils.INSTANCE.isNetworkConnected(AppController.getInstance())) {
+            String cache_data = AppPreferences.getInstance().getString("siteAgreementRequestAll" + id);
             if (cache_data != null && !cache_data.isEmpty()) {
                 try {
                     SiteAcquisitionAllDataModel cacheobject = new Gson().fromJson(cache_data, SiteAcquisitionAllDataModel.class);
@@ -1435,7 +1380,49 @@ public class HomeRepo {
                 }
             }
             siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            return;
         }
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("SAcqSiteAcquisition", new JsonArray());
+        apiClient.fetchSiteAgreementModelRequest(jsonObject).enqueue(new Callback<SiteAcquisitionAllDataModel>() {
+            @Override
+            public void onResponse(Call<SiteAcquisitionAllDataModel> call, Response<SiteAcquisitionAllDataModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SiteAcquisitionAllDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+
+
+            }
+
+            private void reportSuccessResponse(Response<SiteAcquisitionAllDataModel> response) {
+
+                if (response.body() != null) {
+                    String data_json = new Gson().toJson(response.body());
+                    AppPreferences.getInstance().saveString("siteAgreementRequestAll" + id, data_json);
+
+                    siteAgreementModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+
 
     }
 
@@ -1480,10 +1467,7 @@ public class HomeRepo {
     }
 
     public void NocAndCompRequestAll(String id) {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id", id);
-        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
-        jsonObject.add("NOCCompliance", new JsonArray());
+
         if (!Utils.INSTANCE.isNetworkConnected()){
             String value = AppPreferences.getInstance().getString("NocAndCompRequestAll"+id);
             if (value!=null && !value.isEmpty()){
@@ -1498,6 +1482,10 @@ public class HomeRepo {
             }
             return;
         }
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("NOCCompliance", new JsonArray());
         apiClient.fetchNocAndCompRequest(jsonObject).enqueue(new Callback<NocCompAllDataModel>() {
             @Override
             public void onResponse(Call<NocCompAllDataModel> call, Response<NocCompAllDataModel> response) {
@@ -1521,7 +1509,7 @@ public class HomeRepo {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     noCandCompModel.postValue(Resource.success(response.body(), 200));
                     String jsonStringData = new Gson().toJson(response.body());
-                    AppPreferences.getInstance().saveString("siteAgreementRequestAll"+id, jsonStringData);
+                    AppPreferences.getInstance().saveString("NocAndCompRequestAll"+id, jsonStringData);
 
                 }
             }

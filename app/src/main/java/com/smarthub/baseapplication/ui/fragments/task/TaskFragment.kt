@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -43,7 +45,11 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-
+        val rotate = RotateAnimation(
+            0F, 360F,
+            Animation.RELATIVE_TO_SELF, 0.5f,
+            Animation.RELATIVE_TO_SELF, 0.5f
+        )
         binding.homePager.adapter = TaskViewPagerAdapter(childFragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,this@TaskFragment)
         binding.homeTab.setupWithViewPager(binding.homePager)
 
@@ -70,8 +76,14 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             AppPreferences.getInstance().offlineTask.removeObservers(viewLifecycleOwner)
         AppPreferences.getInstance().offlineTask.observe(viewLifecycleOwner){
             binding.tasks.text = "$it"
+            if (it==0){
+                binding.refresh.clearAnimation()
+            }
         }
         binding.refresh.setOnClickListener {
+            rotate.duration = 9000
+            rotate.repeatCount = Animation.INFINITE
+            binding.refresh.startAnimation(rotate)
             AppPreferences.getInstance().callAPI()
         }
         binding.tasks.text = AppPreferences.getInstance().offlineTaskList.size.toString()

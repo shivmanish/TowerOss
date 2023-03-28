@@ -374,7 +374,7 @@ class HomeViewModel : ViewModel() {
             val jsonStringData = Gson().toJson(cache_model)
             AppPreferences.getInstance().saveString("siteAgreementRequestAll${site_id}", jsonStringData)
             AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","siteAgreementRequestAll${site_id}")
-
+            siteAgreementModel?.postValue(Resource.success(cache_model,200))
             return
         }
         updateIBoardRepo?.updateSiteAcqData(dataModel)
