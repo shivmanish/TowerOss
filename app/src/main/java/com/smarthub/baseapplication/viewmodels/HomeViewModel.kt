@@ -391,6 +391,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun updateNocAndComp(data: NocCompAllData) {
+        AppLogger.log("data for update======>:${Gson().toJson(data)}")
         val dataModel= UpdateNocCompModel()
         dataModel.NOCCompliance= arrayListOf(data)
         if(!Utils.isNetworkConnected()){
@@ -406,6 +407,7 @@ class HomeViewModel : ViewModel() {
                     for ((index, value) in cache_model.NOCCompliance!!.withIndex()) {
                         if (value.id == data.id) {
                             position = index
+                            AppLogger.log("childIndex in update function====>:$position")
                             break
                         }
                     }
@@ -426,11 +428,14 @@ class HomeViewModel : ViewModel() {
             if (data.ApplicationInitial != null) {
                 if (cache_model.NOCCompliance?.get(position)?.ApplicationInitial==null || cache_model.NOCCompliance?.get(position)?.ApplicationInitial?.isEmpty()==true){
                     cache_model.NOCCompliance?.get(position)?.ApplicationInitial = data.ApplicationInitial
+                    AppLogger.log("Save offline noc data is empty===>${Gson().toJson(cache_model.NOCCompliance?.get(position)?.ApplicationInitial)}")
                 }
                 else{
                     for ((index, value) in cache_model.NOCCompliance?.get(position)?.ApplicationInitial!!.withIndex()) {
-                        if (value.id == data.id) {
+                        if (value.id == data.ApplicationInitial?.get(0)?.id) {
+                            AppLogger.log("SubChildIndex in update function====>:$index")
                             cache_model.NOCCompliance?.get(position)?.ApplicationInitial!![index] = data.ApplicationInitial?.get(0)!!
+                            AppLogger.log("Save offline noc updated data is ===>${Gson().toJson(cache_model.NOCCompliance?.get(position)?.ApplicationInitial!![index])}")
                             break
                         }
                         else if (index==cache_model.NOCCompliance?.get(position)?.ApplicationInitial?.size?.minus(1)){
@@ -476,9 +481,11 @@ class HomeViewModel : ViewModel() {
             }
             val jsonStringData = Gson().toJson(cache_model)
             AppPreferences.getInstance().saveString("NocAndCompRequestAll${site_id}", jsonStringData)
-
+            if (cache_model.NOCCompliance != null)
+                dataModel.NOCCompliance=cache_model.NOCCompliance
             AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","NocAndCompRequestAll${site_id}")
-            AppLogger.log("saved data with id:$site_id ====>: ${cache_model.NOCCompliance?.size}")
+            AppLogger.log("saved data size with id:$site_id ====>: ${cache_model.NOCCompliance?.size}")
+            AppLogger.log("saved data with id:$site_id ====>: ${Gson().toJson(cache_model)}")
             NocAndCompModelResponse?.postValue(Resource.success(cache_model,200))
             return
         }

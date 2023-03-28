@@ -1426,6 +1426,8 @@ public class HomeRepo {
         jsonObject.add("NOCCompliance", new JsonArray());
         if (!Utils.INSTANCE.isNetworkConnected()){
             String value = AppPreferences.getInstance().getString("NocAndCompRequestAll"+id);
+            AppLogger.INSTANCE.log("NocComp api data in offline mode===>:"+value);
+
             if (value!=null && !value.isEmpty()){
                 try {
                     NocCompAllDataModel alldata= new Gson().fromJson(value,NocCompAllDataModel.class);
@@ -1461,7 +1463,7 @@ public class HomeRepo {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
                     noCandCompModel.postValue(Resource.success(response.body(), 200));
                     String jsonStringData = new Gson().toJson(response.body());
-                    AppPreferences.getInstance().saveString("siteAgreementRequestAll"+id, jsonStringData);
+                    AppPreferences.getInstance().saveString("NocAndCompRequestAll"+id, jsonStringData);
 
                 }
             }
@@ -1916,6 +1918,7 @@ public class HomeRepo {
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         if (!Utils.INSTANCE.isNetworkConnected()){
             String value = AppPreferences.getInstance().getString("TaskDetailsData"+id);
+            AppLogger.INSTANCE.log("task details in offline mode===>:"+value);
             if (value!=null && !value.isEmpty()){
                 try {
                     TaskDataList alldata= new Gson().fromJson(value,TaskDataList.class);

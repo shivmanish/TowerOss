@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocCompCommonFragBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -60,6 +61,7 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
                 if (it.data.NOCCompliance?.isNotEmpty()==true && childIndex!=null && childIndex!!<it.data.NOCCompliance?.size!!){
                     AppLogger.log("childIndex===>: $childIndex")
                     nocdata=it.data.NOCCompliance?.get(childIndex!!)
+                    AppLogger.log("Noc Application Details data====>:${Gson().toJson(it.data.NOCCompliance?.get(childIndex!!)?.ApplicationInitial)}")
                     adapter.setData(it.data.NOCCompliance?.get(childIndex!!)?.ApplicationInitial)
                 }
                 AppLogger.log("size :${it.data.NOCCompliance?.size}, childIndex :$childIndex")
