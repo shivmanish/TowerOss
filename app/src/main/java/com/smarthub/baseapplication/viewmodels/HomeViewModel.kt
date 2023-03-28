@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.viewmodels
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.trackermodule.util.MyApplication
 import com.google.gson.Gson
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -371,7 +373,6 @@ class HomeViewModel : ViewModel() {
 
             val jsonStringData = Gson().toJson(cache_model)
             AppPreferences.getInstance().saveString("siteAgreementRequestAll${site_id}", jsonStringData)
-
             AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","siteAgreementRequestAll${site_id}")
 
             return
@@ -392,6 +393,95 @@ class HomeViewModel : ViewModel() {
     fun updateNocAndComp(data: NocCompAllData) {
         val dataModel= UpdateNocCompModel()
         dataModel.NOCCompliance= arrayListOf(data)
+        if(!Utils.isNetworkConnected()){
+            val site_id = AppController.getInstance().siteid
+            val value = AppPreferences.getInstance().getString("NocAndCompRequestAll${site_id}")
+            var position = 0
+            println("Preference id is NocAndCompRequestAll${site_id}")
+            var cache_model = NocCompAllDataModel()
+            if (value != null && !value.isEmpty()) {
+                //Save the Service fot later updatation when online
+                try {
+                    cache_model = Gson().fromJson(value, NocCompAllDataModel::class.java)
+                    for ((index, value) in cache_model.NOCCompliance!!.withIndex()) {
+                        if (value.id == data.id) {
+                            position = index
+                            break
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    AppLogger.log("somthing went wrong in update noc homeviewmodel ${e.localizedMessage}")
+                }
+            }
+            if (cache_model.NOCCompliance == null) {
+                cache_model.NOCCompliance = ArrayList()
+            }
+            if (cache_model.NOCCompliance?.size == 0) {
+                cache_model.NOCCompliance?.add(
+                    NocCompAllData()
+                )
+            }
+            if (data.ApplicationInitial != null) {
+                if (cache_model.NOCCompliance?.get(position)?.ApplicationInitial==null || cache_model.NOCCompliance?.get(position)?.ApplicationInitial?.isEmpty()==true){
+                    cache_model.NOCCompliance?.get(position)?.ApplicationInitial = data.ApplicationInitial
+                }
+                else{
+                    for ((index, value) in cache_model.NOCCompliance?.get(position)?.ApplicationInitial!!.withIndex()) {
+                        if (value.id == data.id) {
+                            cache_model.NOCCompliance?.get(position)?.ApplicationInitial!![index] = data.ApplicationInitial?.get(0)!!
+                            break
+                        }
+                        else if (index==cache_model.NOCCompliance?.get(position)?.ApplicationInitial?.size?.minus(1)){
+                            cache_model.NOCCompliance?.get(position)?.ApplicationInitial?.add(data.ApplicationInitial?.get(0)!!)
+                        }
+                    }
+                }
+            }
+            if (data.PODetail != null) {
+                if (cache_model.NOCCompliance?.get(position)?.PODetail==null || cache_model.NOCCompliance?.get(position)?.PODetail?.isEmpty()==true){
+                    cache_model.NOCCompliance?.get(position)?.PODetail = data.PODetail
+                }
+                else{
+                    for ((index, value) in cache_model.NOCCompliance?.get(position)?.PODetail!!.withIndex()) {
+                        if (value.id == data.id) {
+                            cache_model.NOCCompliance?.get(position)?.PODetail!![index] = data.PODetail?.get(0)!!
+                            break
+                        }
+                        else if (index==cache_model.NOCCompliance?.get(position)?.PODetail?.size?.minus(1)){
+                            cache_model.NOCCompliance?.get(position)?.PODetail?.add(data.PODetail?.get(0)!!)
+                        }
+                    }
+                }
+            }
+            if (data.AuthorityFeePaymentDetail != null) {
+                if (cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail==null || cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail?.isEmpty()==true){
+                    cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail = data.AuthorityFeePaymentDetail
+                }
+                else{
+                    for ((index, value) in cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail!!.withIndex()) {
+                        if (value.id == data.id) {
+                            cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail!![index] = data.AuthorityFeePaymentDetail?.get(0)!!
+                            break
+                        }
+                        else if (index==cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail?.size?.minus(1)){
+                            cache_model.NOCCompliance?.get(position)?.AuthorityFeePaymentDetail?.add(data.AuthorityFeePaymentDetail?.get(0)!!)
+                        }
+                    }
+                }
+            }
+            if (data.AuthorityDetail != null) {
+                cache_model.NOCCompliance?.get(position)?.AuthorityDetail = data.AuthorityDetail
+            }
+            val jsonStringData = Gson().toJson(cache_model)
+            AppPreferences.getInstance().saveString("NocAndCompRequestAll${site_id}", jsonStringData)
+
+            AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","NocAndCompRequestAll${site_id}")
+            AppLogger.log("saved data with id:$site_id ====>: ${cache_model.NOCCompliance?.size}")
+            NocAndCompModelResponse?.postValue(Resource.success(cache_model,200))
+            return
+        }
         updateIBoardRepo?.updateNocCompData(dataModel)
     }
 }

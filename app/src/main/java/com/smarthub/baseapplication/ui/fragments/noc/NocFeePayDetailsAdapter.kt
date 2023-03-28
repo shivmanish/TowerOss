@@ -135,7 +135,7 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, var list : A
                 AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatusEdit,DropDowns.PaymentStatus.name)
 
             if (data.PaymentMode!=null && data.PaymentMode!=0)
-                AppPreferences.getInstance().setDropDown(holder.binding.PaymentMode,DropDowns.PaymentMode.name,data.PaymentMode.toString())
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentModeEdit,DropDowns.PaymentMode.name,data.PaymentMode.toString())
             else
                 AppPreferences.getInstance().setDropDown(holder.binding.PaymentModeEdit,DropDowns.PaymentMode.name)
 

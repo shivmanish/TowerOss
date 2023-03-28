@@ -183,8 +183,8 @@ class TaskSearchTabNewFragment(
 //                }else{
 //                    setUpServiceRequestData()
 //                }
-//                setUpNocComplianceData()
-                setUpSiteAcqusitionData()
+                setUpNocComplianceData()
+//                setUpSiteAcqusitionData()
 //                setUpPnanigAndDesignData()
             }
         }

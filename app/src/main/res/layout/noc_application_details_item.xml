@@ -88,7 +88,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/view_layout"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:paddingBottom="20dp"
@@ -286,7 +286,7 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/edit_layout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:paddingBottom="20dp"
@@ -299,8 +299,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
-                    android:paddingTop="@dimen/dp1"
-                    android:layout_marginTop="@dimen/dp1"
                     android:layout_width="0dp"
                     style="@style/ColumnItemWithoutMarginInfo"
                     android:layout_height="wrap_content">
@@ -323,8 +321,6 @@
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
                 <LinearLayout
-                    android:paddingTop="@dimen/dp1"
-                    android:layout_marginTop="@dimen/dp1"
                     android:layout_width="0dp"
                     style="@style/ColumnItemWithoutMarginInfo"
                     android:layout_height="wrap_content">
@@ -477,8 +473,6 @@
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
                 <LinearLayout
-                    android:paddingTop="@dimen/dp1"
-                    android:layout_marginTop="@dimen/dp1"
                     android:layout_width="0dp"
                     style="@style/ColumnItemWithoutMarginInfo"
                     android:layout_height="wrap_content">

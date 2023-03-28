@@ -57,12 +57,12 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("NocDetailsFragment card Data fetched successfully")
-                if (it.data.NOCCompliance?.isNotEmpty()==true && childIndex!=null){
+                if (it.data.NOCCompliance?.isNotEmpty()==true && childIndex!=null && childIndex!!<it.data.NOCCompliance?.size!!){
                     AppLogger.log("childIndex===>: $childIndex")
                     nocdata=it.data.NOCCompliance?.get(childIndex!!)
                     adapter.setData(it.data.NOCCompliance?.get(childIndex!!)?.ApplicationInitial)
                 }
-                AppLogger.log("size :${it.data.NOCCompliance?.size}")
+                AppLogger.log("size :${it.data.NOCCompliance?.size}, childIndex :$childIndex")
 //                isDataLoaded = true
             }
             else if (it!=null) {
