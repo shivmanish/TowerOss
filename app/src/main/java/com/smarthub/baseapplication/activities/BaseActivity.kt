@@ -56,7 +56,9 @@ open class BaseActivity : AppCompatActivity() {
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun showLoader(){
-        if (progressDialog!=null && !progressDialog.isShowing) progressDialog.show()
+        if (Utils.isNetworkConnected()) {
+            if (progressDialog != null && !progressDialog.isShowing) progressDialog.show()
+        }
     }
 
     fun hideLoader(){

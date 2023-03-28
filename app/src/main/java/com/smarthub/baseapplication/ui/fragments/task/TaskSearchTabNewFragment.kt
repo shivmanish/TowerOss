@@ -519,8 +519,8 @@ class TaskSearchTabNewFragment(
 
         })
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-        homeViewModel?.siteAgreementModel?.observe(viewLifecycleOwner, Observer {
-
+        homeViewModel.siteAgreementModel?.observe(viewLifecycleOwner, Observer {
+            hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
                 serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
@@ -537,7 +537,7 @@ class TaskSearchTabNewFragment(
                     .show()
             }
         })
-        (requireActivity() as BaseActivity).showLoader()
+        showLoader()
         homeViewModel.fetchSiteAgreementModelRequest("1526")
     }
 

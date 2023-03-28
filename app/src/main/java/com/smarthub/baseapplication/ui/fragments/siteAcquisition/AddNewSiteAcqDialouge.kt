@@ -44,6 +44,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
 
 //
         binding.Submit.setOnClickListener {
+
             showProgressLayout()
             val data=AssignACQTeamDAta()
             data.let {
@@ -107,8 +108,10 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
 
 
     fun showProgressLayout(){
-        if (binding.progressLayout.visibility != View.VISIBLE)
-            binding.progressLayout.visibility = View.VISIBLE
+        if (Utils.isNetworkConnected()) {
+            if (binding.progressLayout.visibility != View.VISIBLE)
+                binding.progressLayout.visibility = View.VISIBLE
+        }
     }
     fun hideProgressLayout(){
         if (binding.progressLayout.visibility == View.VISIBLE)
