@@ -56,6 +56,7 @@ import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskSe
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAcqTabActivity
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.TaskSiteAcqsitionFragAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTaskTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.utils.AppController
@@ -72,7 +73,7 @@ class TaskSearchTabNewFragment(
     TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener{
     private lateinit var binding: FragmentSearchTaskBinding
     lateinit var taskViewModel: TaskViewModel
-    lateinit var TaskTabListmodel: TaskDropDownModel
+    var TaskTabListmodel: TaskDropDownModel?=null
     lateinit var homeViewModel: HomeViewModel
     var taskDetailData: TaskDataListItem?=null
     var taskAndCardList: ArrayList<String> = ArrayList()
@@ -180,7 +181,9 @@ class TaskSearchTabNewFragment(
 
     fun setParentData() {
         AppLogger.log("Where Tab list====>:$tempWhere")
-        val splittedData = tempWhere.split(",")
+        var subTabList:ArrayList<String> = ArrayList()
+        val splittedData = tempWhere.split(",") as ArrayList
+//        val splittedData = findTaskSubtabList(taskDetailData).split(",") as ArrayList
         AppLogger.log("Where Tab list spiletted====>:$splittedData")
         var parentId: Int=0
         if (splittedData.isNotEmpty()) {
@@ -189,15 +192,27 @@ class TaskSearchTabNewFragment(
             if (firstIdx.isNotEmpty()) {
                 parentId = firstIdx.toInt().div(10)
                 AppLogger.log("parentId=====>:${parentId}")
+                if (TaskTabListmodel!=null){
+                    for (item in TaskTabListmodel!!){
+                        if (item.id==parentId){
+                            for (subitem in item.tabs){
+                                if (splittedData.contains(subitem.id.toString()))
+                                {
+                                    subTabList.add(subitem.id.toString())
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
+            AppLogger.log("subTask list od subTab====>:$subTabList")
             when (parentId){
                 1->{
                     setUpOpcoData()
                     AppLogger.log("Selected TAb is OpcoTenency")
                 }
                 2->{
-                    setUpSiteAcqusitionData()
+                    setUpSiteAcqusitionData(splittedData)
                 }
                 3->{
                     AppLogger.log("Selected TAb is Utility Equipments")
@@ -543,20 +558,21 @@ class TaskSearchTabNewFragment(
         homeViewModel.NocAndCompRequestAll(AppController.getInstance().taskSiteId)
     }
 
-    fun setUpSiteAcqusitionData() {
+    fun setUpSiteAcqusitionData(subTaskTabList:ArrayList<String>) {
         AppLogger.log("opened task Site ID: ${AppController.getInstance().taskSiteId}")
         AppLogger.log("opened task details : ======> ${Gson().toJson(taskDetailData)}")
+        AppLogger.log("Site Acq subTab List : ======> $subTaskTabList")
         val serviceFragAdapterAdapter = TaskSiteAcqsitionFragAdapter(requireContext(),taskDetailData,object : TaskSiteAcqsitionFragAdapter.SiteAcqListListener {
             override fun clickedItem(data: NewSiteAcquiAllData, parentIndex: Int) {
                 SiteAcqTabActivity.siteacquisition = data
                 SiteAcqTabActivity.parentIndex = parentIndex
-                binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, data,parentIndex)
+                binding.viewpager.adapter = SiteAcquisitionTaskTabAdapter(childFragmentManager, data,parentIndex,subTaskTabList)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
             }
 
             override fun addNew() {
-                homeViewModel.updateSiteAcq(UpdateSiteAcquiAllData())
+                showLoader()
                 if (homeViewModel.updateSiteAcqDataResponse?.hasActiveObservers() == true){
                     homeViewModel.updateSiteAcqDataResponse?.removeObservers(viewLifecycleOwner)
                 }
@@ -565,7 +581,7 @@ class TaskSearchTabNewFragment(
                         AppLogger.log("TaskSearchTabNewFragment SiteAcq data creating in progress ")
                         return@observe
                     }
-                    if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqAcquitionSurvey==200 ) {
+                    if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqSiteAcquisition==200 ) {
                         AppLogger.log("TaskSearchTabNewFragment card SiteAcq Data Created successfully")
                         taskDetailData?.ModuleId=it.data.data.cardId.toString()
                         taskDetailData?.ModuleName=it.data.data.name
@@ -586,25 +602,36 @@ class TaskSearchTabNewFragment(
 
                     }
                 }
+                homeViewModel.updateSiteAcq(UpdateSiteAcquiAllData())
             }
 
         })
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-        if (homeViewModel.serviceRequestModelResponse?.hasActiveObservers() == true) {
-            homeViewModel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        if (homeViewModel.siteAgreementModel?.hasActiveObservers() == true) {
+            homeViewModel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
         }
         homeViewModel.siteAgreementModel?.observe(viewLifecycleOwner, Observer {
             hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
-                serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
-                if (it.data.SAcqSiteAcquisition?.isNotEmpty() == true){
-                    SiteAcqTabActivity.siteacquisition = it.data.SAcqSiteAcquisition!![0]
-                    SiteAcqTabActivity.parentIndex = 0
-                    binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, SiteAcqTabActivity.siteacquisition,0)
-                    binding.tabs.setupWithViewPager(binding.viewpager)
-                    setViewPager()
+                if (taskDetailData?.ModuleId!="0" && it.data.SAcqSiteAcquisition?.size!!>0){
+                    var data:NewSiteAcquiAllData?=null
+                    var dataIndex:Int?=null
+                    for (item in it.data.SAcqSiteAcquisition!!){
+                        if (item.id.toString()==taskDetailData?.ModuleId){
+                            data=item
+                            dataIndex=it.data.SAcqSiteAcquisition?.indexOf(item)
+
+                            binding.viewpager.adapter = SiteAcquisitionTaskTabAdapter(childFragmentManager, data,dataIndex!!,subTaskTabList)
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                            break
+                        }
+                    }
                 }
+                serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
+                previousListSize=it.data.SAcqSiteAcquisition?.size!!
+
             } else if (it != null) {
                 Toast.makeText(
                     requireContext(),
@@ -631,7 +658,7 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("TaskSearchTabNewFragment Task Data Updated successfully")
 
                 taskViewModel.fetchTaskDetails(taskDetailId)
-                homeViewModel.NocAndCompRequestAll(AppController.getInstance().taskSiteId)
+                homeViewModel.fetchSiteAgreementModelRequest(AppController.getInstance().taskSiteId)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
@@ -770,6 +797,16 @@ class TaskSearchTabNewFragment(
         binding.viewpager.adapter = ServicePageAdapter(childFragmentManager, data)
         binding.tabs.setupWithViewPager(binding.viewpager)
         setViewPager()
+    }
+
+    fun findTaskSubtabList(taskDetailData:TaskDataListItem?):String{
+        if (taskDetailData?.Where!=null){
+            var subTaskList: String? =taskDetailData?.Where
+            subTaskList = subTaskList?.replace("[", "")
+            subTaskList = subTaskList?.replace("]", "")
+            return subTaskList!!
+        }
+        return  ""
     }
 
 

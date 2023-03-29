@@ -9,26 +9,26 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.Ag
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.AssignACQTeamFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.SoftAcquisitionFragment
 
-class SiteAcquisitionTabAdapter(manager: FragmentManager, var data: NewSiteAcquiAllData?, var parentIndex:Int): FragmentPagerAdapter(manager) {
+class SiteAcquisitionTaskTabAdapter(manager: FragmentManager, var data: NewSiteAcquiAllData?, var parentIndex:Int,var list:ArrayList<String>): FragmentPagerAdapter(manager) {
 
 
     override fun getCount(): Int {
-        return 4
+        return list.size
     }
 
 
     override fun getItem(position: Int): Fragment {
-        when(position) {
-            0 -> {
+        when(list[position]) {
+            "21" -> {
                 return AssignACQTeamFragment(data, parentIndex)
             }
-            1 -> {
+            "22" -> {
                return AcquisitionSurveyFragment(data,parentIndex)
             }
-            2-> {
+            "23"-> {
               return SoftAcquisitionFragment(data,parentIndex)
             }
-            3-> {
+            "24"-> {
               return AgreementFragment(data,parentIndex)
             }
             else -> {
@@ -39,17 +39,17 @@ class SiteAcquisitionTabAdapter(manager: FragmentManager, var data: NewSiteAcqui
 
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(position) {
-            0 -> {
+        when(list[position]) {
+            "21" -> {
                 return "Assign ACQ Team"
             }
-            1 -> {
+            "22" -> {
                 return "Acquisition Survey"
             }
-            2 -> {
+            "23" -> {
                 return "Soft Acquisition"
             }
-            3 -> {
+            "24" -> {
                 return "Agreement"
             }
         }

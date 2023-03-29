@@ -11,6 +11,8 @@ import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.model.workflow.UpdatedTaskResponseModel
 import com.smarthub.baseapplication.network.APIClient
+import com.smarthub.baseapplication.network.APIInterceptor
+import com.smarthub.baseapplication.network.EndPoints
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.AppLogger.log
@@ -203,7 +205,8 @@ class TaskActivityRepo(private var apiClient: APIClient) {
                     log(e.localizedMessage)
                 }
             }
-            AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(data),"","updateTaskData$id")
+            updatedTaskResponse?.postValue(Resource.success(UpdatedTaskResponseModel("","Data updated"),200))
+            AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(data),"${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.WORKFLOW_DATA_URL}","updateTaskData$id")
             return
         }
         apiClient.updateTaskData(data!!).enqueue(object : Callback<UpdatedTaskResponseModel> {

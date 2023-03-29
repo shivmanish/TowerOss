@@ -86,7 +86,8 @@ class TaskSiteAcqsitionFragAdapter(var context:Context, var taskDetails: TaskDat
                 val item = list[position] as NewSiteAcquiAllData
                 holder.binding.cardTitle.text="Acquisition #${dataIndex?.plus(1)}"
                 holder.itemView.setOnClickListener {
-                    listner.clickedItem(item,position)
+                    if (dataIndex!=null)
+                        listner.clickedItem(item,dataIndex!!)
                 }
             }
             is TaskAddNewData ->{
