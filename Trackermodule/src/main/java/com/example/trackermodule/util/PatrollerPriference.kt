@@ -33,6 +33,8 @@ class PatrollerPriference(context: Context) {
         public const val PATROLING_STATUS_running = "patroling_status_running"
         public const val PATROLING_STATUS_PAUSE = "patroling_status_pause"
         public const val PATROLING_STATUS_RESTART = "patroling_status_restart"
+        public const val CURRENTLATTITUDE = "CURRENTLATTITUDE"
+        public const val CURRENTLONGITUDE = "CURRENTLONGITUDE"
         public const val TASK_ID = "task_id"
         public const val OWNER_NAME = "Owner_name"
     }
@@ -243,6 +245,19 @@ class PatrollerPriference(context: Context) {
     }
 
     fun setOwnername( ownername : String) {
+        val editor: SharedPreferences.Editor =
+            context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
+        editor.putString(TASK_ID , ownername);
+        editor.apply()
+    }
+
+    fun getString(): String {
+        val prefs: SharedPreferences = context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE)
+        val ownername = prefs.getString(OWNER_NAME ,"")
+        return ownername!!
+    }
+
+    fun setString( ownername : String) {
         val editor: SharedPreferences.Editor =
             context.getSharedPreferences(SHAREPREFERENCE_NAME, Context.MODE_PRIVATE).edit()
         editor.putString(TASK_ID , ownername);

@@ -27,6 +27,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyA
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.*
@@ -38,6 +39,12 @@ import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailPag
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TaskPlanDesignAdapter
+import com.smarthub.baseapplication.ui.fragments.qat.OpenQatFragment
+import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
+import com.smarthub.baseapplication.ui.fragments.qat.SubmitQatFragment
+import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
+import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQATListAdapter
+import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQatViewPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.*
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
@@ -154,7 +161,8 @@ class TaskSearchTabNewFragment(
 //                    setUpServiceRequestData()
 //                }
 //                setUpNocComplianceData()
-                setUpPnanigAndDesignData()
+//                setUpPnanigAndDesignData()
+                setUpQatData()
             }
         }
     }
@@ -361,6 +369,76 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.planAndDesignRequestAll("1526")
     }
+    fun setUpQatData() {
+        if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskQATListAdapter(requireContext(),object : QatMainAdapterListener {
+            override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
+                //this is for the listiner
+
+//                QATCheckActivity.Id=Id
+//                QATCheckActivity.planDesigndata=data
+                val adapterviewpager = TaskQatViewPagerAdapter(childFragmentManager)
+                adapterviewpager.addFragment(OpenQatFragment(), "Open QAT")
+                adapterviewpager.addFragment(SubmitQatFragment(), "Submitted QAT")
+                binding.viewpager.adapter = adapterviewpager
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+
+        }, siteID.toString())
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.QatModelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                isDataLoaded=true
+                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
+                AppLogger.log("size :${it.data.item?.size}")
+            }else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew!=null && it.data.itemNew?.isNotEmpty()==true){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                it.data.item = it.data.itemNew
+//                qatMainModel = it.data
+                isDataLoaded=true
+                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch)
+                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
+            }else if (it!=null) {
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+        })
+/*
+        homeViewModel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                return@observe
+            }
+            (requireActivity() as BaseActivity).hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.ServiceRequestMain!=null && it.data.ServiceRequestMain.isNotEmpty()){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                val listData = it.data.ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>
+                serviceFragAdapterAdapter.setData(listData)
+                AppLogger.log("size :${it.data.ServiceRequestMain.size}")
+
+                if (listData.isNotEmpty())
+                    clickedItem(listData[0],siteID.toString())
+                isDataLoaded = true
+            }
+            else if (it!=null) {
+                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+*/
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.qatMainRequestAll("1526")
+    }
+
     private fun setUpNocComplianceData(){
 
         val nocDataAdapterListener = TaskNocDataAdapter(requireContext(),object :
