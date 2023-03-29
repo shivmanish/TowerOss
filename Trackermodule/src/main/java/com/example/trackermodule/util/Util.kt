@@ -29,6 +29,7 @@ import com.example.trackermodule.server.APIInterface
 import com.example.trackermodule.util.MyApplication
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -233,5 +234,19 @@ object Util {
         // after generating our bitmap we are returning our bitmap.
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
+    fun getDistanceFromLatlongmanually(fromPosition: LatLng, toPosition: LatLng): Double {
+        val locationA = android.location.Location("Point A")
+        locationA.setLatitude(fromPosition.latitude)
+        locationA.setLongitude(fromPosition.longitude)
+        val locationB = android.location.Location("point B")
+        locationB.setLatitude(toPosition.latitude)
+        locationB.setLongitude(toPosition.longitude)
+
+        val distancedata: Float = locationA.distanceTo(locationB)
+
+        return distancedata.toDouble()
+
+    }
+
 
 }
