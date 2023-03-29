@@ -377,6 +377,6 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST
-    Call<JsonObject> updateOfflineData(@Url String url,@Body JsonObject data);
+    Call<Object> updateOfflineData(@Url String url,@Body JsonObject data);
 }
 

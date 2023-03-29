@@ -88,6 +88,7 @@ class TaskSearchTabNewFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+//        siteID = "1526"
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
@@ -419,7 +420,7 @@ class TaskSearchTabNewFragment(
         }
 */
         (requireActivity() as BaseActivity).showLoader()
-        homeViewModel.planAndDesignRequestAll("1526")
+        homeViewModel.planAndDesignRequestAll(siteID.toString())
     }
     private fun setUpNocComplianceData(){
         AppLogger.log("opened task Site ID: ${AppController.getInstance().taskSiteId}")
@@ -711,7 +712,7 @@ class TaskSearchTabNewFragment(
         }
 */
         (requireActivity() as BaseActivity).showLoader()
-        homeViewModel.opcoTenancyRequestAll("1526")
+        homeViewModel.opcoTenancyRequestAll(siteID.toString())
     }
 
     var isDataLoaded = false
@@ -771,8 +772,5 @@ class TaskSearchTabNewFragment(
         setViewPager()
     }
 
-    fun updateTaskDetailDataObserver(){
-
-    }
 
 }
