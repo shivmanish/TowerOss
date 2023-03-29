@@ -26,7 +26,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var longitude:String = "85.853400"
     var trackingId:String = "474"
     var taskDetailId:String ? = null
-    var tempWhere = "[41,42,43]"
+    var tempWhere = "[21,22,23]"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
