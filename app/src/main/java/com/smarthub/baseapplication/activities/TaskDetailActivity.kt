@@ -21,7 +21,7 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     lateinit var binding: ActivityTaskDetailBinding
     lateinit var viewModel : TaskViewModel
-    var siteId:String = "474"
+    var siteId:String = "1526"
     var lattitude:String = "20.735566"
     var longitude:String = "85.853400"
     var trackingId:String = "474"
@@ -44,7 +44,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 //            showLoader()
 //            viewModel.fetchTaskDetails(taskDetailId)
         }
-        if (intent.hasExtra("siteId")){
+        if (intent.hasExtra("siteId") && intent.getStringExtra("siteId")!=null && intent.getStringExtra("siteId")?.isNotEmpty() == true){
             siteId = intent.getStringExtra("siteId")!!
             AppController.getInstance().taskSiteId=siteId
             AppController.getInstance().siteid=siteId

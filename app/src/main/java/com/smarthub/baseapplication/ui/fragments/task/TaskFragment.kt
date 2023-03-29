@@ -81,7 +81,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             }
         }
         binding.refresh.setOnClickListener {
-            rotate.duration = 9000
+            rotate.duration = 900
             rotate.repeatCount = Animation.INFINITE
             binding.refresh.startAnimation(rotate)
             AppPreferences.getInstance().callAPI()

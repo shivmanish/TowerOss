@@ -136,7 +136,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         saveString("savedTaskId",task);
     }
 
-    public OfflineTaskList saveOfflineTaskById() {
+    private OfflineTaskList saveOfflineTaskById() {
         String task = getString("savedTaskId");
         OfflineTaskList list = getOfflineTaskList();
         if (!list.contains(task))
@@ -175,7 +175,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         OfflineTaskList list = getOfflineTaskList();
         if (!list.contains(key))
             list.add(key);
-        AppLogger.INSTANCE.log("offline saved:"+list.size());
+        AppLogger.INSTANCE.log("offline saved:"+list.size()+",for json"+json+",url:"+url+",key:"+key);
         offlineTask.postValue(list.size());
         saveOfflineTaskList(list);
     }
@@ -202,9 +202,9 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         AppLogger.INSTANCE.log("callAPI url:"+apiUrl);
         AppLogger.INSTANCE.log("callAPI data:"+data);
         JsonObject jsonObject = new Gson().fromJson(data,JsonObject.class);
-        apiClient.updateOfflineData(apiUrl,jsonObject).enqueue(new Callback<JsonObject>() {
+        apiClient.updateOfflineData(apiUrl,jsonObject).enqueue(new Callback<Object>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<Object> call, Response<Object> response) {
                 if (response.isSuccessful()) {
                     removeTaskStatus(key);
                     int size = getOfflineTaskList().size();
@@ -219,7 +219,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<Object> call, Throwable t) {
                 t.printStackTrace();
                 AppLogger.INSTANCE.log("callAPI,"+taskId+" error:"+t.getLocalizedMessage());
             }
