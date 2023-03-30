@@ -172,7 +172,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
 
     public void saveTaskOfflineApi(String json,String url,String key){
 //        String taskId = getString("savedTaskId");
-        AppPreferences.getInstance().saveString(key+"Data",json);
+        AppPreferences.getInstance().saveString(key,json);
 //        AppPreferences.getInstance().saveString(key+"Task",taskId);
         AppPreferences.getInstance().saveString(key+"Url",url);
         OfflineTaskList list = getOfflineTaskList();
@@ -201,7 +201,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
 //        AppLogger.INSTANCE.log("taskId:"+taskId+",key:"+key);
 //        if (taskId.isEmpty())
 //            return;
-        String data = getString(key+"Data");
+        String data = getString(key);
         String apiUrl = getString(key+"Url");
         AppLogger.INSTANCE.log("callAPI url:"+apiUrl);
         AppLogger.INSTANCE.log("callAPI data:"+data);
