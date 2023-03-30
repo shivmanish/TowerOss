@@ -79,7 +79,7 @@
             android:id="@+id/imageView2"
 
             android:layout_height="@dimen/dp60"
-            app:cardCornerRadius="50dp"
+            app:cardCornerRadius="@dimen/dp25"
             app:strokeWidth="1dp">
             <ImageView
                 android:layout_gravity="center_horizontal"
@@ -284,7 +284,7 @@
             android:id="@+id/imagetime"
 
             android:layout_height="@dimen/dp60"
-            app:cardCornerRadius="50dp"
+            app:cardCornerRadius="@dimen/dp25"
             app:strokeWidth="1dp">
             <ImageView
                 android:layout_gravity="center_horizontal"

@@ -91,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="@id/text7"
             app:layout_constraintStart_toStartOf="@id/text7"
             android:thicknessRatio="1.9"
-            app:cardCornerRadius="@dimen/dp40">
+            app:cardCornerRadius="@dimen/dp12">
 
             <ImageView
                 android:layout_width="wrap_content"

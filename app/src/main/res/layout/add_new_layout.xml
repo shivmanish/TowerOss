@@ -18,7 +18,7 @@
         android:innerRadius="0dp"
         android:shape="ring"
         android:thicknessRatio="1.9"
-        app:cardCornerRadius="@dimen/dp40">
+        app:cardCornerRadius="@dimen/dp15">
 
         <ImageView
             android:layout_width="wrap_content"

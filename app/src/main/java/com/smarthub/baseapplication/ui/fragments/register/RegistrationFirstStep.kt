@@ -27,13 +27,12 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 class RegistrationFirstStep : Fragment() {
 
     var list : List<DropDownItem> = ArrayList()
-//    var isDataFetched = true
+    var companyCode : List<String> = arrayListOf("SMRT")
     lateinit var loginViewModel: LoginViewModel
     lateinit var registrationFirstStepBinding: RegistrationFirstStepBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        registrationFirstStepBinding =
-            RegistrationFirstStepBinding.inflate(inflater, container, false)
+        registrationFirstStepBinding = RegistrationFirstStepBinding.inflate(inflater, container, false)
         loginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         return registrationFirstStepBinding.root
 
@@ -42,26 +41,28 @@ class RegistrationFirstStep : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registrationFirstStepBinding.emailIdRoot.tag = false
-        registrationFirstStepBinding.companyNameRoot.tag = false
+        registrationFirstStepBinding.companyCodeRoot.tag = false
         registrationFirstStepBinding.firstNameRoot.tag = false
         registrationFirstStepBinding.lastNameRoot.tag = false
         registrationFirstStepBinding.moNoRoot.tag = false
-        registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
-        registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
-        registrationFirstStepBinding.companyName.addTextChangedListener(object : TextWatcher {
+
+        registrationFirstStepBinding.companyCode.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if(registrationFirstStepBinding.companyName.text.toString().isNotEmpty()){
-                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(R.drawable.ic_arrow_down)
-                    registrationFirstStepBinding.loadingProgress.visibility = View.GONE
-                    registrationFirstStepBinding.companyNameRoot.tag=true
-                    registrationFirstStepBinding.companyNameRoot.isErrorEnabled = false
+                if(registrationFirstStepBinding.companyCode.text.toString().isNotEmpty()){
+                    val enteredCode = registrationFirstStepBinding.companyCode.text.toString()
+                    for (i in companyCode){
+                        if (i == enteredCode){
+                            registrationFirstStepBinding.companyCodeRoot.tag=true
+                            registrationFirstStepBinding.companyCodeRoot.isErrorEnabled = false
+                            return
+                        }
+                    }
                 }
                 else {
-                    registrationFirstStepBinding.loadingProgress.visibility = View.VISIBLE
-                    registrationFirstStepBinding.companyNameRoot.setEndIconDrawable(0)
-                    registrationFirstStepBinding.companyNameRoot.tag=false
+                    registrationFirstStepBinding.companyCodeRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.companyCodeRoot.tag=false
                 }
             }
         })
@@ -137,9 +138,9 @@ class RegistrationFirstStep : Fragment() {
         })
 
 
-        registrationFirstStepBinding.companyName.setOnClickListener {
-            setupAutoCompleteView()
-        }
+//        registrationFirstStepBinding.companyName.setOnClickListener {
+//            setupAutoCompleteView()
+//        }
         registrationFirstStepBinding.textLogin.setOnClickListener { view ->
             Utils.hideKeyboard(requireContext(), view)
             activity?.let {
@@ -149,9 +150,9 @@ class RegistrationFirstStep : Fragment() {
             }
         }
         registrationFirstStepBinding.next.setOnClickListener {
-            if (registrationFirstStepBinding.companyNameRoot.tag==false) {
-                registrationFirstStepBinding.companyNameRoot.isErrorEnabled = true
-                registrationFirstStepBinding.companyNameRoot.error = "Company Name not loaded"
+            if (registrationFirstStepBinding.companyCodeRoot.tag==false) {
+                registrationFirstStepBinding.companyCodeRoot.isErrorEnabled = true
+                registrationFirstStepBinding.companyCodeRoot.error = "Enter valid company code"
                 return@setOnClickListener
             }
 
@@ -204,7 +205,7 @@ class RegistrationFirstStep : Fragment() {
                 this.list = it.data
                 if (list.isNotEmpty())
                     item = list[0]
-                registrationFirstStepBinding.companyName.text = it.data[0].name?.toEditable()
+//                registrationFirstStepBinding.companyName.text = it.data[0].name.toEditable()
                 Log.d("status"," drop down list size :"+it.data.size)
             }else if(it.Errors!=null){
                 Log.d("status","e:"+it.Errors)
@@ -245,7 +246,7 @@ class RegistrationFirstStep : Fragment() {
             override fun clickedItem(i: DropDownItem?) {
                 popUp.dismiss()
                 item = i
-                registrationFirstStepBinding.companyName.text = item?.name?.toEditable()
+                registrationFirstStepBinding.companyCode.text = item?.name?.toEditable()
             }
         })
         dialogBinding.listView.adapter = adapter

@@ -28,7 +28,7 @@
                 android:layout_width="@dimen/dp60"
 
                 android:layout_height="@dimen/dp60"
-                app:cardCornerRadius="@dimen/dp60">
+                app:cardCornerRadius="@dimen/dp30">
 
                 <ImageView
 
