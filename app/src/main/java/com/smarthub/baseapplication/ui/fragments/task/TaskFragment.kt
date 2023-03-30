@@ -76,6 +76,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             AppPreferences.getInstance().offlineTask.removeObservers(viewLifecycleOwner)
         AppPreferences.getInstance().offlineTask.observe(viewLifecycleOwner){
             binding.tasks.text = "$it"
+            binding.refresh.isEnabled=it!=0
             if (it==0){
                 binding.refresh.clearAnimation()
             }
