@@ -29,6 +29,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
@@ -63,6 +64,18 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.TaskSiteAcqsiti
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
+import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SMPSViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.TaskUtilitesNocDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.TaskUtilitiesNocDataAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.adapters.BatterryBankViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.adapters.DGViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.FireExtinguisherActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters.FireExtViewpagerAdapter
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -195,8 +208,9 @@ class TaskSearchTabNewFragment(
                 parentId = firstIdx.toInt().div(10)
                 AppLogger.log("parentId=====>:${parentId}")
             }
-
-            when (parentId){
+            setUpUtilityUqipData()
+            return
+           /* when (parentId){
                 1->{
                     AppLogger.log("Selected TAb is OpcoTenency")
                 }
@@ -231,7 +245,7 @@ class TaskSearchTabNewFragment(
                     setUpNocComplianceData()
                     AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
                 }
-            }
+            }*/
         }
     }
 
@@ -661,6 +675,90 @@ class TaskSearchTabNewFragment(
         })
         showLoader()
         homeViewModel.fetchSiteAgreementModelRequest(siteID.toString())
+    }
+    fun setUpUtilityUqipData() {
+        if (homeViewModel.utilityEquipResponse?.hasActiveObservers() == true) {
+            homeViewModel.utilityEquipResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskUtilitiesNocDataAdapter(object : TaskUtilitesNocDataAdapterListener {
+            /*override fun clickedItem(data: NewSiteAcquiAllData, parentIndex: Int) {
+                //this is for the listiner
+
+                SiteAcqTabActivity.siteacquisition = data
+                SiteAcqTabActivity.parentIndex = parentIndex
+                binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, data,parentIndex)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }*/
+            override fun SMPSItemClicked(data: UtilityEquipmentAllData?) {
+                SMPSDetailsActivity.utilitySmpsData=data
+                binding.viewpager.adapter = SMPSViewpagerAdapter(childFragmentManager, data!!.UtilityEquipmentSmps,data!!.id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+            override fun BateeryItemClicked(data: UtilityEquipmentAllData?) {
+                BatteryBankDetailsActivity.utilityData=data
+                binding.viewpager.adapter = BatterryBankViewpagerAdapter(childFragmentManager, data!!.UtilityEquipmentBatteryBank,data!!.id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+            override fun DGItemClicked(data: UtilityEquipmentAllData?) {
+                DGDetailsActivity.utilityData=data
+                binding.viewpager.adapter = DGViewpagerAdapter(childFragmentManager, data!!.UtilityEquipmentDG,data!!.id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+            override fun ACItemClicked(data: UtilityEquipmentAllData?) {
+                ACDetailsActivity.utilityData=data
+                binding.viewpager.adapter = ACViewpagerAdapter(childFragmentManager, data!!.UtilityEquipmentAC,data!!.id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+            override fun FireExtinguisherItemClicked(data: UtilityEquipmentAllData?) {
+                FireExtinguisherActivity.utilityData=data
+                binding.viewpager.adapter = FireExtViewpagerAdapter(childFragmentManager, data!!.UtilityEquipmentFireExtinguisher,data!!.id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+            override fun SuregeProtectionDeviceItemClicked(data: UtilityEquipmentAllData?) {
+               //TODO this need to discuss
+            }
+
+            override fun PowerDistributionBoxItemClicked(data: UtilityEquipmentAllData?) {
+                //TODO this need to discuss
+            }
+
+            override fun CableItemClicked(data: UtilityEquipmentAllData?) {
+                //TODO this need to discuss
+            }
+
+        })
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel.utilityEquipResponse?.observe(viewLifecycleOwner, Observer {
+            hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.UtilityEquipment)
+                if (it.data.UtilityEquipment?.isNotEmpty() == true){
+                    SMPSDetailsActivity.utilitySmpsData=it.data.UtilityEquipment?.get(0)
+                    binding.viewpager.adapter = SMPSViewpagerAdapter(childFragmentManager, it.data.UtilityEquipment?.get(0)!!.UtilityEquipmentSmps,it.data.UtilityEquipment?.get(0)!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+            } else if (it != null) {
+                AppLogger.log("Utility Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("Utility Fragment Something went wrong")
+            }
+        })
+        showLoader()
+//        homeViewModel.utilityRequestAll(siteID.toString())
+        homeViewModel.utilityRequestAll("1526")
     }
 
 
