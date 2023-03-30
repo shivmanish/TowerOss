@@ -229,6 +229,7 @@
                     android:layout_marginBottom="@dimen/dp8"
                     android:maxLines="1"
                     android:inputType="text"
+                    android:textAllCaps="true"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center_vertical"
                     android:letterSpacing="0.1"

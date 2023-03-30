@@ -19,6 +19,7 @@ import com.smarthub.baseapplication.databinding.RegistrationFirstStepBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.ui.adapter.spinner.CustomRegistrationArrayAdapter
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
@@ -58,11 +59,19 @@ class RegistrationFirstStep : Fragment() {
                             registrationFirstStepBinding.companyCodeRoot.isErrorEnabled = false
                             return
                         }
+                        else{
+                            registrationFirstStepBinding.companyCodeRoot.tag=false
+                        }
                     }
                 }
                 else {
                     registrationFirstStepBinding.companyCodeRoot.setEndIconDrawable(0)
                     registrationFirstStepBinding.companyCodeRoot.tag=false
+                }
+                if (registrationFirstStepBinding.companyCodeRoot.tag==false){
+                    registrationFirstStepBinding.companyCodeRoot.setEndIconDrawable(0)
+                    registrationFirstStepBinding.companyCodeRoot.isErrorEnabled = true
+                    registrationFirstStepBinding.companyCodeRoot.error = "Enter valid company code"
                 }
             }
         })
@@ -171,7 +180,7 @@ class RegistrationFirstStep : Fragment() {
             }
             else if (registrationFirstStepBinding.emailIdRoot.tag==false) {
                 registrationFirstStepBinding.emailIdRoot.isErrorEnabled = true
-                registrationFirstStepBinding.emailIdRoot.error = "email not verified"
+                registrationFirstStepBinding.emailIdRoot.error = "Please Enter Valid Email ID"
                 return@setOnClickListener
             }
             else if (!Utils.isValid(registrationFirstStepBinding.emailId.text.toString())) {
@@ -216,8 +225,9 @@ class RegistrationFirstStep : Fragment() {
             loginViewModel.emailVerifyOtpResponse?.removeObservers(viewLifecycleOwner)
 
         loginViewModel.emailVerifyOtpResponse?.observe(viewLifecycleOwner) {
+            AppLogger.log("Email listner is working")
             registrationFirstStepBinding.loadingEmailProgress.visibility = View.GONE
-            if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success" && Utils.isValidEmail(registrationFirstStepBinding.emailId.text.toString()) ) {
+            if (it.status == Resource.Status.SUCCESS && it.data?.status?.isNotEmpty() == true && it.data.status == "success") {
                 Log.d("status","email verified")
 //                Toast.makeText(requireActivity(),"email verification successful", Toast.LENGTH_LONG).show()
                 registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(R.drawable.check_textview)

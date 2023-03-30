@@ -69,13 +69,17 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
                 jsonObject.addProperty("gettaskdata", item.id1)
                 jsonObject.addProperty("ownername", AppController.getInstance().ownerName)
                 AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(jsonObject), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.WORKFLOW_DATA_URL}","TaskDetailData"+item.id1)
-
-                val splittedData = item.Where.split(",")
+                val splittedData = item.Where.replace("[","").replace("]","").split(",")
                 var parentId =0
                 if (splittedData.isNotEmpty()) {
                     val firstIdx = splittedData[0]
                     if (firstIdx.isNotEmpty()) {
-                        parentId = firstIdx.toInt().div(10)
+                        try {
+                            parentId = firstIdx.toInt().div(10)
+                        }
+                        catch (e:Exception){
+                            AppLogger.log("${e.localizedMessage}")
+                        }
                         AppLogger.log("parentId=====>:${parentId}")
                     }
                     when (parentId){

@@ -134,7 +134,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                     if (item.Where.isNotEmpty())
                         intent.putExtra("where", item.Where)
                     intent.putExtra("siteId", item.siteid)
-                    intent.putExtra("trackingId", item.id)
+                    intent.putExtra("trackingId", item.id1)
                     holder.itemView.context.startActivity(intent)
                 }
             }

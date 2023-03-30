@@ -204,20 +204,24 @@ class RegisterRepo(private val apiClient: APIClient) {
         jsonObj.addProperty("checkemaildomain",true)
         jsonObj.addProperty("ownername",ownername)
         jsonObj.addProperty("email",email)
+        AppLogger.log("Emailvarification data===> $jsonObj")
         apiClient.commonResponse(jsonObj).enqueue(object : Callback<CommonResponse?> {
             override fun onResponse(call: Call<CommonResponse?>, response: Response<CommonResponse?>) {
                 AppLogger.log("$TAG onResponse get response $response")
+                AppLogger.log("$TAG onResponse get response ${response.body()}")
                 reportSuccessResponse(response)
             }
 
             override fun onFailure(call: Call<CommonResponse?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+                AppLogger.log(TAG + " onFailureResponse get response " + t.localizedMessage)
 
             }
 
             private fun reportSuccessResponse(response: Response<CommonResponse?>) {
                 if (response.body() != null) {
+                    AppLogger.log("varification response===>${response.body()}")
+
                     verifyEmailResponse?.postValue(Resource.success(response.body()!!, 200))
                 }
             }

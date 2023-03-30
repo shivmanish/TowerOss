@@ -220,6 +220,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
+                removeTaskStatus(key);
+                int size = getOfflineTaskList().size();
+                offlineTask.postValue(size);
+                callAPI();
+                AppLogger.INSTANCE.log("next api call,"+taskId+",size:"+size);
                 t.printStackTrace();
                 AppLogger.INSTANCE.log("callAPI,"+taskId+" error:"+t.getLocalizedMessage());
             }

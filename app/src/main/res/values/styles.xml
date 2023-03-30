@@ -18,7 +18,7 @@
         <item name="backgroundTint">#ffffff</item>
         <item name="hintTextColor">#ffffff</item>
         <item name="colorErrorContainer">@color/transparent</item>
-        <item name="errorIconDrawable">@drawable/icon_error</item>
+        <item name="errorIconDrawable">@color/transparent</item>
         <item name="boxStrokeErrorColor">@color/white</item>
         <item name="errorTextColor">#ff5555</item>
 

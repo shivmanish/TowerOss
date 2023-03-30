@@ -189,15 +189,19 @@ class TaskSearchTabNewFragment(
     fun setParentData() {
         AppLogger.log("Where Tab list====>:$tempWhere")
         var subTabList:ArrayList<String> = ArrayList()
-        val splittedData = tempWhere.split(",") as ArrayList
-//        val splittedData = findTaskSubtabList(taskDetailData).split(",") as ArrayList
+//        val splittedData = tempWhere.split(",") as ArrayList
+        val splittedData = findTaskSubtabList(taskDetailData).split(",")
         AppLogger.log("Where Tab list spiletted====>:$splittedData")
         var parentId: Int=0
         if (splittedData.isNotEmpty()) {
             val firstIdx = splittedData[0]
             AppLogger.log("Where Tab list first index data====>:$firstIdx")
             if (firstIdx.isNotEmpty()) {
-                parentId = firstIdx.toInt().div(10)
+                try {
+                    parentId = firstIdx.toInt().div(10)
+                }catch (e:Exception){
+                    AppLogger.log("e:${e.localizedMessage}")
+                }
                 AppLogger.log("parentId=====>:${parentId}")
                 if (TaskTabListmodel!=null){
                     for (item in TaskTabListmodel!!){
@@ -219,7 +223,7 @@ class TaskSearchTabNewFragment(
                     AppLogger.log("Selected TAb is OpcoTenency")
                 }
                 2->{
-                    setUpSiteAcqusitionData(splittedData)
+                    setUpSiteAcqusitionData(splittedData as ArrayList<String>)
                 }
                 3->{
                     AppLogger.log("Selected TAb is Utility Equipments")

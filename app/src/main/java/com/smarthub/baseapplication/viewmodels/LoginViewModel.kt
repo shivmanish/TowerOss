@@ -113,7 +113,7 @@ class LoginViewModel: ViewModel() {
     }
 
     fun emailVerification(email:String, ownername:String?) {
-        Log.d("status","emailVerification:$email:$ownername")
+        AppLogger.log("emailVerification:$email:$ownername")
         registerRepo?.emailVerification(email,ownername)
     }
 
