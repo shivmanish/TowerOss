@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.CommonResponse
+import com.smarthub.baseapplication.model.EmailVerificationResponse
 import com.smarthub.baseapplication.model.dropdown.DropDownList
 import com.smarthub.baseapplication.model.register.RegisterData
 import com.smarthub.baseapplication.model.register.RegstationResponse
@@ -23,11 +24,11 @@ class RegisterRepo(private val apiClient: APIClient) {
     val companyDropDownList: MutableLiveData<DropDownList> = MutableLiveData()
     val commonResponse: MutableLiveData<CommonResponse> = MutableLiveData()
     var verifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>> ?=null
-    var verifyEmailResponse: SingleLiveEvent<Resource<CommonResponse>> ?=null
+    var verifyEmailResponse: SingleLiveEvent<Resource<EmailVerificationResponse>> ?=null
 
     init {
         verifyOtpResponse = SingleLiveEvent<Resource<CommonResponse>>()
-        verifyEmailResponse = SingleLiveEvent<Resource<CommonResponse>>()
+        verifyEmailResponse = SingleLiveEvent<Resource<EmailVerificationResponse>>()
     }
 
     fun registerUser(data: RegisterData?) {
@@ -205,23 +206,22 @@ class RegisterRepo(private val apiClient: APIClient) {
         jsonObj.addProperty("ownername",ownername)
         jsonObj.addProperty("email",email)
         AppLogger.log("Emailvarification data===> $jsonObj")
-        apiClient.commonResponse(jsonObj).enqueue(object : Callback<CommonResponse?> {
-            override fun onResponse(call: Call<CommonResponse?>, response: Response<CommonResponse?>) {
-                AppLogger.log("$TAG onResponse get response $response")
-                AppLogger.log("$TAG onResponse get response ${response.body()}")
-                reportSuccessResponse(response)
+        apiClient.verifyEmailResponse(jsonObj).enqueue(object : Callback<String?> {
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                AppLogger.log("emailVerification onResponse get response $response")
+                AppLogger.log("emailVerification onResponse get responsebody ${response.body()}")
+//                reportSuccessResponse(response)
             }
 
-            override fun onFailure(call: Call<CommonResponse?>, t: Throwable) {
+            override fun onFailure(call: Call<String?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
-                AppLogger.log(TAG + " onFailureResponse get response " + t.localizedMessage)
+                AppLogger.log("emailVerification" + " onFailureResponse get response " + t.localizedMessage)
 
             }
 
-            private fun reportSuccessResponse(response: Response<CommonResponse?>) {
+            private fun reportSuccessResponse(response: Response<EmailVerificationResponse?>) {
                 if (response.body() != null) {
-                    AppLogger.log("varification response===>${response.body()}")
-
+                    AppLogger.log("varification success response===>${response.body()}")
                     verifyEmailResponse?.postValue(Resource.success(response.body()!!, 200))
                 }
             }

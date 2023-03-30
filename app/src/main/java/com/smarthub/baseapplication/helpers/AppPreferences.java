@@ -199,8 +199,8 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         String key = getNextOfflineTask();
 //        String taskId = getString(key+"Task");
 //        AppLogger.INSTANCE.log("taskId:"+taskId+",key:"+key);
-//        if (taskId.isEmpty())
-//            return;
+        if (key.isEmpty())
+            return;
         String data = getString(key);
         String apiUrl = getString(key+"Url");
         AppLogger.INSTANCE.log("callAPI url:"+apiUrl);
