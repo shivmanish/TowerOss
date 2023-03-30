@@ -27,7 +27,6 @@ import com.smarthub.baseapplication.viewmodels.LoginViewModel
 class RegistrationFirstStep : Fragment() {
 
     var list : List<DropDownItem> = ArrayList()
-    var companyCode : List<String> = arrayListOf("SMRT")
     lateinit var loginViewModel: LoginViewModel
     lateinit var registrationFirstStepBinding: RegistrationFirstStepBinding
 
@@ -52,8 +51,9 @@ class RegistrationFirstStep : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if(registrationFirstStepBinding.companyCode.text.toString().isNotEmpty()){
                     val enteredCode = registrationFirstStepBinding.companyCode.text.toString()
-                    for (i in companyCode){
-                        if (i == enteredCode){
+                    for (i in list){
+                        if (i.id == enteredCode){
+                            item = i
                             registrationFirstStepBinding.companyCodeRoot.tag=true
                             registrationFirstStepBinding.companyCodeRoot.isErrorEnabled = false
                             return
@@ -97,9 +97,6 @@ class RegistrationFirstStep : Fragment() {
                     registrationFirstStepBinding.lastNameRoot.setEndIconDrawable(R.color.transparent)
                     registrationFirstStepBinding.lastNameRoot.tag=false
                 }
-
-
-
             }
         })
         registrationFirstStepBinding.moNo.addTextChangedListener(object : TextWatcher {
@@ -187,6 +184,7 @@ class RegistrationFirstStep : Fragment() {
             }
             loginViewModel.registerData.last_name =
                 registrationFirstStepBinding.lastName.text.toString()
+            loginViewModel.registerData.ownername = "${item?.id}"
             loginViewModel.registerData.username =
                 registrationFirstStepBinding.firstName.text.toString()
             loginViewModel.registerData.email =
@@ -236,23 +234,6 @@ class RegistrationFirstStep : Fragment() {
     }
 
     var item: DropDownItem?=null
-    private fun setupAutoCompleteView() {
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext(),R.style.FullDialog)
-        var dialogBinding = DropDownListViewBinding.inflate(layoutInflater)
-        dialogBuilder.setView(dialogBinding.root)
-        val popUp: AlertDialog = dialogBuilder.create()
-        var adapter = CustomRegistrationArrayAdapter(list,
-            object : CustomRegistrationArrayAdapter.CustomRegistrationArrayAdapterListener{
-            override fun clickedItem(i: DropDownItem?) {
-                popUp.dismiss()
-                item = i
-                registrationFirstStepBinding.companyCode.text = item?.name?.toEditable()
-            }
-        })
-        dialogBinding.listView.adapter = adapter
-        popUp.setCancelable(true)
-        popUp.show()
-    }
 
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 

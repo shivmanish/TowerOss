@@ -46,13 +46,33 @@ class OtpVerificationStep1 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-
+        binding.emailIdRoot.tag = false
+        binding.moNoLayout.tag = false
         binding.sendOtp.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
+            if (binding.emailIdRoot.tag==false) {
+                binding.emailIdRoot.isErrorEnabled = true
+                binding.emailIdRoot.error = "Enter valid company code"
+                return@setOnClickListener
+            }
             if (!progressDialog.isShowing)
                 progressDialog.show()
             loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
         }
+
+        binding.emailId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if(binding.emailId.text.toString().isNotEmpty()){
+                    binding.emailIdRoot.tag = Utils.isValidEmail(binding.emailId.text.toString())
+                }
+                else {
+                    binding.emailIdRoot.setEndIconDrawable(0)
+                    binding.emailIdRoot.tag=false
+                }
+            }
+        })
 
         binding.moNoEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
