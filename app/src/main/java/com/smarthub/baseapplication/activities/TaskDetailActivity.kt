@@ -26,7 +26,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var longitude:String = "85.853400"
     var trackingId:String = "474"
     var taskDetailId:String ? = null
-    var tempWhere = "[41,42,43]"
+    var tempWhere = "[22,24]"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +61,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         }
         if (intent.hasExtra("where") && intent.getStringExtra("where")?.isNotEmpty() == true &&
             intent.getStringExtra("where")!="[]"){
-            tempWhere = intent.getStringExtra("where")!!
+//            tempWhere = intent.getStringExtra("where")!!
         }
 
         if (viewModel.taskDataList?.hasActiveObservers() == true)

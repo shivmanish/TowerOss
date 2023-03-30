@@ -280,113 +280,97 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
+                if (datalist!=null && datalist?.SAcqPropertyDetail?.isNotEmpty()==true){
+                    propertyData=datalist?.SAcqPropertyDetail?.get(0)
+                    if (propertyData!=null && propertyData?.SAcqBuildingDetail?.isNotEmpty()==true){
+                        buildingData=propertyData?.SAcqBuildingDetail?.get(0)
+                    }
+                    if (propertyData!=null && propertyData?.SAcqLandDetail?.isNotEmpty()==true){
+                        landData=propertyData?.SAcqLandDetail?.get(0)
+                    }
+                }
+                if (AppController.getInstance().newSiteInfoModel!=null){
+                    if (AppController.getInstance().newSiteInfoModel.Siteaddress!=null && AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
                         siteAdd=AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
                     }
-                    if (datalist!=null && datalist?.SAcqPropertyDetail?.isNotEmpty()==true){
-                        propertyData=datalist?.SAcqPropertyDetail?.get(0)
-                        if (propertyData!=null && propertyData?.SAcqBuildingDetail?.isNotEmpty()==true){
-                            buildingData=propertyData?.SAcqBuildingDetail?.get(0)
-                        }
-                        if (propertyData!=null && propertyData?.SAcqLandDetail?.isNotEmpty()==true){
-                            landData=propertyData?.SAcqLandDetail?.get(0)
-                        }
-                    }
-                    if (siteAdd!=null){
-                        // view Mode
-                        holder.binding.AddressLine1.text=siteAdd?.address1
-                        holder.binding.AddressLine2.text=siteAdd?.address2
-                        holder.binding.PostalCode.text=siteAdd?.pincode
-                        holder.binding.SiteLAtitude.text=siteAdd?.locLatitude
-                        holder.binding.SiteLongitude.text=siteAdd?.locLongitude
-                        // edit mode
-                        holder.binding.AddressLine1Edit.text=siteAdd?.address1
-                        holder.binding.AddressLine2Edit.text=siteAdd?.address2
-                        holder.binding.PostalCodeEdit.text=siteAdd?.pincode
-                        holder.binding.SiteLAtitudeEdit.text=siteAdd?.locLatitude
-                        holder.binding.SiteLongitudeEdit.text=siteAdd?.locLongitude
-                    }
+                }
 
-                    if (propertyData!=null){
-                        // view Mode
-                        if (propertyData?.Potentialthreat?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreat,DropDowns.Potentialthreat.name,propertyData?.Potentialthreat?.get(0).toString())
-                        if (propertyData?.Direction?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirection,DropDowns.Direction.name,propertyData?.Direction?.get(0).toString())
-                        holder.binding.SiteAccessWay.text=propertyData?.SiteAccessWay.toString()
-                        holder.binding.GateAndFence.text=propertyData?.GateAndFence.toString()
-                        holder.binding.OtherOperators.text=propertyData?.OtherOperator.toString()
-                        holder.binding.OtherOperatorNames.text=propertyData?.OtherOperatorName
-                        holder.binding.NearbyPoliceForceStation.text=propertyData?.NearbyPoliceStation
-                        holder.binding.NearbyFireStation.text=propertyData?.NearbyFireStation
-                        holder.binding.PoliceDistance.text=propertyData?.PsDistance
-                        holder.binding.DistanceFireStation.text=propertyData?.FsDistance
-                        holder.binding.PhnumberPolice.text=propertyData?.PsPhoneNo
-                        holder.binding.PhNumberFireStation.text=propertyData?.FsPhoneNo
-                        holder.binding.remarks.text=propertyData?.Remark
+                if (siteAdd!=null){
+                    // view Mode
+                    holder.binding.AddressLine1.text=siteAdd?.address1
+                    holder.binding.AddressLine2.text=siteAdd?.address2
+                    holder.binding.PostalCode.text=siteAdd?.pincode
+                    holder.binding.SiteLAtitude.text=siteAdd?.locLatitude
+                    holder.binding.SiteLongitude.text=siteAdd?.locLongitude
+                    // edit mode
+                    holder.binding.AddressLine1Edit.text=siteAdd?.address1
+                    holder.binding.AddressLine2Edit.text=siteAdd?.address2
+                    holder.binding.PostalCodeEdit.text=siteAdd?.pincode
+                    holder.binding.SiteLAtitudeEdit.text=siteAdd?.locLatitude
+                    holder.binding.SiteLongitudeEdit.text=siteAdd?.locLongitude
+                }
+                if (propertyData!=null){
+                    //view mode
+                    if (propertyData?.Potentialthreat?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreat,DropDowns.Potentialthreat.name,propertyData?.Potentialthreat?.get(0).toString())
+                    if (propertyData?.Direction?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirection,DropDowns.Direction.name,propertyData?.Direction?.get(0).toString())
+                    if (propertyData?.SiteAccessWay != null && propertyData?.SiteAccessWay!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessWay,DropDowns.SiteAccessWay.name,propertyData?.SiteAccessWay.toString())
+                    if (propertyData?.GateAndFence != null && propertyData?.GateAndFence!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.GateAndFence,DropDowns.GateAndFence.name,propertyData?.GateAndFence.toString())
+                    if (propertyData?.OtherOperator != null && propertyData?.OtherOperator!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.OtherOperators,DropDowns.OtherOperators.name,propertyData?.OtherOperator.toString())
 
-                        // edit Mode
-                        holder.binding.SiteAccessWayEdit.text=propertyData?.SiteAccessWay.toString()
-                        holder.binding.GateFenchEdit.text=propertyData?.GateAndFence.toString()
-                        holder.binding.OtherOperatorsEdit.text=propertyData?.OtherOperator.toString()
-                        holder.binding.OtherOperatorNameEdit.setText(propertyData?.OtherOperatorName)
-                        holder.binding.NearbyPoliceForceStationEdit.setText(propertyData?.NearbyPoliceStation)
-                        holder.binding.NearbyFireStationEdit.setText(propertyData?.NearbyFireStation)
-                        holder.binding.PoliceDistanceEdit.setText(propertyData?.PsDistance)
-                        holder.binding.DistanceFireStationEdit.setText(propertyData?.FsDistance)
-                        holder.binding.PhNumberPoliceEdit.setText(propertyData?.PsPhoneNo)
-                        holder.binding.phNoFireStationEdit.setText(propertyData?.FsPhoneNo)
-                        holder.binding.remarksEdit.setText(propertyData?.Remark)
+                    holder.binding.OtherOperatorNames.text=propertyData?.OtherOperatorName
+                    holder.binding.NearbyPoliceForceStation.text=propertyData?.NearbyPoliceStation
+                    holder.binding.NearbyFireStation.text=propertyData?.NearbyFireStation
+                    holder.binding.PoliceDistance.text=propertyData?.PsDistance
+                    holder.binding.DistanceFireStation.text=propertyData?.FsDistance
+                    holder.binding.PhnumberPolice.text=propertyData?.PsPhoneNo
+                    holder.binding.PhNumberFireStation.text=propertyData?.FsPhoneNo
+                    holder.binding.remarks.text=propertyData?.Remark
 
-                        if (buildingData!=null){
-                            // view mode
-                            if (buildingData?.BuildingType?.isNotEmpty()==true)
-                                AppPreferences.getInstance().setDropDown(holder.binding.BuildingType,DropDowns.Buildingtype.name,buildingData?.BuildingType?.get(0).toString())
-                            holder.binding.buildingPropertyType.text=buildingData?.PropertyType.toString()
-                            holder.binding.BuildingBuildType.text=buildingData?.BuildingBuildType.toString()
-                            holder.binding.BuildingHeight.text=buildingData?.BuildingHeight
-                            holder.binding.TypicalFloorArea.text=buildingData?.TypicalFloorArea
-                            holder.binding.YearofConstruction.text=buildingData?.ConstructionYear.toString()
-                            holder.binding.NoofFloors.text=buildingData?.NoOfFloors.toString()
-
-                            // edit mode
-                            holder.binding.PropertyTypeBuildingEdit.text=buildingData?.PropertyType.toString()
-                            holder.binding.BuildingBuildTypeEdit.text=buildingData?.BuildingBuildType.toString()
-                            holder.binding.BuildingHeightEdit.setText(buildingData?.BuildingHeight)
-                            holder.binding.TypicalFloorAreaEdit.setText(buildingData?.TypicalFloorArea)
-                            holder.binding.YearOfConstructionEdit.setText(buildingData?.ConstructionYear!!)
-                            holder.binding.NoOfFloorEdit.setText(buildingData?.NoOfFloors.toString())
-                        }
-                        else
-                            AppLogger.log("error in Property details data or Building Details Data")
-
-                        if (landData!=null){
-                            //View Mode
-                            if (landData?.LandType?.isNotEmpty()==true)
-                                AppPreferences.getInstance().setDropDown(holder.binding.LandType,DropDowns.LandType.name, landData?.LandType?.get(0).toString())
-                            if (landData?.SoilType?.isNotEmpty()==true)
-                                AppPreferences.getInstance().setDropDown(holder.binding.SoilType,DropDowns.SoilType.name, landData?.SoilType?.get(0).toString())
-                            if (landData?.Terraintype?.isNotEmpty()==true)
-                                AppPreferences.getInstance().setDropDown(holder.binding.TerrainType,DropDowns.Terraintype.name, landData?.Terraintype?.get(0).toString())
-
-                            holder.binding.landPropertyType.text=landData?.PropertyType.toString()
-                            holder.binding.SiteDemarcation.text=landData?.SiteDemarcation.toString()
-
-                            //Edit Mode
-                            holder.binding.PropertyTypeLandEdit.text=landData?.PropertyType.toString()
-                            holder.binding.SiteDemarcationEdit.text=landData?.SiteDemarcation.toString()
-                        }
-                        else
-                            AppLogger.log("error in Property details data or Building Details Data")
-
-
-                    }
-                    else
-                        AppLogger.log("error in Acquisition Survey data or Property details data")
-
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("AcqSurvey Property Details error : ${e.localizedMessage}")
+                    // edit mode
+                    holder.binding.OtherOperatorNameEdit.setText(propertyData?.OtherOperatorName)
+                    holder.binding.NearbyPoliceForceStationEdit.setText(propertyData?.NearbyPoliceStation)
+                    holder.binding.NearbyFireStationEdit.setText(propertyData?.NearbyFireStation)
+                    holder.binding.PoliceDistanceEdit.setText(propertyData?.PsDistance)
+                    holder.binding.DistanceFireStationEdit.setText(propertyData?.FsDistance)
+                    holder.binding.PhNumberPoliceEdit.setText(propertyData?.PsPhoneNo)
+                    holder.binding.phNoFireStationEdit.setText(propertyData?.FsPhoneNo)
+                    holder.binding.remarksEdit.setText(propertyData?.Remark)
+                }
+                if (buildingData!=null){
+                    //view mode
+                    if (buildingData?.BuildingType?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.BuildingType,DropDowns.Buildingtype.name,buildingData?.BuildingType?.get(0).toString())
+                    if (buildingData?.PropertyType != null && buildingData?.PropertyType!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.buildingPropertyType,DropDowns.PropertyType.name,buildingData?.PropertyType.toString())
+                    if (buildingData?.BuildingBuildType != null && buildingData?.BuildingBuildType!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.BuildingBuildType,DropDowns.BuildingBuildType.name,buildingData?.BuildingBuildType.toString())
+                    holder.binding.BuildingHeight.text=buildingData?.BuildingHeight
+                    holder.binding.TypicalFloorArea.text=buildingData?.TypicalFloorArea
+                    holder.binding.YearofConstruction.text=buildingData?.ConstructionYear.toString()
+                    holder.binding.NoofFloors.text=buildingData?.NoOfFloors.toString()
+                    // edit mode
+                    holder.binding.BuildingHeightEdit.setText(buildingData?.BuildingHeight)
+                    holder.binding.TypicalFloorAreaEdit.setText(buildingData?.TypicalFloorArea)
+                    holder.binding.YearOfConstructionEdit.setText(buildingData?.ConstructionYear.toString())
+                    holder.binding.NoOfFloorEdit.setText(buildingData?.NoOfFloors.toString())
+                }
+                if (landData!=null){
+                    //View Mode
+                    if (landData?.LandType?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.LandType,DropDowns.LandType.name, landData?.LandType?.get(0).toString())
+                    if (landData?.SoilType?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.SoilType,DropDowns.SoilType.name, landData?.SoilType?.get(0).toString())
+                    if (landData?.Terraintype?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.TerrainType,DropDowns.Terraintype.name, landData?.Terraintype?.get(0).toString())
+                    if (landData?.PropertyType != null && landData?.PropertyType!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.landPropertyType,DropDowns.PropertyType.name,landData?.PropertyType.toString())
+                    if (landData?.SiteDemarcation != null && landData?.SiteDemarcation!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.SiteDemarcation,DropDowns.SiteDemarcation.name,landData?.SiteDemarcation.toString())
                 }
                 if (propertyData!=null && propertyData?.Potentialthreat?.isNotEmpty() == true)
                     AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name,propertyData?.Potentialthreat?.get(0).toString())
@@ -396,10 +380,31 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirectionEdit,DropDowns.Direction.name,propertyData?.Direction?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessDirectionEdit,DropDowns.Direction.name)
+                if (propertyData!=null && propertyData?.SiteAccessWay != null && propertyData?.SiteAccessWay!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessWayEdit,DropDowns.SiteAccessWay.name,propertyData?.SiteAccessWay.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessWayEdit,DropDowns.SiteAccessWay.name)
+                if (propertyData!=null && propertyData?.GateAndFence != null && propertyData?.GateAndFence!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.GateFenchEdit,DropDowns.GateAndFence.name,propertyData?.GateAndFence.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.GateFenchEdit,DropDowns.GateAndFence.name)
+                if (propertyData!=null && propertyData?.OtherOperator != null && propertyData?.OtherOperator!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OtherOperatorsEdit,DropDowns.OtherOperators.name,propertyData?.OtherOperator.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.OtherOperatorsEdit,DropDowns.OtherOperators.name)
+
                 if (buildingData!=null && buildingData?.BuildingType?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name,buildingData?.BuildingType?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name)
+                if (buildingData!=null && buildingData?.PropertyType != null && buildingData?.PropertyType!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeBuildingEdit,DropDowns.PropertyType.name,buildingData?.PropertyType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeBuildingEdit,DropDowns.PropertyType.name)
+                if (buildingData!=null && buildingData?.BuildingBuildType != null && buildingData?.BuildingBuildType!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.BuildingBuildTypeEdit,DropDowns.BuildingBuildType.name,buildingData?.BuildingBuildType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.BuildingBuildTypeEdit,DropDowns.BuildingBuildType.name)
                 if (landData!=null && landData?.LandType?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.LandTypeEdit,DropDowns.LandType.name,landData?.LandType?.get(0).toString())
                 else
@@ -412,157 +417,69 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name,landData?.Terraintype?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name)
+                if (landData!=null && landData?.PropertyType != null && landData?.PropertyType!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeLandEdit,DropDowns.PropertyType.name,landData?.PropertyType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeLandEdit,DropDowns.PropertyType.name)
+                if (landData!=null && landData?.SiteDemarcation != null && landData?.SiteDemarcation!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteDemarcationEdit,DropDowns.SiteDemarcation.name,landData?.SiteDemarcation.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteDemarcationEdit,DropDowns.SiteDemarcation.name,landData?.SiteDemarcation.toString())
                 holder.binding.update.setOnClickListener {
-                    try {
-                        if (propertyData!=null){
-                            val tempBuildingData=SAcqBuildingDetail()
-                            val tempLandData=SAcqLandDetail()
-                            tempBuildingData.let {
-                                it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
-                                it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt()
-                                it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
-                                it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt()
-                                it.PropertyType = 0
-                                it.BuildingBuildType = 0
-                                it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
-                                if (propertyData?.SAcqBuildingDetail?.isNotEmpty()==true)
-                                    it.id=propertyData?.SAcqBuildingDetail?.get(0)?.id
-                            }
-                            tempLandData.let {
-                                it.PropertyType = 0
-                                it.SiteDemarcation = 0
-                                it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
-                                it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
-                                it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
-                                if (propertyData?.SAcqLandDetail?.isNotEmpty()==true)
-                                    it.id=propertyData?.SAcqLandDetail?.get(0)?.id
-                            }
-                            propertyData?.let {
-                                it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
-                                it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
-                                it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
-                                it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
-                                it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
-                                it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
-                                it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
-                                it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
-                                it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
-                                it.Remark=holder.binding.remarksEdit.text.toString()
-                                it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
-                                it.SAcqLandDetail= arrayListOf(tempLandData)
-                                if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true)
-                                    it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
-                                else
-                                    it.Siteaddress= arrayListOf()
-                                val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
-                                tempList.clear()
-                                tempList.add(it)
-                                val tempData= AcquisitionSurveyData()
-                                tempData.SAcqPropertyDetail=tempList
-                                tempData.id= datalist?.id
-                                listener.updateItemClicked(tempData)
-                            }
-
+                        val tempBuildingData=SAcqBuildingDetail()
+                        val tempLandData=SAcqLandDetail()
+                        val tempPropertyData=SAcqPropertyDetail()
+                        tempBuildingData.let {
+                            it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
+                            it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toIntOrNull()
+                            it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
+                            it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toIntOrNull()
+                            it.PropertyType = holder.binding.PropertyTypeBuildingEdit.selectedValue.id.toIntOrNull()
+                            it.BuildingBuildType =holder.binding.BuildingBuildTypeEdit.selectedValue.id.toIntOrNull()
+                            it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
+                            if (propertyData!=null && buildingData!=null)
+                                it.id=buildingData?.id
                         }
-                        else if(datalist!=null && datalist?.SAcqPropertyDetail?.isEmpty()==true){
-                            val tempBuildingData=SAcqBuildingDetail()
-                            val tempLandData=SAcqLandDetail()
-                            val tempPropertyData=SAcqPropertyDetail()
-                            tempBuildingData.let {
-                                it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
-                                it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt()
-                                it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
-                                it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt()
-                                it.PropertyType = 0
-                                it.BuildingBuildType = 0
-                                it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
-                            }
-                            tempLandData.let {
-                                it.PropertyType = 0
-                                it.SiteDemarcation = 0
-                                it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
-                                it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
-                                it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
-
-                            }
-                            tempPropertyData.let {
-
-                                it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
-                                it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
-                                it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
-                                it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
-                                it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
-                                it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
-                                it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
-                                it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
-                                it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
-                                it.Remark=holder.binding.remarksEdit.text.toString()
-                                it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
-                                it.SAcqLandDetail= arrayListOf(tempLandData)
-                                if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true)
-                                    it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
-                                else
-                                    it.Siteaddress= arrayListOf()
-                                val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
-                                tempList.clear()
-                                tempList.add(it)
-                                val tempData= AcquisitionSurveyData()
-                                tempData.SAcqPropertyDetail=tempList
-                                tempData.id= datalist?.id
-                                listener.updateItemClicked(tempData)
-                            }
+                        tempLandData.let {
+                            it.PropertyType = holder.binding.PropertyTypeLandEdit.selectedValue.id.toIntOrNull()
+                            it.SiteDemarcation = holder.binding.SiteDemarcationEdit.selectedValue.id.toIntOrNull()
+                            it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
+                            it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
+                            it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
+                            if (propertyData!=null && landData!=null)
+                                it.id=landData?.id
                         }
-                        else{
-                            val tempBuildingData=SAcqBuildingDetail()
-                            val tempLandData=SAcqLandDetail()
-                            val tempPropertyData=SAcqPropertyDetail()
-                            tempBuildingData.let {
-                                it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
-                                it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toInt()
-                                it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
-                                it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toInt()
-                                it.PropertyType = 0
-                                it.BuildingBuildType = 0
-                                it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
-                            }
-                            tempLandData.let {
-                                it.PropertyType = 0
-                                it.SiteDemarcation = 0
-                                it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
-                                it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
-                                it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
-
-                            }
-                            tempPropertyData.let {
-
-                                it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
-                                it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
-                                it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
-                                it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
-                                it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
-                                it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
-                                it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
-                                it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
-                                it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
-                                it.Remark=holder.binding.remarksEdit.text.toString()
-                                it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
-                                it.SAcqLandDetail= arrayListOf(tempLandData)
-                                if (AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true)
-                                    it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
-                                else
-                                    it.Siteaddress= arrayListOf()
-                                val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
-                                tempList.clear()
-                                tempList.add(it)
-                                val tempData= AcquisitionSurveyData()
-                                tempData.SAcqPropertyDetail=tempList
-                                listener.updateItemClicked(tempData)
-                            }
+                        tempPropertyData.let {
+                            it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                            it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
+                            it.SiteAccessWay= holder.binding.SiteAccessWayEdit.selectedValue.id.toIntOrNull()
+                            it.GateAndFence= holder.binding.GateFenchEdit.selectedValue.id.toIntOrNull()
+                            it.OtherOperator= holder.binding.OtherOperatorsEdit.selectedValue.id.toIntOrNull()
+                            it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
+                            it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
+                            it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
+                            it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
+                            it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
+                            it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
+                            it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
+                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
+                            it.SAcqLandDetail= arrayListOf(tempLandData)
+                            if (propertyData!=null)
+                                it.id=propertyData?.id
+                            if (siteAdd!=null)
+                                it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
+                            else
+                                it.Siteaddress= arrayListOf()
+                            val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
+                            tempList.clear()
+                            tempList.add(it)
+                            val tempData= AcquisitionSurveyData()
+                            if (datalist!=null)
+                                tempData.id=datalist?.id
+                            tempData.SAcqPropertyDetail=tempList
+                            listener.updateItemClicked(tempData)
                         }
-                    }catch (e:Exception){
-                        AppLogger.log("Somthing went wrong during update property details")
-                    }
-
                 }
 
             }
@@ -632,103 +549,78 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null && datalist?.SAcqPowerConnectionFeasibility?.isNotEmpty()==true){
-                        powerData=datalist?.SAcqPowerConnectionFeasibility?.get(0)
-                    }
-                    if (powerData!=null){
-                        // view mode
-                        holder.binding.EBPowerAvailability.text= powerData?.EBAvailability.toString()
-                        holder.binding.PowerSupplierName.text= powerData?.PowerSupplier
-                        holder.binding.EBApplicationStatus.text= powerData?.EBApplicationStatus.toString()
-                        holder.binding.AvgAvailibillity.text= powerData?.AvgAvailability
-                        holder.binding.MeterType.text= powerData?.MeterType.toString()
-                        holder.binding.ConsumerNo.text= powerData?.ConsumerNo
-                        holder.binding.MeterSerialNumber.text= powerData?.MeterSerialNo
-                        holder.binding.NearestEBPole.text= powerData?.NearestEBPole
-                        holder.binding.PowerConnRating.text= powerData?.PowerRating
-                        holder.binding.SolarFeability.text= powerData?.SolarFeasibility.toString()
-                        holder.binding.remarks.text= powerData?.Remark
-
-                        //edit mode
-                        holder.binding.EBPowerAvailabilityEdit.text= powerData?.EBAvailability.toString()
-                        holder.binding.PowerSupplierNameEdit.setText(powerData?.PowerSupplier)
-                        holder.binding.EBApplicationStatusEdit.text= powerData?.EBApplicationStatus.toString()
-                        holder.binding.AvgAvailibillityEdit.setText(powerData?.AvgAvailability)
-                        holder.binding.MeterTypeEdit.text= powerData?.MeterType.toString()
-                        holder.binding.ConsumerNoEdit.setText(powerData?.ConsumerNo)
-                        holder.binding.MeterSerialNumberEdit.setText(powerData?.MeterSerialNo)
-                        holder.binding.NearestEBPoleEdit.setText(powerData?.NearestEBPole)
-                        holder.binding.PowerConnRatingEdit.setText(powerData?.PowerRating)
-                        holder.binding.SolarFeasibilityEdit.text= powerData?.SolarFeasibility.toString()
-                        holder.binding.remarksEdit.setText(powerData?.Remark)
-
-                    }
-                    else
-                        AppLogger.log("error in Acquisition Survey data or Property details data")
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                if (datalist!=null && datalist?.SAcqPowerConnectionFeasibility?.isNotEmpty()==true){
+                    powerData=datalist?.SAcqPowerConnectionFeasibility?.get(0)
                 }
+                if (powerData!=null){
+                    // view mode
+                    if (powerData?.EBApplicationStatus!=null && powerData?.EBApplicationStatus!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.EBApplicationStatus,DropDowns.EBApplicationStatus.name,powerData?.EBApplicationStatus.toString())
+                    if (powerData?.MeterType!=null && powerData?.MeterType!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.MeterType,DropDowns.MeterType.name,powerData?.MeterType.toString())
+                    if (powerData?.EBAvailability!=null && powerData?.EBAvailability!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.EBPowerAvailability,DropDowns.EBPowerAvailability.name,powerData?.EBAvailability.toString())
+                    if (powerData?.SolarFeasibility!=null && powerData?.SolarFeasibility!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.SolarFeability,DropDowns.SolarFeability.name,powerData?.SolarFeasibility.toString())
+                    holder.binding.PowerSupplierName.text= powerData?.PowerSupplier
+                    holder.binding.AvgAvailibillity.text= powerData?.AvgAvailability
+                    holder.binding.ConsumerNo.text= powerData?.ConsumerNo
+                    holder.binding.MeterSerialNumber.text= powerData?.MeterSerialNo
+                    holder.binding.NearestEBPole.text= powerData?.NearestEBPole
+                    holder.binding.PowerConnRating.text= powerData?.PowerRating
+                    holder.binding.remarks.text= powerData?.Remark
+
+                    //edit mode
+                    holder.binding.PowerSupplierNameEdit.setText(powerData?.PowerSupplier)
+                    holder.binding.AvgAvailibillityEdit.setText(powerData?.AvgAvailability)
+                    holder.binding.ConsumerNoEdit.setText(powerData?.ConsumerNo)
+                    holder.binding.MeterSerialNumberEdit.setText(powerData?.MeterSerialNo)
+                    holder.binding.NearestEBPoleEdit.setText(powerData?.NearestEBPole)
+                    holder.binding.PowerConnRatingEdit.setText(powerData?.PowerRating)
+                    holder.binding.remarksEdit.setText(powerData?.Remark)
+
+                }
+
+                if (powerData!=null && powerData?.EBApplicationStatus!=null && powerData?.EBApplicationStatus!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBApplicationStatusEdit,DropDowns.EBApplicationStatus.name,powerData?.EBApplicationStatus.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBApplicationStatusEdit,DropDowns.EBApplicationStatus.name)
+                if (powerData!=null && powerData?.MeterType!=null && powerData?.MeterType!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.MeterTypeEdit,DropDowns.MeterType.name,powerData?.MeterType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.MeterTypeEdit,DropDowns.MeterType.name)
+                if (powerData!=null && powerData?.EBAvailability!=null && powerData?.EBAvailability!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBPowerAvailabilityEdit,DropDowns.EBPowerAvailability.name,powerData?.EBAvailability.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBPowerAvailabilityEdit,DropDowns.EBPowerAvailability.name)
+                if (powerData!=null && powerData?.SolarFeasibility!=null && powerData?.SolarFeasibility!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SolarFeasibilityEdit,DropDowns.SolarFeability.name,powerData?.SolarFeasibility.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SolarFeasibilityEdit,DropDowns.SolarFeability.name)
+
                 holder.binding.update.setOnClickListener {
-                    if (powerData!=null){
-                        powerData?.let {
-                            it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
-                            it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
-                            it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
-                            it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
-                            it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
-                            it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
-                            it.Remark= holder.binding.remarksEdit.text.toString()
+                    val tempPowerData=SAcqPowerConnectionFeasibility()
+                    tempPowerData.let {
+                        it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
+                        it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
+                        it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
+                        it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
+                        it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
+                        it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
+                        it.Remark= holder.binding.remarksEdit.text.toString()
+                        it.EBAvailability=holder.binding.EBPowerAvailabilityEdit.selectedValue.id.toIntOrNull()
+                        it.EBApplicationStatus=holder.binding.EBApplicationStatusEdit.selectedValue.id.toIntOrNull()
+                        it.MeterType=holder.binding.MeterTypeEdit.selectedValue.id.toIntOrNull()
+                        it.SolarFeasibility=holder.binding.SolarFeasibilityEdit.selectedValue.id.toIntOrNull()
+                        if (powerData!=null)
+                            it.id=powerData?.id
 
-                            val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqPowerConnectionFeasibility=tempList
-                            tempData.id= datalist?.id
-                            listener.updateItemClicked(tempData)
-                        }
+                        val tempData= AcquisitionSurveyData()
+                        tempData.SAcqPowerConnectionFeasibility= arrayListOf(it)
+                        if (datalist!=null)
+                            tempData.id=datalist?.id
+                        listener.updateItemClicked(tempData)
                     }
-                    else if(datalist!=null && datalist?.SAcqPowerConnectionFeasibility?.isEmpty()==true){
-                        val tempPowerData=SAcqPowerConnectionFeasibility()
-                        tempPowerData.let {
-                            it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
-                            it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
-                            it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
-                            it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
-                            it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
-                            it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
-                            it.Remark= holder.binding.remarksEdit.text.toString()
-
-                            val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqPowerConnectionFeasibility=tempList
-                            tempData.id= datalist?.id
-                            listener.updateItemClicked(tempData)
-                        }
-                    }
-                    else{
-                        val tempPowerData=SAcqPowerConnectionFeasibility()
-                        tempPowerData.let {
-                            it.PowerSupplier= holder.binding.PowerSupplierNameEdit.text.toString()
-                            it.AvgAvailability= holder.binding.AvgAvailibillityEdit.text.toString()
-                            it.ConsumerNo= holder.binding.ConsumerNoEdit.text.toString()
-                            it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
-                            it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
-                            it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
-                            it.Remark= holder.binding.remarksEdit.text.toString()
-
-                            val tempList:ArrayList<SAcqPowerConnectionFeasibility> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqPowerConnectionFeasibility=tempList
-                            listener.updateItemClicked(tempData)
-                        }
-                    }
-
                 }
 
             }
@@ -799,129 +691,106 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null && datalist?.SAcqFeasibilityDetail?.isNotEmpty()==true){
-                        feasibilityData=datalist?.SAcqFeasibilityDetail?.get(0)
-                    }
-                    if (feasibilityData!=null){
-                        // view mode
-                        if (feasibilityData?.Acquisitiontype?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,feasibilityData?.Acquisitiontype?.get(0).toString())
-                        if (feasibilityData?.TowerPoleType?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleType,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
-                        holder.binding.AcquisitionArea.text=feasibilityData?.Area
-                        holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
-                        holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
-                        holder.binding.FiberLMCLaying.text=feasibilityData?.FiberLMCLaying.toString()
-                        holder.binding.EBSupplyThroOwnerMeter.text=feasibilityData?.OwnerMeter.toString()
-                        holder.binding.EquipmentRoom.text=feasibilityData?.EquipmentRoom.toString()
-                        holder.binding.RequiredAreaAvailable.text=feasibilityData?.RequiredAreaAvailable.toString()
-                        holder.binding.StatutoryPermissions.text=feasibilityData?.StatutoryPermission.toString()
-                        holder.binding.OverallFeasibility.text=feasibilityData?.OverallFeasibility.toString()
-                        holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
-                        holder.binding.SurveyDate.text=Utils.getFormatedDate(feasibilityData?.SurveyDate?.substring(0,10)!!,"dd-MMM-yyyy")
-                        holder.binding.remarks.text=feasibilityData?.Remark
-
-                        // edit mode
-                        holder.binding.AcquisitionAreaEdit.setText(feasibilityData?.Area)
-                        holder.binding.ExpectedPriceEdit.setText(feasibilityData?.ExpectedPrice)
-                        holder.binding.AverageMarketRateEdit.setText(feasibilityData?.MarketPrice)
-                        holder.binding.FiberLMCLayingEdit.text=feasibilityData?.FiberLMCLaying.toString()
-                        holder.binding.EBSupplyThroOwnerMeterEdit.text=feasibilityData?.OwnerMeter.toString()
-                        holder.binding.EquipmentRoomEdit.text=feasibilityData?.EquipmentRoom.toString()
-                        holder.binding.RequiredAreaAvailableEdit.text=feasibilityData?.RequiredAreaAvailable.toString()
-                        holder.binding.StatutoryPermissionsEdit.text=feasibilityData?.StatutoryPermission.toString()
-                        holder.binding.OverallFeasibilityEdit.text=feasibilityData?.OverallFeasibility.toString()
-                        holder.binding.SurveyExecutiveNameEdit.setText(feasibilityData?.ExecutiveName)
-                        holder.binding.SurveyDateEdit.text=Utils.getFormatedDate(feasibilityData?.SurveyDate!!.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.remarksEdit.setText(feasibilityData?.Remark)
-
-
-                    }
-                    else
-                        AppLogger.log("error in Acquisition Survey data or Property details data")
-                    if (feasibilityData!=null && feasibilityData?.Acquisitiontype?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,feasibilityData?.Acquisitiontype?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
-
-                    if (feasibilityData!=null &&feasibilityData?.TowerPoleType?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name)
-
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                if (datalist!=null && datalist?.SAcqFeasibilityDetail?.isNotEmpty()==true){
+                    feasibilityData=datalist?.SAcqFeasibilityDetail?.get(0)
                 }
+                if (feasibilityData!=null){
+                    // view mode
+                    if (feasibilityData?.Acquisitiontype?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,feasibilityData?.Acquisitiontype?.get(0).toString())
+                    if (feasibilityData?.TowerPoleType?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleType,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
+                    if (feasibilityData?.FiberLMCLaying!= null && feasibilityData?.FiberLMCLaying!!>=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.FiberLMCLaying,DropDowns.FiberLMCLaying.name,feasibilityData?.FiberLMCLaying.toString())
+                    if (feasibilityData?.OwnerMeter!= null && feasibilityData?.OwnerMeter!!>=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.EBSupplyThroOwnerMeter,DropDowns.EBSupplyThroOwnerMeter.name,feasibilityData?.OwnerMeter.toString())
+                    if (feasibilityData?.EquipmentRoom!= null && feasibilityData?.EquipmentRoom!!>=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.EquipmentRoom,DropDowns.EquipmentRoom.name,feasibilityData?.EquipmentRoom.toString())
+                    if (feasibilityData?.RequiredAreaAvailable!= null && feasibilityData?.RequiredAreaAvailable!!>=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.RequiredAreaAvailable,DropDowns.RequiredAreaAvailable.name,feasibilityData?.RequiredAreaAvailable.toString())
+                    if (feasibilityData?.StatutoryPermission!= null && feasibilityData?.StatutoryPermission!!>=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissions,DropDowns.StatutoryPermissions.name,feasibilityData?.StatutoryPermission.toString())
+                    if (feasibilityData?.OverallFeasibility!= null && feasibilityData?.OverallFeasibility!!>=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibility,DropDowns.OverallFeasibility.name,feasibilityData?.OverallFeasibility.toString())
+                    holder.binding.AcquisitionArea.text=feasibilityData?.Area
+                    holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
+                    holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
+                    holder.binding.OverallFeasibility.text=feasibilityData?.OverallFeasibility.toString()
+                    holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
+                    holder.binding.SurveyDate.text=Utils.getFormatedDate(feasibilityData?.SurveyDate,"dd-MMM-yyyy")
+                    holder.binding.remarks.text=feasibilityData?.Remark
+
+                    // edit mode
+                    holder.binding.AcquisitionAreaEdit.setText(feasibilityData?.Area)
+                    holder.binding.ExpectedPriceEdit.setText(feasibilityData?.ExpectedPrice)
+                    holder.binding.AverageMarketRateEdit.setText(feasibilityData?.MarketPrice)
+                    holder.binding.SurveyExecutiveNameEdit.setText(feasibilityData?.ExecutiveName)
+                    holder.binding.SurveyDateEdit.text=Utils.getFormatedDate(feasibilityData?.SurveyDate,"dd-MMM-yyyy")
+                    holder.binding.remarksEdit.setText(feasibilityData?.Remark)
+
+
+                }
+                if (feasibilityData!=null && feasibilityData?.Acquisitiontype?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,feasibilityData?.Acquisitiontype?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
+
+                if (feasibilityData!=null && feasibilityData?.TowerPoleType?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name)
+                if (feasibilityData!=null && feasibilityData?.FiberLMCLaying!= null && feasibilityData?.FiberLMCLaying!!>=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.FiberLMCLayingEdit,DropDowns.FiberLMCLaying.name,feasibilityData?.FiberLMCLaying.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.FiberLMCLayingEdit,DropDowns.FiberLMCLaying.name)
+                if (feasibilityData!=null && feasibilityData?.OwnerMeter!= null && feasibilityData?.OwnerMeter!!>=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBSupplyThroOwnerMeterEdit,DropDowns.EBSupplyThroOwnerMeter.name,feasibilityData?.OwnerMeter.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBSupplyThroOwnerMeterEdit,DropDowns.EBSupplyThroOwnerMeter.name)
+                if (feasibilityData!=null && feasibilityData?.EquipmentRoom!= null && feasibilityData?.EquipmentRoom!!>=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.EquipmentRoomEdit,DropDowns.EquipmentRoom.name,feasibilityData?.EquipmentRoom.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.EquipmentRoomEdit,DropDowns.EquipmentRoom.name)
+                if (feasibilityData!=null && feasibilityData?.RequiredAreaAvailable!= null && feasibilityData?.RequiredAreaAvailable!!>=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.RequiredAreaAvailableEdit,DropDowns.RequiredAreaAvailable.name,feasibilityData?.RequiredAreaAvailable.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.RequiredAreaAvailableEdit,DropDowns.RequiredAreaAvailable.name)
+                if (feasibilityData!=null && feasibilityData?.StatutoryPermission!= null && feasibilityData?.StatutoryPermission!!>=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissionsEdit,DropDowns.StatutoryPermissions.name,feasibilityData?.StatutoryPermission.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissionsEdit,DropDowns.StatutoryPermissions.name)
+                if (feasibilityData!=null && feasibilityData?.OverallFeasibility!= null && feasibilityData?.OverallFeasibility!!>=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibilityEdit,DropDowns.OverallFeasibility.name,feasibilityData?.OverallFeasibility.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibilityEdit,DropDowns.OverallFeasibility.name)
+
+
                 baseFragment.setDatePickerView(holder.binding.SurveyDateEdit)
                 holder.binding.update.setOnClickListener {
-                    if (feasibilityData!=null){
-                        feasibilityData?.let {
-                            it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
-                            it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
-                            it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
-                            it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
-                            it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
-                            if (it.Acquisitiontype?.isNotEmpty()==true)
-                                it.Acquisitiontype!![0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
-                            else
-                                it.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                    val tempfeasibilityData=SAcqFeasibilityDetail()
+                    tempfeasibilityData.let {
+                        it.Area = holder.binding.AcquisitionAreaEdit.text.toString()
+                        it.ExpectedPrice = holder.binding.ExpectedPriceEdit.text.toString()
+                        it.MarketPrice = holder.binding.AverageMarketRateEdit.text.toString()
+                        it.ExecutiveName = holder.binding.SurveyExecutiveNameEdit.text.toString()
+                        it.Remark = holder.binding.remarksEdit.text.toString()
+                        it.SurveyDate = Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
+                        it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                        it.TowerPoleType = arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
+                        it.FiberLMCLaying = holder.binding.FiberLMCLayingEdit.selectedValue.id.toIntOrNull()
+                        it.OwnerMeter = holder.binding.EBSupplyThroOwnerMeterEdit.selectedValue.id.toIntOrNull()
+                        it.EquipmentRoom = holder.binding.EquipmentRoomEdit.selectedValue.id.toIntOrNull()
+                        it.RequiredAreaAvailable = holder.binding.RequiredAreaAvailableEdit.selectedValue.id.toIntOrNull()
+                        it.StatutoryPermission = holder.binding.StatutoryPermissionsEdit.selectedValue.id.toIntOrNull()
+                        it.OverallFeasibility = holder.binding.OverallFeasibilityEdit.selectedValue.id.toIntOrNull()
+                        if (feasibilityData != null)
+                            it.id = feasibilityData?.id
 
-                            if (it.TowerPoleType?.isNotEmpty()==true)
-                                it.TowerPoleType!![0] = holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt()
-                            else
-                                it.TowerPoleType?.add(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
-
-                            val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqFeasibilityDetail=tempList
-                            tempData.id= datalist?.id
-                            listener.updateItemClicked(tempData)
-                        }
-                    }
-                    else if (datalist!=null && datalist?.SAcqFeasibilityDetail?.isEmpty()==true){
-                        val tempfeasibilityData=SAcqFeasibilityDetail()
-                        tempfeasibilityData.let {
-                            it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
-                            it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
-                            it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
-                            it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
-                            it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
-                            it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-                            it.TowerPoleType =  arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
-
-                            val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqFeasibilityDetail=tempList
-                            tempData.id= datalist?.id
-                            listener.updateItemClicked(tempData)
-                        }
-                    }
-                    else{
-                        val tempfeasibilityData=SAcqFeasibilityDetail()
-                        tempfeasibilityData.let {
-                            it.Area=holder.binding.AcquisitionAreaEdit.text.toString()
-                            it.ExpectedPrice=holder.binding.ExpectedPriceEdit.text.toString()
-                            it.MarketPrice=holder.binding.AverageMarketRateEdit.text.toString()
-                            it.ExecutiveName=holder.binding.SurveyExecutiveNameEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
-                            it.SurveyDate=Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
-                            it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-                            it.TowerPoleType =  arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
-
-                            val tempList:ArrayList<SAcqFeasibilityDetail> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            tempData.SAcqFeasibilityDetail=tempList
-                            listener.updateItemClicked(tempData)
-                        }
+                        val tempData = AcquisitionSurveyData()
+                        tempData.SAcqFeasibilityDetail = arrayListOf(it)
+                        if (datalist != null)
+                            tempData.id = datalist?.id
+                        listener.updateItemClicked(tempData)
                     }
                 }
 

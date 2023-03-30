@@ -178,7 +178,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         holder.binding.VendorExecutiveEmailIDEdit.setText(datalist?.VendorExecutiveEmailId)
                         holder.binding.VendorExecutiveNumberEdit.setText(datalist?.VendorExecutiveMobile)
                         holder.binding.AcquisitionTargetDateEdit.text=Utils.getFormatedDate(datalist?.AcquisitionTargetDate?.substring(0,10)!!,"dd-MMM-yyyy")
-                        holder.binding.PODateEdit.text=Utils.getFormatedDate(datalist?.PODate?.substring(0,10)!!,"dd-MMM-yyyy")
+                        holder.binding.PODateEdit.text=Utils.getFormatedDate(datalist?.PODate,"dd-MMM-yyyy")
                         holder.binding.remarksEdit.setText(datalist?.Remark)
 
 
@@ -203,65 +203,27 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 }
 
                 holder.binding.update.setOnClickListener {
-                    if (datalist!=null){
-                        datalist.let {
-                            it?.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
-                            it?.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
-                            it?.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
-                            it?.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
-                            it?.VendorCode=holder.binding.VendorCodeEdit.text.toString()
-                            it?.PONumber=holder.binding.PONumberEdit.text.toString()
-                            it?.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
-                            it?.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
-                            it?.POAmount=holder.binding.POAmountEdit.text.toString()
-                            it?.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
-                            it?.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
-                            it?.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
-                            it?.Remark=holder.binding.remarksEdit.text.toString()
-                            it?.isActive=null
-                            it?.modified_at=null
-                            it?.created_at=null
-
-                            if (it?.AcquisitionMode?.isNotEmpty()==true)
-                                it.AcquisitionMode!![0] = holder.binding.AcquisitionModeEdit.selectedValue.id.toInt()
-                            else
-                                it?.AcquisitionMode?.add(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
-
-                            if (it?.Acquisitiontype?.isNotEmpty()==true)
-                                it.Acquisitiontype!![0] = holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt()
-                            else
-                                it?.Acquisitiontype?.add(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-
-                            if (it?.VendorCompany?.isNotEmpty()==true)
-                                it.VendorCompany!![0] = holder.binding.VendorNameEdit.selectedValue.id.toInt()
-                            else
-                                it?.VendorCompany?.add(holder.binding.VendorNameEdit.selectedValue.id.toInt())
-
-                            listener.updateTeamClicked(it)
-                        }
-                    }
-                    else{
-                        val tempData=AssignACQTeamDAta()
-                        tempData.let {
-                            it.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
-                            it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
-                            it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
-                            it.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
-                            it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
-                            it.PONumber=holder.binding.PONumberEdit.text.toString()
-                            it.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
-                            it.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
-                            it.POAmount=holder.binding.POAmountEdit.text.toString()
-                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
-                            it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
-                            it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
-                            it.AcquisitionMode = arrayListOf(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
-                            it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-                            it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
-                            it.Remark=holder.binding.remarksEdit.text.toString()
-
-                            listener.updateTeamClicked(it)
-                        }
+                    val tempData=AssignACQTeamDAta()
+                    tempData.let {
+                        it.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
+                        it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
+                        it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
+                        it.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
+                        it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                        it.PONumber=holder.binding.PONumberEdit.text.toString()
+                        it.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
+                        it.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
+                        it.POAmount=holder.binding.POAmountEdit.text.toString()
+                        it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                        it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
+                        it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                        it.AcquisitionMode = arrayListOf(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
+                        it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
+                        it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        if (datalist!=null)
+                            it.id=datalist?.id
+                        listener.updateTeamClicked(it)
                     }
 
                 }
