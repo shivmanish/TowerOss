@@ -39,6 +39,10 @@
                 android:name="phone"
                 app:argType="string"
                 android:defaultValue="1234567890" />
+            <argument
+                android:name="emailId"
+                app:argType="string"
+                android:defaultValue="ankitk.maurya@smarmile.com" />
         </action>
     </fragment>
 
@@ -91,6 +95,10 @@
                 android:name="phone"
                 app:argType="string"
                 android:defaultValue="1234567890" />
+            <argument
+                android:name="emailId"
+                app:argType="string"
+                android:defaultValue="ankitk.maurya@smarmile.com" />
         </action>
     </fragment>
     <fragment

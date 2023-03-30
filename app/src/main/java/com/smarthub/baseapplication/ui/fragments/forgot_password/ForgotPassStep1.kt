@@ -41,7 +41,10 @@ class ForgotPassStep1 : Fragment() {
         binding.sendOtp.setOnClickListener  {
             if (binding.emailIdRoot.tag==false) {
                 binding.emailIdRoot.isErrorEnabled = true
-                binding.emailIdRoot.error = "Enter valid company code"
+                if (binding.emailId.text.toString().isEmpty())
+                    binding.emailIdRoot.error = "Field should not be empty"
+                else
+                    binding.emailIdRoot.error = "Please Enter Valid Email Id"
                 return@setOnClickListener
             }
                 Log.d("status"," DRAWABLE_RIGHT : moNoEdit")
@@ -50,7 +53,7 @@ class ForgotPassStep1 : Fragment() {
                 if (binding.moNoEdit.tag as Boolean){
                     if (!progressDialog.isShowing)
                         progressDialog.show()
-                    loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
+                    loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString(),binding.emailId.text.toString()))
                 }
 
         }
@@ -60,8 +63,13 @@ class ForgotPassStep1 : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if(binding.emailId.text.toString().isNotEmpty()){
-                    binding.emailIdRoot.tag = Utils.isValidEmail(binding.emailId.text.toString())
-                }
+                    if (Utils.isValidEmail(binding.emailId.text.toString())){
+                        binding.emailIdRoot.tag =true
+                        binding.emailIdRoot.isErrorEnabled = false
+                    }
+                    else{
+                        binding.emailIdRoot.tag =false
+                    }                }
                 else {
                     binding.emailIdRoot.setEndIconDrawable(0)
                     binding.emailIdRoot.tag=false
@@ -98,13 +106,13 @@ class ForgotPassStep1 : Fragment() {
                 Log.d("status","getOtpResponse ${it.data}")
                 activity?.let{
                     findNavController().navigate(
-                        ForgotPassStep1Directions.actionForgotPassStep1ToForgotPassStep2(binding.moNoEdit.text?.toString()!!)
+                        ForgotPassStep1Directions.actionForgotPassStep1ToForgotPassStep2(binding.moNoEdit.text?.toString()!!,binding.emailId.text.toString())
                     )
                 }
             }else{
                 Log.d("status ","AppConstants.GENERIC_ERROR ${AppConstants.GENERIC_ERROR}")
-//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
+                Toast.makeText(requireActivity(), "Email Id or Mobile Number is Invalid", Toast.LENGTH_LONG).show()
+//                enableErrorText()
             }
         }
     }
