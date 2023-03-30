@@ -88,7 +88,7 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
                             val cacheSiteAgreementData = AppPreferences.getInstance().getString("siteAgreementRequestAll" + item.siteid)
                             if (cacheSiteAgreementData==null || cacheSiteAgreementData.isEmpty()) {
                                 val childJsonObj = JsonObject()
-                                childJsonObj.addProperty("id", id)
+                                childJsonObj.addProperty("id", item.siteid)
                                 childJsonObj.addProperty("ownername", AppController.getInstance().ownerName)
                                 childJsonObj.add("SAcqSiteAcquisition", JsonArray())
                                 AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(childJsonObj), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.SITE_IBOARD_DATA_URL}", "siteAgreementRequestAll" + item.siteid)
@@ -101,7 +101,7 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
                             val cacheNocData = AppPreferences.getInstance().getString("NocAndCompRequestAll" + item.siteid)
                             if (cacheNocData==null || cacheNocData.isEmpty()) {
                                 val childJsonObj = JsonObject()
-                                childJsonObj.addProperty("id", id)
+                                childJsonObj.addProperty("id", item.siteid)
                                 childJsonObj.addProperty("ownername", AppController.getInstance().ownerName)
                                 childJsonObj.add("NOCCompliance", JsonArray())
                                 AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(childJsonObj), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.SITE_IBOARD_DATA_URL}", "NocAndCompRequestAll" + item.siteid)

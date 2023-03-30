@@ -81,10 +81,10 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             }
         }
         binding.refresh.setOnClickListener {
+            AppPreferences.getInstance().callAPI()
             rotate.duration = 900
             rotate.repeatCount = Animation.INFINITE
             binding.refresh.startAnimation(rotate)
-            AppPreferences.getInstance().callAPI()
         }
         binding.tasks.text = AppPreferences.getInstance().offlineTaskList.size.toString()
     }
