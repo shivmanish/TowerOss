@@ -24,7 +24,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
 
     var homeViewModel : HomeViewModel?=null
     lateinit var binding : FragmentMyTaskHomeBinding
-    lateinit var adapterList : MyTaskItemAdapter
+    lateinit var adapterList : MyTeamTaskItemAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMyTaskHomeBinding.inflate(inflater)
@@ -34,7 +34,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter(listener,routes.MyTeamTaskNavigator.name)
+        adapterList = MyTeamTaskItemAdapter(listener,routes.MyTeamTaskNavigator.name)
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")
