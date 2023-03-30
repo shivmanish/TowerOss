@@ -185,9 +185,9 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
 
     void removeTaskStatus(String key){
 //        String taskId = getString(key+"Task");
-        AppPreferences.getInstance().removeString(key+"Data");
-        AppPreferences.getInstance().removeString(key+"Task");
-        AppPreferences.getInstance().removeString(key+"Url");
+//        AppPreferences.getInstance().removeString(key+"Data");
+//        AppPreferences.getInstance().removeString(key+"Task");
+//        AppPreferences.getInstance().removeString(key+"Url");
         OfflineTaskList list = getOfflineTaskList();
         list.remove(key);
         saveOfflineTaskList(list);
