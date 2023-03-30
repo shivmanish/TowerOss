@@ -34,6 +34,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
     var dropdowndata: SiteInfoDropDownData ?= null
     lateinit var binding: SiteInfoNewFragmentBinding
     lateinit var homeViewModel: HomeViewModel
+    lateinit var adapter: SiteInfoListAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -49,6 +50,8 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
+        adapter= SiteInfoListAdapter(requireContext(),this@SiteInfoNewFragment)
+        binding.listItem.adapter=adapter
 //        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
 //        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
 //        binding.listItem.adapter = DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
@@ -64,22 +67,22 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
         homeViewModel.siteInfoDataResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
-               showLoader()
+                adapter.addLoading()
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                hideLoader()
                 AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data}")
-                var currentOpened = -1
-                if (binding.listItem.adapter is SiteInfoListAdapter){
-                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
-                    currentOpened = adapter.currentOpened
-                }
-                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data)
-                AppLogger.log("currentOpened:$currentOpened")
-                if (currentOpened>=0){
-                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
-                }
+                adapter.setData(it.data)
+//                var currentOpened = -1
+//                if (binding.listItem.adapter is SiteInfoListAdapter){
+//                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
+//                    currentOpened = adapter.currentOpened
+//                }
+//                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data)
+//                AppLogger.log("currentOpened:$currentOpened")
+//                if (currentOpened>=0){
+//                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
+//                }
             }else if (it!=null) {
                 AppLogger.log("SiteInfoNewFragment error :${it.message}")
 

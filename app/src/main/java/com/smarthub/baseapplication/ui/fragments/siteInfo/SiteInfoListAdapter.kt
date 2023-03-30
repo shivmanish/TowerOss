@@ -15,7 +15,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener,var basicinfodata: AllsiteInfoDataModel) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
+class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener) : RecyclerView.Adapter<SiteInfoListAdapter.ViewHold>() {
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
@@ -24,27 +24,33 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     var type3 = "Geo Condition"
     var type4 = "Safety / Access"
     var type5 = "OPCO Contact Details"
-    private var basicInfoModelDropDown : BasicInfoModelDropDown?=null
-    private var operationalInfoDropdown : OperationalInfoModel?=null
-    private var geoConditionDropdown : GeoConditionModel?=null
-    private var safetyAndAccessDropdown : SafetyAndAccessModel?=null
-    private var dropdowndata: SiteInfoDropDownData? = null
+    private var basicinfodata : AllsiteInfoDataModel?=null
 
-    fun setData(datadrop : SiteInfoDropDownData){
-        this.dropdowndata = datadrop
-        basicInfoModelDropDown = datadrop.basicInfoModel
-        operationalInfoDropdown = datadrop.operationalInfo
-        geoConditionDropdown = datadrop.geoCondition
-        safetyAndAccessDropdown = datadrop.safetyAndAccess
+    fun setData(data : AllsiteInfoDataModel?){
+        if (data!=null){
+            basicinfodata=data
+            list.clear()
+            list.add("Basic Details")
+            list.add("Operational Info")
+            list.add("Geo Condition")
+            list.add("Safety / Access")
+            notifyDataSetChanged()
+        }
+        else{
+            list.clear()
+            list.add("Loading")
+            notifyDataSetChanged()
+        }
+    }
+
+    fun addLoading(){
+        list.clear()
+        list.add("Loading")
         notifyDataSetChanged()
     }
 
     init {
-        list.add("Basic Details")
-        list.add("Operational Info")
-        list.add("Geo Condition")
-        list.add("Safety / Access")
-
+        list.add("Loading")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -139,31 +145,33 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.basic_detail_item_view, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.basic_detail_item_view, parent, false)
                 return ViewHold1(view)
             }
             2 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.operation_info_view, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.operation_info_view, parent, false)
                 return ViewHold2(view)
             }
             3 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.geo_condition_list_item, parent, false)
                 return ViewHold3(view)
             }
             4 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.safaty_access_list_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.safaty_access_list_item, parent, false)
                 return ViewHold4(view)
             }
             5 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item5, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.commercial_list_item5, parent, false)
                 return ViewHold5(view)
             }
-
+            else->{
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loading_bar,parent,false)
+                return ViewHold(view)
+            }
         }
-        return ViewHold(view)
+
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
@@ -192,9 +200,9 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 }
                 holder.binding.itemTitle.text = list[position]
                 try {
-                    if(basicinfodata.Basicinfo?.isNotEmpty()==true && basicinfodata.Siteaddress?.isNotEmpty()==true){
-                        val siteBasicinfo: BasicInfoData = basicinfodata.Basicinfo!!.get(0)
-                        val siteAddress: SiteAddressData = basicinfodata.Siteaddress!!.get(0)
+                    if(basicinfodata?.Basicinfo?.isNotEmpty()==true && basicinfodata?.Siteaddress?.isNotEmpty()==true){
+                        val siteBasicinfo: BasicInfoData = basicinfodata?.Basicinfo!!.get(0)
+                        val siteAddress: SiteAddressData = basicinfodata?.Siteaddress!!.get(0)
                         holder.binding.txSiteName.text = siteBasicinfo.siteName
                         holder.binding.txSiteID.text = siteBasicinfo.siteID
                         holder.binding.SiteAlternateName.text=siteBasicinfo.aliasName
@@ -210,8 +218,8 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                             AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo.Projectname.get(0).toString())
                         if (siteBasicinfo.Acquisitiontype.isNotEmpty())
                             AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,siteBasicinfo.Acquisitiontype.get(0).toString())
-
-                        holder.binding.MaintenanceGeography.text = siteBasicinfo.MaintenancePoint.get(0).toString()
+                        if (siteBasicinfo.MaintenancePoint!=null)
+                        holder.binding.MaintenanceGeography.text = siteBasicinfo.MaintenancePoint.maintenancePoint
                         holder.binding.address.text = "${siteAddress.address1}  ${siteAddress.address2}"
                         holder.binding.postalCode.text=siteAddress.pincode
                         holder.binding.siteLatitude.text=siteAddress.locLatitude
@@ -252,8 +260,8 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                 holder.binding.itemTitle.text = list[position]
 
                 try {
-                    if(basicinfodata.OperationalInfo?.isNotEmpty()==true){
-                        val operationalInfo: OprationalInfoData = basicinfodata.OperationalInfo!![0]
+                    if(basicinfodata?.OperationalInfo?.isNotEmpty()==true){
+                        val operationalInfo: OprationalInfoData = basicinfodata?.OperationalInfo!![0]
                         holder.binding.txtRFCDate.text = Utils.getFormatedDate( operationalInfo.RFCDate.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.txtRFIDate.text = Utils.getFormatedDate( operationalInfo.RFIDate.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.txtRFSDate.text = Utils.getFormatedDate( operationalInfo.RFSDate.substring(0,10),"dd-MMM-yyyy")
@@ -304,8 +312,8 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata.GeoCondition?.isNotEmpty()==true){
-                    val geoCondition: GeoConditionData = basicinfodata.GeoCondition!![0]
+                if(basicinfodata?.GeoCondition?.isNotEmpty()==true){
+                    val geoCondition: GeoConditionData = basicinfodata?.GeoCondition!![0]
                     holder.binding.textAltitude.text = geoCondition.Altitude.toString()
                     holder.binding.minTempRange.text = geoCondition.TempRangeMin
                     holder.binding.maxTempRange.text = geoCondition.TempRangeMax
@@ -356,10 +364,10 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     updateList(position)
                 }
                 holder.binding.itemTitle.text = list[position]
-                if(basicinfodata.SafetyAndAccess?.isNotEmpty()==true){
-                    AppLogger.log("basic info site data safty not empty: ${basicinfodata.SafetyAndAccess}")
+                if(basicinfodata?.SafetyAndAccess?.isNotEmpty()==true){
+                    AppLogger.log("basic info site data safty not empty: ${basicinfodata?.SafetyAndAccess}")
                     try {
-                        val saftyAcess: SaftyAccessData = basicinfodata.SafetyAndAccess!![0]
+                        val saftyAcess: SaftyAccessData = basicinfodata?.SafetyAndAccess!![0]
                         holder.binding.SiteAccesseethodology.text = saftyAcess.Siteaccessmethodology
                         holder.binding.PoliceStationNumber.text = saftyAcess.NearByPoliceStationNumber
                         holder.binding.nearByPoliceStation.text = saftyAcess.NearByPoliceStation
@@ -377,7 +385,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                     }
                 }
                 else
-                    AppLogger.log("basic info site data safty empty: ${basicinfodata.SafetyAndAccess}")
+                    AppLogger.log("basic info site data safty empty: ${basicinfodata?.SafetyAndAccess}")
 
             }
             is ViewHold5 -> {
