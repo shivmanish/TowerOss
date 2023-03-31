@@ -12,10 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.patrollerapp.db.LatlongData
 import com.example.patrollerapp.homepage.HomePage
 import com.example.patrollerapp.util.LocationService
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.patrollerapp.util.Util
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
@@ -25,21 +28,20 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
-import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.NocCompPageAdapter
-import com.smarthub.baseapplication.ui.fragments.noc.NocDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.noc.TaskNocDataAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.TaskNocDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTenancyActivity
@@ -51,7 +53,6 @@ import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsAc
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TaskPlanDesignAdapter
 import com.smarthub.baseapplication.ui.fragments.qat.OpenQatFragment
-import com.smarthub.baseapplication.ui.fragments.qat.QATCheckActivity
 import com.smarthub.baseapplication.ui.fragments.qat.SubmitQatFragment
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQATListAdapter
@@ -66,35 +67,50 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAc
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTaskTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
+import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SMPSViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.TaskUtilitesNocDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.utilites.adapter.TaskUtilitiesNocDataAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.BatteryBankDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.adapters.BatterryBankViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.DGDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.dg.adapters.DGViewpagerAdapter
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.FireExtinguisherActivity
+import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters.FireExtViewpagerAdapter
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
-import okhttp3.internal.notify
 
 class TaskSearchTabNewFragment(
-    var siteID: String?, var taskId: String,var taskDetailId: String?,
-    var lattitude: String, var longitude: String, var tempWhere: String
+    var siteID: String?, var taskId: String, var taskDetailId: String?,
+    var lattitude: String, var longitude: String, var tempWhere: String,
 ) : BaseFragment(),
-    TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener{
+    TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener {
     private lateinit var binding: FragmentSearchTaskBinding
     lateinit var taskViewModel: TaskViewModel
     var TaskTabListmodel: TaskDropDownModel?=null
     lateinit var homeViewModel: HomeViewModel
-    var taskDetailData: TaskDataListItem?=null
+    var taskDetailData: TaskDataListItem? = null
     var taskAndCardList: ArrayList<String> = ArrayList()
-    var lat = "19.25382218490181"
+
+    //    var lat = 19.25382218490181
     var mLocationService: LocationService = LocationService()
     lateinit var mServiceIntent: Intent
-    var long = "72.98213045018673"
+
+    //    var long = 72.98213045018673
+    val isFancing: Boolean = false
+    val fancingDistance: Double = 0.0
     var radius = "2"
-    var previousListSize:Int=-1
+    var previousListSize: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 //        siteID = "1526"
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
@@ -134,6 +150,37 @@ class TaskSearchTabNewFragment(
         binding.mapView.setOnClickListener {
             mapView()
         }
+        binding.closeBtn.setOnClickListener {
+            if (isFancing) {
+                val userlatlongdata = LatlongData()
+                val start_lattitiude_string =
+                    PatrollerPriference(requireContext()).getStartLattitude()
+                val start_longitude_string =
+                    PatrollerPriference(requireContext()).getStartLongitude().toDouble()
+                if (start_lattitiude_string.equals("Na", true)) {
+                    Snackbar.make(binding.name, "You are not in feance !", Snackbar.LENGTH_SHORT)
+                        .show()
+                    return@setOnClickListener
+                }
+                userlatlongdata.start_lattitiude = start_lattitiude_string.toDouble()
+                userlatlongdata.start_longitude = start_longitude_string.toDouble()
+
+                var userPosition =
+                    LatLng(userlatlongdata.start_lattitiude, userlatlongdata.start_longitude)
+                var sitePosition = LatLng(lattitude.toDouble(), longitude.toDouble())
+                val distance_btwn_user_and_site =
+                    Util.getDistanceFromLatlongmanually(userPosition, sitePosition)
+                if (distance_btwn_user_and_site <= fancingDistance) {
+                    //Close Request Hit
+                } else {
+                    Snackbar.make(binding.name, "You are not in feance !", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                //Close Request Hit
+            }
+
+        }
         binding.start.setOnClickListener {
             if (binding.start.text.toString().equals("Start", true)) {
                 PatrollerPriference(requireContext()).setstartTime(System.currentTimeMillis())
@@ -167,20 +214,19 @@ class TaskSearchTabNewFragment(
         }
         if (taskViewModel.taskDataList?.hasActiveObservers() == true)
             taskViewModel.taskDataList?.removeObservers(this)
-        taskViewModel.taskDataList?.observe(viewLifecycleOwner){
+        taskViewModel.taskDataList?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
 //                showLoader()
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                if (it.data.isNotEmpty()){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                if (it.data.isNotEmpty()) {
                     AppLogger.log("fetched task data =====> : ${Gson().toJson(it.data[0])}")
-                    taskDetailData=it.data[0]
+                    taskDetailData = it.data[0]
                     setParentData()
-                }
-                else
+                } else
                     AppLogger.log("not any assigned task found at task Id $taskDetailId")
-            }else{
+            } else {
                 AppLogger.log("Something went wrong in TaskSearchTabNewFragment")
             }
         }
@@ -192,7 +238,7 @@ class TaskSearchTabNewFragment(
 //        val splittedData = tempWhere.split(",") as ArrayList
         val splittedData = findTaskSubtabList(taskDetailData).split(",")
         AppLogger.log("Where Tab list spiletted====>:$splittedData")
-        var parentId: Int=0
+        var parentId: Int = 0
         if (splittedData.isNotEmpty()) {
             val firstIdx = splittedData[0]
             AppLogger.log("Where Tab list first index data====>:$firstIdx")
@@ -226,6 +272,7 @@ class TaskSearchTabNewFragment(
                     setUpSiteAcqusitionData(splittedData as ArrayList<String>)
                 }
                 3->{
+                    setUpUtilityUqipData()
                     AppLogger.log("Selected TAb is Utility Equipments")
                 }
                 4->{
@@ -393,9 +440,10 @@ class TaskSearchTabNewFragment(
             override fun clickedItem(data: PlanAndDesignDataItem?, Id: String, index: Int) {
                 //this is for the listiner
 
-                PowerDesignDetailsActivity.Id=Id
-                PowerDesignDetailsActivity.planDesigndata=data
-                binding.viewpager.adapter =PowerDesignDetailPageAdapter(childFragmentManager, data,Id)
+                PowerDesignDetailsActivity.Id = Id
+                PowerDesignDetailsActivity.planDesigndata = data
+                binding.viewpager.adapter =
+                    PowerDesignDetailPageAdapter(childFragmentManager, data, Id)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
             }
@@ -415,7 +463,9 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
             } else {
                 AppLogger.log("planDesign Fragment Something went wrong")
-                Toast.makeText(requireContext(), "planDesign Fragment Something went wrong", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(),
+                    "planDesign Fragment Something went wrong",
+                    Toast.LENGTH_SHORT)
                     .show()
             }
         })
@@ -448,43 +498,47 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.planAndDesignRequestAll(siteID.toString())
     }
+
     fun setUpQatData() {
         if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
             homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        val serviceFragAdapterAdapter = TaskQATListAdapter(requireContext(),object : QatMainAdapterListener {
-            override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
-                //this is for the listiner
+        val serviceFragAdapterAdapter =
+            TaskQATListAdapter(requireContext(), object : QatMainAdapterListener {
+                override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
+                    //this is for the listiner
 
 //                QATCheckActivity.Id=Id
 //                QATCheckActivity.planDesigndata=data
-                val adapterviewpager = TaskQatViewPagerAdapter(childFragmentManager)
-                adapterviewpager.addFragment(OpenQatFragment(), "Open QAT")
-                adapterviewpager.addFragment(SubmitQatFragment(), "Submitted QAT")
-                binding.viewpager.adapter = adapterviewpager
-                binding.tabs.setupWithViewPager(binding.viewpager)
-                setViewPager()
-            }
+                    val adapterviewpager = TaskQatViewPagerAdapter(childFragmentManager)
+                    adapterviewpager.addFragment(OpenQatFragment(), "Open QAT")
+                    adapterviewpager.addFragment(SubmitQatFragment(), "Submitted QAT")
+                    binding.viewpager.adapter = adapterviewpager
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
 
 
-        }, siteID.toString())
+            }, siteID.toString())
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
         homeViewModel?.QatModelResponse?.observe(viewLifecycleOwner, Observer {
 
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item!=null && it.data.item?.isNotEmpty()==true){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
-                isDataLoaded=true
+                isDataLoaded = true
                 serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.item?.size}")
-            }else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew!=null && it.data.itemNew?.isNotEmpty()==true){
+            } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
 //                qatMainModel = it.data
-                isDataLoaded=true
+                isDataLoaded = true
                 serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
-            }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+            } else if (it != null) {
+                Toast.makeText(requireContext(),
+                    "Service request Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
         })
@@ -518,19 +572,21 @@ class TaskSearchTabNewFragment(
         homeViewModel.qatMainRequestAll("1526")
     }
 
-    private fun setUpNocComplianceData(){
+    private fun setUpNocComplianceData() {
         AppLogger.log("opened task Site ID: ${AppController.getInstance().taskSiteId}")
         AppLogger.log("opened task details : ======> ${Gson().toJson(taskDetailData)}")
-        val nocDataAdapterListener = TaskNocDataAdapter(requireContext(),object :
+        val nocDataAdapterListener = TaskNocDataAdapter(requireContext(), object :
             TaskNocDataAdapterListener {
             override fun clickedItem(data: NocCompAllData, id: String, dataIndex: Int?) {
-                binding.viewpager.adapter = NocCompPageAdapter(childFragmentManager, data,dataIndex)
+                binding.viewpager.adapter =
+                    NocCompPageAdapter(childFragmentManager, data, dataIndex)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
             }
+
             override fun addNew() {
                 homeViewModel.updateNocAndComp(NocCompAllData())
-                if (homeViewModel.updateNocCompDataResponse?.hasActiveObservers() == true){
+                if (homeViewModel.updateNocCompDataResponse?.hasActiveObservers() == true) {
                     homeViewModel.updateNocCompDataResponse?.removeObservers(viewLifecycleOwner)
                 }
                 homeViewModel.updateNocCompDataResponse?.observe(viewLifecycleOwner) {
@@ -538,7 +594,7 @@ class TaskSearchTabNewFragment(
                         AppLogger.log("TaskSearchTabNewFragment data creating in progress ")
                         return@observe
                     }
-                    if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200 ) {
+                    if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance == 200) {
                         AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
                         taskDetailData?.ModuleId=it.data.data.cardId.toString()
                         taskDetailData?.ModuleName=it.data.data.name
@@ -551,8 +607,7 @@ class TaskSearchTabNewFragment(
                     else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                         hideLoader()
                         AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating Data")
-                    }
-                    else if (it != null) {
+                    } else if (it != null) {
                         AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
                     } else {
                         AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating Data")
@@ -560,14 +615,14 @@ class TaskSearchTabNewFragment(
                     }
                 }
             }
-        },taskDetailData)
+        }, taskDetailData)
         binding.horizontalOnlyList.adapter = nocDataAdapterListener
 
-        if (homeViewModel.NocAndCompModelResponse?.hasActiveObservers() == true){
+        if (homeViewModel.NocAndCompModelResponse?.hasActiveObservers() == true) {
             homeViewModel.NocAndCompModelResponse?.removeObservers(viewLifecycleOwner)
         }
         homeViewModel.NocAndCompModelResponse?.observe(viewLifecycleOwner) {
-            if (it!=null && it.status == Resource.Status.LOADING){
+            if (it != null && it.status == Resource.Status.LOADING) {
                 return@observe
             }
             (requireActivity() as BaseActivity).hideLoader()
@@ -609,7 +664,7 @@ class TaskSearchTabNewFragment(
             }
         }
 
-        if (taskViewModel.updateTaskDataResponse?.hasActiveObservers() == true){
+        if (taskViewModel.updateTaskDataResponse?.hasActiveObservers() == true) {
             taskViewModel.updateTaskDataResponse?.removeObservers(viewLifecycleOwner)
         }
         taskViewModel.updateTaskDataResponse?.observe(viewLifecycleOwner) {
@@ -757,17 +812,115 @@ class TaskSearchTabNewFragment(
         homeViewModel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
     }
 
+    fun setUpUtilityUqipData() {
+        if (homeViewModel.utilityEquipResponse?.hasActiveObservers() == true) {
+            homeViewModel.utilityEquipResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter =
+            TaskUtilitiesNocDataAdapter(object : TaskUtilitesNocDataAdapterListener {
+                /*override fun clickedItem(data: NewSiteAcquiAllData, parentIndex: Int) {
+                    //this is for the listiner
+
+                    SiteAcqTabActivity.siteacquisition = data
+                    SiteAcqTabActivity.parentIndex = parentIndex
+                    binding.viewpager.adapter = SiteAcquisitionTabAdapter(childFragmentManager, data,parentIndex)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }*/
+                override fun SMPSItemClicked(data: UtilityEquipmentAllData?) {
+                    SMPSDetailsActivity.utilitySmpsData = data
+                    binding.viewpager.adapter = SMPSViewpagerAdapter(childFragmentManager,
+                        data!!.UtilityEquipmentSmps,
+                        data!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+
+                override fun BateeryItemClicked(data: UtilityEquipmentAllData?) {
+                    BatteryBankDetailsActivity.utilityData = data
+                    binding.viewpager.adapter = BatterryBankViewpagerAdapter(childFragmentManager,
+                        data!!.UtilityEquipmentBatteryBank,
+                        data!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+
+                override fun DGItemClicked(data: UtilityEquipmentAllData?) {
+                    DGDetailsActivity.utilityData = data
+                    binding.viewpager.adapter = DGViewpagerAdapter(childFragmentManager,
+                        data!!.UtilityEquipmentDG,
+                        data!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+
+                override fun ACItemClicked(data: UtilityEquipmentAllData?) {
+                    ACDetailsActivity.utilityData = data
+                    binding.viewpager.adapter = ACViewpagerAdapter(childFragmentManager,
+                        data!!.UtilityEquipmentAC,
+                        data!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+
+                override fun FireExtinguisherItemClicked(data: UtilityEquipmentAllData?) {
+                    FireExtinguisherActivity.utilityData = data
+                    binding.viewpager.adapter = FireExtViewpagerAdapter(childFragmentManager,
+                        data!!.UtilityEquipmentFireExtinguisher,
+                        data!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+
+                override fun SuregeProtectionDeviceItemClicked(data: UtilityEquipmentAllData?) {
+                    //TODO this need to discuss
+                }
+
+                override fun PowerDistributionBoxItemClicked(data: UtilityEquipmentAllData?) {
+                    //TODO this need to discuss
+                }
+
+                override fun CableItemClicked(data: UtilityEquipmentAllData?) {
+                    //TODO this need to discuss
+                }
+
+            })
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel.utilityEquipResponse?.observe(viewLifecycleOwner, Observer {
+            hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.UtilityEquipment)
+                if (it.data.UtilityEquipment?.isNotEmpty() == true) {
+                    SMPSDetailsActivity.utilitySmpsData = it.data.UtilityEquipment?.get(0)
+                    binding.viewpager.adapter = SMPSViewpagerAdapter(childFragmentManager,
+                        it.data.UtilityEquipment?.get(0)!!.UtilityEquipmentSmps,
+                        it.data.UtilityEquipment?.get(0)!!.id)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+            } else if (it != null) {
+                AppLogger.log("Utility Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("Utility Fragment Something went wrong")
+            }
+        })
+        showLoader()
+//        homeViewModel.utilityRequestAll(siteID.toString())
+        homeViewModel.utilityRequestAll("1526")
+    }
+
 
     fun setUpOpcoData() {
         if (homeViewModel.opcoTenencyModelResponse?.hasActiveObservers() == true) {
             homeViewModel.opcoTenencyModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        val serviceFragAdapterAdapter = TaskOpcoTanancyFragAdapter(requireContext(),object :
+        val serviceFragAdapterAdapter = TaskOpcoTanancyFragAdapter(requireContext(), object :
             TaskCustomerDataAdapterListener {
 
             override fun clickedItem(data: OpcoTenencyAllData, parentIndex: Int) {
                 OpcoTenancyActivity.parentIndex = parentIndex
-                    OpcoTenancyActivity.Opcodata = data
+                OpcoTenancyActivity.Opcodata = data
                 binding.viewpager.adapter =
                     OpcoTenancyPageAdapter(childFragmentManager, data, parentIndex)
                 binding.tabs.setupWithViewPager(binding.viewpager)
