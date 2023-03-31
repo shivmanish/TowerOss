@@ -29,12 +29,10 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var 
                             updateSelection(currentOpened,sublistStatus)
                         }
                         else
-                            sublistCheckedPos=sublistStatus
-//                    holder.binding.titleCheckbox.setImageResource(R.drawable.check_selected)
+                            updateSelectedListItem(sublistStatus)
                     }
                     else
                         updateSelection(currentOpened,ArrayList())
-//                    holder.binding.titleCheckbox.setImageResource(R.drawable.check_unselected)
                 }
 
             })
@@ -65,9 +63,19 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var 
             if (holder.binding.titleCheckbox.tag is Boolean){
                 holder.binding.titleCheckbox.tag = !(holder.binding.titleCheckbox.tag as Boolean)
             }
-            if (holder.binding.titleCheckbox.tag as Boolean) holder.binding.titleCheckbox.setImageResource(R.drawable.check_selected)
-            else holder.binding.titleCheckbox.setImageResource(R.drawable.check_unselected)
-            updateSelection(position,ArrayList())
+            if (holder.binding.titleCheckbox.tag as Boolean){
+                holder.binding.titleCheckbox.setImageResource(R.drawable.check_selected)
+                val checkedList:ArrayList<Boolean> =ArrayList()
+                for (item in list[position].tabs){
+                    checkedList.add(true)
+                }
+                updateSelection(position,checkedList)
+            }
+            else {
+                holder.binding.titleCheckbox.setImageResource(R.drawable.check_unselected)
+                updateSelection(position,ArrayList())
+            }
+
         }
         holder.binding.titleStr.text = list[position].name
     }
@@ -86,23 +94,30 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var 
 
     fun updateSelection(position: Int,statusList:ArrayList<Boolean>){
         sublistCheckedPos=statusList
-        listner.selectedSites(generateSelectedIds(position,statusList))
-        AppLogger.log("sulist in updateSelection===>: $statusList")
         currentSelected = if(currentSelected == position) -1 else position
+        listner.selectedSites(generateSelectedIds(statusList))
+        AppLogger.log("sulist in updateSelection===>: $statusList")
+        notifyDataSetChanged()
+    }
+    fun updateSelectedListItem(statusList:ArrayList<Boolean>){
+        sublistCheckedPos=statusList
+        listner.selectedSites(generateSelectedIds(statusList))
+        AppLogger.log("sulist in updateSelection===>: $statusList")
         notifyDataSetChanged()
     }
 
-    fun generateSelectedIds(currentSelected:Int,iistItem:ArrayList<Boolean>):ArrayList<String>{
-        var selectedIds=ArrayList<String>()
+    fun generateSelectedIds(listItem:ArrayList<Boolean>):ArrayList<String>{
+        val selectedIds=ArrayList<String>()
         AppLogger.log("current selected parent at captureSite Adapter ====> : $currentSelected")
         AppLogger.log("current selected child list at genrated function ====> : $sublistCheckedPos")
         if (currentSelected!=-1)
         {
-            selectedIds.add("$currentSelected")
+            val subTabList=list[currentSelected].tabs
+//            selectedIds.add("$currentSelected")
             for(i in 0..sublistCheckedPos.size.minus(1))
             {
-                if (sublistCheckedPos[i])
-                    selectedIds.add("$i")
+                if (listItem[i])
+                    selectedIds.add(subTabList[i].id.toString())
             }
         }
 

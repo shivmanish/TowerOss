@@ -1,0 +1,18 @@
+[
+    {
+        "id": "National",
+        "name": "National"
+    },
+    {
+        "id": "Region",
+        "name": "Region"
+    },
+    {
+        "id": "State",
+        "name": "State"
+    },
+    {
+        "id": "MaintenancePoint",
+        "name": "MaintenancePoint"
+    }
+]

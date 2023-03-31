@@ -218,11 +218,13 @@
                         <TextView
                             android:id="@+id/start_date"
                             style="@style/RowTestItemEdit"
-                            android:text="2022-11-10"
+                            android:text=""
                             android:textSize="@dimen/dp15"
                             android:maxLength="10"
+                            android:paddingRight="@dimen/dp5"
+                            android:drawableTint="@color/color1"
                             android:layout_width="match_parent"
-                            android:drawableEnd="@drawable/icon_date"
+                            android:drawableEnd="@drawable/calender"
                             android:layout_height="wrap_content"/>
                         <View
                             android:alpha="0.37"
@@ -246,8 +248,10 @@
                             android:id="@+id/end_date"
                             style="@style/RowTestItemEdit"
                             android:textSize="@dimen/dp15"
-                            android:drawableEnd="@drawable/icon_date"
-                            android:text="2022-11-22"
+                            android:paddingRight="@dimen/dp5"
+                            android:drawableTint="@color/color1"
+                            android:drawableEnd="@drawable/calender"
+                            android:text=""
                             android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -348,6 +352,8 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/site_id_layout"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -361,7 +367,7 @@
                         android:text=""
                         android:hint="Search your site here"
                         android:id="@+id/site_id"
-                        style="@style/RowTextItemInfo"
+                        style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <View
@@ -407,6 +413,29 @@
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomUserSpinner
                         android:id="@+id/assign_to"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/ColumnItemInfo"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Geography Levels"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Geography_level"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

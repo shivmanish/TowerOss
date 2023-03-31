@@ -48,6 +48,9 @@ class TaskThirdFragment:Fragment() {
             viewmodel.processTemplatemanual.NotificationSettingfornewaction=binding.notificationSwitch.isChecked
             viewmodel.processTemplatemanual.Automaticescalationofoverdueitems=binding.AutoEsclationSwitch.isChecked
             viewmodel.processTemplatemanual.Reminderofoutstandingactions=binding.reminderSwitch.isChecked
+            viewmodel.processTemplatemanual.NotificationSettingGeoTracking=binding.GeoTrackingSwitch.isChecked
+            viewmodel.processTemplatemanual.NotificationSettingGeoFencing=binding.GeoFencingDistanceSwitch.isChecked
+            viewmodel.processTemplatemanual.Distance=binding.GeoFencingDistanceEdit.text.toString()
             if(taskInfo!=null)
                 viewmodel.processTemplatemanual.Taskid=taskInfo?.id?.toInt()!!
             AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
@@ -74,6 +77,23 @@ class TaskThirdFragment:Fragment() {
         binding.cancel.setOnClickListener {
             requireActivity().finish()
         }
+        binding.GeoTrackingSwitch.setOnCheckedChangeListener{buttonView, isChecked ->
+            if (isChecked){
+                binding.GeoFEncingLayout.visibility=View.VISIBLE
+            }
+            else
+                binding.GeoFEncingLayout.visibility=View.GONE
+        }
+
+        binding.GeoFencingDistanceSwitch.setOnCheckedChangeListener{buttonView, isChecked ->
+            if (isChecked){
+                binding.GeoFencingDistanceEditLayout.visibility=View.VISIBLE
+            }
+            else
+                binding.GeoFencingDistanceEditLayout.visibility=View.GONE
+        }
+
+
     }
 
     private fun taskInfoObserver(){

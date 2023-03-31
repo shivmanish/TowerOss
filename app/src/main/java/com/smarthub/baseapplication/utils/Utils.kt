@@ -308,9 +308,9 @@ object Utils {
 
     fun getCreateNewTaskDummyData(): Processtemplatecallmanual {
         var processTemplatemanual = Processtemplatecallmanual(
-            "",true,"",true,
-            "",true,0,0,"","",
-            "",ArrayList(),"","", true,"","",true,
+            "",false,"",false,
+            "",false,false,false,0,0,"","",
+            "","",ArrayList(),"","", false,"","",false,
             "","","","","","")
         return processTemplatemanual
     }
@@ -436,7 +436,7 @@ object Utils {
         try {
             val date1: Date
             val date2: Date
-            val dates = SimpleDateFormat("yyyy-MM-dd")
+            val dates = SimpleDateFormat("dd-MMM-yyyy")
             date1 = dates.parse(firstdate)
             date2 = dates.parse(secondDate)
             AppLogger.log("dateDiffrence:$date1, $date2")
