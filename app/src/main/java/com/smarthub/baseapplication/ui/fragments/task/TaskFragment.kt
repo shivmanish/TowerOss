@@ -76,15 +76,16 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             AppPreferences.getInstance().offlineTask.removeObservers(viewLifecycleOwner)
         AppPreferences.getInstance().offlineTask.observe(viewLifecycleOwner){
             binding.tasks.text = "$it"
+            binding.refresh.isEnabled=it!=0
             if (it==0){
                 binding.refresh.clearAnimation()
             }
         }
         binding.refresh.setOnClickListener {
+            AppPreferences.getInstance().callAPI()
             rotate.duration = 900
             rotate.repeatCount = Animation.INFINITE
             binding.refresh.startAnimation(rotate)
-            AppPreferences.getInstance().callAPI()
         }
         binding.tasks.text = AppPreferences.getInstance().offlineTaskList.size.toString()
     }

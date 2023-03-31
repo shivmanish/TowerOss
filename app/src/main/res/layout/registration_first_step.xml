@@ -203,15 +203,18 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/company_name_root"
+                android:id="@+id/company_code_root"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:hint="Compnay Name"
+                android:layout_marginTop="5dp"
+                android:hint="Company Code"
                 android:textColorHint="@color/white"
                 app:endIconMode="custom"
+                android:maxLines="1"
+                android:inputType="text"
                 app:errorTextAppearance="@style/ErrorText"
                 app:endIconTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/progress_status"
@@ -219,37 +222,24 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/company_name"
+                    android:id="@+id/company_code"
                     style="@style/CustomTextInputEdit"
-                    android:textCursorDrawable="@null"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp3"
+                    android:layout_marginBottom="@dimen/dp8"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textAllCaps="true"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center_vertical"
                     android:letterSpacing="0.1"
-                    android:focusableInTouchMode="false"
+                    android:textCursorDrawable="@null"
                     android:padding="@dimen/dp13"
-                    android:maxLines="1"
-                    android:inputType="text"
                     android:paddingStart="@dimen/dp15"
                     android:textColor="#fff"
                     android:textColorHint="@color/white"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <ProgressBar
-                android:padding="15dp"
-                android:visibility="invisible"
-                android:id="@+id/loading_progress"
-                android:paddingEnd="@dimen/dp8"
-                android:indeterminateTint="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/company_name_root"
-                app:layout_constraintTop_toTopOf="@+id/company_name_root"
-                app:layout_constraintEnd_toEndOf="@+id/company_name_root"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"/>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/first_name_root"
                 style="@style/TextInputLayout"
@@ -263,7 +253,7 @@
                 android:inputType="text"
                 app:errorTextAppearance="@style/ErrorText"
                 app:endIconTint="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/company_name_root"
+                app:layout_constraintTop_toBottomOf="@+id/company_code_root"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 

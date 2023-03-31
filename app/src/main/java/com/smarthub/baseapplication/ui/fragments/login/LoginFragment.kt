@@ -108,6 +108,8 @@ class LoginFragment : BaseFragment() {
         if (loginViewModel?.loginResponse?.hasActiveObservers() == true){
             loginViewModel?.loginResponse?.removeObservers(viewLifecycleOwner)
         }
+        AppPreferences.getInstance().saveString("accessToken", "")
+        AppPreferences.getInstance().saveString("refreshToken", "")
         loginViewModel?.loginResponse?.observe(viewLifecycleOwner) {
             (requireActivity() as BaseActivity).hideLoader()
             if (it != null && it.data?.access?.isNotEmpty() == true) {
@@ -150,7 +152,6 @@ class LoginFragment : BaseFragment() {
                 startActivity(intent)
                 requireActivity().finish()
             }else{
-                Log.d("status", AppConstants.GENERIC_ERROR)
                 Toast.makeText(requireContext(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
             }
         }

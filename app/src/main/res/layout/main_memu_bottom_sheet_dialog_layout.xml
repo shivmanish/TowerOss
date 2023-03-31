@@ -29,7 +29,7 @@
                 android:innerRadius="0dp"
                 android:shape="ring"
                 android:thicknessRatio="1.9"
-                app:cardCornerRadius="@dimen/dp40">
+                app:cardCornerRadius="@dimen/dp15">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
 
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:background="@color/circle_color"
@@ -123,7 +123,7 @@
                     android:innerRadius="0dp"
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -174,7 +174,7 @@
 
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:background="@color/circle_color"
@@ -225,7 +225,7 @@
 
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:background="@color/circle_color"
@@ -285,7 +285,7 @@
 
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -336,7 +336,7 @@
                     android:innerRadius="0dp"
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -387,7 +387,7 @@
 
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -438,7 +438,7 @@
 
                     android:shape="ring"
                     android:thicknessRatio="1.9"
-                    app:cardCornerRadius="40dp">
+                    app:cardCornerRadius="@dimen/dp25">
 
                     <ImageView
                         android:layout_width="match_parent"

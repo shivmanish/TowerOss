@@ -31,14 +31,14 @@ class OtpVerificationStep2 : Fragment() {
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
     lateinit var binding : OtpVerificationStep2FragmentBinding
+    var emailId : String?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = OtpVerificationStep2FragmentBinding.inflate(inflater)
+        if (requireArguments().containsKey("emailId")){
+            emailId=requireArguments().getString("emailId")
+        }
         return binding.root
-    }
-
-    private fun enableErrorText(){
-        binding.phoneNumLayout.error = "enter valid password"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +62,7 @@ class OtpVerificationStep2 : Fragment() {
         binding.resensOtpText.setOnClickListener {
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.resendPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
+            loginViewModel?.resendPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString(),emailId))
             binding.resensOtpText.visibility=View.GONE
             binding.otpCountDownTimer.visibility=View.VISIBLE
         }
@@ -187,7 +187,7 @@ class OtpVerificationStep2 : Fragment() {
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(), "Something went wrong, Please check Mobile Number ", Toast.LENGTH_LONG).show()
             }
         }
     }

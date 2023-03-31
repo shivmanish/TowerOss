@@ -30,15 +30,16 @@ class ForgotPassStep2 : Fragment() {
     lateinit var binding : ForgotPassStep2FragmentBinding
     private var loginViewModel : LoginViewModel?=null
     private lateinit var progressDialog : ProgressDialog
+    var emailId : String?=null
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ForgotPassStep2FragmentBinding.inflate(inflater)
+        if (requireArguments().containsKey("emailId")){
+            emailId=requireArguments().getString("emailId")
+        }
         return binding.root
     }
 
-    private fun enableErrorText(){
-        binding.phoneNumLayout.error = "enter valid password"
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,7 +67,7 @@ class ForgotPassStep2 : Fragment() {
         binding.otpCountDownTimer.setOnClickListener {
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.resendPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
+            loginViewModel?.resendPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString(),emailId))
             binding.otpCountDownTimer.isClickable=false
         }
         binding.submitBtn.setOnClickListener {
@@ -189,7 +190,7 @@ class ForgotPassStep2 : Fragment() {
                 }
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(), "Something went wrong, Please check Mobile Number ", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -205,7 +206,7 @@ class ForgotPassStep2 : Fragment() {
     fun otpCount_timer(){
         object : CountDownTimer(40000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                binding.otpCountDownTimer.setText(Html.fromHtml("<font color=#FFFFFFFF>Resend OTP in</font><font color=#FFD72B>0." + millisUntilFinished / 1000+ "</font> <font color=#FFFFFFFF> minute?</font>"))
+                binding.otpCountDownTimer.setText(Html.fromHtml("<font color=#FFFFFFFF>Resend OTP in </font><font color=#FFD72B>0." + millisUntilFinished / 1000+ "</font> <font color=#FFFFFFFF> minute?</font>"))
                 binding.otpCountDownTimer.isClickable=false
             }
             override fun onFinish() {

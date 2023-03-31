@@ -24,7 +24,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
 
     var homeViewModel : HomeViewModel?=null
     lateinit var binding : FragmentMyTaskHomeBinding
-    lateinit var adapterList : MyTaskItemAdapter
+    lateinit var adapterList : MyTeamTaskItemAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMyTaskHomeBinding.inflate(inflater)
@@ -34,7 +34,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskList.setHasFixedSize(true)
-        adapterList = MyTaskItemAdapter(listener,routes.MyTeamTaskNavigator.name)
+        adapterList = MyTeamTaskItemAdapter(listener,routes.MyTeamTaskNavigator.name)
         binding.taskList.adapter = adapterList
 
         adapterList.addItem("loading")
@@ -69,13 +69,17 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
                 jsonObject.addProperty("gettaskdata", item.id1)
                 jsonObject.addProperty("ownername", AppController.getInstance().ownerName)
                 AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(jsonObject), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.WORKFLOW_DATA_URL}","TaskDetailData"+item.id1)
-
-                val splittedData = item.Where.split(",")
+                val splittedData = item.Where.replace("[","").replace("]","").split(",")
                 var parentId =0
                 if (splittedData.isNotEmpty()) {
                     val firstIdx = splittedData[0]
                     if (firstIdx.isNotEmpty()) {
-                        parentId = firstIdx.toInt().div(10)
+                        try {
+                            parentId = firstIdx.toInt().div(10)
+                        }
+                        catch (e:Exception){
+                            AppLogger.log("${e.localizedMessage}")
+                        }
                         AppLogger.log("parentId=====>:${parentId}")
                     }
                     when (parentId){
@@ -83,7 +87,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
                             val cacheSiteAgreementData = AppPreferences.getInstance().getString("siteAgreementRequestAll" + item.siteid)
                             if (cacheSiteAgreementData==null || cacheSiteAgreementData.isEmpty()) {
                                 val childJsonObj = JsonObject()
-                                childJsonObj.addProperty("id", id)
+                                childJsonObj.addProperty("id", item.siteid)
                                 childJsonObj.addProperty("ownername", AppController.getInstance().ownerName)
                                 childJsonObj.add("SAcqSiteAcquisition", JsonArray())
                                 AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(childJsonObj), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.SITE_IBOARD_DATA_URL}", "siteAgreementRequestAll" + item.siteid)
@@ -93,7 +97,7 @@ class MyTeamTaskFragment(var listener: TaskListener) : Fragment() {
                             val cacheNocData = AppPreferences.getInstance().getString("NocAndCompRequestAll" + item.siteid)
                             if (cacheNocData==null || cacheNocData.isEmpty()) {
                                 val childJsonObj = JsonObject()
-                                childJsonObj.addProperty("id", id)
+                                childJsonObj.addProperty("id", item.siteid)
                                 childJsonObj.addProperty("ownername", AppController.getInstance().ownerName)
                                 childJsonObj.add("NOCCompliance", JsonArray())
                                 AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(childJsonObj), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.SITE_IBOARD_DATA_URL}", "NocAndCompRequestAll" + item.siteid)

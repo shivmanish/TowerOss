@@ -4,7 +4,7 @@ data class BasicInfoData(
     val Acquisitiontype: List<Int>,
     val Buildingtype: List<Int>,
     val Costcentre: List<Int>,
-    val MaintenancePoint: List<Int>,
+    val MaintenancePoint: MaintenancePoint?=null,
     val National: List<Int>,
     val Opcositetype: List<Int>?=null,
     val Projectname: List<Int>,

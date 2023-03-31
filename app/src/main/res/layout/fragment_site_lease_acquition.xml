@@ -40,7 +40,7 @@
             android:layout_height="@dimen/dp50"
             android:layout_marginEnd="@dimen/dp20"
             android:layout_marginBottom="@dimen/dp20"
-            app:cardCornerRadius="@dimen/dp100"
+            app:cardCornerRadius="@dimen/dp25"
             app:layout_constraintEnd_toEndOf="parent"
             app:cardBackgroundColor="#3D4E6D"
             app:cardElevation="2dp"

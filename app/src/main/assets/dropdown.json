@@ -53,7 +53,7 @@
       ]
     },
     {
-      "name": "buildingBuildType",
+      "name": "BuildingBuildType",
       "data": [
         {
           "id": 1,
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "name": "siteAccessWay",
+      "name": "SiteAccessWay",
       "data": [
         {
           "id": 1,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "name": "gateAndFence",
+      "name": "GateAndFence",
       "data": [
         {
           "id": 1,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "name": "otherOperatorsonRoof",
+      "name": "OtherOperators",
       "data": [
         {
           "id": 1,
@@ -113,7 +113,28 @@
       ]
     },
     {
-      "name": "fiberLMCLaying",
+      "name": "FiberLMCLaying",
+      "data": [
+        {
+          "id": 1,
+          "name": "Feasible"
+        },
+        {
+          "id": 2,
+          "name": "Not Feasible"
+        },
+        {
+          "id": 3,
+          "name": "Feasible with Rework"
+        },
+        {
+          "id": 4,
+          "name": "NA"
+        }
+      ]
+    },
+    {
+      "name": "EBSupplyThroOwnerMeter",
       "data": [
         {
           "id": 1,
@@ -155,7 +176,7 @@
       ]
     },
     {
-      "name": "equipmentRoom",
+      "name": "EquipmentRoom",
       "data": [
         {
           "id": 1,
@@ -176,7 +197,7 @@
       ]
     },
     {
-      "name": "requiredAreaAvailable",
+      "name": "RequiredAreaAvailable",
       "data": [
         {
           "id": 1,
@@ -210,7 +231,7 @@
       ]
     },
     {
-      "name": "overallFeasibility",
+      "name": "OverallFeasibility",
       "data": [
         {
           "id": 1,
@@ -222,7 +243,24 @@
         },
         {
           "id": 3,
-          "name": "Feasible with Rework"
+          "name": "Workable"
+        }
+      ]
+    },
+    {
+      "name": "StatutoryPermissions",
+      "data": [
+        {
+          "id": 1,
+          "name": "Available"
+        },
+        {
+          "id": 2,
+          "name": "Not Available"
+        },
+        {
+          "id": 3,
+          "name": "Workable"
         }
       ]
     },
@@ -380,7 +418,7 @@
       ]
     },
     {
-      "name": "meterType",
+      "name": "MeterType",
       "data": [
         {
           "id": 1,
@@ -627,6 +665,95 @@
         {
           "id": 2,
           "name": "Renewal"
+        }
+      ]
+    },
+    {
+      "name": "SiteDemarcation",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes with Rework"
+        }
+      ]
+    },
+    {
+      "name": "EBApplicationStatus",
+      "data": [
+        {
+          "id": 1,
+          "name": "Applied"
+        },
+        {
+          "id": 2,
+          "name": "Not Applied"
+        },
+        {
+          "id": 3,
+          "name": "Approved"
+        },
+        {
+          "id": 4,
+          "name": "NA"
+        }
+      ]
+    },
+    {
+      "name": "EBPowerAvailability",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes With Rework"
+        }
+      ]
+    },
+    {
+      "name": "SolarFeability",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes With Rework"
+        }
+      ]
+    },
+    {
+      "name": "PropertyType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Building"
+        },
+        {
+          "id": 2,
+          "name": "Land"
+        },
+        {
+          "id": 3,
+          "name": "Building And Land"
         }
       ]
     }

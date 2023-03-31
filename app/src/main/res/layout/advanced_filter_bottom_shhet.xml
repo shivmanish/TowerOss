@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:thicknessRatio="1.9"
-        app:cardCornerRadius="40dp">
+        app:cardCornerRadius="15dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"

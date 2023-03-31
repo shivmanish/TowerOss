@@ -46,19 +46,49 @@ class OtpVerificationStep1 : Fragment() {
         progressDialog.setMessage("Please Wait...")
         progressDialog.setCanceledOnTouchOutside(true)
 
-
+        binding.emailIdRoot.tag = false
+        binding.moNoLayout.tag = false
         binding.sendOtp.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
+            if (binding.emailIdRoot.tag==false) {
+                binding.emailIdRoot.isErrorEnabled = true
+                if (binding.emailId.text.toString().isEmpty())
+                    binding.emailIdRoot.error = "Field should not be empty"
+                else
+                    binding.emailIdRoot.error = "Please Enter Valid Email Id"
+                return@setOnClickListener
+            }
             if (!progressDialog.isShowing)
                 progressDialog.show()
-            loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString()))
+            loginViewModel?.getPhoneOtp(UserOTPGet(binding.moNoEdit.text?.toString(),binding.emailId.text.toString()))
         }
+
+        binding.emailId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                if(binding.emailId.text.toString().isNotEmpty()){
+                    if (Utils.isValidEmail(binding.emailId.text.toString())){
+                        binding.emailIdRoot.tag =true
+                        binding.emailIdRoot.isErrorEnabled = false
+                    }
+                    else{
+                        binding.emailIdRoot.tag =false
+                    }
+
+                }
+                else {
+                    binding.emailIdRoot.setEndIconDrawable(0)
+                    binding.emailIdRoot.tag=false
+                }
+            }
+        })
 
         binding.moNoEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (binding.moNoEdit.text.toString().length>=10) {
+                if (binding.moNoEdit.text.toString().length==10) {
                     Utils.hideKeyboard(requireContext(), binding.moNoEdit)
                     binding.phoneNumLayout.isErrorEnabled = false
                     binding.sendOtp.isClickable=true
@@ -79,12 +109,14 @@ class OtpVerificationStep1 : Fragment() {
 
             if (it?.data != null && it.data.sucesss == true){
                 Log.d("status","getPhoneOtp: ${it.data}")
-                findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2("${binding.moNoEdit.text.toString()}"))
+                findNavController().navigate(OtpVerificationStep1Directions.actionOtpVerificationStep1ToOtpVerificationStep2(
+                    binding.moNoEdit.text.toString(),binding.emailId.text.toString()))
 
             }else{
                 Log.d("status", AppConstants.GENERIC_ERROR)
-                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-                enableErrorText()
+//                Toast.makeText(requireActivity(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(), "Email Id or Mobile Number is Invalid", Toast.LENGTH_LONG).show()
+//                enableErrorText()
             }
         }
     }

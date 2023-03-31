@@ -353,13 +353,11 @@
                             android:layout_height="@dimen/dp20"
                             android:background="@color/color1"
                             android:backgroundTint="@color/color1"
-
-
                             android:elevation="@dimen/dp12"
                             android:innerRadius="0dp"
                             android:shape="ring"
                             android:thicknessRatio="1.9"
-                            app:cardCornerRadius="@dimen/dp40">
+                            app:cardCornerRadius="@dimen/dp10">
 
                             <ImageView
                                 android:layout_width="wrap_content"

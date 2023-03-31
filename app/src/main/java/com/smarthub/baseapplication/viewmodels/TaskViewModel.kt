@@ -28,7 +28,7 @@ class TaskViewModel : ViewModel() {
     fun fetchTaskDetails(id:String?) {
         homeRepo?.getTaskById(id)
     }
-    fun updateTaskDataWithDataId(data: TaskDataUpdateModel){
-        taskActivityRepo?.updateTaskData(data)
+    fun updateTaskDataWithDataId(data: TaskDataUpdateModel,taskId:String){
+        taskActivityRepo?.updateTaskData(data,taskId)
     }
 }

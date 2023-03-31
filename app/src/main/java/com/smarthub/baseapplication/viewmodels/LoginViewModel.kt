@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.CommonResponse
+import com.smarthub.baseapplication.model.EmailVerificationResponse
 import com.smarthub.baseapplication.model.dropdown.DropDownList
 import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.model.otp.*
@@ -27,7 +28,7 @@ class LoginViewModel: ViewModel() {
     var getPassResponse : SingleLiveEvent<Resource<GetSuccessResponse>>?=null
     var regstationResponse: MutableLiveData<RegstationResponse>?=null
     var registerVerifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>>?=null
-    var emailVerifyOtpResponse: SingleLiveEvent<Resource<CommonResponse>>?=null
+    var emailVerifyOtpResponse: SingleLiveEvent<Resource<EmailVerificationResponse>>?=null
     var dropDownList: MutableLiveData<DropDownList>?=null
     var registerOtpResponse : SingleLiveEvent<Resource<GetRegisterOtpResponse>>?=null
     var registerRepo: RegisterRepo?=null
@@ -113,7 +114,7 @@ class LoginViewModel: ViewModel() {
     }
 
     fun emailVerification(email:String, ownername:String?) {
-        Log.d("status","emailVerification:$email:$ownername")
+        AppLogger.log("emailVerification:$email:$ownername")
         registerRepo?.emailVerification(email,ownername)
     }
 

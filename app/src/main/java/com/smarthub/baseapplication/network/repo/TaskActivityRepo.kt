@@ -2,22 +2,21 @@ package com.smarthub.baseapplication.network.repo
 
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
-import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown
-import com.smarthub.baseapplication.model.search.SearchList
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.taskModel.*
+import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.model.workflow.UpdatedTaskResponseModel
 import com.smarthub.baseapplication.network.APIClient
-import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponse
-import com.smarthub.baseapplication.ui.alert.model.response.SendAlertResponseNew
-import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
+import com.smarthub.baseapplication.network.APIInterceptor
+import com.smarthub.baseapplication.network.EndPoints
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.AppLogger.log
+import com.smarthub.baseapplication.utils.Utils.isNetworkConnected
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +42,7 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         apiClient.createNewTask(data!!).enqueue(object : Callback<CreateNewTaskResponse?> {
             override fun onResponse(
                 call: Call<CreateNewTaskResponse?>,
-                response: Response<CreateNewTaskResponse?>
+                response: Response<CreateNewTaskResponse?>,
             ) {
                 AppLogger.log("$TAG onResponse get response $response")
                 reportSuccessResponse(response)
@@ -80,7 +79,7 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         apiClient.getGeoGraphyLevel(data!!).enqueue(object : Callback<GeoGraphyLevelData> {
             override fun onResponse(
                 call: Call<GeoGraphyLevelData?>,
-                response: Response<GeoGraphyLevelData?>
+                response: Response<GeoGraphyLevelData?>,
             ) {
                 AppLogger.log("$TAG onResponse get response $response")
                 reportSuccessResponse(response)
@@ -117,7 +116,7 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         apiClient.AssignTask(data!!).enqueue(object : Callback<CreateNewTaskResponse?> {
             override fun onResponse(
                 call: Call<CreateNewTaskResponse?>,
-                response: Response<CreateNewTaskResponse?>
+                response: Response<CreateNewTaskResponse?>,
             ) {
                 AppLogger.log("$TAG onResponse get response $response")
                 reportSuccessResponse(response)
@@ -151,7 +150,7 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         apiClient.getTaskInfo(data!!).enqueue(object : Callback<TaskInfo> {
             override fun onResponse(
                 call: Call<TaskInfo?>,
-                response: Response<TaskInfo?>
+                response: Response<TaskInfo?>,
             ) {
                 AppLogger.log("$TAG onResponse get response $response")
                 reportSuccessResponse(response)
@@ -184,12 +183,36 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         })
     }
 
-    fun updateTaskData(data: TaskDataUpdateModel?) {
+    fun updateTaskData(data: TaskDataUpdateModel?,id:String) {
         AppLogger.log("updateTaskData==> : ${Gson().toJson(data)}")
+        if (!isNetworkConnected()) {
+            val value = AppPreferences.getInstance().getString("TaskDetailsData$id")
+            log("task details in offline mode===>:$value")
+            if (value != null && !value.isEmpty()) {
+                try {
+                    val alldata = Gson().fromJson(value,
+                        TaskDataList::class.java)
+                    if (alldata != null && alldata.isNotEmpty()) {
+                        val item= alldata[0]
+                        item.ModuleId= data?.ModuleId.toString()
+                        item.ModuleName= data?.ModuleName.toString()
+                        alldata[0]=item
+                        val jssonData = Gson().toJson(alldata)
+                        AppPreferences.getInstance().saveString("TaskDetailsData$id", jssonData)
+                    }
+                    //                    Logger.getLogger("ProfileRepo").warning(response.toString());
+                } catch (e: Exception) {
+                    log(e.localizedMessage)
+                }
+            }
+            updatedTaskResponse?.postValue(Resource.success(UpdatedTaskResponseModel("","Data updated"),200))
+            AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(data),"${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.WORKFLOW_DATA_URL}","updateTaskData$id")
+            return
+        }
         apiClient.updateTaskData(data!!).enqueue(object : Callback<UpdatedTaskResponseModel> {
             override fun onResponse(
                 call: Call<UpdatedTaskResponseModel?>,
-                response: Response<UpdatedTaskResponseModel?>
+                response: Response<UpdatedTaskResponseModel?>,
             ) {
                 AppLogger.log("$TAG onResponse get response $response")
                 reportSuccessResponse(response)

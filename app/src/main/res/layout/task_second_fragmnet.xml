@@ -22,7 +22,7 @@
             android:layout_width="@dimen/dp48"
             android:layout_height="@dimen/dp48"
             app:cardBackgroundColor="@color/card_bg"
-            app:cardCornerRadius="@dimen/dp60"
+            app:cardCornerRadius="@dimen/dp24"
             app:layout_constraintEnd_toEndOf="@+id/p_status1"
             app:layout_constraintStart_toStartOf="@+id/p_status1"
             app:layout_constraintTop_toTopOf="parent" >
@@ -60,7 +60,7 @@
             android:id="@+id/p2"
             android:layout_width="@dimen/dp48"
             android:layout_height="@dimen/dp48"
-            app:cardCornerRadius="@dimen/dp60"
+            app:cardCornerRadius="@dimen/dp24"
             app:cardBackgroundColor="#3D4E6D"
             app:strokeColor="@color/card_bg"
             app:strokeWidth="1dp"
@@ -105,7 +105,7 @@
             app:cardBackgroundColor="#ffffff"
             app:strokeColor="#3D4E6D"
             app:strokeWidth="1dp"
-            app:cardCornerRadius="@dimen/dp60"
+            app:cardCornerRadius="@dimen/dp24"
             app:layout_constraintEnd_toEndOf="@id/p_status3"
             app:layout_constraintStart_toStartOf="@+id/p_status3"
             app:layout_constraintTop_toTopOf="parent" >

@@ -1,3 +1,6 @@
 package com.smarthub.baseapplication.model.otp
 
-data class UserOTPGet(val userPhoneNumber:String?)
+data class UserOTPGet(
+    val userPhoneNumber:String?,
+    val email:String?
+    )

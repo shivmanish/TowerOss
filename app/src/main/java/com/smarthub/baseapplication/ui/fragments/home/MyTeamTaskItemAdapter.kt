@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
 
-class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
+class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String) : RecyclerView.Adapter<MyTeamTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var overDue:Int ?=0
@@ -126,6 +126,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
             holder.itemView.setOnClickListener {
                 listener.closeTask(item,token)
             }
+            holder.binding.taskClose.visibility=View.INVISIBLE
             holder.binding.taskClose.setOnClickListener {
                 if(item.Status!="Closed") {
                     val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)

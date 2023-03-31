@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.network;
 
 import com.google.gson.JsonObject;
 import com.smarthub.baseapplication.model.CommonResponse;
+import com.smarthub.baseapplication.model.EmailVerificationResponse;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.DropDownList;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
@@ -134,6 +135,10 @@ public interface APIClient {
 
     @POST(EndPoints.REGISTRATION)
     Call<CommonResponse> commonResponse(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.REGISTRATION)
+    Call<String> verifyEmailResponse(@Body JsonObject data);
 
     @POST(EndPoints.REGISTRATION)
     Call<GetRegisterOtpResponse> commonRegisterOTPResponse(@Body JsonObject data);
