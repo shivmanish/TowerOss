@@ -308,9 +308,9 @@ object Utils {
 
     fun getCreateNewTaskDummyData(): Processtemplatecallmanual {
         var processTemplatemanual = Processtemplatecallmanual(
-            "",true,"",true,
-            "",true,0,0,"","",
-            "",ArrayList(),"","", true,"","",true,
+            "",false,"",false,
+            "",false,false,false,0,0,"","",
+            "","",ArrayList(),"","", false,"","",false,
             "","","","","","")
         return processTemplatemanual
     }
@@ -394,11 +394,13 @@ object Utils {
         return date!!
     }
     fun getFullFormatedDate(d : String) : String{
+        var date=d
+        if (d.isEmpty())
+            date="22-Jan-2023"
         val format="yyyy-MM-dd'T'HH:mm:ss.SSS"
         var currentFormate:String?="dd-MMM-yyyy"
-        if (d.length<10)
+        if (d.length in 1..9)
             currentFormate="MMM-yyyy"
-        var date=d
         AppLogger.log("getFullFormatedDate:$date")
         try {
             val inputFormat: DateFormat = SimpleDateFormat(currentFormate)
@@ -436,7 +438,7 @@ object Utils {
         try {
             val date1: Date
             val date2: Date
-            val dates = SimpleDateFormat("yyyy-MM-dd")
+            val dates = SimpleDateFormat("dd-MMM-yyyy")
             date1 = dates.parse(firstdate)
             date2 = dates.parse(secondDate)
             AppLogger.log("dateDiffrence:$date1, $date2")

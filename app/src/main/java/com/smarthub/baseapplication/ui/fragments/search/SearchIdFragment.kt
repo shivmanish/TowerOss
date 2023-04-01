@@ -19,19 +19,19 @@ import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
 
-class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener, SearchChipAdapter.SearchChipAdapterListner {
+class SearchIdFragment : BaseFragment(), SearchIdFragResultAdapter.SearchResultListener, SearchCategoryAdapter.SearchCategoryListener, SearchChipAdapter.SearchChipAdapterListner {
 
     var fetchedData = ""
     var isDataFetched = true
 
     companion object{
-        var item = SearchListItem("Site Id","")
+        var item = SearchListItem("Search Site Id","")
     }
 
     var selectedCategory: String="siteID"
     private lateinit var binding: SearchIdFragmentBinding
     lateinit var homeViewModel : AlertViewModel
-    lateinit var searchResultAdapter : SearchResultAdapter
+    lateinit var searchResultAdapter : SearchIdFragResultAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SearchIdFragmentBinding.inflate(layoutInflater)
@@ -47,7 +47,7 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
             if (arguments?.getBoolean("hideNav",false) == true)
                 binding.toolbar.visibility = View.GONE
         }
-        searchResultAdapter = SearchResultAdapter(requireContext(),this@SearchIdFragment)
+        searchResultAdapter = SearchIdFragResultAdapter(requireContext(),this@SearchIdFragment)
         binding.searchResult.adapter = searchResultAdapter
         binding.searchResult.setHasFixedSize(true)
         if (homeViewModel.siteSearchResponse?.hasActiveObservers() == true){
@@ -132,7 +132,7 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
             enableButton()
         }
         else if (i!=null && i is SearchSiteIdItem){
-            item = SearchListItem(i.siteID,item.id)
+            item = SearchListItem(i.siteID,i.id)
             binding.searchCardView.text = i.siteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
@@ -150,13 +150,13 @@ class SearchIdFragment : BaseFragment(), SearchResultAdapter.SearchResultListene
             enableButton()
         }
         else if (i!=null && i is SearchSiteOpcoName){
-            item = SearchListItem(i.OpcoName,item.id)
+            item = SearchListItem(i.OpcoName,i.id)
             binding.searchCardView.text = i.OpcoName?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()
         }
         else if (i!=null && i is SearchSiteOpcoSiteId){
-            item = SearchListItem(i.OpcoSiteID,item.id)
+            item = SearchListItem(i.OpcoSiteID,i.id)
             binding.searchCardView.text = i.OpcoSiteID?.toEditable()
             binding.searchCardView.setSelection(binding.searchCardView.text.toString().length)
             enableButton()

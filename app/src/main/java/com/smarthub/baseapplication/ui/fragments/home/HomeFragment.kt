@@ -96,21 +96,21 @@ class HomeFragment : Fragment(),TaskListener {
             AppLogger.log("my Task data fetched")
             if (it!=null && it.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
-                list.addAll(it)
+                list.addAll(filterTaskList(it))
                 AppPreferences.getInstance().saveMyTeamTask(it)
                 if(list.size<3)
                     binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
                 adapterList.updateList(list)
-                binding.tastCount.text = it.size.toString()
+                binding.tastCount.text = list.size.toString()
             }else{
                 val data = AppPreferences.getInstance().myTeamTask
                 if (data.isNotEmpty()){
                     val list :ArrayList<Any> = ArrayList()
-                    list.addAll(data)
+                    list.addAll(filterTaskList(data))
                     if(list.size<3)
                         binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
                     adapterList.updateList(list)
-                    binding.tastCount.text = data.size.toString()
+                    binding.tastCount.text = list.size.toString()
                 }else {
                     binding.taskList.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
                     binding.seeAllTask.visibility = View.GONE
@@ -128,11 +128,11 @@ class HomeFragment : Fragment(),TaskListener {
             val data = AppPreferences.getInstance().myTeamTask
             if (data.isNotEmpty()){
                 val list :ArrayList<Any> = ArrayList()
-                list.addAll(data)
+                list.addAll(filterTaskList(data))
                 if(list.size<3)
                     binding.taskList.layoutParams.height=ViewGroup.LayoutParams.WRAP_CONTENT
                 adapterList.updateList(list)
-                binding.tastCount.text = data.size.toString()
+                binding.tastCount.text = list.size.toString()
             }
         }
     }
@@ -214,6 +214,25 @@ class HomeFragment : Fragment(),TaskListener {
     override fun assignTask(task : MyTeamTask) {
         val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task)
         bm.show(childFragmentManager, "category")
+    }
+    fun filterTaskList(allTaskList:List<MyTeamTask>):ArrayList<MyTeamTask>{
+        val filteredTaskList:ArrayList<MyTeamTask> = ArrayList()
+        for (item in allTaskList){
+            if (item.Where.isNotEmpty()){
+                val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
+                if (subTaskTabList.isNotEmpty()){
+                    try {
+                        val tempTab=subTaskTabList[0].toInt().div(10)
+                        if (tempTab==2 || tempTab==6)
+                            filteredTaskList.add(item)
+                    }
+                    catch (e:Exception){
+                        AppLogger.log("${e.localizedMessage}")
+                    }
+                }
+            }
+        }
+        return filteredTaskList
     }
 
 

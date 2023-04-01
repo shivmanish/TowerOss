@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
     <LinearLayout
         android:id="@+id/rfEquipment_edit_save"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:elevation="@dimen/dp10"
@@ -25,32 +25,36 @@
         android:layout_marginBottom="10dp">
         <TextView
             android:id="@+id/cancel"
-            android:padding="5dp"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="20dp"
             android:text="Cancel"
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="@dimen/dp14"
+            android:layout_marginRight="@dimen/dp5"
             android:textColor="@color/card_bg"
-            android:layout_width="88dp"
-            android:layout_height="@dimen/dp32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
         <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             app:cardBackgroundColor="#FFD72B"
             app:cardCornerRadius="6dp"
-            app:cardElevation="@dimen/dp5"
+            android:elevation="0dp"
+            android:layout_marginLeft="@dimen/dp3"
             android:layout_marginRight="10dp"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/next"
-                android:padding="5dp"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="@dimen/dp23"
                 android:text="Next"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="@dimen/dp14"
                 android:textColor="@color/card_bg"
-                android:layout_width="88dp"
-                android:layout_height="@dimen/dp32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 />
 
         </com.google.android.material.card.MaterialCardView>

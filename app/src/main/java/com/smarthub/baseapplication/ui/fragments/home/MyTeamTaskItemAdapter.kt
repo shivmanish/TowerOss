@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.ui.fragments.home
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
 
-class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String) : RecyclerView.Adapter<MyTeamTaskItemAdapter.ViewHold>() {
+class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String,var context: Context) : RecyclerView.Adapter<MyTeamTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var overDue:Int ?=0
@@ -126,30 +127,7 @@ class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String) : Recy
             holder.itemView.setOnClickListener {
                 listener.closeTask(item,token)
             }
-            holder.binding.taskClose.visibility=View.INVISIBLE
-            holder.binding.taskClose.setOnClickListener {
-                if(item.Status!="Closed") {
-                    val intent = Intent (holder.itemView.context, TaskDetailActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    intent.putExtra("url", item.id1)
-                    if (item.Where.isNotEmpty())
-                        intent.putExtra("where", item.Where)
-                    intent.putExtra("siteId", item.siteid)
-                    intent.putExtra("trackingId", item.id1)
-                    intent.putExtra("Distance", item.Distance)
-                    intent.putExtra("NotificationSettingGeoFencing", item.NotificationSettingGeoFencing)
-                    intent.putExtra("Trackingflag", item.Trackingflag)
-                    holder.itemView.context.startActivity(intent)
-                }
-            }
-            if(item.Status=="Closed"){
-                holder.binding.taskClose.text="Task Closed"
-                holder.binding.taskClose.isEnabled=false
-            }
-            else{
-                holder.binding.taskClose.setText(R.string.Close_task)
-                holder.binding.taskClose.isEnabled=true
-            }
+            holder.binding.taskClose.text= String.format(context.resources.getString(R.string.two_string_format_space),item.First_Name,item.Last_Name)
             if(item.Auto=="True"){
                 holder.binding.editTaskItem.text="A"
                 holder.binding.btnEdit.visibility=View.GONE
@@ -172,6 +150,9 @@ class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String) : Recy
                     val intent = Intent(holder.itemView.context, TaskActivity::class.java)
                     intent.putExtra("data",Gson().toJson(item))
                     intent.putExtra("title","Edit Task")
+                    intent.putExtra("Distance", item.Distance)
+                    intent.putExtra("NotificationSettingGeoFencing", item.NotificationSettingGeoFencing)
+                    intent.putExtra("Trackingflag", item.Trackingflag)
                     holder.itemView.context.startActivity(intent)
                 }
 
