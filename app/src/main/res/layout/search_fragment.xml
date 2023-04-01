@@ -10,9 +10,10 @@
     <ImageView
         android:id="@+id/btn_logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp5"
-        android:src="@drawable/app_logo"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/app_logo1"
+        android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -314,7 +315,7 @@
                         android:id="@+id/category_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="350dp"
+                        android:minHeight="250dp"
                         android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="2"

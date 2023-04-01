@@ -85,7 +85,7 @@ class LocationService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-        requestLocationUpdates()
+          requestLocationUpdates()
         println("this is called "+PatrollerPriference(this).gettokekey())
         startTimer()
         return START_STICKY
@@ -213,8 +213,6 @@ class LocationService : Service() {
             Util.setStartLatlong(this, lattitude, longitude)
             getData(latlongdata)
         }
-
-//
     }
 
 

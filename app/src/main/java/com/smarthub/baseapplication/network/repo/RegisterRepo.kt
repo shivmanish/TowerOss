@@ -206,14 +206,14 @@ class RegisterRepo(private val apiClient: APIClient) {
         jsonObj.addProperty("ownername",ownername)
         jsonObj.addProperty("email",email)
         AppLogger.log("Emailvarification data===> $jsonObj")
-        apiClient.verifyEmailResponse(jsonObj).enqueue(object : Callback<String?> {
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+        apiClient.verifyEmailResponse(jsonObj).enqueue(object : Callback<EmailVerificationResponse?> {
+            override fun onResponse(call: Call<EmailVerificationResponse?>, response: Response<EmailVerificationResponse?>) {
                 AppLogger.log("emailVerification onResponse get response $response")
                 AppLogger.log("emailVerification onResponse get responsebody ${response.body()}")
-//                reportSuccessResponse(response)
+                reportSuccessResponse(response)
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<EmailVerificationResponse?>, t: Throwable) {
                 reportErrorResponse(null, t.localizedMessage)
                 AppLogger.log("emailVerification" + " onFailureResponse get response " + t.localizedMessage)
 
@@ -223,6 +223,8 @@ class RegisterRepo(private val apiClient: APIClient) {
                 if (response.body() != null) {
                     AppLogger.log("varification success response===>${response.body()}")
                     verifyEmailResponse?.postValue(Resource.success(response.body()!!, 200))
+                }else if (response.body() == null) {
+                    verifyEmailResponse?.postValue(Resource.success(EmailVerificationResponse("","Please fill correct email domain"), 200))
                 }
             }
 

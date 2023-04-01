@@ -79,7 +79,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/rfEquipment_edit_save"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:elevation="@dimen/dp10"

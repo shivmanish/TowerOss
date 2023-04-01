@@ -85,6 +85,7 @@ class RegistrationFirstStep : Fragment() {
                     registrationFirstStepBinding.firstNameRoot.isErrorEnabled = false
                 }
                 else{
+                    registrationFirstStepBinding.firstName.text = "".toEditable()
                     registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
                     registrationFirstStepBinding.firstNameRoot.tag=false
                 }
@@ -234,13 +235,12 @@ class RegistrationFirstStep : Fragment() {
                 registrationFirstStepBinding.emailIdRoot.tag = true
                 registrationFirstStepBinding.emailIdRoot.isErrorEnabled = false
                 return@observe
-            }else{
-                registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
-                registrationFirstStepBinding.emailIdRoot.tag = false
-                registrationFirstStepBinding.emailIdRoot.isErrorEnabled = true
-                registrationFirstStepBinding.emailIdRoot.error = "Please Enter Valid Email ID"
-                Log.d("status","${it.message}")
             }
+            registrationFirstStepBinding.emailIdRoot.setEndIconDrawable(0)
+            registrationFirstStepBinding.emailIdRoot.tag = false
+            registrationFirstStepBinding.emailIdRoot.isErrorEnabled = true
+            registrationFirstStepBinding.emailIdRoot.error = "Please Enter Valid Email ID"
+            Log.d("status","${it.message}")
 
         }
         loginViewModel.fetchCompanyDropDown()

@@ -139,7 +139,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.REGISTRATION)
-    Call<String> verifyEmailResponse(@Body JsonObject data);
+    Call<EmailVerificationResponse> verifyEmailResponse(@Body JsonObject data);
 
     @POST(EndPoints.REGISTRATION)
     Call<GetRegisterOtpResponse> commonRegisterOTPResponse(@Body JsonObject data);

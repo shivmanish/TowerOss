@@ -36,9 +36,10 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObserber()
-        adapter = NocApplicationDetailsAdapter(this@NocDetailsFragment,nocdata?.ApplicationInitial,this@NocDetailsFragment)
-        binding?.listItem?.adapter=adapter
-
+        if (nocdata?.ApplicationInitial!=null) {
+            adapter = NocApplicationDetailsAdapter(this@NocDetailsFragment, nocdata?.ApplicationInitial!!, this@NocDetailsFragment)
+            binding?.listItem?.adapter = adapter
+        }else Toast.makeText(requireContext(),"ApplicationInitial null",Toast.LENGTH_SHORT).show()
         binding?.addItemsLayout?.setOnClickListener {
             updataDataClicked(NocApplicationInitial())
 //            val dalouge = AddNewRfAntennaAdapter(R.layout.rf_anteena_list_item_dialouge)
