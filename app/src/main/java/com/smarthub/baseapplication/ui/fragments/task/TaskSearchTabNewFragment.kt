@@ -135,6 +135,7 @@ class TaskSearchTabNewFragment(
         binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        binding.trackinglayout.visibility = View.GONE
         binding.dropdownImg.setOnClickListener {
             binding.collapsingLayout.tag = !(binding.collapsingLayout.tag as Boolean)
             if (binding.collapsingLayout.tag as Boolean) {
@@ -378,6 +379,11 @@ class TaskSearchTabNewFragment(
                     val siteData = data.Siteaddress!![0]
                     lattitude = siteData.locLatitude
                     longitude = siteData.locLongitude
+                    if(Trackingflag){
+                        binding.trackinglayout.visibility = View.VISIBLE
+                    }else{
+                        binding.trackinglayout.visibility = View.GONE
+                    }
                     AppLogger.log("fetched latitude:${lattitude},longitude:$longitude")
                 } else {
                     AppLogger.log("Site address not fetched")
