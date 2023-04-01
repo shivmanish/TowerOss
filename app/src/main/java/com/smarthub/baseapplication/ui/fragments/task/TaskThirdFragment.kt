@@ -66,7 +66,7 @@ class TaskThirdFragment:Fragment() {
                 if (progressDialog.isShowing){
                     progressDialog.dismiss()
                 }
-                if (it!=null && it.Message == "Data updated"){
+                if (it!=null && it.Error == ""){
 //                    call UI update api for task
                     Toast.makeText(context,"Task Created SuccessFully",Toast.LENGTH_LONG).show()
                     requireActivity().finish()
