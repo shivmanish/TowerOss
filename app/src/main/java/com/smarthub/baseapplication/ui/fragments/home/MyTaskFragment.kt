@@ -48,7 +48,7 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
                 AppLogger.log("myTask data not null")
                 val list :ArrayList<Any> = ArrayList()
                 list.add("header")
-                list.addAll(it)
+                list.addAll(filterTaskList(it))
                 adapterList.updateList(list)
                 prepareOfflineList(it)
             }
@@ -114,6 +114,26 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
                 }
             }
         }
+    }
+
+    fun filterTaskList(allTaskList:List<MyTeamTask>):ArrayList<MyTeamTask>{
+        val filteredTaskList:ArrayList<MyTeamTask> = ArrayList()
+        for (item in allTaskList){
+            if (item.Where.isNotEmpty()){
+                val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
+                if (subTaskTabList.isNotEmpty()){
+                    try {
+                        val tempTab=subTaskTabList[0].toInt().div(10)
+                        if (tempTab==2 || tempTab==6)
+                            filteredTaskList.add(item)
+                    }
+                    catch (e:Exception){
+                        AppLogger.log("${e.localizedMessage}")
+                    }
+                }
+            }
+        }
+        return filteredTaskList
     }
 
 }

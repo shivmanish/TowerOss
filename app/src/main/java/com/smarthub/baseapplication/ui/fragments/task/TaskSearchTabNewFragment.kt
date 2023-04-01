@@ -81,6 +81,7 @@ import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.FireE
 import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters.FireExtViewpagerAdapter
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
@@ -158,7 +159,7 @@ class TaskSearchTabNewFragment(
                 val start_longitude_string =
                     PatrollerPriference(requireContext()).getStartLongitude().toDouble()
                 if (start_lattitiude_string.equals("Na", true)) {
-                    Snackbar.make(binding.name, "You are not in feance !", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
                         .show()
                     return@setOnClickListener
                 }
@@ -173,7 +174,7 @@ class TaskSearchTabNewFragment(
                 if (distance_btwn_user_and_site <= fancingDistance) {
                     //Close Request Hit
                 } else {
-                    Snackbar.make(binding.name, "You are not in feance !", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
                         .show()
                 }
             } else {
@@ -223,6 +224,7 @@ class TaskSearchTabNewFragment(
                 if (it.data.isNotEmpty()) {
                     AppLogger.log("fetched task data =====> : ${Gson().toJson(it.data[0])}")
                     taskDetailData = it.data[0]
+                    mapAppBarUiData(taskDetailData)
                     setParentData()
                 } else
                     AppLogger.log("not any assigned task found at task Id $taskDetailId")
@@ -372,6 +374,7 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 (requireActivity() as BaseActivity).hideLoader()
                 val data: AllsiteInfoDataModel = it.data
+                mapSiteIboardUiData(data)
                 if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
                     lattitude = siteData.locLatitude
@@ -1038,12 +1041,38 @@ class TaskSearchTabNewFragment(
 
     fun findTaskSubtabList(taskDetailData:TaskDataListItem?):String{
         if (taskDetailData?.Where!=null){
-            var subTaskList: String? =taskDetailData?.Where
+            var subTaskList: String? =taskDetailData.Where
             subTaskList = subTaskList?.replace("[", "")
             subTaskList = subTaskList?.replace("]", "")
             return subTaskList!!
         }
         return  ""
+    }
+
+    fun mapAppBarUiData(data:TaskDataListItem?){
+        binding.title.text=data?.Taskname
+        binding.sla.text=data?.SLA
+        binding.StartedDate.text=Utils.getFormatedDate(data?.startdate,"dd-MMM-yyyy")
+        binding.CloseDate.text=Utils.getFormatedDate(data?.enddate,"dd-MMM-yyyy")
+        binding.AssignToName.text=String.format(context?.resources?.getString(R.string.two_string_format_space)!!,data?.FirstName,data?.LastName)
+    }
+
+    fun mapSiteIboardUiData(data: AllsiteInfoDataModel ){
+        if (data.Basicinfo!=null && data.Basicinfo?.isNotEmpty()==true){
+            val siteData=data.Basicinfo?.get(0)
+            binding.SiteName.text=siteData?.siteName
+            binding.SiteId.text=siteData?.siteID
+            binding.SiteAlternateName.text=siteData?.aliasName
+            if (siteData?.Sitecategory!=null && siteData.Sitecategory.isNotEmpty()){
+                AppPreferences.getInstance().setDropDown(binding.SiteCategory,DropDowns.Sitecategory.name, siteData.Sitecategory[0].toString())
+            }
+            if (siteData?.Sitestatus!=null && siteData.Sitestatus.isNotEmpty()){
+                AppPreferences.getInstance().setDropDown(binding.SiteStatus,DropDowns.Sitestatus.name, siteData.Sitestatus[0].toString())
+            }
+            if (siteData?.Opcositetype!=null && siteData.Opcositetype.isNotEmpty()){
+                AppPreferences.getInstance().setDropDown(binding.SiteType,DropDowns.Opcositetype.name, siteData.Opcositetype[0].toString())
+            }
+        }
     }
 
 
