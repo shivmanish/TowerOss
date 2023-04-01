@@ -167,12 +167,12 @@
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/notification_switch"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:showText="false"
             android:checked="true"
-            app:track="@drawable/custome_track"
             android:thumb="@drawable/custome_thum"
-            android:layout_height="@dimen/dp25"/>
+            app:showText="false"
+            app:track="@drawable/custome_track" />
     </LinearLayout>
 
     <LinearLayout
@@ -274,7 +274,7 @@
               android:layout_width="wrap_content"
               android:layout_gravity="center"
               app:showText="false"
-              android:checked="true"
+              android:checked="false"
               app:track="@drawable/custome_track"
               android:thumb="@drawable/custome_thum"
               android:layout_height="@dimen/dp20"/>
@@ -285,6 +285,7 @@
           android:layout_height="wrap_content"
           android:id="@+id/Geo_FEncing_layout"
           android:orientation="horizontal"
+          android:visibility="gone"
           android:layout_marginTop="@dimen/dp5"
           android:padding="@dimen/dp5">
 
@@ -306,6 +307,7 @@
                   android:id="@+id/Geo_Fencing_Distance_edit_layout"
                   android:layout_width="match_parent"
                   android:orientation="vertical"
+                  android:visibility="gone"
                   android:layout_height="wrap_content">
                   <LinearLayout
                       android:layout_width="match_parent"
@@ -361,7 +363,7 @@
               android:layout_width="wrap_content"
               android:layout_gravity="center"
               app:showText="false"
-              android:checked="true"
+              android:checked="false"
               app:track="@drawable/custome_track"
               android:thumb="@drawable/custome_thum"
               android:layout_height="@dimen/dp20"/>

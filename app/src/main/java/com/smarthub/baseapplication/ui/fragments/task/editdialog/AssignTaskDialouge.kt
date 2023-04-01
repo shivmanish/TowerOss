@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
 import com.smarthub.baseapplication.model.taskModel.Updateprocesstask
+import com.smarthub.baseapplication.model.taskModel.assignTask.Assigntask
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
@@ -58,33 +59,18 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
             if (!progressDialog.isShowing)
                 progressDialog.show()
             if(task!=null){
-                val data  = Updateprocesstask(
-                    AssigneeDepartment = binding.assigneeDepartment.selectedValue.name,
-                    Taskname = binding.taskName.text.toString(),
-                    workorderid = binding.WorkOrderNumber.text.toString(),
-                    actorname = binding.AssignTo.selectedValue.phone,
-                    id = task!!.id1,
-                    Taskid = task!!.Taskid.toInt(),
-                    Taskinstruction = task!!.Taskinstruction,
-                    Workflow = task!!.Workflow,
-                    ReWorkflow = task!!.ReWorkflow,
-                    PrerequisiteTask = task!!.PrerequisiteTask,
-                    FeatureName = task!!.FeatureName,
-                    SLA = task!!.SLA.toInt(),
-                    Where = task!!.Where,
-                    Weightage = task!!.Weightage,
-                    Status = task!!.Status,
-                    NotificationSettingfornewaction = task!!.NotificationSettingfornewaction,
-                    Reminderofoutstandingactions = task!!.Reminderofoutstandingactions,
-                    Automaticescalationofoverdueitems = task!!.Automaticescalationofoverdueitems,
-                    created_at = task!!.created_at,
-                    stratdate = task!!.startdate,
-                    enddate = task!!.enddate
-                )
+                val tempData=Assigntask()
+                tempData.let {
+                    it.id=task?.id1
+                    it.workorderid=task?.workorderid
+                    it.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
+                    it.Taskname=task?.Taskname
+                    it.actorname=binding.AssignTo.selectedValue.phone
+                }
                 AppLogger.log("before updated Data for task Assign : $task")
-                AppLogger.log("updated Data for task Assign : $data")
-                taskViewmodel.taskAssign(data)
-                AppLogger.log("updated Data Successfully : $data")
+                AppLogger.log("updated Data for task Assign : $tempData")
+                taskViewmodel.taskAssign(tempData)
+                AppLogger.log("updated Data Successfully : $tempData")
 
             }
 
@@ -99,7 +85,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
                     dismiss()
                 }
                 else {
-                    Toast.makeText(context,"Something went wrong ",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"Something went wrong, Please Try Again ",Toast.LENGTH_LONG).show()
                     AppLogger.log("Something went wrong in Task Assign bottom sheet fragment: ${it.Error}")
                 }
             }

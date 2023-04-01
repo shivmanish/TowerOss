@@ -7,6 +7,8 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.CommonResponse
 import com.smarthub.baseapplication.model.taskModel.*
+import com.smarthub.baseapplication.model.taskModel.assignTask.AssignTaskNewModel
+import com.smarthub.baseapplication.model.taskModel.assignTask.Assigntask
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.repo.TaskActivityRepo
 import com.smarthub.baseapplication.utils.AppLogger
@@ -21,7 +23,8 @@ class TaskViewModel : ViewModel() {
     var getTaskInfoResponse: SingleLiveEvent<Resource<TaskInfo>>?=null
 
 init {
-    processTemplatemanual = Utils.getCreateNewTaskDummyData()
+//    processTemplatemanual = Utils.getCreateNewTaskDummyData()
+    processTemplatemanual = Processtemplatecallmanual()
     taskActivityRepo= TaskActivityRepo(APIInterceptor.get())
     createTaskResponse=taskActivityRepo?.createNewTaskResponse
     geoGraphyLevelDataResponse=taskActivityRepo?.geoGraphyDropDownDataResponse
@@ -33,10 +36,9 @@ init {
         processTemplatemanual=item
     }
 
-    fun createNewTask(){
-        var list=ArrayList<Processtemplatecallmanual>()
-        list.add(processTemplatemanual)
-        var createNewTaskModel = CreateNewTaskModel(list)
+    fun createNewTask(data:Processtemplatecallmanual){
+
+        val createNewTaskModel = CreateNewTaskModel(arrayListOf(data))
         AppLogger.log("Create new Task Json: ${Gson().toJson(createNewTaskModel)}")
         taskActivityRepo?.createNewTask(createNewTaskModel)
     }
@@ -51,8 +53,9 @@ init {
     fun getGeoGraphyData(data:GeoGraphyLevelPostData){
         taskActivityRepo?.getGeoGraphylevelDropdownData(data)
     }
-    fun taskAssign(data:Updateprocesstask){
-        var item = TaskAssignModel(data)
+    fun taskAssign(data: Assigntask){
+        val item:AssignTaskNewModel= AssignTaskNewModel()
+        item.assigntask=data
         taskActivityRepo?.assignTask(item)
     }
 

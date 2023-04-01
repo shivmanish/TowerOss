@@ -220,7 +220,6 @@
                             style="@style/RowTestItemEdit"
                             android:text=""
                             android:textSize="@dimen/dp15"
-                            android:maxLength="10"
                             android:paddingRight="@dimen/dp5"
                             android:drawableTint="@color/color1"
                             android:layout_width="match_parent"
@@ -252,7 +251,6 @@
                             android:drawableTint="@color/color1"
                             android:drawableEnd="@drawable/calender"
                             android:text=""
-                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 

@@ -21,14 +21,12 @@ class PhotoDocumentFragment(var taskInfo : TaskInfoItem?): BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = PhotoDocumentFragmentBinding.inflate(inflater)
         viewmodel = ViewModelProvider(requireActivity()).get(TaskViewModel::class.java)
+        setPreviousData()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.pictureBox.isChecked=viewmodel.processTemplatemanual.pictures
-        binding.documentBox.isChecked=viewmodel.processTemplatemanual.documents
-        binding.Remark.setText(viewmodel.processTemplatemanual.remark)
 //        if(requireActivity().intent.hasExtra("data")){
 //            var data = Gson().fromJson(requireActivity().intent.getStringExtra("data"),MyTeamTask::class.java)
 //            viewmodel.getTaskById(data.id1)
@@ -56,7 +54,7 @@ class PhotoDocumentFragment(var taskInfo : TaskInfoItem?): BaseFragment() {
             viewmodel.processTemplatemanual.pictures=binding.pictureBox.isChecked
             viewmodel.processTemplatemanual.documents=binding.documentBox.isChecked
             viewmodel.processTemplatemanual.remark=binding.Remark.text.toString()
-            viewmodel.processTemplatemanual.Where= arrayListOf()
+            viewmodel.processTemplatemanual.Where= null
             AppLogger.log("all data: ${viewmodel.processTemplatemanual}")
             nextClicked()
         }
@@ -80,6 +78,15 @@ class PhotoDocumentFragment(var taskInfo : TaskInfoItem?): BaseFragment() {
             }else AppLogger.log("Department not fetched")
 
         })
+    }
+
+    fun setPreviousData(){
+        if (viewmodel.processTemplatemanual.pictures!=null)
+            binding.pictureBox.isChecked= viewmodel.processTemplatemanual.pictures == true
+        if (viewmodel.processTemplatemanual.documents!=null)
+            binding.documentBox.isChecked= viewmodel.processTemplatemanual.documents == true
+        if (viewmodel.processTemplatemanual.remark!=null)
+            binding.Remark.setText(viewmodel.processTemplatemanual.remark)
     }
 
 }

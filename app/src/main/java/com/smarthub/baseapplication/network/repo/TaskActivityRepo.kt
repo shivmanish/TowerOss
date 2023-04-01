@@ -7,6 +7,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.taskModel.*
+import com.smarthub.baseapplication.model.taskModel.assignTask.AssignTaskNewModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.model.workflow.UpdatedTaskResponseModel
@@ -39,6 +40,7 @@ class TaskActivityRepo(private var apiClient: APIClient) {
     
 
     fun createNewTask(data: CreateNewTaskModel?) {
+        AppLogger.log("TaskData for create or update=====>:${Gson().toJson(data)}")
         apiClient.createNewTask(data!!).enqueue(object : Callback<CreateNewTaskResponse?> {
             override fun onResponse(
                 call: Call<CreateNewTaskResponse?>,
@@ -112,7 +114,8 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         })
     }
 
-    fun assignTask(data: TaskAssignModel?) {
+    fun assignTask(data: AssignTaskNewModel?) {
+        AppLogger.log("assignTask data====>${Gson().toJson(data)}")
         apiClient.AssignTask(data!!).enqueue(object : Callback<CreateNewTaskResponse?> {
             override fun onResponse(
                 call: Call<CreateNewTaskResponse?>,

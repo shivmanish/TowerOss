@@ -11,8 +11,18 @@ import com.smarthub.baseapplication.databinding.CaptureSiteDataItemLayoutBinding
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.utils.AppLogger
 
-class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var listner:CapturedSite) : Adapter<CaptureSiteViewholder>() {
+class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var listner:CapturedSite,var selectedTabIndex:Int,var selectedSubTabList:ArrayList<Boolean>) : Adapter<CaptureSiteViewholder>() {
 
+    var currentOpened = -1
+    var currentSelected = -1
+    var sublistCheckedPos:ArrayList<Boolean> = ArrayList()
+    init {
+        if (selectedTabIndex!=-1){
+            currentSelected=selectedTabIndex
+            if (selectedSubTabList.isNotEmpty())
+                sublistCheckedPos=selectedSubTabList
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CaptureSiteViewholder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.capture_site_data_item_layout, parent, false)
         return CaptureSiteViewholder(view)
@@ -83,9 +93,6 @@ class CaptureSiteAdapter(val context: Context,var list : TaskDropDownModel, var 
     override fun getItemCount(): Int {
         return list.size
     }
-    var currentOpened = -1
-    var currentSelected = -1
-    var sublistCheckedPos:ArrayList<Boolean> = ArrayList()
 
     fun updateList(position: Int){
         currentOpened = if(currentOpened == position) -1 else position

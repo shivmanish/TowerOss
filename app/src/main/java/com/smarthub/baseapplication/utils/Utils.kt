@@ -394,11 +394,13 @@ object Utils {
         return date!!
     }
     fun getFullFormatedDate(d : String) : String{
+        var date=d
+        if (d.isEmpty())
+            date="22-Jan-2023"
         val format="yyyy-MM-dd'T'HH:mm:ss.SSS"
         var currentFormate:String?="dd-MMM-yyyy"
-        if (d.length<10)
+        if (d.length in 1..9)
             currentFormate="MMM-yyyy"
-        var date=d
         AppLogger.log("getFullFormatedDate:$date")
         try {
             val inputFormat: DateFormat = SimpleDateFormat(currentFormate)

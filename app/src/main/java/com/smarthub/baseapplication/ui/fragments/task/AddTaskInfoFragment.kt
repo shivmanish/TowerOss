@@ -71,8 +71,8 @@ class AddTaskInfoFragment : BaseFragment() {
              if (!(binding.taskForASingleSite.selectedValue.name=="Yes" && selectedSiteInfo.id=="")){
                  taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
                  taskViewmodel.processTemplatemanual.Taskinstruction=binding.taskInstruction.text.toString()
-                 taskViewmodel.processTemplatemanual.startdate=binding.startDate.text.toString()
-                 taskViewmodel.processTemplatemanual.enddate=binding.endDate.text.toString()
+                 taskViewmodel.processTemplatemanual.startdate=Utils.getFullFormatedDate(binding.startDate.text.toString())
+                 taskViewmodel.processTemplatemanual.enddate=Utils.getFullFormatedDate(binding.endDate.text.toString())
                  taskViewmodel.processTemplatemanual.SLA= binding.sla.text.toString().toInt()
                  taskViewmodel.processTemplatemanual.Weightage=binding.Weightage.text.toString()
                  taskViewmodel.processTemplatemanual.geolevel=binding.GeographyLevel.selectedValue.name
@@ -260,6 +260,6 @@ class AddTaskInfoFragment : BaseFragment() {
         taskViewmodel.processTemplatemanual.Reminderofoutstandingactions=taskInfo.Reminderofoutstandingactions=="True"
         taskViewmodel.processTemplatemanual.Automaticescalationofoverdueitems=taskInfo.Automaticescalationofoverdueitems=="True"
         taskViewmodel.processTemplatemanual.NotificationSettingfornewaction=taskInfo.NotificationSettingfornewaction=="True"
-        taskViewmodel.processTemplatemanual.Where= arrayListOf(taskInfo.Where.replace("[","").replace("]",""))
+        taskViewmodel.processTemplatemanual.Where= taskInfo.Where.replace("[","").replace("]","").split(",")
     }
 }
