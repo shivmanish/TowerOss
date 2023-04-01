@@ -136,6 +136,8 @@ class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String) : Recy
                         intent.putExtra("where", item.Where)
                     intent.putExtra("siteId", item.siteid)
                     intent.putExtra("trackingId", item.id1)
+                    intent.putExtra("Distance", item.Distance)
+                    intent.putExtra("NotificationSettingGeoFencing", item.NotificationSettingGeoFencing)
                     holder.itemView.context.startActivity(intent)
                 }
             }

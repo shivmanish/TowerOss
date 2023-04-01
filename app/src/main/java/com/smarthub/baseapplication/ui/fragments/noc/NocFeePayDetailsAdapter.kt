@@ -167,7 +167,11 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, var list : A
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        var size = 0
+        list?.size?.let {
+            size = it
+        }
+        return size
     }
 
     var recyclerView: RecyclerView?=null

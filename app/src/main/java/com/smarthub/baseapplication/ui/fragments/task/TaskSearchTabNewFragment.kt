@@ -87,8 +87,7 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskSearchTabNewFragment(
     var siteID: String?, var taskId: String, var taskDetailId: String?,
-    var lattitude: String, var longitude: String, var tempWhere: String,
-) : BaseFragment(),
+    var lattitude: String, var longitude: String, var tempWhere: String,var isFancing:Boolean,var fancingDistance :Double) : BaseFragment(),
     TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener {
     private lateinit var binding: FragmentSearchTaskBinding
     lateinit var taskViewModel: TaskViewModel
@@ -102,8 +101,8 @@ class TaskSearchTabNewFragment(
     lateinit var mServiceIntent: Intent
 
     //    var long = 72.98213045018673
-    val isFancing: Boolean = false
-    val fancingDistance: Double = 0.0
+//    val isFancing: Boolean = false
+//    val fancingDistance: Double = 0.0
     var radius = "2"
     var previousListSize: Int = -1
 
@@ -223,6 +222,8 @@ class TaskSearchTabNewFragment(
                 if (it.data.isNotEmpty()) {
                     AppLogger.log("fetched task data =====> : ${Gson().toJson(it.data[0])}")
                     taskDetailData = it.data[0]
+//                    set variables here
+//                    isFancing = taskDetailData.
                     setParentData()
                 } else
                     AppLogger.log("not any assigned task found at task Id $taskDetailId")

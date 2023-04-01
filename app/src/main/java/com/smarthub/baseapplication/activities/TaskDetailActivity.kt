@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.databinding.ActivityTaskDetailBinding
 import com.smarthub.baseapplication.ui.fragments.task.TaskSearchTabNewFragment
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
 import com.smarthub.baseapplication.utils.AppController
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
@@ -27,6 +28,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var trackingId:String = "474"
     var taskDetailId:String ? = null
     var tempWhere = "[22,24]"
+    var NotificationSettingGeoFencing = false
+    var Distance :Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +54,25 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         }
         if (intent.hasExtra("lattitude")){
             lattitude = intent.getStringExtra("lattitude")!!
+        }
+
+        if (intent.hasExtra("NotificationSettingGeoFencing")){
+            try {
+                intent.getStringExtra("NotificationSettingGeoFencing")?.toBoolean()?.let {
+                    NotificationSettingGeoFencing = it
+                }
+            }catch (e:Exception){
+                AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
+            }
+        }
+        if (intent.hasExtra("Distance")){
+            try {
+                 intent.getStringExtra("Distance")?.toDouble()?.let {
+                     Distance = it
+                }
+            }catch (e:Exception){
+                AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
+            }
         }
         if (intent.hasExtra("longitude")){
             longitude = intent.getStringExtra("longitude")!!
@@ -155,7 +177,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
     private fun mapUIData(){
-        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere))
+        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere,NotificationSettingGeoFencing,Distance))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)
