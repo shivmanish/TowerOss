@@ -35,8 +35,10 @@ class NocPoDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) : B
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObserber()
-        adapter = NocPoDetailsAdapter(this@NocPoDetailsFragment,nocdata?.PODetail,this@NocPoDetailsFragment)
-        binding?.listItem?.adapter=adapter
+//        if (nocdata?.PODetail!=null){
+            adapter = NocPoDetailsAdapter(this@NocPoDetailsFragment,nocdata?.PODetail,this@NocPoDetailsFragment)
+            binding?.listItem?.adapter=adapter
+//        }else Toast.makeText(requireContext(),"PODetail null ",Toast.LENGTH_SHORT).show()
 
         binding?.addItemsLayout?.setOnClickListener {
             updataDataClicked(NocPODetail())

@@ -12,9 +12,9 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, cableDetails: ArrayList<NocApplicationInitial>?, var baseFragment: BaseFragment) : RecyclerView.Adapter<NocApplicationDetailsAdapter.ViewHold>() {
+class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, cableDetails: ArrayList<NocApplicationInitial>, var baseFragment: BaseFragment) : RecyclerView.Adapter<NocApplicationDetailsAdapter.ViewHold>() {
 
-    var list : ArrayList<NocApplicationInitial> = cableDetails!!
+    var list : ArrayList<NocApplicationInitial> = cableDetails
     var currentOpened = -1
 
     fun setData(data : ArrayList<NocApplicationInitial>?){

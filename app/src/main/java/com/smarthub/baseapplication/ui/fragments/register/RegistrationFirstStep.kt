@@ -85,6 +85,7 @@ class RegistrationFirstStep : Fragment() {
                     registrationFirstStepBinding.firstNameRoot.isErrorEnabled = false
                 }
                 else{
+                    registrationFirstStepBinding.firstName.text = "".toEditable()
                     registrationFirstStepBinding.firstNameRoot.setEndIconDrawable(R.color.transparent)
                     registrationFirstStepBinding.firstNameRoot.tag=false
                 }

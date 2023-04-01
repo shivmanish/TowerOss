@@ -442,8 +442,7 @@ class TaskSearchTabNewFragment(
 
                 PowerDesignDetailsActivity.Id = Id
                 PowerDesignDetailsActivity.planDesigndata = data
-                binding.viewpager.adapter =
-                    PowerDesignDetailPageAdapter(childFragmentManager, data, Id)
+                binding.viewpager.adapter = PowerDesignDetailPageAdapter(childFragmentManager, data, Id)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
             }
@@ -984,10 +983,14 @@ class TaskSearchTabNewFragment(
             binding.tabs.setBackgroundColor(Color.parseColor("#E9EEF7"))
             binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#E9EEF7"))
         }
-        if (binding.tabs.tabCount <= 4)
+        else if (binding.tabs.tabCount <= 4)
             binding.tabs.tabMode = TabLayout.MODE_FIXED
         else
             binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
+
+        if (binding.tabs.tabCount == 0)
+            binding.tabs.visibility = View.INVISIBLE
+        else binding.tabs.visibility = View.VISIBLE
     }
 
     fun addFragment(fragment: Fragment?) {
