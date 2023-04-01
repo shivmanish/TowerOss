@@ -28,6 +28,7 @@ data class MyTeamTask(
     val sitename: String,
     val startdate: String,
     val Distance: String,
+    val Trackingflag: String,
     val NotificationSettingGeoFencing: String,
     val workorderid: String
 )

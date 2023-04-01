@@ -87,7 +87,8 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskSearchTabNewFragment(
     var siteID: String?, var taskId: String, var taskDetailId: String?,
-    var lattitude: String, var longitude: String, var tempWhere: String,var isFancing:Boolean,var fancingDistance :Double) : BaseFragment(),
+    var lattitude: String, var longitude: String, var tempWhere: String,var isFancing:Boolean,
+    var fancingDistance :Double,var Trackingflag:Boolean) : BaseFragment(),
     TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener {
     private lateinit var binding: FragmentSearchTaskBinding
     lateinit var taskViewModel: TaskViewModel
