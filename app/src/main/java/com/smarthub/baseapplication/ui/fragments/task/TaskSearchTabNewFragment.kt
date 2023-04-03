@@ -685,7 +685,7 @@ class TaskSearchTabNewFragment(
 
                 taskViewModel.fetchTaskDetails(taskDetailId)
                 homeViewModel.NocAndCompRequestAll(AppController.getInstance().taskSiteId)
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
@@ -803,7 +803,7 @@ class TaskSearchTabNewFragment(
 
                 taskViewModel.fetchTaskDetails(taskDetailId)
                 homeViewModel.fetchSiteAgreementModelRequest(AppController.getInstance().taskSiteId)
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
@@ -1063,7 +1063,7 @@ class TaskSearchTabNewFragment(
         binding.AssignToName.text=String.format(context?.resources?.getString(R.string.two_string_format_space)!!,data?.FirstName,data?.LastName)
     }
 
-    fun mapSiteIboardUiData(data: AllsiteInfoDataModel ){
+    private fun mapSiteIboardUiData(data: AllsiteInfoDataModel ){
         if (data.Basicinfo!=null && data.Basicinfo?.isNotEmpty()==true){
             val siteData=data.Basicinfo?.get(0)
             binding.SiteName.text=siteData?.siteName

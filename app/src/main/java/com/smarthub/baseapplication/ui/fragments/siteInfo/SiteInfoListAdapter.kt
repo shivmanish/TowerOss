@@ -219,7 +219,7 @@ class SiteInfoListAdapter(var context: Context,var listener: SiteInfoLisListener
                         if (siteBasicinfo.Acquisitiontype.isNotEmpty())
                             AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,siteBasicinfo.Acquisitiontype.get(0).toString())
                         if (siteBasicinfo.MaintenancePoint!=null)
-                        holder.binding.MaintenanceGeography.text = siteBasicinfo.MaintenancePoint.maintenancePoint
+                        holder.binding.MaintenanceGeography.text = "${siteBasicinfo.MaintenancePoint.name}"
                         holder.binding.address.text = "${siteAddress.address1}  ${siteAddress.address2}"
                         holder.binding.postalCode.text=siteAddress.pincode
                         holder.binding.siteLatitude.text=siteAddress.locLatitude
