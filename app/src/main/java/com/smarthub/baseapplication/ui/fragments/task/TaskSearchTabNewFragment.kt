@@ -534,15 +534,15 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
+                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch!!)
                 AppLogger.log("size :${it.data.item?.size}")
             } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
 //                qatMainModel = it.data
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch)
-                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
+                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch!!)
+                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch?.size}")
             } else if (it != null) {
                 Toast.makeText(requireContext(),
                     "Service request Fragment error :${it.message}, data : ${it.data}",

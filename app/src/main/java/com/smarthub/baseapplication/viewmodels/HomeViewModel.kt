@@ -47,6 +47,7 @@ import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
+import com.smarthub.baseapplication.model.siteInfo.qat.QatModel
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
@@ -94,6 +95,7 @@ class HomeViewModel : ViewModel() {
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilAllDataModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
     var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
+    var QatMainTempletResponse : SingleLiveEvent<Resource<QatModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
@@ -135,6 +137,7 @@ class HomeViewModel : ViewModel() {
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
         QatModelResponse=homeRepo?.qatMainModelResponse
+        QatMainTempletResponse=homeRepo?.qatModelResponse
         powerAndFuelResponse=homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
         dropDownResponseNew = homeRepo?.dropDownResponseNew

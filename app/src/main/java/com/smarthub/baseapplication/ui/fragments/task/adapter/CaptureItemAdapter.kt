@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CaptureDataItemBinding
 import com.smarthub.baseapplication.model.taskModel.dropdown.CollectionItem
-import com.smarthub.baseapplication.utils.AppLogger
 
 class CaptureItemAdapter(val context: Context, var list : List<CollectionItem>, var parentChecked:Boolean, var statusList:ArrayList<Boolean>, var listener :CaptureItemAdapterListener) : Adapter<CaptureItemAdapter.CaptureItemViewholder>() {
 
