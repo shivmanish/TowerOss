@@ -36,6 +36,7 @@ import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
+import com.smarthub.baseapplication.ui.fragments.sstSbc.SstSbcMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.CivilInfraFragment
 import com.smarthub.baseapplication.ui.fragments.utilites.fragment.UtilitiesNocMainTabFragment
 import com.smarthub.baseapplication.utils.AppConstants
@@ -175,11 +176,12 @@ class SiteDetailFragment : BaseFragment() {
                 2-> OpcoTanacyFragment(id)
                 3-> PlanDesignMainFrqagment(id)
                 4-> SiteAgreementFragment(id)
-                5-> UtilitiesNocMainTabFragment(id)
-                6-> NocFragment(id)
-                7-> CivilInfraFragment(id)
-                8-> PowerConnection(id)
-                9-> QATMainFragment(id)
+                5-> SstSbcMainFrqagment(id)
+                6-> UtilitiesNocMainTabFragment(id)
+                7-> NocFragment(id)
+                8-> CivilInfraFragment(id)
+                9-> PowerConnection(id)
+                10-> QATMainFragment(id)
 //                10-> AcquisitionSurveyFragmentNew(id)
                 else -> SiteInfoNewFragment(id)
             }

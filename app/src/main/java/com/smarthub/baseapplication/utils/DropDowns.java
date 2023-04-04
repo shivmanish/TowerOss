@@ -33,6 +33,7 @@ public enum DropDowns {
     Class,
     Type,
     PDBType,
+    SstSbcType,
     SiteAccessWay,
     EBApplicationStatus,
     MeterType,

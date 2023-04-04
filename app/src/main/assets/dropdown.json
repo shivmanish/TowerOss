@@ -756,6 +756,19 @@
           "name": "Building And Land"
         }
       ]
+    },
+    {
+      "name": "SstSbcType",
+      "data": [
+        {
+          "id": 1,
+          "name": "SST"
+        },
+        {
+          "id": 2,
+          "name": "SBC"
+        }
+      ]
     }
   ]
 }

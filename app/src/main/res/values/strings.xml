@@ -33,6 +33,7 @@
         <item>OPCO Tenancy</item>
         <item>Plan &amp; Design</item>
         <item>Site Acquisition</item>
+        <item>SST / SBC</item>
         <item>Utilities Equip</item>
         <item>NOC &amp; Comp</item>
         <item>TWR &amp; Civil Infra</item>
@@ -46,6 +47,7 @@
         <item>@drawable/opco_tenency</item>
         <item>@drawable/plan_design</item>
         <item>@drawable/site_agreement</item>
+        <item>@drawable/service_request</item>
         <item>@drawable/utilities_equip</item>
         <item>@drawable/noc_comp</item>
         <item>@drawable/twr_civilinfra</item>

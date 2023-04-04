@@ -39,6 +39,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqu
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllDataModel;
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
@@ -104,6 +105,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<TowerCivilAllDataModel>> towerAndCivilInfraModel;
     private SingleLiveEvent<Resource<PowerFuelAllDataModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>> siteAgreementModel;
+    private SingleLiveEvent<Resource<SstSbcAllDataModel>> sstSbcModel;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<QatMainModel>> qatMainModelResponse;
@@ -151,6 +153,10 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>> getSiteAgreementModel() {
         return siteAgreementModel;
     }
+
+    public SingleLiveEvent<Resource<SstSbcAllDataModel>> getSstSbcModel() {
+            return sstSbcModel;
+        }
 
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
         return serviceRequestModel;
@@ -232,6 +238,7 @@ public class HomeRepo {
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
         siteAgreementModel = new SingleLiveEvent<>();
+        sstSbcModel = new SingleLiveEvent<>();
         dropDownResponseNew = new SingleLiveEvent<>();
         siteInfoModelNew = new SingleLiveEvent<>();
         notificationNew = new SingleLiveEvent<>();
@@ -1420,6 +1427,68 @@ public class HomeRepo {
                     siteAgreementModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+
+
+    }
+
+    public void sstSbcRequestAll(String id) {
+        if (!Utils.INSTANCE.isNetworkConnected(AppController.getInstance())) {
+            String cache_data = AppPreferences.getInstance().getString("sstSbcRequestAll" + id);
+            if (cache_data != null && !cache_data.isEmpty()) {
+                try {
+                    SiteAcquisitionAllDataModel cacheobject = new Gson().fromJson(cache_data, SiteAcquisitionAllDataModel.class);
+                    if (cacheobject != null) {
+                        siteAgreementModel.postValue(Resource.success(cacheobject, 200));
+                        return;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+            siteAgreementModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            return;
+        }
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("SstSbc", new JsonArray());
+        apiClient.fetchSstSbcModelRequest(jsonObject).enqueue(new Callback<SstSbcAllDataModel>() {
+            @Override
+            public void onResponse(Call<SstSbcAllDataModel> call, Response<SstSbcAllDataModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SstSbcAllDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+
+
+            }
+
+            private void reportSuccessResponse(Response<SstSbcAllDataModel> response) {
+
+                if (response.body() != null) {
+                    String data_json = new Gson().toJson(response.body());
+                    AppPreferences.getInstance().saveString("siteAgreementRequestAll" + id, data_json);
+
+                    sstSbcModel.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    sstSbcModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    sstSbcModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
 
