@@ -8,6 +8,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcModel
@@ -26,12 +28,14 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     var updateUtilityEquipResponse: SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var updateNocCompResponse: SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var updateSstSbcResponse: SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
+    var updateSiteInfoResponse: SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
 
     init {
         updateSiteAcqResponse=SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>()
         updateUtilityEquipResponse=SingleLiveEvent<Resource<UpdateUtilityResponseModel>>()
         updateNocCompResponse=SingleLiveEvent<Resource<UpdateNocCompResponseModel>>()
         updateSstSbcResponse=SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>()
+        updateSiteInfoResponse=SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>()
     }
 
 
@@ -100,6 +104,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                     Resource.error(iThrowableLocalMessage, null, 500)
                 ) else updateUtilityEquipResponse?.postValue(
                     Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updateSiteInfoData(data: AllsiteInfoDataModel?) {
+        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        apiClient.updateSiteInfoRequest(data!!).enqueue(object : Callback<UpdateSiteInfoResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateSiteInfoResponseModel?>,
+                response: Response<UpdateSiteInfoResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateSiteInfoResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateSiteInfoResponseModel?>) {
+                if (response.body() != null) {
+                    updateSiteInfoResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateSiteInfoResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateSiteInfoResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                ) else
+                    updateSiteInfoResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

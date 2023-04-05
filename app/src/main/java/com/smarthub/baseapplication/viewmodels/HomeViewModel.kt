@@ -33,6 +33,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqU
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
@@ -112,6 +113,7 @@ class HomeViewModel : ViewModel() {
     var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var updateNocCompDataResponse:SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var updateSstSbcDataResponse:SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
+    var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -157,6 +159,7 @@ class HomeViewModel : ViewModel() {
         updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
         updateNocCompDataResponse=updateIBoardRepo?.updateNocCompResponse
         updateSstSbcDataResponse=updateIBoardRepo?.updateSstSbcResponse
+        updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -400,6 +403,10 @@ class HomeViewModel : ViewModel() {
         tempList.add(data)
         dataModel.UtilityEquipment=tempList
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
+    }
+
+    fun updateSiteInfo(data: AllsiteInfoDataModel?) {
+        updateIBoardRepo?.updateSiteInfoData(data)
     }
 
     fun updateNocAndComp(data: NocCompAllData) {

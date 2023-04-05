@@ -378,8 +378,8 @@ class TaskSearchTabNewFragment(
                 mapSiteIboardUiData(data)
                 if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
-                    lattitude = siteData.locLatitude
-                    longitude = siteData.locLongitude
+                    lattitude = siteData.locLatitude!!
+                    longitude = siteData.locLongitude!!
                     if(Trackingflag){
                         binding.trackinglayout.visibility = View.VISIBLE
                     }else{
@@ -1069,14 +1069,14 @@ class TaskSearchTabNewFragment(
             binding.SiteName.text=siteData?.siteName
             binding.SiteId.text=siteData?.siteID
             binding.SiteAlternateName.text=siteData?.aliasName
-            if (siteData?.Sitecategory!=null && siteData.Sitecategory.isNotEmpty()){
-                AppPreferences.getInstance().setDropDown(binding.SiteCategory,DropDowns.Sitecategory.name, siteData.Sitecategory[0].toString())
+            if (siteData?.Sitecategory!=null && siteData.Sitecategory?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteCategory,DropDowns.Sitecategory.name, siteData.Sitecategory?.get(0).toString())
             }
-            if (siteData?.Sitestatus!=null && siteData.Sitestatus.isNotEmpty()){
-                AppPreferences.getInstance().setDropDown(binding.SiteStatus,DropDowns.Sitestatus.name, siteData.Sitestatus[0].toString())
+            if (siteData?.Sitestatus!=null && siteData.Sitestatus?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteStatus,DropDowns.Sitestatus.name, siteData.Sitestatus?.get(0).toString())
             }
-            if (siteData?.Opcositetype!=null && siteData.Opcositetype.isNotEmpty()){
-                AppPreferences.getInstance().setDropDown(binding.SiteType,DropDowns.Opcositetype.name, siteData.Opcositetype[0].toString())
+            if (siteData?.Opcositetype!=null && siteData.Opcositetype?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteType,DropDowns.Opcositetype.name, siteData.Opcositetype?.get(0).toString())
             }
         }
     }

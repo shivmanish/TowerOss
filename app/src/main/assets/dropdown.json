@@ -333,7 +333,7 @@
       ]
     },
     {
-      "name": "backhaulNodeCategory",
+      "name": "BackhaulNodeCategory",
       "data": [
         {
           "id": 1,
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "name": "siteOwnership",
+      "name": "SiteOwnership",
       "data": [
         {
           "id": 1,
@@ -767,6 +767,19 @@
         {
           "id": 2,
           "name": "SBC"
+        }
+      ]
+    },
+    {
+      "name": "Sitebillingstatus",
+      "data": [
+        {
+          "id": 1,
+          "name": "Billable"
+        },
+        {
+          "id": 2,
+          "name": "Not Billable"
         }
       ]
     }

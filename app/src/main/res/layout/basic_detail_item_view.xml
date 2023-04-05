@@ -42,17 +42,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="0dp">
                 <ImageView
-                    android:visibility="visible"
                     android:id="@+id/img_edit"
-                    app:tint="@color/grey"
+                    android:visibility="visible"
                     android:paddingStart="@dimen/dp16"
                     android:paddingEnd="@dimen/dp16"
                     android:paddingTop="@dimen/dp17"
                     android:paddingBottom="@dimen/dp17"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/edit_ico_black"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/dp12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="@dimen/dp50"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"
@@ -68,334 +71,812 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="2"
-            android:background="@color/view_color"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
     </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:paddingHorizontal="@dimen/dp5"
         android:visibility="visible"
         android:id="@+id/item_collapse"
-        android:paddingBottom="@dimen/dp15"
         android:orientation="vertical"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <GridLayout
-            android:columnCount="2"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
+        <LinearLayout
+            android:id="@+id/view_layout"
+            android:visibility="gone"
             android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp10"
+            android:paddingBottom="20dp"
             android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
+            <GridLayout
+                android:columnCount="2"
+                android:visibility="visible"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Site Name"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txSiteName"
-                    android:text="Mangolpuri"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:paddingTop="@dimen/dp1"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Site Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txSiteName"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:text="Site ID"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txSiteID"
-                    android:text="CE-MH-MUM-SC10123"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-              
-            </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="@dimen/dp1"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Site ID"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txSiteID"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:text="Site Alternate Name"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Site_Alternate_Name"
-                    android:text="Mangolpuri"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Site Status"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="On-Air"
-                    android:id="@+id/site_status"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-              
-            </LinearLayout>
+                    <TextView
+                        android:text="Site Alternate Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Site_Alternate_Name"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Site Category"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="On-Air"
-                    android:id="@+id/site_category"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-              
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Site Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text=""
+                        android:id="@+id/site_status"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                    android:text="Site Type"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="On-Air"
-                    android:id="@+id/site_type"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-              
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Building Type"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txBuildingType"
-                    android:text="Residential"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-              
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Site Category"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text=""
+                        android:id="@+id/site_category"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                    android:text="Site Ownership"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Site_Ownership"
-                    android:text="Urban"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-            </LinearLayout>
+                    <TextView
+                        android:text="Site Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text=""
+                        android:id="@+id/site_type"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                </LinearLayout>
 
-                <TextView
-                    android:text="Cost Center"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/cost_center"
-                    android:text="Urban"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-              
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Property Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/PropertyType"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-                <TextView
-                    android:text="Acquisition Type"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/AcquisitionType"
-                    android:hint="Thane"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-              
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Project Name"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/txtProjectName"
-                    android:text="Coverage 1"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-              
-            </LinearLayout>
+                    <TextView
+                        android:text="Site Ownership"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Site_Ownership"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                </LinearLayout>
 
-                <TextView
-                    android:text="Maintenance Geography"
-                    style="@style/RowTextItemInfo"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/Maintenance_Geography"
-                    android:text="Praful SIngh"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-              
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Site Latitude"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/site_latitude"
-                    android:text="9890000009"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-              
-            </LinearLayout>
+                    <TextView
+                        android:text="Cost Center"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/cost_center"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                </LinearLayout>
 
-                <TextView
-                    android:text="Site Longitude"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/site_longitude"
-                    android:text="10"
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-              
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                style="@style/ColumnItemInfo"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Postal Code"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/postal_code"
-                    android:text=""
-                    style="@style/RowTextviewItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-              
-            </LinearLayout>
+                    <TextView
+                        android:text="Acquisition Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/AcquisitionType"
+                        android:hint=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-        </GridLayout>
-        <TextView
-            android:text="Address"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp15"
-            style="@style/RowTextItemInfo"
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Project Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtProjectName"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Maintenance Geography"
+                        style="@style/RowTextItemInfo"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Maintenance_Geography"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Latitude"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/site_latitude"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Longitude"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/site_longitude"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Postal Code"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/postal_code"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </LinearLayout>
+
+            </GridLayout>
+            <TextView
+                android:text="Address Line1"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp15"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/Address_Line1"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:text=""
+                style="@style/RowTextviewItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Address Line2"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp15"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/Address_Line2"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:text=""
+                style="@style/RowTextviewItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/edit_layout"
+            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/address"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp10"
-            android:text="369, Hazelnut, Eastern Expressway, Mumbai"
-            style="@style/RowTextviewItem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:visibility="visible"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Site_Name_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site ID"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/SiteID_Edit"
+                        android:text=""
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Alternate Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Site_Alternate_Name_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Site_Status_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Category"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Site_Category_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Site_Type_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Property Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Property_Type_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Ownership"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Site_Ownership_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Cost Center"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Cost_Center_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Acquisition Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Acquisition_Type_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Project Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Project_Name_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Maintenance Geography"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Maintenance_Geography_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp7" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Latitude"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Site_Latitude_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Longitude"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Site_Longitude_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Postal Code"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Postal_Code_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+            </GridLayout>
+            <TextView
+                android:text="Address Line1"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/Address_Line1_edit"
+                android:textSize="15sp"
+                style="@style/RowTestItemEdit"
+                android:text=""
+                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp6" />
+            <TextView
+                android:text="Address Line2"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/Address_Line2_edit"
+                android:textSize="15sp"
+                style="@style/RowTestItemEdit"
+                android:text=""
+                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp6" />
+            <LinearLayout
+                android:id="@+id/bottom_layout"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cancel"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
+                <TextView
+                    android:id="@+id/update"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:background="@drawable/yellow_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Update"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

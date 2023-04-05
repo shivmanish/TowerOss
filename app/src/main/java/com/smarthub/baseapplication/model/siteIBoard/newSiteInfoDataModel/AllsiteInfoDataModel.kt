@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel
 
 import com.google.gson.annotations.SerializedName
+import com.smarthub.baseapplication.utils.AppController
 
 class AllsiteInfoDataModel{
     @SerializedName("Basicinfo")
@@ -16,4 +17,7 @@ class AllsiteInfoDataModel{
 
     @SerializedName("Error")
     var Error : Any?=null
+
+    var id: String = AppController.getInstance().siteid
+    var ownername: String = AppController.getInstance().ownerName
 }
