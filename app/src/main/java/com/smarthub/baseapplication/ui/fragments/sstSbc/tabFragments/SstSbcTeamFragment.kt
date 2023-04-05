@@ -102,7 +102,7 @@ class SstSbcTeamFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int): Ba
                 AppLogger.log("SstSbcTeamFragment data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SstSbcTeam==200) {
                 AppLogger.log("SstSbcTeamFragment card Data fetched successfully")
                 viewmodel.fetchSstSbcModelRequest(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()

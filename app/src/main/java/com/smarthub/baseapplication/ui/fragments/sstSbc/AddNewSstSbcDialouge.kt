@@ -73,13 +73,13 @@ class AddNewSstSbcDialouge (var listner:AddSstSbcDataListener) : BaseBottomSheet
                 AppLogger.log("AddNewSstSbcDialouge data adding in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SstSbc==200) {
                 listner.addNewData()
                 hideProgressLayout()
                 dismiss()
                 Toast.makeText(context,"Data Added successfully", Toast.LENGTH_SHORT).show()
             }
-            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS ){
                 hideProgressLayout()
                 Toast.makeText(context,"Something went wrong in add data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("AddNewSstSbcDialouge Something went wrong in adding data")

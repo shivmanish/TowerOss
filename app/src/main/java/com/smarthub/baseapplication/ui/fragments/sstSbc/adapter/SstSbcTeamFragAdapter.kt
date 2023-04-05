@@ -198,8 +198,10 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                         it.Type = holder.binding.TestTypeEdit.selectedValue.id.toIntOrNull()
                         it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
                         it.Remark=holder.binding.remarksEdit.text.toString()
-                        if (datalist!=null)
+                        if (datalist!=null){
+                            it.attachment=datalist?.attachment
                             it.id=datalist?.id
+                        }
                         listener.updateTeamClicked(it)
                     }
 

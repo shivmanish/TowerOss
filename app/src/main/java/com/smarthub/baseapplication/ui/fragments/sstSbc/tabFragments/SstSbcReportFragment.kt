@@ -75,7 +75,7 @@ class SstSbcReportFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int): 
     }
 
     override fun addAttachment() {
-        val bm = AttachmentCommonDialogBottomSheet("SstSbcTeam",sstSbcData?.SstSbcTeam?.get(0)?.id.toString(),
+        val bm = AttachmentCommonDialogBottomSheet("SstSbcTestReport",sstSbcData?.SstSbcTestReport?.get(0)?.id.toString(),
             object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel.fetchSstSbcModelRequest(AppController.getInstance().siteid)
@@ -98,7 +98,7 @@ class SstSbcReportFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int): 
                 AppLogger.log("SstSbcTeamFragment data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SstSbcTestReport==200) {
                 AppLogger.log("SstSbcTeamFragment card Data fetched successfully")
                 viewmodel.fetchSstSbcModelRequest(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()

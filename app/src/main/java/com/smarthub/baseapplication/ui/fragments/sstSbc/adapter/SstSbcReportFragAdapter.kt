@@ -269,15 +269,17 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                         it.SstSbcBuildingDetail= arrayListOf(tempBuildingData)
                         it.SstSbcLandDetail= arrayListOf(tempLandData)
                         it.Siteaddress= arrayListOf(tempSiteAddData)
-                        if (datalist!=null)
+                        if (datalist!=null){
+                            it.attachment=datalist?.attachment
                             it.id=datalist?.id
+                        }
                     }
                     listener.updateTeamClicked(tempTestReportData)
                 }
 
                 baseFragment.setDatePickerView(holder.binding.SoilSampleCollectionDateEdit)
                 baseFragment.setDatePickerView(holder.binding.BuildingTestReportDateEdit)
-                baseFragment.setDatePickerView(holder.binding.BuildingTestReportDateEdit)
+                baseFragment.setDatePickerView(holder.binding.LandTestReportDateEdit)
                 baseFragment.setDatePickerView(holder.binding.SiteTestingDateEdit)
             }
             is ViewHold2 -> {

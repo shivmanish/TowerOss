@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc
 
 data class Status(
-    val NOCCompliance: Int,
+    val SstSbc: Int,
+    val SstSbcTestReport: Int,
+    val SstSbcTeam: Int,
 )
