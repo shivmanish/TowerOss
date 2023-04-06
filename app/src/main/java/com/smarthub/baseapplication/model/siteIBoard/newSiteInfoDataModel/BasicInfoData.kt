@@ -8,6 +8,7 @@ class BasicInfoData{
     var National: BasicInfoNew?=null
     var PropertyType: Int?=null
     var Opcositetype: ArrayList<Int>?=null
+    var Sitetype: ArrayList<Int>?=null
     var Projectname: ArrayList<Int>?=null
     var Region: BasicInfoNew?=null
     var Sitecategory: ArrayList<Int>?=null

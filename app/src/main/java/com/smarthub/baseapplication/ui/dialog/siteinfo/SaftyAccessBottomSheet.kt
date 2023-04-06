@@ -76,7 +76,7 @@ class SaftyAccessBottomSheet(contentLayoutId:Int, var id : String, var dropdown:
         AppPreferences.getInstance().setDropDownByName(binding.physicalSecurity, DropDowns.Physicalsecurity.name,saftyAcess.Physicalsecurity)
         AppPreferences.getInstance().setDropDownByName(binding.textGate, DropDowns.GateAndFence.name,saftyAcess.GateAndFence)
         AppPreferences.getInstance().setDropDownByName(binding.textCautionSignage, DropDowns.CautionSignage.name,saftyAcess.CautionSignage)
-        AppPreferences.getInstance().setDropDownByName(binding.videoMonitoringSpinner, DropDowns.Videomonitoring.name,saftyAcess.Videomonitoring)
+        AppPreferences.getInstance().setDropDownByName(binding.videoMonitoringSpinner, DropDowns.VideoMonitoring.name,saftyAcess.Videomonitoring)
         AppPreferences.getInstance().setDropDownByName(binding.siteAccessAreaSpinner, DropDowns.SiteAccessArea.name,saftyAcess.SiteAccessArea)
         AppPreferences.getInstance().setDropDownByName(binding.dangerSignageSpinner, DropDowns.DangerSignage.name,saftyAcess.DangerSignage)
         hideProgressLayout()

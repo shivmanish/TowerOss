@@ -46,7 +46,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-        adapter= SiteInfoListAdapter(requireContext(),this@SiteInfoNewFragment)
+        adapter= SiteInfoListAdapter(this@SiteInfoNewFragment,this@SiteInfoNewFragment)
         binding.listItem.adapter=adapter
 
         dropdowndata = AppPreferences.getInstance().dropDown
@@ -140,7 +140,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                 AppLogger.log("SiteInfoNewFragment data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status?.Basicinfo==200) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status?.Basicinfo==200 || it.data.status?.OperationalInfo==200)) {
                 AppLogger.log("SiteInfoNewFragment card Data fetched successfully")
                 homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()

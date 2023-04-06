@@ -42,17 +42,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="0dp">
                 <ImageView
-                    android:visibility="visible"
                     android:id="@+id/img_edit"
-                    app:tint="@color/grey"
+                    android:visibility="visible"
                     android:paddingStart="@dimen/dp16"
                     android:paddingEnd="@dimen/dp16"
                     android:paddingTop="@dimen/dp17"
                     android:paddingBottom="@dimen/dp17"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/edit_ico_black"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/dp12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="@dimen/dp50"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"
@@ -68,13 +71,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:id="@+id/item_line"
-            android:alpha="2"
-            android:background="@color/view_color"
-            android:layout_height="1dp"
-            android:layout_width="match_parent" />
     </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
 
     <LinearLayout
         android:visibility="visible"

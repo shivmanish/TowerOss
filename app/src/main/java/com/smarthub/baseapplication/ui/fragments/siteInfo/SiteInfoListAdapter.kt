@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.siteInfo
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,10 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.*
-import com.smarthub.baseapplication.model.siteInfo.siteInfoData.*
-import com.smarthub.baseapplication.network.pojo.site_info.*
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.GeoCondition
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
+import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -127,7 +128,6 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
         var binding : SafatyAccessListItemBinding = SafatyAccessListItemBinding.bind(itemView)
         init {
             binding.itemTitle.tag = false
-            binding.itemTitle.tag = false
             if ((binding.itemTitle.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -231,8 +231,8 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                         AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo?.Sitestatus?.get(0).toString())
                     if (siteBasicinfo?.Sitecategory?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo?.Sitecategory?.get(0).toString())
-                    if (siteBasicinfo?.Opcositetype?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo?.Opcositetype?.get(0).toString())
+                    if (siteBasicinfo?.Sitetype?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo?.Sitetype?.get(0).toString())
                     if (siteBasicinfo?.Projectname?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo?.Projectname?.get(0).toString())
                     if (siteBasicinfo?.Costcentre?.isNotEmpty()==true)
@@ -278,8 +278,8 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteCategoryEdit,DropDowns.Sitecategory.name,siteBasicinfo?.Sitecategory?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteCategoryEdit,DropDowns.Sitecategory.name)
-                if (siteBasicinfo!=null && siteBasicinfo?.Opcositetype?.isNotEmpty() == true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name,siteBasicinfo?.Opcositetype?.get(0).toString())
+                if (siteBasicinfo!=null && siteBasicinfo?.Sitetype?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name,siteBasicinfo?.Sitetype?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name)
                 if (siteBasicinfo!=null && siteBasicinfo?.Projectname?.isNotEmpty()==true)
@@ -294,9 +294,12 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,siteBasicinfo?.Acquisitiontype?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
-                if (siteBasicinfo!=null && siteBasicinfo?.PropertyType!=null && siteBasicinfo?.PropertyType!!>0)
-                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeEdit,DropDowns.PropertyType.name,siteBasicinfo?.PropertyType.toString())
-                else
+                if (siteBasicinfo!=null && siteBasicinfo?.PropertyType!=null && siteBasicinfo?.PropertyType!!>0) {
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeEdit,
+                        DropDowns.PropertyType.name,
+                        siteBasicinfo?.PropertyType.toString())
+                }
+                    else
                     AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeEdit,DropDowns.PropertyType.name)
                 if (siteBasicinfo!=null && siteBasicinfo?.Siteownership!=null && siteBasicinfo?.Siteownership!!>0)
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteOwnershipEdit,DropDowns.SiteOwnership.name,siteBasicinfo?.Siteownership.toString())
@@ -452,10 +455,12 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener {
-//                    if (basicinfodata.GeoCondition.isNotEmpty())
-//                        listener.geoConditionsDetailsItemClicked(basicinfodata.GeoCondition[0],basicinfodata.id.toString())
-//                    else
-//                        Toast.makeText(context,"Geo Condition ",Toast.LENGTH_SHORT).show()
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -463,6 +468,8 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
                 }
                 else {
                     holder.binding.itemTitle.tag = false
@@ -481,6 +488,7 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                         geoCondition=basicinfodata?.GeoCondition?.get(0)
                 }
                 if (geoCondition!=null){
+                    //view mode
                     holder.binding.textAltitude.text = geoCondition?.Altitude.toString()
                     holder.binding.minTempRange.text = geoCondition?.TempRangeMin
                     holder.binding.maxTempRange.text = geoCondition?.TempRangeMax
@@ -496,15 +504,63 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                         AppPreferences.getInstance().setDropDown(holder.binding.terrainTypeSpinner,DropDowns.Terraintype.name, geoCondition?.Terraintype?.get(0).toString())
                     if (geoCondition?.Climatezone?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.ClimateZone,DropDowns.Climatezone.name, geoCondition?.Climatezone?.get(0).toString())
+                    // edit mode
+                    holder.binding.AltitudeEdit.setText(geoCondition?.Altitude.toString())
+                    holder.binding.minTempEdit.setText(geoCondition?.TempRangeMin)
+                    holder.binding.maxTempEdit.setText(geoCondition?.TempRangeMax)
                 }
-
+                if (geoCondition!=null && geoCondition?.Potentialthreat?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name, geoCondition?.Potentialthreat?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreatEdit,DropDowns.Potentialthreat.name)
+                if (geoCondition!=null && geoCondition?.Windzone?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.WindZoneEdit,DropDowns.Windzone.name, geoCondition?.Windzone?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.WindZoneEdit,DropDowns.Windzone.name)
+                if (geoCondition!=null && geoCondition?.Seismiczone?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SeismecZoneEdit,DropDowns.Seismiczone.name, geoCondition?.Seismiczone?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SeismecZoneEdit,DropDowns.Seismiczone.name)
+                if (geoCondition!=null && geoCondition?.Floodzone?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.FloodZoneEdit,DropDowns.Floodzone.name, geoCondition?.Floodzone?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.FloodZoneEdit,DropDowns.Floodzone.name)
+                if (geoCondition!=null && geoCondition?.Terraintype?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name, geoCondition?.Terraintype?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.TerrainTypeEdit,DropDowns.Terraintype.name)
+                if (geoCondition!=null && geoCondition?.Climatezone?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.ClimateZoneEdit,DropDowns.Climatezone.name, geoCondition?.Climatezone?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.ClimateZoneEdit,DropDowns.Climatezone.name)
+                holder.binding.update.setOnClickListener {
+                    val temGeoConditionData=GeoConditionData()
+                    val temSiteInfoAllData=AllsiteInfoDataModel()
+                    temGeoConditionData.let {
+                        it.Altitude=holder.binding.AltitudeEdit.text.toString().toIntOrNull()
+                        it.TempRangeMin=holder.binding.minTempEdit.text.toString()
+                        it.TempRangeMax=holder.binding.maxTempEdit.text.toString()
+                        it.Windzone= arrayListOf(holder.binding.WindZoneEdit.selectedValue.id.toInt())
+                        it.Seismiczone= arrayListOf(holder.binding.SeismecZoneEdit.selectedValue.id.toInt())
+                        it.Climatezone= arrayListOf(holder.binding.ClimateZoneEdit.selectedValue.id.toInt())
+                        it.Floodzone= arrayListOf(holder.binding.FloodZoneEdit.selectedValue.id.toInt())
+                        it.Terraintype= arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
+                        it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                        if (geoCondition!=null)
+                            it.id=geoCondition?.id
+                    }
+                    temSiteInfoAllData.GeoCondition= arrayListOf(temGeoConditionData)
+                    listener.updateSiteInfo(temSiteInfoAllData)
+                }
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener {
-//                    if (basicinfodata.GeoCondition.isNotEmpty())
-//                        listener.siteAccessDetailsItemClicked(basicinfodata.SafetyAndAccess[0],basicinfodata.id.toString())
-//                    else
-//                        Toast.makeText(context,"Geo Condition ",Toast.LENGTH_SHORT).show()
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -512,6 +568,8 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.iconLayout.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
                 }
                 else {
                     holder.binding.itemTitle.tag = false
@@ -533,15 +591,78 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     holder.binding.SiteAccesseethodology.text = saftyAcess?.Siteaccessmethodology
                     holder.binding.PoliceStationNumber.text = saftyAcess?.NearByPoliceStationNumber
                     holder.binding.nearByPoliceStation.text = saftyAcess?.NearByPoliceStation
+                    holder.binding.DistancePolice.text = saftyAcess?.NearByPoliceStationDistance
+                    holder.binding.PoliceStationNumber.text = saftyAcess?.NearByPoliceStationDistance
                     holder.binding.nearByFireStation.text = saftyAcess?.NearByFireStation
+                    holder.binding.DistanceFire.text = saftyAcess?.NearByFireStationDistance
                     holder.binding.fireStationNumber.text = saftyAcess?.NearByFireStationNumber
-                    holder.binding.GateFence.text = saftyAcess?.NearByFireStationNumber
-                    holder.binding.videoMonitoring.text = saftyAcess?.Videomonitoring.toString()
-                    holder.binding.siteAccessWay.text = saftyAcess?.SiteAccessWay.toString()
-                    holder.binding.dangerSignage.text = saftyAcess?.DangerSignage.toString()
-                    holder.binding.CautionSignage.text = saftyAcess?.CautionSignage.toString()
-                    if(saftyAcess?.Physicalsecurity?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.physicalSecurity,DropDowns.Physicalsecurity.name,saftyAcess?.Physicalsecurity?.get(0).toString())
+                    if (saftyAcess?.GateAndFence!=null && saftyAcess?.GateAndFence!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.GateFence,DropDowns.GateAndFence.name,saftyAcess?.GateAndFence.toString())
+                    if (saftyAcess?.Videomonitoring!=null && saftyAcess?.Videomonitoring!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.videoMonitoring,DropDowns.VideoMonitoring.name,saftyAcess?.Videomonitoring.toString())
+                    if (saftyAcess?.SiteAccessWay!=null && saftyAcess?.SiteAccessWay!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.siteAccessWay,DropDowns.SiteAccessWay.name,saftyAcess?.SiteAccessWay.toString())
+                    if (saftyAcess?.DangerSignage!=null && saftyAcess?.DangerSignage!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.dangerSignage,DropDowns.DangerSignage.name,saftyAcess?.DangerSignage.toString())
+                    if (saftyAcess?.CautionSignage!=null && saftyAcess?.CautionSignage!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.CautionSignage,DropDowns.CautionSignage.name,saftyAcess?.CautionSignage.toString())
+                    if(saftyAcess?.Physicalsecurity!=null && saftyAcess?.Physicalsecurity!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.physicalSecurity,DropDowns.Physicalsecurity.name,saftyAcess?.Physicalsecurity.toString())
+                    //edit mode
+                    holder.binding.SiteAccessMethodologyEdit.setText(saftyAcess?.Siteaccessmethodology)
+                    holder.binding.NearbyPoliceStationEdit.setText(saftyAcess?.NearByPoliceStation)
+                    holder.binding.DistancePoliceEdit.setText(saftyAcess?.NearByPoliceStationDistance)
+                    holder.binding.PhoneNumberPoliceEdit.setText(saftyAcess?.NearByPoliceStationNumber)
+                    holder.binding.NearbyFireEdit.setText(saftyAcess?.NearByFireStation)
+                    holder.binding.DistanceFireEdit.setText(saftyAcess?.NearByFireStationDistance)
+                    holder.binding.PhoneNumberFireEdit.setText(saftyAcess?.NearByFireStationNumber)
+                }
+                if (saftyAcess!=null && saftyAcess?.GateAndFence!=null && saftyAcess?.GateAndFence!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.GateFenceEdit,DropDowns.GateAndFence.name,saftyAcess?.GateAndFence.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.GateFenceEdit,DropDowns.GateAndFence.name)
+                if (saftyAcess!=null && saftyAcess?.Videomonitoring!=null && saftyAcess?.Videomonitoring!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.videoMonitoringEdit,DropDowns.VideoMonitoring.name,saftyAcess?.Videomonitoring.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.videoMonitoringEdit,DropDowns.VideoMonitoring.name)
+                if (saftyAcess!=null && saftyAcess?.SiteAccessWay!=null && saftyAcess?.SiteAccessWay!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessWayEdit,DropDowns.SiteAccessWay.name,saftyAcess?.SiteAccessWay.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.SiteAccessWayEdit,DropDowns.SiteAccessWay.name)
+                if (saftyAcess!=null && saftyAcess?.DangerSignage!=null && saftyAcess?.DangerSignage!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.DangerSignageEdit,DropDowns.DangerSignage.name,saftyAcess?.DangerSignage.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.DangerSignageEdit,DropDowns.DangerSignage.name)
+                if (saftyAcess!=null && saftyAcess?.CautionSignage!=null && saftyAcess?.CautionSignage!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.CautionSignageEdit,DropDowns.CautionSignage.name,saftyAcess?.CautionSignage.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.CautionSignageEdit,DropDowns.CautionSignage.name)
+                if(saftyAcess!=null && saftyAcess?.Physicalsecurity!=null && saftyAcess?.Physicalsecurity!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PhysicalSecurityEdit,DropDowns.Physicalsecurity.name,saftyAcess?.Physicalsecurity.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PhysicalSecurityEdit,DropDowns.Physicalsecurity.name)
+                holder.binding.update.setOnClickListener {
+                    val temSaftyAccessData=SaftyAccessData()
+                    val temSiteInfoAllData=AllsiteInfoDataModel()
+                    temSaftyAccessData.let {
+                        it.Siteaccessmethodology=holder.binding.SiteAccesseethodology.text.toString()
+                        it.NearByPoliceStation=holder.binding.NearbyPoliceStationEdit.text.toString()
+                        it.NearByPoliceStationDistance=holder.binding.DistancePoliceEdit.text.toString()
+                        it.NearByPoliceStationNumber=holder.binding.PhoneNumberPoliceEdit.text.toString()
+                        it.NearByFireStation=holder.binding.NearbyFireEdit.text.toString()
+                        it.NearByFireStationDistance=holder.binding.DistanceFireEdit.text.toString()
+                        it.NearByFireStationNumber=holder.binding.PhoneNumberFireEdit.text.toString()
+                        it.Physicalsecurity= holder.binding.PhysicalSecurityEdit.selectedValue.id.toIntOrNull()
+                        it.GateAndFence= holder.binding.GateFenceEdit.selectedValue.id.toIntOrNull()
+                        it.Videomonitoring= holder.binding.videoMonitoringEdit.selectedValue.id.toIntOrNull()
+                        it.SiteAccessWay= holder.binding.SiteAccessWayEdit.selectedValue.id.toIntOrNull()
+                        it.DangerSignage= holder.binding.DangerSignageEdit.selectedValue.id.toIntOrNull()
+                        it.CautionSignage= holder.binding.CautionSignageEdit.selectedValue.id.toIntOrNull()
+                        if (geoCondition!=null)
+                            it.id=geoCondition?.id
+                    }
+                    temSiteInfoAllData.SafetyAndAccess= arrayListOf(temSaftyAccessData)
+                    listener.updateSiteInfo(temSiteInfoAllData)
                 }
             }
             is ViewHold5 -> {

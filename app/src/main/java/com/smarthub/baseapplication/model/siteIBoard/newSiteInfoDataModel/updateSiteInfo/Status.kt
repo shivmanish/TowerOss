@@ -2,4 +2,5 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updat
 
 data class Status(
     val Basicinfo: Int,
+    val OperationalInfo: Int,
 )

@@ -103,7 +103,7 @@ public enum DropDowns {
     Terraintype,
     // Site Info --> Safty Access Dropdowns
     Physicalsecurity,
-    Videomonitoring,
+    VideoMonitoring,
     DangerSignage,
     CautionSignage,
     Siteaccess,
