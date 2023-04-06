@@ -49,7 +49,11 @@ class AddNewSstSbcDialouge (var listner:AddSstSbcDataListener) : BaseBottomSheet
                 it.PONumber=binding.PONumberEdit.text.toString()
                 it.Budget=binding.BudgetEdit.text.toString()
                 it.PODate=Utils.getFullFormatedDate(binding.PODateEdit.text.toString())
-                it.POLineItemNo=binding.POLineNoEdit.text.toString().toInt()
+                try {
+                    it.POLineItemNo=binding.POLineNoEdit.text.toString().toInt()
+                }catch (e:Exception){
+                    it.POLineItemNo=0
+                }
                 it.POAmount=binding.POAmountEdit.text.toString()
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
                 it.VendorExecutiveEmailId=binding.VendorExecutiveEmailIDEdit.text.toString()

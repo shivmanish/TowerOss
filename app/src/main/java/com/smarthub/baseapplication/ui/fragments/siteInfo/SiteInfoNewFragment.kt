@@ -46,7 +46,7 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-        adapter= SiteInfoListAdapter(requireContext(),this@SiteInfoNewFragment)
+        adapter= SiteInfoListAdapter(this@SiteInfoNewFragment,this@SiteInfoNewFragment)
         binding.listItem.adapter=adapter
 
         dropdowndata = AppPreferences.getInstance().dropDown
