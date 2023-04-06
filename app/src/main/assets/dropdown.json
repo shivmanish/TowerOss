@@ -333,7 +333,7 @@
       ]
     },
     {
-      "name": "backhaulNodeCategory",
+      "name": "BackhaulNodeCategory",
       "data": [
         {
           "id": 1,
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "name": "siteOwnership",
+      "name": "SiteOwnership",
       "data": [
         {
           "id": 1,
@@ -754,6 +754,32 @@
         {
           "id": 3,
           "name": "Building And Land"
+        }
+      ]
+    },
+    {
+      "name": "SstSbcType",
+      "data": [
+        {
+          "id": 1,
+          "name": "SST"
+        },
+        {
+          "id": 2,
+          "name": "SBC"
+        }
+      ]
+    },
+    {
+      "name": "Sitebillingstatus",
+      "data": [
+        {
+          "id": 1,
+          "name": "Billable"
+        },
+        {
+          "id": 2,
+          "name": "Not Billable"
         }
       ]
     }

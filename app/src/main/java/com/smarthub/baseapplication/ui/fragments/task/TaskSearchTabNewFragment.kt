@@ -378,8 +378,8 @@ class TaskSearchTabNewFragment(
                 mapSiteIboardUiData(data)
                 if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
-                    lattitude = siteData.locLatitude
-                    longitude = siteData.locLongitude
+                    lattitude = siteData.locLatitude!!
+                    longitude = siteData.locLongitude!!
                     if(Trackingflag){
                         binding.trackinglayout.visibility = View.VISIBLE
                     }else{
@@ -534,15 +534,15 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
+                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch!!)
                 AppLogger.log("size :${it.data.item?.size}")
             } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
 //                qatMainModel = it.data
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch)
-                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
+                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch!!)
+                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch?.size}")
             } else if (it != null) {
                 Toast.makeText(requireContext(),
                     "Service request Fragment error :${it.message}, data : ${it.data}",
@@ -1069,14 +1069,14 @@ class TaskSearchTabNewFragment(
             binding.SiteName.text=siteData?.siteName
             binding.SiteId.text=siteData?.siteID
             binding.SiteAlternateName.text=siteData?.aliasName
-            if (siteData?.Sitecategory!=null && siteData.Sitecategory.isNotEmpty()){
-                AppPreferences.getInstance().setDropDown(binding.SiteCategory,DropDowns.Sitecategory.name, siteData.Sitecategory[0].toString())
+            if (siteData?.Sitecategory!=null && siteData.Sitecategory?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteCategory,DropDowns.Sitecategory.name, siteData.Sitecategory?.get(0).toString())
             }
-            if (siteData?.Sitestatus!=null && siteData.Sitestatus.isNotEmpty()){
-                AppPreferences.getInstance().setDropDown(binding.SiteStatus,DropDowns.Sitestatus.name, siteData.Sitestatus[0].toString())
+            if (siteData?.Sitestatus!=null && siteData.Sitestatus?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteStatus,DropDowns.Sitestatus.name, siteData.Sitestatus?.get(0).toString())
             }
-            if (siteData?.Opcositetype!=null && siteData.Opcositetype.isNotEmpty()){
-                AppPreferences.getInstance().setDropDown(binding.SiteType,DropDowns.Opcositetype.name, siteData.Opcositetype[0].toString())
+            if (siteData?.Opcositetype!=null && siteData.Opcositetype?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteType,DropDowns.Opcositetype.name, siteData.Opcositetype?.get(0).toString())
             }
         }
     }

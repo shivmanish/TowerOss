@@ -1,24 +1,24 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel
 
-data class OprationalInfoData(
-    val AvailableOpco: String,
-    val BackhaulNodeCategory: Int,
-    val DesignedDcLoad: String,
-    val DismantlinglDate: String,
-    val FeasibleOpcoSharing: String,
-    val InstalledDcLoad: String,
-    val OperatingTempMax: String,
-    val OperatingTempMin: String,
-    val PowerConnectionType: List<Int>,
-    val RFCDate: String,
-    val RFIDate: String,
-    val RFSDate: String,
-    val SiteAgreementDate: String,
-    val Sitebillingstatus: List<Int>,
-    val TempSetting: String,
-    val TowerorPoleHeight: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class OprationalInfoData{
+    var AvailableOpco: String?=null
+    var BackhaulNodeCategory: Int?=null
+    var DesignedDcLoad: String?=null
+    var DismantlinglDate: String?=null
+    var FeasibleOpcoSharing: String?=null
+    var InstalledDcLoad: String?=null
+    var OperatingTempMax: String?=null
+    var OperatingTempMin: String?=null
+    var PowerConnectionType: ArrayList<Int>?=null
+    var RFCDate: String?=null
+    var RFIDate: String?=null
+    var RFSDate: String?=null
+    var SiteAgreementDate: String?=null
+    var Sitebillingstatus: Int?=null
+    var TempSetting: String?=null
+    var TowerorPoleHeight: String?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

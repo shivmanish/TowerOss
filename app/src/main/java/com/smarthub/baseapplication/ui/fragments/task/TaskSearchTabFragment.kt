@@ -297,8 +297,8 @@ class TaskSearchTabFragment(
                 val data : AllsiteInfoDataModel = it.data
                 if (data.Siteaddress!=null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
-                    lattitude = siteData.locLatitude
-                    longitude = siteData.locLongitude
+                    lattitude = siteData.locLatitude!!
+                    longitude = siteData.locLongitude!!
                     AppLogger.log("fetched latitude:${lattitude},longitude:$longitude")
                 }else{
                     AppLogger.log("Site address not fetched")

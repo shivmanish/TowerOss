@@ -47,10 +47,14 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqu
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel;
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel;
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityResponseModel;
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcModel;
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcResponseModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate;
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoParam;
@@ -167,6 +171,10 @@ public interface APIClient {
     Call<AllsiteInfoDataModel> fetchSiteInfo(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<UpdateSiteInfoResponseModel> updateSiteInfoRequest(@Body AllsiteInfoDataModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
     Call<ServiceRequestModel> fetchServiceRequest(@Body JsonObject data);
 
@@ -218,6 +226,14 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
     Call<UpdateSiteAcqResponseModel> updateSiteAcqRequest(@Body UpdateSiteAcqModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<SstSbcAllDataModel> fetchSstSbcModelRequest(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<UpdateSstSbcResponseModel> updateSstSbcRequest(@Body UpdateSstSbcModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
