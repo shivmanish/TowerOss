@@ -62,16 +62,6 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                 AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data}")
                 hideLoader()
                 adapter.setData(it.data)
-//                var currentOpened = -1
-//                if (binding.listItem.adapter is SiteInfoListAdapter){
-//                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
-//                    currentOpened = adapter.currentOpened
-//                }
-//                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data)
-//                AppLogger.log("currentOpened:$currentOpened")
-//                if (currentOpened>=0){
-//                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
-//                }
             }else if (it!=null) {
                 AppLogger.log("SiteInfoNewFragment error :${it.message}")
 
@@ -140,7 +130,8 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
                 AppLogger.log("SiteInfoNewFragment data loading in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status?.Basicinfo==200) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status?.Basicinfo==200 ||
+                        it.data.status?.OperationalInfo==200 || it.data.status?.GeoCondition==200 || it.data.status?.SafetyAndAccess==200)) {
                 AppLogger.log("SiteInfoNewFragment card Data fetched successfully")
                 homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()

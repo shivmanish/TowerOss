@@ -35,29 +35,31 @@
                 app:layout_constraintWidth_percent=".5" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/icon_layout"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="end"
                 android:orientation="horizontal"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                android:gravity="end"
                 app:layout_constraintStart_toEndOf="@+id/item_title"
-                app:layout_constraintTop_toTopOf="parent">
-
+                app:layout_constraintEnd_toStartOf="@+id/img_dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="0dp">
                 <ImageView
-                    android:visibility="visible"
                     android:id="@+id/img_edit"
-                    app:tint="@color/grey"
+                    android:visibility="visible"
                     android:paddingStart="@dimen/dp16"
                     android:paddingEnd="@dimen/dp16"
                     android:paddingTop="@dimen/dp17"
                     android:paddingBottom="@dimen/dp17"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/edit_ico_black"
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@id/img_dropdown"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/dp12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="@dimen/dp50"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/img_dropdown"
@@ -74,28 +76,32 @@
                 android:layout_height="match_parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/item_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="2"
-            android:background="@color/view_color" />
     </LinearLayout>
+    <View
+        android:id="@+id/item_line"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/title_layout"
+        android:background="@color/view_color"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
 
     <LinearLayout
+        android:visibility="visible"
         android:id="@+id/item_collapse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/item_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/view_layout"
+            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/dp15"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/dp10">
+            android:layout_marginTop="@dimen/dp10"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -190,45 +196,6 @@
                     <TextView
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Danger Signage" />
-
-                    <TextView
-                        android:id="@+id/danger_signage"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-                </LinearLayout>
-                <LinearLayout
-                    style="@style/ColumnItemInfo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Caution Signage" />
-
-                    <TextView
-                        android:id="@+id/CautionSignage"
-                        style="@style/RowTextviewItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/ColumnItemInfo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         android:layout_height="wrap_content"
@@ -251,7 +218,46 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nearby Police Station" />
+                        android:text="Danger Signage" />
+
+                    <TextView
+                        android:id="@+id/danger_signage"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Caution Signage" />
+
+                    <TextView
+                        android:id="@+id/CautionSignage"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nearby Police/Force Station" />
 
                     <TextView
                         android:id="@+id/near_by_PoliceStation"
@@ -272,7 +278,27 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Police Station Number" />
+                        android:text="Distance (km)" />
+
+                    <TextView
+                        android:id="@+id/Distance_Police"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ph number" />
 
                     <TextView
                         android:id="@+id/Police_station_Number"
@@ -282,6 +308,7 @@
                         android:text="" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     style="@style/ColumnItemInfo"
                     android:layout_width="0dp"
@@ -302,6 +329,26 @@
 
 
                 </LinearLayout>
+                <LinearLayout
+                    style="@style/ColumnItemInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Distance (km)" />
+
+                    <TextView
+                        android:id="@+id/Distance_Fire"
+                        style="@style/RowTextviewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     style="@style/ColumnItemInfo"
@@ -312,7 +359,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Fire Station Number" />
+                        android:text="Ph number" />
 
                     <TextView
                         android:id="@+id/fire_station_number"
@@ -324,8 +371,366 @@
                 </LinearLayout>
 
             </GridLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/edit_layout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:visibility="visible"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Physical Security"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Physical_security_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Gate &amp; Fench"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Gate_Fence_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Video Monitoring"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/video_monitoring_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Access Way"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Site_Access_Way_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Site Access Methodology"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Site_Access_Methodology_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Danger Signage"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Danger_Signage_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Caution Signage"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Caution_Signage_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Nearby Police/Force Station"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/NearbyPoliceStation_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Distance (Km)"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Distance_Police_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Ph Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Phone_number_police_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Nearby Fire Station"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/NearbyFire_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Distance (Km)"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Distance_Fire_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Ph Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Phone_Number_Fire_edit"
+                        android:text=""
+                        android:inputType="numberDecimal"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
 
 
+            </GridLayout>
+            <LinearLayout
+                android:id="@+id/bottom_layout"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cancel"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
+                <TextView
+                    android:id="@+id/update"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:background="@drawable/yellow_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Update"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
