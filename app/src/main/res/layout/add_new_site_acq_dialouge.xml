@@ -396,7 +396,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/POAmount_edit"
-                            android:text=""
+                            android:text="0"
                             android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
