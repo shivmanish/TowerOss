@@ -607,7 +607,7 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     if (saftyAcess?.CautionSignage!=null && saftyAcess?.CautionSignage!! >0)
                         AppPreferences.getInstance().setDropDown(holder.binding.CautionSignage,DropDowns.CautionSignage.name,saftyAcess?.CautionSignage.toString())
                     if(saftyAcess?.Physicalsecurity!=null && saftyAcess?.Physicalsecurity!! >0)
-                        AppPreferences.getInstance().setDropDown(holder.binding.physicalSecurity,DropDowns.Physicalsecurity.name,saftyAcess?.Physicalsecurity.toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.physicalSecurity,DropDowns.PhysicalSecurity.name,saftyAcess?.Physicalsecurity.toString())
                     //edit mode
                     holder.binding.SiteAccessMethodologyEdit.setText(saftyAcess?.Siteaccessmethodology)
                     holder.binding.NearbyPoliceStationEdit.setText(saftyAcess?.NearByPoliceStation)
@@ -637,10 +637,11 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     AppPreferences.getInstance().setDropDown(holder.binding.CautionSignageEdit,DropDowns.CautionSignage.name,saftyAcess?.CautionSignage.toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.CautionSignageEdit,DropDowns.CautionSignage.name)
-                if(saftyAcess!=null && saftyAcess?.Physicalsecurity!=null && saftyAcess?.Physicalsecurity!! >0)
-                    AppPreferences.getInstance().setDropDown(holder.binding.PhysicalSecurityEdit,DropDowns.Physicalsecurity.name,saftyAcess?.Physicalsecurity.toString())
+                if(saftyAcess!=null && saftyAcess?.Physicalsecurity!=null && saftyAcess?.Physicalsecurity!! >0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.PhysicalSecurityEdit,DropDowns.PhysicalSecurity.name,saftyAcess?.Physicalsecurity.toString())
+                }
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.PhysicalSecurityEdit,DropDowns.Physicalsecurity.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PhysicalSecurityEdit,DropDowns.PhysicalSecurity.name)
                 holder.binding.update.setOnClickListener {
                     val temSaftyAccessData=SaftyAccessData()
                     val temSiteInfoAllData=AllsiteInfoDataModel()
