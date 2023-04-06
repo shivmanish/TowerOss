@@ -154,7 +154,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                             AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
                         holder.binding.AcquisitionLeadName.text=datalist?.LeadName
                         holder.binding.AcquisitionExecutiveName.text=datalist?.ExecutiveName
-                        holder.binding.AcquisitionBudget.text=datalist?.AcquisitionBudget
+                        holder.binding.AcquisitionBudget.text= datalist?.AcquisitionBudget?.ifEmpty { "0" }
                         holder.binding.VendorCode.text=datalist?.VendorCode
                         holder.binding.PONumber.text=datalist?.PONumber
                         holder.binding.POLineNo.text=datalist?.POLineItemNo.toString()
@@ -207,7 +207,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     tempData.let {
                         it.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
                         it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
-                        it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
+                        it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString().ifEmpty { "0" }
                         it.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                         it.PONumber=holder.binding.PONumberEdit.text.toString()

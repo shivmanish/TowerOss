@@ -134,7 +134,7 @@ class TeamVendorDetailsBottomSheet(
                 this?.LeadName = binding.acqusationLeadName.text.toString()
                 this?.LeadEmailId = binding.leadEmail.text.toString()
                 this?.LeadMobile = binding.leadPhone.text.toString()
-                this?.AcquisitionBudget = binding.acquisitionBudget.text.toString()
+                this?.AcquisitionBudget = binding.acquisitionBudget.text.toString().ifEmpty { "0" }
                 this?.AcquisitionTargetDate = binding.AcquisitionTargetData.text.toString()
                 this?.PONumber = binding.spinPONumber.text.toString()
                 this?.OfficeAddress = binding.address.text.toString()

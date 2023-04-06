@@ -50,7 +50,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
             data.let {
                 it.LeadName=binding.AcquisitionLeadNameEdit.text.toString()
                 it.ExecutiveName=binding.AcquisitionExecutiveNameEdit.text.toString()
-                it.AcquisitionBudget=binding.AcquisitionBudgetEdit.text.toString()
+                it.AcquisitionBudget=binding.AcquisitionBudgetEdit.text.toString().ifEmpty { "0" }
                 it.AcquisitionTargetDate=Utils.getFullFormatedDate(binding.AcquisitionTargetDateEdit.text.toString())
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
                 it.PONumber=binding.PONumberEdit.text.toString()

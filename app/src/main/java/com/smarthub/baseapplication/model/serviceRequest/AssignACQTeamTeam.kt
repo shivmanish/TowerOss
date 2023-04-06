@@ -1,7 +1,7 @@
 package com.smarthub.baseapplication.model.serviceRequest
 
 data class AssignACQTeamTeam(
-    var AcquisitionBudget: String,
+    var AcquisitionBudget: String?="0",
     var AcquisitionTargetDate: String,
     var AcquisitionType: String,
     var AcquistionMode: String,

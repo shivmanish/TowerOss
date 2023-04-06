@@ -33,7 +33,7 @@ class AsignAcqTeamBottomSheet(contentLayoutId: Int,var AssignAcqTeamDetailsData 
             binding.LeadEmailId.text=AssignAcqTeamDetailsData?.LeadEmailId?.toEditable()
             binding.Number.text=AssignAcqTeamDetailsData?.LeadMobile?.toEditable()
 
-            binding.AcquisitionBudget.text=AssignAcqTeamDetailsData?.AcquisitionBudget?.toEditable()
+            binding.AcquisitionBudget.text= AssignAcqTeamDetailsData?.AcquisitionBudget?.toEditable()
             binding.AcquisitionTargetDate.text=AssignAcqTeamDetailsData?.AcquisitionTargetDate
 
             binding.PoAmount.text=AssignAcqTeamDetailsData?.POAmount?.toEditable()
