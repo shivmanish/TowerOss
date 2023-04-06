@@ -40,7 +40,7 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
         }
         binding.DistanceFromBoundaryEdit.setText(data.DistanceFromBoundry)
         binding.HeightAGlEdit.setText(data.Height)
-        binding.remarksEdit.setText(data.Remark)
+        binding.remarksEdit.setText(data.remark)
         if (data.ExternalStructureType.isNotEmpty())
             AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name,data.ExternalStructureType[0].toString())
         else
@@ -56,7 +56,7 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
                 data.let {
                     it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
                     it.Height=binding.HeightAGlEdit.text.toString()
-                    it.Remark=binding.remarksEdit.text.toString()
+                    it.remark=binding.remarksEdit.text.toString()
                     it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
                     it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
                     // add OutSidePremises data to agreement model list
@@ -84,7 +84,7 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
                 data.let {
                     it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
                     it.Height=binding.HeightAGlEdit.text.toString()
-                    it.Remark=binding.remarksEdit.text.toString()
+                    it.remark=binding.remarksEdit.text.toString()
                     it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
                     it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
                     // add OutSidePremises data to agreement model list
@@ -112,7 +112,7 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
                 data.let {
                     it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
                     it.Height=binding.HeightAGlEdit.text.toString()
-                    it.Remark=binding.remarksEdit.text.toString()
+                    it.remark=binding.remarksEdit.text.toString()
                     if (data.ExternalStructureType.isNotEmpty())
                         it.ExternalStructureType[0]=binding.ExternalStructureTypeEdit.selectedValue.id.toInt()
                     else

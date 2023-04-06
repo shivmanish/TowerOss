@@ -6,7 +6,7 @@ data class SAcqPODetail(
     var POItem: String,
     var POLineNumber: Int,
     var PONumber: String,
-    var Remark: String,
+    var remark: String,
     var VendorCode: String,
     var VendorCompany: ArrayList<Int>,
 //    var created_at: String,

@@ -10,7 +10,7 @@ class SAcqFeasibilityDetail{
     var MarketPrice: String?=null
     var OverallFeasibility: Int?=null
     var OwnerMeter: Int?=null
-    var Remark: String?=null
+    var remark: String?=null
     var RequiredAreaAvailable: Int?=null
     var StatutoryPermission: Int?=null
     var SurveyDate: String?=null

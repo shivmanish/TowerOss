@@ -8,7 +8,7 @@ class SstSbcTeam{
     var PODate: String?=null
     var POLineItemNo: Int?=null
     var PONumber: String?=null
-    var Remark: String?=null
+    var remark: String?=null
     var Type: Int?=null
     var VendorCompany: ArrayList<Int>?=null
     var VendorExecutiveEmailId: String?=null

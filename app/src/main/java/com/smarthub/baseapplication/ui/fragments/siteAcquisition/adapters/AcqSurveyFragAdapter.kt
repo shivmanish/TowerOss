@@ -329,7 +329,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.DistanceFireStation.text=propertyData?.FsDistance
                     holder.binding.PhnumberPolice.text=propertyData?.PsPhoneNo
                     holder.binding.PhNumberFireStation.text=propertyData?.FsPhoneNo
-                    holder.binding.remarks.text=propertyData?.Remark
+                    holder.binding.remarks.text=propertyData?.remark
 
                     // edit mode
                     holder.binding.OtherOperatorNameEdit.setText(propertyData?.OtherOperatorName)
@@ -339,7 +339,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.DistanceFireStationEdit.setText(propertyData?.FsDistance)
                     holder.binding.PhNumberPoliceEdit.setText(propertyData?.PsPhoneNo)
                     holder.binding.phNoFireStationEdit.setText(propertyData?.FsPhoneNo)
-                    holder.binding.remarksEdit.setText(propertyData?.Remark)
+                    holder.binding.remarksEdit.setText(propertyData?.remark)
                 }
                 if (buildingData!=null){
                     //view mode
@@ -462,7 +462,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
                             it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
                             it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
                             it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
                             it.SAcqLandDetail= arrayListOf(tempLandData)
                             if (propertyData!=null)
@@ -568,7 +568,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.MeterSerialNumber.text= powerData?.MeterSerialNo
                     holder.binding.NearestEBPole.text= powerData?.NearestEBPole
                     holder.binding.PowerConnRating.text= powerData?.PowerRating
-                    holder.binding.remarks.text= powerData?.Remark
+                    holder.binding.remarks.text= powerData?.remark
 
                     //edit mode
                     holder.binding.PowerSupplierNameEdit.setText(powerData?.PowerSupplier)
@@ -577,7 +577,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.MeterSerialNumberEdit.setText(powerData?.MeterSerialNo)
                     holder.binding.NearestEBPoleEdit.setText(powerData?.NearestEBPole)
                     holder.binding.PowerConnRatingEdit.setText(powerData?.PowerRating)
-                    holder.binding.remarksEdit.setText(powerData?.Remark)
+                    holder.binding.remarksEdit.setText(powerData?.remark)
 
                 }
 
@@ -607,7 +607,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         it.MeterSerialNo= holder.binding.MeterSerialNumberEdit.text.toString()
                         it.NearestEBPole= holder.binding.NearestEBPoleEdit.text.toString()
                         it.PowerRating= holder.binding.PowerConnRatingEdit.text.toString()
-                        it.Remark= holder.binding.remarksEdit.text.toString()
+                        it.remark= holder.binding.remarksEdit.text.toString()
                         it.EBAvailability=holder.binding.EBPowerAvailabilityEdit.selectedValue.id.toIntOrNull()
                         it.EBApplicationStatus=holder.binding.EBApplicationStatusEdit.selectedValue.id.toIntOrNull()
                         it.MeterType=holder.binding.MeterTypeEdit.selectedValue.id.toIntOrNull()
@@ -715,10 +715,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.AcquisitionArea.text=feasibilityData?.Area
                     holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
                     holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
-                    holder.binding.OverallFeasibility.text=feasibilityData?.OverallFeasibility.toString()
                     holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
                     holder.binding.SurveyDate.text=Utils.getFormatedDate(feasibilityData?.SurveyDate,"dd-MMM-yyyy")
-                    holder.binding.remarks.text=feasibilityData?.Remark
+                    holder.binding.remarks.text=feasibilityData?.remark
 
                     // edit mode
                     holder.binding.AcquisitionAreaEdit.setText(feasibilityData?.Area)
@@ -726,7 +725,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.AverageMarketRateEdit.setText(feasibilityData?.MarketPrice)
                     holder.binding.SurveyExecutiveNameEdit.setText(feasibilityData?.ExecutiveName)
                     holder.binding.SurveyDateEdit.text=Utils.getFormatedDate(feasibilityData?.SurveyDate,"dd-MMM-yyyy")
-                    holder.binding.remarksEdit.setText(feasibilityData?.Remark)
+                    holder.binding.remarksEdit.setText(feasibilityData?.remark)
 
 
                 }
@@ -773,7 +772,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         it.ExpectedPrice = holder.binding.ExpectedPriceEdit.text.toString()
                         it.MarketPrice = holder.binding.AverageMarketRateEdit.text.toString()
                         it.ExecutiveName = holder.binding.SurveyExecutiveNameEdit.text.toString()
-                        it.Remark = holder.binding.remarksEdit.text.toString()
+                        it.remark = holder.binding.remarksEdit.text.toString()
                         it.SurveyDate = Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
                         it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
                         it.TowerPoleType = arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())

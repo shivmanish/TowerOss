@@ -178,7 +178,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                     holder.binding.YearofConstruction.text=buildingData?.ConstructionYear.toString()
                     holder.binding.NoofFloors.text=buildingData?.NoOfFloors.toString()
                     holder.binding.BuildingReportNumber.text=buildingData?.ReportNo
-                    holder.binding.BuildingRemarks.text=buildingData?.Remark
+                    holder.binding.BuildingRemarks.text=buildingData?.remark
                     holder.binding.SiteTestingDate.text=Utils.getFormatedDate(buildingData?.TestingDate,"dd-MMM-yyyy")
                     holder.binding.BuildingTestReportDate.text=Utils.getFormatedDate(buildingData?.TestReportDate,"dd-MMM-yyyy")
                     // edit mode
@@ -187,7 +187,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                     holder.binding.YearOfConstructionEdit.setText(buildingData?.ConstructionYear.toString())
                     holder.binding.NoOfFloorEdit.setText(buildingData?.NoOfFloors.toString())
                     holder.binding.BuildingReportNumberEdit.setText(buildingData?.ReportNo)
-                    holder.binding.BuildingRemarksEdit.setText(buildingData?.Remark)
+                    holder.binding.BuildingRemarksEdit.setText(buildingData?.remark)
                     holder.binding.SiteTestingDateEdit.text=Utils.getFormatedDate(buildingData?.TestingDate,"dd-MMM-yyyy")
                     holder.binding.BuildingTestReportDateEdit.text=Utils.getFormatedDate(buildingData?.TestReportDate,"dd-MMM-yyyy")
                 }
@@ -198,13 +198,13 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                     if (landData?.SoilType?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.SoilType,DropDowns.SoilType.name, landData?.SoilType?.get(0).toString())
                     holder.binding.LandReportNumber.text=landData?.ReportNo
-                    holder.binding.LandRemarks.text=landData?.Remark
+                    holder.binding.LandRemarks.text=landData?.remark
                     holder.binding.SoilSampleCollectionDate.text=Utils.getFormatedDate(landData?.TestingDate,"dd-MMM-yyyy")
                     holder.binding.LandTestReportDate.text=Utils.getFormatedDate(landData?.TestReportDate,"dd-MMM-yyyy")
 
                     // edit mode
                     holder.binding.LandReportNumberEdit.setText(landData?.ReportNo)
-                    holder.binding.LandRemarksEdit.setText(landData?.Remark)
+                    holder.binding.LandRemarksEdit.setText(landData?.remark)
                     holder.binding.SoilSampleCollectionDateEdit.text=Utils.getFormatedDate(buildingData?.TestingDate,"dd-MMM-yyyy")
                     holder.binding.LandTestReportDateEdit.text=Utils.getFormatedDate(buildingData?.TestReportDate,"dd-MMM-yyyy")
                 }
@@ -243,7 +243,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                     }
                     tempLandData.let {
                         it.ReportNo=holder.binding.LandReportNumberEdit.text.toString()
-                        it.Remark=holder.binding.LandRemarksEdit.text.toString()
+                        it.remark=holder.binding.LandRemarksEdit.text.toString()
                         it.TestingDate=Utils.getFullFormatedDate(holder.binding.SoilSampleCollectionDateEdit.text.toString())
                         it.TestReportDate=Utils.getFullFormatedDate(holder.binding.LandTestReportDateEdit.text.toString())
                         it.LandType= arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
@@ -257,7 +257,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                         it.TypicalFloorArea=holder.binding.TypicalFloorAreaEdit.text.toString()
                         it.ConstructionYear=holder.binding.YearOfConstructionEdit.text.toString().toIntOrNull()
                         it.ReportNo=holder.binding.BuildingReportNumberEdit.text.toString()
-                        it.Remark=holder.binding.BuildingRemarksEdit.text.toString()
+                        it.remark=holder.binding.BuildingRemarksEdit.text.toString()
                         it.TestingDate=Utils.getFullFormatedDate(holder.binding.SoilSampleCollectionDateEdit.text.toString())
                         it.TestReportDate=Utils.getFullFormatedDate(holder.binding.LandTestReportDateEdit.text.toString())
                         it.BuildingType= arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())

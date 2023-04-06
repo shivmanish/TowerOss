@@ -6,7 +6,7 @@ data class SAcqInsidePremise(
     var ExternalStructureType: ArrayList<Int>,
     var Height: String,
     var LocationType: Int,
-    var Remark: String,
+    var remark: String,
 //    var created_at: String,
     var id: Int?=null,
 //    var isActive: Boolean,

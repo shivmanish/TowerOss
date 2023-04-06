@@ -164,7 +164,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         holder.binding.VendorExecutiveNumber.text=datalist?.VendorExecutiveMobile
                         holder.binding.AcquisitionTargetDate.text=Utils.getFormatedDate(datalist?.AcquisitionTargetDate?.substring(0,10)!!,"dd-MMM-yyyy")
                         holder.binding.PODate.text=Utils.getFormatedDate(datalist?.PODate?.substring(0,10)!!,"dd-MMM-yyyy")
-                        holder.binding.remarks.text=datalist?.Remark
+                        holder.binding.remarks.text=datalist?.remark
 
                         // edit mode
                         holder.binding.AcquisitionLeadNameEdit.setText(datalist?.LeadName)
@@ -179,7 +179,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         holder.binding.VendorExecutiveNumberEdit.setText(datalist?.VendorExecutiveMobile)
                         holder.binding.AcquisitionTargetDateEdit.text=Utils.getFormatedDate(datalist?.AcquisitionTargetDate?.substring(0,10)!!,"dd-MMM-yyyy")
                         holder.binding.PODateEdit.text=Utils.getFormatedDate(datalist?.PODate,"dd-MMM-yyyy")
-                        holder.binding.remarksEdit.setText(datalist?.Remark)
+                        holder.binding.remarksEdit.setText(datalist?.remark)
 
 
                     }
@@ -220,7 +220,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         it.AcquisitionMode = arrayListOf(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
                         it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
                         it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         if (datalist!=null)
                             it.id=datalist?.id
                         listener.updateTeamClicked(it)

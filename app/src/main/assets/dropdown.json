@@ -846,6 +846,19 @@
           "name": "Non-Billable"
         }
       ]
+    },
+    {
+      "name": "LocationType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Billable"
+        },
+        {
+          "id": 2,
+          "name": "Non-Billable"
+        }
+      ]
     }
   ]
 }

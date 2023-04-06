@@ -1,21 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.noc
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.NocApplicationDetailsItemBinding
-import com.smarthub.baseapplication.databinding.NocAuthorityItemsBinding
 import com.smarthub.baseapplication.databinding.NocPoDetailsItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocAuthorityDetail
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocPODetail
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
@@ -120,7 +113,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
                 holder.binding.vendorCode.text=data.VendorCode
                 holder.binding.poAmount.text=data.POAmount
                 holder.binding.poItems.text=data.POItem
-                holder.binding.remark.text=data.Remark
+                holder.binding.remark.text=data.remark
                 holder.binding.poLineNumber.text=data.POLineNo.toString()
 
                 //edit mode
@@ -129,7 +122,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
                 holder.binding.PoAmountEdit.setText(data.POAmount)
                 holder.binding.PoItemEdit.setText(data.POItem)
                 holder.binding.PoLineNumberEdit.setText(data.POLineNo.toString())
-                holder.binding.remarksEdit.setText(data.Remark)
+                holder.binding.remarksEdit.setText(data.remark)
                 holder.binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
 
                 if (data.VendorCompany?.isNotEmpty()==true)
@@ -145,7 +138,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
                         it.POItem=holder.binding.PoItemEdit.text.toString()
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                         it.PONumber=holder.binding.PoNumberEdit.text.toString()
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         it.POLineNo=holder.binding.PoLineNumberEdit.text.toString().toIntOrNull()
                         it.PODate=Utils.getFullFormatedDate(holder.binding.PoDateEdit.text.toString())
                         it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())

@@ -7,7 +7,7 @@ class SstSbcBuildingDetail{
     var ConstructionYear: Int?=null
     var NoOfFloors: Int?=null
     var PropertyType: Int?=null
-    var Remark: String?=null
+    var remark: String?=null
     var ReportNo: String?=null
     var TestReportDate: String?=null
     var TestingDate: String?=null

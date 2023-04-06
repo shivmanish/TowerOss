@@ -158,7 +158,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                     holder.binding.VendorExecutiveEmailID.text=datalist?.VendorExecutiveEmailId
                     holder.binding.VendorExecutiveNumber.text=datalist?.VendorExecutiveMobile
                     holder.binding.PODate.text=Utils.getFormatedDate(datalist?.PODate?.substring(0,10)!!,"dd-MMM-yyyy")
-                    holder.binding.remarks.text=datalist?.Remark
+                    holder.binding.remarks.text=datalist?.remark
 
                     // edit mode
                     holder.binding.BudgetEdit.setText(datalist?.Budget)
@@ -169,7 +169,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                     holder.binding.VendorExecutiveEmailIDEdit.setText(datalist?.VendorExecutiveEmailId)
                     holder.binding.VendorExecutiveNumberEdit.setText(datalist?.VendorExecutiveMobile)
                     holder.binding.PODateEdit.text=Utils.getFormatedDate(datalist?.PODate,"dd-MMM-yyyy")
-                    holder.binding.remarksEdit.setText(datalist?.Remark)
+                    holder.binding.remarksEdit.setText(datalist?.remark)
 
 
                 }
@@ -197,7 +197,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                         it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
                         it.Type = holder.binding.TestTypeEdit.selectedValue.id.toIntOrNull()
                         it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         if (datalist!=null){
                             it.attachment=datalist?.attachment
                             it.id=datalist?.id

@@ -26,11 +26,11 @@ class InsidePremisesViewDialouge (contentLayoutId: Int, var data: SAcqInsidePrem
             AppPreferences.getInstance().setDropDown(binding.ExternalStructureType, DropDowns.ExternalStructureType.name,data.ExternalStructureType.get(0).toString())
        if (data.Direction.isNotEmpty())
             AppPreferences.getInstance().setDropDown(binding.DirectionFromCentre, DropDowns.Direction.name,data.Direction.get(0).toString())
-
-        binding.LocationType.text=data.LocationType.toString()
+        if (data.LocationType>0)
+            AppPreferences.getInstance().setDropDown(binding.LocationType, DropDowns.LocationType.name,data.LocationType.toString())
         binding.DistanceFromCentre.text=data.DistanceFromCentre
         binding.HeightAGL.text=data.Height
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
 
     }
 
