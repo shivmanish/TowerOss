@@ -73,7 +73,7 @@ class SaftyAccessBottomSheet(contentLayoutId:Int, var id : String, var dropdown:
         binding.textFireNumber.setText( saftyAcess.NearByFireStationNumber)
 
         AppPreferences.getInstance().setDropDownByName(binding.siteAccess, DropDowns.Siteaccess.name,saftyAcess.Siteaccess)
-        AppPreferences.getInstance().setDropDownByName(binding.physicalSecurity, DropDowns.Physicalsecurity.name,saftyAcess.Physicalsecurity)
+        AppPreferences.getInstance().setDropDownByName(binding.physicalSecurity, DropDowns.PhysicalSecurity.name,saftyAcess.Physicalsecurity)
         AppPreferences.getInstance().setDropDownByName(binding.textGate, DropDowns.GateAndFence.name,saftyAcess.GateAndFence)
         AppPreferences.getInstance().setDropDownByName(binding.textCautionSignage, DropDowns.CautionSignage.name,saftyAcess.CautionSignage)
         AppPreferences.getInstance().setDropDownByName(binding.videoMonitoringSpinner, DropDowns.VideoMonitoring.name,saftyAcess.Videomonitoring)

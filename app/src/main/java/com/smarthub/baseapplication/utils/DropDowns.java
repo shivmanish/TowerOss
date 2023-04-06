@@ -40,7 +40,7 @@ public enum DropDowns {
     EBApplicationStatus,
     MeterType,
     EBPowerAvailability,
-    SolarFeability,
+    SolarFeasibility,
     FiberLMCLaying,
     SiteDemarcation,
     PropertyType,

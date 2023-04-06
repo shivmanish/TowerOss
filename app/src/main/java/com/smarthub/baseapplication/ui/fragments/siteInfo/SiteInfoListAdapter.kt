@@ -646,7 +646,7 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     val temSaftyAccessData=SaftyAccessData()
                     val temSiteInfoAllData=AllsiteInfoDataModel()
                     temSaftyAccessData.let {
-                        it.Siteaccessmethodology=holder.binding.SiteAccesseethodology.text.toString()
+                        it.Siteaccessmethodology=holder.binding.SiteAccessMethodologyEdit.text.toString()
                         it.NearByPoliceStation=holder.binding.NearbyPoliceStationEdit.text.toString()
                         it.NearByPoliceStationDistance=holder.binding.DistancePoliceEdit.text.toString()
                         it.NearByPoliceStationNumber=holder.binding.PhoneNumberPoliceEdit.text.toString()
@@ -659,8 +659,8 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                         it.SiteAccessWay= holder.binding.SiteAccessWayEdit.selectedValue.id.toIntOrNull()
                         it.DangerSignage= holder.binding.DangerSignageEdit.selectedValue.id.toIntOrNull()
                         it.CautionSignage= holder.binding.CautionSignageEdit.selectedValue.id.toIntOrNull()
-                        if (geoCondition!=null)
-                            it.id=geoCondition?.id
+                        if (saftyAcess!=null)
+                            it.id=saftyAcess?.id
                     }
                     temSiteInfoAllData.SafetyAndAccess= arrayListOf(temSaftyAccessData)
                     listener.updateSiteInfo(temSiteInfoAllData)

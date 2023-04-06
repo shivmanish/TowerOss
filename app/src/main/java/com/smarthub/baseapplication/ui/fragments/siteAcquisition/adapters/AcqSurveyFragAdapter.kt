@@ -561,7 +561,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     if (powerData?.EBAvailability!=null && powerData?.EBAvailability!! >=1)
                         AppPreferences.getInstance().setDropDown(holder.binding.EBPowerAvailability,DropDowns.EBPowerAvailability.name,powerData?.EBAvailability.toString())
                     if (powerData?.SolarFeasibility!=null && powerData?.SolarFeasibility!! >=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.SolarFeability,DropDowns.SolarFeability.name,powerData?.SolarFeasibility.toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.SolarFeability,DropDowns.SolarFeasibility.name,powerData?.SolarFeasibility.toString())
                     holder.binding.PowerSupplierName.text= powerData?.PowerSupplier
                     holder.binding.AvgAvailibillity.text= powerData?.AvgAvailability
                     holder.binding.ConsumerNo.text= powerData?.ConsumerNo
@@ -594,9 +594,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.EBPowerAvailabilityEdit,DropDowns.EBPowerAvailability.name)
                 if (powerData!=null && powerData?.SolarFeasibility!=null && powerData?.SolarFeasibility!! >=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.SolarFeasibilityEdit,DropDowns.SolarFeability.name,powerData?.SolarFeasibility.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.SolarFeasibilityEdit,DropDowns.SolarFeasibility.name,powerData?.SolarFeasibility.toString())
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.SolarFeasibilityEdit,DropDowns.SolarFeability.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.SolarFeasibilityEdit,DropDowns.SolarFeasibility.name)
 
                 holder.binding.update.setOnClickListener {
                     val tempPowerData=SAcqPowerConnectionFeasibility()
