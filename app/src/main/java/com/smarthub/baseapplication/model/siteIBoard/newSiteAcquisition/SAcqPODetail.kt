@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
 data class SAcqPODetail(
     var POAmount: String,
-    var PODate: String,
+    var PODate: String?=null,
     var POItem: String,
     var POLineNumber: Int,
     var PONumber: String,

@@ -46,8 +46,8 @@ class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcqui
         else
             AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name)
 
-        if (data.PODate.isNotEmpty())
-            binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
+        if (data.PODate?.isNotEmpty()==true)
+            binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
         else
             binding.PoDateEdit.text=data.PODate
         setDatePickerView( binding.PoDateEdit)

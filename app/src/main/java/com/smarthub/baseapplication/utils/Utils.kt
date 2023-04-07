@@ -362,6 +362,8 @@ object Utils {
         var date: String? ="2023-03-08"
         if (d!=null && d.length>=10){
             date=d.substring(0,10)
+        }else{
+            return ""
         }
 
         AppLogger.log("getformatedDate:$date")
@@ -393,10 +395,10 @@ object Utils {
         }
         return date!!
     }
-    fun getFullFormatedDate(d : String) : String{
+    fun getFullFormatedDate(d : String) : String?{
         var date=d
         if (d.isEmpty())
-            date="22-Jan-2023"
+            return null
         val format="yyyy-MM-dd'T'HH:mm:ss.SSS"
         var currentFormate:String?="dd-MMM-yyyy"
         if (d.length in 1..9)
