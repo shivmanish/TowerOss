@@ -126,7 +126,7 @@ class UtilitySurgFragAdapter(var baseActivity: BaseActivity, var listener: Utili
                     holder.binding.InstallationPoint.text=equipmentData.LocationMark
                     holder.binding.CapacityRating.text=equipmentData.CapacityRating
                     holder.binding.Count.text= equipmentData.Count.toString()
-                    holder.binding.remarks.text=equipmentData.Remark
+                    holder.binding.remarks.text=equipmentData.remark
 
                     // edit mode
                     holder.binding.TypeEdit.setText(equipmentData.Type)
@@ -137,7 +137,7 @@ class UtilitySurgFragAdapter(var baseActivity: BaseActivity, var listener: Utili
                     holder.binding.CountEdit.setText(equipmentData.Count.toString())
                     holder.binding.ProtectionModeEdit.setText(equipmentData.ProtectionMode)
                     holder.binding.InstallationPointEdit.setText(equipmentData.LocationMark)
-                    holder.binding.remarksEdit.setText(equipmentData.Remark)
+                    holder.binding.remarksEdit.setText(equipmentData.remark)
                 }
                 if (InsAccepData!=null){
                     // view mode
@@ -168,7 +168,7 @@ class UtilitySurgFragAdapter(var baseActivity: BaseActivity, var listener: Utili
                         it.ProtectionMode=holder.binding.ProtectionModeEdit.text.toString()
                         it.LocationMark=holder.binding.InstallationPointEdit.text.toString()
                         it.Count=holder.binding.CountEdit.text.toString().toIntOrNull()
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         if (equipmentData!=null)
                             it.id=equipmentData.id
                     }

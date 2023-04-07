@@ -66,7 +66,7 @@ class AddNewUtilityFireEquipDialouge (var utilityFireFullData:UtilityEquipmentFi
                 it.WarrantyPeriod=binding.WarrantyPeriodEdit.text.toString()
                 it.LocationMark=binding.LocationMarkEdit.text.toString()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
 
                 val utilityFireData= UtilityEquipmentFireExtinguisher()
                 utilityFireData.Equipment= arrayListOf(it)

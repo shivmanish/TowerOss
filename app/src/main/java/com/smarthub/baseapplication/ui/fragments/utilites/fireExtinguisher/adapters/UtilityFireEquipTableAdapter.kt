@@ -121,7 +121,7 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                 holder.binding.ManufacturingMonthYear.text= Utils.getFormatedDateMonthYear(dataList.ManufacturedOn,"MMM-yyyy")
                 holder.binding.WarrantyPeriod.text=dataList.WarrantyPeriod
                 holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(dataList.WarrantyExpiryDate,"dd-MMM-yyyy")
-                holder.binding.remarks.text=dataList.Remark
+                holder.binding.remarks.text=dataList.remark
                 if (dataList.OperationStatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,dataList.OperationStatus?.get(0).toString())
                 if (dataList.Type!=null)
@@ -143,7 +143,7 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                 holder.binding.ManufacturingMonthYearEdit.text= Utils.getFormatedDateMonthYear(dataList.ManufacturedOn,"MMM-yyyy")
                 holder.binding.WarrantyPeriodEdit.setText(dataList.WarrantyPeriod)
                 holder.binding.WarrantyExpiryDateEdit.text= Utils.getFormatedDate(dataList.WarrantyExpiryDate,"dd-MMM-yyyy")
-                holder.binding.remarksEdit.setText(dataList.Remark)
+                holder.binding.remarksEdit.setText(dataList.remark)
                 
                 if (dataList.OperationStatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit, DropDowns.OperationStatus.name,dataList.OperationStatus?.get(0).toString())
@@ -181,7 +181,7 @@ class UtilityFireEquipTableAdapter(var baseFragment: BaseFragment, FireEquipData
                         it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
                         it.LocationMark=holder.binding.LocationMarkEdit.text.toString()
                         it.OperationStatus = arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         if (dataList.id!=null)
                             it.id=dataList.id
                     }

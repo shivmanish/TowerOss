@@ -55,7 +55,7 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
                 it.Model=binding.ModelEdit.text.toString()
                 it.CapacityRating=binding.CapacityRatingEdit.text.toString()
                 it.Count=binding.CountEdit.text.toString().toIntOrNull()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.LocationMark=binding.InstallationPointEdit.text.toString()
                 it.ProtectionMode=binding.ProtectionModeEdit.text.toString()
             }

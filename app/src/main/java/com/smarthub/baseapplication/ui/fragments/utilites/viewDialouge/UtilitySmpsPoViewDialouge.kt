@@ -8,7 +8,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoViewDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityPoDetails
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -28,7 +27,7 @@ class UtilitySmpsPoViewDialouge (contentLayoutId: Int, var data: UtilityPoDetail
         binding.poNumber.text=data.PONumber
         binding.poAmount.text=data.POAmount
         binding.poLineNumber.text=data.POLineNo.toString()
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
         if (data.VendorCompany?.isNotEmpty()==true)
             AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
 

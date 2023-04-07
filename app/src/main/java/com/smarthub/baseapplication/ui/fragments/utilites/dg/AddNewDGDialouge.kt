@@ -75,7 +75,7 @@ class AddNewDGDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, var li
                 it.FuelType=binding.FuelTypeEdit.selectedValue.id.toIntOrNull()
                 it.FuelConsumption=binding.HourlyConsumptionEdit.text.toString()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
 
                 val utilityDGData= UtilityEquipmentDG()
                 utilityDGData.Equipment= arrayListOf(it)

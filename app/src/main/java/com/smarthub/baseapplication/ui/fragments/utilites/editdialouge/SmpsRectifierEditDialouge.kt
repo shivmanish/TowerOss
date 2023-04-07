@@ -36,7 +36,7 @@ class SmpsRectifierEditDialouge (var data: UtilityRectifierModule, var fullData:
         binding.SerialNumberEditEdit.setText(data.SerialNumber)
         binding.RatingEdit.setText(data.RatingAmp)
         binding.ModelEdit.setText(data.Model)
-        binding.remarksEdit.setText(data.Remark)
+        binding.remarksEdit.setText(data.remark)
         binding.InstallationDateEdit.text=Utils.getFormatedDate(data.InstallationDate,"dd-MMM-yyyy")
         binding.ManufacturingMonthYearEdit.text=Utils.getFormatedDateMonthYear(data.InstallationDate,"MMM-yyyy")
 
@@ -50,7 +50,7 @@ class SmpsRectifierEditDialouge (var data: UtilityRectifierModule, var fullData:
                 it.SerialNumber=binding.SerialNumberEditEdit.text.toString()
                 it.RatingAmp=binding.RatingEdit.text.toString()
                 it.Model=binding.ModelEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.InstallationDate=Utils.getFullFormatedDate(binding.InstallationDateEdit.text.toString())
                 it.ManufacturedOn=Utils.getFullFormatedDate(binding.ManufacturingMonthYearEdit.text.toString())
 

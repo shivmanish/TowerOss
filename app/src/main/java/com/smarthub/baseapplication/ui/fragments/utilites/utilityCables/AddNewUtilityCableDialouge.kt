@@ -53,7 +53,7 @@ class AddNewUtilityCableDialouge (var fullData:UtilityEquipmentAllData?, var lis
                 it.InstallationDate=Utils.getFullFormatedDate(binding.InstallationDateEdit.text.toString())
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
             }
 
             val utilityAllDataModel = UpdateUtilityEquipmentAllData()

@@ -25,7 +25,7 @@ class UtilitySMPSEquipment{
     var ProtectionMode: String?=null
     var RackNo: String?=null
     var RackUSpaceUsed: Int?=null
-    var Remark: String?=null
+    var remark: String?=null
     var SerialNumber: String?=null
     var SizeB: String?=null
     var SizeH: String?=null

@@ -26,7 +26,7 @@ class SmpsConnectedLoadViewDialouge (contentLayoutId: Int, var data: UtilityConn
         binding.ConnectedEquipment.text=data.ConnectedEquipment
         binding.McbRating.text=data.RatingAmp
         binding.ActualReading.text=data.ActualReading
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
         binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate,"dd-MMM-yyyy")
 
 

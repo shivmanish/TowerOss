@@ -285,7 +285,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                     holder.binding.ManufacturingMonthYear.text= Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
                     holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
                     holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
-                    holder.binding.remarks.text=equipmentData?.Remark
+                    holder.binding.remarks.text=equipmentData?.remark
                     if (equipmentData?.OperationStatus?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatus, DropDowns.OperationStatus.name,equipmentData?.OperationStatus?.get(0).toString())
 
@@ -309,7 +309,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                     holder.binding.ManufacturingMonthYearEdit.text= Utils.getFormatedDateMonthYear(equipmentData?.ManufacturedOn,"MMM-yyyy")
                     holder.binding.WarrantyPeriodEdit.setText(equipmentData?.WarrantyPeriod)
                     holder.binding.WarrantyExpiryDateEdit.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
-                    holder.binding.remarksEdit.setText(equipmentData?.Remark)
+                    holder.binding.remarksEdit.setText(equipmentData?.remark)
                 }
                 if (equipmentData!=null && equipmentData?.OperationStatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.OperationalStatusEdit,
@@ -341,7 +341,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                         it.ManufacturedOn= Utils.getFullFormatedDate(holder.binding.ManufacturingMonthYearEdit.text.toString())
                         it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
                         it.WarrantyExpiryDate= Utils.getFullFormatedDate(holder.binding.WarrantyExpiryDateEdit.text.toString())
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
                         if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)
                             it.id=datalist?.Equipment?.get(0)?.id
@@ -408,7 +408,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                     holder.binding.IPCurrent.text=InsAccepData?.InputCurrent
 //                    holder.binding.OPVoltage.text=InsAccepData?.OutputVoltage
 //                    holder.binding.OPCurrent.text=InsAccepData?.OutputCurrent
-                    holder.binding.remarks.text=InsAccepData?.Remark
+                    holder.binding.remarks.text=InsAccepData?.remark
                     holder.binding.nstallationDate.text=Utils.getFormatedDate(InsAccepData?.InstallationDate,"dd-MMM-yyyy")
                     holder.binding.AcceptenceDate.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
@@ -421,7 +421,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                     holder.binding.IPCurrentEdit.setText(InsAccepData?.InputCurrent)
 //                    holder.binding.OPVoltageEdit.setText(InsAccepData?.OutputVoltage)
 //                    holder.binding.OPCurrentEdit.setText(InsAccepData?.OutputCurrent)
-                    holder.binding.remarksEdit.setText(InsAccepData?.Remark)
+                    holder.binding.remarksEdit.setText(InsAccepData?.remark)
                     holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(InsAccepData?.InstallationDate,"dd-MMM-yyyy")
                     holder.binding.AcceptenceDateEdit.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
@@ -449,7 +449,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
 //                        it.OutputVoltage=holder.binding.OPVoltageEdit.text.toString()
                         it.InputCurrent=holder.binding.IPCurrentEdit.text.toString()
 //                        it.OutputCurrent=holder.binding.OPCurrentEdit.text.toString()
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         it.InstallationDate=Utils.getFullFormatedDate(holder.binding.InstallationDateEdit.text.toString())
                         it.AcceptanceDate=Utils.getFullFormatedDate(holder.binding.AcceptenceDateEdit.text.toString())
                         it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
