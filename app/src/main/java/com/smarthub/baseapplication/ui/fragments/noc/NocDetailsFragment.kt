@@ -23,7 +23,7 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
     lateinit var adapter: NocApplicationDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = NocCompCommonFragBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -92,7 +92,6 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200) {
                 AppLogger.log("NocDetailsFragment Data Updated successfully")
-                setObserber()
                 viewmodel.NocAndCompRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }

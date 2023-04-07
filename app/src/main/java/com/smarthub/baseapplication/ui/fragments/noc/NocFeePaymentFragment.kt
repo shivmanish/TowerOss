@@ -27,7 +27,7 @@ class NocFeePaymentFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :B
     lateinit var adapter: NocFeePayDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = NocCompCommonFragBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -93,7 +93,6 @@ class NocFeePaymentFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :B
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200) {
                 AppLogger.log("NocFeePaymentFragment Data Updated successfully")
-                setObserber()
                 viewmodel.NocAndCompRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }

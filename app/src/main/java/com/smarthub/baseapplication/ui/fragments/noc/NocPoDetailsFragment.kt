@@ -27,7 +27,7 @@ class NocPoDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) : B
     lateinit var adapter: NocPoDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = NocCompCommonFragBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -35,15 +35,10 @@ class NocPoDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) : B
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObserber()
-//        if (nocdata?.PODetail!=null){
-            adapter = NocPoDetailsAdapter(this@NocPoDetailsFragment,nocdata?.PODetail,this@NocPoDetailsFragment)
-            binding?.listItem?.adapter=adapter
-//        }else Toast.makeText(requireContext(),"PODetail null ",Toast.LENGTH_SHORT).show()
-
+        adapter = NocPoDetailsAdapter(this@NocPoDetailsFragment,nocdata?.PODetail,this@NocPoDetailsFragment)
+        binding?.listItem?.adapter=adapter
         binding?.addItemsLayout?.setOnClickListener {
             updataDataClicked(NocPODetail())
-//            val dalouge = AddNewRfAntennaAdapter(R.layout.rf_anteena_list_item_dialouge)
-//            dalouge.show(childFragmentManager,"")
         }
     }
 
@@ -96,7 +91,6 @@ class NocPoDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) : B
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200) {
                 AppLogger.log("NocPoDetailsFragment Data Updated successfully")
-                setObserber()
                 viewmodel.NocAndCompRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
