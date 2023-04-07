@@ -112,7 +112,7 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
             if(data.Category!=null && data.Category!! > 0)
                 AppPreferences.getInstance().setDropDown(holder.binding.Category, DropDowns.ApplicationCategory.name,data.Category.toString())
             if(data.ApplicationStatus?.isNotEmpty()==true)
-                AppPreferences.getInstance().setDropDown(holder.binding.Status, DropDowns.ApplicationInitialApplicationStatus.name,data.ApplicationStatus?.get(0).toString())
+                AppPreferences.getInstance().setDropDown(holder.binding.Status, DropDowns.ApplicationStatus.name,data.ApplicationStatus?.get(0).toString())
             holder.binding.issueDate.text=Utils.getFormatedDate(data.IssueDate,"dd-MMM-yyyy")
             holder.binding.applicationDate.text=Utils.getFormatedDate(data.ApplicationDate,"dd-MMM-yyyy")
             holder.binding.applicationNumber.text=data.ApplicationNumber
