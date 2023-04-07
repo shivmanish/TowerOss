@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnectionListListener
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -41,8 +42,14 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
         binding.powerConnList.adapter=adapter
 
         binding.addNew.setOnClickListener {
-//            val bmSheet = AddNewPowerFuelDialouge(R.layout.power_fuel_addnew_dialouge)
-//            bmSheet.show(childFragmentManager,"category")
+            val bm = AddNewPowerFuelDialouge(
+                object : AddNewPowerFuelDialouge.AddPowerFuelDataListener {
+                    override fun addNewData(){
+                        showLoader()
+                        viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
+                    }
+                })
+            bm.show(childFragmentManager,"sdg")
         }
 
         if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){

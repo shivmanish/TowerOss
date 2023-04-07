@@ -31,8 +31,8 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
     }
     init {
         try {
-            if (data!=null && data.PowerAndFuelEBConnection.isNotEmpty()){
-                datalist=data.PowerAndFuelEBConnection.get(0)
+            if (data!=null && data.PowerAndFuelEBConnection?.isNotEmpty()==true){
+                datalist=data.PowerAndFuelEBConnection?.get(0)
             }
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
@@ -312,7 +312,7 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                         holder.binding.MeterSerialNumber.text=PowerConnData?.MeterSerialNumber
                         holder.binding.VoltageRatingMin.text=PowerConnData?.VoltageMin
                         holder.binding.VoltageRatingMax.text=PowerConnData?.VoltageMax
-                        holder.binding.remarks.text=PowerConnData?.Remark
+                        holder.binding.remarks.text=PowerConnData?.remark
 
                     }
                     else

@@ -6,6 +6,8 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.updatePowerFuel.UpdatePowerFuelResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
@@ -29,6 +31,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     var updateNocCompResponse: SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var updateSstSbcResponse: SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
     var updateSiteInfoResponse: SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
+    var updatePowerFuelResponse: SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
 
     init {
         updateSiteAcqResponse=SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>()
@@ -36,6 +39,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
         updateNocCompResponse=SingleLiveEvent<Resource<UpdateNocCompResponseModel>>()
         updateSstSbcResponse=SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>()
         updateSiteInfoResponse=SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>()
+        updatePowerFuelResponse=SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>()
     }
 
 
@@ -205,6 +209,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                 } else if (iThrowableLocalMessage != null)
                     updateSstSbcResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
                 ) else updateSstSbcResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updatePowerFuelData(data: PowerFuelAllDataModel?) {
+        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        apiClient.updatePowerFuelRequest(data!!).enqueue(object : Callback<UpdatePowerFuelResponseModel> {
+            override fun onResponse(
+                call: Call<UpdatePowerFuelResponseModel?>,
+                response: Response<UpdatePowerFuelResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdatePowerFuelResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdatePowerFuelResponseModel?>) {
+                if (response.body() != null) {
+                    updatePowerFuelResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updatePowerFuelResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updatePowerFuelResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                    ) else
+                    updatePowerFuelResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

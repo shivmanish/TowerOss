@@ -21,6 +21,7 @@ public enum DropDowns {
     PropertyOwnership,
     PropertyAcquired,
     AssignACQAcquisitionType,
+    PowerType,
     AssignACQAcquistionMode,
     AssignACQVendorName,
     BuildingBuildType,

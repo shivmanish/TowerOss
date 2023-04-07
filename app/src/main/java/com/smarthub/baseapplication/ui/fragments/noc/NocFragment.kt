@@ -54,6 +54,7 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 AppLogger.log("NocAndComp Fragment card Data fetched successfully")
                 try {
                     nocDataAdapter.setData(it.data.NOCCompliance!!)
