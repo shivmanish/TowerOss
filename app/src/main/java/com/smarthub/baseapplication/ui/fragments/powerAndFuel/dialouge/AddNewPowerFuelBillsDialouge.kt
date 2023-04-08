@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.powerAndFuel
+package com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge
 
 import android.app.Dialog
 import android.os.Bundle
@@ -11,23 +11,25 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddNewPowerFuelDialougeBinding
+import com.smarthub.baseapplication.databinding.PowerFuelBillsAddDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerConnectionAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerConnectionDetail
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AddNewPowerFuelDialouge (var listner: AddPowerFuelDataListener): BaseBottomSheetDialogFragment() {
-    lateinit var binding : AddNewPowerFuelDialougeBinding
+class AddNewPowerFuelBillsDialouge (var fullData:NewPowerFuelAllData?, var listner: AddPowerFuelDataListener): BaseBottomSheetDialogFragment() {
+    lateinit var binding : PowerFuelBillsAddDialougeBinding
     lateinit var viewmodel: HomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = AddNewPowerFuelDialougeBinding.inflate(inflater)
+        binding = PowerFuelBillsAddDialougeBinding.inflate(inflater)
         viewmodel= ViewModelProvider(this)[HomeViewModel::class.java]
         return binding.root
     }
@@ -36,38 +38,29 @@ class AddNewPowerFuelDialouge (var listner: AddPowerFuelDataListener): BaseBotto
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.7).toInt()
-        binding.icMenuClose.setOnClickListener {
+        binding.Cancle.setOnClickListener {
             dismiss()
         }
-        binding.Add.setOnClickListener {
-            dismiss()
-        }
-        AppPreferences.getInstance().setDropDown(binding.MeterTypeEdit, DropDowns.MeterType.name)
-        AppPreferences.getInstance().setDropDown(binding.PowerConnectionTypeEdit, DropDowns.PowerConnectionType.name)
-        AppPreferences.getInstance().setDropDown(binding.PowerTypeEdit, DropDowns.PowerType.name)
+        AppPreferences.getInstance().setDropDown(binding.PaymentStatusEdit, DropDowns.PaymentStatus.name)
 
-        binding.Add.setOnClickListener {
+        binding.AddAction.setOnClickListener {
             showProgressLayout()
-            val tempPowerConnDetailData= PowerConnectionDetail()
-            val tempPowerConnAllData= PowerConnectionAllData()
+            val tempPowerFuelBillData= PowerFuelBills()
             val tempPowerFuelAllData = NewPowerFuelAllData()
-            tempPowerConnDetailData.let {
-                it.ElectricitySupplier=binding.PowerSupplierEdit.text.toString()
-                it.ConsumerNumber=binding.ConsumerNumberEdit.text.toString()
-                it.MeterSerialNumber=binding.MeterSerialNumberEdit.text.toString()
-                it.VoltageMin=binding.minVoltageRatingEdit.text.toString()
-                it.VoltageMax=binding.maxVoltageRatingEdit.text.toString()
-                it.PowerRating=binding.PowerConnRatingEdit.text.toString()
-                it.ConnectedLoad=binding.ConnectedLoadEdit.text.toString()
-                it.MeterLocationMark=binding.MeterLocationMarkEdit.text.toString()
-                it.AverageAvailibility=binding.AvgAvailabilityEdit.text.toString()
-                it.remark=binding.remarksEdit.text.toString()
-                it.PowerConnectionType= arrayListOf(binding.PowerConnectionTypeEdit.selectedValue.id.toInt())
-                it.MeterType= binding.MeterTypeEdit.selectedValue.id.toIntOrNull()
-                it.PowerType= binding.PowerTypeEdit.selectedValue.id.toIntOrNull()
+            tempPowerFuelBillData.let {
+                it.BillNumber=binding.BillNumberEdit.text.toString()
+                it.Amount=binding.BillAmountEdit.text.toString()
+                it.BillMonth=Utils.getFullFormatedDate(binding.BillMonthEdit.text.toString())
+                it.DueDate=Utils.getFullFormatedDate(binding.BillDueDateEdit.text.toString())
+                it.StatusDate=Utils.getFullFormatedDate(binding.StatusDateEdit.text.toString())
+                it.UnitConsumed=binding.UnitConsumeEdit.text.toString().toIntOrNull()
+                it.PaymentStatus= arrayListOf(binding.PaymentStatusEdit.selectedValue.id.toInt())
+                
             }
-            tempPowerConnAllData.PowerAndFuelEBConnectionEBDetail= arrayListOf(tempPowerConnDetailData)
-            tempPowerFuelAllData.PowerAndFuelEBConnection= arrayListOf(tempPowerConnAllData)
+            if (fullData!=null){
+                tempPowerFuelAllData.id=fullData?.id
+            }
+            tempPowerFuelAllData.PowerAndFuelEBBil= arrayListOf(tempPowerFuelBillData)
             viewmodel.updatePowerFuel(tempPowerFuelAllData)
         }
 
@@ -77,7 +70,7 @@ class AddNewPowerFuelDialouge (var listner: AddPowerFuelDataListener): BaseBotto
         viewmodel.updatePowerFuelDataResponse?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
                 showProgressLayout()
-                AppLogger.log("AddNewNocCmpDialouge Fragment data adding in progress ")
+                AppLogger.log("AddNewPowerFuelBillsDialouge Fragment data adding in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
@@ -89,12 +82,12 @@ class AddNewPowerFuelDialouge (var listner: AddPowerFuelDataListener): BaseBotto
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
                 Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
-                AppLogger.log("AddNewNocCmpDialouge Fragment Something went wrong")
+                AppLogger.log("AddNewPowerFuelBillsDialouge Fragment Something went wrong")
             }
             else if (it != null) {
-                AppLogger.log("AddNewNocCmpDialouge Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("AddNewPowerFuelBillsDialouge Fragment error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("AddNewNocCmpDialouge Fragment Something went wrong")
+                AppLogger.log("AddNewPowerFuelBillsDialouge Fragment Something went wrong")
 
             }
         }

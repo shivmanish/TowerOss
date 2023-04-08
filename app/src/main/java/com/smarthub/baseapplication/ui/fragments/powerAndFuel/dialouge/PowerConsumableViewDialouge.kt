@@ -26,7 +26,7 @@ class PowerConsumableViewDialouge (contentLayoutId: Int, var data: PowerConsumab
         binding.Model.text=data.Model
         binding.UsedQty.text=data.UsedQty
         binding.UoM.text=data.UOM
-        binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+        binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate,"dd-MMM-yyyy")
 
     }
 

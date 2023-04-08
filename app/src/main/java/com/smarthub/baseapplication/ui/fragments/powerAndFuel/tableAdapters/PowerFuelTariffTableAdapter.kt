@@ -5,28 +5,21 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerFuelTariffTableItemsBinding
-import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelTariffDetails
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelAuthorityPODetail
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
 class PowerFuelTariffTableAdapter (var context : Context, var listener : PowerConnecFragAdapter.PowerConnectionListListener, var list:ArrayList<PowerFuelTariffDetails>?): RecyclerView.Adapter<PowerFuelTariffTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data=PowerFuelTariffDetails()
+        list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -40,7 +33,7 @@ class PowerFuelTariffTableAdapter (var context : Context, var listener : PowerCo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.power_fuel_tariff_table_items,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.power_fuel_tariff_table_items,parent,false)
         return ViewHold(view)
     }
 
@@ -52,11 +45,10 @@ class PowerFuelTariffTableAdapter (var context : Context, var listener : PowerCo
         try {
             holder.binding.AverageConsUnit.text=item.AverageConsumableUnit
             holder.binding.ApplicableTarrifRate.text=item.TariffRate
-            holder.binding.TarrifEffectiveDate.text=Utils.getFormatedDate(item.TarrifEffectiveDate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.TarrifEffectiveDate.text=Utils.getFormatedDate(item.TarrifEffectiveDate,"dd-MMM-yyyy")
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -77,8 +69,7 @@ class PowerFuelTariffTableAdapter (var context : Context, var listener : PowerCo
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
-
+                        listener.editTarrifClicked(position,data)
                         return true
                     }
                     // in the same way you can implement others

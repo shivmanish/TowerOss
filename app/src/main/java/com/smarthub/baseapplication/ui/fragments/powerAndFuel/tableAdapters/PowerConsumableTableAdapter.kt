@@ -21,9 +21,10 @@ import com.smarthub.baseapplication.utils.Utils
 class PowerConsumableTableAdapter (var context : Context, var listener : PowerConnecFragAdapter.PowerConnectionListListener, var list:ArrayList<PowerConsumableMaterial>?): RecyclerView.Adapter<PowerConsumableTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=PowerConsumableMaterial()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -48,11 +49,10 @@ class PowerConsumableTableAdapter (var context : Context, var listener : PowerCo
         try {
             holder.binding.SrNo.text=position.plus(1).toString()
             holder.binding.model.text=item.Model
-            holder.binding.installationDate.text=Utils.getFormatedDate(item.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.installationDate.text=Utils.getFormatedDate(item.InstallationDate,"dd-MMM-yyyy")
             holder.binding.ItemName.text=item.ItemName
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -62,8 +62,6 @@ class PowerConsumableTableAdapter (var context : Context, var listener : PowerCo
 
     // this method will handle the onclick options click
     private fun performOptionsMenuClick(position: Int,view : View,data:PowerConsumableMaterial) {
-        // create object of PopupMenu and pass context and view where we want
-        // to show the popup menu
         val popupMenu = PopupMenu(context , view)
         // add the menu
         popupMenu.inflate(R.menu.options_menu)
@@ -73,7 +71,7 @@ class PowerConsumableTableAdapter (var context : Context, var listener : PowerCo
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editConsumableClicked(position)
+                        listener.editConsumableClicked(position,data)
 
                         return true
                     }

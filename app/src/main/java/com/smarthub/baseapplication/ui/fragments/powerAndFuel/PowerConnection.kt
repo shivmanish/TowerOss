@@ -36,10 +36,9 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
         binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
-
         }
         adapter=PowerConnDataAdapter(requireContext(),this)
-        binding.powerConnList.adapter=adapter
+        binding.listItem.adapter=adapter
 
         binding.addNew.setOnClickListener {
             val bm = AddNewPowerFuelDialouge(
@@ -63,6 +62,8 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("PowerFuel Fragment card Data fetched successfully")
+                binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 try {
                     adapter.setData(it.data.PowerAndFuel)
                 }catch (e:java.lang.Exception){
@@ -76,6 +77,11 @@ class PowerConnection (var id:String): BaseFragment(), PowerConnectionListListen
             else {
                 AppLogger.log("PowerFuel Fragment Something went wrong")
             }
+        }
+        binding.swipeLayout.setOnRefreshListener {
+            binding.swipeLayout.isRefreshing=false
+            adapter.addLoading()
+            viewmodel?.fetchPowerAndFuel(id)
         }
     }
 
