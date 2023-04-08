@@ -9,11 +9,12 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: Context, powerBillsData:ArrayList<PowerFuelBills>?) : RecyclerView.Adapter<PowerFuelBillsAdapter.ViewHold>() {
+class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragment: BaseFragment, powerBillsData:ArrayList<PowerFuelBills>?) : RecyclerView.Adapter<PowerFuelBillsAdapter.ViewHold>() {
 
     var list = ArrayList<Any>()
 
@@ -88,10 +89,12 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
         if (holder is ViewHold1) {
             val data: PowerFuelBills=list[position] as PowerFuelBills
             holder.binding.imgEdit.setOnClickListener {
-//                listener.editModeCliked(data,position)
+                holder.binding.viewLayout.visibility = View.GONE
+                holder.binding.editLayout.visibility = View.VISIBLE
             }
-            holder.binding.collapsingLayout.setOnClickListener {
-                updateList(position)
+            holder.binding.cancel.setOnClickListener {
+                holder.binding.viewLayout.visibility = View.VISIBLE
+                holder.binding.editLayout.visibility = View.GONE
             }
             if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -99,6 +102,8 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
                 holder.binding.itemLine.visibility = View.GONE
                 holder.binding.itemCollapse.visibility = View.VISIBLE
                 holder.binding.imgEdit.visibility = View.VISIBLE
+                holder.binding.viewLayout.visibility = View.VISIBLE
+                holder.binding.editLayout.visibility = View.GONE
             } else {
                 holder.binding.collapsingLayout.tag = false
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
@@ -107,14 +112,18 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
                 holder.binding.itemCollapse.visibility = View.GONE
                 holder.binding.imgEdit.visibility = View.GONE
             }
+            holder.binding.collapsingLayout.setOnClickListener {
+                updateList(position)
+            }
             try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.DueDate.substring(0,10),"ddMMMyyyy"))
-                if(data.PaymentStatus.isNotEmpty())
-                    AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString())
-                holder.binding.BillDueDate.text=Utils.getFormatedDate(data.DueDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate.substring(0,10),"dd-MMM-yyyy")
+                holder.binding.itemTitleStr.text = String.format(baseFragment.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.DueDate,"ddMMMyyyy"))
+                if(data.PaymentStatus?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
+
+                holder.binding.BillDueDate.text=Utils.getFormatedDate(data.DueDate,"dd-MMM-yyyy")
+                holder.binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
                 holder.binding.BillNo.text=data.BillNumber
-                holder.binding.BillMonth.text=data.BillNumber
+                holder.binding.BillMonth.text=Utils.getFormatedDateMonthYear(data.BillMonth,"MMM-yyyy")
                 holder.binding.BillAmount.text=data.Amount
                 holder.binding.SrNo.text=position.plus(1).toString()
                 holder.binding.UnitConsumed.text=data.UnitConsumed.toString()
@@ -123,12 +132,39 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
                 AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
                 e.localizedMessage?.let { AppLogger.log(it) }
             }
+            holder.binding.BillDueDateEdit.text=Utils.getFormatedDate(data.DueDate,"dd-MMM-yyyy")
+            holder.binding.StatusDateEdit.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
+            holder.binding.BillMonthEdit.text=Utils.getFormatedDateMonthYear(data.BillMonth,"MMM-yyyy")
+            holder.binding.BillNumberEdit.setText(data.BillNumber)
+            holder.binding.BillAmountEdit.setText(data.Amount)
+            holder.binding.UnitConsumeEdit.setText(data.UnitConsumed.toString())
+            if(data.PaymentStatus?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatusEdit, DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
+            else
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatusEdit, DropDowns.PaymentStatus.name)
+            holder.binding.update.setOnClickListener {
+                val tempBillData=PowerFuelBills()
+                tempBillData.let {
+                    it.BillNumber=holder.binding.BillNumberEdit.text.toString()
+                    it.Amount=holder.binding.BillAmountEdit.text.toString()
+                    it.BillMonth=Utils.getFullFormatedDate(holder.binding.BillMonthEdit.text.toString())
+                    it.DueDate=Utils.getFullFormatedDate(holder.binding.BillDueDateEdit.text.toString())
+                    it.StatusDate=Utils.getFullFormatedDate(holder.binding.StatusDateEdit.text.toString())
+                    it.UnitConsumed=holder.binding.UnitConsumeEdit.text.toString().toIntOrNull()
+                    it.PaymentStatus= arrayListOf(holder.binding.PaymentStatusEdit.selectedValue.id.toInt())
+                    it.id=data.id
+                }
+                listener.updateBills(tempBillData)
+            }
+            baseFragment.setDatePickerView(holder.binding.BillDueDateEdit)
+            baseFragment.setDatePickerView(holder.binding.StatusDateEdit)
+            baseFragment.setDatePickerView(holder.binding.BillMonthEdit)
         }
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list.isEmpty() || list.get(position)==null)
+        return if (list.isEmpty())
             2
         else if(list[position] is PowerFuelBills)
             1
@@ -151,5 +187,6 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var context: 
 
     interface PowerBillsClickListener{
         fun editModeCliked(data :PowerFuelBills,pos:Int)
+        fun updateBills(updatedData:PowerFuelBills)
     }
 }

@@ -37,11 +37,15 @@ class AddNewPowerFuelBillsDialouge (var fullData:NewPowerFuelAllData?, var listn
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.7).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.5).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }
         AppPreferences.getInstance().setDropDown(binding.PaymentStatusEdit, DropDowns.PaymentStatus.name)
+
+        setDatePickerView(binding.BillDueDateEdit)
+        setDatePickerView(binding.StatusDateEdit)
+        setDatePickerView(binding.BillMonthEdit)
 
         binding.AddAction.setOnClickListener {
             showProgressLayout()
@@ -73,7 +77,7 @@ class AddNewPowerFuelBillsDialouge (var fullData:NewPowerFuelAllData?, var listn
                 AppLogger.log("AddNewPowerFuelBillsDialouge Fragment data adding in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status?.PowerAndFuelEBBil==200) {
                 listner.addNewData()
                 hideProgressLayout()
                 dismiss()

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.smarthub.baseapplication.databinding.PowerFuelCommonTabFragBinding
@@ -29,7 +30,7 @@ class PowerFuelBillsFragment(var powerFuelData:NewPowerFuelAllData?,var parentIn
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= PowerFuelBillsAdapter(this@PowerFuelBillsFragment,requireContext(),powerFuelData?.PowerAndFuelEBBil)
+        adapter= PowerFuelBillsAdapter(this@PowerFuelBillsFragment,this@PowerFuelBillsFragment,powerFuelData?.PowerAndFuelEBBil)
         binding.listItem.adapter = adapter
         if (viewmodel?.powerAndFuelResponse?.hasActiveObservers() == true){
             viewmodel?.powerAndFuelResponse?.removeObservers(viewLifecycleOwner)
@@ -87,6 +88,40 @@ class PowerFuelBillsFragment(var powerFuelData:NewPowerFuelAllData?,var parentIn
 
     override fun editModeCliked(data: PowerFuelBills, pos: Int) {
 
+    }
+
+    override fun updateBills(updatedData: PowerFuelBills) {
+        showLoader()
+        val dataModel = NewPowerFuelAllData()
+        dataModel.PowerAndFuelEBBil= arrayListOf(updatedData)
+        if (powerFuelData!=null) 
+            dataModel.id=powerFuelData?.id
+        viewmodel?.updatePowerFuel(dataModel)
+        if (viewmodel?.updatePowerFuelDataResponse?.hasActiveObservers() == true) {
+            viewmodel?.updatePowerFuelDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel?.updatePowerFuelDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("PowerFuelBillsFragment data updating in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status?.PowerAndFuelEBBil==200) {
+                AppLogger.log("PowerFuelBillsFragment card Data Updated successfully")
+                viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
+                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("PowerFuelBillsFragment Something went wrong in updating data")
+                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+            }
+            else if (it != null) {
+                AppLogger.log("PowerFuelBillsFragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("PowerFuelBillsFragment Something went wrong in updating data")
+
+            }
+        }
     }
 
 
