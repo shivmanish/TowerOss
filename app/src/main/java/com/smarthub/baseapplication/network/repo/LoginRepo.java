@@ -286,7 +286,7 @@ public class LoginRepo {
     public void getProfileData() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("get","");
-        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+//        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         apiClient.getProfile(jsonObject).enqueue(new Callback<List<ProfileData>>() {
             @Override
             public void onResponse(Call<List<ProfileData>> call, Response<List<ProfileData>> response) {

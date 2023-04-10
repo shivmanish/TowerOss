@@ -25,6 +25,7 @@ import com.smarthub.baseapplication.model.login.UserLoginPost
 import com.smarthub.baseapplication.network.User
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
@@ -122,10 +123,11 @@ class LoginFragment : BaseFragment() {
                     AppLogger.log("loginTimeDiff:$loginTimeDiff")
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
                     AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
-                    val intent = Intent (requireContext(), DashboardActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    requireActivity().finish()
+                    loginViewModel?.getProfileData()
+//                    val intent = Intent (requireContext(), DashboardActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(intent)
+//                    requireActivity().finish()
                     return@observe
                 }else{
                     Toast.makeText(requireContext(),"error:"+it.message,Toast.LENGTH_LONG).show()
@@ -146,6 +148,10 @@ class LoginFragment : BaseFragment() {
         loginViewModel?.profileResponse?.observe(viewLifecycleOwner) {
             hideLoader()
             if (it != null && it.status==Resource.Status.SUCCESS) {
+                if (it.data?.isNotEmpty()==true) {
+                    AppController.getInstance().ownerName = it.data[0].company
+                    AppPreferences.getInstance().saveString("company",AppController.getInstance().ownerName)
+                }
                 AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
                 val intent = Intent (requireContext(), DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -170,6 +176,7 @@ class LoginFragment : BaseFragment() {
                 val loginTime = AppPreferences.getInstance().getLong("loginTime")
                 val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
                 AppLogger.log("loginTimeDiff:$loginTimeDiff")
+                AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
                 Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
                 AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
                 val intent = Intent (requireContext(), DashboardActivity::class.java)
