@@ -26,7 +26,9 @@ import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDat
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.updatePowerFuel.UpdatePowerFuelResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
@@ -114,6 +116,7 @@ class HomeViewModel : ViewModel() {
     var updateNocCompDataResponse:SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var updateSstSbcDataResponse:SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
     var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
+    var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -160,6 +163,7 @@ class HomeViewModel : ViewModel() {
         updateNocCompDataResponse=updateIBoardRepo?.updateNocCompResponse
         updateSstSbcDataResponse=updateIBoardRepo?.updateSstSbcResponse
         updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
+        updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -403,6 +407,12 @@ class HomeViewModel : ViewModel() {
         tempList.add(data)
         dataModel.UtilityEquipment=tempList
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
+    }
+
+    fun updatePowerFuel(data: NewPowerFuelAllData) {
+        val dataModel= PowerFuelAllDataModel()
+        dataModel.PowerAndFuel= arrayListOf(data)
+        updateIBoardRepo?.updatePowerFuelData(dataModel)
     }
 
     fun updateSiteInfo(data: AllsiteInfoDataModel?) {

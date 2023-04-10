@@ -1,6 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
 import com.google.gson.annotations.SerializedName
+import com.smarthub.baseapplication.utils.AppController
 
 class PowerFuelAllDataModel{
     @SerializedName("PowerAndFuel")
@@ -11,4 +12,7 @@ class PowerFuelAllDataModel{
     var Status : Any?=null
     @SerializedName("Error")
     var Error : Any?=null
+
+    var id: String = AppController.getInstance().siteid
+    var ownername: String = AppController.getInstance().ownerName
 }

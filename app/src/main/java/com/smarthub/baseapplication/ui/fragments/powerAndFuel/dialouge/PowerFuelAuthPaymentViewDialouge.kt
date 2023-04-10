@@ -22,13 +22,13 @@ class PowerFuelAuthPaymentViewDialouge (contentLayoutId: Int, var data: PowerFue
         }
         binding.PaymentType.text=data.PaymentType
         binding.Amount.text=data.Amount
-        binding.remark.text=data.Remark
-        if (data.PaymentStatus.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus.get(0).toString())
+        binding.remark.text=data.remark
+        if (data.PaymentStatus?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
 
-        binding.DueDate.text=Utils.getFormatedDate(data.DueDate.substring(0,10),"dd-MMM-yyyy")
-        binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate.substring(0,10),"dd-MMM-yyyy")
-        binding.DemandReceiptDate.text=Utils.getFormatedDate(data.DemandReceiptDate.substring(0,10),"dd-MMM-yyyy")
+        binding.DueDate.text=Utils.getFormatedDate(data.DueDate,"dd-MMM-yyyy")
+        binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
+        binding.DemandReceiptDate.text=Utils.getFormatedDate(data.DemandReceiptDate,"dd-MMM-yyyy")
 
     }
 

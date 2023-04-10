@@ -31,7 +31,7 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit PO Details"
+            android:text="Edit Tariffs  Details"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="#3D4E6D"
@@ -77,13 +77,14 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Po Item"
+                            android:text="Average Cons. Unit"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/Po_item_edit"
+                            android:id="@+id/Average_Cons_Unit_edit"
                             android:text=""
+                            android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -96,64 +97,19 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
                         android:layout_marginTop="@dimen/dp1"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Vendor Name"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/Vendor_name_edit"
-                            style="@style/SpinnerTheme"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp6" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Vendor Code"
+                            android:text="Applicable Tarrif Rate"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/Vendor_code_edit"
+                            android:id="@+id/Applicable_Tarrif_Rate_edit"
                             android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="PO Number"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:id="@+id/Po_number_edit"
-                            android:text=""
+                            android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -171,12 +127,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="PO Date"
+                            android:text="Tarrif Effective Date"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:id="@+id/Po_Date_edit"
+                            android:id="@+id/Tarrif_Effective_Date_edit"
                             android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -190,82 +146,8 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="PO Line Number"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:id="@+id/Po_line_number_edit"
-                            android:text=""
-                            android:inputType="number"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="PO Amount"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:id="@+id/Po_amount_edit"
-                            android:text=""
-                            android:inputType="number"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
 
                 </GridLayout>
-                <TextView
-                    android:text="Remarks"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    android:id="@+id/remarks_edit"
-                    android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
-                    android:text=""
-                    android:layout_marginTop="@dimen/dp1"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:alpha="0.37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp6" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
         <LinearLayout

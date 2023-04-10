@@ -1,16 +1,16 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
 data class PowerFuelPODetail(
-    val POAmount: String,
-    val PODate: String,
-    val POItem: String,
-    val POLineNo: Int,
-    val PONumber: String,
-    val Remark: String,
-    val VendorCode: String,
-    val VendorCompany: List<Int>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
+    var POAmount: String,
+    var PODate: String,
+    var POItem: String,
+    var POLineNo: Int,
+    var PONumber: String,
+    var remark: String,
+    var VendorCode: String,
+    var VendorCompany: ArrayList<Int>,
+    var id: Int?=null,
+    var created_at: String?=null,
+    var isActive: Boolean?=null,
+    var modified_at: String?=null
 )

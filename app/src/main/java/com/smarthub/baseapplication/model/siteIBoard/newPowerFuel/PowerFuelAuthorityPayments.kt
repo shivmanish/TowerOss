@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class PowerFuelAuthorityPayments(
-    val Amount: String,
-    val DemandReceiptDate: String,
-    val DueDate: String,
-    val PaymentStatus: List<Int>,
-    val PaymentType: String,
-    val Remark: String,
-    val StatusDate: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class PowerFuelAuthorityPayments{
+    var Amount: String?=null
+    var DemandReceiptDate: String?=null
+    var DueDate: String?=null
+    var PaymentStatus: ArrayList<Int>?=null
+    var PaymentType: String?=null
+    var remark: String?=null
+    var StatusDate: String?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

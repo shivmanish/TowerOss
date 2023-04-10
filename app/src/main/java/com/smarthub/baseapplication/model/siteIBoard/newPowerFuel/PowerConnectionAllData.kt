@@ -1,14 +1,17 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class PowerConnectionAllData(
-    val ConsumableMaterial: ArrayList<PowerConsumableMaterial>,
-    val InstallationAndAcceptence: ArrayList<PowerInstallationAndAcceptence>,
-    val PODetail: ArrayList<PowerFuelPODetail>,
-    val PowerAndFuelEBConnectionEBDetail: ArrayList<PowerConnectionDetail>,
-    val PowerAndFuelEBConnectionPayment: ArrayList<PowerFuelAuthorityPayments>,
-    val PowerAndFuelEBConnectionTariffDetail: ArrayList<PowerFuelTariffDetails>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
+
+class PowerConnectionAllData{
+    var ConsumableMaterial: ArrayList<PowerConsumableMaterial>?=null
+    var InstallationAndAcceptence: ArrayList<PowerInstallationAndAcceptence>?=null
+    var PODetail: ArrayList<PowerFuelPODetail>?=null
+    var PowerAndFuelEBConnectionEBDetail: ArrayList<PowerConnectionDetail>?=null
+    var PowerAndFuelEBConnectionPayment: ArrayList<PowerFuelAuthorityPayments>?=null
+    var PowerAndFuelEBConnectionTariffDetail: ArrayList<PowerFuelTariffDetails>?=null
+    var attachment: ArrayList<Attachments>?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

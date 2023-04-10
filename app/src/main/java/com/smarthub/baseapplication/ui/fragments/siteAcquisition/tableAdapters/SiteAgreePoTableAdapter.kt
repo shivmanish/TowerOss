@@ -23,11 +23,8 @@ class SiteAgreePoTableAdapter (var context : Context, var listener : AgreementFr
 
 
     fun addItem(){
-        val modelList:ArrayList<Int> = ArrayList()
-        modelList.clear()
-        modelList.add(0)
         val data=SAcqPODetail("","","",0,"","",
-            "",modelList,)
+            "", arrayListOf(),)
 //        listener.addPoData(data)
         list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))

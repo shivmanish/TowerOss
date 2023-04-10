@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/ic_menu_close"
+        android:translationZ="@dimen/dp7"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/drawable_cross_back"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:minHeight="@dimen/dp700"
+        android:background="@drawable/dialog_bg"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_layout"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:text="Add Power &amp; Fuel"
+            android:textSize="15dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/light_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:id="@+id/title_line"
+            android:alpha="0.37"
+            android:layout_marginTop="@dimen/dp8"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"/>
+
+        <androidx.core.widget.NestedScrollView
+            app:layout_constraintTop_toBottomOf="@+id/title_line"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp5"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
+            <LinearLayout
+                android:scrollbars="vertical"
+                android:layout_margin="5dp"
+                android:paddingBottom="@dimen/dp10"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_marginStart="@dimen/dp10"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_line"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:text="Power Connection Details"
+                        android:textSize="@dimen/dp16"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/color1"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins"
+                        app:layout_constraintStart_toEndOf="@+id/dot_img"
+                        app:layout_constraintTop_toTopOf="@+id/dot_img"
+                        app:layout_constraintBottom_toBottomOf="@+id/dot_img"/>
+                </LinearLayout>
+
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Power Connection Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Power_connection_Type_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Power Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Power_Type_Edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Power Supplier"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Power_Supplier_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Consumer Number"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Consumer_Number_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Meter Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Meter_Type_Edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Meter Serial Number"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Meter_Serial_Number_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Voltage Rating (V)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="Min: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/min_Voltage_Rating_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="Max: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/max_Voltage_Rating_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Power Conn. Rating (kw)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Power_Conn_Rating_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Connected Load (kw)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Connected_Load_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Meter Location Mark"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Meter_Location_Mark_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Avg Availability (hrs)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Avg_Availability_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+
+                </GridLayout>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/remarks_edit"
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp5"
+            android:background="#1A807E7E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/Add"
+                android:layout_marginLeft="@dimen/dp25"
+                android:background="@drawable/yellow_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Add"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp20"
+                android:paddingRight="@dimen/dp20"
+                android:textColor="@color/color1"
+                android:textSize="@dimen/dp15"/>
+
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:background="@drawable/dialog_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ProgressBar
+                android:id="@+id/progress"
+                android:indeterminateTint="@color/tab_text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:text="Updating Data"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/sp17"
+                android:layout_marginTop="@dimen/dp15"
+                android:textColor="@color/tab_text_color"
+                app:layout_constraintTop_toBottomOf="@+id/progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

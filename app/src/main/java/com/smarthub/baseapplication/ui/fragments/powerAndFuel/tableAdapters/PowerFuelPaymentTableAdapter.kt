@@ -10,23 +10,17 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerAuthorityPaymentTableItemBinding
-import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAuthorityPayments
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelPODetail
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelAuthorityPODetail
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
 class PowerFuelPaymentTableAdapter (var context : Context, var listener : PowerConnecFragAdapter.PowerConnectionListListener, var list:ArrayList<PowerFuelAuthorityPayments>?): RecyclerView.Adapter<PowerFuelPaymentTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data=PowerFuelAuthorityPayments()
+        list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -40,7 +34,7 @@ class PowerFuelPaymentTableAdapter (var context : Context, var listener : PowerC
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.power_authority_payment_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.power_authority_payment_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -52,7 +46,7 @@ class PowerFuelPaymentTableAdapter (var context : Context, var listener : PowerC
         try {
             holder.binding.paymentType.text=item.PaymentType
             holder.binding.Amount.text=item.Amount
-            holder.binding.dueDate.text=Utils.getFormatedDate(item.DueDate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.dueDate.text=Utils.getFormatedDate(item.DueDate,"dd-MMM-yyyy")
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
@@ -77,7 +71,7 @@ class PowerFuelPaymentTableAdapter (var context : Context, var listener : PowerC
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
+                        listener.editAuthorityPaymentClicked(position,data)
 
                         return true
                     }

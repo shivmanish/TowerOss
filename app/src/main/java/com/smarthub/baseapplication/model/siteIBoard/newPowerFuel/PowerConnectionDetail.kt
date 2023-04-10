@@ -1,21 +1,21 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class PowerConnectionDetail(
-    val AverageAvailibility: String,
-    val ConnectedLoad: String,
-    val ConsumerNumber: String,
-    val ElectricitySupplier: String,
-    val MeterLocationMark: String,
-    val MeterSerialNumber: String,
-    val MeterType: Int,
-    val PowerConnectionType: List<Int>,
-    val PowerRating: String,
-    val PowerType: Int,
-    val Remark: String,
-    val VoltageMax: String,
-    val VoltageMin: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class PowerConnectionDetail{
+    var AverageAvailibility: String?=null
+    var ConnectedLoad: String?=null
+    var ConsumerNumber: String?=null
+    var ElectricitySupplier: String?=null
+    var MeterLocationMark: String?=null
+    var MeterSerialNumber: String?=null
+    var MeterType: Int?=null
+    var PowerConnectionType: List<Int>?=null
+    var PowerRating: String?=null
+    var PowerType: Int?=null
+    var remark: String?=null
+    var VoltageMax: String?=null
+    var VoltageMin: String?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

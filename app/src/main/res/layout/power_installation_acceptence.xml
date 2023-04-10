@@ -15,29 +15,26 @@
         android:background="@color/collapse_card_bg"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45">
-
             <TextView
                 android:id="@+id/item_title_str"
-                style="@style/RowTestItemEdit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/dp10"
-                android:paddingEnd="@dimen/dp10"
                 android:text="Installation &amp; Acceptence"
-                android:textColor="@color/color1"
-                android:textSize="@dimen/dp14"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".7" />
-
+                android:textSize="@dimen/dp14"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:background="@color/transparent"
+                style="@style/RowTestItemEdit"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".7"
+                android:layout_height="match_parent"/>
             <ImageView
                 android:id="@+id/img_edit"
                 android:visibility="visible"
@@ -52,8 +49,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="@dimen/dp12"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="@dimen/dp50"
-                app:tint="@color/light_gray" />
+                android:layout_width="@dimen/dp50"/>
             <ImageView
                 android:id="@+id/img_dropdown"
                 android:src="@drawable/ic_arrow_down_black"
@@ -81,218 +77,492 @@
         android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
+        android:paddingBottom="@dimen/dp10"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
+            android:id="@+id/view_layout"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:scrollbars="vertical"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:visibility="visible"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <GridLayout
-                    android:visibility="visible"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Vendor Name"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/vendor_name"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Vendor Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/vendor_name"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Vendor Code"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/vendor_code"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+                    <TextView
+                        android:text="Vendor Code"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/vendor_code"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Installation Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/installation_date"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Installation Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/installation_date"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Vendor Executive Name"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/vendor_executive_name"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
+                    <TextView
+                        android:text="Vendor Executive Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/vendor_executive_name"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
 
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Vendor Executive Email ID"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/vendor_executive_email_id"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Vendor Executive Email ID"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/vendor_executive_email_id"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Vendor Executive No."
-                            style="@style/RowTextItemInfo"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/vendor_executive_no"
-                            android:maxLength="10"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+                    <TextView
+                        android:text="Vendor Executive No."
+                        style="@style/RowTextItemInfo"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/vendor_executive_no"
+                        android:maxLength="10"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Acceptance Status"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/acceptence_status"
-                            android:maxLength="10"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Acceptance Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/acceptence_status"
+                        android:maxLength="10"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Acceptance Date"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/acceptence_date"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                </GridLayout>
+                    <TextView
+                        android:text="Acceptance Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/acceptence_date"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </GridLayout>
+            <TextView
+                android:text="Remarks"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/Remarks"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:hint="Left Corner of Roof "
+                android:textSize="15sp"
+                style="@style/RowTestItemEdit"
+                android:text=""
+                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/edit_layout"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:visibility="visible"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Vendor Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Vendor_name_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Vendor Code"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Vendor_Code_Edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Installation Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Installation_Date_edit"
+                        android:text=""
+                        android:drawableEnd="@drawable/calender"
+                        android:drawableTint="@color/color1"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Vendor Executive Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Vendor_Excutive_Name_Edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Vendor Executive Email Id"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Vendor_Executive_Email_edit"
+                        android:text=""
+                        android:inputType="textEmailAddress"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Vendor Executive Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Vendor_Executive_Number_edit"
+                        android:text="0"
+                        android:inputType="phone"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Acceptence Status"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Acceptence_status_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Acceptence Date"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Acceptence_Date_edit"
+                        android:text=""
+                        android:drawableEnd="@drawable/calender"
+                        android:drawableTint="@color/color1"
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+            </GridLayout>
+            <TextView
+                android:text="Remarks"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/remarks_edit"
+                android:textSize="15sp"
+                style="@style/RowTestItemEdit"
+                android:text=""
+                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp6" />
+            <LinearLayout
+                android:id="@+id/bottom_layout"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
                 <TextView
-                    android:text="Remarks"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:id="@+id/cancel"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cancel"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
                 <TextView
-                    android:id="@+id/Remarks"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-                    android:hint="Left Corner of Roof "
-                    android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
-                    android:text=""
-                    android:layout_marginTop="@dimen/dp1"
-                    android:layout_marginRight="@dimen/dp10"
+                    android:id="@+id/update"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:background="@drawable/yellow_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Update"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

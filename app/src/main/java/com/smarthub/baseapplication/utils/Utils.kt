@@ -383,6 +383,9 @@ object Utils {
         if (d!=null && d.length>=7){
             date=d.substring(0,7)
         }
+        else{
+            return ""
+        }
         AppLogger.log("getFormatedDateMonthYear:$date")
         try {
             val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM")

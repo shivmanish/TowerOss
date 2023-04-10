@@ -27,7 +27,7 @@
       ]
     },
     {
-      "name": "powerType",
+      "name": "PowerType",
       "data": [
         {
           "id": 1,
