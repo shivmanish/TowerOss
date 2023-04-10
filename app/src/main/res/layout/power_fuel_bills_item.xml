@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp10"
-            android:paddingBottom="20dp"
+            android:paddingBottom="5dp"
             android:layout_height="wrap_content">
             <GridLayout
                 android:visibility="visible"
@@ -256,7 +256,7 @@
             android:visibility="visible"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
+            android:paddingBottom="5dp"
             android:layout_height="wrap_content">
             <GridLayout
                 android:columnCount="2"
@@ -483,7 +483,46 @@
 
             </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/circleblue_1"
+                android:layout_marginStart="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_line"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:text="Bills copy"
+                android:textSize="@dimen/dp16"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/color1"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins"
+                app:layout_constraintStart_toEndOf="@+id/dot_img"
+                app:layout_constraintTop_toTopOf="@+id/dot_img"
+                app:layout_constraintBottom_toBottomOf="@+id/dot_img"/>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingBottom="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp10"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
+            <include layout="@layout/layout_img_attachment"/>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

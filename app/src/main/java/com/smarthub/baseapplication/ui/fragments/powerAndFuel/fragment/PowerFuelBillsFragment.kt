@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.PowerFuelCommonTabFragBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
+import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerFuelBillsAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.dialouge.AddNewPowerFuelBillsDialouge
@@ -37,11 +38,12 @@ class PowerFuelBillsFragment(var powerFuelData:NewPowerFuelAllData?,var parentIn
         }
         viewmodel?.powerAndFuelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
-                adapter.addLoading()
+//                adapter.addLoading()
                 AppLogger.log("PowerFuelBillsFragment data loading in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                binding.swipeLayout.isRefreshing=false
                 AppLogger.log("PowerFuelBillsFragment card Data fetched successfully")
                 try {
                     AppLogger.log("all data of power fuel : ====> ${Gson().toJson(it.data.PowerAndFuel?.get(0))}")
@@ -72,8 +74,8 @@ class PowerFuelBillsFragment(var powerFuelData:NewPowerFuelAllData?,var parentIn
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            binding.swipeLayout.isRefreshing=false
-            adapter.addLoading()
+//            binding.swipeLayout.isRefreshing=false
+//            adapter.addLoading()
             viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
         }
         viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
@@ -86,9 +88,6 @@ class PowerFuelBillsFragment(var powerFuelData:NewPowerFuelAllData?,var parentIn
         super.onDestroy()
     }
 
-    override fun editModeCliked(data: PowerFuelBills, pos: Int) {
-
-    }
 
     override fun updateBills(updatedData: PowerFuelBills) {
         showLoader()
@@ -122,6 +121,20 @@ class PowerFuelBillsFragment(var powerFuelData:NewPowerFuelAllData?,var parentIn
 
             }
         }
+    }
+
+    override fun addAttachment(id: String, moduel: String) {
+        val bm = AttachmentCommonDialogBottomSheet(moduel,id,
+            object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
+                override fun attachmentAdded(){
+                    viewmodel?.fetchPowerAndFuel(AppController.getInstance().siteid)
+                }
+            })
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun attachmentItemClicked() {
+
     }
 
 

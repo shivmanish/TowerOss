@@ -1,15 +1,16 @@
 package com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -42,11 +43,7 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
 
     class ViewHold1(itemView: View,listener: PowerBillsClickListener) : ViewHold(itemView) {
         var binding : PowerFuelBillsItemBinding = PowerFuelBillsItemBinding.bind(itemView)
-//        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-//            override fun itemClicked() {
-//                listener.attachmentItemClicked()
-//            }
-//        })
+        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -57,12 +54,6 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-//            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-//            recyclerListener.adapter = adapter
-
-//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-//                adapter.addItem()
-//            }
         }
     }
 
@@ -96,6 +87,14 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
                 holder.binding.viewLayout.visibility = View.VISIBLE
                 holder.binding.editLayout.visibility = View.GONE
             }
+            holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                if (data.id!=null){
+                    listener.addAttachment(data.id.toString(),"PowerAndFuelEBBil")
+                }
+                else
+                    Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",
+                        Toast.LENGTH_SHORT).show()
+            }
             if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                 holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -115,23 +114,21 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
             }
-            try {
-                holder.binding.itemTitleStr.text = String.format(baseFragment.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.DueDate,"ddMMMyyyy"))
-                if(data.PaymentStatus?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
+            // titel text
+            holder.binding.itemTitleStr.text = String.format(baseFragment.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.DueDate,"ddMMMyyyy"))
 
-                holder.binding.BillDueDate.text=Utils.getFormatedDate(data.DueDate,"dd-MMM-yyyy")
-                holder.binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
-                holder.binding.BillNo.text=data.BillNumber
-                holder.binding.BillMonth.text=Utils.getFormatedDateMonthYear(data.BillMonth,"MMM-yyyy")
-                holder.binding.BillAmount.text=data.Amount
-                holder.binding.SrNo.text=position.plus(1).toString()
-                holder.binding.UnitConsumed.text=data.UnitConsumed.toString()
+            //view mode
+            if(data.PaymentStatus?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentStatus, DropDowns.PaymentStatus.name,data.PaymentStatus?.get(0).toString())
+            holder.binding.BillDueDate.text=Utils.getFormatedDate(data.DueDate,"dd-MMM-yyyy")
+            holder.binding.StatusDate.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
+            holder.binding.BillNo.text=data.BillNumber
+            holder.binding.BillMonth.text=Utils.getFormatedDateMonthYear(data.BillMonth,"MMM-yyyy")
+            holder.binding.BillAmount.text=data.Amount
+            holder.binding.SrNo.text=position.plus(1).toString()
+            holder.binding.UnitConsumed.text=data.UnitConsumed.toString()
 
-            }catch (e:Exception){
-                AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
-                e.localizedMessage?.let { AppLogger.log(it) }
-            }
+            // edit mode
             holder.binding.BillDueDateEdit.text=Utils.getFormatedDate(data.DueDate,"dd-MMM-yyyy")
             holder.binding.StatusDateEdit.text=Utils.getFormatedDate(data.StatusDate,"dd-MMM-yyyy")
             holder.binding.BillMonthEdit.text=Utils.getFormatedDateMonthYear(data.BillMonth,"MMM-yyyy")
@@ -159,6 +156,16 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
             baseFragment.setDatePickerView(holder.binding.BillDueDateEdit)
             baseFragment.setDatePickerView(holder.binding.StatusDateEdit)
             baseFragment.setDatePickerView(holder.binding.BillMonthEdit)
+
+            if (data.attachment!=null){
+                holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),data.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                    override fun itemClicked() {
+                        listener.attachmentItemClicked()
+                    }
+                })
+            }
+            else
+                AppLogger.log("Attachments Error")
         }
     }
 
@@ -186,7 +193,8 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
     }
 
     interface PowerBillsClickListener{
-        fun editModeCliked(data :PowerFuelBills,pos:Int)
         fun updateBills(updatedData:PowerFuelBills)
+        fun addAttachment(id:String,moduel:String)
+        fun attachmentItemClicked()
     }
 }
