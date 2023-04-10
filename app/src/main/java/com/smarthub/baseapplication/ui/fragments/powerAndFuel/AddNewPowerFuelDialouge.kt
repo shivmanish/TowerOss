@@ -75,7 +75,7 @@ class AddNewPowerFuelDialouge (var listner: AddPowerFuelDataListener): BaseBotto
             viewmodel.updatePowerFuelDataResponse?.removeObservers(viewLifecycleOwner)
         }
         viewmodel.updatePowerFuelDataResponse?.observe(viewLifecycleOwner) {
-            if (it != null && it.status == Resource.Status.LOADING) {
+            if (it != null && it.status == Resource.Status.LOADING && it.data?.status?.PowerAndFuel==200) {
                 showProgressLayout()
                 AppLogger.log("AddNewNocCmpDialouge Fragment data adding in progress ")
                 return@observe

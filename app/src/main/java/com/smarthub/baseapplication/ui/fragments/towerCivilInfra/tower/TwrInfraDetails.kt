@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower
 import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
@@ -9,13 +9,14 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdT
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerPageAdapter
 import com.smarthub.baseapplication.utils.AppController
 
 class TwrInfraDetails : BaseActivity() {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : ActivityTwrInfraDetailsBinding
     companion object{
-        var TowerModelData : ArrayList<NewTowerCivilAllData>?=null
+        var TowerModelData : NewTowerCivilAllData?=null
         var Id : String?="448"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,8 @@ class TwrInfraDetails : BaseActivity() {
         }
         binding.titel.text="Tower"
         binding.subTitle.text= AppController.getInstance().siteName
-        binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager,filterTowerList(TowerModelData!!),Id)
+        if (TowerModelData!=null)
+            binding.viewpager.adapter = TowerPageAdapter(supportFragmentManager, TowerModelData?.TowerAndCivilInfraTower, TowerModelData)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
             binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -54,7 +56,7 @@ class TwrInfraDetails : BaseActivity() {
         filteredData.clear()
         for(i in 0..data.size.minus(1)){
             val tempdData = FilterdTwrData()
-            if (data.get(i).TowerAndCivilInfraTower.isNotEmpty()){
+            if (data.get(i).TowerAndCivilInfraTower?.isNotEmpty()==true){
                 tempdData.TowerDetails=data.get(i)
                 tempdData.index=i
                 filteredData.add(tempdData)

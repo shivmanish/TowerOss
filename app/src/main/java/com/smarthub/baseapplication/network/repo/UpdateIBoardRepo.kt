@@ -12,6 +12,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqU
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.updateTwrCivil.UpdateTwrCivilInfraResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcModel
@@ -32,6 +34,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     var updateSstSbcResponse: SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
     var updateSiteInfoResponse: SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelResponse: SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
+    var updateTwrCivilInfraResponse: SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
 
     init {
         updateSiteAcqResponse=SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>()
@@ -40,6 +43,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
         updateSstSbcResponse=SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>()
         updateSiteInfoResponse=SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>()
         updatePowerFuelResponse=SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>()
+        updateTwrCivilInfraResponse=SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>()
     }
 
 
@@ -209,6 +213,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                 } else if (iThrowableLocalMessage != null)
                     updateSstSbcResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
                 ) else updateSstSbcResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updateTwrCivilData(data: TowerCivilAllDataModel?) {
+        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        apiClient.updateTwrCivilInfraRequest(data!!).enqueue(object : Callback<UpdateTwrCivilInfraResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateTwrCivilInfraResponseModel?>,
+                response: Response<UpdateTwrCivilInfraResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateTwrCivilInfraResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateTwrCivilInfraResponseModel?>) {
+                if (response.body() != null) {
+                    updateTwrCivilInfraResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateTwrCivilInfraResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateTwrCivilInfraResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                    ) else
+                    updateTwrCivilInfraResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

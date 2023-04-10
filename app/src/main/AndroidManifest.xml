@@ -123,7 +123,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.fragments.towerCivilInfra.TwrInfraDetails"
+            android:name=".ui.fragments.towerCivilInfra.tower.TwrInfraDetails"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

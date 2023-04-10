@@ -11,12 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelConsumable
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
-class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener,var list:ArrayList<TwrCivilConsumableMaterial>?): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
+class TowerConsumableTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener, var list:ArrayList<TwrCivilConsumableMaterial>?): RecyclerView.Adapter<TowerConsumableTableAdapter.ViewHold>() {
 
 
     fun addItem(item:String){

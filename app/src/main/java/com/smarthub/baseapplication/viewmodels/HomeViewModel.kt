@@ -36,7 +36,9 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqU
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.updateTwrCivil.UpdateTwrCivilInfraResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
@@ -117,6 +119,7 @@ class HomeViewModel : ViewModel() {
     var updateSstSbcDataResponse:SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
     var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
+    var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -164,6 +167,7 @@ class HomeViewModel : ViewModel() {
         updateSstSbcDataResponse=updateIBoardRepo?.updateSstSbcResponse
         updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
         updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
+        updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -413,6 +417,12 @@ class HomeViewModel : ViewModel() {
         val dataModel= PowerFuelAllDataModel()
         dataModel.PowerAndFuel= arrayListOf(data)
         updateIBoardRepo?.updatePowerFuelData(dataModel)
+    }
+
+    fun updateTwrCivilInfra(data: NewTowerCivilAllData) {
+        val dataModel= TowerCivilAllDataModel()
+        dataModel.TowerAndCivilInfra= arrayListOf(data)
+        updateIBoardRepo?.updateTwrCivilData(dataModel)
     }
 
     fun updateSiteInfo(data: AllsiteInfoDataModel?) {

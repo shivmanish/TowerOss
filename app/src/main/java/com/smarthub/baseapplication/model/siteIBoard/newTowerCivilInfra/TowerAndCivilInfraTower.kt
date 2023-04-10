@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
-data class TowerAndCivilInfraTower(
-    val ConsumableMaterial: ArrayList<TwrCivilConsumableMaterial>,
-    val InstallationAndAcceptence: List<TwrInstallationAndAcceptence>,
-    val PODetail: ArrayList<TwrCivilPODetail>,
-    val PreventiveMaintenance: ArrayList<PreventiveMaintenance>,
-    val TowerAndCivilInfraTowerTowerDetail: List<TwrCivilInfraTowerDetail>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class TowerAndCivilInfraTower{
+    var ConsumableMaterial: ArrayList<TwrCivilConsumableMaterial>?=null
+    var InstallationAndAcceptence: List<TwrInstallationAndAcceptence>?=null
+    var PODetail: ArrayList<TwrCivilPODetail>?=null
+    var PreventiveMaintenance: ArrayList<PreventiveMaintenance>?=null
+    var TowerAndCivilInfraTowerTowerDetail: List<TwrCivilInfraTowerDetail>?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

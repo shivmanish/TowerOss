@@ -1,30 +1,27 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerInfoFragment(var towerdata:FilterdTwrData?): BaseFragment(), TowerInfoListAdapter.TowerInfoListListener {
+class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: NewTowerCivilAllData?,var childIndex:Int): BaseFragment(),
+    TowerInfoListAdapter.TowerInfoListListener {
     var viewmodel: HomeViewModel?=null
     lateinit var binding : TowerFragmentBinding
-    lateinit var adapter:TowerInfoListAdapter
+    lateinit var adapter: TowerInfoListAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerFragmentBinding.inflate(inflater, container, false)
@@ -33,7 +30,7 @@ class TowerInfoFragment(var towerdata:FilterdTwrData?): BaseFragment(), TowerInf
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=TowerInfoListAdapter(requireContext(),this@TowerInfoFragment,towerdata?.TowerDetails?.TowerAndCivilInfraTower?.get(0))
+        adapter= TowerInfoListAdapter(requireContext(),this@TowerInfoFragment,towerdata)
         binding.listItem.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
@@ -46,26 +43,27 @@ class TowerInfoFragment(var towerdata:FilterdTwrData?): BaseFragment(), TowerInf
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
                 hideLoader()
-                AppLogger.log("TowerCivil Fragment card Data fetched successfully")
+                AppLogger.log("TowerInfoFragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.TowerAndCivilInfra?.get(towerdata?.index!!)?.TowerAndCivilInfraTower?.get(0))
+                    fullData=it.data.TowerAndCivilInfra?.get(0)
+                    towerdata=it.data.TowerAndCivilInfra?.get(0)?.TowerAndCivilInfraTower?.get(childIndex)
+                    adapter.setData(it.data.TowerAndCivilInfra?.get(0)?.TowerAndCivilInfraTower?.get(childIndex))
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                    AppLogger.log("TowerInfoFragment error : ${e.localizedMessage}")
+                    Toast.makeText(context,"TowerInfoFragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
                 AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
-                AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
+                Toast.makeText(requireContext(),"TowerInfoFragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("TowerInfoFragment error :${it.message}, data : ${it.data}")
             }
             else {
-                AppLogger.log("TowerCivil Fragment Something went wrong")
-                Toast.makeText(requireContext(),"TowerCivil Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+                AppLogger.log("TowerInfoFragment Something went wrong")
+                Toast.makeText(requireContext(),"TowerInfoFragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.swipeLayout.setOnRefreshListener {
-            showLoader()
             viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
         }
     }

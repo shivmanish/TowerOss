@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,16 +11,13 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInfo
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelTowerInstallationAndAcceptance
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListener,towerData: TowerAndCivilInfraTower?) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
+class TowerInfoListAdapter(var context: Context, var listener: TowerInfoListListener, towerData: TowerAndCivilInfraTower?) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
     private var datalist: TowerAndCivilInfraTower?=null
     private var towerInfoData:TwrCivilInfraTowerDetail?=null
     private var insAccepData:TwrInstallationAndAcceptence?=null
@@ -289,7 +286,7 @@ class TowerInfoListAdapter(var context: Context,var listener: TowerInfoListListe
                     holder.binding.OffsetPoleCount.text=towerInfoData?.OffsetPoleCount.toString()
                     holder.binding.offsetPoleLenth.text=towerInfoData?.OffsetPoleLength
                     holder.binding.LocationMark.text=towerInfoData?.LocationMark
-                    holder.binding.Remarks.text=towerInfoData?.Remark
+                    holder.binding.Remarks.text=towerInfoData?.remark
                     holder.binding.DesignedLoad.text=towerInfoData?.DesignedLoad
 //                    holder.offsetTableList.adapter=TowerOffsetTableAdapter(context,listener,)
                 }catch (e:java.lang.Exception){
