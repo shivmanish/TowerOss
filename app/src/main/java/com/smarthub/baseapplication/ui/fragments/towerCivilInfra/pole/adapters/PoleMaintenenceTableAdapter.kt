@@ -1,18 +1,16 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPreMainteTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.PoleInfoFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -20,9 +18,10 @@ import com.smarthub.baseapplication.utils.Utils
 class PoleMaintenenceTableAdapter (var context : Context, var listener : PoleInfoFragAdapter.PoleInfoListListener, var list:ArrayList<PreventiveMaintenance>?): RecyclerView.Adapter<PoleMaintenenceTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=PreventiveMaintenance()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -40,19 +39,18 @@ class PoleMaintenenceTableAdapter (var context : Context, var listener : PoleInf
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var item:PreventiveMaintenance=list?.get(position)!!
+        val item:PreventiveMaintenance=list?.get(position)!!
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it,item)
         }
         try {
             holder.binding.SrNo.text=position.plus(1).toString()
-            if(item.VendorCompany.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
-            holder.binding.PmDate.text=Utils.getFormatedDate(item.PMDate.substring(0,10),"dd-MMM-yyyy")
+            if(item.VendorCompany?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
+            holder.binding.PmDate.text=Utils.getFormatedDate(item.PMDate,"dd-MMM-yyyy")
             holder.binding.VendorCode.text=item.VendorCode
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -73,7 +71,7 @@ class PoleMaintenenceTableAdapter (var context : Context, var listener : PoleInf
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editConsumableClicked(position)
+                        listener.editMaintenenceClicked(data)
 
                         return true
                     }
@@ -87,7 +85,7 @@ class PoleMaintenenceTableAdapter (var context : Context, var listener : PoleInf
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewMaintenenceClicked(position,data)
+                        listener.viewMaintenenceClicked(data)
                     }
 
                 }

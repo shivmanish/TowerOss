@@ -350,7 +350,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/DetailViewTheme" />
         <activity
-            android:name="com.smarthub.baseapplication.ui.fragments.towerCivilInfra.PoleFragment"
+            android:name="com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment"
             android:exported="true"
             android:label="@string/setting" />
 

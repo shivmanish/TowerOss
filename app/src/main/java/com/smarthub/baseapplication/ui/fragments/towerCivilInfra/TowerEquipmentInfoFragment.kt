@@ -102,7 +102,7 @@ class TowerEquipmentInfoFragment(var equipmentData: FilterdTwrData): Fragment(),
     }
 
     override fun viewMaintenenceClicked(position: Int, data: PreventiveMaintenance) {
-        val bm= TowerMaintenenceViewAdapter(R.layout.tower_maintenence_view_dialouge,data)
+        val bm= TowerMaintenenceViewAdapter(data)
         bm.show(childFragmentManager, "category")
     }
 

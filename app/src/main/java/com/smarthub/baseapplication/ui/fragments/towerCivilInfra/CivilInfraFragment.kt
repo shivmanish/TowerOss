@@ -13,10 +13,10 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.powerAndFuel.AddNewPowerFuelDialouge
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EquipmentRoomAddNew
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.PoleAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TowerAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
 import com.smarthub.baseapplication.utils.AppController
@@ -105,7 +105,7 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
     }
 
-    override fun clickedPoleItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+    override fun clickedPoleItem(id:String,data:NewTowerCivilAllData?) {
         PoleFragment.Id=id
         PoleFragment.TowerModelData=data
         requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
@@ -135,7 +135,13 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun addPole() {
-        val bmSheet = PoleAddNew(R.layout.tower_civil_add_tower)
+        val bmSheet = PoleAddNew(twrCivilData,
+            object : PoleAddNew.AddNewPoleListner {
+                override fun addPole() {
+                    showLoader()
+                    viewmodel.TowerAndCivilRequestAll(AppController.getInstance().siteid)
+                }
+            })
         bmSheet.show(childFragmentManager,"category")
     }
 

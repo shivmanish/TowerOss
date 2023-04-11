@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerOffsetPoleInfoItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.PoleInfoFragAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleInfoFragAdapter
 
 class poleOffsetTableAdapter (var context : Context, var listener : PoleInfoFragAdapter.PoleInfoListListener): RecyclerView.Adapter<poleOffsetTableAdapter.ViewHold>() {
 

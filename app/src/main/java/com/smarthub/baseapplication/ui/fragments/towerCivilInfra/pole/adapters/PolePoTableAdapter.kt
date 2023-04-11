@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,16 +12,16 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener, var list:ArrayList<TwrCivilPODetail>?): RecyclerView.Adapter<TowerPoTableAdapter.ViewHold>() {
+class PolePoTableAdapter (var context : Context, var listener : PoleInfoFragAdapter.PoleInfoListListener, var list:ArrayList<TwrCivilPODetail>?): RecyclerView.Adapter<PolePoTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data=TwrCivilPODetail()
+        list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -35,7 +35,7 @@ class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAd
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -45,14 +45,14 @@ class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAd
             performOptionsMenuClick(position,it,item)
         }
         try {
-            if (item.VendorCompany.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
+            if (item.VendorCompany?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,
+                    DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
             holder.binding.PoNo.text=item.PONumber
-            holder.binding.poDate.text=Utils.getFormatedDate(item.PODate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.poDate.text= Utils.getFormatedDate(item.PODate,"dd-MMM-yyyy")
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -73,8 +73,7 @@ class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAd
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
-
+                        listener.editPoClicked(data)
                         return true
                     }
                     // in the same way you can implement others
@@ -82,14 +81,11 @@ class TowerPoTableAdapter (var context : Context, var listener : TowerInfoListAd
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
-
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position,data)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                        listener.viewPoClicked(data)
                     }
 
                 }

@@ -1,7 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
 class TwrCivilInfraTowerDetail{
-    var AGId: Any?=null
+    var AGId: String?=null
     var AntennaSlot: Int?=null
     var Camouflage: Int?=null
     var Count: Int?=null

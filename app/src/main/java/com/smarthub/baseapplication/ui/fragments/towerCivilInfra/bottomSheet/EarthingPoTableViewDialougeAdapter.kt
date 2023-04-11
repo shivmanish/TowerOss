@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingPoItemViewDialougeBinding
 import com.smarthub.baseapplication.databinding.TowerPoViewDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
@@ -36,11 +34,11 @@ class EarthingPoTableViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivil
         binding.poNumber.text=data.PONumber
         binding.poAmount.text=data.POAmount
         binding.poLineNumber.text=data.POLineNo.toString()
-        binding.remark.text=data.Remark
-        if (data.VendorCompany.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
+        binding.remark.text=data.remark
+        if (data.VendorCompany?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
 
-        binding.poDate.text= Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
+        binding.poDate.text= Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
     }
 
     override fun getTheme() = R.style.NewDialogTask
