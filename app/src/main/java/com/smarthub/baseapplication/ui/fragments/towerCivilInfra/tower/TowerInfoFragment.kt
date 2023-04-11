@@ -22,7 +22,7 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
     var viewmodel: HomeViewModel?=null
     lateinit var binding : TowerFragmentBinding
     lateinit var adapter: TowerInfoListAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -90,22 +90,22 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
 
     }
     override fun editPoClicked(position: Int) {
-        var bm = TowerPoEditAdapter(R.layout.tower_po_edit_dialouge)
+        val bm = TowerPoEditAdapter(R.layout.tower_po_edit_dialouge)
         bm.show(childFragmentManager, "category")
     }
 
     override fun viewPoClicked(position: Int,data: TwrCivilPODetail) {
-        var bm = TowerPoViewAdapter(R.layout.tower_po_view_dialouge,data)
+        val bm = TowerPoViewAdapter(R.layout.tower_po_view_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
     override fun editConsumableClicked(position: Int) {
-        var bm = TowerConsumableEditAdapter(R.layout.tower_consumable_edit_dialouge)
+        val bm = TowerConsumableEditAdapter(R.layout.tower_consumable_edit_dialouge)
         bm.show(childFragmentManager, "category")
     }
 
     override fun viewConsumableClicked(position: Int,data: TwrCivilConsumableMaterial) {
-        var bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge,data)
+        val bm = TowerConsumableViewAdapter(R.layout.tower_consumable_view_dialouge,data)
         bm.show(childFragmentManager, "category")
     }
 
@@ -115,12 +115,12 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
     }
 
     override fun editOffsetClicked(position: Int) {
-        var bm = TowerOffsetEditAdapter(R.layout.tower_offset_edit_dialouge)
+        val bm = TowerOffsetEditAdapter(R.layout.tower_offset_edit_dialouge)
         bm.show(childFragmentManager, "category")
     }
 
     override fun viewOffsetClicked(position: Int) {
-        var bm = TowerOffsetViewAdapter(R.layout.tower_offset_view_dialouge)
+        val bm = TowerOffsetViewAdapter(R.layout.tower_offset_view_dialouge)
         bm.show(childFragmentManager, "category")
     }
 

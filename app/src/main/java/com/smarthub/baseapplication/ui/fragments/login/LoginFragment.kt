@@ -39,7 +39,7 @@ class LoginFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.login_fragment, container, false)
+        val view = inflater.inflate(R.layout.login_fragment, container, false)
         binding = LoginFragmentBinding.bind(view)
         return view
     }
@@ -149,7 +149,7 @@ class LoginFragment : BaseFragment() {
             hideLoader()
             if (it != null && it.status==Resource.Status.SUCCESS) {
                 if (it.data?.isNotEmpty()==true) {
-                    AppController.getInstance().ownerName = it.data[0].company
+                    AppController.getInstance().ownerName = it.data[0].ownercode
                     AppPreferences.getInstance().saveString("company",AppController.getInstance().ownerName)
                 }
                 AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())

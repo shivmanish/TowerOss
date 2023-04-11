@@ -53,8 +53,16 @@ class SplashActivity : BaseActivity() {
 //                val intent = Intent(this@SplashActivity,DashboardActivity::class.java)
 //                startActivity(intent)
 //                finish()
-                showLoader()
-                loginViewModel.getProfileData()
+                if (isNetworkConnected) {
+                    showLoader()
+                    loginViewModel.getProfileData()
+                }
+                else{
+                    AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
+                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
         }
 
@@ -86,11 +94,11 @@ class SplashActivity : BaseActivity() {
         loginViewModel.profileResponse?.observe(this) {
             hideLoader()
             if (it != null && it.status==Resource.Status.SUCCESS) {
-                AppController.getInstance().ownerName = it.data?.get(0)?.company
+//                AppController.getInstance().ownerName = it.data?.get(0)?.ownercode
                 Log.d("status", "ownerName :${AppController.getInstance().ownerName}")
                 if (isNetworkConnected){
                     if (it.data?.isNotEmpty()==true) {
-                        AppController.getInstance().ownerName = it.data[0].company
+                        AppController.getInstance().ownerName = it.data[0].ownercode
                         AppPreferences.getInstance().saveString("company",AppController.getInstance().ownerName)
                     }
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
@@ -155,4 +163,5 @@ class SplashActivity : BaseActivity() {
                 @Suppress("DEPRECATION")
                 manager.activeNetworkInfo?.isConnected == true
         }
+
 }
