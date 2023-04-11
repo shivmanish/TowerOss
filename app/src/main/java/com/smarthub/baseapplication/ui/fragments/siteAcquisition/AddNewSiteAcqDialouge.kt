@@ -29,7 +29,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.85).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }
