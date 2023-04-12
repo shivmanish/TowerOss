@@ -9,18 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.PolePoTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerEarthingDetailsTableItemsBinding
-import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
-import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilInfraEarthingDetail
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.PoleModelAuthorityPODetails
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.PoleInfoFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.DropDowns
-import com.smarthub.baseapplication.utils.Utils
 
 class EarthingDetailsTableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener, var list:ArrayList<TwrCivilInfraEarthingDetail>?): RecyclerView.Adapter<EarthingDetailsTableAdapter.ViewHold>() {
 

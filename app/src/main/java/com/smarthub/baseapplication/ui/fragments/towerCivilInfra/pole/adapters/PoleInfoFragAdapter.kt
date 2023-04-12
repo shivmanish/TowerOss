@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,39 +15,38 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerInfoListListener, towerData: TowerAndCivilInfraTower?) : RecyclerView.Adapter<TowerInfoListAdapter.ViewHold>() {
-    private var datalist: TowerAndCivilInfraTower?=null
-    private var towerInfoData:TwrCivilInfraTowerDetail?=null
-    private var insAccepData:TwrInstallationAndAcceptence?=null
-    fun setData(data: TowerAndCivilInfraTower?) {
+class PoleInfoFragAdapter (var baseFragment: BaseFragment, var listener: PoleInfoListListener, poleData: TowerAndCivilInfraPole?) : RecyclerView.Adapter<PoleInfoFragAdapter.ViewHold>() {
+    private var datalist: TowerAndCivilInfraPole?=null
+    private var poleInfoData: TwrCivilInfraPoleDetail?=null
+    private var insAccepData: TwrInstallationAndAcceptence?=null
+    fun setData(data: TowerAndCivilInfraPole?) {
         this.datalist=data!!
         notifyDataSetChanged()
     }
     init {
-        datalist=towerData
+        datalist=poleData
     }
 
 
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-    var type1 = "Tower Details"
+    var type1 = "Pole Details"
     var type2 = "Installation & Acceptance"
     var type3 = "PO Details"
-    var type4 = "Consumable Materials"
+    var type4 = "Consumable Material"
     var type5 = "Preventive Maintenance"
     var type6 = "Attachments"
-
     init {
-        list.add("Tower Details")
+        list.add("Pole Details")
         list.add("Installation & Acceptance")
         list.add("PO Details")
-        list.add("Consumable Materials")
+        list.add("Consumable Material")
         list.add("Preventive Maintenance")
         list.add("Attachments")
     }
 
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
-    
+
     class ViewHold1(itemView: View) : ViewHold(itemView) {
         var binding : TowerListItemBinding = TowerListItemBinding.bind(itemView)
 
@@ -60,7 +59,9 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
+
         }
+
     }
     class ViewHold2(itemView: View) : ViewHold(itemView) {
         var binding : TowerInstallationAcceptenceBinding = TowerInstallationAcceptenceBinding.bind(itemView)
@@ -78,7 +79,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
     }
     class ViewHold3(itemView: View) : ViewHold(itemView) {
         var binding: TowerPoItemBinding = TowerPoItemBinding.bind(itemView)
-        var poTableList: RecyclerView=binding.towerPoTableItem
+        var poTableList: RecyclerView =binding.towerPoTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -94,8 +95,8 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
             }
         }
         private fun addTableItem(){
-            if (poTableList.adapter!=null && poTableList.adapter is TowerPoTableAdapter){
-                val adapter = poTableList.adapter as TowerPoTableAdapter
+            if (poTableList.adapter!=null && poTableList.adapter is PolePoTableAdapter){
+                val adapter = poTableList.adapter as PolePoTableAdapter
                 adapter.addItem()
             }
         }
@@ -118,8 +119,8 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
             }
         }
         private fun addTableItem(){
-            if (towerConsumableTableList.adapter!=null && towerConsumableTableList.adapter is TowerConsumableTableAdapter){
-                val adapter = towerConsumableTableList.adapter as TowerConsumableTableAdapter
+            if (towerConsumableTableList.adapter!=null && towerConsumableTableList.adapter is PoleconsumableTableAdapter){
+                val adapter = towerConsumableTableList.adapter as PoleconsumableTableAdapter
                 adapter.addItem()
             }
         }
@@ -142,13 +143,13 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
             }
         }
         private fun addTableItem(){
-            if (towerPreMaintenenceTableList.adapter!=null && towerPreMaintenenceTableList.adapter is PreveMaintenenceTableAdapter){
-                val adapter = towerPreMaintenenceTableList.adapter as PreveMaintenenceTableAdapter
+            if (towerPreMaintenenceTableList.adapter!=null && towerPreMaintenenceTableList.adapter is PoleMaintenenceTableAdapter){
+                val adapter = towerPreMaintenenceTableList.adapter as PoleMaintenenceTableAdapter
                 adapter.addItem()
             }
         }
     }
-    class ViewHold6(itemView: View,listener: TowerInfoListListener) : ViewHold(itemView) {
+    class ViewHold6(itemView: View, listener: PoleInfoListListener) : ViewHold(itemView) {
         var binding: TowerCivilInfraAttachmentCommonBinding = TowerCivilInfraAttachmentCommonBinding.bind(itemView)
         val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
 
@@ -245,75 +246,75 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if (datalist!=null && datalist?.TowerAndCivilInfraTowerTowerDetail!=null &&
-                    datalist?.TowerAndCivilInfraTowerTowerDetail?.isNotEmpty()==true){
-                    towerInfoData=datalist?.TowerAndCivilInfraTowerTowerDetail?.get(0)
+                if (datalist!=null && datalist?.TowerAndCivilInfraPolePoleDetail!=null &&
+                    datalist?.TowerAndCivilInfraPolePoleDetail?.isNotEmpty()==true){
+                    poleInfoData=datalist?.TowerAndCivilInfraPolePoleDetail?.get(0)
                 }
-                if (towerInfoData!=null){
+                if (poleInfoData!=null){
                     // view mode
-                    holder.binding.TowerId.text=towerInfoData?.AGId
-                    holder.binding.Height.text=towerInfoData?.Height
-                    holder.binding.AntennaSlots.text=towerInfoData?.AntennaSlot.toString()
-                    holder.binding.LegCount.text=towerInfoData?.Count.toString()
-                    holder.binding.Weight.text=towerInfoData?.Weight.toString()
-                    holder.binding.FoundationSizeL.text=towerInfoData?.FoundationSizeL
-                    holder.binding.FoundationSizeB.text=towerInfoData?.FoundationSizeB
-                    holder.binding.FoundationSizeH.text=towerInfoData?.FoundationSizeH
-                    holder.binding.OffsetPoleCount.text=towerInfoData?.OffsetPoleCount.toString()
-                    holder.binding.offsetPoleLenth.text=towerInfoData?.OffsetPoleLength
-                    holder.binding.LocationMark.text=towerInfoData?.LocationMark
-                    holder.binding.Remarks.text=towerInfoData?.remark
-                    holder.binding.DesignedLoad.text=towerInfoData?.DesignedLoad
+                    holder.binding.TowerId.text=poleInfoData?.AGId
+                    holder.binding.Height.text=poleInfoData?.Height
+                    holder.binding.AntennaSlots.text=poleInfoData?.AntennaSlot.toString()
+                    holder.binding.LegCount.text=poleInfoData?.Count.toString()
+                    holder.binding.Weight.text=poleInfoData?.Weight.toString()
+                    holder.binding.FoundationSizeL.text=poleInfoData?.FoundationSizeL
+                    holder.binding.FoundationSizeB.text=poleInfoData?.FoundationSizeB
+                    holder.binding.FoundationSizeH.text=poleInfoData?.FoundationSizeH
+                    holder.binding.OffsetPoleCount.text=poleInfoData?.OffsetPoleCount.toString()
+                    holder.binding.offsetPoleLenth.text=poleInfoData?.OffsetPoleLength
+                    holder.binding.LocationMark.text=poleInfoData?.LocationMark
+                    holder.binding.Remarks.text=poleInfoData?.remark
+                    holder.binding.DesignedLoad.text=poleInfoData?.DesignedLoad
 
                     // edit mode
-                    holder.binding.HeightEdit.setText(towerInfoData?.Height)
-                    holder.binding.AntennaSlotsEdit.setText(towerInfoData?.AntennaSlot.toString())
-                    holder.binding.LegCountEdit.setText(towerInfoData?.Count.toString())
-                    holder.binding.WeightEdit.setText(towerInfoData?.Weight.toString())
-                    holder.binding.FoundationSizeLEdit.setText(towerInfoData?.FoundationSizeL)
-                    holder.binding.FoundationSizeBEdit.setText(towerInfoData?.FoundationSizeB)
-                    holder.binding.FoundationSizeHEdit.setText(towerInfoData?.FoundationSizeH)
-                    holder.binding.OffsetPoleCountEdit.setText(towerInfoData?.OffsetPoleCount.toString())
-                    holder.binding.OffsetPoleLengthEdit.setText(towerInfoData?.OffsetPoleLength)
-                    holder.binding.LocationMarkEdit.setText(towerInfoData?.LocationMark)
-                    holder.binding.remarksEdit.setText(towerInfoData?.remark)
-                    holder.binding.DesignedLoadEdit.setText(towerInfoData?.DesignedLoad)
+                    holder.binding.HeightEdit.setText(poleInfoData?.Height)
+                    holder.binding.AntennaSlotsEdit.setText(poleInfoData?.AntennaSlot.toString())
+                    holder.binding.LegCountEdit.setText(poleInfoData?.Count.toString())
+                    holder.binding.WeightEdit.setText(poleInfoData?.Weight.toString())
+                    holder.binding.FoundationSizeLEdit.setText(poleInfoData?.FoundationSizeL)
+                    holder.binding.FoundationSizeBEdit.setText(poleInfoData?.FoundationSizeB)
+                    holder.binding.FoundationSizeHEdit.setText(poleInfoData?.FoundationSizeH)
+                    holder.binding.OffsetPoleCountEdit.setText(poleInfoData?.OffsetPoleCount.toString())
+                    holder.binding.OffsetPoleLengthEdit.setText(poleInfoData?.OffsetPoleLength)
+                    holder.binding.LocationMarkEdit.setText(poleInfoData?.LocationMark)
+                    holder.binding.remarksEdit.setText(poleInfoData?.remark)
+                    holder.binding.DesignedLoadEdit.setText(poleInfoData?.DesignedLoad)
                 }
-                if (towerInfoData!=null && towerInfoData?.TowerPoleType!=null && towerInfoData?.TowerPoleType?.isNotEmpty() == true){
-                    AppPreferences.getInstance().setDropDown(holder.binding.TowerType,DropDowns.TowerPoleType.name,towerInfoData?.TowerPoleType?.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.TowerTypeEdit,DropDowns.TowerPoleType.name,towerInfoData?.TowerPoleType?.get(0).toString())
+                if (poleInfoData!=null && poleInfoData?.TowerPoleType!=null && poleInfoData?.TowerPoleType?.isNotEmpty() == true){
+                    AppPreferences.getInstance().setDropDown(holder.binding.TowerType,DropDowns.TowerPoleType.name,poleInfoData?.TowerPoleType?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.TowerTypeEdit,DropDowns.TowerPoleType.name,poleInfoData?.TowerPoleType?.get(0).toString())
                 }
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.TowerTypeEdit,DropDowns.TowerPoleType.name)
-                if (towerInfoData!=null && towerInfoData?.FoundationType!=null && towerInfoData?.FoundationType?.isNotEmpty() == true){
-                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,towerInfoData?.FoundationType?.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationTypeEdit,DropDowns.FoundationType.name,towerInfoData?.FoundationType?.get(0).toString())
+                if (poleInfoData!=null && poleInfoData?.FoundationType!=null && poleInfoData?.FoundationType?.isNotEmpty() == true){
+                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,poleInfoData?.FoundationType?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationTypeEdit,DropDowns.FoundationType.name,poleInfoData?.FoundationType?.get(0).toString())
                 }
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.FoundationTypeEdit,DropDowns.FoundationType.name)
-                if (towerInfoData!=null && towerInfoData?.InstalledType!=null && towerInfoData?.InstalledType!! > 0){
-                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledType,DropDowns.InstalledType.name,towerInfoData?.InstalledType.toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledTypeEdit,DropDowns.InstalledType.name,towerInfoData?.InstalledType.toString())
+                if (poleInfoData!=null && poleInfoData?.InstalledType!=null && poleInfoData?.InstalledType!! > 0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledType,DropDowns.InstalledType.name,poleInfoData?.InstalledType.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledTypeEdit,DropDowns.InstalledType.name,poleInfoData?.InstalledType.toString())
                 }
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.InstalledTypeEdit,DropDowns.InstalledType.name)
-                if (towerInfoData!=null && towerInfoData?.Camouflage!=null && towerInfoData?.Camouflage!! > 0){
-                    AppPreferences.getInstance().setDropDown(holder.binding.Camouflage,DropDowns.Camouflage.name,towerInfoData?.Camouflage.toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.CamouflageEdit,DropDowns.Camouflage.name,towerInfoData?.Camouflage.toString())
+                if (poleInfoData!=null && poleInfoData?.Camouflage!=null && poleInfoData?.Camouflage!! > 0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.Camouflage,DropDowns.Camouflage.name,poleInfoData?.Camouflage.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.CamouflageEdit,DropDowns.Camouflage.name,poleInfoData?.Camouflage.toString())
                 }
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.CamouflageEdit,DropDowns.Camouflage.name)
-                if (towerInfoData!=null && towerInfoData?.LightningArrester!=null && towerInfoData?.LightningArrester!! > 0){
-                    AppPreferences.getInstance().setDropDown(holder.binding.LightningArrester,DropDowns.LightningArrester.name,towerInfoData?.LightningArrester.toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.LightningArresterEdit,DropDowns.LightningArrester.name,towerInfoData?.LightningArrester.toString())
+                if (poleInfoData!=null && poleInfoData?.LightningArrester!=null && poleInfoData?.LightningArrester!! > 0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.LightningArrester,DropDowns.LightningArrester.name,poleInfoData?.LightningArrester.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.LightningArresterEdit,DropDowns.LightningArrester.name,poleInfoData?.LightningArrester.toString())
                 }
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.LightningArresterEdit,DropDowns.LightningArrester.name)
 
                 holder.binding.update.setOnClickListener {
-                    val tempTowerDetailData= TwrCivilInfraTowerDetail()
-                    val tempTowerAllData= TowerAndCivilInfraTower()
-                    tempTowerDetailData.let {
+                    val tempPoleDetailData= TwrCivilInfraPoleDetail()
+                    val tempPoleAllData= TowerAndCivilInfraPole()
+                    tempPoleDetailData.let {
                         it.Height=holder.binding.HeightEdit.text.toString()
                         it.Count=holder.binding.LegCountEdit.text.toString().toIntOrNull()
                         it.Weight=holder.binding.WeightEdit.text.toString()
@@ -331,14 +332,15 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                         it.LightningArrester=holder.binding.LightningArresterEdit.selectedValue.id.toIntOrNull()
                         it.TowerPoleType= arrayListOf(holder.binding.TowerTypeEdit.selectedValue.id.toInt())
                         it.FoundationType= arrayListOf(holder.binding.FoundationTypeEdit.selectedValue.id.toInt())
-                        if (towerInfoData!=null)
-                            it.id=towerInfoData?.id
+                        if (poleInfoData!=null)
+                            it.id=poleInfoData?.id
                     }
-                    tempTowerAllData.TowerAndCivilInfraTowerTowerDetail= arrayListOf(tempTowerDetailData)
+                    tempPoleAllData.TowerAndCivilInfraPolePoleDetail= arrayListOf(tempPoleDetailData)
                     if (datalist!=null)
-                        tempTowerAllData.id=datalist?.id
-                    listener.updateTowerData(tempTowerAllData)
+                        tempPoleAllData.id=datalist?.id
+                    listener.updatePoleData(tempPoleAllData)
                 }
+
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
@@ -407,7 +409,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
 
                 holder.binding.update.setOnClickListener {
                     val tempInsData= TwrInstallationAndAcceptence()
-                    val tempTowerAllData= TowerAndCivilInfraTower()
+                    val tempPoleAllData= TowerAndCivilInfraPole()
                     tempInsData.let {
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                         it.VendorExecutiveName=holder.binding.VendorExcutiveNameEdit.text.toString()
@@ -421,10 +423,10 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                         if (insAccepData!=null)
                             it.id=insAccepData?.id
                     }
-                    tempTowerAllData.InstallationAndAcceptence= arrayListOf(tempInsData)
+                    tempPoleAllData.InstallationAndAcceptence= arrayListOf(tempInsData)
                     if (datalist!=null)
-                        tempTowerAllData.id=datalist?.id
-                    listener.updateTowerData(tempTowerAllData)
+                        tempPoleAllData.id=datalist?.id
+                    listener.updatePoleData(tempPoleAllData)
                 }
                 baseFragment.setDatePickerView(holder.binding.AcceptenceDateEdit)
                 baseFragment.setDatePickerView(holder.binding.InstallationDateEdit)
@@ -450,13 +452,10 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if (datalist!=null && datalist?.PODetail!=null)
-                    holder.poTableList.adapter=
-                        TowerPoTableAdapter(baseFragment.requireContext(),listener,datalist?.PODetail)
+                if (datalist!=null && datalist?.ConsumableMaterial!=null)
+                    holder.poTableList.adapter= PolePoTableAdapter(baseFragment.requireContext(),listener,datalist?.PODetail)
                 else
-                    holder.poTableList.adapter=
-                        TowerPoTableAdapter(baseFragment.requireContext(),listener,
-                        ArrayList())
+                    holder.poTableList.adapter= PolePoTableAdapter(baseFragment.requireContext(),listener,datalist?.PODetail)
             }
             is ViewHold4 -> {
                 if (currentOpened == position) {
@@ -480,11 +479,10 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 if (datalist!=null && datalist?.ConsumableMaterial!=null)
-                    holder.towerConsumableTableList.adapter=
-                        TowerConsumableTableAdapter(baseFragment.requireContext(),listener,datalist?.ConsumableMaterial)
+                    holder.towerConsumableTableList.adapter= PoleconsumableTableAdapter(baseFragment.requireContext(),listener,datalist?.ConsumableMaterial)
                 else
-                    holder.towerConsumableTableList.adapter=
-                        TowerConsumableTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                    holder.towerConsumableTableList.adapter= PoleconsumableTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+
             }
             is ViewHold5 -> {
                 if (currentOpened == position) {
@@ -508,11 +506,9 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 if (datalist!=null && datalist?.PreventiveMaintenance!=null)
-                    holder.towerPreMaintenenceTableList.adapter=
-                        PreveMaintenenceTableAdapter(baseFragment.requireContext(),listener,datalist?.PreventiveMaintenance)
+                    holder.towerPreMaintenenceTableList.adapter=PoleMaintenenceTableAdapter(baseFragment.requireContext(),listener,datalist?.PreventiveMaintenance)
                 else
-                    holder.towerPreMaintenenceTableList.adapter=
-                        PreveMaintenenceTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                    holder.towerPreMaintenenceTableList.adapter=PoleMaintenenceTableAdapter(baseFragment.requireContext(),listener,ArrayList())
             }
             is ViewHold6 -> {
                 if (currentOpened == position) {
@@ -525,7 +521,8 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                             listener.addAttachment()
                         }
                         else
-                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",
+                                Toast.LENGTH_SHORT).show()
                     }
                 }
                 else {
@@ -569,18 +566,17 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
 
 
 
-    interface TowerInfoListListener {
-       fun attachmentItemClicked()
-       fun addAttachment()
-        fun updateTowerData(updatedData:TowerAndCivilInfraTower)
+    interface PoleInfoListListener {
+        fun attachmentItemClicked()
+        fun addAttachment()
+        fun EditInstallationAcceptence()
+        fun updatePoleData(data:TowerAndCivilInfraPole)
         fun editPoClicked(data:TwrCivilPODetail)
         fun viewPoClicked(data:TwrCivilPODetail)
+        fun editMaintenenceClicked(data:PreventiveMaintenance)
+        fun viewMaintenenceClicked(data:PreventiveMaintenance)
         fun editConsumableClicked(data:TwrCivilConsumableMaterial)
         fun viewConsumableClicked(data:TwrCivilConsumableMaterial)
-        fun viewMaintenenceClicked(data:PreventiveMaintenance)
-        fun editMaintenenceClicked(data:PreventiveMaintenance)
-        fun editOffsetClicked(position:Int)
-        fun viewOffsetClicked(position:Int)
     }
 
 }

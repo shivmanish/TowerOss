@@ -46,13 +46,12 @@ class EquipMaintenenceTableAdapter (var context : Context, var listener : TowerE
         }
         try {
             holder.binding.SrNo.text=position.plus(1).toString()
-            if(item.VendorCompany.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
-            holder.binding.PmDate.text=Utils.getFormatedDate(item.PMDate.substring(0,10),"dd-MMM-yyyy")
+            if(item.VendorCompany?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
+            holder.binding.PmDate.text=Utils.getFormatedDate(item.PMDate,"dd-MMM-yyyy")
             holder.binding.VendorCode.text=item.VendorCode
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 

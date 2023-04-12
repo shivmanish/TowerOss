@@ -49,7 +49,7 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
             holder.binding.SrNo.text=position.plus(1).toString()
             holder.binding.model.text=item.Model
             holder.binding.installationDate.text=
-                Utils.getFormatedDate(item.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+                Utils.getFormatedDate(item.InstallationDate,"dd-MMM-yyyy")
             holder.binding.ItemName.text=item.ItemName
         }catch (e:java.lang.Exception){
             AppLogger.log("Equip Consum Adapter error : ${e.localizedMessage}")

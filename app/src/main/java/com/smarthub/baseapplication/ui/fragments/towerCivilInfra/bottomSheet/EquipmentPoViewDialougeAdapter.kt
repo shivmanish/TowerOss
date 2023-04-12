@@ -36,11 +36,11 @@ class EquipmentPoViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivilPODe
         binding.poNumber.text=data.PONumber
         binding.poAmount.text=data.POAmount
         binding.poLineNumber.text=data.POLineNo.toString()
-        binding.remark.text=data.Remark
-        if (data.VendorCompany.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
+        binding.remark.text=data.remark
+        if (data.VendorCompany?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
 
-        binding.poDate.text= Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
+        binding.poDate.text= Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
     }
 
     override fun getTheme() = R.style.NewDialogTask

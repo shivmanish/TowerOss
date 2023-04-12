@@ -108,14 +108,10 @@ class TaskSearchTabNewFragment(
     var radius = "2"
     var previousListSize: Int = -1
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
 //        siteID = "1526"
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
         TaskTabListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         tempWhere = tempWhere.replace("[", "")
@@ -136,7 +132,12 @@ class TaskSearchTabNewFragment(
         binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        binding.trackinglayout.visibility = View.GONE
+        if(Trackingflag){
+            binding.trackinglayout.visibility = View.VISIBLE
+        }else{
+            binding.trackinglayout.visibility = View.GONE
+            binding.viewpager.setPadding(10,2,10,10)
+        }
         binding.dropdownImg.setOnClickListener {
             binding.collapsingLayout.tag = !(binding.collapsingLayout.tag as Boolean)
             if (binding.collapsingLayout.tag as Boolean) {
@@ -364,6 +365,7 @@ class TaskSearchTabNewFragment(
     }
 
     private fun setDataObserver() {
+        AppLogger.log("Tracking flag:${Trackingflag}")
         taskViewModel.fetchTaskDetails(taskDetailId)
         if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
@@ -375,16 +377,12 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 (requireActivity() as BaseActivity).hideLoader()
                 val data: AllsiteInfoDataModel = it.data
+                AppLogger.log("BasicInfo Data:${Gson().toJson(data.Basicinfo?.get(0))}")
                 mapSiteIboardUiData(data)
                 if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
                     lattitude = siteData.locLatitude!!
                     longitude = siteData.locLongitude!!
-                    if(Trackingflag){
-                        binding.trackinglayout.visibility = View.VISIBLE
-                    }else{
-                        binding.trackinglayout.visibility = View.GONE
-                    }
                     AppLogger.log("fetched latitude:${lattitude},longitude:$longitude")
                 } else {
                     AppLogger.log("Site address not fetched")
@@ -395,7 +393,7 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("SiteInfoNewFragment Something went wrong")
             }
         }
-        homeViewModel.siteInfoRequestAll(AppController.getInstance().taskSiteId)
+        homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
 //        siteDetailViewModel.fetchDropDown()
     }
 
@@ -1064,6 +1062,7 @@ class TaskSearchTabNewFragment(
     }
 
     private fun mapSiteIboardUiData(data: AllsiteInfoDataModel ){
+        AppLogger.log("BasicInfo Data:${Gson().toJson(data.Basicinfo?.get(0))}")
         if (data.Basicinfo!=null && data.Basicinfo?.isNotEmpty()==true){
             val siteData=data.Basicinfo?.get(0)
             binding.SiteName.text=siteData?.siteName

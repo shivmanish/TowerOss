@@ -1,21 +1,21 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
-data class TwrInstallationAndAcceptence(
-    val AcceptanceDate: String,
-    val AcceptanceStatus: List<Int>,
-    val InputCurrent: String,
-    val InputVoltage: String,
-    val InstallationDate: String,
-    val OutputCurrent: String,
-    val OutputVoltage: String,
-    val Remark: String,
-    val VendorCode: String,
-    val VendorCompany: List<Int>,
-    val VendorEmailId: String,
-    val VendorExecutiveName: String,
-    val VendorExecutiveNumber: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class TwrInstallationAndAcceptence{
+    var AcceptanceDate: String?=null
+    var AcceptanceStatus: ArrayList<Int>?=null
+    var InputCurrent: String?=null
+    var InputVoltage: String?=null
+    var InstallationDate: String?=null
+    var OutputCurrent: String?=null
+    var OutputVoltage: String?=null
+    var remark: String?=null
+    var VendorCode: String?=null
+    var VendorCompany: ArrayList<Int>?=null
+    var VendorEmailId: String?=null
+    var VendorExecutiveName: String?=null
+    var VendorExecutiveNumber: String?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

@@ -58,7 +58,7 @@ class MicrowaveTableAdapter (var context : Context, var listener : TowerInfoList
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
+//                        listener.editPoClicked(position)
 
                         return true
                     }

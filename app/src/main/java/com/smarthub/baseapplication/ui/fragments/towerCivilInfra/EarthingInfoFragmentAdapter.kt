@@ -11,7 +11,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.*
 import com.smarthub.baseapplication.utils.AppLogger
@@ -315,7 +314,7 @@ class EarthingInfoFragmentAdapter(var context: Context,var listner: TowerEarthin
                     holder.binding.vendorExecutiveName.text=insAccepData?.VendorExecutiveName
                     holder.binding.vendorExecutiveNo.text=insAccepData?.VendorExecutiveNumber
                     holder.binding.vendorExecutiveEmailId.text=insAccepData?.VendorEmailId
-                    holder.binding.Remarks.text=insAccepData?.Remark
+                    holder.binding.Remarks.text=insAccepData?.remark
                     holder.binding.vendorCode.text=insAccepData?.VendorCode
                     holder.binding.installationDate.text=
                         Utils.getFormatedDate(insAccepData?.InstallationDate!!.substring(0,10),"dd-MMM-yyyy")

@@ -1,20 +1,16 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.dialouge
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerConsumableViewDialougeBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.Utils
 
-class TowerConsumableViewAdapter (contentLayoutId: Int,var data: TwrCivilConsumableMaterial) : BottomSheetDialogFragment(contentLayoutId),
-    ImageAttachmentAdapter.ItemClickListener {
+class TowerConsumableViewAdapter (var data: TwrCivilConsumableMaterial) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: TowerConsumableViewDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +26,7 @@ class TowerConsumableViewAdapter (contentLayoutId: Int,var data: TwrCivilConsuma
         binding.Model.text=data.Model
         binding.UsedQty.text=data.UsedQty
         binding.UoM.text=data.UOM
-        binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate.substring(0,10),"dd-MMM-yyyy")
+        binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate,"dd-MMM-yyyy")
 
     }
 
@@ -41,9 +37,6 @@ class TowerConsumableViewAdapter (contentLayoutId: Int,var data: TwrCivilConsuma
         return binding.root
     }
 
-    override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
-    }
 
 
 }

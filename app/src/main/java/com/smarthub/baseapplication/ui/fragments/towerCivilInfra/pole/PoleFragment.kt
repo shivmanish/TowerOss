@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,16 +8,16 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTwrCivilPoleFragmentBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleFragPageAdapter
 import com.smarthub.baseapplication.utils.AppController
 
 class PoleFragment : BaseActivity() {
     var siteInfoDropDownData: SiteInfoDropDownData?=null
     lateinit var binding : ActivityTwrCivilPoleFragmentBinding
     companion object{
-        var TowerModelData : ArrayList<NewTowerCivilAllData>?=null
+        var TowerModelData : NewTowerCivilAllData?=null
         var Id : String?="448"
     }
 
@@ -39,7 +39,9 @@ class PoleFragment : BaseActivity() {
         }
         binding.titel.text="Pole"
         binding.subTitle.text=AppController.getInstance().siteName
-        binding.viewpager.adapter = PoleFragPageAdapter(supportFragmentManager,filterTowerList(TowerModelData!!),Id)
+        if (TowerModelData !=null)
+            binding.viewpager.adapter = PoleFragPageAdapter(supportFragmentManager,
+                TowerModelData?.TowerAndCivilInfraPole, TowerModelData)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
             binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))

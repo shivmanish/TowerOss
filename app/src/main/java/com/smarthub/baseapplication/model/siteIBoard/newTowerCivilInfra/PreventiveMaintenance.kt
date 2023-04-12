@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
-data class PreventiveMaintenance(
-    val NextPMInterval: String,
-    val PMDate: String,
-    val Remark: String,
-    val ServiceType: String,
-    val VendorCode: String,
-    val VendorCompany: List<Int>,
-    val VendorExecutiveName: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class PreventiveMaintenance{
+    var NextPMInterval: String?=null
+    var PMDate: String?=null
+    var remark: String?=null
+    var ServiceType: String?=null
+    var VendorCode: String?=null
+    var VendorCompany: ArrayList<Int>?=null
+    var VendorExecutiveName: String?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}
