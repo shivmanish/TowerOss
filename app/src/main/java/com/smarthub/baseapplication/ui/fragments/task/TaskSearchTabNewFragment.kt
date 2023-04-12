@@ -377,6 +377,7 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 (requireActivity() as BaseActivity).hideLoader()
                 val data: AllsiteInfoDataModel = it.data
+                AppLogger.log("BasicInfo Data:${Gson().toJson(data.Basicinfo?.get(0))}")
                 mapSiteIboardUiData(data)
                 if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
@@ -1061,6 +1062,7 @@ class TaskSearchTabNewFragment(
     }
 
     private fun mapSiteIboardUiData(data: AllsiteInfoDataModel ){
+        AppLogger.log("BasicInfo Data:${Gson().toJson(data.Basicinfo?.get(0))}")
         if (data.Basicinfo!=null && data.Basicinfo?.isNotEmpty()==true){
             val siteData=data.Basicinfo?.get(0)
             binding.SiteName.text=siteData?.siteName
