@@ -108,14 +108,10 @@ class TaskSearchTabNewFragment(
     var radius = "2"
     var previousListSize: Int = -1
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
 //        siteID = "1526"
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
         TaskTabListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         tempWhere = tempWhere.replace("[", "")
@@ -364,6 +360,7 @@ class TaskSearchTabNewFragment(
     }
 
     private fun setDataObserver() {
+        AppLogger.log("Tracking flag:${Trackingflag}")
         taskViewModel.fetchTaskDetails(taskDetailId)
         if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
@@ -395,7 +392,7 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("SiteInfoNewFragment Something went wrong")
             }
         }
-        homeViewModel.siteInfoRequestAll(AppController.getInstance().taskSiteId)
+        homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
 //        siteDetailViewModel.fetchDropDown()
     }
 

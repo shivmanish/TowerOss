@@ -28,7 +28,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var trackingId:String = "474"
     var taskDetailId:String ? = null
     var tempWhere = "[22,24]"
-    var Trackingflag = false
+    var Trackingflag = true
     var NotificationSettingGeoFencing = false
     var Distance :Double = 0.0
 
@@ -66,15 +66,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
                 AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
             }
         }
-        if (intent.hasExtra("Trackingflag")){
-            try {
-                intent.getStringExtra("Trackingflag")?.toBoolean()?.let {
-                    Trackingflag = it
-                }
-            }catch (e:Exception){
-                AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
-            }
-        }
+
+        Trackingflag=intent.getBooleanExtra("Trackingflag",false)
         if (intent.hasExtra("Distance")){
             try {
                  intent.getStringExtra("Distance")?.toDouble()?.let {
