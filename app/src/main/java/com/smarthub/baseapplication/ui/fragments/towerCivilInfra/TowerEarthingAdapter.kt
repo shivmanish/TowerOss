@@ -3,7 +3,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
+
 class TowerEarthingAdapter (fm: FragmentManager, var list:ArrayList<FilterdTwrData>?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return list?.size!!

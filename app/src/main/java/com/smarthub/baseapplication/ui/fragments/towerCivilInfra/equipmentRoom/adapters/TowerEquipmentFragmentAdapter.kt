@@ -1,13 +1,11 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerAndCivilInfraEquipmentRoom
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentInfoFragment
 
 class TowerEquipmentFragmentAdapter (fm: FragmentManager, var list:ArrayList<TowerAndCivilInfraEquipmentRoom>?, var fullData: NewTowerCivilAllData?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {

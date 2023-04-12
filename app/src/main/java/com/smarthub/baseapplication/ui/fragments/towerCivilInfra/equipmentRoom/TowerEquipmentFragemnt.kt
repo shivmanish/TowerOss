@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom
 import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout.MODE_FIXED
@@ -8,8 +8,8 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTowerEquipmentFragemntBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentFragmentAdapter
 
 class TowerEquipmentFragemnt : BaseActivity() {
     lateinit var binding : ActivityTowerEquipmentFragemntBinding
@@ -33,7 +33,7 @@ class TowerEquipmentFragemnt : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        if (EquipmentModelData!=null)
+        if (EquipmentModelData !=null)
             binding.viewpager.adapter = TowerEquipmentFragmentAdapter(supportFragmentManager, EquipmentModelData?.TowerAndCivilInfraEquipmentRoom,
             EquipmentModelData)
         binding.tabs.setupWithViewPager(binding.viewpager)

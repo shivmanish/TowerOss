@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -30,7 +30,6 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
     init {
         try {
             datalist=equipData
-            equipInfoData=datalist?.TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail?.get(0)
             insAccepData=datalist?.InstallationAndAcceptence?.get(0)
         }catch (e:java.lang.Exception){
             Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
@@ -38,15 +37,15 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
     }
     var list : ArrayList<String> = ArrayList()
     var currentOpened = -1
-    var type1 = "Equipment Room Detail"
-    var type2 = "Installation & Acceptence"
+    var type1 = "Equipment Room Details"
+    var type2 = "Installation & Acceptance"
     var type3 = "PO Details"
     var type4 = "Consumable Materials"
     var type5 = "Preventive Maintenance"
     var type6 = "Attachment"
     init {
-        list.add("Equipment Room Detail")
-        list.add("Installation & Acceptence")
+        list.add("Equipment Room Details")
+        list.add("Installation & Acceptance")
         list.add("PO Details")
         list.add("Consumable Materials")
         list.add("Preventive Maintenance")
@@ -151,7 +150,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
             }
         }
     }
-    class ViewHold6(itemView: View,listener: EquipmentItemListener) :ViewHold(itemView) {
+    class ViewHold6(itemView: View,listener: EquipmentItemListener) : ViewHold(itemView) {
         var binding: EquipmentAttachmentBinding = EquipmentAttachmentBinding.bind(itemView)
 
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
@@ -198,7 +197,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
         return 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHold {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty,parent,false)
         when (viewType) {
             1 -> {
@@ -234,16 +233,23 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
-                    holder.binding.imgEdit.setOnClickListener {
-//                        listner.EditEquipmentRoomItem()
-                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -257,9 +263,11 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-
-                try {
-                    holder.binding.Type.text=equipInfoData?.Type.toString()
+                if (datalist!=null && datalist?.TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail?.isNotEmpty()==true){
+                    equipInfoData=datalist?.TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail?.get(0)
+                }
+                if (equipInfoData!=null){
+                    //view mode
                     holder.binding.SizeL.text=equipInfoData?.SizeL
                     holder.binding.SizeB.text=equipInfoData?.SizeB
                     holder.binding.SizeH.text=equipInfoData?.SizeH
@@ -269,15 +277,61 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
                     holder.binding.MakeType.text=equipInfoData?.MakeType
                     holder.binding.MaterialUsed.text=equipInfoData?.MaterialUsed
                     holder.binding.LocationMark.text=equipInfoData?.LocationMark
-                    holder.binding.remark.text=equipInfoData?.remark
-                    if (equipInfoData?.FoundationType?.isNotEmpty()==true){
-                        AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,equipInfoData?.FoundationType?.get(0).toString())
-                    }
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("Twrcivil equip adapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"Twrcivil equip adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                    holder.binding.Remarks.text=equipInfoData?.remark
+
+                    //edit mode
+                    holder.binding.SizeLEdit.setText(equipInfoData?.SizeL)
+                    holder.binding.SizeBEdit.setText(equipInfoData?.SizeB)
+                    holder.binding.SizeHEdit.setText(equipInfoData?.SizeH)
+                    holder.binding.FoundationSizeLEdit.setText(equipInfoData?.FoundationSizeL)
+                    holder.binding.FoundationSizeBEdit.setText(equipInfoData?.FoundationSizeB)
+                    holder.binding.FoundationSizeHEdit.setText(equipInfoData?.FoundationSizeH)
+                    holder.binding.MakeTypeEdit.setText(equipInfoData?.MakeType)
+                    holder.binding.MaterialUsedEdit.setText(equipInfoData?.MaterialUsed)
+                    holder.binding.LocationMarkEdit.setText(equipInfoData?.LocationMark)
+                    holder.binding.remarksEdit.setText(equipInfoData?.remark)
+                }
+                if (equipInfoData!=null && equipInfoData?.FoundationType?.isNotEmpty()==true){
+                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,equipInfoData?.FoundationType?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationTypeEdit,DropDowns.FoundationType.name,equipInfoData?.FoundationType?.get(0).toString())
+                }
+                else
+                {
+                    AppPreferences.getInstance().setDropDown(holder.binding.FoundationTypeEdit,DropDowns.FoundationType.name)
                 }
 
+                if (equipInfoData!=null && equipInfoData?.Type!=null && equipInfoData?.Type!! > 0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.Type,DropDowns.EquipmentType.name,equipInfoData?.Type.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit,DropDowns.EquipmentType.name,equipInfoData?.Type.toString())
+                }
+                else
+                {
+                    AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit,DropDowns.EquipmentType.name)
+                }
+                holder.binding.update.setOnClickListener {
+                    val tempEquipRoomDetailData= TwrCivilEquipmentRoomDetail()
+                    val tempEquipRoomAllData= TowerAndCivilInfraEquipmentRoom()
+                    tempEquipRoomDetailData.let {
+                        it.MakeType=holder.binding.MakeTypeEdit.text.toString()
+                        it.MaterialUsed=holder.binding.MaterialUsedEdit.text.toString()
+                        it.SizeL=holder.binding.SizeLEdit.text.toString()
+                        it.SizeB=holder.binding.SizeBEdit.text.toString()
+                        it.SizeH=holder.binding.SizeHEdit.text.toString()
+                        it.FoundationSizeL=holder.binding.FoundationSizeLEdit.text.toString()
+                        it.FoundationSizeB=holder.binding.FoundationSizeBEdit.text.toString()
+                        it.FoundationSizeH=holder.binding.FoundationSizeHEdit.text.toString()
+                        it.LocationMark=holder.binding.LocationMarkEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
+                        it.Type=holder.binding.TypeEdit.selectedValue.id.toIntOrNull()
+                        it.FoundationType= arrayListOf(holder.binding.FoundationTypeEdit.selectedValue.id.toInt())
+                        if (equipInfoData!=null)
+                            it.id=equipInfoData?.id
+                    }
+                    tempEquipRoomAllData.TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail= arrayListOf(tempEquipRoomDetailData)
+                    if (datalist!=null)
+                        tempEquipRoomAllData.id=datalist?.id
+                    listner.updateEquipmentRoom(tempEquipRoomAllData)
+                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -446,7 +500,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
     interface EquipmentItemListener {
         fun attachmentItemClicked()
         fun EditInstallationAcceptence()
-        fun EditEquipmentRoomItem()
+        fun updateEquipmentRoom(data:TowerAndCivilInfraEquipmentRoom)
         fun editPoClicked(position:Int)
         fun viewPoClicked(position:Int,data:TwrCivilPODetail)
         fun editConsumableClicked(position:Int)

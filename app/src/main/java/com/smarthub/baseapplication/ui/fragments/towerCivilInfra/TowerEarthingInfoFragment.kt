@@ -16,10 +16,11 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEarthingInfoFragment(var earthingData: FilterdTwrData?): Fragment(), EarthingInfoFragmentAdapter.TowerEarthingListListener {
+class TowerEarthingInfoFragment(var earthingData: FilterdTwrData?): Fragment(),
+    EarthingInfoFragmentAdapter.TowerEarthingListListener {
     lateinit var binding : TowerEarthingInfoFragmentBinding
     var viewmodel: HomeViewModel?=null
-    lateinit var adapter:EarthingInfoFragmentAdapter
+    lateinit var adapter: EarthingInfoFragmentAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = TowerEarthingInfoFragmentBinding.inflate(inflater, container, false)
@@ -28,7 +29,8 @@ class TowerEarthingInfoFragment(var earthingData: FilterdTwrData?): Fragment(), 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData?.TowerDetails?.TowerAndCivilInfraEarthing?.get(0))
+        adapter=
+            EarthingInfoFragmentAdapter(requireContext(),this@TowerEarthingInfoFragment,earthingData?.TowerDetails?.TowerAndCivilInfraEarthing?.get(0))
         binding.listItem.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){

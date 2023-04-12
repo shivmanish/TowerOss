@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.EquipmentRoomAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentFragemnt
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TowerAddNew

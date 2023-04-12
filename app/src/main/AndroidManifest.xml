@@ -115,7 +115,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.fragments.towerCivilInfra.TowerEquipmentFragemnt"
+            android:name=".ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentFragemnt"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
