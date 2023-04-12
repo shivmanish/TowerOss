@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:minHeight="@dimen/dp500"
+        android:minHeight="@dimen/dp700"
         android:background="@drawable/dialog_bg"
         android:layout_marginTop="@dimen/dp15"
         android:layout_width="match_parent"
@@ -46,10 +46,12 @@
             android:layout_height="1dp"
             android:layout_width="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text"/>
+
         <androidx.core.widget.NestedScrollView
             app:layout_constraintTop_toBottomOf="@+id/title_line"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp5"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
             <LinearLayout
@@ -61,141 +63,375 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_marginStart="@dimen/dp10"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_line"
+                        />
+                    <TextView
+                        android:id="@+id/titel_Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:text="Equipment Room Details"
+                        android:textSize="@dimen/dp16"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/color1"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins"
+                        app:layout_constraintStart_toEndOf="@+id/dot_img"
+                        app:layout_constraintTop_toTopOf="@+id/dot_img"
+                        app:layout_constraintBottom_toBottomOf="@+id/dot_img"/>
+                </LinearLayout>
 
                 <GridLayout
+                    android:visibility="visible"
                     android:columnCount="2"
+                    android:layout_marginHorizontal="@dimen/dp5"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Shelter Room" />
-
+                            android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/shelter_room"
+                            android:id="@+id/Type_edit"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20" />
-
+                            android:layout_height="wrap_content" />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
                     </LinearLayout>
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Size (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Shelter Size" />
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/SizeL_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/SizeB_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="H: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/SizeH_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Make Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/shelter_size"
+                            android:id="@+id/Make_Type_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="100"
-                            style="@style/RowTestItemEdit"/>
-
+                            />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
-
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Material Used"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Foundation Size" />
+                            android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/foundation_size"
+                            android:id="@+id/Material_Used_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="100"
-                            style="@style/RowTestItemEdit"/>
-
+                            />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
+
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Foundation Size (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Foundation Type" />
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/FoundationSizeL_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/FoundationSizeB_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="H: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/FoundationSizeH_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Foundation Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/Foundation_Type"
+                            android:id="@+id/Foundation_Type_Edit"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20" />
-
+                            android:layout_height="wrap_content" />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
 
+                        <TextView
+                            android:text="Location Mark"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Location_Mark_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
 
 
                 </GridLayout>
-
                 <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
                     style="@style/RowTextItemInfo"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp20"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Location Mark" />
+                    android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/Location_mark"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp10"
+                    android:id="@+id/remarks_edit"
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
                     android:layout_marginRight="@dimen/dp10"
-                    android:hint="100"
-                    style="@style/RowTestItemEdit"/>
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp8"
                     android:alpha="0.37"
-                    android:background="#263238" />
-
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

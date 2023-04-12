@@ -76,8 +76,8 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         else if (list[position]==type3) {
             try {
                 holder.itemView.setOnClickListener {
-                    if (datalist!=null)
-                        listner.clickedEquipmentRoomItem(id,datalist)
+                    if (datalist!=null && datalist?.isNotEmpty()==true)
+                        listner.clickedEquipmentRoomItem(id,datalist?.get(0))
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
@@ -126,7 +126,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     interface CivilInfraAdapterListner{
         fun clickedTowerItem(id:String,data: NewTowerCivilAllData?)
         fun clickedPoleItem(id:String,data: NewTowerCivilAllData?)
-        fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?)
+        fun clickedEquipmentRoomItem(id:String,data:NewTowerCivilAllData?)
         fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
         fun addTower()
         fun addPole()

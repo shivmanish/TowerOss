@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTower
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EquipmentRoomAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.EquipmentRoomAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TowerAddNew
@@ -111,7 +111,7 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
     }
 
-    override fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+    override fun clickedEquipmentRoomItem(id:String,data:NewTowerCivilAllData?) {
         TowerEquipmentFragemnt.EquipmentModelData = data
         TowerEquipmentFragemnt.Id=id
         requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
@@ -146,7 +146,13 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun addEquipmentRoom() {
-        val bmSheet = EquipmentRoomAddNew(R.layout.tower_civil_add_equipment_room)
+        val bmSheet = EquipmentRoomAddNew(twrCivilData,
+            object : EquipmentRoomAddNew.AddEquipmentRoomListner {
+                override fun addEquipmentRoom() {
+                    showLoader()
+                    viewmodel.TowerAndCivilRequestAll(AppController.getInstance().siteid)
+                }
+            })
         bmSheet.show(childFragmentManager,"category")
     }
 

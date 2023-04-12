@@ -269,7 +269,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
                     holder.binding.MakeType.text=equipInfoData?.MakeType
                     holder.binding.MaterialUsed.text=equipInfoData?.MaterialUsed
                     holder.binding.LocationMark.text=equipInfoData?.LocationMark
-                    holder.binding.remark.text=equipInfoData?.Remark
+                    holder.binding.remark.text=equipInfoData?.remark
                     if (equipInfoData?.FoundationType?.isNotEmpty()==true){
                         AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,equipInfoData?.FoundationType?.get(0).toString())
                     }

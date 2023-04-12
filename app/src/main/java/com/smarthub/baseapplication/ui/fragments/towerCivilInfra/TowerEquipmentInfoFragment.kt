@@ -5,21 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEquipmentInfoFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class TowerEquipmentInfoFragment(var equipmentData: FilterdTwrData): Fragment(), TowerEquipmentInfoAdapter.EquipmentItemListener {
+class TowerEquipmentInfoFragment(var equipmentData: TowerAndCivilInfraEquipmentRoom?,var fullData:NewTowerCivilAllData?,var childIndex:Int): BaseFragment(), TowerEquipmentInfoAdapter.EquipmentItemListener {
     var viewmodel: HomeViewModel?=null
     lateinit var binding : TowerEquipmentInfoFragmentBinding
     lateinit var adapter:TowerEquipmentInfoAdapter
@@ -31,8 +28,8 @@ class TowerEquipmentInfoFragment(var equipmentData: FilterdTwrData): Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter=TowerEquipmentInfoAdapter(requireContext(),this@TowerEquipmentInfoFragment,equipmentData.TowerDetails?.TowerAndCivilInfraEquipmentRoom?.get(0))
-        binding?.listItem?.adapter = adapter
+        adapter=TowerEquipmentInfoAdapter(requireContext(),this@TowerEquipmentInfoFragment,equipmentData)
+        binding.listItem?.adapter = adapter
 
         if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
             viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
@@ -43,18 +40,21 @@ class TowerEquipmentInfoFragment(var equipmentData: FilterdTwrData): Fragment(),
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 binding.swipeLayout.isRefreshing=false
-                AppLogger.log("TowerCivil Fragment card Data fetched successfully")
+                hideLoader()
+                AppLogger.log("TowerEquipmentInfoFragment card Data fetched successfully")
                 try {
-                    adapter.setData(it.data.TowerAndCivilInfra?.get(equipmentData?.index!!)?.TowerAndCivilInfraEquipmentRoom?.get(0))
+                    adapter.setData(it.data.TowerAndCivilInfra?.get(0)?.TowerAndCivilInfraEquipmentRoom?.get(childIndex))
+                    fullData=it.data.TowerAndCivilInfra?.get(0)
+                    equipmentData=it.data.TowerAndCivilInfra?.get(0)?.TowerAndCivilInfraEquipmentRoom?.get(childIndex)
                 }catch (e:java.lang.Exception){
-                    AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
+                    AppLogger.log("TowerEquipmentInfoFragment error : ${e.localizedMessage}")
                 }
                 AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                AppLogger.log("TowerCivil Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("TowerEquipmentInfoFragment error :${it.message}, data : ${it.data}")
             }
             else {
-                AppLogger.log("TowerCivil Fragment Something went wrong")
+                AppLogger.log("TowerEquipmentInfoFragment Something went wrong")
             }
         }
 

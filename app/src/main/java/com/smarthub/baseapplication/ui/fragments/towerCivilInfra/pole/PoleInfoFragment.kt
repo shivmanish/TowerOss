@@ -80,7 +80,6 @@ class PoleInfoFragment (var poleData: TowerAndCivilInfraPole?,var fullData: NewT
         super.onDestroy()
     }
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun addAttachment() {
@@ -92,8 +91,6 @@ class PoleInfoFragment (var poleData: TowerAndCivilInfraPole?,var fullData: NewT
             })
         bm.show(childFragmentManager,"sdg")
     }
-
-    //
     override fun EditInstallationAcceptence() {
         val bottomSheetDialogFragment = TowerInstallationEditAdapter(R.layout.tower_installation_edit_dialouge)
         bottomSheetDialogFragment.show(childFragmentManager,"category")
