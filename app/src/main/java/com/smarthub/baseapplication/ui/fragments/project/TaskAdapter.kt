@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
@@ -27,6 +28,11 @@ class TaskAdapter : Adapter<TaskAdapter.ViewHold>() {
         fun bindData(data : TaskModelClass){
             binding.titleText.text=data.Taskname
             binding.sla.text=data.SLA
+            Glide
+                .with(binding.picture)
+                .load(data.pictures)
+                .placeholder(R.drawable.ic_menu_picture)
+                .into(binding.picture)
         }
     }
 

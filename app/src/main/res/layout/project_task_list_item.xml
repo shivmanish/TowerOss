@@ -33,6 +33,9 @@
                 android:layout_marginRight="@dimen/dp10"
                 android:layout_gravity="center"
                 android:layout_height="@dimen/dp25"
+                android:id="@+id/picture"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_menu_picture"/>
 
 
