@@ -28,7 +28,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var trackingId:String = "474"
     var taskDetailId:String ? = null
     var tempWhere = "[22,24]"
-    var Trackingflag = true
+    var Trackingflag = false
     var NotificationSettingGeoFencing = false
     var Distance :Double = 0.0
 
