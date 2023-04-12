@@ -16,8 +16,8 @@ class BasicInfoData{
     var Sitestatus: ArrayList<Int>?=null
     var State: BasicInfoNew?=null
     var aliasName: String?=null
-    var area: ArrayList<Any>?=null
-    var cluster: ArrayList<Any>?=null
+//    var area: ArrayList<Any>?=null
+//    var cluster: ArrayList<Any>?=null
     var created_at: String?=null
     var id: Int?=null
     var isActive: Boolean?=null

@@ -209,7 +209,7 @@ class CaptureSiteAdapter(val context: Context,var TaskTablist : TaskDropDownMode
         notifyDataSetChanged()
     }
 
-    fun updateSelection(position: Int,statusList:ArrayList<Boolean>,QatstatusList:ArrayList<String>){
+    fun updateSelection(position: Int,statusList:ArrayList<Boolean>,QatstatusList:ArrayList<Any>){
         sublistCheckedPos=statusList
         currentSelected = if(currentSelected == position) -1 else position
         if (statusList.isNotEmpty())
@@ -219,7 +219,7 @@ class CaptureSiteAdapter(val context: Context,var TaskTablist : TaskDropDownMode
         AppLogger.log("sulist in updateSelection===>: $statusList")
         notifyDataSetChanged()
     }
-    fun updateSelectedListItem(statusList:ArrayList<Boolean>,QatstatusList:ArrayList<String>){
+    fun updateSelectedListItem(statusList:ArrayList<Boolean>,QatstatusList:ArrayList<Any>){
         sublistCheckedPos=statusList
         if (statusList.isNotEmpty())
             listner.selectedSites(generateSelectedIds(statusList))
@@ -229,8 +229,8 @@ class CaptureSiteAdapter(val context: Context,var TaskTablist : TaskDropDownMode
         notifyDataSetChanged()
     }
 
-    fun generateSelectedIds(listItem:ArrayList<Boolean>):ArrayList<String>{
-        val selectedIds=ArrayList<String>()
+    fun generateSelectedIds(listItem:ArrayList<Boolean>):ArrayList<Any>{
+        val selectedIds=ArrayList<Any>()
         AppLogger.log("current selected parent at captureSite Adapter ====> : $currentSelected")
         AppLogger.log("current selected child list at genrated function ====> : $sublistCheckedPos")
         if (currentSelected!=-1)
@@ -244,7 +244,7 @@ class CaptureSiteAdapter(val context: Context,var TaskTablist : TaskDropDownMode
             for(i in 0..sublistCheckedPos.size.minus(1))
             {
                 if (listItem[i])
-                    selectedIds.add(subTabList[i].id.toString())
+                    selectedIds.add(subTabList[i].id)
             }
         }
 
@@ -263,5 +263,5 @@ class QAListViewholder(itemView: View) : ViewHold(itemView) {
 }
 
 interface CapturedSite{
-    fun selectedSites(selectedSites:ArrayList<String>)
+    fun selectedSites(selectedSites:ArrayList<Any>)
 }

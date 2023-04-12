@@ -25,10 +25,11 @@ import com.smarthub.baseapplication.ui.fragments.task.TaskSecondFragmentDirectio
 import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.widgets.CustomSpinner
 import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
-class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSheetDialogFragment(contentLayoutId) {
+class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeViewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
     lateinit var binding: AssignTaskDialougeBinding
     lateinit var viewmodel: AlertViewModel
@@ -82,6 +83,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?) : BottomSh
                 }
                 if (it!=null && it.Message == "Data updated"){
                     Toast.makeText(context,"Task Assigned SuccessFully",Toast.LENGTH_LONG).show()
+                    homeViewModel.fetchDropDownNew()
                     dismiss()
                 }
                 else {

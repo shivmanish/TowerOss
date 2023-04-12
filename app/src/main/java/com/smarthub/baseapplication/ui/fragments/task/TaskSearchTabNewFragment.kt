@@ -238,7 +238,7 @@ class TaskSearchTabNewFragment(
 
     fun setParentData() {
         AppLogger.log("Where Tab list====>:$tempWhere")
-        var subTabList:ArrayList<String> = ArrayList()
+        val subTabList:ArrayList<String> = ArrayList()
 //        val splittedData = tempWhere.split(",") as ArrayList
         val splittedData = findTaskSubtabList(taskDetailData).split(",")
         AppLogger.log("Where Tab list spiletted====>:$splittedData")
