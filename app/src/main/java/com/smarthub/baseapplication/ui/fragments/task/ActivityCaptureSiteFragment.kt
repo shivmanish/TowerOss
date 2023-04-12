@@ -29,6 +29,7 @@ class ActivityCaptureSiteFragment: BaseFragment(),CapturedSite {
     var selectedTabItemList:ArrayList<Boolean> = ArrayList()
     var selectedQatId:String = ""
     var selectedTaskList:ArrayList<String> = ArrayList()
+    var selectedTaskTabList:ArrayList<Any> = ArrayList()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = CaptureSiteFragmentDataBinding.inflate(inflater)
         viewmodel = ViewModelProvider(requireActivity()).get(TaskViewModel::class.java)
@@ -73,17 +74,18 @@ class ActivityCaptureSiteFragment: BaseFragment(),CapturedSite {
     }
 
     private fun nextClicked() {
-        viewmodel.processTemplatemanual.Where=selectedTaskList
+        viewmodel.processTemplatemanual.Where=selectedTaskTabList
         viewmodel.processTemplatemanual.pictures=null
         viewmodel.processTemplatemanual.documents=null
         viewmodel.processTemplatemanual.remark=null
         AppLogger.log("total data===> ${viewmodel.processTemplatemanual}")
         findNavController().navigate(TaskSecondFragmentDirections.actionToMoveThirdFrag())
     }
-    override fun selectedSites(selectedSites: ArrayList<String>) {
-        selectedTaskList=selectedSites
-        viewmodel.processTemplatemanual.Where=selectedTaskList
-        AppLogger.log("selected sites===> $selectedTaskList")
+    override fun selectedSites(selectedSites: ArrayList<Any>) {
+        selectedTaskTabList=selectedSites
+        selectedTaskList= selectedSites as ArrayList<String>
+        viewmodel.processTemplatemanual.Where=selectedTaskTabList
+        AppLogger.log("selected sites===> $selectedTaskTabList")
     }
 
     fun setSelectedTabAndItsData(data:TaskDropDownModel){

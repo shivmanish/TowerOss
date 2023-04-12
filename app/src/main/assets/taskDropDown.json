@@ -139,28 +139,23 @@
         "checked": false,
         "tabs": [
             {
-                "id": 21,
+                "id":21,
                 "name": "Assign ACQ Team",
                 "checked": false
             },
             {
-                "id": 22,
+                "id":22,
                 "name": "Acquisition Survey",
                 "checked": false
             },
             {
-                "id": 23,
+                "id":23,
                 "name": "Soft Acquisition",
                 "checked": false
             },
             {
-                "id": 24,
+                "id":24,
                 "name": "Agreement",
-                "checked": false
-            },
-            {
-                "id": 25,
-                "name": "Payments",
                 "checked": false
             }
         ]

@@ -118,12 +118,15 @@ class MyTaskFragment(var listener: TaskListener) : Fragment() {
 
     fun filterTaskList(allTaskList:List<MyTeamTask>):ArrayList<MyTeamTask>{
         val filteredTaskList:ArrayList<MyTeamTask> = ArrayList()
+//        filteredTaskList.addAll(allTaskList)
+        AppLogger.log("MyTaskListSize :===> ${filteredTaskList.size}")
+        AppLogger.log("MyTaskList :===> ${Gson().toJson(filteredTaskList)}")
         for (item in allTaskList){
             if (item.Where.isNotEmpty()){
                 val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
                 if (subTaskTabList.isNotEmpty()){
                     try {
-                        val tempTab=subTaskTabList[0].toInt().div(10)
+                        val tempTab=subTaskTabList[0].replace(" ","").toInt().div(10)
                         if (tempTab==2 || tempTab==6)
                             filteredTaskList.add(item)
                     }

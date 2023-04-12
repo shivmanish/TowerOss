@@ -18,7 +18,7 @@ class SiteAcquisitionTaskTabAdapter(manager: FragmentManager, var data: NewSiteA
 
 
     override fun getItem(position: Int): Fragment {
-        when(list[position]) {
+        when(list[position].replace(" ","")) {
             "21" -> {
                 return AssignACQTeamFragment(data, parentIndex)
             }
@@ -39,7 +39,7 @@ class SiteAcquisitionTaskTabAdapter(manager: FragmentManager, var data: NewSiteA
 
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(list[position]) {
+        when(list[position].replace(" ","")) {
             "21" -> {
                 return "Assign ACQ Team"
             }

@@ -73,7 +73,7 @@ class AddTaskInfoFragment : BaseFragment() {
                  taskViewmodel.processTemplatemanual.Taskinstruction=binding.taskInstruction.text.toString()
                  taskViewmodel.processTemplatemanual.startdate=Utils.getFullFormatedDate(binding.startDate.text.toString())
                  taskViewmodel.processTemplatemanual.enddate=Utils.getFullFormatedDate(binding.endDate.text.toString())
-                 taskViewmodel.processTemplatemanual.SLA= binding.sla.text.toString().toInt()
+                 taskViewmodel.processTemplatemanual.SLA= binding.sla.text.toString().toIntOrNull()
                  taskViewmodel.processTemplatemanual.Weightage=binding.Weightage.text.toString()
                  taskViewmodel.processTemplatemanual.geolevel=binding.GeographyLevel.selectedValue.name
                  taskViewmodel.processTemplatemanual.siteid= selectedSiteInfo.id.toString()

@@ -996,9 +996,9 @@ public class HomeRepo {
                 if (response.isSuccessful()) {
                     reportSuccessResponse(response);
                 } else if (response.errorBody() != null) {
-                    AppLogger.INSTANCE.log("error :" + response);
+                    AppLogger.INSTANCE.log("SiteInfoRequestAll error :" + response.errorBody());
                 } else {
-                    AppLogger.INSTANCE.log("error :" + response);
+                    AppLogger.INSTANCE.log("SiteInfoRequestAll error :" + response);
                 }
             }
 
@@ -1012,12 +1012,16 @@ public class HomeRepo {
                 if (response.body() != null) {
                     AllsiteInfoDataModel data = response.body();
                     AppController.getInstance().newSiteInfoModel = data;
-                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
+                    AppLogger.INSTANCE.log("SiteInfoRequestAll reportSuccessResponse :" + response);
                     siteInfoDataModel.postValue(Resource.success(response.body(), 200));
                 }
+                else
+                    AppLogger.INSTANCE.log("SiteInfoRequestAll reportSuccessResponse : null");
+
             }
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
+                AppLogger.INSTANCE.log("SiteInfoRequestAll reportSuccessResponse error :" + iThrowableLocalMessage);
                 if (iThrowableLocalMessage != null)
                     siteInfoDataModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else

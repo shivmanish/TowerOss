@@ -15,7 +15,7 @@ data class Processtemplatecallmanual(
     var Distance: String?=null,
     var Taskname: String?=null,
     var Weightage: String?=null,
-    var Where: List<String>?=null,
+    var Where: List<Any>?=null,
     var Workflow: String?=null,
     var actorname: String?=null,
     var documents: Boolean?=null,

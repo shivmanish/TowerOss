@@ -212,7 +212,7 @@ class HomeFragment : Fragment(),TaskListener {
     }
 
     override fun assignTask(task : MyTeamTask) {
-        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task)
+        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task,homeViewModel)
         bm.show(childFragmentManager, "category")
     }
     fun filterTaskList(allTaskList:List<MyTeamTask>):ArrayList<MyTeamTask>{

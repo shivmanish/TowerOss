@@ -69,6 +69,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
             }
         }
         binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
             homeViewModel.fetchHomeData()
         }
         homeViewModel.fetchHomeData()
@@ -137,7 +138,7 @@ class TaskFragment : Fragment(), TaskItemAdapter.itemClickListner ,TaskListener{
     }
 
     override fun assignTask(task : MyTeamTask) {
-        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task)
+        val bm = AssignTaskDialouge(R.layout.assign_task_dialouge,task,homeViewModel)
         bm.show(childFragmentManager, "category")
     }
 
