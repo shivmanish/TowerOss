@@ -1,18 +1,22 @@
 package com.smarthub.baseapplication.widgets
 
 import android.content.Context
+import android.text.Editable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.AdapterView
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatSpinner
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.ui.adapter.spinner.CustomArrayAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import org.w3c.dom.Text
 
 class CustomSpinner : AppCompatSpinner {
     var data: List<DropDownItem> = ArrayList()
-    var selectedValue: DropDownItem = DropDownItem("Name","1")
+    var selectedValue: DropDownItem = DropDownItem("Name","1","test")
     var itemSelectedListener : ItemSelectedListener?=null
     constructor(context: Context) : super(context)
     constructor(context: Context, mode: Int) : super(context, mode)
@@ -58,6 +62,46 @@ class CustomSpinner : AppCompatSpinner {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 
+            }
+
+        }
+        onItemSelectedListener = listener
+    }
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+    fun setSpinnerData(data: List<DropDownItem>,text:TextView?) {
+        this.data = data
+        adapter = CustomArrayAdapter(context, data)
+        val listener = object : OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                onItemSelected(data[position])
+                if (text!=null){
+                    text.text = data[position].shortName
+                    text.isEnabled = false
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+        onItemSelectedListener = listener
+    }
+    fun setSpinnerData(data: List<DropDownItem>,text:EditText?) {
+        this.data = data
+        adapter = CustomArrayAdapter(context, data)
+        var listener = object : OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                onItemSelected(data[position])
+                if (text!=null){
+                    text.text = data[position].shortName.toEditable()
+                    text.isEnabled = false
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
 
         }
