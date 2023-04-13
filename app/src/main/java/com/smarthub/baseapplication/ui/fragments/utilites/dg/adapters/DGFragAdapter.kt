@@ -317,9 +317,9 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                     holder.binding.WarrantyPeriod.text=equipmentData?.WarrantyPeriod
                     holder.binding.WarrantyExpiryDate.text= Utils.getFormatedDate(equipmentData?.WarrantyExpiryDate,"dd-MMM-yyyy")
                     holder.binding.remarks.text=equipmentData?.remark
-                    if (equipmentData?.Canopy!=null)
+                    if (equipmentData?.Canopy!=null && equipmentData?.Canopy!! > 0)
                         AppPreferences.getInstance().setDropDown(holder.binding.Canopy, DropDowns.Canopy.name,equipmentData?.Canopy.toString())
-                    if (equipmentData?.InstalledLocationType!=null)
+                    if (equipmentData?.InstalledLocationType!=null && equipmentData?.InstalledLocationType!! > 0)
                         AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationType, DropDowns.InstallationLocationType.name,equipmentData?.InstalledLocationType.toString())
                     if (equipmentData?.InstallationType!=null)
                         AppPreferences.getInstance().setDropDown(holder.binding.InstallationType, DropDowns.InstallationType.name,equipmentData?.InstallationType.toString())

@@ -155,5 +155,8 @@ public enum DropDowns {
     // plan design
     EquipmentType,
     BatterybankInstalledLocationType,
-
+    Shape,
+    OffSetPoleReqd,
+    Feasibility,
+    PitRodMaterial
 }

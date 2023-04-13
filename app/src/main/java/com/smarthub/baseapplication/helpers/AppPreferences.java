@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.lifecycle.LifecycleObserver;
@@ -378,6 +379,28 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         }
     }
 
+    public void setDropDown(CustomSpinner customSpinner,String name,TextView customText){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        try{
+            customSpinner.setSpinnerData(dropDownNewItem.getData(),customText);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+        }
+    }
+
+    public void setDropDown(CustomSpinner customSpinner, String name, EditText customText){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        try{
+            customSpinner.setSpinnerData(dropDownNewItem.getData(),customText);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+        }
+    }
+
     public void setDropDown(TextView customSpinner, String name, String id){
         List<DropDownItem> list = getDropDownList(name);
         for (DropDownItem i : list) {
@@ -386,7 +409,30 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
                 return;
             }
         }
-    }public String getDropDownValue(String name, String id){
+    }
+
+    public void setDropDown(TextView customSpinner, String name, String id,TextView customText){
+        List<DropDownItem> list = getDropDownList(name);
+        for (DropDownItem i : list) {
+            if (i.getId().equalsIgnoreCase(id)) {
+                customSpinner.setText(i.getName());
+                customText.setText(i.getShortName());
+                return;
+            }
+        }
+    }
+
+    public void setDropDown(TextView customSpinner, String name, String id,EditText customText){
+        List<DropDownItem> list = getDropDownList(name);
+        for (DropDownItem i : list) {
+            if (i.getId().equalsIgnoreCase(id)) {
+                customSpinner.setText(i.getName());
+                customText.setText(i.getShortName());
+                return;
+            }
+        }
+    }
+    public String getDropDownValue(String name, String id){
         List<DropDownItem> list = getDropDownList(name);
         for (DropDownItem i : list) {
             if (i.getId().equalsIgnoreCase(id)) {

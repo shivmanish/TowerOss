@@ -9,10 +9,12 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.OpcotssrMicrowaveTableItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.BackhaulFeasibility
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.MicrowaveOrUBR
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.OpcoTssrAdapter
+import com.smarthub.baseapplication.utils.DropDowns
 
 class BackhaulMicrowaveTableAdapter(
     var context: Context, var listener: OpcoTssrAdapter.OpcoTssrLisListener,
@@ -54,6 +56,8 @@ class BackhaulMicrowaveTableAdapter(
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position, it)
         }
+        /*AppPreferences.getInstance().setDropDown(holder.binding.Feasibility,
+            DropDowns.Feasibility.name,"1")*/
         holder.binding.SerialNo.text = list?.get(position)?.SerialNo
         holder.binding.Technology.text = ""
         holder.binding.TxrCount.text = ""

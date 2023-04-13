@@ -9,9 +9,11 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteRequestRadioTableItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.serviceRequest.RadioAntenna
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesRequestAdapter
+import com.smarthub.baseapplication.utils.DropDowns
 
 class RadioAntinaTableAdapter(
     var context: Context,
@@ -40,7 +42,10 @@ class RadioAntinaTableAdapter(
         }
         holder.binding.AnteenaTechnology.text="Na"
         holder.binding.AnteenaCount.text=radioAntenna[position].AntennaCount
-        holder.binding.AnteenaShape.text="Na"
+
+        AppPreferences.getInstance().setDropDown(holder.binding.AnteenaShape,
+            DropDowns.Shape.name,"1")
+
         holder.binding.AnteenaSize.text=radioAntenna[position].AntennaSize
 
     }
