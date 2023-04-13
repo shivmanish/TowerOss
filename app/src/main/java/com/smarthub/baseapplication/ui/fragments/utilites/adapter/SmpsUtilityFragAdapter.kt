@@ -335,7 +335,12 @@ class SmpsUtilityFragAdapter(var baseFragment: BaseFragment, var listener: SmpsI
                     holder.binding.minVoltageRating.text=equipmentData?.VoltageMin
                     holder.binding.maxVoltageRating.text=equipmentData?.VoltageMax
                     holder.binding.CapacityRating.text=equipmentData?.CapacityRating
-                    holder.binding.InstallationLocationType.text=equipmentData?.InstalledLocationType.toString()
+
+                    if(equipmentData?.InstalledLocationType!! > 0) {
+                        AppPreferences.getInstance().setDropDown(holder.binding.InstallationLocationType,
+                            DropDowns.InstallationLocationType.name, "1")
+                    }
+
                     holder.binding.CabinetSizeL.text=equipmentData?.SizeL
                     holder.binding.CabinetSizeB.text=equipmentData?.SizeB
                     holder.binding.CabinetSizeH.text=equipmentData?.SizeH

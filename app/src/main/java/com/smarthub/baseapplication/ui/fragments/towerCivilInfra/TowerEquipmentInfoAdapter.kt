@@ -259,7 +259,9 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
                 holder.binding.itemTitleStr.text = list[position]
 
                 try {
-                    holder.binding.Type.text=equipInfoData?.Type.toString()
+                    AppPreferences.getInstance().setDropDown(holder.binding.Type,
+                        DropDowns.EquipmentType.name,equipInfoData?.Type.toString())
+
                     holder.binding.SizeL.text=equipInfoData?.SizeL
                     holder.binding.SizeB.text=equipInfoData?.SizeB
                     holder.binding.SizeH.text=equipInfoData?.SizeH

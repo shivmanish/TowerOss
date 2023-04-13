@@ -264,6 +264,12 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     holder.binding.LocationMark.text=towerInfoData?.LocationMark
                     holder.binding.Remarks.text=towerInfoData?.remark
                     holder.binding.DesignedLoad.text=towerInfoData?.DesignedLoad
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledType,
+                        DropDowns.InstalledType.name,towerInfoData?.InstalledType.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.Camouflage,
+                        DropDowns.Camouflage.name,towerInfoData?.Camouflage.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.LightningArrester,
+                        DropDowns.LightningArrester.name,towerInfoData?.LightningArrester.toString())
 
                     // edit mode
                     holder.binding.HeightEdit.setText(towerInfoData?.Height)
@@ -278,6 +284,13 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     holder.binding.LocationMarkEdit.setText(towerInfoData?.LocationMark)
                     holder.binding.remarksEdit.setText(towerInfoData?.remark)
                     holder.binding.DesignedLoadEdit.setText(towerInfoData?.DesignedLoad)
+                    AppPreferences.getInstance().setDropDown(holder.binding.InstalledTypeEdit,
+                        DropDowns.InstalledType.name,towerInfoData?.InstalledType.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.CamouflageEdit,
+                        DropDowns.Camouflage.name,towerInfoData?.Camouflage.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.LightningArresterEdit,
+                        DropDowns.LightningArrester.name,towerInfoData?.LightningArrester.toString())
+
                 }
                 if (towerInfoData!=null && towerInfoData?.TowerPoleType!=null && towerInfoData?.TowerPoleType?.isNotEmpty() == true){
                     AppPreferences.getInstance().setDropDown(holder.binding.TowerType,DropDowns.TowerPoleType.name,towerInfoData?.TowerPoleType?.get(0).toString())
