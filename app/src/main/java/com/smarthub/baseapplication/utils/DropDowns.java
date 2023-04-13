@@ -30,6 +30,8 @@ public enum DropDowns {
     Potentialthreat,
     NoOfFloors,
     Acquisitiontype,
+    PitRodMaterial,
+    EarthingCableType,
     FuelType,
     Canopy,
     InstallationType,

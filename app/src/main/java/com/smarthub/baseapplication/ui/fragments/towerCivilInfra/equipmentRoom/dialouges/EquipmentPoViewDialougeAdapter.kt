@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.dialouges
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoViewDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class EquipmentPoViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivilPODetail) : BottomSheetDialogFragment(contentLayoutId),
+class EquipmentPoViewDialougeAdapter (var data:TwrCivilPODetail) : BaseBottomSheetDialogFragment(),
     ImageAttachmentAdapter.ItemClickListener {
 
     lateinit var binding: TowerPoViewDialougeBinding
@@ -23,12 +23,6 @@ class EquipmentPoViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivilPODe
         super.onViewCreated(view, savedInstanceState)
         binding.canecl.setOnClickListener {
             dismiss()
-        }
-        val attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
-        val adapter = ImageAttachmentAdapter(this@EquipmentPoViewDialougeAdapter)
-        attacmentsItem.adapter=adapter
-        view.findViewById<View>(R.id.attach_card).setOnClickListener{
-            adapter.addItem()
         }
         binding.poAmount.text=data.POAmount
         binding.poItems.text=data.POItem

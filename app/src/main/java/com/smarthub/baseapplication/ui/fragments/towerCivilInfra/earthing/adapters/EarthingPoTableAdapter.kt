@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -9,21 +9,20 @@ import androidx.appcompat.widget.PopupMenu
 import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.smarthub.baseapplication.databinding.EarthingPoTableItemBinding
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EarthingModelAuthorityPODetails
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener,var list:ArrayList<TwrCivilPODetail>?): Adapter<EarthingPoTableAdapter.ViewHold>() {
+class EarthingPoTableAdapter(var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener, var list:ArrayList<TwrCivilPODetail>?): Adapter<EarthingPoTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=TwrCivilPODetail()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -36,7 +35,7 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -54,7 +53,6 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("EarthPoTableAdapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"EarthPoTableAdapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -75,7 +73,7 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
+                        listener.editPoClicked(data)
 
                         return true
                     }
@@ -84,14 +82,13 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position,data)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                        listener.viewPoClicked(data)
+                        return true
                     }
 
                 }

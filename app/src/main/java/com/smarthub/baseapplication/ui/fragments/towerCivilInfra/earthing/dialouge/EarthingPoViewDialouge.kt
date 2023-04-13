@@ -1,20 +1,17 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.dialouge
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoViewDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class EarthingPoTableViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivilPODetail) : BottomSheetDialogFragment(contentLayoutId),
-    ImageAttachmentAdapter.ItemClickListener {
+class EarthingPoViewDialouge (var data:TwrCivilPODetail) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: TowerPoViewDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,12 +19,6 @@ class EarthingPoTableViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivil
         binding.canecl.setOnClickListener {
             dismiss()
         }
-//        var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
-//        var adapter = ImageAttachmentAdapter(this@EarthingPoTableViewDialougeAdapter)
-//        attacmentsItem.adapter=adapter
-//        view.findViewById<View>(R.id.attach_card).setOnClickListener{
-//            adapter.addItem()
-//        }
         binding.poAmount.text=data.POAmount
         binding.poItems.text=data.POItem
         binding.vendorCode.text=data.VendorCode
@@ -48,9 +39,6 @@ class EarthingPoTableViewDialougeAdapter (contentLayoutId: Int,var data:TwrCivil
         return binding.root
     }
 
-    override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
-    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -19,8 +18,10 @@ import com.smarthub.baseapplication.utils.Utils
 class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.EquipmentItemListener, var list:ArrayList<TwrCivilPODetail>?): RecyclerView.Adapter<EquipmentPoTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=TwrCivilPODetail()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -70,7 +71,7 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
+                        listener.editPoClicked(data)
 
                         return true
                     }
@@ -84,7 +85,7 @@ class EquipmentPoTableAdapter (var context : Context, var listener : TowerEquipm
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewPoClicked(position,data)
+                        listener.viewPoClicked(data)
                     }
 
                 }

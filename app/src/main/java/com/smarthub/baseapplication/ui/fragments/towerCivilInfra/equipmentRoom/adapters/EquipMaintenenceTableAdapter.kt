@@ -1,29 +1,27 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingConsumableTableItemBinding
-import com.smarthub.baseapplication.databinding.TowerConsumableTableItemBinding
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EarthingModelConsumable
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.EquipmentModelConsumable
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.databinding.TowerPreMainteTableItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class EarthingConsumabletableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener,var list:ArrayList<TwrCivilConsumableMaterial>?): RecyclerView.Adapter<EarthingConsumabletableAdapter.ViewHold>() {
+class EquipMaintenenceTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.EquipmentItemListener, var list:ArrayList<PreventiveMaintenance>?): RecyclerView.Adapter<EquipMaintenenceTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=PreventiveMaintenance()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -32,28 +30,27 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= TowerConsumableTableItemBinding.bind(view)
+        var binding= TowerPreMainteTableItemBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_consumable_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_pre_mainte_table_item,parent,false)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        val item:TwrCivilConsumableMaterial=list?.get(position)!!
+        var item:PreventiveMaintenance=list?.get(position)!!
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it,item)
         }
         try {
             holder.binding.SrNo.text=position.plus(1).toString()
-            holder.binding.model.text=item.Model
-            holder.binding.installationDate.text=
-                Utils.getFormatedDate(item.InstallationDate,"dd-MMM-yyyy")
-            holder.binding.ItemName.text=item.ItemName
+            if(item.VendorCompany?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
+            holder.binding.PmDate.text=Utils.getFormatedDate(item.PMDate,"dd-MMM-yyyy")
+            holder.binding.VendorCode.text=item.VendorCode
         }catch (e:java.lang.Exception){
-            AppLogger.log("Equip Consum Adapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"Equip Consum Adapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+            AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
         }
     }
 
@@ -62,7 +59,7 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
     }
 
     // this method will handle the onclick options click
-    private fun performOptionsMenuClick(position: Int,view : View,data:TwrCivilConsumableMaterial) {
+    private fun performOptionsMenuClick(position: Int,view : View,data:PreventiveMaintenance) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
         val popupMenu = PopupMenu(context , view)
@@ -74,7 +71,7 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editConsumableClicked(position)
+                        listener.editMaintenenceClicked(data)
 
                         return true
                     }
@@ -83,14 +80,12 @@ class EarthingConsumabletableAdapter (var context : Context, var listener : Eart
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewConsumableClicked(position,data)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+                        listener.viewMaintenenceClicked(data)
                     }
 
                 }

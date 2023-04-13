@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,20 +9,19 @@ import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.TowerPreMainteTableItemBinding
+import com.smarthub.baseapplication.databinding.TowerEarthingDetailsTableItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilInfraEarthingDetail
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
-import com.smarthub.baseapplication.utils.Utils
 
-class EarthingMaintenenceTableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener, var list:ArrayList<PreventiveMaintenance>?): RecyclerView.Adapter<EarthingMaintenenceTableAdapter.ViewHold>() {
+class EarthingDetailsTableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener, var list:ArrayList<TwrCivilInfraEarthingDetail>?): RecyclerView.Adapter<EarthingDetailsTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=TwrCivilInfraEarthingDetail()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -31,25 +30,25 @@ class EarthingMaintenenceTableAdapter (var context : Context, var listener : Ear
     }
 
     class ViewHold(view: View) : RecyclerView.ViewHolder(view){
-        var binding= TowerPreMainteTableItemBinding.bind(view)
+        var binding= TowerEarthingDetailsTableItemsBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_pre_mainte_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_earthing_details_table_items,parent,false)
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
-        var item:PreventiveMaintenance=list?.get(position)!!
+        val item:TwrCivilInfraEarthingDetail=list!![position]
         holder.binding.menu.setOnClickListener {
             performOptionsMenuClick(position,it,item)
         }
         try {
-            holder.binding.SrNo.text=position.plus(1).toString()
-            if(item.VendorCompany?.isNotEmpty()==true)
-                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
-            holder.binding.PmDate.text=Utils.getFormatedDate(item.PMDate,"dd-MMM-yyyy")
-            holder.binding.VendorCode.text=item.VendorCode
+            if (item.EarthingCableType!=null && item.EarthingCableType!! >0)
+                AppPreferences.getInstance().setDropDown(holder.binding.EarthingCableType,DropDowns.EarthingCableType.name,item.EarthingCableType.toString())
+            holder.binding.EarthingCableLength.text=item.EarthingCableLength
+            holder.binding.PitDepth.text= item.Height
+            holder.binding.Id.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
         }
@@ -60,7 +59,7 @@ class EarthingMaintenenceTableAdapter (var context : Context, var listener : Ear
     }
 
     // this method will handle the onclick options click
-    private fun performOptionsMenuClick(position: Int,view : View,data:PreventiveMaintenance) {
+    private fun performOptionsMenuClick(position: Int,view : View,data:TwrCivilInfraEarthingDetail) {
         // create object of PopupMenu and pass context and view where we want
         // to show the popup menu
         val popupMenu = PopupMenu(context , view)
@@ -72,8 +71,7 @@ class EarthingMaintenenceTableAdapter (var context : Context, var listener : Ear
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editConsumableClicked(position)
-
+                        listener.editEarthingDetails(data)
                         return true
                     }
                     // in the same way you can implement others
@@ -86,7 +84,8 @@ class EarthingMaintenenceTableAdapter (var context : Context, var listener : Ear
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewMaintenenceClicked(position,data)
+                        listener.viewEarthingDetails(data)
+                        return true
                     }
 
                 }

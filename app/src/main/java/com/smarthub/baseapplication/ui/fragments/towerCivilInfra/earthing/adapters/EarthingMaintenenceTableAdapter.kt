@@ -1,4 +1,4 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,17 +11,17 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPreMainteTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.PreventiveMaintenance
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentInfoAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class EquipMaintenenceTableAdapter (var context : Context, var listener : TowerEquipmentInfoAdapter.EquipmentItemListener, var list:ArrayList<PreventiveMaintenance>?): RecyclerView.Adapter<EquipMaintenenceTableAdapter.ViewHold>() {
+class EarthingMaintenenceTableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener, var list:ArrayList<PreventiveMaintenance>?): RecyclerView.Adapter<EarthingMaintenenceTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
-//        notifyItemInserted(list?.size!!.plus(1))
+    fun addItem(){
+        val data=PreventiveMaintenance()
+        list?.add(data)
+        notifyItemInserted(list?.size!!.plus(1))
     }
 
     fun removeItem(position:Int){
@@ -71,7 +71,7 @@ class EquipMaintenenceTableAdapter (var context : Context, var listener : TowerE
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editConsumableClicked(position)
+                        listener.editMaintenenceClicked(data)
 
                         return true
                     }
@@ -85,7 +85,7 @@ class EquipMaintenenceTableAdapter (var context : Context, var listener : TowerE
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        listener.viewMaintenenceClicked(position,data)
+                        listener.viewMaintenenceClicked(data)
                     }
 
                 }

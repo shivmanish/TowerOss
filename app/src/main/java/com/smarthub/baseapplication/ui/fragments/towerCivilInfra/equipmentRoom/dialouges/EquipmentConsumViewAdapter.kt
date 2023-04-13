@@ -1,21 +1,18 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.dialouges
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.EarthingConsumableTableViewDialougeBinding
-import com.smarthub.baseapplication.databinding.EquipmentConsumableTableViewDialougeBinding
 import com.smarthub.baseapplication.databinding.TowerConsumableViewDialougeBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
 import com.smarthub.baseapplication.utils.Utils
 
-class EquipmentConsumViewAdapter (contentLayoutId: Int,var data:TwrCivilConsumableMaterial) : BottomSheetDialogFragment(contentLayoutId),
+class EquipmentConsumViewAdapter (var data:TwrCivilConsumableMaterial) : BaseBottomSheetDialogFragment(),
     ImageAttachmentAdapter.ItemClickListener {
 
     lateinit var binding: TowerConsumableViewDialougeBinding
@@ -23,12 +20,6 @@ class EquipmentConsumViewAdapter (contentLayoutId: Int,var data:TwrCivilConsumab
         super.onViewCreated(view, savedInstanceState)
         binding.canecl.setOnClickListener {
             dismiss()
-        }
-        var attacmentsItem: RecyclerView = binding.root.findViewById(R.id.list_item)
-        var adapter = ImageAttachmentAdapter(this@EquipmentConsumViewAdapter)
-        attacmentsItem.adapter=adapter
-        view.findViewById<View>(R.id.attach_card).setOnClickListener{
-            adapter.addItem()
         }
         binding.ItemName.text=data.ItemName
         binding.Type.text=data.ItemType

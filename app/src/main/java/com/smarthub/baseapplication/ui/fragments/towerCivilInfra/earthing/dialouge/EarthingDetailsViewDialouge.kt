@@ -1,22 +1,17 @@
-package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet
+package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.dialouge
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.EarthingDetailsViewDialougeBinding
-import com.smarthub.baseapplication.databinding.TowerConsumableViewDialougeBinding
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilConsumableMaterial
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilInfraEarthingDetail
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
-import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.utils.DropDowns
 
-class EarthingDetailsViewDialouge (contentLayoutId: Int, var data: TwrCivilInfraEarthingDetail) : BottomSheetDialogFragment(contentLayoutId),
-    ImageAttachmentAdapter.ItemClickListener {
+class EarthingDetailsViewDialouge (var data: TwrCivilInfraEarthingDetail) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: EarthingDetailsViewDialougeBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,16 +19,17 @@ class EarthingDetailsViewDialouge (contentLayoutId: Int, var data: TwrCivilInfra
         binding.canecl.setOnClickListener {
             dismiss()
         }
-
+        if (data.EarthingCableType!=null && data.EarthingCableType!!>0)
+            AppPreferences.getInstance().setDropDown(binding.EarthingCableType,DropDowns.EarthingCableType.name,data.EarthingCableType.toString())
+        if (data.PitRodMaterial!=null && data.PitRodMaterial!!>0)
+            AppPreferences.getInstance().setDropDown(binding.PitRodMaterial,DropDowns.PitRodMaterial.name,data.PitRodMaterial.toString())
         binding.PitSizeL.text=data.SizeL
         binding.PitSizeB.text=data.SizeB
         binding.PitSizeH.text=data.SizeH
         binding.PitDepth.text=data.Height
-        binding.PitRodMaterial.text=data.PitRodMaterial.toString()
-        binding.EarthingCableType.text=data.EarthingCableType.toString()
         binding.EarthingCableLength.text=data.EarthingCableLength
         binding.locationMark.text=data.LocationMark
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
     }
 
     override fun getTheme() = R.style.NewDialogTask
@@ -43,9 +39,6 @@ class EarthingDetailsViewDialouge (contentLayoutId: Int, var data: TwrCivilInfra
         return binding.root
     }
 
-    override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
-    }
 
 
 }

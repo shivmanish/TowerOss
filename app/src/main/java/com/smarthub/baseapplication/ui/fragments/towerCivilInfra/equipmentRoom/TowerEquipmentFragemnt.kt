@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdT
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentFragmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 
 class TowerEquipmentFragemnt : BaseActivity() {
     lateinit var binding : ActivityTowerEquipmentFragemntBinding
@@ -26,6 +27,8 @@ class TowerEquipmentFragemnt : BaseActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        binding.titel.text="Equipment Rooms"
+        binding.subTitle.text= AppController.getInstance().siteName
         binding.back.setOnClickListener {
             onBackPressed()
         }

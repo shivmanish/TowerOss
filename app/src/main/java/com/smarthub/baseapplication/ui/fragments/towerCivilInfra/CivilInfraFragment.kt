@@ -13,7 +13,8 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.EarthingAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.TowerEarthingFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.EquipmentRoomAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentFragemnt
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleAddNew
@@ -118,7 +119,7 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
         requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
     }
 
-    override fun clickedEarthingItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+    override fun clickedEarthingItem(id:String,data:NewTowerCivilAllData?) {
         TowerEarthingFragment.Id=id
         TowerEarthingFragment.EarthingModelData=data
         requireActivity().startActivity(Intent(requireContext(), TowerEarthingFragment::class.java))
@@ -158,7 +159,13 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun addEarthing() {
-        val bmSheet = EarthingAddNew(R.layout.tower_civil_add_earthing)
+        val bmSheet = EarthingAddNew(twrCivilData,
+            object : EarthingAddNew.AddEarthingListner {
+                override fun addEarthing() {
+                    showLoader()
+                    viewmodel.TowerAndCivilRequestAll(AppController.getInstance().siteid)
+                }
+            })
         bmSheet.show(childFragmentManager,"category")
     }
 }
