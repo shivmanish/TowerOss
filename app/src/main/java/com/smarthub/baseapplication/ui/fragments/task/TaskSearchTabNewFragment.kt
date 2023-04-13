@@ -29,9 +29,12 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
@@ -52,6 +55,10 @@ import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailPag
 import com.smarthub.baseapplication.ui.fragments.plandesign.PowerDesignDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.PlanDesignAdapterListener
 import com.smarthub.baseapplication.ui.fragments.plandesign.adapter.TaskPlanDesignAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnectionDetailsActivity
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerFuelTabAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TaskPowerConnDataAdapter
+import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TaskPowerConnectionListListener
 import com.smarthub.baseapplication.ui.fragments.qat.OpenQatFragment
 import com.smarthub.baseapplication.ui.fragments.qat.SubmitQatFragment
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
@@ -67,6 +74,7 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAc
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTaskTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.*
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
@@ -303,6 +311,9 @@ class TaskSearchTabNewFragment(
                     setUpNocComplianceData()
                     AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
                 }
+
+                //site info , power and fuel, Twr & civil infra
+
             }
         }
     }
@@ -504,6 +515,129 @@ class TaskSearchTabNewFragment(
 */
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.planAndDesignRequestAll(siteID.toString())
+    }
+
+    fun setUpPowerFuelData() {
+        if (homeViewModel.powerAndFuelResponse?.hasActiveObservers() == true) {
+            homeViewModel.powerAndFuelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskPowerConnDataAdapter(requireContext(),object :
+            TaskPowerConnectionListListener {
+            override fun clickedItem(data: NewPowerFuelAllData, parentIndex: Int) {
+
+                PowerConnectionDetailsActivity.powerFuelData=data
+                PowerConnectionDetailsActivity.parentIndex=parentIndex
+                binding.viewpager.adapter = PowerFuelTabAdapter(childFragmentManager, data,parentIndex)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+        })
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.powerAndFuelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.PowerAndFuel)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(),
+                    "planDesign Fragment Something went wrong",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.fetchPowerAndFuel(siteID.toString())
+    }
+    fun setUpTowerAndCvilData() {
+        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
+            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
+            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+                TwrInfraDetails.Id=id
+                TwrInfraDetails.TowerModelData=data
+                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+
+            }
+
+            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+                PoleFragment.Id=id
+                PoleFragment.TowerModelData=data
+                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+
+            }
+
+            override fun clickedEquipmentRoomItem(
+                id: String,
+                data: ArrayList<NewTowerCivilAllData>?,
+            ) {
+                TowerEquipmentFragemnt.EquipmentModelData = data
+                TowerEquipmentFragemnt.Id=id
+                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+
+            }
+
+            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+                TowerEarthingFragment.Id=id
+                TowerEarthingFragment.EarthingModelData=data
+                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+        },siteID.toString())
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(),
+                    "planDesign Fragment Something went wrong",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
+    }
+
+    fun filterTowerList(data:ArrayList<NewTowerCivilAllData>):ArrayList<FilterdTwrData>{
+        val filteredData:ArrayList<FilterdTwrData> = ArrayList()
+        filteredData.clear()
+        for(i in 0..data.size.minus(1)){
+            val tempdData = FilterdTwrData()
+            if (data.get(i).TowerAndCivilInfraTower.isNotEmpty()){
+                tempdData.TowerDetails=data.get(i)
+                tempdData.index=i
+                filteredData.add(tempdData)
+            }
+        }
+        return filteredData
     }
 
     fun setUpQatData() {
