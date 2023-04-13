@@ -4,15 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerFuelBillPaymentsItemsBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelEBPayments
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener, var context: Context, paymentData:ArrayList<PowerFuelEBPayments>?) : RecyclerView.Adapter<PowerFuelBillPaymentsAdapter.ViewHold>() {
+class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener, var baseFragment: BaseFragment, paymentData:ArrayList<PowerFuelEBPayments>?) : RecyclerView.Adapter<PowerFuelBillPaymentsAdapter.ViewHold>() {
 
     var list = ArrayList<Any>()
 
@@ -40,11 +46,7 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
 
     class ViewHold1(itemView: View,listener: PowerBillPaymentsClickListener) : ViewHold(itemView) {
         var binding : PowerFuelBillPaymentsItemsBinding = PowerFuelBillPaymentsItemsBinding.bind(itemView)
-//        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-//            override fun itemClicked() {
-//                listener.attachmentItemClicked()
-//            }
-//        })
+        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
         init {
             binding.collapsingLayout.tag = false
             if ((binding.collapsingLayout.tag as Boolean)) {
@@ -55,12 +57,6 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-//            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-//            recyclerListener.adapter = adapter
-
-//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-//                adapter.addItem()
-//            }
         }
     }
 
@@ -87,7 +83,20 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
         if (holder is ViewHold1) {
             val data: PowerFuelEBPayments=list[position] as PowerFuelEBPayments
             holder.binding.imgEdit.setOnClickListener {
-//                listener.editModeCliked(data,position)
+                holder.binding.viewLayout.visibility = View.GONE
+                holder.binding.editLayout.visibility = View.VISIBLE
+            }
+            holder.binding.cancel.setOnClickListener {
+                holder.binding.viewLayout.visibility = View.VISIBLE
+                holder.binding.editLayout.visibility = View.GONE
+            }
+            holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                if (data.id!=null){
+                    listener.addAttachment(data.id.toString(),"PowerAndFuelEBPayment")
+                }
+                else
+                    Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",
+                        Toast.LENGTH_SHORT).show()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -98,6 +107,8 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
                 holder.binding.itemLine.visibility = View.GONE
                 holder.binding.itemCollapse.visibility = View.VISIBLE
                 holder.binding.imgEdit.visibility = View.VISIBLE
+                holder.binding.viewLayout.visibility = View.VISIBLE
+                holder.binding.editLayout.visibility = View.GONE
             } else {
                 holder.binding.collapsingLayout.tag = false
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
@@ -106,25 +117,58 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
                 holder.binding.itemCollapse.visibility = View.GONE
                 holder.binding.imgEdit.visibility = View.GONE
             }
-            try {
-                holder.binding.itemTitleStr.text = String.format(context.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.PaymentDate.substring(0,10),"ddMMMyyyy"))
-                holder.binding.paymentDate.text=Utils.getFormatedDate(data.PaymentDate.substring(0,10),"dd-MMM-yyyy")
-                holder.binding.BillNo.text=data.BillNumber
-                holder.binding.PaymentMode.text=data.PaymentMode.toString()
-                holder.binding.Amount.text=data.Amount
-                holder.binding.SrNo.text=position.plus(1).toString()
-                holder.binding.PaymentRefNo.text=data.PaymentRefNo.toString()
+            //titel text
+            holder.binding.itemTitleStr.text = String.format(baseFragment.resources.getString(R.string.rf_antenna_title_str_formate),data.BillNumber,data.Amount,Utils.getFormatedDate(data.PaymentDate,"ddMMMyyyy"))
 
-            }catch (e:Exception){
-                AppLogger.log("Somthig went wrong in rfAnteena adapter ${e.localizedMessage}")
-                e.localizedMessage?.let { AppLogger.log(it) }
+            if (data.PaymentMode!=null && data.PaymentMode!!>0){
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentMode,DropDowns.PaymentMode.name,data.PaymentMode.toString())
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentModeEdit,DropDowns.PaymentMode.name,data.PaymentMode.toString())
             }
+            else
+                AppPreferences.getInstance().setDropDown(holder.binding.PaymentModeEdit,DropDowns.PaymentMode.name)
+
+            // view mode
+            holder.binding.paymentDate.text=Utils.getFormatedDate(data.PaymentDate,"dd-MMM-yyyy")
+            holder.binding.BillNo.text=data.BillNumber
+            holder.binding.Amount.text=data.Amount
+            holder.binding.SrNo.text=position.plus(1).toString()
+            holder.binding.PaymentRefNo.text=data.PaymentRefNo
+
+            //edit mode
+            holder.binding.PaymentDateEdit.text=Utils.getFormatedDate(data.PaymentDate,"dd-MMM-yyyy")
+            holder.binding.BillNumberEdit.setText(data.BillNumber)
+            holder.binding.AmountEdit.setText(data.Amount)
+            holder.binding.PaymentRefNoEdit.setText(data.PaymentRefNo)
+
+            holder.binding.update.setOnClickListener {
+                val tempBillPaymentsData= PowerFuelEBPayments()
+                tempBillPaymentsData.let {
+                    it.BillNumber=holder.binding.BillNumberEdit.text.toString()
+                    it.Amount=holder.binding.AmountEdit.text.toString()
+                    it.PaymentDate=Utils.getFullFormatedDate(holder.binding.PaymentDateEdit.text.toString())
+                    it.PaymentRefNo=holder.binding.PaymentRefNoEdit.text.toString()
+                    it.PaymentMode= holder.binding.PaymentModeEdit.selectedValue.id.toIntOrNull()
+                    it.id=data.id
+                }
+                listener.updateBillPayments(tempBillPaymentsData)
+            }
+            baseFragment.setDatePickerView(holder.binding.PaymentDateEdit)
+
+            if (data.attachment!=null){
+                holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),data.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                    override fun itemClicked() {
+                        listener.attachmentItemClicked()
+                    }
+                })
+            }
+            else
+                AppLogger.log("Attachments Error")
         }
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return if (list.isEmpty() || list.get(position)==null)
+        return if (list.isEmpty())
             2
         else if(list[position] is PowerFuelEBPayments)
             1
@@ -146,6 +190,8 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
     }
 
     interface PowerBillPaymentsClickListener{
-        fun editModeCliked(data :PowerFuelBills,pos:Int)
+        fun updateBillPayments(data :PowerFuelEBPayments)
+        fun addAttachment(id :String,moduel:String)
+        fun attachmentItemClicked()
     }
 }

@@ -66,7 +66,7 @@ class AddNewSMPSDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?,var l
                 it.InstalledLocationType=binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
                 it.RackUSpaceUsed=binding.RackUSpaceUsedEdit.text.toString().toIntOrNull()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
 
                 val utilitySMPSData=UtilityEquipmentSmp()
                 utilitySMPSData.Equipment= arrayListOf(it)

@@ -14,28 +14,31 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.AddNewNocCmpDialouge
 import com.smarthub.baseapplication.ui.fragments.noc.bottomSheetAdapters.CreateNocBottomSheet
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.AddNewSiteAcqDialouge
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
-    lateinit var NocCompBinding: NocAndCompFragmentBinding
+    lateinit var binding: NocAndCompFragmentBinding
     lateinit var viewmodel: HomeViewModel
     var isDataLoaded = false
     lateinit var nocDataAdapter: NocDataAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        NocCompBinding = NocAndCompFragmentBinding.inflate(inflater, container, false)
+        binding = NocAndCompFragmentBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        return NocCompBinding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        NocCompBinding.customerList.layoutManager = LinearLayoutManager(requireContext())
+        binding.customerList.layoutManager = LinearLayoutManager(requireContext())
         nocDataAdapter = NocDataAdapter(requireContext(),this@NocFragment,id)
-        NocCompBinding.customerList.adapter = nocDataAdapter
-        NocCompBinding.addMore.setOnClickListener(){
+        binding.customerList.adapter = nocDataAdapter
+        binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
 
@@ -50,7 +53,8 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                NocCompBinding.swipeLayout.isRefreshing=false
+                binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 AppLogger.log("NocAndComp Fragment card Data fetched successfully")
                 try {
                     nocDataAdapter.setData(it.data.NOCCompliance!!)
@@ -67,14 +71,19 @@ class NocFragment(var id : String): BaseFragment(), NocDataAdapterListener {
                 AppLogger.log("NocAndComp Fragment Something went wrong")
             }
         }
-        NocCompBinding.swipeLayout.setOnRefreshListener {
+        binding.swipeLayout.setOnRefreshListener {
             nocDataAdapter.addLoading()
             viewmodel.NocAndCompRequestAll(id)
         }
-        NocCompBinding.addNew.setOnClickListener(){
-            val dalouge = CreateNocBottomSheet(R.layout.create_noc_site_info_dialoge)
-            dalouge.show(childFragmentManager,"")
-
+        binding.addNew.setOnClickListener {
+            val bm = AddNewNocCmpDialouge(
+                object : AddNewNocCmpDialouge.AddNocCompDataListener {
+                    override fun addNewData(){
+                        showLoader()
+                        viewmodel.NocAndCompRequestAll(AppController.getInstance().siteid)
+                    }
+                })
+            bm.show(childFragmentManager,"sdg")
         }
     }
 

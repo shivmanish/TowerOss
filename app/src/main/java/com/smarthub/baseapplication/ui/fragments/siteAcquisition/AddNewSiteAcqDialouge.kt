@@ -29,7 +29,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.85).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }
@@ -50,12 +50,16 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
             data.let {
                 it.LeadName=binding.AcquisitionLeadNameEdit.text.toString()
                 it.ExecutiveName=binding.AcquisitionExecutiveNameEdit.text.toString()
-                it.AcquisitionBudget=binding.AcquisitionBudgetEdit.text.toString()
+                it.AcquisitionBudget=binding.AcquisitionBudgetEdit.text.toString().ifEmpty { "0" }
                 it.AcquisitionTargetDate=Utils.getFullFormatedDate(binding.AcquisitionTargetDateEdit.text.toString())
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
                 it.PONumber=binding.PONumberEdit.text.toString()
                 it.PODate=Utils.getFullFormatedDate(binding.PODateEdit.text.toString())
-                it.POLineItemNo=binding.POLineNoEdit.text.toString().toInt()
+                try {
+                    it.POLineItemNo=binding.POLineNoEdit.text.toString().toInt()
+                }catch (e:Exception){
+                    it.POLineItemNo=0
+                }
                 it.POAmount=binding.POAmountEdit.text.toString()
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
                 it.VendorExecutiveEmailId=binding.VendorExecutiveEmailIDEdit.text.toString()
@@ -63,7 +67,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
                 it.AcquisitionMode = arrayListOf(binding.AcquisitionModeEdit.selectedValue.id.toInt())
                 it.Acquisitiontype = arrayListOf(binding.AcquisitionTypeEdit.selectedValue.id.toInt())
                 it.VendorCompany = arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
 
                 val dataModel = UpdateSiteAcquiAllData()
                 val tempList:ArrayList<AssignACQTeamDAta> =ArrayList()

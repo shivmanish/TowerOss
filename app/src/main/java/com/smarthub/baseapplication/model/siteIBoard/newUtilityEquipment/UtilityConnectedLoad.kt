@@ -6,7 +6,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment
     var InstallationDate: String?=null
     var MCBNumber: Int?=null
     var RatingAmp: String?=null
-    var Remark: String?=null
+    var remark: String?=null
 //    var created_at: String?=null
     var id: Int?=null
 //    var isActive: Boolean?=null

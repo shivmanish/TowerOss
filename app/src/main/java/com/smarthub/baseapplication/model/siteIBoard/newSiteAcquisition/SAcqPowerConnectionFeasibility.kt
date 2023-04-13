@@ -10,7 +10,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var NearestEBPole: String?=null
     var PowerRating: String?=null
     var PowerSupplier: String?=null
-    var Remark: String?=null
+    var remark: String?=null
     var SolarFeasibility: Int?=null
 //    var created_at: String?=null
     var id: Int?=null

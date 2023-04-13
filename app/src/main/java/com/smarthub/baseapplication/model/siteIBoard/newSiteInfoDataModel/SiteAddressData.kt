@@ -1,18 +1,18 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel
 
-data class SiteAddressData(
-    val address1: String,
-    val address2: String,
-    val city: List<Any>,
-    val created_at: String,
-    val district: List<Any>,
-    val id: Int,
-    val isActive: Boolean,
-    val landmark: String,
-    val locLatitude: String,
-    val locLongitude: String,
-    val modified_at: String,
-    val pincode: String,
-    val state: List<Any>,
-    val tehsil: List<Any>
-)
+class SiteAddressData{
+    var address1: String?=null
+    var address2: String?=null
+    var city: List<Any>?=null
+    var created_at: String?=null
+    var district: List<Any>?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var landmark: String?=null
+    var locLatitude: String?=null
+    var locLongitude: String?=null
+    var modified_at: String?=null
+    var pincode: String?=null
+    var state: List<Any>?=null
+    var tehsil: List<Any>?=null
+}

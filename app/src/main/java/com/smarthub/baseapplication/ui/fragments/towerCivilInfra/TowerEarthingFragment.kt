@@ -51,7 +51,7 @@ class TowerEarthingFragment : BaseActivity() {
         filteredData.clear()
         for(i in 0..data.size.minus(1)){
             val tempdData = FilterdTwrData()
-            if (data.get(i).TowerAndCivilInfraEarthing.isNotEmpty()){
+            if (data.get(i).TowerAndCivilInfraEarthing?.isNotEmpty()==true){
                 tempdData.TowerDetails=data.get(i)
                 tempdData.index=i
                 filteredData.add(tempdData)

@@ -32,7 +32,7 @@ class PropertyOwnerViewDialouge (contentLayoutId: Int, var data: SAcqPropertyOwn
         binding.PhNumber.text=data.PhoneNumber
         binding.EmailId.text=data.EmailId
         binding.Address.text=data.Address
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
 
     }
 

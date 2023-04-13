@@ -8,7 +8,7 @@ class UtiltyInstallationAcceptence{
     var InstallationDate: String?=null
     var OutputCurrent: String?=null
     var OutputVoltage: String?=null
-    var Remark: String?=null
+    var remark: String?=null
     var VendorCode: String?=null
     var VendorCompany: ArrayList<Int>?=null
     var VendorEmailId: String?=null

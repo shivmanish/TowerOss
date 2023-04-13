@@ -11,24 +11,23 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CivilInfraFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEarthingModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraEquipmentModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraPoleModel
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerAndCivilInfraTowerModel
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.services_request.ServiceRequestAddNew
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EarthingAddNew
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.EquipmentRoomAddNew
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.PoleAddNew
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.addCardBottomSheet.TowerAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.EquipmentRoomAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TowerAddNew
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.CivilInfraAdapterListner {
-    var viewmodel: HomeViewModel?=null
+    var twrCivilData: NewTowerCivilAllData?=null
     lateinit var binding : CivilInfraFragmentBinding
     lateinit var adapter: CivilInfraAdapter
+    lateinit var viewmodel: HomeViewModel
     var isDataLoaded = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -46,22 +45,21 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
 
         }
 
-        if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
-            viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
+            viewmodel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        viewmodel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner) {
+        viewmodel.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+            if (it?.data != null && it.status == Resource.Status.SUCCESS &&
+                it.data.TowerAndCivilInfra!=null && it.data.TowerAndCivilInfra?.isNotEmpty()==true){
                 binding.swipeLayout.isRefreshing=false
+                hideLoader()
                 AppLogger.log("TowerCivil Fragment card Data fetched successfully")
-                try {
-                    adapter.setData(it.data.TowerAndCivilInfra)
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("TowerCivil Fragment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"TowerCivil Fragment error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
-                }
+                twrCivilData=it.data.TowerAndCivilInfra?.get(0)
+                adapter.setData(it.data.TowerAndCivilInfra)
+                isDataLoaded=true
                 AppLogger.log("Tower civil Infra data size :${it.data.TowerAndCivilInfra}")
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"TowerCivil Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
@@ -76,7 +74,7 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
 
 
         binding.swipeLayout.setOnRefreshListener {
-            viewmodel?.TowerAndCivilRequestAll(id)
+            viewmodel.TowerAndCivilRequestAll(id)
         }
     }
 
@@ -86,34 +84,34 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun onDestroy() {
-        if (viewmodel?.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
-            viewmodel?.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        if (viewmodel.TowerCivilInfraModelResponse?.hasActiveObservers() == true){
+            viewmodel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
         }
         super.onDestroy()
     }
 
     override fun onViewPageSelected() {
         super.onViewPageSelected()
-        if (viewmodel!=null && !isDataLoaded){
+        if (!isDataLoaded){
             binding.swipeLayout.isRefreshing=true
-            viewmodel?.TowerAndCivilRequestAll(id)
+            viewmodel.TowerAndCivilRequestAll(id)
         }
         AppLogger.log("onViewPageSelected TowerAndCivil")
     }
 
-    override fun clickedTowerItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+    override fun clickedTowerItem(id:String,data:NewTowerCivilAllData?) {
         TwrInfraDetails.Id=id
         TwrInfraDetails.TowerModelData=data
         requireActivity().startActivity(Intent(requireContext(), TwrInfraDetails::class.java))
     }
 
-    override fun clickedPoleItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+    override fun clickedPoleItem(id:String,data:NewTowerCivilAllData?) {
         PoleFragment.Id=id
         PoleFragment.TowerModelData=data
         requireActivity().startActivity(Intent(requireContext(), PoleFragment::class.java))
     }
 
-    override fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?) {
+    override fun clickedEquipmentRoomItem(id:String,data:NewTowerCivilAllData?) {
         TowerEquipmentFragemnt.EquipmentModelData = data
         TowerEquipmentFragemnt.Id=id
         requireActivity().startActivity(Intent(requireContext(), TowerEquipmentFragemnt::class.java))
@@ -126,17 +124,35 @@ class CivilInfraFragment(var id:String) : BaseFragment(),CivilInfraAdapter.Civil
     }
 
     override fun addTower() {
-        val bmSheet = TowerAddNew(R.layout.tower_civil_add_tower)
+        val bmSheet = TowerAddNew(twrCivilData,
+            object : TowerAddNew.AddNewTowerListner {
+            override fun addNew() {
+                showLoader()
+                viewmodel.TowerAndCivilRequestAll(AppController.getInstance().siteid)
+            }
+        })
         bmSheet.show(childFragmentManager,"category")
     }
 
     override fun addPole() {
-        val bmSheet = PoleAddNew(R.layout.tower_civil_add_tower)
+        val bmSheet = PoleAddNew(twrCivilData,
+            object : PoleAddNew.AddNewPoleListner {
+                override fun addPole() {
+                    showLoader()
+                    viewmodel.TowerAndCivilRequestAll(AppController.getInstance().siteid)
+                }
+            })
         bmSheet.show(childFragmentManager,"category")
     }
 
     override fun addEquipmentRoom() {
-        val bmSheet = EquipmentRoomAddNew(R.layout.tower_civil_add_equipment_room)
+        val bmSheet = EquipmentRoomAddNew(twrCivilData,
+            object : EquipmentRoomAddNew.AddEquipmentRoomListner {
+                override fun addEquipmentRoom() {
+                    showLoader()
+                    viewmodel.TowerAndCivilRequestAll(AppController.getInstance().siteid)
+                }
+            })
         bmSheet.show(childFragmentManager,"category")
     }
 

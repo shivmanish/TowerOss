@@ -5,7 +5,7 @@ data class SAcqOutsidePremise(
     var DistanceFromBoundry: String,
     var ExternalStructureType: ArrayList<Int>,
     var Height: String,
-    var Remark: String,
+    var remark: String,
 //    var created_at: String,
     var id: Int?=null,
 //    var isActive: Boolean,

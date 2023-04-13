@@ -212,7 +212,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                         holder.binding.EBPerUnitRate.text=agreeData?.EBPUnitRate
                         holder.binding.OnetimeAmount.text=agreeData?.OnetimeAmount
                         holder.binding.SecurityDepositAmount.text=agreeData?.SecurityDepositAmount
-                        holder.binding.remarks.text=agreeData?.Remark
+                        holder.binding.remarks.text=agreeData?.remark
 
                         //edit mode
                         holder.binding.PropertyTypeEdit.text=agreeData?.PropertyType.toString()
@@ -231,7 +231,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                         holder.binding.EBPerUnitRateEdit.setText(agreeData?.EBPUnitRate)
                         holder.binding.OnetimeAmountEdit.setText(agreeData?.OnetimeAmount)
                         holder.binding.SecurityDepositAmountEdit.setText(agreeData?.SecurityDepositAmount)
-                        holder.binding.remarksEdit.setText(agreeData?.Remark)
+                        holder.binding.remarksEdit.setText(agreeData?.remark)
 
                     }
                     else
@@ -269,7 +269,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                             it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
                             it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
                             it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
                             it.isActive=null
                             it.created_at=null
                             it.modified_at=null
@@ -310,7 +310,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                             it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
                             it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
                             it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
                             it.Acquisitiontype = arrayListOf(holder.binding.AgreementTypeEdit.selectedValue.id.toInt())
                             it.PropertyOwnership = arrayListOf(holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt())
                             val tempList:ArrayList<SoftAcqAgreementTerm> = ArrayList()
@@ -340,7 +340,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                             it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
                             it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
                             it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
                             it.Acquisitiontype = arrayListOf(holder.binding.AgreementTypeEdit.selectedValue.id.toInt())
                             it.PropertyOwnership = arrayListOf(holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt())
                             val tempList:ArrayList<SoftAcqAgreementTerm> = ArrayList()

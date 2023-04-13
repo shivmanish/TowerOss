@@ -371,7 +371,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         Gson gson = new Gson();
         String jsonString = getString(name);
         DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-        customSpinner.setSpinnerData(dropDownNewItem.getData());
+        try{
+            customSpinner.setSpinnerData(dropDownNewItem.getData());
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+        }
     }
 
     public void setDropDown(TextView customSpinner, String name, String id){

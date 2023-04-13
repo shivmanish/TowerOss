@@ -127,7 +127,7 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                     holder.binding.SizeH.text=equipmentData.SizeH
                     holder.binding.CapacityRating.text=equipmentData.CapacityRating
                     holder.binding.Count.text= equipmentData.Count.toString()
-                    holder.binding.remarks.text=equipmentData.Remark
+                    holder.binding.remarks.text=equipmentData.remark
                     if (equipmentData.Type!=null)
                         AppPreferences.getInstance().setDropDown(holder.binding.Type,DropDowns.PDBType.name,equipmentData.Type)
 
@@ -141,7 +141,7 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                     holder.binding.SizeLEdit.setText(equipmentData.SizeL)
                     holder.binding.SizeBEdit.setText(equipmentData.SizeB)
                     holder.binding.SizeHEdit.setText(equipmentData.SizeH)
-                    holder.binding.remarksEdit.setText(equipmentData.Remark)
+                    holder.binding.remarksEdit.setText(equipmentData.remark)
                 }
                 if (InsAccepData!=null){
                     // view mode
@@ -178,7 +178,7 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                         it.SizeB=holder.binding.SizeBEdit.text.toString()
                         it.SizeH=holder.binding.SizeHEdit.text.toString()
                         it.Count=holder.binding.CountEdit.text.toString().toIntOrNull()
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         if (equipmentData!=null)
                             it.id=equipmentData.id
                     }

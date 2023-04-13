@@ -10,7 +10,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var LastRevisedRentAmount: String?=null
     var RegistrationDate: String?="2022-08-02"
     var RegistrationNumber: String?=null
-    var Remark: String?=null
+    var remark: String?=null
     var RentStartDate: String?="2022-08-02"
     var RooftopUsableArea: String?=null
     var RooftopacquiredArea: String?=null

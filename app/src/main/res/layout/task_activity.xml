@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:paddingTop="@dimen/dp30"
+        android:paddingBottom="@dimen/dp10"
+        android:layout_height="wrap_content"
         android:background="@color/iconBlack"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -17,7 +19,9 @@
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dp10"
+            android:paddingVertical="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:paddingStart="@dimen/dp15"
             android:src="@drawable/arrow_back"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

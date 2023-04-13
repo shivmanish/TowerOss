@@ -15,7 +15,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var PeriodicRentAmount: String?=null
     var PropertyOwnership: ArrayList<Int>?=null
     var PropertyType: Int?=null
-    var Remark: String?=null
+    var remark: String?=null
     var RentEscalation: String?=null
     var RentEscalationPeriod: String?=null
     var Rentpaymentperiod: Int?=null

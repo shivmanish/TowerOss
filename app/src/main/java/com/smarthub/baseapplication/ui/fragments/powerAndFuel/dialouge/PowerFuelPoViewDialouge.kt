@@ -27,7 +27,7 @@ class PowerFuelPoViewDialouge (contentLayoutId: Int, var data: PowerFuelPODetail
         binding.poNumber.text=data.PONumber
         binding.poAmount.text=data.POAmount
         binding.poLineNumber.text=data.POLineNo.toString()
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
         if (data.VendorCompany.isNotEmpty())
             AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
 

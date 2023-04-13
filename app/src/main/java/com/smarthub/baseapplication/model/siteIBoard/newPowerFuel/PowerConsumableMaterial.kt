@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class PowerConsumableMaterial(
-    val InstallationDate: String,
-    val ItemName: String,
-    val ItemType: String,
-    val Make: String,
-    val Model: String,
-    val UOM: String,
-    val UsedQty: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class PowerConsumableMaterial{
+    var InstallationDate: String?=null
+    var ItemName: String?=null
+    var ItemType: String?=null
+    var Make: String?=null
+    var Model: String?=null
+    var UOM: String?=null
+    var UsedQty: String?=null
+    var id: Int?=null
+    var created_at: String?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

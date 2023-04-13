@@ -46,8 +46,8 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         if (list[position]==type1) {
             try {
                 holder.itemView.setOnClickListener {
-                    if (datalist!=null)
-                        listner.clickedTowerItem(id,datalist)
+                    if (datalist!=null && datalist?.isNotEmpty()==true)
+                        listner.clickedTowerItem(id,datalist?.get(0))
                     else AppLogger.log("data Null : $datalist")
                 }
             }catch (e:java.lang.Exception){
@@ -61,8 +61,8 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         else if (list[position]==type2) {
             try {
                 holder.itemView.setOnClickListener {
-                    if (datalist!=null)
-                        listner.clickedPoleItem(id,datalist)
+                    if (datalist!=null && datalist?.isNotEmpty()==true)
+                        listner.clickedPoleItem(id,datalist?.get(0))
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
@@ -76,8 +76,8 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         else if (list[position]==type3) {
             try {
                 holder.itemView.setOnClickListener {
-                    if (datalist!=null)
-                        listner.clickedEquipmentRoomItem(id,datalist)
+                    if (datalist!=null && datalist?.isNotEmpty()==true)
+                        listner.clickedEquipmentRoomItem(id,datalist?.get(0))
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
@@ -107,8 +107,8 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         else{
             try {
                 holder.itemView.setOnClickListener {
-                    if (datalist!=null)
-                        listner.clickedTowerItem(id,datalist)
+                    if (datalist!=null && datalist?.isNotEmpty()==true)
+                        listner.clickedTowerItem(id,datalist?.get(0))
                     else AppLogger.log("data null:===> $datalist")
                 }
             }catch (e:java.lang.Exception){
@@ -124,9 +124,9 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
     }
 
     interface CivilInfraAdapterListner{
-        fun clickedTowerItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
-        fun clickedPoleItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
-        fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?)
+        fun clickedTowerItem(id:String,data: NewTowerCivilAllData?)
+        fun clickedPoleItem(id:String,data: NewTowerCivilAllData?)
+        fun clickedEquipmentRoomItem(id:String,data:NewTowerCivilAllData?)
         fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
         fun addTower()
         fun addPole()

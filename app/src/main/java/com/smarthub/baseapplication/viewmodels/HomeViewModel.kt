@@ -1,8 +1,6 @@
 package com.smarthub.baseapplication.viewmodels
 
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.example.trackermodule.util.MyApplication
 import com.google.gson.Gson
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -25,28 +23,37 @@ import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.Acqui
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.updatePowerFuel.UpdatePowerFuelResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcquisitionAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.updateTwrCivil.UpdateTwrCivilInfraResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcModel
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcResponseModel
 import com.smarthub.baseapplication.model.siteInfo.OpcoDataList
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModelUpdate
 import com.smarthub.baseapplication.model.siteInfo.newData.SiteInfoModelNew
 import com.smarthub.baseapplication.model.siteInfo.oprationInfo.UpdateOperationInfo
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignModel
+import com.smarthub.baseapplication.model.siteInfo.qat.QatModel
 import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
@@ -94,10 +101,12 @@ class HomeViewModel : ViewModel() {
     var TowerCivilInfraModelResponse : SingleLiveEvent<Resource<TowerCivilAllDataModel?>>?=null
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
     var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
+    var QatMainTempletResponse : SingleLiveEvent<Resource<QatModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
+    var sstSbcModelResponse:SingleLiveEvent<Resource<SstSbcAllDataModel>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
@@ -107,6 +116,10 @@ class HomeViewModel : ViewModel() {
     var updateSiteAcqDataResponse:SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
     var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var updateNocCompDataResponse:SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
+    var updateSstSbcDataResponse:SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
+    var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
+    var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
+    var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
@@ -135,11 +148,13 @@ class HomeViewModel : ViewModel() {
         siteInfoModelUpdate = homeRepo?.siteInfoUpdateData
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
         QatModelResponse=homeRepo?.qatMainModelResponse
+        QatMainTempletResponse=homeRepo?.qatModelResponse
         powerAndFuelResponse=homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
         dropDownResponseNew = homeRepo?.dropDownResponseNew
         utilityEquipResponse=homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
+        sstSbcModelResponse = homeRepo?.sstSbcModel
         siteInfoModelNew = homeRepo?.siteInfoModelNew
         notificationNew = homeRepo?.notificationNew
         userDataListResponse=homeRepo?.userDataResponse
@@ -149,6 +164,10 @@ class HomeViewModel : ViewModel() {
         updateSiteAcqDataResponse=updateIBoardRepo?.updateSiteAcqResponse
         updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
         updateNocCompDataResponse=updateIBoardRepo?.updateNocCompResponse
+        updateSstSbcDataResponse=updateIBoardRepo?.updateSstSbcResponse
+        updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
+        updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
+        updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -262,6 +281,10 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSiteAgreementModelRequest(id : String){
         homeRepo?.siteAgreementRequestAll(id)
+    }
+
+    fun fetchSstSbcModelRequest(id : String){
+        homeRepo?.sstSbcRequestAll(id)
     }
 
     fun utilityRequestAll(id : String){
@@ -390,6 +413,22 @@ class HomeViewModel : ViewModel() {
         updateIBoardRepo?.updateUtilityEquipData(dataModel)
     }
 
+    fun updatePowerFuel(data: NewPowerFuelAllData) {
+        val dataModel= PowerFuelAllDataModel()
+        dataModel.PowerAndFuel= arrayListOf(data)
+        updateIBoardRepo?.updatePowerFuelData(dataModel)
+    }
+
+    fun updateTwrCivilInfra(data: NewTowerCivilAllData) {
+        val dataModel= TowerCivilAllDataModel()
+        dataModel.TowerAndCivilInfra= arrayListOf(data)
+        updateIBoardRepo?.updateTwrCivilData(dataModel)
+    }
+
+    fun updateSiteInfo(data: AllsiteInfoDataModel?) {
+        updateIBoardRepo?.updateSiteInfoData(data)
+    }
+
     fun updateNocAndComp(data: NocCompAllData) {
         AppLogger.log("data for update======>:${Gson().toJson(data)}")
         val dataModel= UpdateNocCompModel()
@@ -490,5 +529,89 @@ class HomeViewModel : ViewModel() {
             return
         }
         updateIBoardRepo?.updateNocCompData(dataModel)
+    }
+
+    fun updateSstSbc(data: SstSbcAllData) {
+        AppLogger.log("data for update======>:${Gson().toJson(data)}")
+        val dataModel= UpdateSstSbcModel()
+        dataModel.SstSbc= arrayListOf(data)
+        if(!Utils.isNetworkConnected()){
+            val site_id = AppController.getInstance().siteid
+            val value = AppPreferences.getInstance().getString("sstSbcRequestAll${site_id}")
+            var position = 0
+            println("Preference id is NocAndCompRequestAll${site_id}")
+            var cache_model = SstSbcAllDataModel()
+            if (value != null && !value.isEmpty()) {
+                //Save the Service fot later updatation when online
+                try {
+                    cache_model = Gson().fromJson(value, SstSbcAllDataModel::class.java)
+                    for ((index, value) in cache_model.SstSbc!!.withIndex()) {
+                        if (value.id == data.id) {
+                            position = index
+                            AppLogger.log("childIndex in update function====>:$position")
+                            break
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    AppLogger.log("somthing went wrong in update noc homeviewmodel ${e.localizedMessage}")
+                }
+            }
+            if (cache_model.SstSbc == null) {
+                cache_model.SstSbc = ArrayList()
+            }
+            if (cache_model.SstSbc?.size == 0) {
+                cache_model.SstSbc?.add(
+                    SstSbcAllData()
+                )
+            }
+            if (data.SstSbcTeam != null) {
+                if (cache_model.SstSbc?.get(position)?.SstSbcTeam==null || cache_model.SstSbc?.get(position)?.SstSbcTeam?.isEmpty()==true){
+                    cache_model.SstSbc?.get(position)?.SstSbcTeam = data.SstSbcTeam
+                    AppLogger.log("Save offline noc data is empty===>${Gson().toJson(cache_model.SstSbc?.get(position)?.SstSbcTeam)}")
+                }
+                else{
+                    for ((index, value) in cache_model.SstSbc?.get(position)?.SstSbcTeam!!.withIndex()) {
+                        if (value.id == data.SstSbcTeam?.get(0)?.id) {
+                            AppLogger.log("SubChildIndex in update function====>:$index")
+                            cache_model.SstSbc?.get(position)?.SstSbcTeam!![index] = data.SstSbcTeam?.get(0)!!
+                            AppLogger.log("Save offline noc updated data is ===>${Gson().toJson(cache_model.SstSbc?.get(position)?.SstSbcTeam!![index])}")
+                            break
+                        }
+                        else if (index==cache_model.SstSbc?.get(position)?.SstSbcTeam?.size?.minus(1)){
+                            cache_model.SstSbc?.get(position)?.SstSbcTeam?.add(data.SstSbcTeam?.get(0)!!)
+                        }
+                    }
+                }
+            }
+            if (data.SstSbcTestReport != null) {
+                if (cache_model.SstSbc?.get(position)?.SstSbcTestReport==null || cache_model.SstSbc?.get(position)?.SstSbcTestReport?.isEmpty()==true){
+                    cache_model.SstSbc?.get(position)?.SstSbcTestReport = data.SstSbcTestReport
+                }
+                else{
+                    for ((index, value) in cache_model.SstSbc?.get(position)?.SstSbcTestReport!!.withIndex()) {
+                        if (value.id == data.SstSbcTestReport?.get(0)?.id) {
+                            cache_model.SstSbc?.get(position)?.SstSbcTestReport!![index] = data.SstSbcTestReport?.get(0)!!
+                            break
+                        }
+                        else if (index==cache_model.SstSbc?.get(position)?.SstSbcTestReport?.size?.minus(1)){
+                            cache_model.SstSbc?.get(position)?.SstSbcTestReport?.add(data.SstSbcTestReport?.get(0)!!)
+                        }
+                    }
+                }
+            }
+
+            val jsonStringData = Gson().toJson(cache_model)
+            AppPreferences.getInstance().saveString("NocAndCompRequestAll${site_id}", jsonStringData)
+            if (cache_model.SstSbc != null)
+                dataModel.SstSbc= arrayListOf(cache_model.SstSbc?.get(position)!!)
+            AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","NocAndCompRequestAll${site_id}")
+            AppLogger.log("saved data size with id:$site_id ====>: ${cache_model.SstSbc?.size}")
+            AppLogger.log("saved data with id:$site_id ====>: ${Gson().toJson(cache_model)}")
+            sstSbcModelResponse?.postValue(Resource.success(cache_model,200))
+            return
+        }
+        updateIBoardRepo?.updateSstSbcData(dataModel)
     }
 }

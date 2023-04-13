@@ -300,7 +300,7 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                     holder.binding.VendorExecutiveName.text=InsAccepData?.VendorExecutiveName
                     holder.binding.VendorExecutiveEmailId.text=InsAccepData?.VendorEmailId
                     holder.binding.VendorExecutiveNumber.text=InsAccepData?.VendorExecutiveNumber
-                    holder.binding.remarks.text=InsAccepData?.Remark
+                    holder.binding.remarks.text=InsAccepData?.remark
                     holder.binding.nstallationDate.text=Utils.getFormatedDate(InsAccepData?.InstallationDate,"dd-MMM-yyyy")
                     holder.binding.AcceptenceDate.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
@@ -309,7 +309,7 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                     holder.binding.VendorExcutiveNameEdit.setText(InsAccepData?.VendorExecutiveName)
                     holder.binding.VendorExecutiveEmailEdit.setText(InsAccepData?.VendorEmailId)
                     holder.binding.VendorExecutiveNumberEdit.setText(InsAccepData?.VendorExecutiveNumber)
-                    holder.binding.remarksEdit.setText(InsAccepData?.Remark)
+                    holder.binding.remarksEdit.setText(InsAccepData?.remark)
                     holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(InsAccepData?.InstallationDate,"dd-MMM-yyyy")
                     holder.binding.AcceptenceDateEdit.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
@@ -333,7 +333,7 @@ class FireExtinguisherFragAdapter(var baseFragment: BaseFragment, var listener: 
                         it.VendorExecutiveName=holder.binding.VendorExcutiveNameEdit.text.toString()
                         it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
                         it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         it.InstallationDate=Utils.getFullFormatedDate(holder.binding.InstallationDateEdit.text.toString())
                         it.AcceptanceDate=Utils.getFullFormatedDate(holder.binding.AcceptenceDateEdit.text.toString())
                         it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())

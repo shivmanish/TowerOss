@@ -133,7 +133,6 @@ class NocAuthorityDetailsFragment(var nocdata: NocCompAllData?,var childIndex:In
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200) {
                 AppLogger.log("NocAuthorityDetailsFragment Data Updated successfully")
-                setObserver()
                 viewmodel?.NocAndCompRequestAll(AppController.getInstance().siteid)
                 hideEditView()
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()

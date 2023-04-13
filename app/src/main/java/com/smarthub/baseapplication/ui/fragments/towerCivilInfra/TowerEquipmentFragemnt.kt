@@ -14,14 +14,14 @@ import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 class TowerEquipmentFragemnt : BaseActivity() {
     lateinit var binding : ActivityTowerEquipmentFragemntBinding
     companion object{
-        var EquipmentModelData : ArrayList<NewTowerCivilAllData>?=null
+        var EquipmentModelData : NewTowerCivilAllData?=null
         var Id : String?="448"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTowerEquipmentFragemntBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,9 @@ class TowerEquipmentFragemnt : BaseActivity() {
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(supportFragmentManager,"")
         }
-        binding.viewpager.adapter = TowerEquipmentFragmentAdapter(supportFragmentManager, filterTowerList(EquipmentModelData!!))
+        if (EquipmentModelData!=null)
+            binding.viewpager.adapter = TowerEquipmentFragmentAdapter(supportFragmentManager, EquipmentModelData?.TowerAndCivilInfraEquipmentRoom,
+            EquipmentModelData)
         binding.tabs.setupWithViewPager(binding.viewpager)
         if(binding.tabs.tabCount==1) {
             binding.tabs.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -53,7 +55,7 @@ class TowerEquipmentFragemnt : BaseActivity() {
         filteredData.clear()
         for(i in 0..data.size.minus(1)){
             val tempdData = FilterdTwrData()
-            if (data.get(i).TowerAndCivilInfraEquipmentRoom.isNotEmpty()){
+            if (data.get(i).TowerAndCivilInfraEquipmentRoom?.isNotEmpty()==true){
                 tempdData.TowerDetails=data.get(i)
                 tempdData.index=i
                 filteredData.add(tempdData)

@@ -89,6 +89,7 @@ import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.FireE
 import com.smarthub.baseapplication.ui.fragments.utilites.fireExtinguisher.adapters.FireExtViewpagerAdapter
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.TaskViewModel
@@ -115,14 +116,10 @@ class TaskSearchTabNewFragment(
     var radius = "2"
     var previousListSize: Int = -1
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
 //        siteID = "1526"
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
         TaskTabListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         tempWhere = tempWhere.replace("[", "")
@@ -143,7 +140,12 @@ class TaskSearchTabNewFragment(
         binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        binding.trackinglayout.visibility = View.GONE
+        if(Trackingflag){
+            binding.trackinglayout.visibility = View.VISIBLE
+        }else{
+            binding.trackinglayout.visibility = View.GONE
+            binding.viewpager.setPadding(10,2,10,10)
+        }
         binding.dropdownImg.setOnClickListener {
             binding.collapsingLayout.tag = !(binding.collapsingLayout.tag as Boolean)
             if (binding.collapsingLayout.tag as Boolean) {
@@ -167,7 +169,7 @@ class TaskSearchTabNewFragment(
                 val start_longitude_string =
                     PatrollerPriference(requireContext()).getStartLongitude().toDouble()
                 if (start_lattitiude_string.equals("Na", true)) {
-                    Snackbar.make(binding.name, "You are not in feance !", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
                         .show()
                     return@setOnClickListener
                 }
@@ -182,7 +184,7 @@ class TaskSearchTabNewFragment(
                 if (distance_btwn_user_and_site <= fancingDistance) {
                     //Close Request Hit
                 } else {
-                    Snackbar.make(binding.name, "You are not in feance !", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
                         .show()
                 }
             } else {
@@ -232,8 +234,7 @@ class TaskSearchTabNewFragment(
                 if (it.data.isNotEmpty()) {
                     AppLogger.log("fetched task data =====> : ${Gson().toJson(it.data[0])}")
                     taskDetailData = it.data[0]
-//                    set variables here
-//                    isFancing = taskDetailData.
+                    mapAppBarUiData(taskDetailData)
                     setParentData()
                 } else
                     AppLogger.log("not any assigned task found at task Id $taskDetailId")
@@ -375,6 +376,7 @@ class TaskSearchTabNewFragment(
     }
 
     private fun setDataObserver() {
+        AppLogger.log("Tracking flag:${Trackingflag}")
         taskViewModel.fetchTaskDetails(taskDetailId)
         if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
@@ -386,15 +388,12 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 (requireActivity() as BaseActivity).hideLoader()
                 val data: AllsiteInfoDataModel = it.data
+                AppLogger.log("BasicInfo Data:${Gson().toJson(data.Basicinfo?.get(0))}")
+                mapSiteIboardUiData(data)
                 if (data.Siteaddress != null && data.Siteaddress?.isNotEmpty() == true) {
                     val siteData = data.Siteaddress!![0]
-                    lattitude = siteData.locLatitude
-                    longitude = siteData.locLongitude
-                    if(Trackingflag){
-                        binding.trackinglayout.visibility = View.VISIBLE
-                    }else{
-                        binding.trackinglayout.visibility = View.GONE
-                    }
+                    lattitude = siteData.locLatitude!!
+                    longitude = siteData.locLongitude!!
                     AppLogger.log("fetched latitude:${lattitude},longitude:$longitude")
                 } else {
                     AppLogger.log("Site address not fetched")
@@ -405,7 +404,7 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("SiteInfoNewFragment Something went wrong")
             }
         }
-        homeViewModel.siteInfoRequestAll(AppController.getInstance().taskSiteId)
+        homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
 //        siteDetailViewModel.fetchDropDown()
     }
 
@@ -667,15 +666,15 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
+                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch!!)
                 AppLogger.log("size :${it.data.item?.size}")
             } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
 //                qatMainModel = it.data
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch)
-                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
+                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch!!)
+                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch?.size}")
             } else if (it != null) {
                 Toast.makeText(requireContext(),
                     "Service request Fragment error :${it.message}, data : ${it.data}",
@@ -818,7 +817,7 @@ class TaskSearchTabNewFragment(
 
                 taskViewModel.fetchTaskDetails(taskDetailId)
                 homeViewModel.NocAndCompRequestAll(AppController.getInstance().taskSiteId)
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
@@ -936,7 +935,7 @@ class TaskSearchTabNewFragment(
 
                 taskViewModel.fetchTaskDetails(taskDetailId)
                 homeViewModel.fetchSiteAgreementModelRequest(AppController.getInstance().taskSiteId)
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
@@ -1180,12 +1179,39 @@ class TaskSearchTabNewFragment(
 
     fun findTaskSubtabList(taskDetailData:TaskDataListItem?):String{
         if (taskDetailData?.Where!=null){
-            var subTaskList: String? =taskDetailData?.Where
+            var subTaskList: String? =taskDetailData.Where
             subTaskList = subTaskList?.replace("[", "")
             subTaskList = subTaskList?.replace("]", "")
             return subTaskList!!
         }
         return  ""
+    }
+
+    fun mapAppBarUiData(data:TaskDataListItem?){
+        binding.title.text=data?.Taskname
+        binding.sla.text=data?.SLA
+        binding.StartedDate.text=Utils.getFormatedDate(data?.startdate,"dd-MMM-yyyy")
+        binding.CloseDate.text=Utils.getFormatedDate(data?.enddate,"dd-MMM-yyyy")
+        binding.AssignToName.text=String.format(context?.resources?.getString(R.string.two_string_format_space)!!,data?.FirstName,data?.LastName)
+    }
+
+    private fun mapSiteIboardUiData(data: AllsiteInfoDataModel ){
+        AppLogger.log("BasicInfo Data:${Gson().toJson(data.Basicinfo?.get(0))}")
+        if (data.Basicinfo!=null && data.Basicinfo?.isNotEmpty()==true){
+            val siteData=data.Basicinfo?.get(0)
+            binding.SiteName.text=siteData?.siteName
+            binding.SiteId.text=siteData?.siteID
+            binding.SiteAlternateName.text=siteData?.aliasName
+            if (siteData?.Sitecategory!=null && siteData.Sitecategory?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteCategory,DropDowns.Sitecategory.name, siteData.Sitecategory?.get(0).toString())
+            }
+            if (siteData?.Sitestatus!=null && siteData.Sitestatus?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteStatus,DropDowns.Sitestatus.name, siteData.Sitestatus?.get(0).toString())
+            }
+            if (siteData?.Opcositetype!=null && siteData.Opcositetype?.isNotEmpty()==true){
+                AppPreferences.getInstance().setDropDown(binding.SiteType,DropDowns.Opcositetype.name, siteData.Opcositetype?.get(0).toString())
+            }
+        }
     }
 
 

@@ -39,8 +39,7 @@ class InsidePremisesEditDialouge (var data: SAcqInsidePremise, var fullData: New
         }
         binding.DistanceFromCentreEdit.setText(data.DistanceFromCentre)
         binding.HeightAGlEdit.setText(data.Height)
-        binding.LocationTypeEdit.text=data.LocationType.toString()
-        binding.remarksEdit.setText(data.Remark)
+        binding.remarksEdit.setText(data.remark)
         if (data.ExternalStructureType.isNotEmpty())
             AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name,data.ExternalStructureType[0].toString())
         else
@@ -49,6 +48,10 @@ class InsidePremisesEditDialouge (var data: SAcqInsidePremise, var fullData: New
             AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name,data.Direction[0].toString())
         else
             AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name)
+        if (data.LocationType>0)
+            AppPreferences.getInstance().setDropDown(binding.LocationTypeEdit, DropDowns.LocationType.name,data.LocationType.toString())
+        else
+            AppPreferences.getInstance().setDropDown(binding.LocationTypeEdit, DropDowns.LocationType.name)
 
         binding.update.setOnClickListener {
             showProgressLayout()
@@ -56,9 +59,9 @@ class InsidePremisesEditDialouge (var data: SAcqInsidePremise, var fullData: New
                 data.let {
                     it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
                     it.Height=binding.HeightAGlEdit.text.toString()
-                    it.Remark=binding.remarksEdit.text.toString()
-                    it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
+                    it.remark=binding.remarksEdit.text.toString()
                     it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
+                    it.LocationType= binding.LocationTypeEdit.selectedValue.id.toInt()
                     it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
                     // add insidePremises data to agreement model list
                     val tempList:ArrayList<SAcqInsidePremise> = ArrayList()
@@ -85,8 +88,8 @@ class InsidePremisesEditDialouge (var data: SAcqInsidePremise, var fullData: New
                 data.let {
                     it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
                     it.Height=binding.HeightAGlEdit.text.toString()
-                    it.Remark=binding.remarksEdit.text.toString()
-                    it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
+                    it.remark=binding.remarksEdit.text.toString()
+                    it.LocationType= binding.LocationTypeEdit.selectedValue.id.toInt()
                     it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
                     it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
                     // add insidePremises data to agreement model list
@@ -114,8 +117,8 @@ class InsidePremisesEditDialouge (var data: SAcqInsidePremise, var fullData: New
                 data.let {
                     it.DistanceFromCentre=binding.DistanceFromCentreEdit.text.toString()
                     it.Height=binding.HeightAGlEdit.text.toString()
-                    it.Remark=binding.remarksEdit.text.toString()
-                    it.LocationType=binding.LocationTypeEdit.text.toString().toInt()
+                    it.remark=binding.remarksEdit.text.toString()
+                    it.LocationType= binding.LocationTypeEdit.selectedValue.id.toInt()
                     if (data.ExternalStructureType.isNotEmpty())
                         it.ExternalStructureType[0]=binding.ExternalStructureTypeEdit.selectedValue.id.toInt()
                     else

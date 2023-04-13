@@ -143,9 +143,10 @@
                     android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/password_layout"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_65sdp"
                     android:hint="Password"
                     android:id="@+id/password_layout"
                     android:textColorHint="@color/white"
@@ -186,10 +187,11 @@
                 <ImageView
                     android:id="@+id/password_hide_show"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_65sdp"
                     android:layout_marginEnd="@dimen/dp22"
                     android:scaleX="1.6"
                     android:scaleY="1.5"
+                    android:layout_marginBottom="@dimen/_15sdp"
                     android:src="@drawable/password_eye_close"
                     app:layout_constraintTop_toTopOf="@+id/password_layout"
                     app:layout_constraintBottom_toBottomOf="@+id/password_layout"

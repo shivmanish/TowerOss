@@ -1,16 +1,16 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
-data class TwrCivilPODetail(
-    val POAmount: String,
-    val PODate: String,
-    val POItem: String,
-    val POLineNo: Int,
-    val PONumber: String,
-    val Remark: String,
-    val VendorCode: String,
-    val VendorCompany: List<Int>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class TwrCivilPODetail{
+    var POAmount: String?=null
+    var PODate: String?=null
+    var POItem: String?=null
+    var POLineNo: Int?=null
+    var PONumber: String?=null
+    var remark: String?=null
+    var VendorCode: String?=null
+    var VendorCompany: ArrayList<Int>?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

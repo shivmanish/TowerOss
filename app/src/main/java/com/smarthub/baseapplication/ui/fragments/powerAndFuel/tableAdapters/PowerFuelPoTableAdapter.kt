@@ -5,17 +5,13 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelPODetail
-import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilPODetail
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.TowerModelAuthorityPODetail
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConnecFragAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -23,8 +19,10 @@ import com.smarthub.baseapplication.utils.Utils
 class PowerFuelPoTableAdapter (var context : Context, var listener : PowerConnecFragAdapter.PowerConnectionListListener, var list:ArrayList<PowerFuelPODetail>?): RecyclerView.Adapter<PowerFuelPoTableAdapter.ViewHold>() {
 
 
-    fun addItem(item:String){
-
+    fun addItem(){
+        val data= PowerFuelPODetail("","","",0,"","",
+            "", arrayListOf())
+        list?.add(data)
         notifyItemInserted(list?.size!!.plus(1))
     }
 
@@ -38,7 +36,7 @@ class PowerFuelPoTableAdapter (var context : Context, var listener : PowerConnec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.tower_po_table_item,parent,false)
         return ViewHold(view)
     }
 
@@ -49,13 +47,12 @@ class PowerFuelPoTableAdapter (var context : Context, var listener : PowerConnec
         }
         try {
             if (item.VendorCompany.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
+                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name, item.VendorCompany[0].toString())
             holder.binding.PoNo.text=item.PONumber
-            holder.binding.poDate.text=Utils.getFormatedDate(item.PODate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.poDate.text=Utils.getFormatedDate(item.PODate,"dd-MMM-yyyy")
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
-            Toast.makeText(context,"ToewerPoTableadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -76,8 +73,7 @@ class PowerFuelPoTableAdapter (var context : Context, var listener : PowerConnec
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-//                        listener.editPoClicked(position)
-
+                        listener.editPoClicked(position,data)
                         return true
                     }
                     // in the same way you can implement others

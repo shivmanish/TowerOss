@@ -202,7 +202,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                         holder.binding.RooftopUsableArea.text=agreeDetailsData?.RooftopUsableArea
                         holder.binding.GroundAcquiredArea.text=agreeDetailsData?.GroundAcquiredArea
                         holder.binding.GroundUsableArea.text=agreeDetailsData?.GroundUsableArea
-                        holder.binding.remarks.text=agreeDetailsData?.Remark
+                        holder.binding.remarks.text=agreeDetailsData?.remark
                         holder.binding.RegistrationDate.text=Utils.getFormatedDate(agreeDetailsData?.RegistrationDate?.substring(0,10)!!,"dd-MMM-yyyy")
                         holder.binding.AgreementEffectiveDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate!!.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.AgreementExpiryDate.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
@@ -216,7 +216,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                         holder.binding.RooftopUsableAreaEdit.setText(agreeDetailsData.RooftopUsableArea)
                         holder.binding.GroundAcquiredAreaEdit.setText(agreeDetailsData.GroundAcquiredArea)
                         holder.binding.GroundUsableAreaEdit.setText(agreeDetailsData.GroundUsableArea)
-                        holder.binding.remarksEdit.setText(agreeDetailsData.Remark)
+                        holder.binding.remarksEdit.setText(agreeDetailsData.remark)
                         holder.binding.RegistrationDateEdit.text=Utils.getFormatedDate(agreeDetailsData.RegistrationDate!!.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.AgreementEffectiveDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementEffectiveDate!!.substring(0,10),"dd-MMM-yyyy")
                         holder.binding.AgreementExpiryDateEdit.text=Utils.getFormatedDate(agreeDetailsData.AgreementExpiryDate!!.substring(0,10),"dd-MMM-yyyy")
@@ -250,7 +250,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                             it?.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
                             it?.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
                             it?.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
-                            it?.Remark=holder.binding.remarksEdit.text.toString()
+                            it?.remark=holder.binding.remarksEdit.text.toString()
                             it?.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
                             it?.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
                             it?.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
@@ -281,7 +281,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                             it.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
                             it.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
                             it.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
                             it.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
                             it.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
                             it.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())
@@ -305,7 +305,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                             it.RooftopUsableArea=holder.binding.RooftopUsableAreaEdit.text.toString()
                             it.GroundAcquiredArea=holder.binding.GroundAcquiredAreaEdit.text.toString()
                             it.GroundUsableArea=holder.binding.GroundUsableAreaEdit.text.toString()
-                            it.Remark=holder.binding.remarksEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
                             it.RegistrationDate=Utils.getFullFormatedDate(holder.binding.RegistrationDateEdit.text.toString())
                             it.AgreementEffectiveDate=Utils.getFullFormatedDate(holder.binding.AgreementEffectiveDateEdit.text.toString())
                             it.AgreementExpiryDate=Utils.getFullFormatedDate(holder.binding.AgreementExpiryDateEdit.text.toString())

@@ -153,7 +153,7 @@ class AssignACQTeamFragAdapter(var listener: AssignAcqTeamListItemListner, var s
                 AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.AssignACQAcquisitionType.name,AssignAcqTeamDetailsData?.AcquisitionType)
 
 //                holder.binding.AcquisitionType.text = AssignAcqTeamDetailsData?.AcquisitionType
-                holder.binding.AcquisitionBudget.text = AssignAcqTeamDetailsData?.AcquisitionBudget
+                holder.binding.AcquisitionBudget.text = if (AssignAcqTeamDetailsData?.AcquisitionBudget!=null && AssignAcqTeamDetailsData?.AcquisitionBudget?.isNotEmpty()==true) AssignAcqTeamDetailsData?.AcquisitionBudget else "0"
                 holder.binding.AcquisitionTargetDate.text =
                     AssignAcqTeamDetailsData?.AcquisitionTargetDate
 //                holder.binding.VendorNameAssignACQ.text="AssignAcqTeamDetailsData?.VendorName!!"

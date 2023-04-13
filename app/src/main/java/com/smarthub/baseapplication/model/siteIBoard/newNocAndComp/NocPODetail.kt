@@ -6,7 +6,7 @@ class NocPODetail{
     var POItem: String?=null
     var POLineNo: Int?=null
     var PONumber: String?=null
-    var Remark: String?=null
+    var remark: String?=null
     var VendorCode: String?=null
     var VendorCompany: List<Int>?=null
     var created_at: String?=null

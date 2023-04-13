@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerPoTableItemBinding
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
 class TaskEquipmentTableAdapter (var context : Context, var listener : TaskAdapter.TaskLisListener): RecyclerView.Adapter<TaskEquipmentTableAdapter.ViewHold>() {
     var list  = ArrayList<String>()

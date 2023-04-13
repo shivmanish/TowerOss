@@ -6,7 +6,7 @@ class UtilityAccessory{
     var Make: String?=null
     var Model: String?=null
     var Quantity: String?=null
-    var Remark: String?=null
+    var remark: String?=null
     var SrNumber: Int?=null
     var Type: String?=null
 //    var created_at: String?=null

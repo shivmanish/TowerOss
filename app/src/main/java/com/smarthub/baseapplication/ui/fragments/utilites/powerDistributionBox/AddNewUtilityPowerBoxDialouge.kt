@@ -56,7 +56,7 @@ class AddNewUtilityPowerBoxDialouge (var fullData:UtilityEquipmentAllData?, var 
                 it.Model=binding.ModelEdit.text.toString()
                 it.CapacityRating=binding.CapacityRatingEdit.text.toString()
                 it.Count=binding.CountEdit.text.toString().toIntOrNull()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.Weight=binding.WeightEdit.text.toString()
                 it.SizeL=binding.SizeLEdit.text.toString()
                 it.SizeB=binding.SizeBEdit.text.toString()

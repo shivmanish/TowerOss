@@ -16,6 +16,8 @@ data class ProfileData(
     val id: String,
     val is_active: String,
     val last_name: String,
+    val ownercode: String,
+    val ownername: String,
     val level: String,
     val maintenancepoint: List<String>,
     val manageremail: String,

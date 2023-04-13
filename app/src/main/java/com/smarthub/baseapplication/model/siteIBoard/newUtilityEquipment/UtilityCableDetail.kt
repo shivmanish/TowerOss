@@ -6,7 +6,7 @@ class UtilityCableDetail{
     var InstallationDate: String?=null
     var Length: String?=null
     var LinkId: Any?=null
-    var Remark: String?=null
+    var remark: String?=null
     var SerialNumber: String?=null
     var UsedFor: String?=null
     var VendorCode: String?=null

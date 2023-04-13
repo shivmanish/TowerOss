@@ -27,11 +27,11 @@ class AgreementPoViewDialouge (contentLayoutId: Int, var data: SAcqPODetail) : B
         binding.poNumber.text=data.PONumber
         binding.poAmount.text=data.POAmount
         binding.poLineNumber.text=data.POLineNumber.toString()
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
         if (data.VendorCompany.isNotEmpty())
             AppPreferences.getInstance().setDropDown(binding.vendorName, DropDowns.VendorCompany.name,data.VendorCompany.get(0).toString())
 
-        binding.poDate.text=Utils.getFormatedDate(data.PODate.substring(0,10),"dd-MMM-yyyy")
+        binding.poDate.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
 
     }
 

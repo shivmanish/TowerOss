@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocPoTableDataBinding
 import com.smarthub.baseapplication.ui.fragments.noc.NocListAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
 
 class NocPoTableAdapter (var context : Context, var listener : NocListAdapter.NOCListListener): RecyclerView.Adapter<NocPoTableAdapter.ViewHold>() {
 

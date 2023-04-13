@@ -50,26 +50,35 @@ class SplashActivity : BaseActivity() {
                     showNetworkAlert()
                 }
             }else{
-                val intent = Intent(this@SplashActivity,DashboardActivity::class.java)
-                startActivity(intent)
-                finish()
-//                showLoader()
-//                loginViewModel.getProfileData()
+//                val intent = Intent(this@SplashActivity,DashboardActivity::class.java)
+//                startActivity(intent)
+//                finish()
+                if (isNetworkConnected) {
+                    showLoader()
+                    loginViewModel.getProfileData()
+                }
+                else{
+                    AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
+                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
         }
 
         loginViewModel.loginResponse?.observe(this) {
-            hideLoader()
+
             if (it != null && it.data?.access?.isNotEmpty() == true) {
                 if (it.status == Resource.Status.SUCCESS) {
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
                     Log.d("status","${it.message}")
                     AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
-                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    finish()
+//                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(intent)
+//                    finish()
+                    loginViewModel.getProfileData()
                     return@observe
                 }else{
                     Log.d("status","${it.message}")
@@ -80,14 +89,18 @@ class SplashActivity : BaseActivity() {
                 Toast.makeText(this@SplashActivity, AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
 
             }
-
+            hideLoader()
         }
         loginViewModel.profileResponse?.observe(this) {
             hideLoader()
             if (it != null && it.status==Resource.Status.SUCCESS) {
-                AppController.getInstance().ownerName = it.data?.get(0)?.company
+//                AppController.getInstance().ownerName = it.data?.get(0)?.ownercode
                 Log.d("status", "ownerName :${AppController.getInstance().ownerName}")
                 if (isNetworkConnected){
+                    if (it.data?.isNotEmpty()==true) {
+                        AppController.getInstance().ownerName = it.data[0].ownercode
+                        AppPreferences.getInstance().saveString("company",AppController.getInstance().ownerName)
+                    }
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
@@ -150,4 +163,5 @@ class SplashActivity : BaseActivity() {
                 @Suppress("DEPRECATION")
                 manager.activeNetworkInfo?.isConnected == true
         }
+
 }

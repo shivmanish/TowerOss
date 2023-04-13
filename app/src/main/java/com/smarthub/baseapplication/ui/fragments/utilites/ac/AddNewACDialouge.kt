@@ -69,7 +69,7 @@ class AddNewACDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, var li
                 it.LocationMark=binding.OULocationMarkEdit.text.toString()
                 it.CopperTubing=binding.CopperTubingEdit.text.toString()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
 
                 val utilityACData= UtilityEquipmentAC()
                 utilityACData.Equipment= arrayListOf(it)

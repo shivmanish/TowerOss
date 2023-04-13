@@ -13,7 +13,7 @@ import com.smarthub.baseapplication.model.siteIBoard.Attachments
     var PODate: String? = null
     var POLineItemNo: Int? = null
     var PONumber: String? = null
-    var Remark: String? = null
+    var remark: String? = null
     var VendorCode: String? = null
     var VendorCompany: ArrayList<Int>? = null
     var VendorExecutiveEmailId: String? = null

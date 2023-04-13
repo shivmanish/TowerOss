@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipMaintenenceTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentConsumableTableAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.EquipmentPoTableAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tableActionAdapters.PreveMaintenenceTableAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.PreveMaintenenceTableAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -141,13 +141,13 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("gsfbgksf")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (towerPreMaintenenceTableList.adapter!=null && towerPreMaintenenceTableList.adapter is PreveMaintenenceTableAdapter){
                 var adapter = towerPreMaintenenceTableList.adapter as PreveMaintenenceTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
             }
         }
     }
@@ -269,7 +269,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
                     holder.binding.MakeType.text=equipInfoData?.MakeType
                     holder.binding.MaterialUsed.text=equipInfoData?.MaterialUsed
                     holder.binding.LocationMark.text=equipInfoData?.LocationMark
-                    holder.binding.remark.text=equipInfoData?.Remark
+                    holder.binding.remark.text=equipInfoData?.remark
                     if (equipInfoData?.FoundationType?.isNotEmpty()==true){
                         AppPreferences.getInstance().setDropDown(holder.binding.FoundationType,DropDowns.FoundationType.name,equipInfoData?.FoundationType?.get(0).toString())
                     }
@@ -312,7 +312,7 @@ class TowerEquipmentInfoAdapter(var context: Context, var listner: EquipmentItem
                     holder.binding.vendorExecutiveName.text=insAccepData?.VendorExecutiveName
                     holder.binding.vendorExecutiveNo.text=insAccepData?.VendorExecutiveNumber
                     holder.binding.vendorExecutiveEmailId.text=insAccepData?.VendorEmailId
-                    holder.binding.Remarks.text=insAccepData?.Remark
+                    holder.binding.Remarks.text=insAccepData?.remark
                     holder.binding.vendorCode.text=insAccepData?.VendorCode
                     holder.binding.installationDate.text=
                         Utils.getFormatedDate(insAccepData?.InstallationDate!!.substring(0,10),"dd-MMM-yyyy")

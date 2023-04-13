@@ -31,7 +31,7 @@ class OutsidePremisesViewDialouge (contentLayoutId: Int, var data: SAcqOutsidePr
 
         binding.DistanceFromBoundary.text=data.DistanceFromBoundry
         binding.HeightAGL.text=data.Height
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
 
     }
 

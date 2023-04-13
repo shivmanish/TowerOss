@@ -49,7 +49,7 @@ class DGAccessoriesEditDialouge (var data: UtilityAccessory, var fullData: Utili
                 it.Make=binding.MakeEdit.text.toString()
                 it.Model=binding.ModelEdit.text.toString()
                 it.Quantity=binding.QuantityEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.InstallationDate=Utils.getFullFormatedDate(binding.InstallationDateEdit.text.toString())
 
                 val tempDGData= UtilityEquipmentDG()

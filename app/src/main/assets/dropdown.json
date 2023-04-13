@@ -27,7 +27,7 @@
       ]
     },
     {
-      "name": "powerType",
+      "name": "PowerType",
       "data": [
         {
           "id": 1,
@@ -66,6 +66,23 @@
       ]
     },
     {
+      "name": "PhysicalSecurity",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Yes with Rework"
+        }
+      ]
+    },
+    {
       "name": "SiteAccessWay",
       "data": [
         {
@@ -96,6 +113,49 @@
         {
           "id": 3,
           "name": "Not required"
+        }
+      ]
+    },
+    {
+      "name": "VideoMonitoring",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        },
+        {
+          "id": 3,
+          "name": "Not required"
+        }
+      ]
+    },
+    {
+      "name": "DangerSignage",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "CautionSignage",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
         }
       ]
     },
@@ -333,7 +393,7 @@
       ]
     },
     {
-      "name": "backhaulNodeCategory",
+      "name": "BackhaulNodeCategory",
       "data": [
         {
           "id": 1,
@@ -346,6 +406,10 @@
         {
           "id": 3,
           "name": "Ring"
+        },
+        {
+          "id": 4,
+          "name": "Fiber Takeoff"
         }
       ]
     },
@@ -431,7 +495,7 @@
       ]
     },
     {
-      "name": "siteOwnership",
+      "name": "SiteOwnership",
       "data": [
         {
           "id": 1,
@@ -490,7 +554,7 @@
         },
         {
           "id": 3,
-          "name": " Oudoor Cabinet"
+          "name": " Outdoor Cabinet"
         }
       ]
     },
@@ -681,7 +745,7 @@
         },
         {
           "id": 3,
-          "name": "Yes with Rework"
+          "name": "Not Required"
         }
       ]
     },
@@ -724,7 +788,7 @@
       ]
     },
     {
-      "name": "SolarFeability",
+      "name": "SolarFeasibility",
       "data": [
         {
           "id": 1,
@@ -754,6 +818,71 @@
         {
           "id": 3,
           "name": "Building And Land"
+        }
+      ]
+    },
+    {
+      "name": "SstSbcType",
+      "data": [
+        {
+          "id": 1,
+          "name": "SST"
+        },
+        {
+          "id": 2,
+          "name": "SBC"
+        }
+      ]
+    },
+    {
+      "name": "Sitebillingstatus",
+      "data": [
+        {
+          "id": 1,
+          "name": "Billable"
+        },
+        {
+          "id": 2,
+          "name": "Non-Billable"
+        }
+      ]
+    },
+    {
+      "name": "LocationType",
+      "data": [
+        {
+          "id": 1,
+          "name": "Billable"
+        },
+        {
+          "id": 2,
+          "name": "Non-Billable"
+        }
+      ]
+    },
+    {
+      "name": "Camouflage",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "LightningArrester",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
         }
       ]
     }

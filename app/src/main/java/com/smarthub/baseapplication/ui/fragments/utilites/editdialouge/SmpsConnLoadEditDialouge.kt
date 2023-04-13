@@ -36,7 +36,7 @@ class SmpsConnLoadEditDialouge (var data: UtilityConnectedLoad, var fullData: Ut
         binding.ConnectedEquipmentEdit.setText(data.ConnectedEquipment)
         binding.MCBRatingEdit.setText(data.RatingAmp)
         binding.ActualReadingEdit.setText(data.ActualReading)
-        binding.remarksEdit.setText(data.Remark)
+        binding.remarksEdit.setText(data.remark)
         binding.InstallationDateEdit.text=Utils.getFormatedDate(data.InstallationDate,"dd-MMM-yyyy")
 
         setDatePickerView( binding.InstallationDateEdit)
@@ -48,7 +48,7 @@ class SmpsConnLoadEditDialouge (var data: UtilityConnectedLoad, var fullData: Ut
                 it.ConnectedEquipment=binding.ConnectedEquipmentEdit.text.toString()
                 it.RatingAmp=binding.MCBRatingEdit.text.toString()
                 it.ActualReading=binding.ActualReadingEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.InstallationDate=Utils.getFullFormatedDate(binding.InstallationDateEdit.text.toString())
 
                 // add po data to agreement model list

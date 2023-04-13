@@ -6,10 +6,18 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.updatePowerFuel.UpdatePowerFuelResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcqResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.updateSiteInfo.UpdateSiteInfoResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TowerCivilAllDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.updateTwrCivil.UpdateTwrCivilInfraResponseModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentModel
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityResponseModel
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcModel
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcResponseModel
 import com.smarthub.baseapplication.network.APIClient
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
@@ -23,11 +31,19 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     var updateSiteAcqResponse: SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>? = null
     var updateUtilityEquipResponse: SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var updateNocCompResponse: SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
+    var updateSstSbcResponse: SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
+    var updateSiteInfoResponse: SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
+    var updatePowerFuelResponse: SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
+    var updateTwrCivilInfraResponse: SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
 
     init {
         updateSiteAcqResponse=SingleLiveEvent<Resource<UpdateSiteAcqResponseModel>>()
         updateUtilityEquipResponse=SingleLiveEvent<Resource<UpdateUtilityResponseModel>>()
         updateNocCompResponse=SingleLiveEvent<Resource<UpdateNocCompResponseModel>>()
+        updateSstSbcResponse=SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>()
+        updateSiteInfoResponse=SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>()
+        updatePowerFuelResponse=SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>()
+        updateTwrCivilInfraResponse=SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>()
     }
 
 
@@ -100,6 +116,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
         })
     }
 
+    fun updateSiteInfoData(data: AllsiteInfoDataModel?) {
+        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        apiClient.updateSiteInfoRequest(data!!).enqueue(object : Callback<UpdateSiteInfoResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateSiteInfoResponseModel?>,
+                response: Response<UpdateSiteInfoResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateSiteInfoResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateSiteInfoResponseModel?>) {
+                if (response.body() != null) {
+                    updateSiteInfoResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateSiteInfoResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateSiteInfoResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                ) else
+                    updateSiteInfoResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
     fun updateNocCompData(data: UpdateNocCompModel?) {
         AppLogger.log("updateNocCompData==> : ${Gson().toJson(data)}")
         apiClient.updateNocCompRequest(data!!).enqueue(object : Callback<UpdateNocCompResponseModel> {
@@ -130,6 +180,107 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                     Resource.error(iThrowableLocalMessage, null, 500)
                 ) else updateNocCompResponse?.postValue(
                     Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updateSstSbcData(data: UpdateSstSbcModel?) {
+        AppLogger.log("updateSstSbcData==> : ${Gson().toJson(data)}")
+        apiClient.updateSstSbcRequest(data!!).enqueue(object : Callback<UpdateSstSbcResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateSstSbcResponseModel?>,
+                response: Response<UpdateSstSbcResponseModel?>
+            ) {
+                AppLogger.log("updateSstSbcData onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateSstSbcResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log( "updateSstSbcData"+ " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateSstSbcResponseModel?>) {
+                if (response.body() != null) {
+                    updateSstSbcResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateSstSbcResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateSstSbcResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                ) else updateSstSbcResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updateTwrCivilData(data: TowerCivilAllDataModel?) {
+        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        apiClient.updateTwrCivilInfraRequest(data!!).enqueue(object : Callback<UpdateTwrCivilInfraResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateTwrCivilInfraResponseModel?>,
+                response: Response<UpdateTwrCivilInfraResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateTwrCivilInfraResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateTwrCivilInfraResponseModel?>) {
+                if (response.body() != null) {
+                    updateTwrCivilInfraResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateTwrCivilInfraResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateTwrCivilInfraResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                    ) else
+                    updateTwrCivilInfraResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updatePowerFuelData(data: PowerFuelAllDataModel?) {
+        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        apiClient.updatePowerFuelRequest(data!!).enqueue(object : Callback<UpdatePowerFuelResponseModel> {
+            override fun onResponse(
+                call: Call<UpdatePowerFuelResponseModel?>,
+                response: Response<UpdatePowerFuelResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdatePowerFuelResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdatePowerFuelResponseModel?>) {
+                if (response.body() != null) {
+                    updatePowerFuelResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updatePowerFuelResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updatePowerFuelResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                    ) else
+                    updatePowerFuelResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

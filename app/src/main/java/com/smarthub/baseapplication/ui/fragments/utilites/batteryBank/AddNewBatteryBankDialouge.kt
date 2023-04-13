@@ -66,7 +66,7 @@ class AddNewBatteryBankDialouge (var fullData:ArrayList<UtilityEquipmentAllData>
                 it.InstalledLocationType=binding.InstallationLocationTypeEdit.selectedValue.id.toIntOrNull()
                 it.RackUSpaceUsed=binding.BatteryCellCountEdit.text.toString().toIntOrNull()
                 it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
 
                 val utilitySMPSData= UtilityEquipmentBatteryBank()
                 utilitySMPSData.Equipment= arrayListOf(it)

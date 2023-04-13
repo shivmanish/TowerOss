@@ -39,7 +39,7 @@ class UtilityFireExtPoEditDialouge (var data: UtilityPoDetails, var fullData: Ut
         binding.PoNumberEdit.setText(data.PONumber)
         binding.PoAmountEdit.setText(data.POAmount)
         binding.PoLineNumberEdit.setText(data.POLineNo.toString())
-        binding.remarksEdit.setText(data.Remark)
+        binding.remarksEdit.setText(data.remark)
         if (data.VendorCompany?.isNotEmpty()==true)
             AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString())
         else
@@ -57,7 +57,7 @@ class UtilityFireExtPoEditDialouge (var data: UtilityPoDetails, var fullData: Ut
                 it.POItem=binding.PoItemEdit.text.toString()
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
                 it.PONumber=binding.PoNumberEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.POLineNo=binding.PoLineNumberEdit.text.toString().toIntOrNull()
                 it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())

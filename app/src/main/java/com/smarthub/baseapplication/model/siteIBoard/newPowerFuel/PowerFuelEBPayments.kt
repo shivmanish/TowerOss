@@ -1,13 +1,16 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class PowerFuelEBPayments(
-    val Amount: String,
-    val BillNumber: String,
-    val PaymentDate: String,
-    val PaymentMode: Int,
-    val PaymentRefNo: String,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
+
+class PowerFuelEBPayments{
+    var Amount: String?=null
+    var BillNumber: String?=null
+    var PaymentDate: String?=null
+    var PaymentMode: Int?=null
+    var PaymentRefNo: String?=null
+    var attachment: ArrayList<Attachments>?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}

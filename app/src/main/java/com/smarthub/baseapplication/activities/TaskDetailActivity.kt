@@ -66,15 +66,8 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
                 AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
             }
         }
-        if (intent.hasExtra("Trackingflag")){
-            try {
-                intent.getStringExtra("Trackingflag")?.toBoolean()?.let {
-                    Trackingflag = it
-                }
-            }catch (e:Exception){
-                AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
-            }
-        }
+
+        Trackingflag=intent.getBooleanExtra("Trackingflag",false)
         if (intent.hasExtra("Distance")){
             try {
                  intent.getStringExtra("Distance")?.toDouble()?.let {

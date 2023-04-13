@@ -6,7 +6,7 @@ data class SAcqPropertyOwnerDetail(
     var OwnerName: String,
     var PhoneNumber: String,
     var PropertyOwnership: ArrayList<Int>,
-    var Remark: String,
+    var remark: String,
     var Share: String,
 //    var created_at: String,
     var id: Int?=null,

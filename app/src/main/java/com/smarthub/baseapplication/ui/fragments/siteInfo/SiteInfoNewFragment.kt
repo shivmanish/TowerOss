@@ -4,30 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SiteInfoNewFragmentBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.GeoCondition
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.OperationalInfo
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
-import com.smarthub.baseapplication.ui.adapter.DynamicItemListAdapter
-import com.smarthub.baseapplication.ui.adapter.DynamicTitleListAdapter
 import com.smarthub.baseapplication.ui.dialog.siteinfo.BasicInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.GeoConditionsBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.OperationsInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.siteinfo.SaftyAccessBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
-import com.smarthub.baseapplication.ui.dynamic.DynamicTitleList
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter.SiteInfoLisListener {
@@ -50,16 +46,8 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
         }
-        adapter= SiteInfoListAdapter(requireContext(),this@SiteInfoNewFragment)
+        adapter= SiteInfoListAdapter(this@SiteInfoNewFragment,this@SiteInfoNewFragment)
         binding.listItem.adapter=adapter
-//        val json = Utils.getJsonDataFromAsset(requireContext(),"dynamic_list.json")
-//        val model : DynamicTitleList = Gson().fromJson(json,DynamicTitleList::class.java)
-//        binding.listItem.adapter = DynamicTitleListAdapter(model,object : DynamicItemListAdapter.DynamicItemListAdapterListener{
-//            override fun onDateFieldFind(text: TextView) {
-//                setDatePickerView(text)
-//            }
-//
-//        })
 
         dropdowndata = AppPreferences.getInstance().dropDown
 
@@ -72,17 +60,8 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 AppLogger.log("SiteInfoNewFragment Site Data fetched successfully: ${it.data}")
+                hideLoader()
                 adapter.setData(it.data)
-//                var currentOpened = -1
-//                if (binding.listItem.adapter is SiteInfoListAdapter){
-//                    val adapter = binding.listItem.adapter as SiteInfoListAdapter
-//                    currentOpened = adapter.currentOpened
-//                }
-//                binding.listItem.adapter = SiteInfoListAdapter(requireContext(), this@SiteInfoNewFragment,it.data)
-//                AppLogger.log("currentOpened:$currentOpened")
-//                if (currentOpened>=0){
-//                    (binding.listItem.adapter as SiteInfoListAdapter).updateList(currentOpened)
-//                }
             }else if (it!=null) {
                 AppLogger.log("SiteInfoNewFragment error :${it.message}")
 
@@ -137,6 +116,36 @@ class SiteInfoNewFragment(var id : String) : BaseFragment(), SiteInfoListAdapter
         bottomSheetDialogFragment.show(childFragmentManager, "category")
         } else {
             Toast.makeText(context, "DropDown, Please Try again !", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun updateSiteInfo(data: AllsiteInfoDataModel?) {
+        showLoader()
+        homeViewModel.updateSiteInfo(data)
+        if (homeViewModel.updateSiteInfoDataResponse?.hasActiveObservers() == true) {
+            homeViewModel.updateSiteInfoDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        homeViewModel.updateSiteInfoDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SiteInfoNewFragment data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && (it.data.status?.Basicinfo==200 ||
+                        it.data.status?.OperationalInfo==200 || it.data.status?.GeoCondition==200 || it.data.status?.SafetyAndAccess==200)) {
+                AppLogger.log("SiteInfoNewFragment card Data fetched successfully")
+                homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
+                Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("SiteInfoNewFragment Something went wrong")
+            }
+            else if (it != null) {
+                AppLogger.log("SiteInfoNewFragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("SiteInfoNewFragment Something went wrong")
+
+            }
         }
     }
 

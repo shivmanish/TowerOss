@@ -11,8 +11,13 @@ data class MyTeamTask(
     val Projectname: String,
     val ReWorkflow: String,
     val Reminderofoutstandingactions: String,
+    val NotificationSettingGeoTracking: String,
+    val NotificationSettingGeoFencing: String,
+    val Distance: String,
     val SLA: String,
     val Status: String,
+    val First_Name: String,
+    val Last_Name: String,
     val Taskid: String,
     val Taskinstruction: String,
     val Taskname: String,
@@ -27,8 +32,6 @@ data class MyTeamTask(
     val siteid: String,
     val sitename: String,
     val startdate: String,
-    val Distance: String,
     val Trackingflag: String,
-    val NotificationSettingGeoFencing: String,
     val workorderid: String
 )

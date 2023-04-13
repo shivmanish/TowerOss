@@ -1,27 +1,29 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel
 
-data class BasicInfoData(
-    val Acquisitiontype: List<Int>,
-    val Buildingtype: List<Int>,
-    val Costcentre: List<Int>,
-    val MaintenancePoint: MaintenancePoint?=null,
-    val National: List<Int>,
-    val Opcositetype: List<Int>?=null,
-    val Projectname: List<Int>,
-    val Region: List<Int>,
-    val Sitecategory: List<Int>,
-    val Siteownership: List<Int>,
-    val Sitestatus: List<Int>,
-    val State: List<Int>,
-    val aliasName: String,
-    val area: List<Any>,
-    val cluster: List<Any>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String,
-    val siteID: String,
-    val siteLayout: Any,
-    val siteName: String,
-    val sitePicture: Any
-)
+class BasicInfoData{
+    var Acquisitiontype: ArrayList<Int>?=null
+    var Buildingtype: ArrayList<Int>?=null
+    var Costcentre: ArrayList<Int>?=null
+    var MaintenancePoint: BasicInfoNew?=null
+    var National: BasicInfoNew?=null
+    var PropertyType: Int?=null
+    var Opcositetype: ArrayList<Int>?=null
+    var Sitetype: ArrayList<Int>?=null
+    var Projectname: ArrayList<Int>?=null
+    var Region: BasicInfoNew?=null
+    var Sitecategory: ArrayList<Int>?=null
+    var Siteownership: Int?=null
+    var Sitestatus: ArrayList<Int>?=null
+    var State: BasicInfoNew?=null
+    var aliasName: String?=null
+    var area: ArrayList<Any>?=null
+    var cluster: ArrayList<Any>?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+    var siteID: String?=null
+    var siteLayout: Any?=null
+    var siteName: String?=null
+    var sitePicture: Any?=null
+}

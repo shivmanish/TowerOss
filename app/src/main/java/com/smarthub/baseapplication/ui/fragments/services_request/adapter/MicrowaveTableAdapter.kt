@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.MicrowaveTableItemBinding
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.TowerInfoListAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerInfoListAdapter
 
 class MicrowaveTableAdapter (var context : Context, var listener : TowerInfoListAdapter.TowerInfoListListener): RecyclerView.Adapter<MicrowaveTableAdapter.ViewHold>() {
     var list  = ArrayList<String>()
@@ -58,7 +58,7 @@ class MicrowaveTableAdapter (var context : Context, var listener : TowerInfoList
                 when(item?.itemId){
                     R.id.action_edit -> {
                         popupMenu.dismiss()
-                        listener.editPoClicked(position)
+//                        listener.editPoClicked(position)
 
                         return true
                     }

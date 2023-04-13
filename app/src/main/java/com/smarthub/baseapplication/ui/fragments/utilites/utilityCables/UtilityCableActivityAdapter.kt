@@ -115,7 +115,7 @@ class UtilityCableActivityAdapter(var baseActivity: BaseActivity, var listener: 
                 holder.binding.Length.text=dataList.Length
                 holder.binding.InstallationDate.text=Utils.getFormatedDate(dataList.InstallationDate,"dd-MMM-yyyy")
                 holder.binding.VendorCode.text=dataList.VendorCode
-                holder.binding.remarks.text=dataList.Remark
+                holder.binding.remarks.text=dataList.remark
                 if (dataList.CableName?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.CableName,DropDowns.CableName.name,dataList.CableName?.get(0).toString())
                 if (dataList.VendorCompany?.isNotEmpty()==true)
@@ -127,7 +127,7 @@ class UtilityCableActivityAdapter(var baseActivity: BaseActivity, var listener: 
                 holder.binding.LengthEdit.setText(dataList.Length)
                 holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(dataList.InstallationDate,"dd-MMM-yyyy")
                 holder.binding.VendorCodeEdit.setText(dataList.VendorCode)
-                holder.binding.remarksEdit.setText(dataList.Remark)
+                holder.binding.remarksEdit.setText(dataList.remark)
 
                 if (dataList.VendorCompany?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,dataList.VendorCompany?.get(0).toString())
@@ -146,7 +146,7 @@ class UtilityCableActivityAdapter(var baseActivity: BaseActivity, var listener: 
                         it.Length=holder.binding.LengthEdit.text.toString()
                         it.InstallationDate=Utils.getFullFormatedDate(holder.binding.InstallationDateEdit.text.toString())
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
-                        it.Remark=holder.binding.remarksEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
                         it.CableName= arrayListOf(holder.binding.CableNameEdit.selectedValue.id.toInt())
                         it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
                         if (dataList.id!=null)

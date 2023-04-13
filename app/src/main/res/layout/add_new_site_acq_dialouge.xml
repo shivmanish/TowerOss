@@ -19,11 +19,10 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:minHeight="@dimen/dp500"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp15"
         android:background="@drawable/dialog_bg"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/container_layout"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
@@ -396,7 +395,7 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:id="@+id/POAmount_edit"
-                            android:text=""
+                            android:text="0"
                             android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
@@ -515,37 +514,6 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-        <LinearLayout
-            android:id="@+id/bottom_layout"
-            android:gravity="right"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp15"
-            android:layout_marginBottom="@dimen/dp15"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp40"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp5"
-            android:background="#1A807E7E"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/Submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp5"
-                android:background="@drawable/yellow_text_button"
-                android:gravity="center"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-                android:paddingLeft="@dimen/dp15"
-                android:paddingRight="@dimen/dp15"
-                android:text="Submit"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15" />
-
-        </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/progress_layout"
             android:layout_width="match_parent"
@@ -577,6 +545,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp5"
+            android:background="#1A807E7E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/Submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@drawable/yellow_text_button"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:text="Submit"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15" />
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

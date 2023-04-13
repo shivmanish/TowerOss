@@ -7,16 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
-import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.NocCompCommonFragBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocApplicationInitial
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
-import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompAllData
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.RfAnteenaData
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.opcoTenancy.bottomDialouge.rfAnteena.RfAnteenaItemsEditDialouge
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
@@ -28,7 +23,7 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
     lateinit var adapter: NocApplicationDetailsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = NocCompCommonFragBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -97,7 +92,6 @@ class NocDetailsFragment(var nocdata: NocCompAllData?,var childIndex:Int?) :Base
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.NOCCompliance==200) {
                 AppLogger.log("NocDetailsFragment Data Updated successfully")
-                setObserber()
                 viewmodel.NocAndCompRequestAll(AppController.getInstance().siteid)
                 Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }

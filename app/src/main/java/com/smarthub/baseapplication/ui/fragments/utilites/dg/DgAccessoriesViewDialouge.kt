@@ -27,7 +27,7 @@ class DgAccessoriesViewDialouge (contentLayoutId: Int, var data: UtilityAccessor
         binding.Make.text=data.Make
         binding.Model.text=data.Model
         binding.Quantity.text=data.Quantity
-        binding.remark.text=data.Remark
+        binding.remark.text=data.remark
         binding.InstallationDate.text=Utils.getFormatedDate(data.InstallationDate,"dd-MMM-yyyy")
 
 

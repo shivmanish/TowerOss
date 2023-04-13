@@ -15,6 +15,8 @@ data class TaskDataListItem(
     val Reminderofoutstandingactions: String,
     val SLA: String,
     val Status: String,
+    val FirstName: String,
+    val LastName: String,
     val Taskid: String,
     val Taskinstruction: String,
     val Taskname: String,

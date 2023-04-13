@@ -12,7 +12,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var Potentialthreat: ArrayList<Int>? = null
     var PsDistance: String? = null
     var PsPhoneNo: String? = null
-    var Remark: String? = null
+    var remark: String? = null
     var SAcqBuildingDetail: ArrayList<SAcqBuildingDetail>? = null
     var SAcqLandDetail: ArrayList<SAcqLandDetail>? = null
     var SiteAccessWay: Int? = null

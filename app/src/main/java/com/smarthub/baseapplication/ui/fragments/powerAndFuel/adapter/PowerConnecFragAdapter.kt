@@ -1,6 +1,5 @@
 package com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,9 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.*
-import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSmp
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerConsumableTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPaymentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
@@ -20,7 +21,7 @@ import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
-class PowerConnecFragAdapter(var context: Context, var listener: PowerConnectionListListener,data:NewPowerFuelAllData?) : RecyclerView.Adapter<PowerConnecFragAdapter.ViewHold>() {
+class PowerConnecFragAdapter(var baseFragment: BaseFragment, var listener: PowerConnectionListListener,data:NewPowerFuelAllData?) : RecyclerView.Adapter<PowerConnecFragAdapter.ViewHold>() {
     private var datalist: PowerConnectionAllData?=null
     private var PowerConnData:PowerConnectionDetail?=null
     private var insAccepData:PowerInstallationAndAcceptence?=null
@@ -31,11 +32,11 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
     }
     init {
         try {
-            if (data!=null && data.PowerAndFuelEBConnection.isNotEmpty()){
-                datalist=data.PowerAndFuelEBConnection.get(0)
+            if (data!=null && data.PowerAndFuelEBConnection?.isNotEmpty()==true){
+                datalist=data.PowerAndFuelEBConnection?.get(0)
             }
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            Toast.makeText(baseFragment.requireContext(),"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -106,13 +107,13 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
             binding.imgAdd.setOnClickListener {
-                addTableItem("dfsdh")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (poTableList.adapter!=null && poTableList.adapter is PowerFuelPoTableAdapter){
                 val adapter = poTableList.adapter as PowerFuelPoTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
             }
         }
     }
@@ -130,13 +131,13 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("gsfbgksf")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (ConsumableTableList.adapter!=null && ConsumableTableList.adapter is PowerConsumableTableAdapter){
                 val adapter = ConsumableTableList.adapter as PowerConsumableTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
             }
         }
     }
@@ -154,13 +155,13 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("gsfbgksf")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (tariffTable.adapter!=null && tariffTable.adapter is PowerFuelTariffTableAdapter){
                 val adapter = tariffTable.adapter as PowerFuelTariffTableAdapter
-                adapter.addItem(item)
+                adapter.addItem()
             }
         }
     }
@@ -178,23 +179,19 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
             }
 
             binding.imgAdd.setOnClickListener {
-                addTableItem("gsfbgksf")
+                addTableItem()
             }
         }
-        private fun addTableItem(item:String){
+        private fun addTableItem(){
             if (authorityPaymentTable.adapter!=null && authorityPaymentTable.adapter is PowerFuelPaymentTableAdapter){
-                var adapter = authorityPaymentTable.adapter as PowerFuelPaymentTableAdapter
-                adapter.addItem(item)
+                val adapter = authorityPaymentTable.adapter as PowerFuelPaymentTableAdapter
+                adapter.addItem()
             }
         }
     }
     class ViewHold7(itemView: View,listener: PowerConnectionListListener) : ViewHold(itemView) {
         var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
-        var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
-            override fun itemClicked() {
-                listener.attachmentItemClicked()
-            }
-        })
+        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
 
         init {
             binding.collapsingLayout.tag = false
@@ -206,12 +203,11 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            val recyclerListener = itemView.findViewById<RecyclerView>(R.id.list_item)
-            recyclerListener.adapter = adapter
+//            recyclerListener.adapter = adapter
 
-            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
-            }
+//            itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
+//                listener.addAttachment()
+//            }
 
         }
     }
@@ -273,16 +269,23 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
 
-                    holder.binding.imgEdit.setOnClickListener {
-//                        listener.EditTowerItem()
-                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -296,43 +299,96 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null && datalist?.PowerAndFuelEBConnectionEBDetail?.isNotEmpty()==true){
-                        PowerConnData=datalist?.PowerAndFuelEBConnectionEBDetail?.get(0)
-                        if (PowerConnData?.PowerConnectionType?.isNotEmpty() == true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.PowerConnectionType,DropDowns.PowerConnectionType.name,PowerConnData?.PowerConnectionType?.get(0).toString())
-                        holder.binding.powerType.text=PowerConnData?.PowerType.toString()
-                        holder.binding.MeterType.text=PowerConnData?.MeterType.toString()
-                        holder.binding.PowerSupplier.text=PowerConnData?.ElectricitySupplier
-                        holder.binding.ConsumerNo.text=PowerConnData?.ConsumerNumber
-                        holder.binding.ConnectedLoad.text=PowerConnData?.ConnectedLoad
-                        holder.binding.AvgAvailibillity.text=PowerConnData?.AverageAvailibility
-                        holder.binding.PowerConnRating.text=PowerConnData?.PowerRating
-                        holder.binding.MeterLocationMark.text=PowerConnData?.MeterLocationMark
-                        holder.binding.MeterSerialNumber.text=PowerConnData?.MeterSerialNumber
-                        holder.binding.VoltageRatingMin.text=PowerConnData?.VoltageMin
-                        holder.binding.VoltageRatingMax.text=PowerConnData?.VoltageMax
-                        holder.binding.remarks.text=PowerConnData?.Remark
-
-                    }
-                    else
-                        AppLogger.log("error in Power Connection details data")
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                if (datalist!=null && datalist?.PowerAndFuelEBConnectionEBDetail?.isNotEmpty()==true){
+                    PowerConnData=datalist?.PowerAndFuelEBConnectionEBDetail?.get(0)
                 }
+                if (PowerConnData!=null){
+                    // view mode
+                    if (PowerConnData?.PowerConnectionType?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.PowerConnectionType,DropDowns.PowerConnectionType.name,PowerConnData?.PowerConnectionType?.get(0).toString())
+                    if (PowerConnData?.PowerType!= null && PowerConnData?.PowerType!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.powerType,DropDowns.PowerType.name,PowerConnData?.PowerType.toString())
+                    if (PowerConnData?.MeterType!= null && PowerConnData?.MeterType!! >0)
+                        AppPreferences.getInstance().setDropDown(holder.binding.MeterType,DropDowns.MeterType.name,PowerConnData?.MeterType.toString())
+                    holder.binding.PowerSupplier.text=PowerConnData?.ElectricitySupplier
+                    holder.binding.ConsumerNo.text=PowerConnData?.ConsumerNumber
+                    holder.binding.ConnectedLoad.text=PowerConnData?.ConnectedLoad
+                    holder.binding.AvgAvailibillity.text=PowerConnData?.AverageAvailibility
+                    holder.binding.PowerConnRating.text=PowerConnData?.PowerRating
+                    holder.binding.MeterLocationMark.text=PowerConnData?.MeterLocationMark
+                    holder.binding.MeterSerialNumber.text=PowerConnData?.MeterSerialNumber
+                    holder.binding.VoltageRatingMin.text=PowerConnData?.VoltageMin
+                    holder.binding.VoltageRatingMax.text=PowerConnData?.VoltageMax
+                    holder.binding.remarks.text=PowerConnData?.remark
 
+                    // edit mode
+                    holder.binding.PowerSupplierEdit.setText(PowerConnData?.ElectricitySupplier)
+                    holder.binding.ConsumerNumberEdit.setText(PowerConnData?.ConsumerNumber)
+                    holder.binding.ConnectedLoadEdit.setText(PowerConnData?.ConnectedLoad)
+                    holder.binding.AvgAvailabilityEdit.setText(PowerConnData?.AverageAvailibility)
+                    holder.binding.PowerConnRatingEdit.setText(PowerConnData?.PowerRating)
+                    holder.binding.MeterLocationMarkEdit.setText(PowerConnData?.MeterLocationMark)
+                    holder.binding.MeterSerialNumberEdit.setText(PowerConnData?.MeterSerialNumber)
+                    holder.binding.minVoltageRatingEdit.setText(PowerConnData?.VoltageMin)
+                    holder.binding.maxVoltageRatingEdit.setText(PowerConnData?.VoltageMax)
+                    holder.binding.remarksEdit.setText(PowerConnData?.remark)
+                }
+                if (PowerConnData!=null && PowerConnData?.PowerConnectionType?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PowerConnectionTypeEdit,DropDowns.PowerConnectionType.name,PowerConnData?.PowerConnectionType?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PowerConnectionTypeEdit,DropDowns.PowerConnectionType.name)
+                if (PowerConnData!=null && PowerConnData?.PowerType!= null && PowerConnData?.PowerType!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PowerTypeEdit,DropDowns.PowerType.name,PowerConnData?.PowerType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PowerTypeEdit,DropDowns.PowerType.name)
+                if (PowerConnData!=null && PowerConnData?.MeterType!= null && PowerConnData?.MeterType!! >0)
+                    AppPreferences.getInstance().setDropDown(holder.binding.MeterTypeEdit,DropDowns.MeterType.name,PowerConnData?.MeterType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.MeterTypeEdit,DropDowns.MeterType.name)
+
+                holder.binding.update.setOnClickListener {
+                    val tempPowerConnDetailData= PowerConnectionDetail()
+                    val tempPowerConnAllData= PowerConnectionAllData()
+                    tempPowerConnDetailData.let {
+                        it.ElectricitySupplier=holder.binding.PowerSupplierEdit.text.toString()
+                        it.ConsumerNumber=holder.binding.ConsumerNumberEdit.text.toString()
+                        it.MeterSerialNumber=holder.binding.MeterSerialNumberEdit.text.toString()
+                        it.VoltageMin=holder.binding.minVoltageRatingEdit.text.toString()
+                        it.VoltageMax=holder.binding.maxVoltageRatingEdit.text.toString()
+                        it.PowerRating=holder.binding.PowerConnRatingEdit.text.toString()
+                        it.ConnectedLoad=holder.binding.ConnectedLoadEdit.text.toString()
+                        it.MeterLocationMark=holder.binding.MeterLocationMarkEdit.text.toString()
+                        it.AverageAvailibility=holder.binding.AvgAvailabilityEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
+                        it.PowerConnectionType= arrayListOf(holder.binding.PowerConnectionTypeEdit.selectedValue.id.toInt())
+                        it.MeterType= holder.binding.MeterTypeEdit.selectedValue.id.toIntOrNull()
+                        it.PowerType= holder.binding.PowerTypeEdit.selectedValue.id.toIntOrNull()
+                        if (PowerConnData!=null)
+                            it.id=PowerConnData?.id
+                    }
+                    tempPowerConnAllData.PowerAndFuelEBConnectionEBDetail= arrayListOf(tempPowerConnDetailData)
+                    if (datalist!=null)
+                        tempPowerConnAllData.id=datalist?.id
+                    listener.updateData(tempPowerConnAllData)
+                }
             }
             is ViewHold2 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.imgEdit.visibility = View.VISIBLE
-
-                    holder.binding.imgEdit.setOnClickListener {
-//                        listener.EditInstallationAcceptence()
-                    }
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -346,30 +402,63 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null && datalist?.PowerAndFuelEBConnectionEBDetail?.isNotEmpty()==true){
-                        insAccepData=datalist?.InstallationAndAcceptence?.get(0)
+                if (datalist!=null && datalist?.InstallationAndAcceptence?.isNotEmpty()==true)
+                    insAccepData=datalist?.InstallationAndAcceptence?.get(0)
+                if (insAccepData!=null){
+                    //view mode
+                    if (insAccepData?.VendorCompany?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.vendorName,DropDowns.VendorCompany.name,insAccepData?.VendorCompany?.get(0).toString())
+                    if (insAccepData?.AcceptanceStatus?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.acceptenceStatus,DropDowns.AcceptanceStatus.name,insAccepData?.AcceptanceStatus?.get(0).toString())
+                    holder.binding.vendorExecutiveName.text=insAccepData?.VendorExecutiveName
+                    holder.binding.vendorExecutiveNo.text=insAccepData?.VendorExecutiveNumber
+                    holder.binding.vendorExecutiveEmailId.text=insAccepData?.VendorEmailId
+                    holder.binding.Remarks.text=insAccepData?.remark
+                    holder.binding.vendorCode.text=insAccepData?.VendorCode
+                    holder.binding.installationDate.text=Utils.getFormatedDate(insAccepData?.InstallationDate,"dd-MMM-yyyy")
+                    holder.binding.acceptenceDate.text=Utils.getFormatedDate(insAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
-                        if (insAccepData?.VendorCompany?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.vendorName,DropDowns.VendorCompany.name,insAccepData?.VendorCompany?.get(0).toString())
-                        if (insAccepData?.AcceptanceStatus?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.acceptenceStatus,DropDowns.AcceptanceStatus.name,insAccepData?.AcceptanceStatus?.get(0).toString())
-                        holder.binding.installationDate.text=insAccepData?.InstallationDate
-                        holder.binding.vendorExecutiveName.text=insAccepData?.VendorExecutiveName
-                        holder.binding.vendorExecutiveNo.text=insAccepData?.VendorExecutiveNumber
-                        holder.binding.vendorExecutiveEmailId.text=insAccepData?.VendorEmailId
-                        holder.binding.Remarks.text=insAccepData?.Remark
-                        holder.binding.vendorCode.text=insAccepData?.VendorCode
-                        holder.binding.installationDate.text=Utils.getFormatedDate(insAccepData?.InstallationDate!!.substring(0,10),"dd-MMM-yyyy")
-                        holder.binding.acceptenceDate.text=Utils.getFormatedDate(insAccepData?.AcceptanceDate!!.substring(0,10),"dd-MMM-yyyy")
-
-                    }
-                    else
-                        AppLogger.log("error in Power fuel installation details data")
-
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                    // edit mode
+                    holder.binding.VendorExcutiveNameEdit.setText(insAccepData?.VendorExecutiveName)
+                    holder.binding.VendorExecutiveNumberEdit.setText(insAccepData?.VendorExecutiveNumber)
+                    holder.binding.VendorExecutiveEmailEdit.setText(insAccepData?.VendorEmailId)
+                    holder.binding.remarksEdit.setText(insAccepData?.remark)
+                    holder.binding.VendorCodeEdit.setText(insAccepData?.VendorCode)
+                    holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(insAccepData?.InstallationDate,"dd-MMM-yyyy")
+                    holder.binding.AcceptenceDateEdit.text=Utils.getFormatedDate(insAccepData?.AcceptanceDate,"dd-MMM-yyyy")
                 }
+                if (insAccepData!=null && insAccepData?.VendorCompany?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,insAccepData?.VendorCompany?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                if (insAccepData!=null && insAccepData?.AcceptanceStatus?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name,insAccepData?.AcceptanceStatus?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name,)
+
+                holder.binding.update.setOnClickListener {
+                    val tempInsData= PowerInstallationAndAcceptence()
+                    val tempPowerConnAllData= PowerConnectionAllData()
+                    tempInsData.let {
+                        it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
+                        it.VendorExecutiveName=holder.binding.VendorExcutiveNameEdit.text.toString()
+                        it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                        it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
+                        it.InstallationDate=Utils.getFullFormatedDate(holder.binding.InstallationDateEdit.text.toString())
+                        it.AcceptanceDate=Utils.getFullFormatedDate(holder.binding.AcceptenceDateEdit.text.toString())
+                        it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                        it.AcceptanceStatus= arrayListOf(holder.binding.AcceptenceStatusEdit.selectedValue.id.toInt())
+                        if (insAccepData!=null)
+                            it.id=insAccepData?.id
+                    }
+                    tempPowerConnAllData.InstallationAndAcceptence= arrayListOf(tempInsData)
+                    if (datalist!=null)
+                        tempPowerConnAllData.id=datalist?.id
+                    listener.updateData(tempPowerConnAllData)
+                }
+                baseFragment.setDatePickerView(holder.binding.AcceptenceDateEdit)
+                baseFragment.setDatePickerView(holder.binding.InstallationDateEdit)
             }
             is ViewHold3 -> {
                 if (currentOpened == position) {
@@ -392,14 +481,13 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null)
-                        holder.poTableList.adapter=PowerFuelPoTableAdapter(context,listener,datalist?.PODetail)
-                    else
-                        AppLogger.log("error in Power fuel Po details data")
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                if (datalist!=null)
+                    holder.poTableList.adapter=PowerFuelPoTableAdapter(baseFragment.requireContext(),listener,datalist?.PODetail)
+                else{
+                    AppLogger.log("error in Power fuel Po details data")
+                    holder.poTableList.adapter=PowerFuelPoTableAdapter(baseFragment.requireContext(),listener,ArrayList())
                 }
+
             }
             is ViewHold4 -> {
                 if (currentOpened == position) {
@@ -424,11 +512,12 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                 holder.binding.itemTitleStr.text = list[position]
                 try {
                     if (datalist!=null){
-                        AppLogger.log("Tower Consumable Table Data : ====>${Gson().toJson(datalist?.ConsumableMaterial)}")
-                        holder.ConsumableTableList.adapter=PowerConsumableTableAdapter(context,listener,datalist?.ConsumableMaterial)
+                        holder.ConsumableTableList.adapter=PowerConsumableTableAdapter(baseFragment.requireContext(),listener,datalist?.ConsumableMaterial)
                     }
-                    else
+                    else{
                         AppLogger.log("error in Power fuel Consumable material details data")
+                        holder.ConsumableTableList.adapter=PowerConsumableTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
                 }
@@ -455,14 +544,15 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                 }
                 holder.binding.itemTitleStr.text = list[position]
                 try {
-                    if (datalist!=null){
-                        holder.tariffTable.adapter=PowerFuelTariffTableAdapter(context,listener,datalist?.PowerAndFuelEBConnectionTariffDetail)
+                    if (datalist!=null && datalist?.PowerAndFuelEBConnectionTariffDetail!=null){
+                        holder.tariffTable.adapter=PowerFuelTariffTableAdapter(baseFragment.requireContext(),listener,datalist?.PowerAndFuelEBConnectionTariffDetail)
                     }
-                    else
+                    else{
                         AppLogger.log("error in Power fuel Consumable material details data")
+                        holder.tariffTable.adapter=PowerFuelTariffTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold6 -> {
@@ -486,16 +576,14 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null){
-                        holder.authorityPaymentTable.adapter=PowerFuelPaymentTableAdapter(context,listener,datalist?.PowerAndFuelEBConnectionPayment)
-                    }
-                    else
-                        AppLogger.log("error in Power fuel Consumable material details data")
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
-                    Toast.makeText(context,"ToewerInfoadapter error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+                if (datalist!=null && datalist?.PowerAndFuelEBConnectionPayment!=null){
+                    holder.authorityPaymentTable.adapter=PowerFuelPaymentTableAdapter(baseFragment.requireContext(),listener,datalist?.PowerAndFuelEBConnectionPayment)
                 }
+                else{
+                    AppLogger.log("error in Power fuel Consumable material details data")
+                    holder.authorityPaymentTable.adapter=PowerFuelPaymentTableAdapter(baseFragment.requireContext(),listener,ArrayList())
+                }
+
             }
             is ViewHold7 -> {
                 if (currentOpened == position) {
@@ -503,6 +591,14 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
+
+                    holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                        if (datalist!=null){
+                            listener.addAttachment()
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -515,6 +611,19 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                try {
+                    if (datalist!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked() {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
             }
         }
     }
@@ -534,9 +643,15 @@ class PowerConnecFragAdapter(var context: Context, var listener: PowerConnection
 
     interface PowerConnectionListListener {
        fun attachmentItemClicked()
+       fun addAttachment()
+       fun updateData(updatedData:PowerConnectionAllData)
        fun viewPoClicked(position: Int,data:PowerFuelPODetail)
+       fun editPoClicked(position: Int,data:PowerFuelPODetail)
        fun viewConsumableClicked(position: Int,data:PowerConsumableMaterial)
+       fun editConsumableClicked(position: Int,data:PowerConsumableMaterial)
+       fun editTarrifClicked(position: Int,data:PowerFuelTariffDetails)
        fun viewAuthorityPaymentClicked(position: Int,data:PowerFuelAuthorityPayments)
+       fun editAuthorityPaymentClicked(position: Int,data:PowerFuelAuthorityPayments)
     }
 
 }

@@ -38,7 +38,7 @@ class UtilityACMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, 
         binding.VendorCodeEdit.setText(data.VendorCode)
         binding.NextPMIntervalEdit.setText(data.NextPMInterval)
         binding.VendorExecutiveNameEdit.setText(data.VendorExecutiveName)
-        binding.remarksEdit.setText(data.Remark)
+        binding.remarksEdit.setText(data.remark)
         binding.PMDateEdit.text=Utils.getFormatedDate(data.PMDate,"dd-MMM-yyyy")
         if (data.VendorCompany?.isNotEmpty()==true)
             AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
@@ -53,7 +53,7 @@ class UtilityACMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, 
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
                 it.NextPMInterval=binding.NextPMIntervalEdit.text.toString()
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
-                it.Remark=binding.remarksEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
                 it.PMDate=Utils.getFullFormatedDate(binding.PMDateEdit.text.toString())
                 it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
 

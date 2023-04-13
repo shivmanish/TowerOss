@@ -46,11 +46,11 @@ class EarthingPoTableAdapter(var context : Context,var listener : EarthingInfoFr
             performOptionsMenuClick(position,it,item)
         }
         try {
-            if (item.VendorCompany.isNotEmpty())
+            if (item.VendorCompany?.isNotEmpty()==true)
                 AppPreferences.getInstance().setDropDown(holder.binding.VendorName,
-                    DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
+                    DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
             holder.binding.PoNo.text=item.PONumber
-            holder.binding.poDate.text= Utils.getFormatedDate(item.PODate.substring(0,10),"dd-MMM-yyyy")
+            holder.binding.poDate.text= Utils.getFormatedDate(item.PODate,"dd-MMM-yyyy")
             holder.binding.SrNo.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("EarthPoTableAdapter error : ${e.localizedMessage}")

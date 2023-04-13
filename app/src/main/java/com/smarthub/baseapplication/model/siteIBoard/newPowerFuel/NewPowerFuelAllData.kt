@@ -1,11 +1,11 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
-data class NewPowerFuelAllData(
-    val PowerAndFuelEBBil: ArrayList<PowerFuelBills>,
-    val PowerAndFuelEBConnection: ArrayList<PowerConnectionAllData>,
-    val PowerAndFuelEBPayment: ArrayList<PowerFuelEBPayments>,
-    val created_at: String,
-    val id: Int,
-    val isActive: Boolean,
-    val modified_at: String
-)
+class NewPowerFuelAllData{
+    var PowerAndFuelEBBil: ArrayList<PowerFuelBills>?=null
+    var PowerAndFuelEBConnection: ArrayList<PowerConnectionAllData>?=null
+    var PowerAndFuelEBPayment: ArrayList<PowerFuelEBPayments>?=null
+    var created_at: String?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var modified_at: String?=null
+}
