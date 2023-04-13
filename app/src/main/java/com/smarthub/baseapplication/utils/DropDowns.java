@@ -157,6 +157,5 @@ public enum DropDowns {
     BatterybankInstalledLocationType,
     Shape,
     OffSetPoleReqd,
-    Feasibility,
-    PitRodMaterial
+    Feasibility
 }
