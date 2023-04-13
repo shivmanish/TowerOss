@@ -55,8 +55,15 @@ class SecotrsCellsDetailsTableAdapter(
             holder.binding.Technology,
             DropDowns.Rftechnology.name, list?.get(position)?.Technology
         )
+//        AppPreferences.getInstance().setDropDown(holder.binding.Shape,
+//            DropDowns.Shape.name,list?.get(position)?.Shape)
 
-//        holder.binding.Technology.text=list?.get(position)?.Technology
+//                AppPreferences.getInstance().setDropDown(holder.binding.OffSetPoleReqd,
+//            DropDowns.OffSetPoleReqd.name,list?.get(position)?.OffSetPoleReqd)
+
+//        AppPreferences.getInstance().setDropDown(holder.binding.Feasibility,
+//            DropDowns.Feasibility.name,list?.get(position)?.Feasibility)
+
         holder.binding.TrxCount.text = list?.get(position)?.TRXCount
         holder.binding.AnteenaHeight.text = list?.get(position)?.AntennaHeight
 

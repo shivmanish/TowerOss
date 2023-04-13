@@ -10,9 +10,11 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerEarthingDetailsTableItemsBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.TwrCivilInfraEarthingDetail
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.EarthingInfoFragmentAdapter
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 
 class EarthingDetailsTableAdapter (var context : Context, var listener : EarthingInfoFragmentAdapter.TowerEarthingListListener, var list:ArrayList<TwrCivilInfraEarthingDetail>?): RecyclerView.Adapter<EarthingDetailsTableAdapter.ViewHold>() {
 
@@ -47,6 +49,11 @@ class EarthingDetailsTableAdapter (var context : Context, var listener : Earthin
 //                    DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
 //            holder.binding.PitSize.text=item.P
 //            holder.binding.poDate.text= Utils.getFormatedDate(item.PODate.substring(0,10),"dd-MMM-yyyy")
+            AppPreferences.getInstance().setDropDown(holder.binding.pitRoadMaterial,
+                DropDowns.PitRodMaterial.name,item.PitRodMaterial.toString())
+
+
+
             holder.binding.Id.text=position.plus(1).toString()
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")
