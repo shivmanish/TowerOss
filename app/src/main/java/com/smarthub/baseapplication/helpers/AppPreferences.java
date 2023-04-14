@@ -417,6 +417,22 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         }
     }
 
+    public void setDropDown(TextView customSpinner, String name, ArrayList<Integer> ids){
+        List<DropDownItem> list = getDropDownList(name);
+        if (ids!=null && !ids.isEmpty()){
+            String id = ids.get(0).toString();
+            for (DropDownItem i : list) {
+                if (i.getId().equalsIgnoreCase(id)) {
+                    customSpinner.setText(i.getName());
+                    return;
+                }
+            }
+            if (!list.isEmpty()){
+                customSpinner.setText(list.get(0).getName());
+            }
+        }
+    }
+
     public void setDropDown(TextView customSpinner, String name, String id,TextView customText){
         List<DropDownItem> list = getDropDownList(name);
         for (DropDownItem i : list) {
