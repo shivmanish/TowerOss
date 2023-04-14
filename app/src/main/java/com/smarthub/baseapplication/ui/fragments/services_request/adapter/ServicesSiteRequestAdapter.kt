@@ -262,10 +262,10 @@ class ServicesRequestAdapter(var context :Context,var listener: ServicesRequestL
                     }
                     AppPreferences.getInstance().setDropDown(holder.binding.SRType,DropDowns.SRType.name,
                         SrDetailsData?.SRType?.toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.SRStatus,DropDowns.SRType.name,SrDetailsData?.SRStatus?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.SRStatus,DropDowns.SRType.name,SrDetailsData?.SRStatus)
 //                    AppPreferences.getInstance().setDropDown(holder.binding.RequesterCompany,DropDowns.SRDetailRequesterCompany.name,SrDetailsData?.RequesterCompany)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.SRDetailTechnology.name,SrDetailsData?.Technology?.get(0).toString())
-                    AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.RFTechnology,DropDowns.SRDetailTechnology.name,SrDetailsData?.Technology)
+                    AppPreferences.getInstance().setDropDown(holder.binding.Priority,DropDowns.Priority.name,SrDetailsData?.Priority)
 
                     holder.binding.RequestDate.text=SrDetailsData?.RequestDate
                     holder.binding.OPCOName.text=SrDetailsData?.OpcoSiteName

@@ -48,12 +48,12 @@ class AcquisitionSurveyFragment (var data : AcquisitionSurveyModel?, var Id: Str
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 AppLogger.log("size :${it.data.ServiceRequestMain?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -70,7 +70,7 @@ class AcquisitionSurveyFragment (var data : AcquisitionSurveyModel?, var Id: Str
         super.onDestroy()
     }
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
     override fun EditBuildingdetailsItemClicked(
         buildingDetailData: ASAquisitionSurveyBuildingDetail?,
@@ -87,27 +87,27 @@ class AcquisitionSurveyFragment (var data : AcquisitionSurveyModel?, var Id: Str
     }
 
     override fun editBoundryDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Boundry table Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Edit Boundry table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun viewBoundryDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"View Boundry table Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"View Boundry table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun editPropertyOwnerDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Property Owner table Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Edit Property Owner table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun viewPropertyOwnerDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"View Property Owner table Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"View Property Owner table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun editPoDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Po table Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Edit Po table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun viewPoDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"view Po table Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"view Po table Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
 }

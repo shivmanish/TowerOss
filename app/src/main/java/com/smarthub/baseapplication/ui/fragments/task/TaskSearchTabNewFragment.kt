@@ -283,7 +283,7 @@ class TaskSearchTabNewFragment(
                     AppLogger.log("Selected TAb is OpcoTenency")
                 }
                 2->{
-                    setUpSiteAcqusitionData(splittedData as ArrayList<String>)
+                    setUpSiteAcqusitionData(ArrayList(splittedData))
                 }
                 3->{
                     setUpUtilityUqipData()

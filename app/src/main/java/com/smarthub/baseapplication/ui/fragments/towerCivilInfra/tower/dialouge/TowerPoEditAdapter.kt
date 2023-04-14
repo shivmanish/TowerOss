@@ -86,7 +86,7 @@ class TowerPoEditAdapter (var data: TwrCivilPODetail,var childId:Int?,var parent
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerPoEditAdapter Something went wrong in updating data")
             }
             else if (it != null) {
