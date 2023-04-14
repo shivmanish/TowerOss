@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.activities
 
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -35,15 +36,20 @@ open class BaseActivity : AppCompatActivity() {
 
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog(
-            this,
-            { arg0, arg1, arg2, arg3 ->
+        val datePickerDialog = DatePickerDialog(this, { arg0, arg1, arg2, arg3 ->
                 // arg1 = year
                 // arg2 = month
                 // arg3 = day
                 showDate(arg1, arg2 + 1, arg3,view)
             }, year, month, day
-        ).show()
+        )
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE,"clear") { dialog, which ->
+            view.text = ""
+        }
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEUTRAL,"cancel") { dialog, which ->
+            datePickerDialog.dismiss()
+        }
+        datePickerDialog.show()
     }
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
