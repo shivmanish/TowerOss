@@ -75,6 +75,10 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAc
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.*
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleFragPageAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerPageAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
@@ -561,37 +565,36 @@ class TaskSearchTabNewFragment(
         }
         val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
             TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
-            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+            override fun clickedTowerItem(id:String,data: NewTowerCivilAllData?) {
                 TwrInfraDetails.Id=id
                 TwrInfraDetails.TowerModelData=data
-                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, data!!.TowerAndCivilInfraTower,data)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
 
             }
 
-            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+            override fun clickedPoleItem(id:String,data: NewTowerCivilAllData?) {
                 PoleFragment.Id=id
                 PoleFragment.TowerModelData=data
-                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, data!!.TowerAndCivilInfraPole,data)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
 
             }
 
             override fun clickedEquipmentRoomItem(
-                id: String,
-                data: ArrayList<NewTowerCivilAllData>?,
+                id:String,data:NewTowerCivilAllData?
             ) {
                 TowerEquipmentFragemnt.EquipmentModelData = data
                 TowerEquipmentFragemnt.Id=id
-                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
+                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, data!!.TowerAndCivilInfraEquipmentRoom,data)
                 binding.tabs.setupWithViewPager(binding.viewpager)
                 setViewPager()
 
             }
 
-            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+            override fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?) {
                 TowerEarthingFragment.Id=id
                 TowerEarthingFragment.EarthingModelData=data
                 binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
@@ -630,7 +633,7 @@ class TaskSearchTabNewFragment(
         filteredData.clear()
         for(i in 0..data.size.minus(1)){
             val tempdData = FilterdTwrData()
-            if (data.get(i).TowerAndCivilInfraTower.isNotEmpty()){
+            if (data.get(i).TowerAndCivilInfraTower!!.isNotEmpty()){
                 tempdData.TowerDetails=data.get(i)
                 tempdData.index=i
                 filteredData.add(tempdData)
