@@ -81,7 +81,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
 
                 <TextView
-                    android:text="Please enter your User Id and Password"
+                    android:text="Please enter your Mobile/Email and Password"
                     android:textSize="13sp"
                     android:textColor="#ffffff"
                     android:id="@+id/request_msg"
@@ -96,7 +96,7 @@
                 <com.smarthub.baseapplication.widgets.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username or E-mail"
+                    android:hint="Mobile Number or E-mail"
                     android:id="@+id/user_mail_layout"
                     android:textColorHint="@color/white"
                     style="@style/TextInputLayout"
@@ -269,7 +269,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <TextView
-                        android:text="Not a member yet? "
+                        android:text="New to TowerOSS?"
                         android:textSize="13sp"
                         android:textColor="#ffffff"
                         android:id="@+id/already_have_account"
