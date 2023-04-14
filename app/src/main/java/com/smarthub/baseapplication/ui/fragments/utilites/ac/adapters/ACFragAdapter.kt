@@ -413,7 +413,6 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                     holder.binding.AcceptenceDate.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
                     // edit mode
-                    holder.binding.VendorCodeEdit.setText(InsAccepData?.VendorCode)
                     holder.binding.VendorExcutiveNameEdit.setText(InsAccepData?.VendorExecutiveName)
                     holder.binding.VendorExecutiveEmailEdit.setText(InsAccepData?.VendorEmailId)
                     holder.binding.VendorExecutiveNumberEdit.setText(InsAccepData?.VendorExecutiveNumber)
@@ -427,9 +426,9 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
 
                 }
                 if (InsAccepData!=null && InsAccepData?.VendorCompany?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,InsAccepData?.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,InsAccepData?.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
                 if (InsAccepData!=null && InsAccepData?.AcceptanceStatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name,InsAccepData?.AcceptanceStatus?.get(0).toString())
                 else

@@ -126,13 +126,12 @@ class UtilityCableActivityAdapter(var baseActivity: BaseActivity, var listener: 
                 holder.binding.UsedForEdit.setText(dataList.UsedFor)
                 holder.binding.LengthEdit.setText(dataList.Length)
                 holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(dataList.InstallationDate,"dd-MMM-yyyy")
-                holder.binding.VendorCodeEdit.setText(dataList.VendorCode)
                 holder.binding.remarksEdit.setText(dataList.remark)
 
                 if (dataList.VendorCompany?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,dataList.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,dataList.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
                 if (dataList.CableName?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.CableNameEdit, DropDowns.CableName.name,dataList.CableName?.get(0).toString())
                 else

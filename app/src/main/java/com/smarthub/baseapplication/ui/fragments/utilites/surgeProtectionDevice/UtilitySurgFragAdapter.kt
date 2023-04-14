@@ -148,14 +148,13 @@ class UtilitySurgFragAdapter(var baseActivity: BaseActivity, var listener: Utili
                     }
 
                     // edit code
-                    holder.binding.VendorCodeEdit.setText(InsAccepData.VendorCode)
                     holder.binding.InstallationDateEdit.text= Utils.getFormatedDate(InsAccepData.InstallationDate,"dd-MMM-yyyy")
                 }
 
                 if (InsAccepData!=null && InsAccepData.VendorCompany?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
                 holder.binding.update.setOnClickListener {
                     val tempEquipData=UtilitySMPSEquipment()
                     val tempInsData=UtiltyInstallationAcceptence()
