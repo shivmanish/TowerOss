@@ -19,9 +19,8 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : AcqSurvey
 
 
     fun addItem(){
-        val data=SAcqPropertyOwnerDetail("","","","",arrayListOf(0),"","")
-        this.list?.add(data)
-        notifyItemInserted(list?.size!!.plus(1))
+        val data=SAcqPropertyOwnerDetail()
+        listener.editPropertyOwnerClicked(-1,data)
     }
 
     fun removeItem(position:Int){
@@ -34,7 +33,7 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : AcqSurvey
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.acq_property_owner_table_items,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.acq_property_owner_table_items,parent,false)
         return ViewHold(view)
     }
 
@@ -47,8 +46,8 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : AcqSurvey
             holder.binding.SrNo.text=position.plus(1).toString()
             holder.binding.OwnerName.text=item.OwnerName
             holder.binding.share.text=item.Share
-            if (item.PropertyOwnership.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,item.PropertyOwnership.get(0).toString())
+            if (item.PropertyOwnership?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,item.PropertyOwnership?.get(0).toString())
 
         }catch (e:java.lang.Exception){
             AppLogger.log("ToewerPoTableadapter error : ${e.localizedMessage}")

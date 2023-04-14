@@ -8,20 +8,19 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcqPayeeAccDetailsEditDialougeBinding
-import com.smarthub.baseapplication.databinding.AcqPoEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PayeeAccDetailEditDialouge (var data: SAcqPayeeAccountDetail, var fullData: NewSiteAcquiAllData?, var listner:PayeeAccUpdateListener) : BaseBottomSheetDialogFragment(){
+class PayeeAccDetailEditDialouge (var data: SAcqPayeeAccountDetail, var fullData: NewSiteAcquiAllData?, var listner:PayeeAccUpdateListener,var titelFlag:Int) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: AcqPayeeAccDetailsEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
@@ -32,10 +31,16 @@ class PayeeAccDetailEditDialouge (var data: SAcqPayeeAccountDetail, var fullData
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (titelFlag==-1)
+            binding.titleText.text="Add Payee Account Details"
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }
+        if (data.PayeeStatus!=null && data.PayeeStatus!! >0)
+            AppPreferences.getInstance().setDropDown(binding.PayeeStatusEdit, DropDowns.PayeeStatus.name,data.PayeeStatus.toString())
+        else
+            AppPreferences.getInstance().setDropDown(binding.PayeeStatusEdit, DropDowns.PayeeStatus.name)
         binding.PayeeNameEdit.setText(data.PayeeName)
         binding.ShareEdit.setText(data.Share)
         binding.AccountNoEdit.setText(data.AccountNumber)
@@ -44,71 +49,30 @@ class PayeeAccDetailEditDialouge (var data: SAcqPayeeAccountDetail, var fullData
         binding.IfscCodeEdit.setText(data.BankIFSCode)
         binding.GSTNumberEdit.setText(data.GSTIN)
         binding.PanNumberEdit.setText(data.PAN)
-        binding.PayeeStatusEdit.text=data.PayeeStatus.toString()
 
-
-//
         binding.update.setOnClickListener {
             showProgressLayout()
-            if (fullData?.SAcqSoftAcquisition==null || fullData?.SAcqSoftAcquisition?.isEmpty()==true){
-                data.let {
-                    it.PayeeName=binding.PayeeNameEdit.text.toString()
-                    it.Share=binding.ShareEdit.text.toString()
-                    it.AccountNumber=binding.AccountNoEdit.text.toString()
-                    it.PayeeBank=binding.PayeeBankEdit.text.toString()
-                    it.BankBranch=binding.BranchNameEdit.text.toString()
-                    it.BankIFSCode=binding.IfscCodeEdit.text.toString()
-                    it.GSTIN=binding.GSTNumberEdit.text.toString()
-                    it.GSTIN=binding.GSTNumberEdit.text.toString()
-                    it.PAN=binding.PanNumberEdit.text.toString()
-
-
-                    // add po data to agreement model list
-                    val tempList:ArrayList<SAcqPayeeAccountDetail> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    val tempData= SoftAcquisitionData()
-                    tempData.SAcqPayeeAccountDetail= tempList
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<SoftAcquisitionData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqSoftAcquisition=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
+            data.let {
+                it.PayeeName=binding.PayeeNameEdit.text.toString()
+                it.Share=binding.ShareEdit.text.toString()
+                it.AccountNumber=binding.AccountNoEdit.text.toString()
+                it.PayeeBank=binding.PayeeBankEdit.text.toString()
+                it.BankBranch=binding.BranchNameEdit.text.toString()
+                it.BankIFSCode=binding.IfscCodeEdit.text.toString()
+                it.GSTIN=binding.GSTNumberEdit.text.toString()
+                it.GSTIN=binding.GSTNumberEdit.text.toString()
+                it.PAN=binding.PanNumberEdit.text.toString()
+                it.PayeeStatus=binding.PayeeStatusEdit.selectedValue.id.toIntOrNull()
             }
-            else{
-                data.let {
-                    it.PayeeName=binding.PayeeNameEdit.text.toString()
-                    it.Share=binding.ShareEdit.text.toString()
-                    it.AccountNumber=binding.AccountNoEdit.text.toString()
-                    it.PayeeBank=binding.PayeeBankEdit.text.toString()
-                    it.BankBranch=binding.BranchNameEdit.text.toString()
-                    it.BankIFSCode=binding.IfscCodeEdit.text.toString()
-                    it.GSTIN=binding.GSTNumberEdit.text.toString()
-                    it.GSTIN=binding.GSTNumberEdit.text.toString()
-                    it.PAN=binding.PanNumberEdit.text.toString()
-
-
-                    // add po data to agreement model list
-                    val tempList:ArrayList<SAcqPayeeAccountDetail> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    val tempData= fullData?.SAcqSoftAcquisition?.get(0) as SoftAcquisitionData
-                    tempData.SAcqSoftAcquisitionAgreementTerm=null
-                    tempData.SAcqPayeeAccountDetail= tempList
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<SoftAcquisitionData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqSoftAcquisition=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
-            }
+            val temSoftAcqData=SoftAcquisitionData()
+            temSoftAcqData.SAcqPayeeAccountDetail= arrayListOf(data)
+            if (fullData!=null && fullData?.SAcqSoftAcquisition!=null && fullData?.SAcqSoftAcquisition?.isNotEmpty()==true )
+                temSoftAcqData.id=fullData?.SAcqSoftAcquisition?.get(0)?.id
+            val dataModel = UpdateSiteAcquiAllData()
+            dataModel.SAcqSoftAcquisition= arrayListOf(temSoftAcqData)
+            if (fullData!=null)
+                dataModel.id=fullData?.id
+            viewmodel.updateSiteAcq(dataModel)
         }
 
         if (viewmodel.updateSiteAcqDataResponse?.hasActiveObservers() == true) {

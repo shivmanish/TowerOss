@@ -429,6 +429,9 @@
                         android:id="@+id/Registration_date_edit"
                         android:text=""
                         style="@style/RowTestItemEdit"
+                        android:paddingEnd="@dimen/dp5"
+                        android:drawableEnd="@drawable/calender"
+                        android:drawableTint="@color/color1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View
@@ -475,6 +478,9 @@
                         android:id="@+id/Agreement_effective_date_edit"
                         android:text=""
                         style="@style/RowTestItemEdit"
+                        android:paddingEnd="@dimen/dp5"
+                        android:drawableEnd="@drawable/calender"
+                        android:drawableTint="@color/color1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -500,6 +506,9 @@
                         android:id="@+id/Agreement_Expiry_Date_edit"
                         android:text=""
                         style="@style/RowTestItemEdit"
+                        android:paddingEnd="@dimen/dp5"
+                        android:drawableEnd="@drawable/calender"
+                        android:drawableTint="@color/color1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -523,6 +532,9 @@
                     <TextView
                         android:id="@+id/Rent_Start_Date_edit"
                         android:text=""
+                        android:paddingEnd="@dimen/dp5"
+                        android:drawableEnd="@drawable/calender"
+                        android:drawableTint="@color/color1"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

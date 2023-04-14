@@ -95,7 +95,7 @@ class AgreementFragment(var acqAgree:NewSiteAcquiAllData?, var parentIndex:Int):
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }
 
-            })
+            },position)
         bm.show(childFragmentManager,"sdg")
     }
 

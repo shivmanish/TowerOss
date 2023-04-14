@@ -41,9 +41,9 @@ class UtilityFireExtMaintenanceEditDialouge (var data: UtilityPreventiveMaintena
         binding.remarksEdit.setText(data.remark)
         binding.PMDateEdit.text=Utils.getFormatedDate(data.PMDate,"dd-MMM-yyyy")
         if (data.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString(),binding.VendorCodeEdit)
         else
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,binding.VendorCodeEdit)
         setDatePickerView( binding.PMDateEdit)
 
         binding.update.setOnClickListener {

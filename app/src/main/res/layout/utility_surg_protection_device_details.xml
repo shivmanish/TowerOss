@@ -630,7 +630,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/Vendor_Code_Edit"
                         android:text="0"
                         style="@style/RowTestItemEdit"

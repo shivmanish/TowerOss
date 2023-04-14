@@ -92,7 +92,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }
 
-            })
+            },position)
         bm.show(childFragmentManager,"sdg")
     }
 
@@ -108,7 +108,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }
 
-            })
+            },position)
         bm.show(childFragmentManager,"sdg")
     }
 
@@ -124,7 +124,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }
 
-            })
+            },position)
         bm.show(childFragmentManager,"sdg")
     }
     override fun addAttachment() {
