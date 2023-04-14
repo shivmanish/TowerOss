@@ -1,16 +1,16 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
-data class SAcqPODetail(
-    var POAmount: String,
-    var PODate: String?=null,
-    var POItem: String,
-    var POLineNumber: Int,
-    var PONumber: String,
-    var remark: String,
-    var VendorCode: String,
-    var VendorCompany: ArrayList<Int>,
-//    var created_at: String,
+class SAcqPODetail{
+    var POAmount: String?=null
+    var PODate: String?=null
+    var POItem: String?=null
+    var POLineNumber: Int?=null
+    var PONumber: String?=null
+    var remark: String?=null
+    var VendorCode: String?=null
+    var VendorCompany: ArrayList<Int>?=null
+//    var created_at: String?=null
     var id: Int?=null
-//    var isActive: Boolean,
+//    var isActive: Boolean?=null
 //    var modified_at: String
-)
+}

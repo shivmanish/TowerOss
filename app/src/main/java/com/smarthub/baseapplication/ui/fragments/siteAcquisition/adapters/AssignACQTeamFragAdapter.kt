@@ -169,7 +169,6 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     holder.binding.AcquisitionLeadNameEdit.setText(datalist?.LeadName)
                     holder.binding.AcquisitionExecutiveNameEdit.setText(datalist?.ExecutiveName)
                     holder.binding.AcquisitionBudgetEdit.setText(datalist?.AcquisitionBudget)
-                    holder.binding.VendorCodeEdit.setText(datalist?.VendorCode)
                     holder.binding.PONumberEdit.setText(datalist?.PONumber)
                     holder.binding.POLineNoEdit.setText(datalist?.POLineItemNo.toString())
                     holder.binding.POAmountEdit.setText(datalist?.POAmount)
@@ -193,9 +192,9 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name)
                 if (datalist!=null && datalist?.VendorCompany?.isNotEmpty() == true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
 
 
                 holder.binding.update.setOnClickListener {

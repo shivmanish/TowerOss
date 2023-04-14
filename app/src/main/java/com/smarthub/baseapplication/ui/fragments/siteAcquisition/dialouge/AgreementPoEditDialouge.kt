@@ -20,7 +20,7 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcquiAllData?,var listner:AcqPoUpdateListener) : BaseBottomSheetDialogFragment(){
+class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcquiAllData?,var listner:AcqPoUpdateListener,var titelFlag:Int) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: AcqPoEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
@@ -31,6 +31,8 @@ class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcqui
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (titelFlag<0)
+            binding.titleText.text="Add Po Details"
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
@@ -40,79 +42,38 @@ class AgreementPoEditDialouge (var data: SAcqPODetail,var fullData: NewSiteAcqui
         binding.PoAmountEdit.setText(data.POAmount)
         binding.PoLineNumberEdit.setText(data.POLineNumber.toString())
         binding.remarksEdit.setText(data.remark)
-        if (data.VendorCompany.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany[0].toString(),binding.VendorCodeEdit)
+        if (data.VendorCompany!=null && data.VendorCompany?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString(),binding.VendorCodeEdit)
         else
             AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name,binding.VendorCodeEdit)
 
-        if (data.PODate?.isNotEmpty()==true)
-            binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
-        else
-            binding.PoDateEdit.text=data.PODate
+
+        binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
         setDatePickerView( binding.PoDateEdit)
 
         binding.update.setOnClickListener {
             showProgressLayout()
-            if (fullData?.SAcqAgreement== null || fullData?.SAcqAgreement?.isEmpty()==true){
-                data.let {
-                    it.POAmount=binding.PoAmountEdit.text.toString()
-                    it.POItem=binding.PoItemEdit.text.toString()
-                    it.VendorCode=binding.VendorCodeEdit.text.toString()
-                    it.PONumber=binding.PoNumberEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    it.POLineNumber=binding.PoLineNumberEdit.text.toString().toInt()
-                    it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
-                    it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+            data.let {
+                it.POAmount=binding.PoAmountEdit.text.toString()
+                it.POItem=binding.PoItemEdit.text.toString()
+                it.VendorCode=binding.VendorCodeEdit.text.toString()
+                it.PONumber=binding.PoNumberEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
+                it.POLineNumber=binding.PoLineNumberEdit.text.toString().toInt()
+                it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
+                it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
 
-                    // add po data to agreement model list
-                    val tempList:ArrayList<SAcqPODetail> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    val tempData= SiteAcqAgreement()
-                    tempData.SAcqPODetail= tempList
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<SiteAcqAgreement> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAgreement=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
             }
-            else
-            {
-                data.let {
-                    it.POAmount=binding.PoAmountEdit.text.toString()
-                    it.POItem=binding.PoItemEdit.text.toString()
-                    it.VendorCode=binding.VendorCodeEdit.text.toString()
-                    it.PONumber=binding.PoNumberEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    it.POLineNumber=binding.PoLineNumberEdit.text.toString().toInt()
-                    it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
-                    if (data.VendorCompany.isNotEmpty())
-                        it.VendorCompany[0]=binding.VendorNameEdit.selectedValue.id.toInt()
-                    else
-                        it.VendorCompany.add(binding.VendorNameEdit.selectedValue.id.toInt())
-
-                    // add po data to agreement model list
-                    val tempList:ArrayList<SAcqPODetail> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    val tempData= fullData?.SAcqAgreement?.get(0) as SiteAcqAgreement
-                    tempData.SAcqAgreementDetail=null
-                    tempData.SAcqPODetail= tempList
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<SiteAcqAgreement> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAgreement=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
+            val tempData=SiteAcqAgreement()
+            val dataModel = UpdateSiteAcquiAllData()
+            if (fullData!=null){
+                dataModel.id=fullData?.id
+                if (fullData?.SAcqAgreement!=null && fullData?.SAcqAgreement?.isNotEmpty()==true)
+                    tempData.id=fullData?.SAcqAgreement?.get(0)?.id
             }
-
+            tempData.SAcqPODetail= arrayListOf(data)
+            dataModel.SAcqAgreement= arrayListOf(tempData)
+            viewmodel.updateSiteAcq(dataModel)
         }
 
         if (viewmodel.updateSiteAcqDataResponse?.hasActiveObservers() == true) {

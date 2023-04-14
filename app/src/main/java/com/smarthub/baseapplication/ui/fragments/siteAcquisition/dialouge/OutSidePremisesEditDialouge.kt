@@ -23,7 +23,7 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: NewSiteAcquiAllData?, var listner:AcqOutsidePremisesUpdateListener) : BaseBottomSheetDialogFragment(){
+class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: NewSiteAcquiAllData?, var listner:AcqOutsidePremisesUpdateListener,var titelFlag:Int) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: AcqOutSidePremisesEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
@@ -34,6 +34,8 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (titelFlag<0)
+            binding.titleText.text="Add OutSide Premises"
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.60).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
@@ -41,109 +43,41 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
         binding.DistanceFromBoundaryEdit.setText(data.DistanceFromBoundry)
         binding.HeightAGlEdit.setText(data.Height)
         binding.remarksEdit.setText(data.remark)
-        if (data.ExternalStructureType.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name,data.ExternalStructureType[0].toString())
+        if (data.ExternalStructureType!=null && data.ExternalStructureType?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name,data.ExternalStructureType?.get(0).toString())
         else
             AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name)
-        if (data.Direction.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name,data.Direction[0].toString())
+        if (data.Direction!=null && data.Direction?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name,data.Direction?.get(0).toString())
         else
             AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name)
 
         binding.update.setOnClickListener {
             showProgressLayout()
-            if (fullData?.SAcqAcquitionSurvey==null || fullData?.SAcqAcquitionSurvey?.isEmpty()==true){
-                data.let {
-                    it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
-                    it.Height=binding.HeightAGlEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
-                    it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
-                    // add OutSidePremises data to agreement model list
-                    val tempList:ArrayList<SAcqOutsidePremise> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    // add data in External Structure
-                    val tempExternalStructure=SAcqExternalStructure()
-                    tempExternalStructure.SAcqOutsidePremise=tempList
-                    // add data in AcqSurvey Data
-                    val tempData= AcquisitionSurveyData()
-                    tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAcquitionSurvey=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
+            data.let {
+                it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
+                it.Height=binding.HeightAGlEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
+                it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
+                it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
             }
-            else if (fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure==null ||
-                fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.isEmpty()==true ){
-                data.let {
-                    it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
-                    it.Height=binding.HeightAGlEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
-                    it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
-                    // add OutSidePremises data to agreement model list
-                    val tempList:ArrayList<SAcqOutsidePremise> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    // add data in External Structure
-                    val tempExternalStructure=SAcqExternalStructure()
-                    tempExternalStructure.SAcqOutsidePremise=tempList
-                    // add data in AcqSurvey Data
-                    val tempData= AcquisitionSurveyData()
+            val tempExternalStructure=SAcqExternalStructure()
+            val tempData= AcquisitionSurveyData()
+            val dataModel = UpdateSiteAcquiAllData()
+            if (fullData!=null){
+                dataModel.id=fullData?.id
+                if (fullData?.SAcqAcquitionSurvey!=null && fullData?.SAcqAcquitionSurvey?.isNotEmpty()==true){
                     tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
-                    tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAcquitionSurvey=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
-            }
-            else{
-                data.let {
-                    it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
-                    it.Height=binding.HeightAGlEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    if (data.ExternalStructureType.isNotEmpty())
-                        it.ExternalStructureType[0]=binding.ExternalStructureTypeEdit.selectedValue.id.toInt()
-                    else
-                        it.ExternalStructureType.add(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
-                    if (data.Direction.isNotEmpty())
-                        it.Direction[0]=binding.DirectionFromCentreEdit.selectedValue.id.toInt()
-                    else
-                        it.Direction.add(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
+                    if (fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure!=null &&
+                        fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.isNotEmpty()==true)
+                        tempExternalStructure.id=fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.get(0)?.id
 
-                    // add OutSidePremises data to agreement model list
-                    val tempList:ArrayList<SAcqOutsidePremise> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    // add data in External Structure
-                    val tempExternalStructure=SAcqExternalStructure()
-                    tempExternalStructure.SAcqOutsidePremise=tempList
-                    tempExternalStructure.id=fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.get(0)?.id
-                    // add data in AcqSurvey Data
-                    val tempData= AcquisitionSurveyData()
-                    tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
-                    tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAcquitionSurvey=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
                 }
             }
+            tempExternalStructure.SAcqOutsidePremise= arrayListOf(data)
+            tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
+            dataModel.SAcqAcquitionSurvey= arrayListOf(tempData)
+            viewmodel.updateSiteAcq(dataModel)
         }
 
         if (viewmodel.updateSiteAcqDataResponse?.hasActiveObservers() == true) {

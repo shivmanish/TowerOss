@@ -19,9 +19,8 @@ class InsidePremisesTableAdapter (var context : Context, var listener : AcqSurve
 
 
     fun addItem(){
-        val data=SAcqInsidePremise(arrayListOf(0),"",arrayListOf(0),"",0,"")
-        this.list?.add(data)
-        notifyItemInserted(list?.size!!.plus(1))
+        val data=SAcqInsidePremise()
+        listener.editInsidePremisesClicked(-1,data)
     }
 
     fun removeItem(position:Int){
@@ -34,7 +33,7 @@ class InsidePremisesTableAdapter (var context : Context, var listener : AcqSurve
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.inside_permises_table_items,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.inside_permises_table_items,parent,false)
         return ViewHold(view)
     }
 
@@ -44,9 +43,8 @@ class InsidePremisesTableAdapter (var context : Context, var listener : AcqSurve
             performOptionsMenuClick(position,it,item)
         }
         try {
-            if (item.ExternalStructureType.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.ExternalStructureType,DropDowns.ExternalStructureType.name,item.ExternalStructureType.get(0).toString())
-
+            if (item.ExternalStructureType?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.ExternalStructureType,DropDowns.ExternalStructureType.name,item.ExternalStructureType?.get(0).toString())
             holder.binding.DistanceFromCentre.text=item.DistanceFromCentre
             holder.binding.HeightAGL.text=item.Height
             holder.binding.SrNo.text=position.plus(1).toString()
@@ -79,7 +77,6 @@ class InsidePremisesTableAdapter (var context : Context, var listener : AcqSurve
                     // in the same way you can implement others
                     R.id.action_delete -> {
                         popupMenu.dismiss()
-                        // define
                         removeItem(position)
                         return true
                     }

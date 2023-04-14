@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
-data class SAcqPropertyOwnerDetail(
-    var Address: String,
-    var EmailId: String,
-    var OwnerName: String,
-    var PhoneNumber: String,
-    var PropertyOwnership: ArrayList<Int>,
-    var remark: String,
-    var Share: String,
-//    var created_at: String,
-    var id: Int?=null,
-//    var isActive: Boolean,
+class SAcqPropertyOwnerDetail{
+    var Address: String?=null
+    var EmailId: String?=null
+    var OwnerName: String?=null
+    var PhoneNumber: String?=null
+    var PropertyOwnership: ArrayList<Int>?=null
+    var remark: String?=null
+    var Share: String?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
 //    var modified_at: String
-)
+}

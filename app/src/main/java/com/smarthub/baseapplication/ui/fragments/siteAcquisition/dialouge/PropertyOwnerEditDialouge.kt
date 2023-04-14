@@ -7,21 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AcqPoEditDialougeBinding
 import com.smarthub.baseapplication.databinding.AcqPropertyOwnerEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AcquisitionSurveyData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPropertyOwnerDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PropertyOwnerEditDialouge (var data: SAcqPropertyOwnerDetail, var fullData: NewSiteAcquiAllData?, var listner:AcqPropertyOwnerUpdateListener) : BaseBottomSheetDialogFragment(){
+class PropertyOwnerEditDialouge (var data: SAcqPropertyOwnerDetail, var fullData: NewSiteAcquiAllData?, var listner:AcqPropertyOwnerUpdateListener, var titelFlag:Int) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: AcqPropertyOwnerEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
@@ -32,6 +31,8 @@ class PropertyOwnerEditDialouge (var data: SAcqPropertyOwnerDetail, var fullData
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (titelFlag<0)
+            binding.titleText.text="Add Property Owner Details"
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
@@ -42,73 +43,32 @@ class PropertyOwnerEditDialouge (var data: SAcqPropertyOwnerDetail, var fullData
         binding.EmailIdEdit.setText(data.EmailId)
         binding.AddressEdit.setText(data.Address)
         binding.remarksEdit.setText(data.remark)
-        if (data.PropertyOwnership.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.PropertyOwnershipEdit, DropDowns.PropertyOwnership.name,data.PropertyOwnership[0].toString())
+        if (data.PropertyOwnership!=null && data.PropertyOwnership?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.PropertyOwnershipEdit, DropDowns.PropertyOwnership.name,data.PropertyOwnership?.get(0).toString())
         else
             AppPreferences.getInstance().setDropDown(binding.PropertyOwnershipEdit, DropDowns.PropertyOwnership.name)
 
         binding.update.setOnClickListener {
             showProgressLayout()
-            if (fullData?.SAcqAcquitionSurvey==null || fullData?.SAcqAcquitionSurvey?.isEmpty()==true){
-                data.let {
-                    it.Share=binding.ShareEdit.text.toString()
-                    it.OwnerName=binding.OwnerNameEdit.text.toString()
-                    it.PhoneNumber=binding.PhNumberEdit.text.toString()
-                    it.EmailId=binding.EmailIdEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    it.Address=binding.AddressEdit.text.toString()
-                    if (data.PropertyOwnership.isNotEmpty())
-                        it.PropertyOwnership[0]=binding.PropertyOwnershipEdit.selectedValue.id.toInt()
-                    else
-                        it.PropertyOwnership.add(binding.PropertyOwnershipEdit.selectedValue.id.toInt())
-
-                    // add po data to agreement model list
-                    val tempList:ArrayList<SAcqPropertyOwnerDetail> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    val tempData= AcquisitionSurveyData()
-                    tempData.SAcqPropertyOwnerDetail= tempList
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAcquitionSurvey=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
+            data.let {
+                it.Share=binding.ShareEdit.text.toString()
+                it.OwnerName=binding.OwnerNameEdit.text.toString()
+                it.PhoneNumber=binding.PhNumberEdit.text.toString()
+                it.EmailId=binding.EmailIdEdit.text.toString()
+                it.remark=binding.remarksEdit.text.toString()
+                it.Address=binding.AddressEdit.text.toString()
+                it.PropertyOwnership= arrayListOf(binding.PropertyOwnershipEdit.selectedValue.id.toInt())
             }
-            else{
-                data.let {
-                    it.Share=binding.ShareEdit.text.toString()
-                    it.OwnerName=binding.OwnerNameEdit.text.toString()
-                    it.PhoneNumber=binding.PhNumberEdit.text.toString()
-                    it.EmailId=binding.EmailIdEdit.text.toString()
-                    it.remark=binding.remarksEdit.text.toString()
-                    it.Address=binding.AddressEdit.text.toString()
-                    if (data.PropertyOwnership.isNotEmpty())
-                        it.PropertyOwnership[0]=binding.PropertyOwnershipEdit.selectedValue.id.toInt()
-                    else
-                        it.PropertyOwnership.add(binding.PropertyOwnershipEdit.selectedValue.id.toInt())
-
-                    // add po data to agreement model list
-                    val tempList:ArrayList<SAcqPropertyOwnerDetail> = ArrayList()
-                    tempList.clear()
-                    tempList.add(it)
-                    val tempData= AcquisitionSurveyData()
+            val tempData= AcquisitionSurveyData()
+            val dataModel = UpdateSiteAcquiAllData()
+            if (fullData!=null){
+                dataModel.id=fullData?.id
+                if (fullData?.SAcqAcquitionSurvey!=null && fullData?.SAcqAcquitionSurvey?.isNotEmpty()==true)
                     tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
-                    tempData.SAcqPropertyOwnerDetail= tempList
-                    //add add agreement model to update rootModel
-                    val dataModel = UpdateSiteAcquiAllData()
-                    val tempList2:ArrayList<AcquisitionSurveyData> =ArrayList()
-                    tempList2.clear()
-                    tempList2.add(tempData)
-                    dataModel.SAcqAcquitionSurvey=tempList2
-                    dataModel.id=fullData?.id
-                    viewmodel.updateSiteAcq(dataModel)
-                }
             }
-
+            tempData.SAcqPropertyOwnerDetail= arrayListOf(data)
+            dataModel.SAcqAcquitionSurvey= arrayListOf(tempData)
+            viewmodel.updateSiteAcq(dataModel)
         }
 
         if (viewmodel.updateSiteAcqDataResponse?.hasActiveObservers() == true) {

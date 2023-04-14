@@ -22,11 +22,11 @@ class InsidePremisesViewDialouge (contentLayoutId: Int, var data: SAcqInsidePrem
         binding.canecl.setOnClickListener {
             dismiss()
         }
-        if (data.ExternalStructureType.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.ExternalStructureType, DropDowns.ExternalStructureType.name,data.ExternalStructureType.get(0).toString())
-       if (data.Direction.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentre, DropDowns.Direction.name,data.Direction.get(0).toString())
-        if (data.LocationType>0)
+        if (data.ExternalStructureType!=null && data.ExternalStructureType?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.ExternalStructureType, DropDowns.ExternalStructureType.name,data.ExternalStructureType?.get(0).toString())
+       if (data.Direction!=null && data.Direction?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentre, DropDowns.Direction.name,data.Direction?.get(0).toString())
+        if (data.LocationType!=null && data.LocationType!!>0)
             AppPreferences.getInstance().setDropDown(binding.LocationType, DropDowns.LocationType.name,data.LocationType.toString())
         binding.DistanceFromCentre.text=data.DistanceFromCentre
         binding.HeightAGL.text=data.Height

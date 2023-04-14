@@ -23,11 +23,8 @@ class SiteAgreePoTableAdapter (var context : Context, var listener : AgreementFr
 
 
     fun addItem(){
-        val data=SAcqPODetail("","","",0,"","",
-            "", arrayListOf(),)
-//        listener.addPoData(data)
-        list?.add(data)
-        notifyItemInserted(list?.size!!.plus(1))
+        val data=SAcqPODetail()
+        listener.editPoItemClicked(-1,data)
     }
 
     fun removeItem(position:Int){
@@ -50,8 +47,8 @@ class SiteAgreePoTableAdapter (var context : Context, var listener : AgreementFr
             performOptionsMenuClick(position,it,item)
         }
         try {
-            if (item.VendorCompany.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany.get(0).toString())
+            if (item.VendorCompany?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,item.VendorCompany?.get(0).toString())
             holder.binding.PoNo.text=item.PONumber
             holder.binding.SrNo.text=position.plus(1).toString()
             holder.binding.poDate.text=Utils.getFormatedDate(item.PODate,"dd-MMM-yyyy")
