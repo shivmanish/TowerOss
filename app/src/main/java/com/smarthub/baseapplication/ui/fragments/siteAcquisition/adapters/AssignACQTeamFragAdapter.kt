@@ -151,6 +151,8 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionMode,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
                     if (datalist?.VendorCompany?.isNotEmpty() == true)
                         AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
+                    if (datalist?.Department?.isNotEmpty() == true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.Department,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
                     holder.binding.AcquisitionLeadName.text=datalist?.LeadName
                     holder.binding.AcquisitionExecutiveName.text=datalist?.ExecutiveName
                     holder.binding.AcquisitionBudget.text= datalist?.AcquisitionBudget?.ifEmpty { "0" }
@@ -161,6 +163,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     holder.binding.VendorExecutiveName.text=datalist?.VendorExecutiveName
                     holder.binding.VendorExecutiveEmailID.text=datalist?.VendorExecutiveEmailId
                     holder.binding.VendorExecutiveNumber.text=datalist?.VendorExecutiveMobile
+                    holder.binding.GeographyLevel.text=datalist?.GeographyLevel
                     holder.binding.AcquisitionTargetDate.text=Utils.getFormatedDate(datalist?.AcquisitionTargetDate,"dd-MMM-yyyy")
                     holder.binding.PODate.text=Utils.getFormatedDate(datalist?.PODate,"dd-MMM-yyyy")
                     holder.binding.remarks.text=datalist?.remark
@@ -195,7 +198,14 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
-
+                if (datalist!=null && datalist?.GeographyLevel?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDownByName(holder.binding.GeographyLevelEdit,DropDowns.GeographyLevel.name,datalist?.GeographyLevel)
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name)
+                if (datalist!=null && datalist?.Department?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.DepartmentEdit,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.Deaprtments.name)
 
                 holder.binding.update.setOnClickListener {
                     val tempData=AssignACQTeamDAta()
@@ -212,9 +222,11 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
                         it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
                         it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                        it.GeographyLevel=holder.binding.GeographyLevelEdit.selectedValue.name
                         it.AcquisitionMode = arrayListOf(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
                         it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
                         it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                        it.Department = arrayListOf(holder.binding.DepartmentEdit.selectedValue.id.toInt())
                         it.remark=holder.binding.remarksEdit.text.toString()
                         if (datalist!=null)
                             it.id=datalist?.id

@@ -4,9 +4,11 @@ import com.smarthub.baseapplication.model.siteIBoard.Attachments
 
  class AssignACQTeamDAta {
     var AcquisitionBudget: String? = null
+    var GeographyLevel: String? = null
     var AcquisitionMode: ArrayList<Int>? = null
     var AcquisitionTargetDate: String? = null
     var Acquisitiontype: ArrayList<Int>? = null
+    var Department: ArrayList<Int>? = null
     var ExecutiveName: String? = null
     var LeadName: String? = null
     var POAmount: String? = null

@@ -78,6 +78,7 @@ import com.smarthub.baseapplication.model.taskModel.GetTaskInfoPostData;
 import com.smarthub.baseapplication.model.taskModel.TaskAssignModel;
 import com.smarthub.baseapplication.model.taskModel.TaskInfo;
 import com.smarthub.baseapplication.model.taskModel.assignTask.AssignTaskNewModel;
+import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
@@ -386,6 +387,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.WORKFLOW_DATA_URL)
     Call<TaskInfo> getTaskInfo(@Body GetTaskInfoPostData data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<DepartmentDataModel> getDepartmentWithId(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)

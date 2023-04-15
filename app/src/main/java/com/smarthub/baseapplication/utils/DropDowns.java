@@ -106,6 +106,8 @@ public enum DropDowns {
     Ldca,
     Scda,
     VendorCompany,
+    GeographyLevel,
+    Deaprtments,
     // Site Info --> Geo Conditions Dropdowns
     Windzone,
     Seismiczone,

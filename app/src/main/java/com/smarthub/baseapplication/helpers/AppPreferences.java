@@ -323,6 +323,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
         }
     }
+    public void saveDropDownData(DropDownNewItem item) {
+        Gson gson = new Gson();
+        String stringDatajson = gson.toJson(item);
+        AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
+    }
     public void saveStaticDropDownData(Context context) {
         String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"dropdown.json");
         try{

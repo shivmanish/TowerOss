@@ -429,6 +429,10 @@ class HomeViewModel : ViewModel() {
         updateIBoardRepo?.updateSiteInfoData(data)
     }
 
+    fun getDepartment() {
+        homeRepo?.getDepartmentRequest()
+    }
+
     fun updateNocAndComp(data: NocCompAllData) {
         AppLogger.log("data for update======>:${Gson().toJson(data)}")
         val dataModel= UpdateNocCompModel()
