@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.trackermodule.locationpicker.LocationPickerActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -41,10 +42,17 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
 //            || loginTimeDiff > (30*60*60)
+//             val intent = Intent(this@SplashActivity, LocationPickerActivity::class.java)
+//            startActivity(intent)
+//            return@setOnClickListener
+
             if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*60)){
                 if (isNetworkConnected){
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
+
+
+
                     finish()
                 }else {
                     showNetworkAlert()

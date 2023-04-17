@@ -303,9 +303,11 @@ class TaskSearchTabNewFragment(
                     AppLogger.log("Selected TAb is NOC & Compliance")
                 }
                 7->{
+                    setUpTowerAndCvilData()
                     AppLogger.log("Selected TAb is Tower & Civil Infra")
                 }
                 8->{
+                    setUpPowerFuelData()
                     AppLogger.log("Selected TAb is Power & Fuel")
                 }
                 9->{
