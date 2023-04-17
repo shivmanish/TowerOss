@@ -53,7 +53,7 @@ class TaskThirdFragment:Fragment() {
             viewmodel.processTemplatemanual.Automaticescalationofoverdueitems=binding.AutoEsclationSwitch.isChecked
             viewmodel.processTemplatemanual.Reminderofoutstandingactions=binding.reminderSwitch.isChecked
             viewmodel.processTemplatemanual.NotificationSettingGeoTracking=binding.GeoTrackingSwitch.isChecked
-            viewmodel.processTemplatemanual.Trackingflag=binding.GeoTrackingSwitch.isChecked
+//            viewmodel.processTemplatemanual.Trackingflag=binding.GeoTrackingSwitch.isChecked
             viewmodel.processTemplatemanual.NotificationSettingGeoFencing=binding.GeoFencingDistanceSwitch.isChecked
             viewmodel.processTemplatemanual.Distance=binding.GeoFencingDistanceEdit.text.toString()
             if(taskInfo!=null)
