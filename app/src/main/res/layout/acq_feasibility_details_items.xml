@@ -848,7 +848,7 @@
                 android:layout_width="0dp"
                 android:maxLines="2"
                 android:ellipsize="marquee"
-                android:text="Boundary in\nDirection-A"
+                android:text="Boundary in\nDirection-B"
                 android:gravity="center"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>

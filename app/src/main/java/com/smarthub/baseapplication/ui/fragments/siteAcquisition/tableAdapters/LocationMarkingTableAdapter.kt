@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcqFeasibilityDetailsTableItemBinding
 import com.smarthub.baseapplication.databinding.OutsidePermisesTableItemsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqLocationMarking
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqOutsidePremise
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAcquisitionEnus
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSurveyFragAdapter
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
@@ -21,6 +23,61 @@ class LocationMarkingTableAdapter (var context : Context, var listener : AcqSurv
 
 
     var tempData=SAcqLocationMarking()
+    var gateFlag:Boolean=false
+    var towerFlag:Boolean=false
+    var odcFlag:Boolean=false
+    var earthPitFlag:Boolean=false
+    var solarBayFlag:Boolean=false
+    init {
+        for (item in list!!){
+            if (item.Object==SiteAcquisitionEnus.Gate.name){
+                gateFlag=true
+            }
+            if (item.Object==SiteAcquisitionEnus.Tower.name){
+                towerFlag=true
+            }
+            if (item.Object==SiteAcquisitionEnus.ODC.name){
+                odcFlag=true
+            }
+            if (item.Object=="Earth Pit"){
+                earthPitFlag=true
+            }
+            if (item.Object=="Solar Bay"){
+                solarBayFlag=true
+            }
+        }
+        if (!gateFlag){
+            AppLogger.log("Gate Flag====>$gateFlag")
+            val tempData=SAcqLocationMarking()
+            tempData.Object="Gate"
+            list?.add(0,tempData)
+        }
+        if (!towerFlag){
+            AppLogger.log("Tower Flag====>$towerFlag")
+            val tempData=SAcqLocationMarking()
+            tempData.Object="Tower"
+            list?.add(1,tempData)
+        }
+        if (!odcFlag){
+            AppLogger.log("ODC Flag====>$odcFlag")
+            val tempData=SAcqLocationMarking()
+            tempData.Object="ODC"
+            list?.add(2,tempData)
+        }
+        if (!earthPitFlag){
+            AppLogger.log("Earth Flag====>$earthPitFlag")
+            val tempData=SAcqLocationMarking()
+            tempData.Object="Earth Pit"
+            list?.add(3,tempData)
+        }
+        if (!solarBayFlag){
+            AppLogger.log("Solar Flag====>$solarBayFlag")
+            val tempData=SAcqLocationMarking()
+            tempData.Object="Solar Bay"
+            list?.add(4,tempData)
+        }
+        AppLogger.log("LocationMarkingTableAdapter list====>${Gson().toJson(list)}")
+    }
     fun addItem(){
         val data=SAcqLocationMarking()
         listener.editLocationMarkingClicked(-1,data)

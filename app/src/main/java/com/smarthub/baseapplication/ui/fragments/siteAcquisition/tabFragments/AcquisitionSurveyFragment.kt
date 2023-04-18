@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSurveyFragAdapter
@@ -62,11 +63,39 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
             }
         }
 
+        if (viewmodel.serviceRequestModelResponse?.hasActiveObservers() == true) {
+            viewmodel.serviceRequestModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                showLoader()
+                AppLogger.log("SiteAgreemnets AqcSurvey Fragment data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                hideLoader()
+                AppLogger.log("SiteAgreemnets AqcSurvey serviceRequestModelResponse Data fetched successfully")
+                try {
+                    AppController.getInstance().NominalAddress=it.data.ServiceRequestMain?.get(0)?.ServiceRequest?.get(0)?.SRDetails?.get(0)
+                } catch (e: java.lang.Exception) {
+                    AppLogger.log("SiteAgreemnets AqcSurvey Fragment serviceRequestModelResponse error : ${e.localizedMessage}")
+                }
+                AppLogger.log("SiteAgreemnets AqcSurvey serviceRequestModelResponse size :${it.data.ServiceRequestMain?.get(parentIndex)?.ServiceRequest?.size}")
+            } else if (it != null) {
+                AppLogger.log("SiteAgreemnets AqcSurvey Fragment serviceRequestModelResponse error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("SiteAgreemnets AqcSurvey Fragment serviceRequestModelResponse Something went wrong")
+
+            }
+        }
+
 
         viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+        viewmodel.serviceRequestAll(AppController.getInstance().siteid)
         binding.swipeLayout.setOnRefreshListener {
             binding.swipeLayout.isRefreshing=false
             viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+            viewmodel.serviceRequestAll(AppController.getInstance().siteid)
         }
     }
 
@@ -145,7 +174,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
         bm.show(childFragmentManager, "category")
     }
 
-    override fun textChangeListner(data1: Int?, data2: Int?, textview: TextView) {
+    override fun textChangeListner(data1: Float?, data2: Float?, textview: TextView) {
         if (data1!=null && data2!=null)
             textview.text=(data1*data2).toString()
         else if (data1!=null)
@@ -195,6 +224,35 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                 AppLogger.log("SiteAgreemnets Fragment error :${it.message}, data : ${it.data}")
             } else {
                 AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+
+            }
+        }
+    }
+
+    override fun updateActualAdderessAddress(data: AllsiteInfoDataModel?) {
+        showLoader()
+        viewmodel.updateSiteInfo(data)
+        if (viewmodel.updateSiteInfoDataResponse?.hasActiveObservers() == true) {
+            viewmodel.updateSiteInfoDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.updateSiteInfoDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("AcquisitionSurveyFragment address data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status?.Siteaddress==200 ) {
+                AppLogger.log("AcquisitionSurveyFragment address card Data updated successfully")
+                viewmodel.siteInfoRequestAll(AppController.getInstance().siteid)
+//                Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("AcquisitionSurveyFragment address Something went wrong")
+            }
+            else if (it != null) {
+                AppLogger.log("AcquisitionSurveyFragment address error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("AcquisitionSurveyFragment address Something went wrong")
 
             }
         }

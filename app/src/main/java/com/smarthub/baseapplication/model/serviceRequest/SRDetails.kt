@@ -27,5 +27,7 @@ data class SRDetails(
     var isActive: Boolean,
     var locLatitude: String,
     var locLongitude: String,
+    var Address1: String,
+    var Address2: String,
     var modified_at: String
 )

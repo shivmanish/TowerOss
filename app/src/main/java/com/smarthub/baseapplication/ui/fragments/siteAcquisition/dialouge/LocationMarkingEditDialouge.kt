@@ -29,14 +29,16 @@ class LocationMarkingEditDialouge (var data: SAcqLocationMarking, var fullData: 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (titelFlag<0)
+        if (titelFlag<0){
             binding.titleText.text="Add Location Marking for key"
-        if (titelFlag in 0..3){
+            binding.update.text="Add"
+        }
+        if (titelFlag in 0..4){
             binding.ObjectsEdit.isEnabled = false
             binding.ObjectsEdit.isClickable = false
             binding.ObjectsEdit.isFocusable = false
         }
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.60).toInt()
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }

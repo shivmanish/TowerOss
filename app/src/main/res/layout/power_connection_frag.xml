@@ -16,6 +16,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:orientation="vertical"
+            android:paddingBottom="@dimen/dp13"
             android:layout_marginTop="10dp"
             tools:itemCount="3"
             app:layout_constraintTop_toTopOf="parent"

@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
+import com.smarthub.baseapplication.model.serviceRequest.SRDetails
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.SiteAddressData
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -23,6 +27,7 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.widgets.CustomSpinner
 
 class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurveyListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AcqSurveyFragAdapter.ViewHold>() {
     private var datalist: AcquisitionSurveyData?=null
@@ -32,10 +37,16 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
     private var buildingData: SAcqBuildingDetail?=null
     private var landData: SAcqLandDetail ?=null
     private var siteAdd:SiteAddressData ?=null
+    private var nominalSiteAdd: SRDetails?=null
 
 
     fun setData(data: AcquisitionSurveyData?) {
         this.datalist=data!!
+        if (AppController.getInstance().newSiteInfoModel!=null){
+            if (AppController.getInstance().newSiteInfoModel.Siteaddress!=null && AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
+                siteAdd=AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
+            }
+        }
         notifyDataSetChanged()
     }
     init {
@@ -309,22 +320,57 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         siteAdd=AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
                     }
                 }
-
+                if (AppController.getInstance().NominalAddress!=null){
+                    nominalSiteAdd=AppController.getInstance().NominalAddress
+                }
+                if (nominalSiteAdd!=null){
+                    // view Mode
+                    holder.binding.AddressLine1.text=nominalSiteAdd?.Address1
+                    holder.binding.AddressLine2.text=nominalSiteAdd?.Address2
+                    holder.binding.PostalCode.text=nominalSiteAdd?.Pincode
+                    holder.binding.SiteLAtitude.text=nominalSiteAdd?.locLatitude
+                    holder.binding.SiteLongitude.text=nominalSiteAdd?.locLongitude
+                    // edit mode
+                    holder.binding.AddressLine1Edit.text=nominalSiteAdd?.Address1
+                    holder.binding.AddressLine2Edit.text=nominalSiteAdd?.Address2
+                    holder.binding.PostalCodeEdit.text=nominalSiteAdd?.Pincode
+                    holder.binding.SiteLAtitudeEdit.text=nominalSiteAdd?.locLatitude
+                    holder.binding.SiteLongitudeEdit.text=nominalSiteAdd?.locLongitude
+                }
                 if (siteAdd!=null){
                     // view Mode
-                    holder.binding.AddressLine1.text=siteAdd?.address1
-                    holder.binding.AddressLine2.text=siteAdd?.address2
-                    holder.binding.PostalCode.text=siteAdd?.pincode
-                    holder.binding.SiteLAtitude.text=siteAdd?.locLatitude
-                    holder.binding.SiteLongitude.text=siteAdd?.locLongitude
+                    holder.binding.ActualCoordiAddressLine1.text=siteAdd?.address1
+                    holder.binding.ActualCoordiAddressLine2.text=siteAdd?.address2
+                    holder.binding.ActualCoordiPostalCode.text=siteAdd?.pincode
+                    holder.binding.ActualCoordiSiteLAtitude.text=siteAdd?.locLatitude
+                    holder.binding.ActualCoordiSiteLongitude.text=siteAdd?.locLongitude
                     // edit mode
-                    holder.binding.AddressLine1Edit.text=siteAdd?.address1
-                    holder.binding.AddressLine2Edit.text=siteAdd?.address2
-                    holder.binding.PostalCodeEdit.text=siteAdd?.pincode
-                    holder.binding.SiteLAtitudeEdit.text=siteAdd?.locLatitude
-                    holder.binding.SiteLongitudeEdit.text=siteAdd?.locLongitude
+                    holder.binding.ActualCoordiAddressLine1Edit.setText(siteAdd?.address1)
+                    holder.binding.ActualCoordiAddressLine2Edit.text=siteAdd?.address2
+                    holder.binding.ActualCoordiPostalCodeEdit.text=siteAdd?.pincode
+                    holder.binding.ActualCoordiSiteLAtitudeEdit.text=siteAdd?.locLatitude
+                    holder.binding.ActualCoordiSiteLongitudeEdit.text=siteAdd?.locLongitude
                 }
                 if (propertyData!=null){
+                    if (propertyData?.PropertyType != null && propertyData?.PropertyType!! ==1){
+                        holder.binding.BuildingLayoutView.visibility=View.VISIBLE
+                        holder.binding.BuildingLayoutEdit.visibility=View.VISIBLE
+                        holder.binding.LandLayoutView.visibility=View.GONE
+                        holder.binding.LandLayoutEdit.visibility=View.GONE
+                    }
+                    else if(propertyData?.PropertyType != null && propertyData?.PropertyType!! ==2){
+                        holder.binding.BuildingLayoutView.visibility=View.GONE
+                        holder.binding.BuildingLayoutEdit.visibility=View.GONE
+                        holder.binding.LandLayoutView.visibility=View.VISIBLE
+                        holder.binding.LandLayoutEdit.visibility=View.VISIBLE
+                    }
+                    else{
+                        holder.binding.BuildingLayoutView.visibility=View.VISIBLE
+                        holder.binding.BuildingLayoutEdit.visibility=View.VISIBLE
+                        holder.binding.LandLayoutView.visibility=View.VISIBLE
+                        holder.binding.LandLayoutEdit.visibility=View.VISIBLE
+                    }
+
                     //view mode
                     if (propertyData?.Potentialthreat?.isNotEmpty() == true)
                         AppPreferences.getInstance().setDropDown(holder.binding.PotentialThreat,DropDowns.Potentialthreat.name,propertyData?.Potentialthreat?.get(0).toString())
@@ -336,6 +382,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         AppPreferences.getInstance().setDropDown(holder.binding.GateAndFence,DropDowns.GateAndFence.name,propertyData?.GateAndFence.toString())
                     if (propertyData?.OtherOperator != null && propertyData?.OtherOperator!! >=1)
                         AppPreferences.getInstance().setDropDown(holder.binding.OtherOperators,DropDowns.OtherOperators.name,propertyData?.OtherOperator.toString())
+                    if (propertyData?.PropertyType != null && propertyData?.PropertyType!! >=1)
+                        AppPreferences.getInstance().setDropDown(holder.binding.PropertyType,DropDowns.PropertyType.name,propertyData?.PropertyType.toString())
 
                     holder.binding.OtherOperatorNames.text=propertyData?.OtherOperatorName
                     holder.binding.NearbyPoliceForceStation.text=propertyData?.NearbyPoliceStation
@@ -426,6 +474,10 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     AppPreferences.getInstance().setDropDown(holder.binding.OtherOperatorsEdit,DropDowns.OtherOperators.name,propertyData?.OtherOperator.toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.OtherOperatorsEdit,DropDowns.OtherOperators.name)
+                if (propertyData!=null && propertyData?.PropertyType != null && propertyData?.PropertyType!! >=1)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeEdit,DropDowns.PropertyType.name,propertyData?.PropertyType.toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeEdit,DropDowns.PropertyType.name)
 
                 if (buildingData!=null && buildingData?.BuildingType?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.BuildingTypeEdit,DropDowns.Buildingtype.name,buildingData?.BuildingType?.get(0).toString())
@@ -465,77 +517,84 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.LowLyingAreaEdit,DropDowns.YesNoDropdown.name)
                 holder.binding.update.setOnClickListener {
-                        val tempBuildingData=SAcqBuildingDetail()
-                        val tempLandData=SAcqLandDetail()
-                        val tempPropertyData=SAcqPropertyDetail()
-                        tempBuildingData.let {
-                            it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
-                            it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toIntOrNull()
-                            it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
-                            it.Length = holder.binding.BuildingAcquisitionAreaLEdit.text.toString()
-                            it.Breadth = holder.binding.BuildingAcquisitionAreaBEdit.text.toString()
-                            it.AcquisitionArea = holder.binding.BuildingAcquisitionAreaAEdit.text.toString()
-                            it.remark = holder.binding.BuildingRemarksEdit.text.toString()
-                            it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toIntOrNull()
-                            it.PropertyType = holder.binding.PropertyTypeEdit.selectedValue.id.toIntOrNull()
-                            it.BuildingBuildType =holder.binding.BuildingBuildTypeEdit.selectedValue.id.toIntOrNull()
-                            it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
-                            if (propertyData!=null && buildingData!=null)
-                                it.id=buildingData?.id
-                        }
-                        tempLandData.let {
-                            it.Length = holder.binding.LandAcquisitionAreaLEdit.text.toString()
-                            it.Breadth = holder.binding.LandAcquisitionAreaBEdit.text.toString()
-                            it.AcquisitionArea = holder.binding.LandAcquisitionAreaAEdit.text.toString()
-                            it.remark = holder.binding.LandRemarksEdit.text.toString()
-                            it.PropertyType = holder.binding.PropertyTypeEdit.selectedValue.id.toIntOrNull()
-                            it.SiteDemarcation = holder.binding.SiteDemarcationEdit.selectedValue.id.toIntOrNull()
-                            it.PlotLevelingCondition = holder.binding.PlotLevelingConditionEdit.selectedValue.id.toIntOrNull()
-                            it.LowLyingArea = holder.binding.LowLyingAreaEdit.selectedValue.id.toIntOrNull()
-                            it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
-                            it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
-                            it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
-                            if (propertyData!=null && landData!=null)
-                                it.id=landData?.id
-                        }
-                        tempPropertyData.let {
-                            it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
-                            it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
-                            it.SiteAccessWay= holder.binding.SiteAccessWayEdit.selectedValue.id.toIntOrNull()
-                            it.GateAndFence= holder.binding.GateFenchEdit.selectedValue.id.toIntOrNull()
-                            it.OtherOperator= holder.binding.OtherOperatorsEdit.selectedValue.id.toIntOrNull()
-                            it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
-                            it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
-                            it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
-                            it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
-                            it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
-                            it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
-                            it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
-                            it.remark=holder.binding.remarksEdit.text.toString()
-                            it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
-                            it.SAcqLandDetail= arrayListOf(tempLandData)
-                            if (propertyData!=null)
-                                it.id=propertyData?.id
-                            if (siteAdd!=null)
-                                it.Siteaddress= arrayListOf(AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)?.id!!.toInt())
-                            else
-                                it.Siteaddress= arrayListOf()
-                            val tempList:ArrayList<SAcqPropertyDetail> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= AcquisitionSurveyData()
-                            if (datalist!=null)
-                                tempData.id=datalist?.id
-                            tempData.SAcqPropertyDetail=tempList
-                            listener.updateItemClicked(tempData)
-                        }
+                    val tempBuildingData=SAcqBuildingDetail()
+                    val tempLandData=SAcqLandDetail()
+                    val tempPropertyData=SAcqPropertyDetail()
+                    val temSiteAddData=SiteAddressData()
+                    val temSiteInfoAllData= AllsiteInfoDataModel()
+                    temSiteAddData.let {
+                        it.address1=holder.binding.ActualCoordiAddressLine1Edit.text.toString()
+                        it.address2=holder.binding.ActualCoordiAddressLine2Edit.text.toString()
+                        it.locLatitude=holder.binding.ActualCoordiSiteLAtitudeEdit.text.toString()
+                        it.locLongitude=holder.binding.ActualCoordiSiteLongitudeEdit.text.toString()
+                        it.pincode=holder.binding.ActualCoordiPostalCodeEdit.text.toString()
+                        if (siteAdd!=null)
+                            it.id=siteAdd?.id
+                    }
+                    tempBuildingData.let {
+                        it.BuildingHeight = holder.binding.BuildingHeightEdit.text.toString()
+                        it.NoOfFloors = holder.binding.NoOfFloorEdit.text.toString().toIntOrNull()
+                        it.TypicalFloorArea = holder.binding.TypicalFloorAreaEdit.text.toString()
+                        it.Length = holder.binding.BuildingAcquisitionAreaLEdit.text.toString()
+                        it.Breadth = holder.binding.BuildingAcquisitionAreaBEdit.text.toString()
+                        it.AcquisitionArea = holder.binding.BuildingAcquisitionAreaAEdit.text.toString()
+                        it.remark = holder.binding.BuildingRemarksEdit.text.toString()
+                        it.ConstructionYear = holder.binding.YearOfConstructionEdit.text.toString().toIntOrNull()
+                        it.PropertyType = holder.binding.PropertyTypeEdit.selectedValue.id.toIntOrNull()
+                        it.BuildingBuildType =holder.binding.BuildingBuildTypeEdit.selectedValue.id.toIntOrNull()
+                        it.BuildingType = arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
+                        if (propertyData!=null && buildingData!=null)
+                            it.id=buildingData?.id
+                    }
+                    tempLandData.let {
+                        it.Length = holder.binding.LandAcquisitionAreaLEdit.text.toString()
+                        it.Breadth = holder.binding.LandAcquisitionAreaBEdit.text.toString()
+                        it.AcquisitionArea = holder.binding.LandAcquisitionAreaAEdit.text.toString()
+                        it.remark = holder.binding.LandRemarksEdit.text.toString()
+                        it.PropertyType = holder.binding.PropertyTypeEdit.selectedValue.id.toIntOrNull()
+                        it.SiteDemarcation = holder.binding.SiteDemarcationEdit.selectedValue.id.toIntOrNull()
+                        it.PlotLevelingCondition = holder.binding.PlotLevelingConditionEdit.selectedValue.id.toIntOrNull()
+                        it.LowLyingArea = holder.binding.LowLyingAreaEdit.selectedValue.id.toIntOrNull()
+                        it.LandType = arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
+                        it.Terraintype = arrayListOf(holder.binding.TerrainTypeEdit.selectedValue.id.toInt())
+                        it.SoilType = arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
+                        if (propertyData!=null && landData!=null)
+                            it.id=landData?.id
+                    }
+                    tempPropertyData.let {
+                        it.Potentialthreat= arrayListOf(holder.binding.PotentialThreatEdit.selectedValue.id.toInt())
+                        it.Direction= arrayListOf(holder.binding.SiteAccessDirectionEdit.selectedValue.id.toInt())
+                        it.SiteAccessWay= holder.binding.SiteAccessWayEdit.selectedValue.id.toIntOrNull()
+                        it.GateAndFence= holder.binding.GateFenchEdit.selectedValue.id.toIntOrNull()
+                        it.OtherOperator= holder.binding.OtherOperatorsEdit.selectedValue.id.toIntOrNull()
+                        it.PropertyType= holder.binding.PropertyTypeEdit.selectedValue.id.toIntOrNull()
+                        it.OtherOperatorName=holder.binding.OtherOperatorNameEdit.text.toString()
+                        it.NearbyPoliceStation=holder.binding.NearbyPoliceForceStationEdit.text.toString()
+                        it.PsDistance=holder.binding.PoliceDistanceEdit.text.toString()
+                        it.PsPhoneNo=holder.binding.PhNumberPoliceEdit.text.toString()
+                        it.NearbyFireStation=holder.binding.NearbyFireStationEdit.text.toString()
+                        it.FsDistance=holder.binding.DistanceFireStationEdit.text.toString()
+                        it.FsPhoneNo=holder.binding.phNoFireStationEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
+                        it.SAcqBuildingDetail= arrayListOf(tempBuildingData)
+                        it.SAcqLandDetail= arrayListOf(tempLandData)
+                        if (propertyData!=null)
+                            it.id=propertyData?.id
+                    }
+                    temSiteInfoAllData.Siteaddress= arrayListOf(temSiteAddData)
+                    listener.updateActualAdderessAddress(temSiteInfoAllData)
+                    val tempData= AcquisitionSurveyData()
+                    if (datalist!=null)
+                        tempData.id=datalist?.id
+                    tempData.SAcqPropertyDetail= arrayListOf(tempPropertyData)
+                    listener.updateItemClicked(tempData)
                 }
                 holder.binding.BuildingAcquisitionAreaLEdit.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        listener.textChangeListner(holder.binding.BuildingAcquisitionAreaLEdit.text.toString().toIntOrNull(),
-                            holder.binding.BuildingAcquisitionAreaBEdit.text.toString().toIntOrNull(),
+                        listener.textChangeListner(holder.binding.BuildingAcquisitionAreaLEdit.text.toString().toFloatOrNull(),
+                            holder.binding.BuildingAcquisitionAreaBEdit.text.toString().toFloatOrNull(),
                             holder.binding.BuildingAcquisitionAreaAEdit)
                     }
                 })
@@ -543,8 +602,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        listener.textChangeListner(holder.binding.BuildingAcquisitionAreaLEdit.text.toString().toIntOrNull(),
-                            holder.binding.BuildingAcquisitionAreaBEdit.text.toString().toIntOrNull(),
+                        listener.textChangeListner(holder.binding.BuildingAcquisitionAreaLEdit.text.toString().toFloatOrNull(),
+                            holder.binding.BuildingAcquisitionAreaBEdit.text.toString().toFloatOrNull(),
                             holder.binding.BuildingAcquisitionAreaAEdit)
                     }
                 })
@@ -552,8 +611,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        listener.textChangeListner(holder.binding.LandAcquisitionAreaLEdit.text.toString().toIntOrNull(),
-                            holder.binding.LandAcquisitionAreaBEdit.text.toString().toIntOrNull(),
+                        listener.textChangeListner(holder.binding.LandAcquisitionAreaLEdit.text.toString().toFloatOrNull(),
+                            holder.binding.LandAcquisitionAreaBEdit.text.toString().toFloatOrNull(),
                             holder.binding.LandAcquisitionAreaAEdit)
                     }
                 })
@@ -561,11 +620,35 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        listener.textChangeListner(holder.binding.LandAcquisitionAreaLEdit.text.toString().toIntOrNull(),
-                            holder.binding.LandAcquisitionAreaBEdit.text.toString().toIntOrNull(),
+                        listener.textChangeListner(holder.binding.LandAcquisitionAreaLEdit.text.toString().toFloatOrNull(),
+                            holder.binding.LandAcquisitionAreaBEdit.text.toString().toFloatOrNull(),
                             holder.binding.LandAcquisitionAreaAEdit)
                     }
                 })
+                holder.binding.PropertyTypeEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+                    override fun itemSelected(propertyType: DropDownItem) {
+                        when (propertyType.id) {
+                            "1" -> {
+                                holder.binding.BuildingLayoutView.visibility=View.VISIBLE
+                                holder.binding.BuildingLayoutEdit.visibility=View.VISIBLE
+                                holder.binding.LandLayoutView.visibility=View.GONE
+                                holder.binding.LandLayoutEdit.visibility=View.GONE
+                            }
+                            "2" -> {
+                                holder.binding.BuildingLayoutView.visibility=View.GONE
+                                holder.binding.BuildingLayoutEdit.visibility=View.GONE
+                                holder.binding.LandLayoutView.visibility=View.VISIBLE
+                                holder.binding.LandLayoutEdit.visibility=View.VISIBLE
+                            }
+                            else -> {
+                                holder.binding.BuildingLayoutView.visibility=View.VISIBLE
+                                holder.binding.BuildingLayoutEdit.visibility=View.VISIBLE
+                                holder.binding.LandLayoutView.visibility=View.VISIBLE
+                                holder.binding.LandLayoutEdit.visibility=View.VISIBLE
+                            }
+                        }
+                    }
+                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -800,10 +883,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                         AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissions,DropDowns.StatutoryPermissions.name,feasibilityData?.StatutoryPermission.toString())
                     if (feasibilityData?.OverallFeasibility!= null && feasibilityData?.OverallFeasibility!!>=1)
                         AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibility,DropDowns.OverallFeasibility.name,feasibilityData?.OverallFeasibility.toString())
-                    if (buildingData!=null && landData!=null){
-                        if (buildingData?.AcquisitionArea!=null && landData?.AcquisitionArea!=null)
-                            holder.binding.TotalAcquisitionArea.text=(buildingData?.AcquisitionArea?.toIntOrNull()?.plus(landData?.AcquisitionArea!!.toInt())).toString()
-                    }
+
                     holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
                     holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
                     holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
@@ -812,27 +892,27 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
                     // edit mode
                     if (buildingData!=null && landData!=null){
-                        if (buildingData?.AcquisitionArea?.toIntOrNull()!=null && landData?.AcquisitionArea?.toIntOrNull()!=null){
-                            holder.binding.TotalAcquisitionAreaEdit.text=(buildingData?.AcquisitionArea?.toIntOrNull()?.plus(landData?.AcquisitionArea!!.toInt())).toString()
-                            holder.binding.TotalAcquisitionArea.text=(buildingData?.AcquisitionArea?.toIntOrNull()?.plus(landData?.AcquisitionArea!!.toInt())).toString()
+                        if (buildingData?.AcquisitionArea?.toFloatOrNull()!=null && landData?.AcquisitionArea?.toFloatOrNull()!=null){
+                            holder.binding.TotalAcquisitionAreaEdit.text=(buildingData?.AcquisitionArea?.toFloatOrNull()?.plus(landData?.AcquisitionArea!!.toFloat())).toString()
+                            holder.binding.TotalAcquisitionArea.text=(buildingData?.AcquisitionArea?.toFloatOrNull()?.plus(landData?.AcquisitionArea!!.toFloat())).toString()
                         }
-                        else if (buildingData?.AcquisitionArea?.toIntOrNull()!=null){
+                        else if (buildingData?.AcquisitionArea?.toFloatOrNull()!=null){
                             holder.binding.TotalAcquisitionAreaEdit.text=buildingData?.AcquisitionArea
                             holder.binding.TotalAcquisitionArea.text=buildingData?.AcquisitionArea
                         }
-                        else if (landData?.AcquisitionArea?.toIntOrNull()!=null){
+                        else if (landData?.AcquisitionArea?.toFloatOrNull()!=null){
                             holder.binding.TotalAcquisitionAreaEdit.text=landData?.AcquisitionArea
                             holder.binding.TotalAcquisitionArea.text=landData?.AcquisitionArea
                         }
                     }
                     else if (buildingData!=null){
-                        if (buildingData?.AcquisitionArea?.toIntOrNull()!=null){
+                        if (buildingData?.AcquisitionArea?.toFloatOrNull()!=null){
                             holder.binding.TotalAcquisitionAreaEdit.text=buildingData?.AcquisitionArea
                             holder.binding.TotalAcquisitionArea.text=buildingData?.AcquisitionArea
                         }
                     }
                     else if (landData!=null){
-                        if (landData?.AcquisitionArea?.toIntOrNull()!=null){
+                        if (landData?.AcquisitionArea?.toFloatOrNull()!=null){
                             holder.binding.TotalAcquisitionAreaEdit.text=landData?.AcquisitionArea
                             holder.binding.TotalAcquisitionArea.text=landData?.AcquisitionArea
                         }
@@ -973,8 +1053,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
        fun editPropertyOwnerClicked(position: Int,data:SAcqPropertyOwnerDetail)
        fun editLocationMarkingClicked(position: Int,data:SAcqLocationMarking)
        fun viewLocationMarkingClicked(position: Int,data:SAcqLocationMarking)
-       fun textChangeListner(data1: Int?,data2: Int?,textview:TextView)
+       fun textChangeListner(data1: Float?,data2: Float?,textview:TextView)
        fun updateItemClicked(data:AcquisitionSurveyData)
+        fun updateActualAdderessAddress(data:AllsiteInfoDataModel?)
 
     }
 

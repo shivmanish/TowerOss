@@ -437,535 +437,547 @@
 
             </GridLayout>
             <LinearLayout
-                android:visibility="visible"
-                android:orientation="horizontal"
+                android:id="@+id/Building_Layout_View"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/dp8"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp3"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:padding="5dp"
-                    android:src="@drawable/circleblue_1"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/dp18"
-                    android:layout_height="18dp" />
-                <TextView
-                    android:text="Building"
+                <LinearLayout
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8"
                     android:layout_marginRight="@dimen/dp10"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/color1"
-                    android:textSize="15dp"
+                    android:layout_marginLeft="@dimen/dp3"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:padding="5dp"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/dp18"
+                        android:layout_height="18dp" />
+                    <TextView
+                        android:text="Building"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/color1"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Building Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/BuildingType"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Building Build Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/BuildingBuildType"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Building Height"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/BuildingHeight"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="No. of Floors"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/NoofFloors"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Typical Floor Area"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/TypicalFloorArea"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Year of Construction"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/YearofConstruction"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Acquisition Area (Sq m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Building_Acquisition_Area_L"
+                                    android:text=""
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Building_Acquisition_Area_B"
+                                    android:text=""
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="A: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Building_Acquisition_Area_A"
+                                    android:text=""
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </GridLayout>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
+                <TextView
+                    android:id="@+id/Building_Remarks"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="13sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
-            <GridLayout
-                android:visibility="visible"
-                android:columnCount="2"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Building Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/BuildingType"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Building Build Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/BuildingBuildType"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Building Height"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/BuildingHeight"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="No. of Floors"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/NoofFloors"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Typical Floor Area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/TypicalFloorArea"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Year of Construction"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/YearofConstruction"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Area (Sq m)"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="L: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Building_Acquisition_Area_L"
-                                android:text=""
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="B: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Building_Acquisition_Area_B"
-                                android:text=""
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="A: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Building_Acquisition_Area_A"
-                                android:text=""
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </GridLayout>
-            <TextView
-                android:text="Remarks"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                style="@style/RowTextItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/Building_Remarks"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:textSize="13sp"
-                style="@style/RowTestItemEdit"
-                android:text=""
-                android:layout_marginTop="@dimen/dp1"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             <LinearLayout
-                android:visibility="visible"
-                android:orientation="horizontal"
+                android:id="@+id/Land_Layout_View"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/dp8"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp3"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:padding="5dp"
-                    android:src="@drawable/circleblue_1"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/dp18"
-                    android:layout_height="18dp" />
-                <TextView
-                    android:text="Land"
+                <LinearLayout
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp8"
                     android:layout_marginRight="@dimen/dp10"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/color1"
-                    android:textSize="15dp"
+                    android:layout_marginLeft="@dimen/dp3"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:padding="5dp"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/dp18"
+                        android:layout_height="18dp" />
+                    <TextView
+                        android:text="Land"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/color1"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Land Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/LandType"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Terrain Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/TerrainType"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Soil Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/SoilType"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Site Demarcation"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/SiteDemarcation"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Plot Leveling Condition"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Plot_Leveling_Condition"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Low lying area"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Low_lying_area"
+                            android:maxLines="1"
+                            android:ellipsize="marquee"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Acquisition Area (Sq m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Land_Acquisition_Area_L"
+                                    android:text=""
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Land_Acquisition_Area_B"
+                                    android:text=""
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="A: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Land_Acquisition_Area_A"
+                                    android:text=""
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </GridLayout>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
+                <TextView
+                    android:id="@+id/Land_Remarks"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"
+                    android:textSize="13sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
-            <GridLayout
-                android:visibility="visible"
-                android:columnCount="2"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Land Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/LandType"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Terrain Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/TerrainType"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Soil Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/SoilType"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Site Demarcation"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/SiteDemarcation"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Plot Leveling Condition"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Plot_Leveling_Condition"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Low lying area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/Low_lying_area"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Area (Sq m)"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="L: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Land_Acquisition_Area_L"
-                                android:text=""
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="B: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Land_Acquisition_Area_B"
-                                android:text=""
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="A: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Land_Acquisition_Area_A"
-                                android:text=""
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-            </GridLayout>
-            <TextView
-                android:text="Remarks"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                style="@style/RowTextItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/Land_Remarks"
-                android:maxLines="1"
-                android:ellipsize="marquee"
-                android:textSize="13sp"
-                style="@style/RowTestItemEdit"
-                android:text=""
-                android:layout_marginTop="@dimen/dp1"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             <LinearLayout
                 android:visibility="visible"
                 android:orientation="horizontal"
@@ -1192,6 +1204,28 @@
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
+                    android:visibility="invisible"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Nearby Fire Station"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
 
@@ -1210,7 +1244,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -1515,14 +1548,20 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+
+                    <EditText
                         android:id="@+id/Actual_Coordi_AddressLine1_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
                         android:text=""
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5" />
                 </LinearLayout>
                 <LinearLayout
                     android:paddingTop="0dp"
@@ -1633,590 +1672,602 @@
 
             </GridLayout>
             <LinearLayout
-                android:visibility="visible"
-                android:orientation="horizontal"
+                android:id="@+id/Building_Layout_Edit"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp3"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:padding="5dp"
-                    android:src="@drawable/circleblue_1"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/dp18"
-                    android:layout_height="18dp" />
-                <TextView
-                    android:text="Building"
+                <LinearLayout
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp10"
                     android:layout_marginRight="@dimen/dp10"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/color1"
-                    android:textSize="15dp"
+                    android:layout_marginLeft="@dimen/dp3"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:padding="5dp"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/dp18"
+                        android:layout_height="18dp" />
+                    <TextView
+                        android:text="Building"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/color1"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Building Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/BuildingType_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Building Build Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Building_Build_Type_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Building Height"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Building_Height_edit"
+                            android:text=""
+                            android:inputType="number"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp5" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="No. of Floors"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/No_of_floor_edit"
+                            android:text=""
+                            android:inputType="number"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Typical Floor Area"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Typical_Floor_Area_edit"
+                            android:text=""
+                            android:inputType="number"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Year of Construction"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Year_of_Construction_edit"
+                            android:text=""
+                            android:inputType="number"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Acquisition Area (sq m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/Building_Acquisition_Area_L_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/Building_Acquisition_Area_B_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="A: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Building_Acquisition_Area_A_edit"
+                                    android:text=""
+                                    android:inputType="number"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                </GridLayout>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
+                <EditText
+                    android:id="@+id/Building_remarks_edit"
+                    android:textSize="13sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
             </LinearLayout>
-            <GridLayout
-                android:visibility="visible"
-                android:columnCount="2"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Building Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/BuildingType_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Building Build Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/Building_Build_Type_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Building Height"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/Building_Height_edit"
-                        android:text=""
-                        android:inputType="number"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp5" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="No. of Floors"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/No_of_floor_edit"
-                        android:text=""
-                        android:inputType="number"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Typical Floor Area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/Typical_Floor_Area_edit"
-                        android:text=""
-                        android:inputType="number"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Year of Construction"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/Year_of_Construction_edit"
-                        android:text=""
-                        android:inputType="number"
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Area (sq m)"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="L: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/Building_Acquisition_Area_L_edit"
-                                android:text=""
-                                android:inputType="number"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="B: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/Building_Acquisition_Area_B_edit"
-                                android:text=""
-                                android:inputType="number"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="A: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Building_Acquisition_Area_A_edit"
-                                android:text=""
-                                android:inputType="number"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-            </GridLayout>
-            <TextView
-                android:text="Remarks"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                style="@style/RowTextItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/Building_remarks_edit"
-                android:textSize="13sp"
-                style="@style/RowTestItemEdit"
-                android:text=""
-                android:layout_marginTop="@dimen/dp1"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:alpha="0.37"
-                android:background="#263238"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp6" />
             <LinearLayout
-                android:visibility="visible"
-                android:orientation="horizontal"
+                android:id="@+id/Land_Layout_Edit"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp3"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:padding="5dp"
-                    android:src="@drawable/circleblue_1"
-                    android:layout_gravity="center"
-                    android:layout_width="@dimen/dp18"
-                    android:layout_height="18dp" />
-                <TextView
-                    android:text="Land"
+                <LinearLayout
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp10"
                     android:layout_marginRight="@dimen/dp10"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/color1"
-                    android:textSize="15dp"
+                    android:layout_marginLeft="@dimen/dp3"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:padding="5dp"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/dp18"
+                        android:layout_height="18dp" />
+                    <TextView
+                        android:text="Land"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/color1"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Land Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/LandType_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Terrain Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/TerrainType_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Soil Type"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/SoilType_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Site Demarcation"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Site_Demarcation_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Plot Leveling Condition"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Plot_Leveling_Condition_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Low lying area"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Low_lying_area_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Acquisition Area (sq m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/Land_Acquisition_Area_L_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/Land_Acquisition_Area_B_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="A: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:id="@+id/Land_Acquisition_Area_A_edit"
+                                    android:text=""
+                                    android:inputType="number"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                </GridLayout>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
+                <EditText
+                    android:id="@+id/Land_remarks_edit"
+                    android:textSize="13sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
             </LinearLayout>
-            <GridLayout
-                android:visibility="visible"
-                android:columnCount="2"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Land Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/LandType_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Terrain Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/TerrainType_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Soil Type"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/SoilType_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Site Demarcation"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/Site_Demarcation_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Plot Leveling Condition"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/Plot_Leveling_Condition_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Low lying area"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/Low_lying_area_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Area (sq m)"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="L: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/Land_Acquisition_Area_L_edit"
-                                android:text=""
-                                android:inputType="number"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="B: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <EditText
-                                android:id="@+id/Land_Acquisition_Area_B_edit"
-                                android:text=""
-                                android:inputType="number"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_marginVertical="@dimen/dp4"
-                            android:layout_marginHorizontal="@dimen/dp3"
-                            android:layout_width="1dp"
-                            android:background="@color/color1"
-                            android:layout_height="match_parent"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="A: "
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/Land_Acquisition_Area_A_edit"
-                                android:text=""
-                                android:inputType="number"
-                                style="@style/RowTestItemEdit"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp6" />
-                </LinearLayout>
-
-            </GridLayout>
-            <TextView
-                android:text="Remarks"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                style="@style/RowTextItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/Land_remarks_edit"
-                android:textSize="13sp"
-                style="@style/RowTestItemEdit"
-                android:text=""
-                android:layout_marginTop="@dimen/dp1"
-                android:layout_marginRight="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:alpha="0.37"
-                android:background="#263238"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp6" />
             <LinearLayout
                 android:visibility="visible"
                 android:orientation="horizontal"
@@ -2462,6 +2513,31 @@
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Nearby Fire Station"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
@@ -2485,7 +2561,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"

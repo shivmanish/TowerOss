@@ -31,9 +31,11 @@ class PropertyOwnerEditDialouge (var data: SAcqPropertyOwnerDetail, var fullData
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (titelFlag<0)
+        if (titelFlag<0){
             binding.titleText.text="Add Property Owner Details"
-        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
+            binding.update.text="Add"
+        }
+        binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.60).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }

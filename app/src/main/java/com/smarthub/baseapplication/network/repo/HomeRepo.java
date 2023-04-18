@@ -1086,6 +1086,7 @@ public class HomeRepo {
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         jsonObject.add("ServiceRequestMain", jsonArray);
+        AppLogger.INSTANCE.log("serviceRequestAll===>"+jsonObject);
         apiClient.fetchServiceRequest(jsonObject).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
