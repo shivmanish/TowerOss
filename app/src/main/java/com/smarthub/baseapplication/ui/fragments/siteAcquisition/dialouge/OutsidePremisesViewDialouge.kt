@@ -23,7 +23,8 @@ class OutsidePremisesViewDialouge (contentLayoutId: Int, var data: SAcqOutsidePr
             AppPreferences.getInstance().setDropDown(binding.ExternalStructureType, DropDowns.ExternalStructureType.name,data.ExternalStructureType?.get(0).toString())
        if (data.Direction!=null && data.Direction?.isNotEmpty()==true)
             AppPreferences.getInstance().setDropDown(binding.DirectionFromCentre, DropDowns.Direction.name,data.Direction?.get(0).toString())
-
+        if (data.MajorShadowCasting!=null && data.MajorShadowCasting!!>=0)
+            AppPreferences.getInstance().setDropDown(binding.MajorShadowCasting, DropDowns.MajorShadowCasting.name,data.MajorShadowCasting.toString())
         binding.DistanceFromBoundary.text=data.DistanceFromBoundry
         binding.HeightAGL.text=data.Height
         binding.remark.text=data.remark

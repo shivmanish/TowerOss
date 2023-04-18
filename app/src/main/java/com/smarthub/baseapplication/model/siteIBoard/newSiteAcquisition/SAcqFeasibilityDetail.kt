@@ -15,6 +15,7 @@ class SAcqFeasibilityDetail{
     var StatutoryPermission: Int?=null
     var SurveyDate: String?=null
     var TowerPoleType: ArrayList<Int>?=null
+    var SAcqLocationMarking: ArrayList<SAcqLocationMarking>?=null
 //    var created_at: String?=null
     var id: Int?=null
 //    var isActive: Boolean?=null

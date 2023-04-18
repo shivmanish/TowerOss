@@ -58,12 +58,15 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
+import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.EndPoints
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
 import com.smarthub.baseapplication.network.repo.UpdateIBoardRepo
+import com.smarthub.baseapplication.ui.alert.AlertRepo
+import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
@@ -77,6 +80,7 @@ class HomeViewModel : ViewModel() {
 
     var homeRepo: HomeRepo? = null
     var updateIBoardRepo: UpdateIBoardRepo? = null
+    var alertRepo: AlertRepo? = null
     var getHomeDataResponse: SingleLiveEvent<Resource<HomeResponse>>? = null
     var getProjectDataResponse: SingleLiveEvent<Resource<ProjectModelData>>? = null
     var getTaskDataResponse: SingleLiveEvent<Resource<TaskModelData>>? = null
@@ -120,11 +124,14 @@ class HomeViewModel : ViewModel() {
     var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
     var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
+    var departmentDataDataResponse:SingleLiveEvent<Resource<DepartmentDataModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
         updateIBoardRepo = UpdateIBoardRepo(APIInterceptor.get())
+        alertRepo = AlertRepo(APIInterceptor.get())
+        alertRepo = AlertRepo(APIInterceptor.get())
         getHomeDataResponse = homeRepo?.homeResponse
         getProjectDataResponse = homeRepo?.projectResponse
         getTaskDataResponse = homeRepo?.taskResponse
@@ -168,6 +175,7 @@ class HomeViewModel : ViewModel() {
         updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
         updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
         updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
+        departmentDataDataResponse=homeRepo?.departmentDataModel
         addAttachmentModel=homeRepo?.addAttachmentModel
     }
 
@@ -429,8 +437,12 @@ class HomeViewModel : ViewModel() {
         updateIBoardRepo?.updateSiteInfoData(data)
     }
 
-    fun getDepartment() {
-        homeRepo?.getDepartmentRequest()
+    fun getDepartment(data:String?) {
+        homeRepo?.getDepartmentWithGeographyRequest(data)
+    }
+
+    fun getDepartmentUsers(data: GetUserList) {
+        alertRepo?.getuserByWorkflow(data)
     }
 
     fun updateNocAndComp(data: NocCompAllData) {

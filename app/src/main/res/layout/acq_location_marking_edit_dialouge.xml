@@ -31,7 +31,7 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit OutSide Premises"
+            android:text="Edit Location Marking for key"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="#3D4E6D"
@@ -71,64 +71,87 @@
                     android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_marginTop="@dimen/dp1"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="External Structure Type"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/External_Structure_Type_edit"
-                            style="@style/SpinnerTheme"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp6" />
-                    </LinearLayout>
-                    <LinearLayout
                         android:layout_marginTop="@dimen/dp1"
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Direction from Centre"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/DirectionFromCentre_edit"
-                            style="@style/SpinnerTheme"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp6" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Distance from Boundary (m)"
+                            android:text="Objects"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/Distance_from_Boundary_edit"
+                            android:id="@+id/Objects_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp1"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Boundary in Direction-A"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp5" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Boundary in Direction-A"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Boundary_in_Direction_A_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp5" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Distance (m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Distance_A_edit"
                             android:text=""
                             style="@style/RowTestItemEdit"
                             android:inputType="numberDecimal"
@@ -141,21 +164,44 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Height, AGL (m)"
+                            android:text="Boundary in Direction-B"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Boundary_in_Direction_B_edit"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp5" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Distance (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:id="@+id/Height_AGl_edit"
+                            android:id="@+id/Distance_B_edit"
                             android:text=""
-                            android:inputType="numberDecimal|numberSigned"
                             style="@style/RowTestItemEdit"
+                            android:inputType="numberDecimal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -172,12 +218,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Major Shadow Casting"
+                            android:text="Marked in Layout"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/Major_Shadow_Casting_edit"
+                            android:id="@+id/Marked_in_layout_edit"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -186,7 +232,7 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp4" />
+                            android:layout_marginTop="@dimen/dp5" />
                     </LinearLayout>
 
 

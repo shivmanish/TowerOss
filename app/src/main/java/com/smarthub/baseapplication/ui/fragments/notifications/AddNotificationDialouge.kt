@@ -147,12 +147,12 @@ class AddNotificationDialouge (contentLayoutId: Int): BaseBottomSheetDialogFragm
         binding.users.text=""
         selectedUser.clear()
         for (i in selectesPos){
-            selectedUser.add(AssignToList[i].phone)
+            selectedUser.add(AssignToList[i].username)
             if (binding.users.text.isEmpty())
-                binding.users.text="${AssignToList[i].first_name} ${AssignToList[i].last_name}"
+                binding.users.text="${AssignToList[i].First_Name} ${AssignToList[i].Last_Name}"
             else
-                binding.users.text= "${binding.users.text},"+ "${AssignToList[i].first_name}  ${AssignToList[i].last_name}"
-            AppLogger.log("Selected value=====>: ${AssignToList[i].first_name}  ${AssignToList[i].last_name}, selected user===> $selectedUser")
+                binding.users.text= "${binding.users.text},"+ "${AssignToList[i].First_Name}  ${AssignToList[i].Last_Name}"
+            AppLogger.log("Selected value=====>: ${AssignToList[i].First_Name}  ${AssignToList[i].Last_Name}, selected user===> $selectedUser")
         }
     }
 }

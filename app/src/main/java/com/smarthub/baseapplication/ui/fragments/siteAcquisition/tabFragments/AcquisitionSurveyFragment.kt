@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
@@ -127,6 +128,32 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
             },position)
         bm.show(childFragmentManager,"sdg")
     }
+
+    override fun editLocationMarkingClicked(position: Int, data: SAcqLocationMarking) {
+        val bm = LocationMarkingEditDialouge(data,acqSurveyData,
+            object : LocationMarkingEditDialouge.AcqLocationMarkUpdateListener {
+                override fun updatedData() {
+                    viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+                }
+
+            },position)
+        bm.show(childFragmentManager,"sdg")
+    }
+
+    override fun viewLocationMarkingClicked(position: Int, data: SAcqLocationMarking) {
+        val bm = LocationMarkingViewDialouge(data)
+        bm.show(childFragmentManager, "category")
+    }
+
+    override fun textChangeListner(data1: Int?, data2: Int?, textview: TextView) {
+        if (data1!=null && data2!=null)
+            textview.text=(data1*data2).toString()
+        else if (data1!=null)
+            textview.text=data1.toString()
+        else if (data2!=null)
+            textview.text=data2.toString()
+    }
+
     override fun addAttachment() {
         val bm = AttachmentCommonDialogBottomSheet("SAcqAcquitionSurvey",acqSurveyData?.SAcqAcquitionSurvey?.get(0)?.id.toString(),
             object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {

@@ -365,6 +365,10 @@ public interface APIClient {
     Call<UserDataResponse> getuserlist(@Body GetUserList data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<UserDataResponse> getuserByWorkflowlist(@Body GetUserList data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
     Call<MarkerResponse> getmaplatlong(@Body MapMarkerService data);
 

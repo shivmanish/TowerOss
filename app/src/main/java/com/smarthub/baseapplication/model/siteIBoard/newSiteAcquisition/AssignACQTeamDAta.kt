@@ -10,7 +10,8 @@ import com.smarthub.baseapplication.model.siteIBoard.Attachments
     var Acquisitiontype: ArrayList<Int>? = null
     var Department: ArrayList<Int>? = null
     var ExecutiveName: String? = null
-    var LeadName: String? = null
+    var ExecutiveMobile: String? = null
+    var LeadName: String?=null
     var POAmount: String? = null
     var PODate: String? = null
     var POLineItemNo: Int? = null

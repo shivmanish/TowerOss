@@ -818,6 +818,49 @@
       ]
     },
     {
+      "name": "YesNoDropdown",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "PlotLevelingCondition",
+      "data": [
+        {
+          "id": 1,
+          "name": "Ok"
+        },
+        {
+          "id": 2,
+          "name": "Not Ok"
+        }
+      ]
+    },
+    {
+      "name": "MajorShadowCasting",
+      "data": [
+        {
+          "id": 1,
+          "name": "NA"
+        },
+        {
+          "id": 2,
+          "name": "Yes"
+        },
+        {
+          "id": 3,
+          "name": "No"
+        }
+      ]
+    },
+    {
       "name": "PropertyType",
       "data": [
         {
@@ -830,7 +873,7 @@
         },
         {
           "id": 3,
-          "name": "Building And Land"
+          "name": "Building With Land"
         }
       ]
     },

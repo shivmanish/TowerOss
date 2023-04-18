@@ -5,6 +5,7 @@ class SAcqOutsidePremise{
     var DistanceFromBoundry: String?=null
     var ExternalStructureType: ArrayList<Int>?=null
     var Height: String?=null
+    var MajorShadowCasting: Int?=null
     var remark: String?=null
 //    var created_at: String?=null
     var id: Int?=null

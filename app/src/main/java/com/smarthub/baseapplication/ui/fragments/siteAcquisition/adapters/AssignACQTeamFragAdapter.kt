@@ -3,19 +3,25 @@ package com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignAcqTeamItemBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
+import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.widgets.CustomSpinner
+import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
 class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: AssignACQTeamListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
     private var datalist: AssignACQTeamDAta?=null
@@ -30,7 +36,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 datalist=data.SAcqAssignACQTeam!!.get(0)
             }
         }catch (e:java.lang.Exception){
-            AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
+            AppLogger.log("AssignACQTeamFragAdapter error :${e.localizedMessage}")
         }
     }
 
@@ -155,6 +161,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         AppPreferences.getInstance().setDropDown(holder.binding.Department,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
                     holder.binding.AcquisitionLeadName.text=datalist?.LeadName
                     holder.binding.AcquisitionExecutiveName.text=datalist?.ExecutiveName
+                    holder.binding.AcquisitionExecutiveNumber.text=datalist?.ExecutiveMobile
                     holder.binding.AcquisitionBudget.text= datalist?.AcquisitionBudget?.ifEmpty { "0" }
                     holder.binding.VendorCode.text=datalist?.VendorCode
                     holder.binding.PONumber.text=datalist?.PONumber
@@ -169,8 +176,8 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     holder.binding.remarks.text=datalist?.remark
 
                     // edit mode
-                    holder.binding.AcquisitionLeadNameEdit.setText(datalist?.LeadName)
-                    holder.binding.AcquisitionExecutiveNameEdit.setText(datalist?.ExecutiveName)
+                    holder.binding.AcquisitionLeadNameEdit.text=datalist?.LeadName
+                    holder.binding.AcquisitionExecutiveNumberEdit.text=datalist?.ExecutiveMobile
                     holder.binding.AcquisitionBudgetEdit.setText(datalist?.AcquisitionBudget)
                     holder.binding.PONumberEdit.setText(datalist?.PONumber)
                     holder.binding.POLineNoEdit.setText(datalist?.POLineItemNo.toString())
@@ -210,9 +217,10 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 holder.binding.update.setOnClickListener {
                     val tempData=AssignACQTeamDAta()
                     tempData.let {
-                        it.LeadName=holder.binding.AcquisitionLeadNameEdit.text.toString()
-                        it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.text.toString()
-                        it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString().ifEmpty { "0" }
+                        it.LeadName=holder.binding.AcquisitionExecutiveNameEdit.selectedValue.managername
+                        it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.selectedValue.First_Name +" "+ holder.binding.AcquisitionExecutiveNameEdit.selectedValue.Last_Name
+                        it.ExecutiveMobile=holder.binding.AcquisitionExecutiveNumberEdit.text.toString()
+                        it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
                         it.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                         it.PONumber=holder.binding.PONumberEdit.text.toString()
@@ -237,6 +245,20 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
 
                 baseFragment.setDatePickerView(holder.binding.AcquisitionTargetDateEdit)
                 baseFragment.setDatePickerView(holder.binding.PODateEdit)
+                holder.binding.DepartmentEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+                    override fun itemSelected(departmentName: DropDownItem) {
+                        listener.departmentTextSelected(departmentName.name,holder.binding.AcquisitionExecutiveNameEdit,holder.binding.AcquisitionLeadNameEdit,
+                            holder.binding.AcquisitionExecutiveNumberEdit, holder.binding.AcquisitionExecutiveName.text.toString())
+                    }
+                }
+                holder.binding.GeographyLevelEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+                    override fun itemSelected(geographySelected: DropDownItem) {
+                        if (datalist!=null && datalist?.Department?.isNotEmpty() == true )
+                            listener.geographyTextSelected(geographySelected.name,holder.binding.DepartmentEdit,datalist?.Department?.get(0).toString())
+                        else
+                            listener.geographyTextSelected(geographySelected.name,holder.binding.DepartmentEdit,null)
+                    }
+                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -297,6 +319,8 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
     interface AssignACQTeamListListener {
        fun attachmentItemClicked()
        fun addAttachment()
+       fun departmentTextSelected(department:String,userListText:CustomUserSpinner,executiveName:TextView,executiveNumber:TextView,selectedName:String?)
+       fun geographyTextSelected(geograpgy:String,userListText:CustomSpinner,selectedItem:String?)
        fun updateTeamClicked(data:AssignACQTeamDAta?)
     }
 

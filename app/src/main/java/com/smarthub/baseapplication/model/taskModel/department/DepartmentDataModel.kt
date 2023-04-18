@@ -4,5 +4,5 @@ import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem
 
 data class DepartmentDataModel(
     val Department: DropDownNewItem,
-    val Status: Status
+    val Status: Status?=null
 )

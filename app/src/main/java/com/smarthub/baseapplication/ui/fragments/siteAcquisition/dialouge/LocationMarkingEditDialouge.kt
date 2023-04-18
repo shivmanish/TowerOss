@@ -7,81 +7,82 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.AcqInsidePremisesEditDialougeBinding
-import com.smarthub.baseapplication.databinding.AcqOutSidePremisesEditDialougeBinding
-import com.smarthub.baseapplication.databinding.AcqPoEditDialougeBinding
-import com.smarthub.baseapplication.databinding.AcqPropertyOwnerEditDialougeBinding
+import com.smarthub.baseapplication.databinding.AcqLocationMarkingEditDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
-import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: NewSiteAcquiAllData?, var listner:AcqOutsidePremisesUpdateListener,var titelFlag:Int) : BaseBottomSheetDialogFragment(){
+class LocationMarkingEditDialouge (var data: SAcqLocationMarking, var fullData: NewSiteAcquiAllData?, var listner:AcqLocationMarkUpdateListener, var titelFlag:Int) : BaseBottomSheetDialogFragment(){
 
-    lateinit var binding: AcqOutSidePremisesEditDialougeBinding
+    lateinit var binding: AcqLocationMarkingEditDialougeBinding
     lateinit var viewmodel: HomeViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = AcqOutSidePremisesEditDialougeBinding.inflate(inflater)
+        binding = AcqLocationMarkingEditDialougeBinding.inflate(inflater)
         viewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (titelFlag<0)
-            binding.titleText.text="Add OutSide Premises"
+            binding.titleText.text="Add Location Marking for key"
+        if (titelFlag in 0..3){
+            binding.ObjectsEdit.isEnabled = false
+            binding.ObjectsEdit.isClickable = false
+            binding.ObjectsEdit.isFocusable = false
+        }
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.60).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
         }
-        binding.DistanceFromBoundaryEdit.setText(data.DistanceFromBoundry)
-        binding.HeightAGlEdit.setText(data.Height)
+        binding.ObjectsEdit.setText(data.Object)
+        binding.DistanceAEdit.setText(data.DistanceA)
+        binding.DistanceBEdit.setText(data.DistanceB)
         binding.remarksEdit.setText(data.remark)
-        if (data.ExternalStructureType!=null && data.ExternalStructureType?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name,data.ExternalStructureType?.get(0).toString())
+        if (data.DirectionA!=null && data.DirectionA?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.BoundaryInDirectionAEdit, DropDowns.Direction.name,data.DirectionA?.get(0).toString())
         else
-            AppPreferences.getInstance().setDropDown(binding.ExternalStructureTypeEdit, DropDowns.ExternalStructureType.name)
-        if (data.Direction!=null && data.Direction?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name,data.Direction?.get(0).toString())
+            AppPreferences.getInstance().setDropDown(binding.BoundaryInDirectionAEdit, DropDowns.Direction.name)
+        if (data.DirectionB!=null && data.DirectionB?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.BoundaryInDirectionBEdit, DropDowns.Direction.name,data.DirectionB?.get(0).toString())
         else
-            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name)
-
-        if (data.MajorShadowCasting!=null && data.MajorShadowCasting!!>0)
-            AppPreferences.getInstance().setDropDown(binding.MajorShadowCastingEdit, DropDowns.MajorShadowCasting.name,data.MajorShadowCasting.toString())
+            AppPreferences.getInstance().setDropDown(binding.BoundaryInDirectionBEdit, DropDowns.Direction.name)
+        if (data.MarkedInLayout!=null && data.MarkedInLayout!!>0)
+            AppPreferences.getInstance().setDropDown(binding.MarkedInLayoutEdit, DropDowns.YesNoDropdown.name,data.MarkedInLayout.toString())
         else
-            AppPreferences.getInstance().setDropDown(binding.MajorShadowCastingEdit, DropDowns.MajorShadowCasting.name)
+            AppPreferences.getInstance().setDropDown(binding.MarkedInLayoutEdit, DropDowns.YesNoDropdown.name)
 
         binding.update.setOnClickListener {
             showProgressLayout()
             data.let {
-                it.DistanceFromBoundry=binding.DistanceFromBoundaryEdit.text.toString()
-                it.Height=binding.HeightAGlEdit.text.toString()
+                it.Object=binding.ObjectsEdit.text.toString()
+                it.DistanceA=binding.DistanceAEdit.text.toString()
+                it.DistanceB=binding.DistanceBEdit.text.toString()
                 it.remark=binding.remarksEdit.text.toString()
-                it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
-                it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
-                it.MajorShadowCasting=binding.MajorShadowCastingEdit.selectedValue.id.toIntOrNull()
+                it.DirectionA= arrayListOf(binding.BoundaryInDirectionAEdit.selectedValue.id.toInt())
+                it.MarkedInLayout= binding.MarkedInLayoutEdit.selectedValue.id.toIntOrNull()
+                it.DirectionB= arrayListOf(binding.BoundaryInDirectionBEdit.selectedValue.id.toInt())
             }
-            val tempExternalStructure=SAcqExternalStructure()
+            val tempFeasibilityDetail=SAcqFeasibilityDetail()
             val tempData= AcquisitionSurveyData()
             val dataModel = UpdateSiteAcquiAllData()
             if (fullData!=null){
                 dataModel.id=fullData?.id
                 if (fullData?.SAcqAcquitionSurvey!=null && fullData?.SAcqAcquitionSurvey?.isNotEmpty()==true){
                     tempData.id=fullData?.SAcqAcquitionSurvey?.get(0)?.id
-                    if (fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure!=null &&
-                        fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.isNotEmpty()==true)
-                        tempExternalStructure.id=fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqExternalStructure?.get(0)?.id
+                    if (fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqFeasibilityDetail!=null &&
+                        fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqFeasibilityDetail?.isNotEmpty()==true)
+                        tempFeasibilityDetail.id=fullData?.SAcqAcquitionSurvey?.get(0)?.SAcqFeasibilityDetail?.get(0)?.id
 
                 }
             }
-            tempExternalStructure.SAcqOutsidePremise= arrayListOf(data)
-            tempData.SAcqExternalStructure= arrayListOf(tempExternalStructure)
+            tempFeasibilityDetail.SAcqLocationMarking= arrayListOf(data)
+            tempData.SAcqFeasibilityDetail= arrayListOf(tempFeasibilityDetail)
             dataModel.SAcqAcquitionSurvey= arrayListOf(tempData)
             viewmodel.updateSiteAcq(dataModel)
         }
@@ -92,11 +93,11 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
         viewmodel.updateSiteAcqDataResponse?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
                 showProgressLayout()
-                AppLogger.log("SiteAgreemnets Fragment data loading in progress ")
+                AppLogger.log("LocationMarkingEditDialouge data updating in progress ")
                 return@observe
             }
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqOutsidePremise==200) {
-                AppLogger.log("SiteAgreemnets Fragment card Data fetched successfully")
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqFeasibilityDetail==200) {
+                AppLogger.log("LocationMarkingEditDialouge card Data updated successfully")
                 listner.updatedData()
                 hideProgressLayout()
                 dismiss()
@@ -105,12 +106,12 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
                 Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
-                AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                AppLogger.log("LocationMarkingEditDialouge Something went wrong in updating data")
             }
             else if (it != null) {
-                AppLogger.log("SiteAgreemnets Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("LocationMarkingEditDialouge error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                AppLogger.log("LocationMarkingEditDialouge Something went wrong in updating data")
 
             }
         }
@@ -130,7 +131,7 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
     }
 
 
-    interface AcqOutsidePremisesUpdateListener{
+    interface AcqLocationMarkUpdateListener{
         fun updatedData()
     }
 

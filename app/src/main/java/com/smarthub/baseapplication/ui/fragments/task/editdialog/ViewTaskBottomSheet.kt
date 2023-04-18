@@ -87,10 +87,10 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
                 AssignToList.clear()
                 AssignToList.addAll(it.data)
                 for(x in AssignToList){
-                    if(x.phone==task.actorname){
-                        binding.assignTo.text= "${x.first_name} ${x.last_name}"
-                        assignTo="${x.first_name} ${x.last_name}"
-                        AppLogger.log("user  :assign to : $assignTo  first name: ${x.first_name} last name: ${x.last_name} text: ${binding.assignTo.text}")
+                    if(x.username==task.actorname){
+                        binding.assignTo.text= "${x.First_Name} ${x.Last_Name}"
+                        assignTo="${x.First_Name} ${x.Last_Name}"
+                        AppLogger.log("user  :assign to : $assignTo  first name: ${x.First_Name} last name: ${x.Last_Name} text: ${binding.assignTo.text}")
                         return@Observer
                     }
                 }

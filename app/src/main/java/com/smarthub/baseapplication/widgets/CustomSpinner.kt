@@ -9,9 +9,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatSpinner
+import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.ui.adapter.spinner.CustomArrayAdapter
+import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import org.w3c.dom.Text
 
 class CustomSpinner : AppCompatSpinner {
@@ -113,6 +116,22 @@ class CustomSpinner : AppCompatSpinner {
         adapter = CustomArrayAdapter(context, data)
         setSelection(getIndexById(id))
         var listener = object : OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                onItemSelected(data[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+        onItemSelectedListener = listener
+    }
+    fun setDepartmenmtSpinnerData(data: List<DropDownItem>, id: String?) {
+        this.data = data
+        adapter = CustomArrayAdapter(context, data)
+        setSelection(getIndexById(id))
+        val listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
             }
