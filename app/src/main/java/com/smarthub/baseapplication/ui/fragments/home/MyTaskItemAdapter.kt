@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.utils.Utils
 class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerView.Adapter<MyTaskItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
+    var originalList : ArrayList<Any> = ArrayList()
     var overDue:Int ?=0
     var nowDue:Int ?=0
     var nextDue:Int ?=0
@@ -73,6 +74,28 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                         nextDue=nextDue!!+1
                     }
                 }
+            }
+        }
+        this.originalList = this.list
+        notifyDataSetChanged()
+    }
+    fun filterList(filter : Int){
+        var list = this.originalList
+        if(token=="home_navigation" && list.size>=4)
+            this.list = ArrayList(list.subList(0,4))
+        else
+            this.list = ArrayList()
+        this.list.add("header")
+        for (item in list){
+            if (item is MyTeamTask){
+                val date = item.enddate.substring(0,19)
+                val cmp = Utils.compareDate(date)
+                if (filter == 0 && cmp > 0)
+                    this.list.add(item)
+                else if (filter == 1 && cmp == 0)
+                    this.list.add(item)
+                else if (filter == 2)
+                    this.list.add(item)
             }
         }
         notifyDataSetChanged()
@@ -178,6 +201,15 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
         }
         if (holder is HeaderViewHold){
             holder.bindData()
+            holder.binding.card1.setOnClickListener {
+                filterList(0)
+            }
+            holder.binding.card2.setOnClickListener {
+                filterList(1)
+            }
+            holder.binding.card3.setOnClickListener {
+                filterList(2)
+            }
             holder.binding.overDue.text=overDue.toString()
             holder.binding.nowDue.text=nowDue.toString()
             holder.binding.nextDue.text=nextDue.toString()
