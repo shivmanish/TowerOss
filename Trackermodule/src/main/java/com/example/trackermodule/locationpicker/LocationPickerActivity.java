@@ -726,10 +726,8 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
                 if (addresses != null && addresses.size() > 0) {
 
                     String address = addresses.get(0).getAddressLine(0);
-                    if (address != null)
-                        addressBundle.putString("addressline2",address);
-                        sb.append(address).append(" ");
-
+                    addressBundle.putString("addressline2",address);
+                    sb.append(address).append(" ");
 
                     String city = addresses.get(0).getLocality();
                     if (city != null)
