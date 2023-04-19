@@ -30,11 +30,20 @@ class OfficialDetailFragment(var profiledata: ProfileData?) : BaseFragment() {
         binding.level2.text="Department Name"
         binding.level3.text="Role Name"
         binding.lavel4Layout?.visibility=View.GONE
+        binding.text1.text = "----"
+        binding.text2.text = "----"
+        binding.text3.text = "----"
+        binding.text4.text = "----"
         try {
-            binding.text1.text=profiledata?.company
-            binding.text2.text=profiledata?.department?.get(0)
-            binding.text3.text=profiledata?.roles?.get(0)
+            if(profiledata?.company!=null){
+            binding.text1.text=profiledata?.company}
+            if(profiledata!!.department!=null && profiledata?.department?.size!! >0){
+            binding.text2.text=profiledata?.department?.get(0)}
+            if(profiledata!!.roles!=null && profiledata?.roles?.size!! >0) {
+                binding.text3.text = profiledata?.roles?.get(0)
+            }
         }catch (e : Exception){
+            e.printStackTrace()
             AppLogger.log("Official Details View Error ${e.localizedMessage}")
             Toast.makeText(context,"Official Details View Error", Toast.LENGTH_LONG).show()
         }

@@ -6,9 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.smarthub.baseapplication.model.profile.viewProfile.ProfileDetails
 import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
 
-class ProfilePageAdapter (var manager: FragmentManager) : FragmentPagerAdapter(manager) {
+class ProfilePageAdapter (var manager: FragmentManager,var fragmentlist : ArrayList<Fragment>) : FragmentPagerAdapter(manager) {
     override fun getCount(): Int {
-        return 6
+        return fragmentlist.size
     }
 
     var profiledata: ProfileData?=null
@@ -19,15 +19,7 @@ class ProfilePageAdapter (var manager: FragmentManager) : FragmentPagerAdapter(m
     }
 
     override fun getItem(position: Int): Fragment {
-        return when(position) {
-            0 -> OfficialDetailFragment(profiledata)
-            1 -> ManagerInfoFragment(profiledata)
-            2 -> RoleGeographiFragment(profiledata)
-            3 -> AddressFragment(profiledata)
-            4 -> UserRoleTabFragment(profiledata)
-            5 -> HistoryFragment(profiledata)
-            else -> OfficialDetailFragment(profiledata)
-        }
+       return fragmentlist.get(position)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

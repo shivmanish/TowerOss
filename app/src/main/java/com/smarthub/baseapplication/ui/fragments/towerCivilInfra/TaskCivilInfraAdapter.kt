@@ -47,7 +47,7 @@ class TaskCivilInfraAdapter (var context: Context, var listner: TaskCivilInfraAd
             try {
                 holder.itemView.setOnClickListener {
                     if (datalist!=null)
-                        listner.clickedTowerItem(id,datalist)
+                        listner.clickedTowerItem(id,datalist!!.get(0))
                     else AppLogger.log("data Null : $datalist")
                 }
             }catch (e:java.lang.Exception){
@@ -62,7 +62,7 @@ class TaskCivilInfraAdapter (var context: Context, var listner: TaskCivilInfraAd
             try {
                 holder.itemView.setOnClickListener {
                     if (datalist!=null)
-                        listner.clickedPoleItem(id,datalist)
+                        listner.clickedPoleItem(id,datalist!!.get(0))
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
@@ -77,7 +77,7 @@ class TaskCivilInfraAdapter (var context: Context, var listner: TaskCivilInfraAd
             try {
                 holder.itemView.setOnClickListener {
                     if (datalist!=null)
-                        listner.clickedEquipmentRoomItem(id,datalist)
+                        listner.clickedEquipmentRoomItem(id,datalist!!.get(0))
                     else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                 }
             }catch (e:java.lang.Exception){
@@ -108,7 +108,7 @@ class TaskCivilInfraAdapter (var context: Context, var listner: TaskCivilInfraAd
             try {
                 holder.itemView.setOnClickListener {
                     if (datalist!=null)
-                        listner.clickedTowerItem(id,datalist)
+                        listner.clickedTowerItem(id,datalist!!.get(0))
                     else AppLogger.log("data null:===> $datalist")
                 }
             }catch (e:java.lang.Exception){
@@ -124,9 +124,9 @@ class TaskCivilInfraAdapter (var context: Context, var listner: TaskCivilInfraAd
     }
 
     interface TaskCivilInfraAdapterListner{
-        fun clickedTowerItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
-        fun clickedPoleItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
-        fun clickedEquipmentRoomItem(id:String,data:ArrayList<NewTowerCivilAllData>?)
+        fun clickedTowerItem(id:String,data: NewTowerCivilAllData?)
+        fun clickedPoleItem(id:String,data: NewTowerCivilAllData?)
+        fun clickedEquipmentRoomItem(id:String,data:NewTowerCivilAllData?)
         fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
 
     }

@@ -75,6 +75,10 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAc
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.*
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleFragPageAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerPageAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.TowerEarthingFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters.TowerEarthingAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
@@ -301,9 +305,11 @@ class TaskSearchTabNewFragment(
                     AppLogger.log("Selected TAb is NOC & Compliance")
                 }
                 7->{
+                    setUpTowerAndCvilData()
                     AppLogger.log("Selected TAb is Tower & Civil Infra")
                 }
                 8->{
+                    setUpPowerFuelData()
                     AppLogger.log("Selected TAb is Power & Fuel")
                 }
                 9->{
@@ -557,75 +563,75 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.fetchPowerAndFuel(siteID.toString())
     }
-//    fun setUpTowerAndCvilData() {
-//        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
-//            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
-//        }
-//        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
-//            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
-//            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                TwrInfraDetails.Id=id
-//                TwrInfraDetails.TowerModelData=data
-//                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                PoleFragment.Id=id
-//                PoleFragment.TowerModelData=data
-//                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedEquipmentRoomItem(
-//                id: String,
-//                data: ArrayList<NewTowerCivilAllData>?,
-//            ) {
-//                TowerEquipmentFragemnt.EquipmentModelData = data
-//                TowerEquipmentFragemnt.Id=id
-//                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                TowerEarthingFragment.Id=id
-//                TowerEarthingFragment.EarthingModelData=data
-//                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//            }
-//
-//        },siteID.toString())
-//        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-//        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
-//
-//            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
-//                AppLogger.log("planDesign Fragment card Data fetched successfully")
-//                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
-//            } else if (it != null) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "planDesign Fragment error :${it.message}, data : ${it.data}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
-//            } else {
-//                AppLogger.log("planDesign Fragment Something went wrong")
-//                Toast.makeText(requireContext(),
-//                    "planDesign Fragment Something went wrong",
-//                    Toast.LENGTH_SHORT)
-//                    .show()
-//            }
-//        })
-//        (requireActivity() as BaseActivity).showLoader()
-//        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
-//    }
+    fun setUpTowerAndCvilData() {
+        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
+            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
+            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+                TwrInfraDetails.Id=id
+                TwrInfraDetails.TowerModelData=data
+                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+
+            }
+
+            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+                PoleFragment.Id=id
+                PoleFragment.TowerModelData=data
+                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+
+            }
+
+            override fun clickedEquipmentRoomItem(
+                id: String,
+                data: ArrayList<NewTowerCivilAllData>?,
+            ) {
+                TowerEquipmentFragemnt.EquipmentModelData = data
+                TowerEquipmentFragemnt.Id=id
+                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+
+            }
+
+            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+                TowerEarthingFragment.Id=id
+                TowerEarthingFragment.EarthingModelData=data
+                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+        },siteID.toString())
+        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("planDesign Fragment card Data fetched successfully")
+                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
+            } else if (it != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("planDesign Fragment Something went wrong")
+                Toast.makeText(requireContext(),
+                    "planDesign Fragment Something went wrong",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
+    }
 
     fun filterTowerList(data:ArrayList<NewTowerCivilAllData>):ArrayList<FilterdTwrData>{
         val filteredData:ArrayList<FilterdTwrData> = ArrayList()

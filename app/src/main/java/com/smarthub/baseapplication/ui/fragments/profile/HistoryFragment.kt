@@ -32,7 +32,10 @@ class HistoryFragment (var profiledata: ProfileData?) : BaseFragment() {
         binding.level2.text="Created Date"
         binding.level3.text="Approved by"
         binding.level4.text="Approved Date"
-
+        binding.text1.text= "---"
+        binding.text2.text= "---"
+        binding.text3.text="---"
+        binding.text4.text="---"
         try {
             binding.text1.text= String.format("%s %s",profiledata?.first_name,profiledata?.last_name)
             binding.text2.text= "${Utils.getShortForm(profiledata?.createddate!!,sdf)} , ${profiledata?.createddate!!}"

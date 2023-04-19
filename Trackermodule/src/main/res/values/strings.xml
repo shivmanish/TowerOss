@@ -14,4 +14,6 @@
     <string name="phone_error">Enter a registered mobile number or contact with   administrator</string>
     <string name="set_otp_text">Please enter pass code for avoid mobile authentication evry time</string>
     <string name="location_disclaimer">We need this permission</string>
+    <string name="addressline1_hint">Enter Flat No / Floor / Landmark </string>
+    <string name="edittext_hint">"Click here to edit address location"</string>
 </resources>

@@ -30,6 +30,11 @@ class RoleGeographiFragment (var profiledata: ProfileData?) : BaseFragment() {
         binding.level3.text="State"
         binding.level4.text="MP"
 
+        binding.text1.text="---"
+        binding.text2.text="---"
+        binding.text3.text="---"
+        binding.text4.text= "---"
+
         try {
             binding.text1.text=profiledata?.national
             binding.text2.text=profiledata?.region?.get(0)

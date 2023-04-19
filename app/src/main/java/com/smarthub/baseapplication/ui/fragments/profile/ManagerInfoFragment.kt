@@ -29,12 +29,19 @@ class ManagerInfoFragment (var profiledata: ProfileData?) : BaseFragment() {
         binding.level2.text="Email Id"
         binding.level3.text="Mobile Number"
         binding.lavel4Layout.visibility= View.GONE
-
+        binding.text1.text = "----"
+        binding.text2.text = "----"
+        binding.text3.text = "----"
+        binding.text4.text = "----"
         try {
-            binding.text1.text=profiledata?.managername
-            binding.text2.text=profiledata?.manageremail
-            binding.text3.text=profiledata?.managerphone
+            if(profiledata?.managername!=null){
+            binding.text1.text=profiledata?.managername}
+            if(profiledata?.manageremail!=null){
+            binding.text2.text=profiledata?.manageremail}
+            if(profiledata?.managerphone!=null){
+            binding.text3.text=profiledata?.managerphone}
         }catch (e : Exception){
+            e.printStackTrace()
             AppLogger.log("Manager Info view frag Error ${e.localizedMessage}")
             Toast.makeText(context,"Manager Info view frag Error", Toast.LENGTH_LONG).show()
         }
