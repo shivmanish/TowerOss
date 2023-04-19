@@ -1,12 +1,20 @@
 package com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments
 
+import android.app.Activity
+import android.content.Intent
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import java.math.BigDecimal
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import com.example.trackermodule.locationpicker.LocationPickerActivity
+import com.example.trackermodule.locationpicker.MapUtility
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -19,7 +27,11 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSur
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.*
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
+import java.math.RoundingMode
+import java.util.*
+
 
 class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var parentIndex:Int): BaseFragment(),AcqSurveyFragAdapter.AcqSurveyListListener{
     lateinit var viewmodel: HomeViewModel
@@ -257,6 +269,78 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
             }
         }
     }
+    private val startForCropResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        when (result.resultCode) {
+            Activity.RESULT_OK -> {
+                var actualLat:Double?=0.0
+                var actualLong:Double?=0.0
+                result.data?.getStringExtra(MapUtility.ADDRESS)?.let {
+                    this.address2?.text=it
+                    AppLogger.log("Address=====>$it")
+                }
+                result.data?.getDoubleExtra(MapUtility.LATITUDE,0.0)?.let {
+                    this.siteLat?.text=String.format("%.6f", it)
+                    AppLogger.log("siteLat=====>$it")
+                    actualLat=it
+                }
+                result.data?.getDoubleExtra(MapUtility.LONGITUDE,0.0)?.let {
+                    this.siteLong?.text=String.format("%.6f", it)
+                    AppLogger.log("siteLong=====>$it")
+                    actualLong=it
+                }
+                if (actualLat!=null && actualLong!=null){
+                    Utils.calculateDistanceLatLong(this.nominalSiteLat!!,this.nominalSiteLong!!,
+                        actualLat.toString(),actualLong.toString(),
+                        this.distance)
+                }
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+
+                //get location from lat long if address string is null
+                val addresses = geocoder.getFromLocation(actualLat!!, actualLong!!, 1)
+                if (addresses != null && addresses.size > 0){
+                    val postalCode = addresses[0].postalCode
+                    this.postalCode?.text=postalCode
+                    try {
+                        val addressline2 = addresses[0].getAddressLine(0)+","+ addresses[0].adminArea+","+addresses[0].countryName
+                        this.address2?.text=addressline2
+                        AppLogger.log("addressline2=====>$addressline2")
+                    }catch (e:Exception){
+                        AppLogger.log("${e.localizedMessage}")
+                    }
+                }
+            }
+            else -> {
+                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    var distance: TextView?=null
+    var address2: TextView?=null
+    var siteLat: TextView?=null
+    var siteLong: TextView?=null
+    var postalCode: TextView?=null
+    var nominalSiteLat: String?=null
+    var nominalSiteLong: String?=null
+    override fun initiateAddressActivity(
+        distance: TextView?, address2: TextView?, siteLat: TextView, siteLong: TextView,
+        postalCode: TextView,
+        nominalSiteLat: String?,
+        nominalSiteLong: String?,
+    )
+    {
+        this.distance=distance
+        this.address2=address2
+        this.siteLat=siteLat
+        this.siteLong=siteLong
+        this.postalCode=postalCode
+        this.nominalSiteLat=nominalSiteLat
+        this.nominalSiteLong=nominalSiteLong
+        val intent = Intent(requireContext(), LocationPickerActivity::class.java)
+        startForCropResult.launch(intent)
+
+    }
+
+
 
 
 }

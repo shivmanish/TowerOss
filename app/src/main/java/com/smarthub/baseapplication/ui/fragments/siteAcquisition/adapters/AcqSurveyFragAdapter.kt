@@ -351,6 +351,15 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.ActualCoordiSiteLAtitudeEdit.text=siteAdd?.locLatitude
                     holder.binding.ActualCoordiSiteLongitudeEdit.text=siteAdd?.locLongitude
                 }
+                if (siteAdd!=null && nominalSiteAdd!=null){
+                    if (siteAdd?.locLatitude!=null && siteAdd?.locLongitude!=null &&
+                        nominalSiteAdd?.locLatitude!=null && nominalSiteAdd?.locLongitude!=null){
+                        Utils.calculateDistanceLatLong(nominalSiteAdd?.locLatitude!!,nominalSiteAdd?.locLongitude!!,
+                            siteAdd?.locLatitude!!,siteAdd?.locLongitude!!,holder.binding.DistanceFromProposedLoc)
+                        Utils.calculateDistanceLatLong(nominalSiteAdd?.locLatitude!!,nominalSiteAdd?.locLongitude!!,
+                            siteAdd?.locLatitude!!,siteAdd?.locLongitude!!,holder.binding.DistanceFromProposedLocEdit)
+                    }
+                }
                 if (propertyData!=null){
                     if (propertyData?.PropertyType != null && propertyData?.PropertyType!! ==1){
                         holder.binding.BuildingLayoutView.visibility=View.VISIBLE
@@ -648,6 +657,30 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             }
                         }
                     }
+                }
+                holder.binding.ActualCoordiAddressLine2Edit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                    holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                    holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                    holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
+                }
+                holder.binding.ActualCoordiSiteLAtitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                        holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                        holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                        holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
+                }
+                holder.binding.ActualCoordiSiteLongitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                        holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                        holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                        holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
+                }
+                holder.binding.ActualCoordiPostalCodeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                        holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                        holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                        holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
                 }
             }
             is ViewHold2 -> {
@@ -1056,6 +1089,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
        fun textChangeListner(data1: Float?,data2: Float?,textview:TextView)
        fun updateItemClicked(data:AcquisitionSurveyData)
         fun updateActualAdderessAddress(data:AllsiteInfoDataModel?)
+        fun initiateAddressActivity(distance:TextView?,address2:TextView?,siteLat:TextView,siteLong:TextView,postalCode:TextView,nominalSiteLat:String?,nominalSiteLong:String?)
 
     }
 
