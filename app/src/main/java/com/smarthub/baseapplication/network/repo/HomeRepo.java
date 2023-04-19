@@ -22,6 +22,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
+import com.smarthub.baseapplication.model.qatcheck.update.QatUpdateModel;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.search.SearchListItem;
@@ -113,6 +114,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<QatMainModel>> qatMainModelResponse;
+    private SingleLiveEvent<Resource<QatUpdateModel>> qatUpdateModel;
     private SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogsDataModel>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
@@ -198,6 +200,10 @@ public class HomeRepo {
         return qatMainModelResponse;
     }
 
+    public SingleLiveEvent<Resource<QatUpdateModel>> getQatUpdateModel() {
+        return qatUpdateModel;
+    }
+
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
         return opcoDataResponse;
     }
@@ -247,6 +253,7 @@ public class HomeRepo {
         siteInfoModelNew = new SingleLiveEvent<>();
         notificationNew = new SingleLiveEvent<>();
         qatModelResponse = new SingleLiveEvent<>();
+        qatUpdateModel = new SingleLiveEvent<>();
         qatMainModelResponse = new SingleLiveEvent<>();
         userDataResponse = new SingleLiveEvent<>();
         addNotificationResponse = new SingleLiveEvent<>();
@@ -1281,9 +1288,9 @@ public class HomeRepo {
     }
 
     public void qatMainRequestAll(QalLaunchModel data) {
-        apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
+        apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatUpdateModel>() {
             @Override
-            public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
+            public void onResponse(Call<QatUpdateModel> call, Response<QatUpdateModel> response) {
                 if (response.isSuccessful()) {
                     reportSuccessResponse(response);
                 } else if (response.errorBody() != null) {
@@ -1294,23 +1301,23 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<QatMainModel> call, Throwable t) {
+            public void onFailure(Call<QatUpdateModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<QatMainModel> response) {
+            private void reportSuccessResponse(Response<QatUpdateModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
-                    qatMainModelResponse.postValue(Resource.success(response.body(), 200));
+                    qatUpdateModel.postValue(Resource.success(response.body(), 200));
                 }
             }
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    qatMainModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    qatUpdateModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    qatMainModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    qatUpdateModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

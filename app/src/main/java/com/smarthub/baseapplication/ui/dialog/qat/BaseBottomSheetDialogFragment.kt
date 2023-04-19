@@ -96,11 +96,11 @@ open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
         textView.text = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"dd-MMM-yyyy")
-//        textView.text = StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
+        textView.tag = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"yyyy-MM-dd")
     }
     private fun monthYear(year: Int, month: Int, day: Int,textView : TextView) {
         textView.text = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"MMM-yyyy")
-//        textView.text = StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
+        textView.tag = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"yyyy-MM-dd")
     }
 
     fun showLoader(){

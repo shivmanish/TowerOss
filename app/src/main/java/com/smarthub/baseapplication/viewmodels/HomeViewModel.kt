@@ -17,6 +17,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
+import com.smarthub.baseapplication.model.qatcheck.update.QatUpdateModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
@@ -106,6 +107,7 @@ class HomeViewModel : ViewModel() {
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
     var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
     var QatMainTempletResponse : SingleLiveEvent<Resource<QatModel?>>?=null
+    var qatUpdateModel : SingleLiveEvent<Resource<QatUpdateModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
@@ -156,6 +158,7 @@ class HomeViewModel : ViewModel() {
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
         QatModelResponse=homeRepo?.qatMainModelResponse
         QatMainTempletResponse=homeRepo?.qatModelResponse
+        qatUpdateModel=homeRepo?.qatUpdateModel
         powerAndFuelResponse=homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
         dropDownResponseNew = homeRepo?.dropDownResponseNew
