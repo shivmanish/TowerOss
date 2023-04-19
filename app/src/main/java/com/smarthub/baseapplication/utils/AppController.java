@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.trackermodule.util.MyApplication;
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentConditionsDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel;
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteInfoDataModel;
 
@@ -17,6 +18,7 @@ public class AppController extends MyApplication {
     public SiteInfoDataModel siteInfoModel;
     public SRDetails NominalAddress;
     public AllsiteInfoDataModel newSiteInfoModel;
+    public AttachmentConditionsDataModel attachmentsConditionsList;
     public String ownerName = "SMRT";
     public String siteid = "448";
     public String taskSiteId = "448";

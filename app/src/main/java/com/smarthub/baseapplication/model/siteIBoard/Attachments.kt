@@ -6,6 +6,8 @@ data class Attachments(
     val `file`: String,
     val fullPath: String,
     val id: Int,
+    val category: Int,
+    val siteId: Int,
     val isActive: Boolean,
     val modified_at: String,
     val sourceSchemaId: Int,

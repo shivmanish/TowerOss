@@ -33,6 +33,8 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentConditionsDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
@@ -120,6 +122,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
     private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
     private SingleLiveEvent<Resource<AllsiteInfoDataModel>> siteInfoDataModel;
+    private SingleLiveEvent<Resource<AttachmentConditionsDataModel>> attachmentConsitionsModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -136,6 +139,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
         return siteInfoModelNew;
+    }
+
+    public SingleLiveEvent<Resource<AttachmentConditionsDataModel>> getAttachmentConsitionsModel() {
+        return attachmentConsitionsModel;
     }
 
     public SingleLiveEvent<Resource<NotificationNew>> getNotificationNew() {
@@ -254,6 +261,7 @@ public class HomeRepo {
         acquisitionSurveyAllDataItem = new SingleLiveEvent<>();
         addAttachmentModel = new SingleLiveEvent<>();
         departmentDataModel = new SingleLiveEvent<>();
+        attachmentConsitionsModel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -1035,6 +1043,48 @@ public class HomeRepo {
                     siteInfoDataModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     siteInfoDataModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void AttachmentsConditionsRequestAll() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("Attachment", new JsonObject());
+        apiClient.fetchAttachmentConditions(jsonObject).enqueue(new Callback<AttachmentConditionsDataModel>() {
+            @Override
+            public void onResponse(Call<AttachmentConditionsDataModel> call, Response<AttachmentConditionsDataModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll error :" + response.errorBody());
+                } else {
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AttachmentConditionsDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<AttachmentConditionsDataModel> response) {
+
+                if (response.body() != null) {
+                    AppController.getInstance().attachmentsConditionsList=response.body();
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll reportSuccessResponse :" + response);
+                    attachmentConsitionsModel.postValue(Resource.success(response.body(), 200));
+                }
+                else
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll reportSuccessResponse : null");
+
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll reportSuccessResponse error :" + iThrowableLocalMessage);
+                if (iThrowableLocalMessage != null)
+                    attachmentConsitionsModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    attachmentConsitionsModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

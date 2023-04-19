@@ -21,6 +21,8 @@ import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentConditionsDataModel
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
@@ -126,6 +128,7 @@ class HomeViewModel : ViewModel() {
     var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
     var departmentDataDataResponse:SingleLiveEvent<Resource<DepartmentDataModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
+    var attachmentConditionModel:SingleLiveEvent<Resource<AttachmentConditionsDataModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -177,6 +180,7 @@ class HomeViewModel : ViewModel() {
         updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
         departmentDataDataResponse=homeRepo?.departmentDataModel
         addAttachmentModel=homeRepo?.addAttachmentModel
+        attachmentConditionModel=homeRepo?.attachmentConsitionsModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -250,6 +254,9 @@ class HomeViewModel : ViewModel() {
 
     fun siteInfoRequestAll(id : String){
         homeRepo?.SiteInfoRequestAll(id)
+    }
+    fun attachmentConditionsRequestAll(){
+        homeRepo?.AttachmentsConditionsRequestAll()
     }
 
     fun siteAcquisitionSurveyById(id : String){
