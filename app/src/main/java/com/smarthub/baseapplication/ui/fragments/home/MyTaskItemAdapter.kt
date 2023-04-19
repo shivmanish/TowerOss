@@ -94,7 +94,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                     this.list.add(item)
                 else if (filter == 1 && cmp == 0)
                     this.list.add(item)
-                else if (filter == 2)
+                else if (filter == 2 && cmp < 0)
                     this.list.add(item)
             }
         }
