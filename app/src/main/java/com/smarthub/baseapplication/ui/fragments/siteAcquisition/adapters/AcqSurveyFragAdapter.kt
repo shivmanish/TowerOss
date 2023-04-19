@@ -14,11 +14,13 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.SiteAddressData
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.AttachmentConditionalAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.InsidePremisesTableAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.LocationMarkingTableAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.OutsidePremisesTableAdapter
@@ -203,8 +205,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
     }
     class ViewHold6(itemView: View,listener: AcqSurveyListListener) : ViewHold(itemView) {
-        var binding: TowerAttachmentInfoBinding = TowerAttachmentInfoBinding.bind(itemView)
-        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
+        var binding: SiteAcqConditionalAttachmentsBinding = SiteAcqConditionalAttachmentsBinding.bind(itemView)
+        val recyclerListener:RecyclerView = binding.attachmentTableItem
 
         init {
             binding.collapsingLayout.tag = false
@@ -265,7 +267,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 return ViewHold5(view)
             }
             6 -> {
-                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_attachment_info, parent, false)
+                view = LayoutInflater.from(parent.context).inflate(R.layout.site_acq_conditional_attachments, parent, false)
                 return ViewHold6(view,listener)
             }
 
@@ -350,6 +352,15 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.ActualCoordiPostalCodeEdit.text=siteAdd?.pincode
                     holder.binding.ActualCoordiSiteLAtitudeEdit.text=siteAdd?.locLatitude
                     holder.binding.ActualCoordiSiteLongitudeEdit.text=siteAdd?.locLongitude
+                }
+                if (siteAdd!=null && nominalSiteAdd!=null){
+                    if (siteAdd?.locLatitude!=null && siteAdd?.locLongitude!=null &&
+                        nominalSiteAdd?.locLatitude!=null && nominalSiteAdd?.locLongitude!=null){
+                        Utils.calculateDistanceLatLong(nominalSiteAdd?.locLatitude!!,nominalSiteAdd?.locLongitude!!,
+                            siteAdd?.locLatitude!!,siteAdd?.locLongitude!!,holder.binding.DistanceFromProposedLoc)
+                        Utils.calculateDistanceLatLong(nominalSiteAdd?.locLatitude!!,nominalSiteAdd?.locLongitude!!,
+                            siteAdd?.locLatitude!!,siteAdd?.locLongitude!!,holder.binding.DistanceFromProposedLocEdit)
+                    }
                 }
                 if (propertyData!=null){
                     if (propertyData?.PropertyType != null && propertyData?.PropertyType!! ==1){
@@ -648,6 +659,30 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             }
                         }
                     }
+                }
+                holder.binding.ActualCoordiAddressLine2Edit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                    holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                    holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                    holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
+                }
+                holder.binding.ActualCoordiSiteLAtitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                        holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                        holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                        holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
+                }
+                holder.binding.ActualCoordiSiteLongitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                        holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                        holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                        holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
+                }
+                holder.binding.ActualCoordiPostalCodeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(holder.binding.DistanceFromProposedLocEdit,
+                        holder.binding.ActualCoordiAddressLine2Edit,holder.binding.ActualCoordiSiteLAtitudeEdit,
+                        holder.binding.ActualCoordiSiteLongitudeEdit,holder.binding.ActualCoordiPostalCodeEdit,
+                        holder.binding.SiteLAtitudeEdit.text.toString(),holder.binding.SiteLongitudeEdit.text.toString())
                 }
             }
             is ViewHold2 -> {
@@ -987,19 +1022,12 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
             }
             is ViewHold6 -> {
+                var attachmentsList:ArrayList<AttachmentsConditions> ?=ArrayList()
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-
-                    holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
-                        if (datalist!=null){
-                            listener.addAttachment()
-                        }
-                        else
-                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
-                    }
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -1012,12 +1040,20 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
+                if (AppController.getInstance().attachmentsConditionsList.Attachment!=null){
+                    attachmentsList=AppController.getInstance().attachmentsConditionsList.Attachment
+                }
                 try {
                     if (datalist!=null){
-                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
-                                listener.attachmentItemClicked()
-                            }
+                        holder.recyclerListener.adapter= AttachmentConditionalAdapter(baseFragment.requireContext(),datalist?.attachment,
+                            attachmentsList!!,22,datalist?.id,
+                            object : AttachmentConditionalAdapter.AttachmentConditionsListener{
+                                override fun attachmentItemClicked() {
+                                    listener.attachmentItemClicked()
+                                }
+                                override fun addAttachmentItemClicked() {
+                                    listener.addAttachment()
+                                }
                         })
                     }
                     else
@@ -1056,6 +1092,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
        fun textChangeListner(data1: Float?,data2: Float?,textview:TextView)
        fun updateItemClicked(data:AcquisitionSurveyData)
         fun updateActualAdderessAddress(data:AllsiteInfoDataModel?)
+        fun initiateAddressActivity(distance:TextView?,address2:TextView?,siteLat:TextView,siteLong:TextView,postalCode:TextView,nominalSiteLat:String?,nominalSiteLong:String?)
 
     }
 

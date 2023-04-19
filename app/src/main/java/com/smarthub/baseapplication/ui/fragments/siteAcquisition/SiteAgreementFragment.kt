@@ -79,6 +79,32 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
 
             }
         }
+
+        if (viewmodel.attachmentConditionModel?.hasActiveObservers() == true) {
+            viewmodel.attachmentConditionModel?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.attachmentConditionModel?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                hideLoader()
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions card Data fetched successfully")
+                try {
+                    AppController.getInstance().attachmentsConditionsList=it.data
+                } catch (e: java.lang.Exception) {
+                    AppLogger.log("SiteAgreemnets Fragment AttachmentConditions error : ${e.localizedMessage}")
+                }
+                AppLogger.log("SiteAgreemnets AttachmentConditions size :${it.data.Attachment?.size}")
+                isDataLoaded = true
+            } else if (it != null) {
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions Something went wrong")
+
+            }
+        }
         
         binding.swipingLayout.setOnRefreshListener {
             binding.swipingLayout.isRefreshing=false
@@ -86,7 +112,7 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
             viewmodel.fetchSiteAgreementModelRequest(id)
         }
         viewmodel.fetchSiteAgreementModelRequest(id)
-
+        viewmodel.attachmentConditionsRequestAll()
         binding.addNew.setOnClickListener {
             val bm = AddNewSiteAcqDialouge(
                 object : AddNewSiteAcqDialouge.AddSiteAcqDataListener {
