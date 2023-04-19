@@ -120,7 +120,7 @@ class SPApprovalAdapter(
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked(spApproval!!,serviceRequestAllData)
+//                    listener.detailsItemClicked(spApproval!!,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -156,7 +156,7 @@ class SPApprovalAdapter(
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked(soDetail!!,serviceRequestAllData)
+//                    listener.requestinfoClicked(soDetail!!,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

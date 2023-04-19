@@ -34,7 +34,7 @@ class TowerOffsetEditAdapter (contentLayoutId: Int) : BottomSheetDialogFragment(
         return binding.root
     }
     override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
 

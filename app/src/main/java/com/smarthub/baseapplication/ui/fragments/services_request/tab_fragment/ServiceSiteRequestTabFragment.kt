@@ -44,18 +44,18 @@ class ServiceRequestTabFragment(var data : ServiceRequestAllDataItem?, var Id: S
             if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 if (it.data.ServiceRequestMain?.isNotEmpty() == true) {
                     adapter.updateData(it.data.ServiceRequestMain[0])
-                    Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Service request Data fetched successfully", Toast.LENGTH_SHORT).show()
                     AppLogger.log("Service request Fragment card Data fetched successfully")
                     AppLogger.log("size :${it.data.ServiceRequestMain.size}")
                 }else Toast.makeText(requireContext(), "No Data Found found", Toast.LENGTH_SHORT).show()
 
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 

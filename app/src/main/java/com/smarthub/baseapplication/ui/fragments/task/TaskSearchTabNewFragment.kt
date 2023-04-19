@@ -75,8 +75,14 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAc
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.*
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleFragPageAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerPageAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.TowerEarthingFragment
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters.TowerEarthingAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentFragemnt
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentFragmentAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
@@ -283,7 +289,7 @@ class TaskSearchTabNewFragment(
                     AppLogger.log("Selected TAb is OpcoTenency")
                 }
                 2->{
-                    setUpSiteAcqusitionData(splittedData as ArrayList<String>)
+                    setUpSiteAcqusitionData(ArrayList(splittedData))
                 }
                 3->{
                     setUpUtilityUqipData()
@@ -301,9 +307,11 @@ class TaskSearchTabNewFragment(
                     AppLogger.log("Selected TAb is NOC & Compliance")
                 }
                 7->{
+//                    setUpTowerAndCvilData()
                     AppLogger.log("Selected TAb is Tower & Civil Infra")
                 }
                 8->{
+                    setUpPowerFuelData()
                     AppLogger.log("Selected TAb is Power & Fuel")
                 }
                 9->{

@@ -83,11 +83,11 @@ class PoleMaintenanceEditDialouge (var data: PreventiveMaintenance, var childId:
                 listner.updatedData()
                 hideProgressLayout()
                 dismiss()
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("PoleMaintenanceEditDialouge Something went wrong in updating data")
             }
             else if (it != null) {

@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.OpcoTSSR
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.RFFeasibility
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
+import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.widgets.CustomSpinner
@@ -54,7 +55,11 @@ class RFFeasibilityBottomSheet(
                 position: Int,
                 id: Long
             ) {
-                RfFeasibility!!.Technology = AppPreferences.getInstance().getDropDownList(DropDowns.Rftechnology.name).get(position).id
+                try {
+                    RfFeasibility!!.Technology = AppPreferences.getInstance().getDropDownList(DropDowns.Rftechnology.name).get(position).id
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("e:"+e.localizedMessage)
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

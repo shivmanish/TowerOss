@@ -25,14 +25,26 @@ class AddressFragment (var profiledata: ProfileData?) : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.officeHouseNo.text="---"
+        binding.officeBuilding.text="---"
+        binding.officeDistrict.text="---"
+        binding.officeState.text= "---"
+        binding.officePinCode.text="---"
+
+        binding.communicationHouseNo.text="---"
+        binding.communicationBuilding.text="---"
+        binding.communicationDistrict.text="---"
+        binding.communicationState.text= "---"
+        binding.communicationPinCode.text="---"
+
         try {
-            binding.officeHouseNo.text=profiledata?.officeaddress?.address
+            binding.officeHouseNo.text=profiledata?.officeaddress?.address1 +" "+profiledata?.officeaddress?.address2
             binding.officeBuilding.text=""
             binding.officeDistrict.text=""
             binding.officeState.text= profiledata?.officeaddress?.state
             binding.officePinCode.text=""
 
-            binding.communicationHouseNo.text=profiledata?.communicationaddress?.address
+            binding.communicationHouseNo.text=profiledata?.communicationaddress?.address1+" "+profiledata?.communicationaddress?.address2
             binding.communicationBuilding.text=""
             binding.communicationDistrict.text=""
             binding.communicationState.text= profiledata?.communicationaddress?.state

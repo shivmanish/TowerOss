@@ -87,7 +87,7 @@ class TowerMaintenanceEditDialouge (var data: PreventiveMaintenance, var childId
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerMaintenanceEditDialouge Something went wrong in updating data")
             }
             else if (it != null) {

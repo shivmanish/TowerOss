@@ -5,5 +5,7 @@ data class Officeaddress(
     val maintenancepoint: String,
     val national: String,
     val region: String,
-    val state: String
+    val state: String,
+    val address1:String,
+    val address2:String,
 )

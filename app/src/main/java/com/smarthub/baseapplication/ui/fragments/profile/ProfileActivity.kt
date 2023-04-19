@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
@@ -37,10 +38,8 @@ class ProfileActivity : BaseActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(binding.root)
         initViews()
-        adapter=ProfilePageAdapter(supportFragmentManager)
-        binding.viewpager.adapter=adapter
-        binding.tabs.setupWithViewPager(binding.viewpager)
-        tabCustomization()
+
+
         if (profileViewModel?.profileResponse?.hasActiveObservers()==true)
             profileViewModel?.profileResponse?.removeObservers(this)
         profileViewModel?.profileResponse?.observe(this) {
@@ -49,7 +48,7 @@ class ProfileActivity : BaseActivity() {
                 if (it.status == Resource.Status.SUCCESS) {
                     AppPreferences.getInstance().saveString("data", Gson().toJson(it.data[0]))
                     uiDataMapping(it.data[0])
-                    adapter.setdata(it.data[0])
+                    setViewpager(it.data[0])
                     Log.d("status", "${it.message}")
 //                    Toast.makeText(this@ProfileActivity, "ProfileSuccessful", Toast.LENGTH_LONG).show()
                     return@observe
@@ -95,6 +94,27 @@ class ProfileActivity : BaseActivity() {
 
 
 
+    }
+    private fun setViewpager(profiledata: ProfileData){
+        var fragmentlist  = ArrayList<Fragment>()
+
+        val fragone =  OfficialDetailFragment(profiledata)
+        val fragtwo = ManagerInfoFragment(profiledata)
+        val fragthree = RoleGeographiFragment(profiledata)
+        val fragfour = AddressFragment(profiledata)
+        val fragfive = UserRoleTabFragment(profiledata)
+        val fragsix = HistoryFragment(profiledata)
+        fragmentlist.add(fragone)
+        fragmentlist.add(fragtwo)
+        fragmentlist.add(fragthree)
+        fragmentlist.add(fragfour)
+        fragmentlist.add(fragfive)
+        fragmentlist.add(fragsix)
+
+        adapter=ProfilePageAdapter(supportFragmentManager,fragmentlist)
+        binding.viewpager.adapter=adapter
+        binding.tabs.setupWithViewPager(binding.viewpager)
+        tabCustomization()
     }
 
     private var popupWindow: PopupWindow? = null
