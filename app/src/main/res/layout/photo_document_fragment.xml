@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:fontFamily="@font/poppins_medium"
-        android:text="Picture"
+        android:text="Picture/Document"
         android:textColor="@color/color1"
         android:id="@+id/picture_box"
         android:layoutDirection="rtl"
@@ -38,6 +38,7 @@
         android:text="Document"
         android:id="@+id/document_box"
         android:layoutDirection="rtl"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/picture_box"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="@dimen/sp15" />
