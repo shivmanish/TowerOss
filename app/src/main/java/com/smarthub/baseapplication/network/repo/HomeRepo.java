@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.logs.PostLogData;
@@ -52,6 +53,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
+import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -63,6 +65,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeRes
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.utils.DropDowns;
 import com.smarthub.baseapplication.utils.Utils;
 
 import java.io.File;
@@ -98,6 +101,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
     private SingleLiveEvent<Resource<DropDownNew>> dropDownResponseNew;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
+    private SingleLiveEvent<Resource<DepartmentDataModel>> departmentDataModel;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
     private SingleLiveEvent<Resource<AcquisitionSurveyModel>> acquisitionSurveyAllDataItem;
     private SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> opcoTenencyModel;
@@ -249,6 +253,7 @@ public class HomeRepo {
         siteInfoDataModel = new SingleLiveEvent<>();
         acquisitionSurveyAllDataItem = new SingleLiveEvent<>();
         addAttachmentModel = new SingleLiveEvent<>();
+        departmentDataModel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -261,6 +266,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<AllsiteInfoDataModel>> getSiteInfoDataModel() {
         return siteInfoDataModel;
+    }
+
+    public SingleLiveEvent<Resource<DepartmentDataModel>> getDepartmentDataModel() {
+        return departmentDataModel;
     }
 
     public SingleLiveEvent<Resource<AddAttachmentModel>> getAddAttachmentModel() {
@@ -1077,6 +1086,7 @@ public class HomeRepo {
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         jsonObject.add("ServiceRequestMain", jsonArray);
+        AppLogger.INSTANCE.log("serviceRequestAll===>"+jsonObject);
         apiClient.fetchServiceRequest(jsonObject).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
@@ -1995,7 +2005,7 @@ public class HomeRepo {
     }
 
     public void siteInfoDropDownNew() {
-
+        getDepartmentRequest();
         apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
             @Override
             public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {
@@ -2088,6 +2098,97 @@ public class HomeRepo {
                     taskDataList.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     taskDataList.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getDepartmentRequest() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Dropdown", true);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        apiClient.getDepartmentWithId(jsonObject).enqueue(new Callback<DepartmentDataModel>() {
+            @Override
+            public void onResponse(Call<DepartmentDataModel> call, Response<DepartmentDataModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DepartmentDataModel> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<DepartmentDataModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("getDepartmentRequest reportSuccessResponse :" + response.toString());
+                    DropDownNewItem data=new DropDownNewItem(response.body().getDepartment().getData(), DropDowns.Deaprtments.name(),true);
+                    AppPreferences.getInstance().saveDropDownData(data);
+                    AppLogger.INSTANCE.log("DepartmentDataSaved :" + new Gson().toJson(AppPreferences.getInstance().getDropDown(DropDowns.Deaprtments.name())));
+                    departmentDataModel.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    departmentDataModel.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    departmentDataModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    departmentDataModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
+    public void getDepartmentWithGeographyRequest(String data) {
+        JsonObject jsonObject = new JsonObject();
+        JsonArray jsonArray=new JsonArray();
+        jsonArray.add(data);
+        jsonObject.addProperty("Dropdownfilter", true);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("metadata",jsonArray);
+        apiClient.getDepartmentWithId(jsonObject).enqueue(new Callback<DepartmentDataModel>() {
+            @Override
+            public void onResponse(Call<DepartmentDataModel> call, Response<DepartmentDataModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DepartmentDataModel> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<DepartmentDataModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("getDepartmentRequest reportSuccessResponse :" + response.toString());
+                    DropDownNewItem data=new DropDownNewItem(response.body().getDepartment().getData(), DropDowns.Deaprtments.name(),true);
+                    AppPreferences.getInstance().saveDropDownData(data);
+                    AppLogger.INSTANCE.log("DepartmentDataSaved :" + new Gson().toJson(AppPreferences.getInstance().getDropDown(DropDowns.Deaprtments.name())));
+                    departmentDataModel.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    departmentDataModel.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    departmentDataModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    departmentDataModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

@@ -25,12 +25,16 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.APIInterceptor;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 import com.smarthub.baseapplication.utils.DropDowns;
 import com.smarthub.baseapplication.utils.Utils;
 import com.smarthub.baseapplication.widgets.CustomSpinner;
+import com.smarthub.baseapplication.widgets.CustomUserSpinner;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -322,6 +326,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             String stringDatajson = gson.toJson(item);
             AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
         }
+    }
+    public void saveDropDownData(DropDownNewItem item) {
+        Gson gson = new Gson();
+        String stringDatajson = gson.toJson(item);
+        AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
     }
     public void saveStaticDropDownData(Context context) {
         String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"dropdown.json");

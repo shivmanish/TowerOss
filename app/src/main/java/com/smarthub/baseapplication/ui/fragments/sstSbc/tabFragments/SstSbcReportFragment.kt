@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.databinding.SiteAcqTeamNonSwitLayoutBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcTestReport
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -116,7 +117,34 @@ class SstSbcReportFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int): 
         }
     }
 
+    override fun updateAddress(data: AllsiteInfoDataModel?) {
+        showLoader()
+        viewmodel.updateSiteInfo(data)
+        if (viewmodel.updateSiteInfoDataResponse?.hasActiveObservers() == true) {
+            viewmodel.updateSiteInfoDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.updateSiteInfoDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SstSbcReportFragment address data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status?.Siteaddress==200 ) {
+                AppLogger.log("SstSbcReportFragment address card Data updated successfully")
+                viewmodel.siteInfoRequestAll(AppController.getInstance().siteid)
+//                Toast.makeText(context,"Data Updated successfully",Toast.LENGTH_SHORT).show()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("SstSbcReportFragment address Something went wrong")
+            }
+            else if (it != null) {
+                AppLogger.log("SstSbcReportFragment address error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("SstSbcReportFragment address Something went wrong")
 
+            }
+        }
+    }
 
 
 }

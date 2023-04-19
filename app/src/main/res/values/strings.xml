@@ -89,10 +89,10 @@
 
     <string-array name="spinner_item">
         <item>Select here</item>
-        <item>Array Item One</item>
-        <item>Array Item Two</item>
-        <item>Array Item Three</item>
-        <item>Array Item four</item>
+<!--        <item>Array Item One</item>-->
+<!--        <item>Array Item Two</item>-->
+<!--        <item>Array Item Three</item>-->
+<!--        <item>Array Item four</item>-->
     </string-array>
 
     <string name="lorem_ipsum">

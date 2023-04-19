@@ -31,8 +31,10 @@ class PayeeAccDetailEditDialouge (var data: SAcqPayeeAccountDetail, var fullData
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (titelFlag==-1)
+        if (titelFlag==-1){
             binding.titleText.text="Add Payee Account Details"
+            binding.update.text="Add"
+        }
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.70).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()

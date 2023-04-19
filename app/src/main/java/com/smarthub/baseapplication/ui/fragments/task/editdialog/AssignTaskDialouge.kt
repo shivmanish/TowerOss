@@ -15,19 +15,15 @@ import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
-import com.smarthub.baseapplication.model.taskModel.Updateprocesstask
 import com.smarthub.baseapplication.model.taskModel.assignTask.Assigntask
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
-import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
-import com.smarthub.baseapplication.ui.fragments.task.TaskSecondFragmentDirections
 import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.widgets.CustomSpinner
-import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
 class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeViewModel: HomeViewModel) : BottomSheetDialogFragment(contentLayoutId) {
 
@@ -66,7 +62,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
                     it.workorderid=task?.workorderid
                     it.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
                     it.Taskname=task?.Taskname
-                    it.actorname=binding.AssignTo.selectedValue.phone
+                    it.actorname=binding.AssignTo.selectedValue.username
                 }
                 AppLogger.log("before updated Data for task Assign : $task")
                 AppLogger.log("updated Data for task Assign : $tempData")

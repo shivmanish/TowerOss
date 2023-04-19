@@ -709,7 +709,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/AddressLine2Edit"
                         android:text=""
                         style="@style/RowTestItemEdit"
@@ -734,7 +734,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/SiteLatitude_Edit"
                         android:text=""
                         android:inputType="numberDecimal"
@@ -759,7 +759,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/SiteLongitude_Edit"
                         android:text=""
                         android:inputType="numberDecimal"
@@ -785,7 +785,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/PostalCode_Edit"
                         android:text=""
                         android:inputType="numberDecimal"

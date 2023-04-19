@@ -41,7 +41,7 @@ public class CustomUserArrayAdapter extends ArrayAdapter<UserDataResponseItem> {
         TextView textViewName = convertView.findViewById(R.id.text_view);
         UserDataResponseItem currentItem = getItem(position);
         if (currentItem != null) {
-            textViewName.setText(""+currentItem.getFirst_name()+" "+currentItem.getLast_name());
+            textViewName.setText(""+currentItem.getFirst_Name()+" "+currentItem.getLast_Name());
         }
         return convertView;
     }

@@ -1,6 +1,8 @@
 package com.smarthub.baseapplication.ui.alert;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
@@ -23,6 +25,7 @@ import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.utils.DropDowns;
 
 import java.util.List;
 
@@ -255,9 +258,48 @@ public class AlertRepo {
             }
 
             private void reportSuccessResponse(Response<UserDataResponse> response) {
-
                 if (response.body() != null) {
-                    AppLogger.INSTANCE.log("reportSuccessResponse :"+response.toString());
+                    AppLogger.INSTANCE.log("getuser with department reportSuccessResponse :"+response.toString());
+                    AppPreferences.getInstance().saveString(DropDowns.AcquisitionExecutiveName.name(),new Gson().toJson(response.body()));
+                    AppLogger.INSTANCE.log("departmentUsers is saved :"+AppPreferences.getInstance().getString(DropDowns.AcquisitionExecutiveName.name()));
+                    userDataResponseLiveData.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    userDataResponseLiveData.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    userDataResponseLiveData.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    userDataResponseLiveData.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void getuserByWorkflow(GetUserList model) {
+
+        apiClient.getuserByWorkflowlist(model).enqueue(new Callback<UserDataResponse>() {
+            @Override
+            public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDataResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<UserDataResponse> response) {
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("getuserByWorkflow with department reportSuccessResponse :"+response.toString());
+                    AppPreferences.getInstance().saveString(DropDowns.AcquisitionExecutiveName.name(),new Gson().toJson(response.body()));
+                    AppLogger.INSTANCE.log("departmentUsers is saved by getuserByWorkflow:"+AppPreferences.getInstance().getString(DropDowns.AcquisitionExecutiveName.name()));
                     userDataResponseLiveData.postValue(Resource.success(response.body(), 200));
                 }
             }

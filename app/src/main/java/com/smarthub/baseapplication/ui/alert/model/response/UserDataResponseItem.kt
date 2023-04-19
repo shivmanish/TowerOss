@@ -1,10 +1,12 @@
 package com.smarthub.baseapplication.ui.alert.model.response
 
 data class UserDataResponseItem(
-    val email: String,
-    val first_name: String,
-    val last_name: String,
-    val phone: String,
+    val id: String,
     val username: String,
-    val is_active:String
+    val First_Name: String,
+    val Last_Name: String,
+    val managername: String,
+    val managerphone: String,
+    val manageremail: String,
+    val department: String,
 )

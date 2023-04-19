@@ -18,9 +18,7 @@ import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.model.taskModel.GeoGraohyLevelDropDownModel
-import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelData
 import com.smarthub.baseapplication.model.taskModel.TaskInfoItem
-import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
@@ -80,7 +78,7 @@ class AddTaskInfoFragment : BaseFragment() {
                  taskViewmodel.processTemplatemanual.sitename= selectedSiteInfo.name.toString()
                  taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
                  taskViewmodel.processTemplatemanual.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
-                 taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.phone
+                 taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.username
                  taskViewmodel.processTemplatemanual.priority=binding.priority.selectedValue.name
                  findNavController().navigate(R.id.actionToMoveSecondFrag)
                  AppLogger.log("processTempletManualData====>: ${Gson().toJson(taskViewmodel.processTemplatemanual)}")

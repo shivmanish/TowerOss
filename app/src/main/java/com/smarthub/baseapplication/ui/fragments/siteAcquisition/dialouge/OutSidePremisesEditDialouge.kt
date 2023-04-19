@@ -34,8 +34,10 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (titelFlag<0)
+        if (titelFlag<0){
             binding.titleText.text="Add OutSide Premises"
+            binding.update.text="Add"
+        }
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.60).toInt()
         binding.Cancle.setOnClickListener {
             dismiss()
@@ -52,6 +54,11 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
         else
             AppPreferences.getInstance().setDropDown(binding.DirectionFromCentreEdit, DropDowns.Direction.name)
 
+        if (data.MajorShadowCasting!=null && data.MajorShadowCasting!!>0)
+            AppPreferences.getInstance().setDropDown(binding.MajorShadowCastingEdit, DropDowns.MajorShadowCasting.name,data.MajorShadowCasting.toString())
+        else
+            AppPreferences.getInstance().setDropDown(binding.MajorShadowCastingEdit, DropDowns.MajorShadowCasting.name)
+
         binding.update.setOnClickListener {
             showProgressLayout()
             data.let {
@@ -60,6 +67,7 @@ class OutSidePremisesEditDialouge (var data: SAcqOutsidePremise, var fullData: N
                 it.remark=binding.remarksEdit.text.toString()
                 it.ExternalStructureType= arrayListOf(binding.ExternalStructureTypeEdit.selectedValue.id.toInt())
                 it.Direction= arrayListOf(binding.DirectionFromCentreEdit.selectedValue.id.toInt())
+                it.MajorShadowCasting=binding.MajorShadowCastingEdit.selectedValue.id.toIntOrNull()
             }
             val tempExternalStructure=SAcqExternalStructure()
             val tempData= AcquisitionSurveyData()
