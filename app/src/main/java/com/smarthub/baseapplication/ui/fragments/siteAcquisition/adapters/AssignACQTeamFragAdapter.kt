@@ -208,7 +208,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 if (datalist!=null && datalist?.GeographyLevel?.isNotEmpty() == true)
                     AppPreferences.getInstance().setDropDownByName(holder.binding.GeographyLevelEdit,DropDowns.GeographyLevel.name,datalist?.GeographyLevel)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.GeographyLevel.name)
                 if (datalist!=null && datalist?.Department?.isNotEmpty() == true)
                     AppPreferences.getInstance().setDropDown(holder.binding.DepartmentEdit,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
                 else

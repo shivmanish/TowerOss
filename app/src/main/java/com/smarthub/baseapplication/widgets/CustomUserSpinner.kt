@@ -30,10 +30,12 @@ class CustomUserSpinner : AppCompatSpinner {
         itemSelectedListener?.itemSelected(item)
     }
 
-    fun setSpinnerData(data: List<UserDataResponseItem>) {
+    fun setSpinnerData(data: ArrayList<UserDataResponseItem>) {
+        if (data.isEmpty())
+            data.add(tempData)
         this.data = data
         adapter = CustomUserArrayAdapter(context, data)
-        var listener = object : OnItemSelectedListener{
+        val listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
             }
@@ -65,11 +67,11 @@ class CustomUserSpinner : AppCompatSpinner {
         onItemSelectedListener = listener
     }
 
-    fun setSpinnerDataByPhonNumber(data: List<UserDataResponseItem>, seletedNumber: String?) {
+    fun setSpinnerDataByPhonNumber(data: ArrayList<UserDataResponseItem>, seletedNumber: String?) {
         this.data = data
         adapter = CustomUserArrayAdapter(context, data)
         setSelection(getIndexByNumber(seletedNumber))
-        var listener = object : OnItemSelectedListener{
+        val listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
             }
