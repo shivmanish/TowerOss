@@ -44,6 +44,8 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
         viewmodel = ViewModelProvider(this).get(AlertViewModel::class.java)
         taskViewmodel = ViewModelProvider(this).get(TaskViewModel::class.java)
         homeviewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        taskViewmodel.getGeoGraphyData(GeoGraphyLevelPostData(""))
+        observerGeographyData()
         return binding.root
     }
 
@@ -75,10 +77,6 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
                 AppLogger.log("updated Data Successfully : $tempData")
 
             }
-
-            if (task!=null)
-                AppPreferences.getInstance().setDropDown(binding.AssigneeGeographyLevel, DropDowns.GeographyLevel.name)
-
             if (taskViewmodel.taskAssignResponse?.hasActiveObservers() == true)
                 taskViewmodel.taskAssignResponse?.removeObservers(viewLifecycleOwner)
             taskViewmodel.taskAssignResponse?.observe(viewLifecycleOwner){
@@ -97,6 +95,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
             }
         }
 
+//        AppPreferences.getInstance().setDropDown(binding.AssigneeGeographyLevel, DropDowns.GeographyLevel.name)
         binding.taskName.text=task?.Taskname
         binding.WorkOrderNumber.text=task?.workorderid
         binding.AssigneeGeographyLevel.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
@@ -108,8 +107,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
             override fun itemSelected(departmentName: DropDownItem) {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
                // Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
-                viewmodel.getUser(GetUserList(departmentName.name,AppController.getInstance().ownerName))
-                taskViewmodel.getGeoGraphyData(GeoGraphyLevelPostData(""))
+                viewmodel.getDepartmentUsers(GetUserList(departmentName.name,AppController.getInstance().ownerName))
                 observerData()
             }
         })
@@ -173,23 +171,24 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
             }else AppLogger.log("Department not fetched")
                // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         })
+    }
+    private fun observerGeographyData() {
+        if (taskViewmodel.geoGraphyLevelDataResponse?.hasActiveObservers()==true)
+            taskViewmodel.geoGraphyLevelDataResponse?.removeObservers(viewLifecycleOwner)
+        taskViewmodel.geoGraphyLevelDataResponse?.observe(viewLifecycleOwner, Observer {
+            if (it?.data != null) {
+                geoGraphyLevelList.clear()
+                var i=0
+                for (x in it.data.Data){
+                    geoGraphyLevelList.add(DropDownItem(x,"$i"))
+                    i+=1
+                }
+                AppLogger.log("GeoGraphy Level: ${geoGraphyLevelList}")
+                binding.AssigneeGeographyLevel.setSpinnerData(geoGraphyLevelList)
+            }else AppLogger.log("Department not fetched")
+            // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
 
-//        if (taskViewmodel.geoGraphyLevelDataResponse!!.hasActiveObservers())
-//            taskViewmodel.geoGraphyLevelDataResponse!!.removeObservers(viewLifecycleOwner)
-//        taskViewmodel.geoGraphyLevelDataResponse!!.observe(viewLifecycleOwner, Observer {
-//            if (it?.data != null) {
-//                geoGraphyLevelList.clear()
-//                var i=0
-//                for (x in it.data.Data){
-//                    geoGraphyLevelList.add(DropDownItem(x,"$i"))
-//                    i+=1
-//                }
-//                AppLogger.log("GeoGraphy Level: ${geoGraphyLevelList}")
-//                binding.AssigneeGeographyLevel.setSpinnerData(geoGraphyLevelList)
-//            }else AppLogger.log("Department not fetched")
-//            // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
-//
-//        })
+        })
     }
 
     override fun onDestroy() {
