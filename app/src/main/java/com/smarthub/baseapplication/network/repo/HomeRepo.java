@@ -2065,6 +2065,7 @@ public class HomeRepo {
 
     public void siteInfoDropDownNew() {
         getDepartmentRequest();
+        AttachmentsConditionsRequestAll();
         apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
             @Override
             public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {
