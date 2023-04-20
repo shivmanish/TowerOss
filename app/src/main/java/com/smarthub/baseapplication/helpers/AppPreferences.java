@@ -358,10 +358,14 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
     }
 
     public void setDropDown(CustomSpinner customSpinner,String name,String id){
-        Gson gson = new Gson();
-        String jsonString = getString(name);
-        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-        customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+        try{
+            Gson gson = new Gson();
+            String jsonString = getString(name);
+            DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+            customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("");
+        }
     }
     public void setDropDown(CustomSpinner customSpinner,String name,String id,TextView customText){
         Gson gson = new Gson();

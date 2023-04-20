@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
@@ -18,7 +16,6 @@ import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.SiteAddressData
-import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.AttachmentConditionalAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.InsidePremisesTableAdapter
@@ -1056,8 +1053,19 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                                 }
                         })
                     }
-                    else
-                        AppLogger.log("Attachments Error")
+                    else {
+                        holder.recyclerListener.adapter= AttachmentConditionalAdapter(baseFragment.requireContext(),
+                            ArrayList(),
+                            attachmentsList!!,22,null,
+                            object : AttachmentConditionalAdapter.AttachmentConditionsListener{
+                                override fun attachmentItemClicked() {
+                                    listener.attachmentItemClicked()
+                                }
+                                override fun addAttachmentItemClicked(categoryId:Int) {
+                                    listener.addAttachment(categoryId)
+                                }
+                            })
+                    }
                 }catch (e:java.lang.Exception){
                     AppLogger.log("Acq Survey error : ${e.localizedMessage}")
                 }

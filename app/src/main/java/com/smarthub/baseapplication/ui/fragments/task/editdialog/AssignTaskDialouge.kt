@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AssignTaskDialougeBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
@@ -22,6 +24,7 @@ import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.widgets.CustomSpinner
 
@@ -30,6 +33,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
     lateinit var binding: AssignTaskDialougeBinding
     lateinit var viewmodel: AlertViewModel
     lateinit var taskViewmodel: TaskViewModel
+    lateinit var homeviewmodel: HomeViewModel
     private lateinit var progressDialog : ProgressDialog
     var departmentList=ArrayList<DropDownItem>()
     var geoGraphyLevelList=ArrayList<DropDownItem>()
@@ -39,6 +43,7 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
         binding = AssignTaskDialougeBinding.inflate(inflater)
         viewmodel = ViewModelProvider(this).get(AlertViewModel::class.java)
         taskViewmodel = ViewModelProvider(this).get(TaskViewModel::class.java)
+        homeviewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         return binding.root
     }
 
@@ -71,6 +76,9 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
 
             }
 
+            if (task!=null)
+                AppPreferences.getInstance().setDropDown(binding.AssigneeGeographyLevel, DropDowns.GeographyLevel.name)
+
             if (taskViewmodel.taskAssignResponse?.hasActiveObservers() == true)
                 taskViewmodel.taskAssignResponse?.removeObservers(viewLifecycleOwner)
             taskViewmodel.taskAssignResponse?.observe(viewLifecycleOwner){
@@ -91,7 +99,11 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
 
         binding.taskName.text=task?.Taskname
         binding.WorkOrderNumber.text=task?.workorderid
-
+        binding.AssigneeGeographyLevel.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+            override fun itemSelected(geographySelected: DropDownItem) {
+                homeviewmodel.getDepartment(geographySelected.name)
+            }
+        }
         binding.assigneeDepartment.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener{
             override fun itemSelected(departmentName: DropDownItem) {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
@@ -102,19 +114,34 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
             }
         })
 
-        if (viewmodel.departmentDropdown.hasActiveObservers())
-            viewmodel.departmentDropdown.removeObservers(viewLifecycleOwner)
-        viewmodel.departmentDropdown.observe(viewLifecycleOwner) {
-            if (it?.data != null) {
-                departmentList.clear()
-                var i=0
-                for (x in it.data.department){
-                    departmentList.add(DropDownItem(x,"$i"))
-                    i+=1
-                }
-                binding.assigneeDepartment.setSpinnerData(departmentList)
+//        if (viewmodel.departmentDropdown.hasActiveObservers())
+//            viewmodel.departmentDropdown.removeObservers(viewLifecycleOwner)
+//        viewmodel.departmentDropdown.observe(viewLifecycleOwner) {
+//            if (it?.data != null) {
+//                departmentList.clear()
+//                var i=0
+//                for (x in it.data.department){
+//                    departmentList.add(DropDownItem(x,"$i"))
+//                    i+=1
+//                }
+//                binding.assigneeDepartment.setSpinnerData(departmentList)
+//            }else AppLogger.log("Department not fetched")
+//              //  Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
+//        }
+        if (homeviewmodel.departmentDataDataResponse?.hasActiveObservers()==true)
+            homeviewmodel.departmentDataDataResponse?.removeObservers(viewLifecycleOwner)
+        homeviewmodel.departmentDataDataResponse?.observe(viewLifecycleOwner){
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("AddTaskInfoFragment departmentDataDataResponse loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("AddTaskInfoFragment departmentDataDataResponse loaded successfull ")
+                if (task!=null)
+                    binding.assigneeDepartment.setSpinnerData(it.data.Department.data,task?.AssigneeDepartment)
+                else
+                    binding.assigneeDepartment.setSpinnerData(it.data.Department.data)
             }else AppLogger.log("Department not fetched")
-              //  Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
         }
         viewmodel.getDepartments(DropdownParam(AppController.getInstance().ownerName,"department"))
 
@@ -139,27 +166,30 @@ class AssignTaskDialouge(contentLayoutId: Int,var task : MyTeamTask?,var homeVie
             if (it?.data != null) {
                 AssignToList.clear()
                 AssignToList.addAll(it.data)
-                binding.AssignTo.setSpinnerData(AssignToList)
+                if(task != null)
+                    binding.AssignTo.setSpinnerDataByPhonNumber(it.data,task?.actorname)
+                else
+                    binding.AssignTo.setSpinnerData(it.data)
             }else AppLogger.log("Department not fetched")
                // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
         })
 
-        if (taskViewmodel.geoGraphyLevelDataResponse!!.hasActiveObservers())
-            taskViewmodel.geoGraphyLevelDataResponse!!.removeObservers(viewLifecycleOwner)
-        taskViewmodel.geoGraphyLevelDataResponse!!.observe(viewLifecycleOwner, Observer {
-            if (it?.data != null) {
-                geoGraphyLevelList.clear()
-                var i=0
-                for (x in it.data.Data){
-                    geoGraphyLevelList.add(DropDownItem(x,"$i"))
-                    i+=1
-                }
-                AppLogger.log("GeoGraphy Level: ${geoGraphyLevelList}")
-                binding.AssigneeGeographyLevel.setSpinnerData(geoGraphyLevelList)
-            }else AppLogger.log("Department not fetched")
-            // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
-
-        })
+//        if (taskViewmodel.geoGraphyLevelDataResponse!!.hasActiveObservers())
+//            taskViewmodel.geoGraphyLevelDataResponse!!.removeObservers(viewLifecycleOwner)
+//        taskViewmodel.geoGraphyLevelDataResponse!!.observe(viewLifecycleOwner, Observer {
+//            if (it?.data != null) {
+//                geoGraphyLevelList.clear()
+//                var i=0
+//                for (x in it.data.Data){
+//                    geoGraphyLevelList.add(DropDownItem(x,"$i"))
+//                    i+=1
+//                }
+//                AppLogger.log("GeoGraphy Level: ${geoGraphyLevelList}")
+//                binding.AssigneeGeographyLevel.setSpinnerData(geoGraphyLevelList)
+//            }else AppLogger.log("Department not fetched")
+//            // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
+//
+//        })
     }
 
     override fun onDestroy() {
