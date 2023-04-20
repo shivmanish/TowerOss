@@ -394,7 +394,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         try{
             customSpinner.setSpinnerData(dropDownNewItem.getData());
         }catch (Exception e){
-            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+            AppLogger.INSTANCE.log("setDropDowncustomSpinner" +name+"error:"+e.getLocalizedMessage());
         }
     }
 
