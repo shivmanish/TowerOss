@@ -279,7 +279,8 @@ class TaskSearchTabNewFragment(
                 else{
                     try {
                         parentId = firstIdx.toInt().div(10)
-                    }catch (e:Exception){
+                    }
+                    catch (e:Exception){
                         AppLogger.log("e:${e.localizedMessage}")
                     }
                     AppLogger.log("parentId=====>:${parentId}")
@@ -295,51 +296,52 @@ class TaskSearchTabNewFragment(
                             }
                         }
                     }
-                }
 
-            }
-            AppLogger.log("subTask list od subTab====>:$subTabList")
-            when (parentId){
-                1->{
-                    setUpOpcoData()
-                    AppLogger.log("Selected TAb is OpcoTenency")
-                }
-                2->{
-                    setUpSiteAcqusitionData(ArrayList(splittedData))
-                }
-                3->{
-                    setUpUtilityUqipData()
-                    AppLogger.log("Selected TAb is Utility Equipments")
-                }
-                4->{
-                    AppLogger.log("Selected TAb is Site Info")
-                }
-                5->{
-                    setUpPnanigAndDesignData()
-                    AppLogger.log("Selected TAb is Planning & Design")
-                }
-                6->{
-                    setUpNocComplianceData()
-                    AppLogger.log("Selected TAb is NOC & Compliance")
-                }
-                7->{
+                    AppLogger.log("subTask list od subTab====>:$subTabList")
+                    when (parentId){
+                        1->{
+                            setUpOpcoData()
+                            AppLogger.log("Selected TAb is OpcoTenency")
+                        }
+                        2->{
+                            setUpSiteAcqusitionData(ArrayList(splittedData))
+                        }
+                        3->{
+                            setUpUtilityUqipData()
+                            AppLogger.log("Selected TAb is Utility Equipments")
+                        }
+                        4->{
+                            AppLogger.log("Selected TAb is Site Info")
+                        }
+                        5->{
+                            setUpPnanigAndDesignData()
+                            AppLogger.log("Selected TAb is Planning & Design")
+                        }
+                        6->{
+                            setUpNocComplianceData()
+                            AppLogger.log("Selected TAb is NOC & Compliance")
+                        }
+                        7->{
 //                    setUpTowerAndCvilData()
-                    AppLogger.log("Selected TAb is Tower & Civil Infra")
-                }
-                8->{
-                    setUpPowerFuelData()
-                    AppLogger.log("Selected TAb is Power & Fuel")
-                }
-                9->{
-                    setUpServiceRequestData()
-                    AppLogger.log("Selected TAb is Service Request")
-                }
-                else ->{
-                    setUpNocComplianceData()
-                    AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
-                }
+                            AppLogger.log("Selected TAb is Tower & Civil Infra")
+                        }
+                        8->{
+                            setUpPowerFuelData()
+                            AppLogger.log("Selected TAb is Power & Fuel")
+                        }
+                        9->{
+                            setUpServiceRequestData()
+                            AppLogger.log("Selected TAb is Service Request")
+                        }
+                        else ->{
+                            setUpNocComplianceData()
+                            AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
+                        }
 
-                //site info , power and fuel, Twr & civil infra
+                        //site info , power and fuel, Twr & civil infra
+
+                    }
+                }
 
             }
         }
@@ -666,9 +668,6 @@ class TaskSearchTabNewFragment(
     }
 
     fun setUpQatData(moduleId : String) {
-        if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
-            homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
-        }
         val serviceFragAdapterAdapter =
             TaskQATListAdapter(requireContext(), object : QatMainAdapterListener {
                 override fun clickedItem(qATMainLaunch: QATMainLaunch?, Id: String, mainindex: Int) {
@@ -680,10 +679,13 @@ class TaskSearchTabNewFragment(
                 }
             }, siteID.toString())
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+        if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
+        }
         homeViewModel.QatModelResponse?.observe(viewLifecycleOwner, Observer {
 
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+                AppLogger.log("setUpQatData Fragment card Data fetched successfully")
                 isDataLoaded = true
                 serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.item?.size}")
@@ -705,7 +707,7 @@ class TaskSearchTabNewFragment(
                 }else Toast.makeText(requireContext(),"Qat data not found",Toast.LENGTH_SHORT).show()
 
             } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+                AppLogger.log("setUpQatData Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
                 isDataLoaded = true
                 serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch)

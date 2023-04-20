@@ -216,17 +216,22 @@ class HomeFragment : Fragment(),TaskListener {
         val filteredTaskList:ArrayList<MyTeamTask> = ArrayList()
         for (item in allTaskList){
             if (item.Where.isNotEmpty()){
-                val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
-                if (subTaskTabList.isNotEmpty()){
-                    try {
-                        val tempTab=subTaskTabList[0].toInt().div(10)
-                        if (tempTab==2 || tempTab==6)
-                            filteredTaskList.add(item)
-                    }
-                    catch (e:Exception){
-                        AppLogger.log("${e.localizedMessage}")
+                if (item.Where.contains("q_")){
+                    filteredTaskList.add(item)
+                }else{
+                    val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
+                    if (subTaskTabList.isNotEmpty()){
+                        try {
+                            val tempTab=subTaskTabList[0].toInt().div(10)
+                            if (tempTab==2 || tempTab==6)
+                                filteredTaskList.add(item)
+                        }
+                        catch (e:Exception){
+                            AppLogger.log("${e.localizedMessage}")
+                        }
                     }
                 }
+
             }
         }
         return filteredTaskList
