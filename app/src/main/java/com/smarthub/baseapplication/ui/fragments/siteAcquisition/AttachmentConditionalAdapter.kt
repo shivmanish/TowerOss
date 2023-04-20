@@ -26,6 +26,8 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
         for (item in list){
             if (subTabId!=item.SubSection)
                 list.remove(item)
+            if (item.id==0)
+                list.remove(item)
         }
         val otherAttachment=AttachmentsConditions(Section = subTabId.div(10), SubSection = subTabId, name = "Others", id = 0)
         list.add(otherAttachment)
@@ -40,7 +42,10 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
     }
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         val attachmentsItem:AttachmentsConditions=list[position]
-        holder.binding.AttachmentTitel.text=attachmentsItem.name
+        if (attachmentsItem.isMandatory==true)
+            holder.binding.AttachmentTitel.text=attachmentsItem.name+" ${R.string.Astric_Mark}"
+        else
+            holder.binding.AttachmentTitel.text=attachmentsItem.name
         AppLogger.log("Sunsection Id : ${attachmentsItem.SubSection}")
         try {
             if (attachments!=null){
@@ -57,7 +62,7 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
         }
         holder.binding.attachCard.setOnClickListener {
             if (subTabDataId!=null){
-                listener.addAttachmentItemClicked()
+                listener.addAttachmentItemClicked(attachmentsItem.id)
             }
             else
                 Toast.makeText(context,"Firstly fill data then Add Attachment",
@@ -80,6 +85,6 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
     }
     interface AttachmentConditionsListener{
         fun attachmentItemClicked()
-        fun addAttachmentItemClicked()
+        fun addAttachmentItemClicked(catagoeyId:Int)
     }
 }

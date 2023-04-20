@@ -195,6 +195,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun addAttachmentData(addAttachmentModel : AddAttachmentModel){
+        AppLogger.log("attachment model data=====>${Gson().toJson(addAttachmentModel)}")
         homeRepo?.addAttachmentData(addAttachmentModel)
     }
 

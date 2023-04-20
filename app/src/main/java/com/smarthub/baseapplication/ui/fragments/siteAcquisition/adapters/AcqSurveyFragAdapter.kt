@@ -1051,8 +1051,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                                 override fun attachmentItemClicked() {
                                     listener.attachmentItemClicked()
                                 }
-                                override fun addAttachmentItemClicked() {
-                                    listener.addAttachment()
+                                override fun addAttachmentItemClicked(categoryId:Int) {
+                                    listener.addAttachment(categoryId)
                                 }
                         })
                     }
@@ -1080,7 +1080,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
     interface AcqSurveyListListener {
        fun attachmentItemClicked()
-       fun addAttachment()
+       fun addAttachment(categoryId:Int)
        fun viewInsidePremisesClicked(position: Int,data:SAcqInsidePremise)
        fun editInsidePremisesClicked(position: Int,data:SAcqInsidePremise)
        fun viewOutsidePremisesClicked(position: Int,data:SAcqOutsidePremise)

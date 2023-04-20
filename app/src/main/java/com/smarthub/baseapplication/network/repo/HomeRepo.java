@@ -389,7 +389,9 @@ public class HomeRepo {
         map.put("detail", RequestBody.create(MediaType.parse("multipart/form-data"), model.getDetail()));
         map.put("title", RequestBody.create(MediaType.parse("multipart/form-data"), model.getTitle()));
         map.put("type", RequestBody.create(MediaType.parse("multipart/form-data"), model.getType()));
-
+        map.put("category", RequestBody.create(MediaType.parse("multipart/form-data"), model.getCategory().toString()));
+        map.put("siteId", RequestBody.create(MediaType.parse("multipart/form-data"), model.getSiteId().toString()));
+        AppLogger.INSTANCE.log("attachment model data=====>"+map);
         apiClient.addAttachmentData("http://49.50.77.81:8126/fms/create", map).enqueue(new Callback<List<AddAttachmentModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<AddAttachmentModel>> call, Response<List<AddAttachmentModel>> response) {

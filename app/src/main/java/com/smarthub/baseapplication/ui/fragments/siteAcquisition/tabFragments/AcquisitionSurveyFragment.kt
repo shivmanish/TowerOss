@@ -22,6 +22,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.AttachmentConditionsDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSurveyFragAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.*
@@ -195,9 +196,9 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
             textview.text=data2.toString()
     }
 
-    override fun addAttachment() {
-        val bm = AttachmentCommonDialogBottomSheet("SAcqAcquitionSurvey",acqSurveyData?.SAcqAcquitionSurvey?.get(0)?.id.toString(),
-            object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
+    override fun addAttachment(categoryId:Int) {
+        val bm = AttachmentConditionsDialogBottomSheet("SAcqAcquitionSurvey",acqSurveyData?.SAcqAcquitionSurvey?.get(0)?.id.toString(),categoryId,
+            object : AttachmentConditionsDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }
