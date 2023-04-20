@@ -93,7 +93,7 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("SiteAgreemnets AqcSurvey Fragment serviceRequestModelResponse error : ${e.localizedMessage}")
                 }
-                AppLogger.log("SiteAgreemnets AqcSurvey serviceRequestModelResponse size :${it.data.ServiceRequestMain?.get(parentIndex)?.ServiceRequest?.size}")
+//                AppLogger.log("SiteAgreemnets AqcSurvey serviceRequestModelResponse size :${it.data.ServiceRequestMain?.get(parentIndex)?.ServiceRequest?.size}")
             } else if (it != null) {
                 AppLogger.log("SiteAgreemnets AqcSurvey Fragment serviceRequestModelResponse error :${it.message}, data : ${it.data}")
             } else {
