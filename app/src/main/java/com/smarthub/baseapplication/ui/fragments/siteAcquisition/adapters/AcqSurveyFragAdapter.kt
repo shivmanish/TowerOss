@@ -54,7 +54,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 datalist=data.SAcqAcquitionSurvey?.get(0)
             }
         }catch (e:java.lang.Exception){
-            AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
+            AppLogger.log("AcqSurveyFragAdapter TowerInfoFrag error :${e.localizedMessage}")
         }
     }
 

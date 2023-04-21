@@ -17,7 +17,7 @@ import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class SstSbcTeamFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int): BaseFragment(),SstSbcTeamFragAdapter.SstSbcTeamListListener{
+class SstSbcTeamFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int?): BaseFragment(),SstSbcTeamFragAdapter.SstSbcTeamListListener{
     lateinit var viewmodel: HomeViewModel
     lateinit var binding : SiteAcqTeamNonSwitLayoutBinding
     lateinit var adapter:SstSbcTeamFragAdapter
@@ -44,8 +44,8 @@ class SstSbcTeamFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int): Ba
                 AppLogger.log("SstSbcTeamFragment card Data fetched successfully")
                 hideLoader()
                 try {
-                    sstSbcData=it.data.SstSbc?.get(parentIndex)
-                    adapter.setData(it.data.SstSbc?.get(parentIndex)?.SstSbcTeam?.get(0))
+                    sstSbcData=it.data.SstSbc?.get(parentIndex!!)
+                    adapter.setData(it.data.SstSbc?.get(parentIndex!!)?.SstSbcTeam?.get(0))
                 } catch (e: java.lang.Exception) {
                     AppLogger.log("SstSbcTeamFragment error : ${e.localizedMessage}")
                 }

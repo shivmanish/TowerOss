@@ -223,7 +223,7 @@ class HomeFragment : Fragment(),TaskListener {
                     if (subTaskTabList.isNotEmpty()){
                         try {
                             val tempTab=subTaskTabList[0].toInt().div(10)
-                            if (tempTab==2 || tempTab==6)
+                            if (tempTab==2 || tempTab==6 || tempTab==10)
                                 filteredTaskList.add(item)
                         }
                         catch (e:Exception){
