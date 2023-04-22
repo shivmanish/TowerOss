@@ -5,6 +5,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var FsDistance: String? = null
     var FsPhoneNo: String? = null
     var GateAndFence: Int? = null
+    var PropertyType: Int? = null
     var NearbyFireStation: String? = null
     var NearbyPoliceStation: String? = null
     var OtherOperator: Int? = null
@@ -16,7 +17,6 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var SAcqBuildingDetail: ArrayList<SAcqBuildingDetail>? = null
     var SAcqLandDetail: ArrayList<SAcqLandDetail>? = null
     var SiteAccessWay: Int? = null
-    var Siteaddress: ArrayList<Int>? = null
 
     //    var created_at: String?=null
     var id: Int? = null

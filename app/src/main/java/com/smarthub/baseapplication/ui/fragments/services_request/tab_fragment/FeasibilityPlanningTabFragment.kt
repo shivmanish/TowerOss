@@ -50,19 +50,19 @@ class FeasibilityPlanningTabFragment(var data: ServiceRequestAllDataItem?, var I
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 AppLogger.log("size :${it.data.ServiceRequestMain?.size}")
             } else if (it != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "Service request Fragment error :${it.message}, data : ${it.data}",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Service request Fragment error :${it.message}, data : ${it.data}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             } else {
                 AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(
-                    requireContext(),
-                    "Service Request Fragment Something went wrong",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Service Request Fragment Something went wrong",
+//                    Toast.LENGTH_SHORT
+//                ).show()
             }
         }
         binding?.swipeLayout!!.setOnRefreshListener {

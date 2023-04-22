@@ -24,8 +24,8 @@ class PropertyOwnerViewDialouge (contentLayoutId: Int, var data: SAcqPropertyOwn
         binding.canecl.setOnClickListener {
             dismiss()
         }
-        if (data.PropertyOwnership.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.PropertyOwnership, DropDowns.PropertyOwnership.name,data.PropertyOwnership.get(0).toString())
+        if (data.PropertyOwnership?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.PropertyOwnership, DropDowns.PropertyOwnership.name,data.PropertyOwnership?.get(0).toString())
 
         binding.Share.text=data.Share
         binding.OwnerName.text=data.OwnerName

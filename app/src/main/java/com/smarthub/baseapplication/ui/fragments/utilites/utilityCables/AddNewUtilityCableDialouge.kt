@@ -34,7 +34,7 @@ class AddNewUtilityCableDialouge (var fullData:UtilityEquipmentAllData?, var lis
             dismiss()
         }
         
-        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,binding.VendorCodeEdit)
         AppPreferences.getInstance().setDropDown(binding.CableNameEdit,DropDowns.CableName.name)
 
 

@@ -84,7 +84,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/view_layout"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp10"
@@ -528,7 +528,7 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/edit_layout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:paddingBottom="20dp"
@@ -550,14 +550,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/PropertyType_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -700,15 +697,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/Rent_ayment_Period_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -803,15 +796,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/EB_Inclusive_in_Rental_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
@@ -897,15 +886,11 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/EB_Billing_Basis_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"

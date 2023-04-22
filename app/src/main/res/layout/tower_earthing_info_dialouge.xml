@@ -1,86 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
+    android:background="@color/transparent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:id="@+id/canecl"
+        android:id="@+id/Cancle"
         android:translationZ="@dimen/dp6"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp20"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:src="@drawable/cross_ico"
         android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:minHeight="@dimen/dp500"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:translationZ="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp15"
         android:background="@drawable/dialog_bg"
-        android:padding="@dimen/dp5"
-        >
-
+        android:layout_height="wrap_content"
+        android:id="@+id/container_layout"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Earthing Details"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#3D4E6D"
+            android:textSize="@dimen/sp15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:id="@+id/title_text_line"
+            android:alpha=".37"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text"/>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:scrollbars="vertical"
-            android:layout_height="match_parent"
-            android:requiresFadingEdge="vertical">
-
+            app:layout_constraintTop_toBottomOf="@id/title_text_line"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
             <LinearLayout
                 android:scrollbars="vertical"
+                android:layout_margin="5dp"
+                android:paddingBottom="@dimen/dp10"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="visible"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <GridLayout
+                    android:visibility="visible"
                     android:columnCount="2"
+                    android:layout_marginHorizontal="@dimen/dp5"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <LinearLayout
-                        android:paddingTop="0dp"
+                        android:paddingTop="@dimen/dp1"
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Shelter Room"
+                            android:text="Pit Size (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Shelter"
-                            android:paddingRight="@dimen/dp5"
-                            style="@style/RowTestItemEdit"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_height="wrap_content"/>
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/PitSizeL_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/PitSizeB_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="H: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/PitSizeH_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingTop="0dp"
+                        android:paddingTop="@dimen/dp1"
                         android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Shelter Size"
+                            android:text="Pit Depth (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="32x52x41"
+                            android:id="@+id/Pit_Depth_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Pit Rod Material"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Pit_Rod_Material_edit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <View
@@ -88,99 +211,21 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp3" />
                     </LinearLayout>
-
                     <LinearLayout
-                        android:paddingTop="0dp"
                         android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Foundation Size"
+                            android:text="Earthing Cable Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="32x52x41"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Foundation"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="Raft Foundation"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="ID"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="122"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Pit Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="32x52x41"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Earthing_Cable_Type_edit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <View
@@ -188,25 +233,24 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp3" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:paddingTop="0dp"
                         android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Installation Date"
+                            android:text="Earthing Cable Length (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="10-Nov-22"
+                            android:id="@+id/Earthing_Cable_Length_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/calender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
@@ -215,127 +259,21 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                     <LinearLayout
-                        android:paddingTop="0dp"
                         android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Operational Date"
+                            android:text="Location Mark"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="10-Nov-22"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/calender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Operational Status"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Complete"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Used for"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Shelter"
-                            style="@style/RowTestItemEdit"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Earthing Road Material"
-                            style="@style/RowTextItemInfo"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="GI"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:paddingRight="@dimen/dp5"
-                            android:drawableEnd="@drawable/down_arrow"
-                            android:layout_height="wrap_content"
-                            />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Earthing Pit Depth"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="---"
+                            android:id="@+id/Location_Mark_edit"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -345,44 +283,111 @@
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
+
 
                 </GridLayout>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/remarks_edit"
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
         <LinearLayout
-            android:layout_gravity="right"
+            android:id="@+id/bottom_layout"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp5"
+            android:background="#1A807E7E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:id="@+id/canecel_text"
+                android:gravity="center_vertical"
+                android:id="@+id/cancel_txt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Cancel"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"/>
-
-            <TextView
-                android:layout_marginLeft="@dimen/dp25"
-                android:background="@drawable/yellow_text_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update"
                 android:paddingLeft="@dimen/dp15"
                 android:paddingRight="@dimen/dp15"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
                 android:textColor="#3D4E6D"
                 android:textSize="@dimen/dp15"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@drawable/yellow_text_button"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:text="Update"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15" />
 
-    </LinearLayout>
-</RelativeLayout>
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:background="@drawable/dialog_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ProgressBar
+                android:id="@+id/progress"
+                android:indeterminateTint="@color/tab_text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:text="Updating Data"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/sp17"
+                android:layout_marginTop="@dimen/dp15"
+                android:textColor="@color/tab_text_color"
+                app:layout_constraintTop_toBottomOf="@+id/progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

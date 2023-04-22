@@ -106,6 +106,30 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Assignee Geography level"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:text=""
+                            android:id="@+id/geography_level"
+                            style="@style/SpinnerTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp8" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
                         android:layout_columnSpan="1"
                         android:layout_height="wrap_content">
 
@@ -114,7 +138,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomStringSpinner
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/assignee_department"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
@@ -126,6 +150,7 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
@@ -138,30 +163,6 @@
                             android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomUserSpinner
                             android:id="@+id/assignTo"
-                            style="@style/SpinnerTheme"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Assignee Geography level"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:text=""
-                            android:id="@+id/siteType"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />

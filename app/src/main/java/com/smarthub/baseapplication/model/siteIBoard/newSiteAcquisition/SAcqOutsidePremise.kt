@@ -1,13 +1,14 @@
 package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 
-data class SAcqOutsidePremise(
-    var Direction: ArrayList<Int>,
-    var DistanceFromBoundry: String,
-    var ExternalStructureType: ArrayList<Int>,
-    var Height: String,
-    var remark: String,
-//    var created_at: String,
-    var id: Int?=null,
-//    var isActive: Boolean,
+class SAcqOutsidePremise{
+    var Direction: ArrayList<Int>?=null
+    var DistanceFromBoundry: String?=null
+    var ExternalStructureType: ArrayList<Int>?=null
+    var Height: String?=null
+    var MajorShadowCasting: Int?=null
+    var remark: String?=null
+//    var created_at: String?=null
+    var id: Int?=null
+//    var isActive: Boolean?=null
 //    var modified_at: String
-)
+}

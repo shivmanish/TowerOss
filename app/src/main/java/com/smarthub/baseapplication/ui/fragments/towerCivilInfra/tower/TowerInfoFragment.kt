@@ -55,12 +55,12 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
                 }
                 AppLogger.log("size :${it.data.TowerAndCivilInfra?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"TowerInfoFragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"TowerInfoFragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerInfoFragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("TowerInfoFragment Something went wrong")
-                Toast.makeText(requireContext(),"TowerInfoFragment Something went wrong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"TowerInfoFragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -76,7 +76,7 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
         super.onDestroy()
     }
     override fun attachmentItemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun addAttachment() {
@@ -107,12 +107,12 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("TowerInfoFragment card Data Updated successfully")
                 viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
                 AppLogger.log("TowerInfoFragment Something went wrong in updating data")
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
             }
             else if (it != null) {
                 AppLogger.log("TowerInfoFragment error :${it.message}, data : ${it.data}")

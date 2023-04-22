@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.UserListItemListBinding
-import com.smarthub.baseapplication.ui.alert.model.request.SendAlertUser
-import com.smarthub.baseapplication.ui.alert.model.request.SupportRequiredUser
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 
 class UserListAdapter(var list:ArrayList<UserDataResponseItem>,var selected_array:ArrayList<Int>,var listiner:SelectCallBack):Adapter<UserListViewHolder>() {
@@ -19,7 +17,7 @@ class UserListAdapter(var list:ArrayList<UserDataResponseItem>,var selected_arra
     }
 
     override fun onBindViewHolder(holder: UserListViewHolder, position: Int) {
-        holder.binding.checkbox.text = list[position].first_name+" "+list[position].last_name
+        holder.binding.checkbox.text = list[position].First_Name+" "+list[position].Last_Name
         holder.binding.checkbox.isChecked = selected_array.contains(position)
 
         holder.binding.checkbox.setOnCheckedChangeListener{ compoundButton: CompoundButton, b: Boolean ->

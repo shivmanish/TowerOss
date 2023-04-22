@@ -70,13 +70,13 @@ class PropertyOwnerTableAdapter (var context : Context, var listener : AgrementL
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 
                 }

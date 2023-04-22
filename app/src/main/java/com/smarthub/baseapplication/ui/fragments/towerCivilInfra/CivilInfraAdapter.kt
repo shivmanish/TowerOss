@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.smarthub.baseapplication.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.CivilInfraListItemBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
-import com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra.*
 import com.smarthub.baseapplication.utils.AppLogger
 
 class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterListner, var id:String): Adapter<CivilInfraAdapter.ViewHold>() {
@@ -92,8 +91,8 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
             try {
 
                  holder.itemView.setOnClickListener {
-                     if (datalist!=null)
-                         listner.clickedEarthingItem(id,datalist)
+                     if (datalist!=null && datalist?.isNotEmpty()==true)
+                         listner.clickedEarthingItem(id,datalist?.get(0))
                      else Toast.makeText(context,"data null",Toast.LENGTH_LONG).show()
                  }
             }catch (e:java.lang.Exception){
@@ -127,7 +126,7 @@ class CivilInfraAdapter (var context: Context, var listner: CivilInfraAdapterLis
         fun clickedTowerItem(id:String,data: NewTowerCivilAllData?)
         fun clickedPoleItem(id:String,data: NewTowerCivilAllData?)
         fun clickedEquipmentRoomItem(id:String,data:NewTowerCivilAllData?)
-        fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?)
+        fun clickedEarthingItem(id:String,data: NewTowerCivilAllData?)
         fun addTower()
         fun addPole()
         fun addEquipmentRoom()

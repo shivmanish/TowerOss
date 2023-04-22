@@ -35,15 +35,14 @@ class UtilityACPoEditDialouge (var data: UtilityPoDetails, var fullData: Utility
             dismiss()
         }
         binding.PoItemEdit.setText(data.POItem)
-        binding.VendorCodeEdit.setText(data.VendorCode)
         binding.PoNumberEdit.setText(data.PONumber)
         binding.PoAmountEdit.setText(data.POAmount)
         binding.PoLineNumberEdit.setText(data.POLineNo.toString())
         binding.remarksEdit.setText(data.remark)
         if (data.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString())
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString(),binding.VendorCodeEdit)
         else
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name)
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name,binding.VendorCodeEdit)
 
         binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
 

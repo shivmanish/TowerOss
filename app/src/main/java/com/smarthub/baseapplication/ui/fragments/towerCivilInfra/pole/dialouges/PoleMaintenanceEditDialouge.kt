@@ -35,15 +35,14 @@ class PoleMaintenanceEditDialouge (var data: PreventiveMaintenance, var childId:
             dismiss()
         }
         binding.ServiceTypeEdit.setText(data.ServiceType.toString())
-        binding.VendorCodeEdit.setText(data.VendorCode)
         binding.NextPMIntervalEdit.setText(data.NextPMInterval)
         binding.VendorExecutiveNameEdit.setText(data.VendorExecutiveName)
         binding.remarksEdit.setText(data.remark)
         binding.PMDateEdit.text=Utils.getFormatedDate(data.PMDate,"dd-MMM-yyyy")
         if (data.VendorCompany!=null && data.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString())
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,data.VendorCompany?.get(0).toString(),binding.VendorCodeEdit)
         else
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,binding.VendorCodeEdit)
         setDatePickerView( binding.PMDateEdit)
 
         binding.update.setOnClickListener {
@@ -84,11 +83,11 @@ class PoleMaintenanceEditDialouge (var data: PreventiveMaintenance, var childId:
                 listner.updatedData()
                 hideProgressLayout()
                 dismiss()
-                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("PoleMaintenanceEditDialouge Something went wrong in updating data")
             }
             else if (it != null) {

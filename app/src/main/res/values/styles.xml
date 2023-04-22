@@ -119,11 +119,10 @@
         <item name="fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/color1</item>
         <item name="fontWeight">400</item>
-        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textSize">@dimen/sp13</item>
         <item name="android:maxLines">1</item>
         <item name="android:background">@color/white</item>
         <item name="android:imeOptions">actionDone</item>
-
         <item name="android:singleLine">true</item>
     </style>
     <style name="RowTestItemEditSmall" parent="Widget.AppCompat.TextView">
@@ -162,7 +161,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:textColor">#818181</item>
-        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textSize">@dimen/sp12</item>
     </style>
     <style name="RowTextItemInfosmall" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/poppins</item>

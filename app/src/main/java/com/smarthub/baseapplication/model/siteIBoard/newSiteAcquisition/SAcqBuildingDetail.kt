@@ -8,6 +8,10 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
     var NoOfFloors: Int?=null
     var PropertyType: Int?=null
     var TypicalFloorArea: String?=null
+    var Length: String?=null
+    var Breadth: String?=null
+    var remark: String?=null
+    var AcquisitionArea: String?=null
 //    var created_at: String?=null
     var id: Int?=null
 //    var isActive: Boolean?=null

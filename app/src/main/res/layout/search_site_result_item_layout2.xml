@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/text_name"
         android:paddingStart="@dimen/dp5"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:text=""
         android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +20,7 @@
         android:textColor="@color/color1"
         android:fontFamily="@font/poppins"/>
     <TextView
+        android:visibility="gone"
         android:id="@+id/text"
         android:paddingStart="@dimen/dp5"
         android:textSize="16sp"

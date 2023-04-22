@@ -77,8 +77,8 @@ class AlertViewModel : ViewModel() {
         var sendAlertUserList = ArrayList<SendAlertUser>()
         for(i in selecteduserposition){
             val userData = userDataList[i]
-            var supportRequiredUser = SupportRequiredUser(department,userData.email,userData.phone,userData.username)
-            var sendAlertUser = SendAlertUser(department,userData.email,userData.phone,userData.username)
+            var supportRequiredUser = SupportRequiredUser(department,userData.manageremail,userData.username,userData.username)
+            var sendAlertUser = SendAlertUser(department,userData.manageremail,userData.username,userData.username)
             supportRequiredUserList.add(supportRequiredUser)
             sendAlertUserList.add(sendAlertUser)
         }
@@ -102,6 +102,10 @@ class AlertViewModel : ViewModel() {
         department = getuserservice.department
         repo.getuser(getuserservice)
     }
+    fun getDepartmentUsers(data: GetUserList) {
+        repo.getuserByWorkflow(data)
+    }
+
 
     fun getDepartments(getuserservice: DropdownParam) {
         repo.getDepartments(getuserservice)

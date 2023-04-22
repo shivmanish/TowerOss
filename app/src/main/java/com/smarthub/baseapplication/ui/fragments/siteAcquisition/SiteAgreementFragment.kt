@@ -5,16 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentSiteLeaseAcquitionBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
+import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 
@@ -22,13 +30,18 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
 
     var isDataLoaded = false
     lateinit var viewmodel: HomeViewModel
+    lateinit var taskViewmodel: TaskViewModel
 //    lateinit var siteLeaseDataAdapter:
     lateinit var adapter:SiteAcqsitionFragAdapter
     lateinit var binding: FragmentSiteLeaseAcquitionBinding
+    var geoGraphyLevelList=ArrayList<DropDownItem>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSiteLeaseAcquitionBinding.inflate(inflater, container, false)
         viewmodel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        taskViewmodel = ViewModelProvider(this).get(TaskViewModel::class.java)
+        setobserver()
+        taskViewmodel.getGeoGraphyData(GeoGraphyLevelPostData(""))
         return binding.root
     }
 
@@ -66,6 +79,32 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
 
             }
         }
+
+        if (viewmodel.attachmentConditionModel?.hasActiveObservers() == true) {
+            viewmodel.attachmentConditionModel?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.attachmentConditionModel?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                hideLoader()
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions card Data fetched successfully")
+                try {
+                    AppController.getInstance().attachmentsConditionsList=it.data
+                } catch (e: java.lang.Exception) {
+                    AppLogger.log("SiteAgreemnets Fragment AttachmentConditions error : ${e.localizedMessage}")
+                }
+                AppLogger.log("SiteAgreemnets AttachmentConditions size :${it.data.Attachment?.size}")
+                isDataLoaded = true
+            } else if (it != null) {
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("SiteAgreemnets Fragment AttachmentConditions Something went wrong")
+
+            }
+        }
         
         binding.swipingLayout.setOnRefreshListener {
             binding.swipingLayout.isRefreshing=false
@@ -73,7 +112,7 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
             viewmodel.fetchSiteAgreementModelRequest(id)
         }
         viewmodel.fetchSiteAgreementModelRequest(id)
-
+        viewmodel.attachmentConditionsRequestAll()
         binding.addNew.setOnClickListener {
             val bm = AddNewSiteAcqDialouge(
                 object : AddNewSiteAcqDialouge.AddSiteAcqDataListener {
@@ -106,5 +145,24 @@ class SiteAgreementFragment(var id: String) : BaseFragment(), SiteAcqsitionFragA
         SiteAcqTabActivity.siteacquisition = data
         SiteAcqTabActivity.parentIndex = parentIndex
         requireActivity().startActivity(Intent(requireContext(), SiteAcqTabActivity::class.java))
+    }
+    fun setobserver(){
+        if (taskViewmodel.geoGraphyLevelDataResponse!!.hasActiveObservers())
+            taskViewmodel.geoGraphyLevelDataResponse!!.removeObservers(viewLifecycleOwner)
+        taskViewmodel.geoGraphyLevelDataResponse!!.observe(viewLifecycleOwner, Observer {
+            if (it?.data != null) {
+                geoGraphyLevelList.clear()
+                var i=0
+                for (x in it.data.Data){
+                    geoGraphyLevelList.add(DropDownItem(x,"$i"))
+                    i+=1
+                }
+                AppLogger.log("GeoGraphy Level: ${geoGraphyLevelList}")
+                AppPreferences.getInstance().saveString(DropDowns.GeographyLevel.name, Gson().toJson(DropDownNewItem(geoGraphyLevelList,DropDowns.GeographyLevel.name,true)))
+                AppLogger.log("GeoGraphy Level savePreData: ${AppPreferences.getInstance().getString(DropDowns.GeographyLevel.name)}")
+            }else AppLogger.log("Department not fetched")
+            // Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
+
+        })
     }
 }

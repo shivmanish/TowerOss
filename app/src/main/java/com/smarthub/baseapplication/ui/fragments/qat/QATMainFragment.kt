@@ -39,7 +39,7 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
 
     override fun onViewPageSelected() {
         super.onViewPageSelected()
-        if (viewmodel!=null && !isDataLoaded){
+        if (!isDataLoaded){
             adapter.addLoading()
             viewmodel.qatMainRequestAll(id)
         }
@@ -76,6 +76,25 @@ class QATMainFragment (var id:String): BaseFragment(), QatMainAdapterListener {
             }else if (it!=null) {
                 Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        if (viewmodel.qatUpdateModel?.hasActiveObservers() == true){
+            viewmodel.qatUpdateModel?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.qatUpdateModel?.observe(viewLifecycleOwner) {
+            if (it!=null && it.status == Resource.Status.LOADING){
+                adapter.addLoading()
+                return@observe
+            }
+            hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("Service request Fragment card Data fetched successfully")
+                viewmodel.qatMainRequestAll(id)
             }
             else {
                 AppLogger.log("Service Request Fragment Something went wrong")

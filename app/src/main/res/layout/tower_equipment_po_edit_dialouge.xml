@@ -1,76 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
+    android:background="@color/transparent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:id="@+id/canecl"
-        android:translationZ="@dimen/dp7"
-        android:layout_alignParentRight="true"
+        android:id="@+id/Cancle"
+        android:translationZ="@dimen/dp6"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp20"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
         android:src="@drawable/cross_ico"
         android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:minHeight="@dimen/dp500"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:translationZ="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp15"
         android:background="@drawable/dialog_bg"
-        android:padding="@dimen/dp5">
-
+        android:layout_height="wrap_content"
+        android:id="@+id/container_layout"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit PO Details"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#3D4E6D"
+            android:textSize="@dimen/sp15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:id="@+id/title_text_line"
+            android:alpha=".37"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="#263238"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text"/>
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:scrollbars="vertical"
-            android:layout_height="match_parent"
-            android:requiresFadingEdge="vertical">
-
+            app:layout_constraintTop_toBottomOf="@id/title_text_line"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
             <LinearLayout
                 android:scrollbars="vertical"
+                android:layout_margin="5dp"
+                android:paddingBottom="@dimen/dp10"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="visible"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_marginTop="@dimen/dp8"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/title_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit PO"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="#3D4E6D"
-                    android:textSize="@dimen/sp15"/>
-                <View
-                    android:alpha=".37"
-                    android:background="#263238"
-                    android:layout_height="1dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp8" />
+                android:layout_height="wrap_content">
 
                 <GridLayout
                     android:columnCount="2"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="@dimen/dp15"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/dp1"
                         style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="Item Description"
+                            android:text="Po Item"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="..qweg"
+                            android:id="@+id/Po_item_edit"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -84,6 +97,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         style="@style/ColumnItemInfo"
+                        android:layout_marginTop="@dimen/dp1"
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -91,17 +105,17 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="Vodafone Idea Ltd."
-                            style="@style/RowTestItemEdit"
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                            android:id="@+id/Vendor_name_edit"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -114,8 +128,9 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text=" "
+                        <TextView
+                            android:id="@+id/Vendor_code_edit"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -137,7 +152,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="213"
+                            android:id="@+id/Po_number_edit"
+                            android:text=""
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -159,12 +175,14 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="12-Nov-22"
+                        <TextView
+                            android:id="@+id/Po_Date_edit"
+                            android:text=""
                             style="@style/RowTestItemEdit"
-                            android:drawableEnd="@drawable/calender"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:drawableTint="@color/color1"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/icon_date"/>
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
@@ -178,57 +196,14 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="PO Line No."
+                            android:text="PO Line Number"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="8924786"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="PO Qty"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="5"
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <View
-                            android:alpha="0.37"
-                            android:background="#263238"
-                            android:layout_height="1dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp8" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="PO Rate"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:text="1200"
+                            android:id="@+id/Po_line_number_edit"
+                            android:text=""
+                            android:inputType="number"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -251,9 +226,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <EditText
-                            android:text="1200"
+                            android:id="@+id/Po_amount_edit"
+                            android:text=""
+                            android:inputType="number"
                             style="@style/RowTestItemEdit"
-                            android:drawableEnd="@drawable/rupee_symbol"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <View
@@ -264,44 +240,107 @@
                             android:layout_marginTop="@dimen/dp8" />
                     </LinearLayout>
 
-
                 </GridLayout>
-
-                <include layout="@layout/layout_img_attachment"/>
+                <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    style="@style/RowTextItemInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/remarks_edit"
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:alpha="0.37"
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
         <LinearLayout
-            android:layout_gravity="right"
+            android:id="@+id/bottom_layout"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/dp15"
             android:layout_marginTop="@dimen/dp15"
-            android:layout_marginBottom="@dimen/dp25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp5"
+            android:background="#1A807E7E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:id="@+id/canecel_text"
+                android:gravity="center_vertical"
+                android:id="@+id/cancel_txt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Cancel"
-                android:textColor="#3D4E6D"
-                android:textSize="@dimen/dp15"/>
-
-            <TextView
-                android:layout_marginLeft="@dimen/dp25"
-                android:background="@drawable/yellow_text_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update"
                 android:paddingLeft="@dimen/dp15"
                 android:paddingRight="@dimen/dp15"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10"
                 android:textColor="#3D4E6D"
                 android:textSize="@dimen/dp15"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@drawable/yellow_text_button"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:text="Update"
+                android:textColor="#3D4E6D"
+                android:textSize="@dimen/dp15" />
 
-    </LinearLayout>
-</RelativeLayout>
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:background="@drawable/dialog_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ProgressBar
+                android:id="@+id/progress"
+                android:indeterminateTint="@color/tab_text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:text="Updating Data"
+                android:fontFamily="@font/poppins"
+                android:textSize="@dimen/sp17"
+                android:layout_marginTop="@dimen/dp15"
+                android:textColor="@color/tab_text_color"
+                app:layout_constraintTop_toBottomOf="@+id/progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

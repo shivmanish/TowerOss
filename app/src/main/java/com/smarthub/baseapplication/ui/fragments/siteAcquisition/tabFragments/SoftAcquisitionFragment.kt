@@ -96,7 +96,7 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
                     viewmodel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
                 }
 
-            })
+            },position)
         bm.show(childFragmentManager,"editPayeeAccountClicked class")
     }
 

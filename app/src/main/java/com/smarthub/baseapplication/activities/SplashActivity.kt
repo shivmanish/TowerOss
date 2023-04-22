@@ -42,10 +42,11 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
 //            || loginTimeDiff > (30*60*60)
-//             val intent = Intent(this@SplashActivity, LocationPickerActivity::class.java)
-//            startActivity(intent)
-//            return@setOnClickListener
+             val intent = Intent(this@SplashActivity, LocationPickerActivity::class.java)
+            startActivity(intent)
+            return@setOnClickListener
 
+/*
             if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*60)){
                 if (isNetworkConnected){
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
@@ -72,6 +73,7 @@ class SplashActivity : BaseActivity() {
                     startActivity(intent)
                 }
             }
+*/
         }
 
         loginViewModel.loginResponse?.observe(this) {

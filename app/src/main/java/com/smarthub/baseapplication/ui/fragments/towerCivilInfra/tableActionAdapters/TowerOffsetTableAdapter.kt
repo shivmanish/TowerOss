@@ -75,14 +75,14 @@ class TowerOffsetTableAdapter (var context : Context, var listener : TowerInfoLi
                         popupMenu.dismiss()
                         // define
                         removeItem(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                         return true
                     }
 
                     R.id.action_view -> {
                         popupMenu.dismiss()
                         listener.viewOffsetClicked(position)
-                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context , "Item 2 clicked" , Toast.LENGTH_SHORT).show()
                     }
 
                 }

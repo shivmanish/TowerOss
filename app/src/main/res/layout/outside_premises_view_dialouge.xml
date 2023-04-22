@@ -96,6 +96,7 @@
                             android:layout_height="wrap_content"
                             />
                     </LinearLayout>
+
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -114,7 +115,6 @@
                             android:layout_height="wrap_content"
                             />
                     </LinearLayout>
-
                     <LinearLayout
                         android:paddingTop="0dp"
                         android:layout_width="0dp"
@@ -128,6 +128,25 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/Height_AGL"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingTop="0dp"
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Major Shadow Casting"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/Major_Shadow_Casting"
                             style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

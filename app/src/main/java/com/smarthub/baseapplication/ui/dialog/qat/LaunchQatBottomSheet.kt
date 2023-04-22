@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.LaunchQatLayoutBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.qatcheck.QATMainLaunchNew
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
@@ -26,12 +29,16 @@ import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
+import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
+import com.smarthub.baseapplication.widgets.CustomSpinner
 import com.smarthub.baseapplication.widgets.CustomStringSpinner
 import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
 
 class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMainModel :QatMainModel) : BaseBottomSheetDialogFragment()  {
 
+    lateinit var viewmodel: HomeViewModel
     lateinit var data : QalLaunchModel
     lateinit var binding: LaunchQatLayoutBinding
     lateinit var alertViewModel: AlertViewModel
@@ -39,21 +46,22 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = LaunchQatLayoutBinding.bind(view)
+        viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         alertViewModel = ViewModelProvider(requireActivity())[AlertViewModel::class.java]
         binding.icMenuClose.setOnClickListener {
             dismiss()
         }
         setDatePickerView(binding.txtTargetDate)
-        if (alertViewModel.departmentDropdown.hasActiveObservers())
-            alertViewModel.departmentDropdown.removeObservers(viewLifecycleOwner)
-        alertViewModel.departmentDropdown.observe(viewLifecycleOwner) {
-            //response will get here
-            if (it?.data != null) {
-                binding.assigneeDepartment.setSpinnerData(it.data.department)
-                if (it.data.department.isNotEmpty())
-                    alertViewModel.getUser(GetUserList(it.data.department[0], AppController.getInstance().ownerName))
-            }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
-        }
+//        if (alertViewModel.departmentDropdown.hasActiveObservers())
+//            alertViewModel.departmentDropdown.removeObservers(viewLifecycleOwner)
+//        alertViewModel.departmentDropdown.observe(viewLifecycleOwner) {
+//            //response will get here
+//            if (it?.data != null) {
+//                binding.assigneeDepartment.setSpinnerData(it.data.department)
+//                if (it.data.department.isNotEmpty())
+//                    alertViewModel.getUser(GetUserList(it.data.department[0], AppController.getInstance().ownerName))
+//            }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
+//        }
         alertViewModel.getDepartments(DropdownParam("SMRT","department"))
 
         if (alertViewModel.userDataResponseLiveData.hasActiveObservers())
@@ -65,12 +73,12 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
             }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
         })
 
-        binding.assigneeDepartment.itemSelectedListener = object :CustomStringSpinner.ItemSelectedListener{
-            override fun itemSelected(item: String) {
-                if (item.isNotEmpty())
-                    alertViewModel.getUser(GetUserList(item, AppController.getInstance().ownerName))
-            }
-        }
+//        binding.assigneeDepartment.itemSelectedListener = object :CustomStringSpinner.ItemSelectedListener{
+//            override fun itemSelected(item: String) {
+//                if (item.isNotEmpty())
+//                    alertViewModel.getUser(GetUserList(item, AppController.getInstance().ownerName))
+//            }
+//        }
 
         val dropdownList = ArrayList<DropDownItem>()
         if (qatMainModel.item!=null && qatMainModel.item?.isNotEmpty() == true && qatMainModel.item!![0].QATMainLaunch.isNotEmpty())
@@ -85,12 +93,13 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
             list.add(binding.txQatCategory.selectedValue.id)
             val item = QATMainLaunchNew(
                 AssignedTo = binding.assignTo.selectedValue.username,
-                GeoLevel = binding.txtTargetDate.text.toString(),
+                GeoLevel = binding.geographyLevel.selectedValue.id,
                 binding.txtInstruction.text.toString(),
                 "",
                 list,
-                binding.txtTargetDate.text.toString(),
-                true
+                binding.txtTargetDate.tag.toString(),
+                true,
+                binding.assigneeDepartment.selectedValue.id
             )
             val qATMainLaunchNew = ArrayList<QATMainLaunchNew>()
             qATMainLaunchNew.add(item)
@@ -101,8 +110,45 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
         }
         binding.txtWhereType.setSpinnerData(arrayOf("Tower Check","Test Template","Name 43","ABCD QAT","QAT Test","QAT Template Smartmile","QAT TEMP 1","Truss inspection").asList())
 
-    }
+        AppPreferences.getInstance().setDropDown(binding.geographyLevel,DropDowns.GeographyLevel.name)
+        binding.geographyLevel.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+            override fun itemSelected(geographySelected: DropDownItem) {
+                viewmodel.getDepartment(geographySelected.name)
+            }
+        }
 
+        binding.assigneeDepartment.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+            override fun itemSelected(departmentName: DropDownItem) {
+                alertViewModel.getDepartmentUsers(GetUserList(departmentName.name,AppController.getInstance().ownerName))
+            }
+        }
+
+        if (alertViewModel.userDataResponseLiveData.hasActiveObservers())
+            alertViewModel.userDataResponseLiveData.removeObservers(viewLifecycleOwner)
+        alertViewModel.userDataResponseLiveData.observe(viewLifecycleOwner){
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SiteAgreemnets Fragment userDataResponseLiveData loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("SiteAgreemnets Fragment userDataResponseLiveData loaded successfull ")
+                binding.assignTo.setSpinnerData(it.data)
+            }else AppLogger.log("Department not fetched")
+        }
+
+        if (viewmodel.departmentDataDataResponse?.hasActiveObservers()==true)
+            viewmodel.departmentDataDataResponse?.removeObservers(viewLifecycleOwner)
+        viewmodel.departmentDataDataResponse?.observe(viewLifecycleOwner){
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SiteAgreemnets Fragment departmentDataDataResponse loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("SiteAgreemnets Fragment departmentDataDataResponse loaded successfull ")
+                binding.assigneeDepartment.setSpinnerData(it.data.Department.data)
+            }else AppLogger.log("Department not fetched")
+        }
+    }
     override fun getTheme() = R.style.NewDialogTask
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

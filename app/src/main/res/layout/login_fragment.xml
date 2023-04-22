@@ -81,7 +81,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/request_msg"/>
 
                 <TextView
-                    android:text="Please enter your User Id and Password"
+                    android:text="Please enter your Mobile/Email and Password"
                     android:textSize="13sp"
                     android:textColor="#ffffff"
                     android:id="@+id/request_msg"
@@ -96,7 +96,7 @@
                 <com.smarthub.baseapplication.widgets.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username or E-mail"
+                    android:hint="Mobile Number or E-mail"
                     android:id="@+id/user_mail_layout"
                     android:textColorHint="@color/white"
                     style="@style/TextInputLayout"
@@ -242,23 +242,34 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/sign_with_phone"/>
 
-                <TextView
-                    android:padding="@dimen/dp10"
-                    android:text="Or sign-in with phone OTP"
-                    android:textSize="15sp"
-                    android:textColor="#F7CB46"
-                    android:drawable="@drawable/mic"
+                <androidx.constraintlayout.widget.ConstraintLayout
+
                     android:id="@+id/sign_with_phone"
                     android:layout_width="match_parent"
                     android:textStyle="bold"
                     android:layout_height="@dimen/dp45"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/dp30"
                     android:background="@drawable/login_yellow_border"
-                    android:fontFamily="@font/poppins_regular"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/already_have_account_layout"/>
+                    app:layout_constraintBottom_toTopOf="@+id/already_have_account_layout">
+                    <TextView
+                        android:padding="@dimen/dp10"
+                        android:text="Or sign-in with phone OTP"
+                        android:textSize="15sp"
+                        android:drawablePadding="10dp"
+                        android:textColor="#F7CB46"
+                        android:drawableStart="@drawable/mic"
+                        android:id="@+id/sign_with_phone_test"
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_regular"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:id="@+id/already_have_account_layout"
@@ -269,7 +280,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <TextView
-                        android:text="Not a member yet? "
+                        android:text="New to TowerOSS?"
                         android:textSize="13sp"
                         android:textColor="#ffffff"
                         android:id="@+id/already_have_account"

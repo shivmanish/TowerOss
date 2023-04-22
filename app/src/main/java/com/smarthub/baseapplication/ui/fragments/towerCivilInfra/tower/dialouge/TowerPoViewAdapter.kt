@@ -45,7 +45,7 @@ class TowerPoViewAdapter (var data: TwrCivilPODetail) : BaseBottomSheetDialogFra
     }
 
     override fun itemClicked() {
-        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
 

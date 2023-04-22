@@ -234,7 +234,6 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         }
 
 
-/*
         imgSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -254,7 +253,6 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
                 LocationPickerActivity.this.startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
             }
         });
-*/
 
         txtSelectLocation.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -104,6 +104,24 @@
             <TextView
                 android:layout_marginTop="@dimen/dp25"
                 android:layout_width="match_parent"
+                android:text="Assignee Geography Level :"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <com.smarthub.baseapplication.widgets.CustomSpinner
+                android:id="@+id/Assignee_Geography_Level"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20" />
+            <View
+                android:alpha="1"
+                android:layout_marginTop="@dimen/dp6"
+                android:background="@color/view_color"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp25"
+                android:layout_width="match_parent"
                 android:text="Assignee Department:"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
@@ -119,23 +137,6 @@
                 android:layout_height="1dp"
                 android:layout_width="match_parent" />
 
-            <TextView
-                android:layout_marginTop="@dimen/dp25"
-                android:layout_width="match_parent"
-                android:text="Assignee Geography Level :"
-                style="@style/RowTextItemInfo"
-                android:layout_height="wrap_content"/>
-            <com.smarthub.baseapplication.widgets.CustomSpinner
-                android:id="@+id/Assignee_Geography_Level"
-                style="@style/SpinnerTheme"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp20" />
-            <View
-                android:alpha="1"
-                android:layout_marginTop="@dimen/dp6"
-                android:background="@color/view_color"
-                android:layout_height="1dp"
-                android:layout_width="match_parent" />
 
             <TextView
                 android:layout_marginTop="@dimen/dp25"

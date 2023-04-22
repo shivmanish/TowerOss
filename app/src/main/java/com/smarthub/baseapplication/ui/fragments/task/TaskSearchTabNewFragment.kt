@@ -26,6 +26,7 @@ import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllData
@@ -38,11 +39,14 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTower
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
+import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
+import com.smarthub.baseapplication.ui.dialog.qat.LaunchQatBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.NocCompPageAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.TaskNocDataAdapter
@@ -61,6 +65,7 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TaskPowerC
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TaskPowerConnectionListListener
 import com.smarthub.baseapplication.ui.fragments.qat.OpenQatFragment
 import com.smarthub.baseapplication.ui.fragments.qat.SubmitQatFragment
+import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQATListAdapter
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQatViewPagerAdapter
@@ -79,6 +84,10 @@ import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragme
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleFragPageAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerPageAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.TowerEarthingFragment
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters.TowerEarthingAdapter
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentFragemnt
+import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentFragmentAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
@@ -251,75 +260,91 @@ class TaskSearchTabNewFragment(
     fun setParentData() {
         AppLogger.log("Where Tab list====>:$tempWhere")
         val subTabList:ArrayList<String> = ArrayList()
-//        val splittedData = tempWhere.split(",") as ArrayList
         val splittedData = findTaskSubtabList(taskDetailData).split(",")
         AppLogger.log("Where Tab list spiletted====>:$splittedData")
-        var parentId: Int = 0
+        var parentId = 0
+
         if (splittedData.isNotEmpty()) {
             val firstIdx = splittedData[0]
             AppLogger.log("Where Tab list first index data====>:$firstIdx")
             if (firstIdx.isNotEmpty()) {
-                try {
-                    parentId = firstIdx.toInt().div(10)
-                }catch (e:Exception){
-                    AppLogger.log("e:${e.localizedMessage}")
+                if (firstIdx.contains("q_")){
+                    AppLogger.log("firstIdx:$firstIdx")
+                    try {
+                        val qatModuleId = firstIdx.replace("q_","")
+                        setUpQatData()
+                    }catch (e:java.lang.Exception){
+                        AppLogger.log("qatModuleId error :${e.localizedMessage}")
+                        Toast.makeText(requireContext(),"Qat id not found",Toast.LENGTH_SHORT).show()
+                    }
+
                 }
-                AppLogger.log("parentId=====>:${parentId}")
-                if (TaskTabListmodel!=null){
-                    for (item in TaskTabListmodel!!){
-                        if (item.id==parentId){
-                            for (subitem in item.tabs){
-                                if (splittedData.contains(subitem.id.toString()))
-                                {
-                                    subTabList.add(subitem.id.toString())
+                else{
+                    try {
+                        parentId = firstIdx.toInt().div(10)
+                    }
+                    catch (e:Exception){
+                        AppLogger.log("e:${e.localizedMessage}")
+                    }
+                    AppLogger.log("parentId=====>:${parentId}")
+                    if (TaskTabListmodel!=null){
+                        for (item in TaskTabListmodel!!){
+                            if (item.id==parentId){
+                                for (subitem in item.tabs){
+                                    if (splittedData.contains(subitem.id.toString()))
+                                    {
+                                        subTabList.add(subitem.id.toString())
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            }
-            AppLogger.log("subTask list od subTab====>:$subTabList")
-            when (parentId){
-                1->{
-                    setUpOpcoData()
-                    AppLogger.log("Selected TAb is OpcoTenency")
-                }
-                2->{
-                    setUpSiteAcqusitionData(splittedData as ArrayList<String>)
-                }
-                3->{
-                    setUpUtilityUqipData()
-                    AppLogger.log("Selected TAb is Utility Equipments")
-                }
-                4->{
-                    AppLogger.log("Selected TAb is Site Info")
-                }
-                5->{
-                    setUpPnanigAndDesignData()
-                    AppLogger.log("Selected TAb is Planning & Design")
-                }
-                6->{
-                    setUpNocComplianceData()
-                    AppLogger.log("Selected TAb is NOC & Compliance")
-                }
-                7->{
-                    setUpTowerAndCvilData()
-                    AppLogger.log("Selected TAb is Tower & Civil Infra")
-                }
-                8->{
-                    setUpPowerFuelData()
-                    AppLogger.log("Selected TAb is Power & Fuel")
-                }
-                9->{
-                    setUpServiceRequestData()
-                    AppLogger.log("Selected TAb is Service Request")
-                }
-                else ->{
-                    setUpNocComplianceData()
-                    AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
-                }
 
-                //site info , power and fuel, Twr & civil infra
+                    AppLogger.log("subTask list od subTab====>:$subTabList")
+                    when (parentId){
+                        1->{
+                            setUpOpcoData()
+                            AppLogger.log("Selected TAb is OpcoTenency")
+                        }
+                        2->{
+                            setUpSiteAcqusitionData(ArrayList(splittedData))
+                        }
+                        3->{
+                            setUpUtilityUqipData()
+                            AppLogger.log("Selected TAb is Utility Equipments")
+                        }
+                        4->{
+                            AppLogger.log("Selected TAb is Site Info")
+                        }
+                        5->{
+                            setUpPnanigAndDesignData()
+                            AppLogger.log("Selected TAb is Planning & Design")
+                        }
+                        6->{
+                            setUpNocComplianceData()
+                            AppLogger.log("Selected TAb is NOC & Compliance")
+                        }
+                        7->{
+//                    setUpTowerAndCvilData()
+                            AppLogger.log("Selected TAb is Tower & Civil Infra")
+                        }
+                        8->{
+                            setUpPowerFuelData()
+                            AppLogger.log("Selected TAb is Power & Fuel")
+                        }
+                        9->{
+                            setUpServiceRequestData()
+                            AppLogger.log("Selected TAb is Service Request")
+                        }
+                        else ->{
+                            setUpNocComplianceData()
+                            AppLogger.log("Selected TAb is NOC & Compliance by default for testing")
+                        }
+
+                        //site info , power and fuel, Twr & civil infra
+
+                    }
+                }
 
             }
         }
@@ -561,81 +586,82 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.fetchPowerAndFuel(siteID.toString())
     }
-    fun setUpTowerAndCvilData() {
-        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
-            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
-        }
-        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
-            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
-            override fun clickedTowerItem(id:String,data: NewTowerCivilAllData?) {
-                TwrInfraDetails.Id=id
-                TwrInfraDetails.TowerModelData=data
-                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, data!!.TowerAndCivilInfraTower,data)
-                binding.tabs.setupWithViewPager(binding.viewpager)
-                setViewPager()
-
-            }
-
-            override fun clickedPoleItem(id:String,data: NewTowerCivilAllData?) {
-                PoleFragment.Id=id
-                PoleFragment.TowerModelData=data
-                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, data!!.TowerAndCivilInfraPole,data)
-                binding.tabs.setupWithViewPager(binding.viewpager)
-                setViewPager()
-
-            }
-
-            override fun clickedEquipmentRoomItem(
-                id:String,data:NewTowerCivilAllData?
-            ) {
-                TowerEquipmentFragemnt.EquipmentModelData = data
-                TowerEquipmentFragemnt.Id=id
-                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, data!!.TowerAndCivilInfraEquipmentRoom,data)
-                binding.tabs.setupWithViewPager(binding.viewpager)
-                setViewPager()
-
-            }
-
-            override fun clickedEarthingItem(id:String,data: ArrayList<NewTowerCivilAllData>?) {
-                TowerEarthingFragment.Id=id
-                TowerEarthingFragment.EarthingModelData=data
-                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
-                binding.tabs.setupWithViewPager(binding.viewpager)
-                setViewPager()
-            }
-
-        },siteID.toString())
-        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
-
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
-                AppLogger.log("planDesign Fragment card Data fetched successfully")
-                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
-            } else if (it != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "planDesign Fragment error :${it.message}, data : ${it.data}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
-            } else {
-                AppLogger.log("planDesign Fragment Something went wrong")
-                Toast.makeText(requireContext(),
-                    "planDesign Fragment Something went wrong",
-                    Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-        (requireActivity() as BaseActivity).showLoader()
-        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
-    }
+//    fun setUpTowerAndCvilData() {
+//        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
+//            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
+//        }
+//        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
+//            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
+//            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+//                TwrInfraDetails.Id=id
+//                TwrInfraDetails.TowerModelData=data
+//                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+//                binding.tabs.setupWithViewPager(binding.viewpager)
+//                setViewPager()
+//
+//            }
+//
+//            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+//                PoleFragment.Id=id
+//                PoleFragment.TowerModelData=data
+//                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
+//                binding.tabs.setupWithViewPager(binding.viewpager)
+//                setViewPager()
+//
+//            }
+//
+//            override fun clickedEquipmentRoomItem(
+//                id: String,
+//                data: ArrayList<NewTowerCivilAllData>?,
+//            ) {
+//                TowerEquipmentFragemnt.EquipmentModelData = data
+//                TowerEquipmentFragemnt.Id=id
+//                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
+//                binding.tabs.setupWithViewPager(binding.viewpager)
+//                setViewPager()
+//
+//            }
+//
+//            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
+//                TowerEarthingFragment.Id=id
+//                TowerEarthingFragment.EarthingModelData=data
+//                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
+//                binding.tabs.setupWithViewPager(binding.viewpager)
+//                setViewPager()
+//            }
+//
+//        },siteID.toString())
+//        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+//        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
+//
+//            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+//                AppLogger.log("planDesign Fragment card Data fetched successfully")
+//                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
+//            } else if (it != null) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "planDesign Fragment error :${it.message}, data : ${it.data}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
+//            } else {
+//                AppLogger.log("planDesign Fragment Something went wrong")
+//                Toast.makeText(requireContext(),
+//                    "planDesign Fragment Something went wrong",
+//                    Toast.LENGTH_SHORT)
+//                    .show()
+//            }
+//        })
+//        (requireActivity() as BaseActivity).showLoader()
+//        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
+//    }
 
     fun filterTowerList(data:ArrayList<NewTowerCivilAllData>):ArrayList<FilterdTwrData>{
         val filteredData:ArrayList<FilterdTwrData> = ArrayList()
         filteredData.clear()
         for(i in 0..data.size.minus(1)){
             val tempdData = FilterdTwrData()
-            if (data.get(i).TowerAndCivilInfraTower!!.isNotEmpty()){
+            if (data.get(i).TowerAndCivilInfraTower?.isNotEmpty()==true){
                 tempdData.TowerDetails=data.get(i)
                 tempdData.index=i
                 filteredData.add(tempdData)
@@ -644,42 +670,156 @@ class TaskSearchTabNewFragment(
         return filteredData
     }
 
+    private fun openCreateLaunchBottomSheet(qatMainModel : QatMainModel?) {
+        homeViewModel.qatUpdateModel?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("TaskSearchTabNewFragment data creating in progress ")
+                return@observe
+            }
+            hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
+                if (it.data.Status.isNotEmpty()){
+                    var data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
+                    taskDetailData?.ModuleId=data?.id.toString()
+                    taskDetailData?.ModuleName=data!!.Instruction
+                    val tempTaskDataUpdate=TaskDataUpdateModel()
+                    tempTaskDataUpdate.ModuleId=data.id.toInt()
+                    tempTaskDataUpdate.ModuleName=data.Instruction
+                    tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                    taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+                    setUpQatData()
+                }
+
+            }
+            else if (it != null) {
+                AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating Data")
+
+            }
+        }
+
+        val bottomSheetDialogFragment = LaunchQatBottomSheet(object : LaunchQatBottomSheet.LaunchQatBottomSheetListener{
+            override fun onQatCreated(data: QalLaunchModel) {
+                showLoader()
+                homeViewModel.qatLaunchMain(data)
+            }
+        },qatMainModel!!)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
     fun setUpQatData() {
+        var moduleId = taskDetailData!!.ModuleId
         if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
             homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
-        val serviceFragAdapterAdapter =
-            TaskQATListAdapter(requireContext(), object : QatMainAdapterListener {
-                override fun clickedItem(data: QATMainLaunch?, Id: String, index: Int) {
-                    //this is for the listiner
-
-//                QATCheckActivity.Id=Id
-//                QATCheckActivity.planDesigndata=data
-                    val adapterviewpager = TaskQatViewPagerAdapter(childFragmentManager)
-                    adapterviewpager.addFragment(OpenQatFragment(), "Open QAT")
-                    adapterviewpager.addFragment(SubmitQatFragment(), "Submitted QAT")
-                    binding.viewpager.adapter = adapterviewpager
-                    binding.tabs.setupWithViewPager(binding.viewpager)
-                    setViewPager()
-                }
-
-
-            }, siteID.toString())
-        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-        homeViewModel?.QatModelResponse?.observe(viewLifecycleOwner, Observer {
+        homeViewModel.QatModelResponse?.observe(viewLifecycleOwner, Observer {
 
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+//                if (moduleId==null || moduleId.isEmpty()) {
+//                    openCreateLaunchBottomSheet(it.data)
+//                    return@Observer
+//                }
+                hideLoader()
+                val serviceFragAdapterAdapter =
+                    TaskQATListAdapter(requireContext(), object : TaskQATListAdapter.QatTaskAdapterListener {
+                        override fun clickedItem(qATMainLaunch: QATMainLaunch?, Id: String, mainindex: Int) {
+                            val data : List<Category> = qATMainLaunch!!.Category
+                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                            binding.viewpager.adapter = serviceFragAdapterAdapter
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                        }
+
+                        override fun addNew() {
+                            openCreateLaunchBottomSheet(it.data)
+                        }
+                    }, siteID.toString())
+                binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+//                serviceFragAdapterAdapter.addNew()
+                AppLogger.log("setUpQatData Fragment card Data fetched successfully")
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch!!)
+//                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
                 AppLogger.log("size :${it.data.item?.size}")
+
+                if (it.data.item!![0].QATMainLaunch.isNotEmpty()){
+                    val qATMainLaunch: QATMainLaunch = it.data.item!![0].QATMainLaunch[0]
+                    val data : List<Category> = qATMainLaunch.Category
+                    val mainindex=0
+                    serviceFragAdapterAdapter.setData(qATMainLaunch)
+                    val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                    binding.viewpager.adapter = serviceFragAdapterAdapter
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+//                    for (i in it.data.item!![0].QATMainLaunch){
+//                        if (i.id == moduleId){
+//                            val qATMainLaunch: QATMainLaunch = i
+//                            val data : List<Category> = qATMainLaunch.Category
+//                            val mainindex=0
+//                            serviceFragAdapterAdapter.setData(qATMainLaunch)
+//                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+//                            binding.viewpager.adapter = serviceFragAdapterAdapter
+//                            binding.tabs.setupWithViewPager(binding.viewpager)
+//                            setViewPager()
+//                        }
+//
+//                    }
+
+                }
+                else Toast.makeText(requireContext(),"Qat data not found",Toast.LENGTH_SHORT).show()
+
             } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
-                AppLogger.log("Service request Fragment card Data fetched successfully")
+//                if (moduleId==null || moduleId.isEmpty()) {
+//                    openCreateLaunchBottomSheet(it.data)
+//                    return@Observer
+//                }
+                hideLoader()
+                val serviceFragAdapterAdapter =
+                    TaskQATListAdapter(requireContext(), object : TaskQATListAdapter.QatTaskAdapterListener {
+                        override fun clickedItem(qATMainLaunch: QATMainLaunch?, Id: String, mainindex: Int) {
+                            val data : List<Category> = qATMainLaunch!!.Category
+                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                            binding.viewpager.adapter = serviceFragAdapterAdapter
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                        }
+
+                        override fun addNew() {
+                            openCreateLaunchBottomSheet(it.data)
+                        }
+                    }, siteID.toString())
+                binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+//                serviceFragAdapterAdapter.addNew()
+
+                AppLogger.log("setUpQatData Fragment card Data fetched successfully")
                 it.data.item = it.data.itemNew
-//                qatMainModel = it.data
                 isDataLoaded = true
-                serviceFragAdapterAdapter.setData(it.data.itemNew!![0].QATMainLaunch!!)
-                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch?.size}")
+                AppLogger.log("size :${it.data.itemNew!![0].QATMainLaunch.size}")
+//                serviceFragAdapterAdapter.setData(it.data.item!![0].QATMainLaunch)
+                if (it.data.itemNew!![0].QATMainLaunch.isNotEmpty()){
+                    val qATMainLaunch: QATMainLaunch = it.data.itemNew!![0].QATMainLaunch[0]
+                    val data : List<Category> = qATMainLaunch.Category
+                    val mainindex=0
+                    serviceFragAdapterAdapter.setData(qATMainLaunch)
+                    val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                    binding.viewpager.adapter = serviceFragAdapterAdapter
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                    for (i in it.data.itemNew!![0].QATMainLaunch){
+//                        if (i.id == moduleId){
+//                            val qATMainLaunch: QATMainLaunch = i
+//                            val data : List<Category> = qATMainLaunch.Category
+//                            val mainindex=0
+//                            serviceFragAdapterAdapter.setData(qATMainLaunch)
+//                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+//                            binding.viewpager.adapter = serviceFragAdapterAdapter
+//                            binding.tabs.setupWithViewPager(binding.viewpager)
+//                            setViewPager()
+//                        }
+
+                    }
+                }else Toast.makeText(requireContext(),"Qat data not found",Toast.LENGTH_SHORT).show()
             } else if (it != null) {
                 Toast.makeText(requireContext(),
                     "Service request Fragment error :${it.message}, data : ${it.data}",
@@ -687,34 +827,8 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
         })
-/*
-        homeViewModel.serviceRequestModelResponse?.observe(viewLifecycleOwner) {
-            if (it!=null && it.status == Resource.Status.LOADING){
-                return@observe
-            }
-            (requireActivity() as BaseActivity).hideLoader()
-            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.ServiceRequestMain!=null && it.data.ServiceRequestMain.isNotEmpty()){
-                AppLogger.log("Service request Fragment card Data fetched successfully")
-                val listData = it.data.ServiceRequestMain as ArrayList<ServiceRequestAllDataItem>
-                serviceFragAdapterAdapter.setData(listData)
-                AppLogger.log("size :${it.data.ServiceRequestMain.size}")
-
-                if (listData.isNotEmpty())
-                    clickedItem(listData[0],siteID.toString())
-                isDataLoaded = true
-            }
-            else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
-                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
-            }
-            else {
-                AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
-            }
-        }
-*/
-        (requireActivity() as BaseActivity).showLoader()
-        homeViewModel.qatMainRequestAll("1526")
+        showLoader()
+        homeViewModel.qatMainRequestAll(AppController.getInstance().taskSiteId)
     }
 
     private fun setUpNocComplianceData() {

@@ -25,12 +25,16 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.APIInterceptor;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 import com.smarthub.baseapplication.utils.DropDowns;
 import com.smarthub.baseapplication.utils.Utils;
 import com.smarthub.baseapplication.widgets.CustomSpinner;
+import com.smarthub.baseapplication.widgets.CustomUserSpinner;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -323,6 +327,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
         }
     }
+    public void saveDropDownData(DropDownNewItem item) {
+        Gson gson = new Gson();
+        String stringDatajson = gson.toJson(item);
+        AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
+    }
     public void saveStaticDropDownData(Context context) {
         String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"dropdown.json");
         try{
@@ -349,10 +358,20 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
     }
 
     public void setDropDown(CustomSpinner customSpinner,String name,String id){
+        try{
+            Gson gson = new Gson();
+            String jsonString = getString(name);
+            DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+            customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("");
+        }
+    }
+    public void setDropDown(CustomSpinner customSpinner,String name,String id,TextView customText){
         Gson gson = new Gson();
         String jsonString = getString(name);
         DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-        customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+        customSpinner.setSpinnerData(dropDownNewItem.getData(),id,customText);
     }
     public List<DropDownItem>  getDropDown(String name){
         Gson gson = new Gson();
@@ -375,7 +394,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         try{
             customSpinner.setSpinnerData(dropDownNewItem.getData());
         }catch (Exception e){
-            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+            AppLogger.INSTANCE.log("setDropDowncustomSpinner" +name+"error:"+e.getLocalizedMessage());
         }
     }
 
@@ -407,6 +426,38 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             if (i.getId().equalsIgnoreCase(id)) {
                 customSpinner.setText(i.getName());
                 return;
+            }
+        }
+    }
+
+    public void setDropDown(TextView customSpinner, String name, ArrayList<Integer> ids){
+        List<DropDownItem> list = getDropDownList(name);
+        if (ids!=null && !ids.isEmpty()){
+            String id = ids.get(0).toString();
+            for (DropDownItem i : list) {
+                if (i.getId().equalsIgnoreCase(id)) {
+                    customSpinner.setText(i.getName());
+                    return;
+                }
+            }
+            if (!list.isEmpty()){
+                customSpinner.setText(list.get(0).getName());
+            }
+        }
+    }
+
+    public void setDropDown(TextView customSpinner, String name, List<Integer> ids){
+        List<DropDownItem> list = getDropDownList(name);
+        if (ids!=null && !ids.isEmpty()){
+            String id = ids.get(0).toString();
+            for (DropDownItem i : list) {
+                if (i.getId().equalsIgnoreCase(id)) {
+                    customSpinner.setText(i.getName());
+                    return;
+                }
+            }
+            if (!list.isEmpty()){
+                customSpinner.setText(list.get(0).getName());
             }
         }
     }

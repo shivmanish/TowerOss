@@ -13,14 +13,14 @@ import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.FragmentAddTaskInfoBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.model.taskModel.GeoGraohyLevelDropDownModel
-import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelData
 import com.smarthub.baseapplication.model.taskModel.TaskInfoItem
-import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponseItem
 import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
@@ -28,12 +28,15 @@ import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.search.SearchIdFragment
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 import com.smarthub.baseapplication.widgets.CustomSpinner
 
 class AddTaskInfoFragment : BaseFragment() {
     lateinit var viewmodel: AlertViewModel
+    lateinit var homeviewmodel: HomeViewModel
     lateinit var taskViewmodel: TaskViewModel
     lateinit var binding: FragmentAddTaskInfoBinding
     lateinit var geographyLeveDataList: GeoGraohyLevelDropDownModel
@@ -47,9 +50,10 @@ class AddTaskInfoFragment : BaseFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewmodel = ViewModelProvider(this).get(AlertViewModel::class.java)
+        viewmodel = ViewModelProvider(this)[AlertViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
-        taskViewmodel=ViewModelProvider(requireActivity()).get(TaskViewModel::class.java)
+        taskViewmodel= ViewModelProvider(requireActivity())[TaskViewModel::class.java]
+        homeviewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "geoGraphyLevel.json")
         geographyLeveDataList=Gson().fromJson(json, GeoGraohyLevelDropDownModel::class.java)
         setdataForSingleSiteAsk()
@@ -80,7 +84,7 @@ class AddTaskInfoFragment : BaseFragment() {
                  taskViewmodel.processTemplatemanual.sitename= selectedSiteInfo.name.toString()
                  taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
                  taskViewmodel.processTemplatemanual.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
-                 taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.phone
+                 taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.username
                  taskViewmodel.processTemplatemanual.priority=binding.priority.selectedValue.name
                  findNavController().navigate(R.id.actionToMoveSecondFrag)
                  AppLogger.log("processTempletManualData====>: ${Gson().toJson(taskViewmodel.processTemplatemanual)}")
@@ -104,6 +108,10 @@ class AddTaskInfoFragment : BaseFragment() {
         }
         setDatePickerView(binding.startDate)
         setDatePickerView(binding.endDate)
+        if (taskInfo!=null && taskInfo?.geolevel?.isNotEmpty() == true)
+            AppPreferences.getInstance().setDropDownByName(binding.GeographyLevel, DropDowns.GeographyLevel.name,taskInfo?.geolevel)
+        else
+            AppPreferences.getInstance().setDropDown(binding.GeographyLevel, DropDowns.GeographyLevel.name)
 
         binding.startDate.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -147,7 +155,11 @@ class AddTaskInfoFragment : BaseFragment() {
         })
 
         binding.taskForASingleSite.setSpinnerData(taskForASingleSiteList)
-        binding.GeographyLevel.setSpinnerData(geographyLeveDataList)
+        binding.GeographyLevel.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+            override fun itemSelected(geographySelected: DropDownItem) {
+                homeviewmodel.getDepartment(geographySelected.name)
+            }
+        }
         binding.taskForASingleSite.setOnItemSelectionListener(
             object : CustomSpinner.ItemSelectedListener{
                 override fun itemSelected(selectedItem: DropDownItem) {
@@ -173,7 +185,7 @@ class AddTaskInfoFragment : BaseFragment() {
             override fun itemSelected(departmentName: DropDownItem) {
                 AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
 //                Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
-                viewmodel.getUser(GetUserList(departmentName.name,AppController.getInstance().ownerName))
+                viewmodel.getDepartmentUsers(GetUserList(departmentName.name,AppController.getInstance().ownerName))
                 observerData()
 
             }
@@ -183,23 +195,20 @@ class AddTaskInfoFragment : BaseFragment() {
             findNavController().navigate(AddTaskInfoFragmentDirections.actionAddTaskFragment2ToSearchIdFragment2(true))
         }
 
-        if (viewmodel.departmentDropdown.hasActiveObservers())
-            viewmodel.departmentDropdown.removeObservers(viewLifecycleOwner)
-        viewmodel.departmentDropdown.observe(viewLifecycleOwner) {
-            if (it?.data != null) {
-                departmentList.clear()
-                var i=0
-                for (x in it.data.department){
-                    departmentList.add(DropDownItem(x,"$i"))
-                    i+=1
-                }
-                if(taskInfo != null)
-                    binding.assigneeDepartment.setSpinnerDataByName(departmentList,taskInfo?.AssigneeDepartment)
+        if (homeviewmodel.departmentDataDataResponse?.hasActiveObservers()==true)
+            homeviewmodel.departmentDataDataResponse?.removeObservers(viewLifecycleOwner)
+        homeviewmodel.departmentDataDataResponse?.observe(viewLifecycleOwner){
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("AddTaskInfoFragment departmentDataDataResponse loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("AddTaskInfoFragment departmentDataDataResponse loaded successfull ")
+                if (taskInfo!=null)
+                    binding.assigneeDepartment.setSpinnerData(it.data.Department.data,taskInfo?.AssigneeDepartment)
                 else
-                  binding.assigneeDepartment.setSpinnerData(departmentList)
-            }else
-                AppLogger.log("Department not fetched")
-//                Toast.makeText(requireContext(),"Department not fetched",Toast.LENGTH_LONG).show()
+                    binding.assigneeDepartment.setSpinnerData(it.data.Department.data)
+            }else AppLogger.log("Department not fetched")
         }
         observerData()
 
@@ -214,9 +223,9 @@ class AddTaskInfoFragment : BaseFragment() {
                AssignToList.clear()
                AssignToList.addAll(it.data)
                 if(taskInfo != null)
-                    binding.assignTo.setSpinnerDataByPhonNumber(AssignToList,taskInfo?.actorname)
+                    binding.assignTo.setSpinnerDataByPhonNumber(it.data,taskInfo?.actorname)
                 else
-                    binding.assignTo.setSpinnerData(AssignToList)
+                    binding.assignTo.setSpinnerData(it.data)
             }else AppLogger.log("Department not fetched")
         })
     }

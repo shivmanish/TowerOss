@@ -7,5 +7,6 @@ data class QATMainLaunchNew(
     val QATMain: String,
     val QATTemplateMain: List<String>,
     val TargetDateTime: String,
-    val isActive: Boolean
+    val isActive: Boolean,
+    val AssigneeDepartment: String
 )

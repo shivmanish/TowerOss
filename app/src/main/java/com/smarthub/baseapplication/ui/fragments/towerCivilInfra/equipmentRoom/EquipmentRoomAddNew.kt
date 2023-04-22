@@ -79,11 +79,11 @@ class EquipmentRoomAddNew (var fulldata: NewTowerCivilAllData?, var listner: Add
                 listner.addEquipmentRoom()
                 hideProgressLayout()
                 dismiss()
-                Toast.makeText(context,"Data Added successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Added successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("EquipmentRoomAddNew Something went wrong")
             }
             else if (it != null) {

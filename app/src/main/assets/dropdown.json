@@ -40,6 +40,19 @@
       ]
     },
     {
+      "name": "PayeeStatus",
+      "data": [
+        {
+          "id": 1,
+          "name": "Active"
+        },
+        {
+          "id": 2,
+          "name": "Inactive"
+        }
+      ]
+    },
+    {
       "name": "Shape",
       "data": [
         {
@@ -325,7 +338,7 @@
       ]
     },
     {
-      "name": "rentPaymentPeriod",
+      "name": "RentPaymentPeriod",
       "data": [
         {
           "id": 1,
@@ -346,7 +359,7 @@
       ]
     },
     {
-      "name": "eBInclusiveinRental",
+      "name": "EBInclusiveinRental",
       "data": [
         {
           "id": 1,
@@ -469,7 +482,7 @@
       ]
     },
     {
-      "name": "eBChargingMethod",
+      "name": "EBInclusiveBasis",
       "data": [
         {
           "id": 1,
@@ -805,6 +818,49 @@
       ]
     },
     {
+      "name": "YesNoDropdown",
+      "data": [
+        {
+          "id": 1,
+          "name": "Yes"
+        },
+        {
+          "id": 2,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "name": "PlotLevelingCondition",
+      "data": [
+        {
+          "id": 1,
+          "name": "Ok"
+        },
+        {
+          "id": 2,
+          "name": "Not Ok"
+        }
+      ]
+    },
+    {
+      "name": "MajorShadowCasting",
+      "data": [
+        {
+          "id": 1,
+          "name": "NA"
+        },
+        {
+          "id": 2,
+          "name": "Yes"
+        },
+        {
+          "id": 3,
+          "name": "No"
+        }
+      ]
+    },
+    {
       "name": "PropertyType",
       "data": [
         {
@@ -817,7 +873,7 @@
         },
         {
           "id": 3,
-          "name": "Building And Land"
+          "name": "Building With Land"
         }
       ]
     },
@@ -852,11 +908,11 @@
       "data": [
         {
           "id": 1,
-          "name": "Billable"
+          "name": "OnGround"
         },
         {
           "id": 2,
-          "name": "Non-Billable"
+          "name": "UnderGround"
         }
       ]
     },

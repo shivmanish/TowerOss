@@ -17,10 +17,13 @@ import com.smarthub.baseapplication.model.project.ProjectModelData
 import com.smarthub.baseapplication.model.project.TaskModelData
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel
+import com.smarthub.baseapplication.model.qatcheck.update.QatUpdateModel
 import com.smarthub.baseapplication.model.search.SearchList
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentConditionsDataModel
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel
@@ -58,12 +61,17 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
+import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
+import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.EndPoints
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData
 import com.smarthub.baseapplication.network.repo.HomeRepo
+import com.smarthub.baseapplication.network.repo.TaskActivityRepo
 import com.smarthub.baseapplication.network.repo.UpdateIBoardRepo
+import com.smarthub.baseapplication.ui.alert.AlertRepo
+import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
@@ -77,6 +85,8 @@ class HomeViewModel : ViewModel() {
 
     var homeRepo: HomeRepo? = null
     var updateIBoardRepo: UpdateIBoardRepo? = null
+    var alertRepo: AlertRepo? = null
+    var taskActivityRepo: TaskActivityRepo? = null
     var getHomeDataResponse: SingleLiveEvent<Resource<HomeResponse>>? = null
     var getProjectDataResponse: SingleLiveEvent<Resource<ProjectModelData>>? = null
     var getTaskDataResponse: SingleLiveEvent<Resource<TaskModelData>>? = null
@@ -102,6 +112,7 @@ class HomeViewModel : ViewModel() {
     var PlanDesignModelResponse : SingleLiveEvent<Resource<PlanAndDesignModel?>>?=null
     var QatModelResponse : SingleLiveEvent<Resource<QatMainModel?>>?=null
     var QatMainTempletResponse : SingleLiveEvent<Resource<QatModel?>>?=null
+    var qatUpdateModel : SingleLiveEvent<Resource<QatUpdateModel?>>?=null
     var dropDownResponse : SingleLiveEvent<Resource<SiteInfoDropDownData>>?=null
     var dropDownResponseNew : SingleLiveEvent<Resource<DropDownNew>>?=null
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
@@ -120,11 +131,16 @@ class HomeViewModel : ViewModel() {
     var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
     var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
+    var departmentDataDataResponse:SingleLiveEvent<Resource<DepartmentDataModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
+    var attachmentConditionModel:SingleLiveEvent<Resource<AttachmentConditionsDataModel>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
         updateIBoardRepo = UpdateIBoardRepo(APIInterceptor.get())
+        alertRepo = AlertRepo(APIInterceptor.get())
+        alertRepo = AlertRepo(APIInterceptor.get())
+        taskActivityRepo = TaskActivityRepo(APIInterceptor.get())
         getHomeDataResponse = homeRepo?.homeResponse
         getProjectDataResponse = homeRepo?.projectResponse
         getTaskDataResponse = homeRepo?.taskResponse
@@ -149,6 +165,7 @@ class HomeViewModel : ViewModel() {
         PlanDesignModelResponse=homeRepo?.planAndDesignModel
         QatModelResponse=homeRepo?.qatMainModelResponse
         QatMainTempletResponse=homeRepo?.qatModelResponse
+        qatUpdateModel=homeRepo?.qatUpdateModel
         powerAndFuelResponse=homeRepo?.powerFuelModel
         dropDownResponse = homeRepo?.dropDownResoonse
         dropDownResponseNew = homeRepo?.dropDownResponseNew
@@ -168,7 +185,9 @@ class HomeViewModel : ViewModel() {
         updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
         updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
         updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
+        departmentDataDataResponse=homeRepo?.departmentDataModel
         addAttachmentModel=homeRepo?.addAttachmentModel
+        attachmentConditionModel=homeRepo?.attachmentConsitionsModel
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -176,6 +195,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun addAttachmentData(addAttachmentModel : AddAttachmentModel){
+        AppLogger.log("attachment model data=====>${Gson().toJson(addAttachmentModel)}")
         homeRepo?.addAttachmentData(addAttachmentModel)
     }
 
@@ -242,6 +262,9 @@ class HomeViewModel : ViewModel() {
 
     fun siteInfoRequestAll(id : String){
         homeRepo?.SiteInfoRequestAll(id)
+    }
+    fun attachmentConditionsRequestAll(){
+        homeRepo?.AttachmentsConditionsRequestAll()
     }
 
     fun siteAcquisitionSurveyById(id : String){
@@ -330,6 +353,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun fetchDropDownNew() {
+        taskActivityRepo?.getGeoGraphylevelDropdownData(GeoGraphyLevelPostData(""))
         homeRepo?.siteInfoDropDownNew()
     }
 
@@ -427,6 +451,14 @@ class HomeViewModel : ViewModel() {
 
     fun updateSiteInfo(data: AllsiteInfoDataModel?) {
         updateIBoardRepo?.updateSiteInfoData(data)
+    }
+
+    fun getDepartment(data:String?) {
+        homeRepo?.getDepartmentWithGeographyRequest(data)
+    }
+
+    fun getDepartmentUsers(data: GetUserList) {
+        alertRepo?.getuserByWorkflow(data)
     }
 
     fun updateNocAndComp(data: NocCompAllData) {
