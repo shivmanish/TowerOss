@@ -38,6 +38,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdT
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
+import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
@@ -77,6 +78,10 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAcqTabActiv
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.TaskSiteAcqsitionFragAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTaskTabAdapter
+import com.smarthub.baseapplication.ui.fragments.sstSbc.SstSbcTaskTabAdapter
+import com.smarthub.baseapplication.ui.fragments.sstSbc.TaskSstSbcDataAdapter
+import com.smarthub.baseapplication.ui.fragments.sstSbc.TaskSstSbcDataAdapterListener
+import com.smarthub.baseapplication.ui.fragments.sstSbc.adapter.SstSbcTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.*
@@ -335,6 +340,10 @@ class TaskSearchTabNewFragment(
                         9->{
                             setUpServiceRequestData()
                             AppLogger.log("Selected TAb is Service Request")
+                        }
+                        10->{
+                            setUpSSTSBCData(ArrayList(splittedData))
+                            AppLogger.log("Selected TAb is SST/SBC")
                         }
                         else ->{
                             setUpNocComplianceData()
@@ -951,6 +960,129 @@ class TaskSearchTabNewFragment(
         }
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.NocAndCompRequestAll(AppController.getInstance().taskSiteId)
+    }
+
+    private fun setUpSSTSBCData(subTaskTabList:ArrayList<String>) {
+        AppLogger.log("setUpSSTSBCData opened task Site ID: ${AppController.getInstance().taskSiteId}")
+        AppLogger.log("setUpSSTSBCData opened task details : ======> ${Gson().toJson(taskDetailData)}")
+        AppLogger.log("setUpSSTSBCData subTab List : ======> $subTaskTabList")
+        val sstSbcDataAdapterListener = TaskSstSbcDataAdapter(requireContext(), object :
+            TaskSstSbcDataAdapterListener {
+            override fun clickedItem(data: SstSbcAllData, id: String, dataIndex: Int?) {
+                binding.viewpager.adapter =
+                    SstSbcTaskTabAdapter(childFragmentManager, data, dataIndex,subTaskTabList)
+                binding.tabs.setupWithViewPager(binding.viewpager)
+                setViewPager()
+            }
+
+            override fun addNew() {
+                homeViewModel.updateSstSbc(SstSbcAllData())
+                if (homeViewModel.updateSstSbcDataResponse?.hasActiveObservers() == true) {
+                    homeViewModel.updateSstSbcDataResponse?.removeObservers(viewLifecycleOwner)
+                }
+                homeViewModel.updateSstSbcDataResponse?.observe(viewLifecycleOwner) {
+                    if (it != null && it.status == Resource.Status.LOADING) {
+                        AppLogger.log("TaskSearchTabNewFragment SST/SBC data creating in progress ")
+                        return@observe
+                    }
+                    if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SstSbc == 200) {
+                        AppLogger.log("TaskSearchTabNewFragment SST/SBC card Data Created successfully")
+                        taskDetailData?.ModuleId=it.data.data.cardId.toString()
+                        taskDetailData?.ModuleName=it.data.data.name
+                        val tempTaskDataUpdate=TaskDataUpdateModel()
+                        tempTaskDataUpdate.ModuleId=it.data.data.cardId
+                        tempTaskDataUpdate.ModuleName=it.data.data.name
+                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+                    }
+                    else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                        hideLoader()
+                        AppLogger.log("TaskSearchTabNewFragment SST/SBC Something went wrong in creating Data")
+                    } else if (it != null) {
+                        AppLogger.log("TaskSearchTabNewFragment SST/SBC error :${it.message}, data : ${it.data}")
+                    } else {
+                        AppLogger.log("TaskSearchTabNewFragment SST/SBC Something went wrong in creating Data")
+
+                    }
+                }
+            }
+        }, taskDetailData)
+        binding.horizontalOnlyList.adapter = sstSbcDataAdapterListener
+
+        if (homeViewModel.sstSbcModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.sstSbcModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        homeViewModel.sstSbcModelResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                return@observe
+            }
+            (requireActivity() as BaseActivity).hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData card Data fetched successfully")
+                if (taskDetailData?.ModuleId!="0" && it.data.SstSbc?.size!!>0){
+                    var data:SstSbcAllData?=null
+                    var dataIndex:Int?=null
+                    for (item in it.data.SstSbc!!){
+                        if (item.id.toString()==taskDetailData?.ModuleId){
+                            data=item
+                            dataIndex=it.data.SstSbc?.indexOf(item)
+                            break
+                        }
+                    }
+                    binding.viewpager.adapter = SstSbcTaskTabAdapter(childFragmentManager, data,dataIndex,subTaskTabList)
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                }
+//                if (previousListSize!=-1 && previousListSize<it.data.NOCCompliance?.size!! && it.data.NOCCompliance?.size!!>0){
+//                    val newAddedData=it.data.NOCCompliance?.get(it.data.NOCCompliance?.size!!.minus(1))
+//                    taskDetailData?.ModuleId=newAddedData?.id.toString()
+//                    nocDataAdapterListener.setData(newAddedData!!)
+//                        // update task api
+//                    }
+                sstSbcDataAdapterListener.setData(it.data.SstSbc)
+                previousListSize=it.data.SstSbc?.size!!
+
+                AppLogger.log("size :${it.data.SstSbc?.size}")
+                isDataLoaded = true
+            }
+            else if (it!=null) {
+//                Toast.makeText(requireContext(),"TaskSearchTabNewFragment setUpSSTSBCData error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData Something went wrong")
+//                Toast.makeText(requireContext(),"NocAndComp Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        if (taskViewModel.updateTaskDataResponse?.hasActiveObservers() == true) {
+            taskViewModel.updateTaskDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        taskViewModel.updateTaskDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData TaskData Updating in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS  ) {
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData Task Data Updated successfully")
+
+                taskViewModel.fetchTaskDetails(taskDetailId)
+                homeViewModel.fetchSstSbcModelRequest(AppController.getInstance().taskSiteId)
+//                Toast.makeText(context,"Data Updated successfully", Toast.LENGTH_SHORT).show()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData Something went wrong in Updating Task Data")
+            }
+            else if (it != null) {
+                AppLogger.log("TTaskSearchTabNewFragment setUpSSTSBCData error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("TaskSearchTabNewFragment setUpSSTSBCData Something went wrong in Updating Task Data")
+
+            }
+        }
+        (requireActivity() as BaseActivity).showLoader()
+        homeViewModel.fetchSstSbcModelRequest(AppController.getInstance().taskSiteId)
     }
 
     fun setUpSiteAcqusitionData(subTaskTabList:ArrayList<String>) {

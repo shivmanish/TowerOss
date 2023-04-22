@@ -161,6 +161,23 @@
         ]
     },
     {
+        "id": 10,
+        "name": "SST/SBC",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 101,
+                "name": "Assign Team",
+                "checked": false
+            },
+            {
+                "id": 102,
+                "name": "Test Report",
+                "checked": false
+            }
+        ]
+    },
+    {
         "id": 3,
         "name": "Utility Equipments",
         "checked": false,
@@ -203,6 +220,18 @@
             {
                 "id": 38,
                 "name": "Cables",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "NOC & Compliance",
+        "checked": false,
+        "tabs": [
+            {
+                "id": 61,
+                "name": "Application Details",
                 "checked": false
             }
         ]
@@ -257,15 +286,16 @@
         ]
     },
     {
-        "id": 6,
-        "name": "NOC & Compliance",
+        "id": 11,
+        "name": "Validation/Approval",
         "checked": false,
         "tabs": [
             {
-                "id": 61,
-                "name": "Application Details",
+                "id": 111,
+                "name": "Validation/Approval",
                 "checked": false
             }
         ]
     }
+
 ]

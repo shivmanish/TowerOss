@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.sstSbc.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -294,6 +295,27 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                 baseFragment.setDatePickerView(holder.binding.BuildingTestReportDateEdit)
                 baseFragment.setDatePickerView(holder.binding.LandTestReportDateEdit)
                 baseFragment.setDatePickerView(holder.binding.SiteTestingDateEdit)
+                holder.binding.AddressLine2Edit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+                }
+                holder.binding.SiteLatitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+                }
+                holder.binding.SiteLongitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+
+                }
+                holder.binding.PostalCodeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -356,6 +378,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
        fun addAttachment()
        fun updateTeamClicked(data:SstSbcTestReport)
        fun updateAddress(data: AllsiteInfoDataModel?)
+        fun initiateAddressActivity(address2: TextView?, siteLat: TextView, siteLong: TextView, postalCode: TextView)
     }
 
 }

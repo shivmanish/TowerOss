@@ -157,6 +157,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/Date_lebel"
                         android:textSize="14sp"
                         android:text="RFI Date:"
                         android:textColor="@color/milky_white"
@@ -164,6 +165,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/date_text"
                         android:text="10-Oct-2018"
                         android:textSize="14sp"
                         android:paddingStart="5dp"

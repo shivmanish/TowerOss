@@ -339,8 +339,7 @@
                 android:id="@+id/remarks"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:hint="Left Corner of Roof "
-                android:textSize="15sp"
+                android:textSize="13sp"
                 style="@style/RowTestItemEdit"
                 android:text=""
                 android:layout_marginTop="@dimen/dp1"
@@ -444,7 +443,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/VendorCode_edit"
                         android:text=""
                         style="@style/RowTestItemEdit"
@@ -644,8 +643,7 @@
                 android:layout_height="wrap_content"/>
             <EditText
                 android:id="@+id/remarks_edit"
-                android:hint="Left Corner of Roof "
-                android:textSize="15sp"
+                android:textSize="13sp"
                 style="@style/RowTestItemEdit"
                 android:text=""
                 android:layout_marginTop="@dimen/dp1"

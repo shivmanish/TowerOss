@@ -31,10 +31,10 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
     init {
         try {
             if (data!=null && data.SAcqAssignACQTeam?.isNotEmpty()!!){
-                datalist=data.SAcqSoftAcquisition!!.get(0)
+                datalist=data.SAcqSoftAcquisition?.get(0)
             }
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
         }
     }
 

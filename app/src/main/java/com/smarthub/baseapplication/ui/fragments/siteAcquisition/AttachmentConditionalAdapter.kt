@@ -43,9 +43,9 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         val attachmentsItem:AttachmentsConditions=list[position]
         if (attachmentsItem.isMandatory==true)
-            holder.binding.AttachmentTitel.text=attachmentsItem.name+" ${R.string.Astric_Mark}"
+            holder.binding.AttachmentTitel.text="${position.plus(1)}"+attachmentsItem.name+" ${R.string.Astric_Mark}"
         else
-            holder.binding.AttachmentTitel.text=attachmentsItem.name
+            holder.binding.AttachmentTitel.text="${position.plus(1)}"+attachmentsItem.name
         AppLogger.log("Sunsection Id : ${attachmentsItem.SubSection}")
         try {
             if (attachments!=null){
