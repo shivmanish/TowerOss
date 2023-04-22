@@ -46,7 +46,7 @@ class SplashActivity : BaseActivity() {
 //            startActivity(intent)
 //            return@setOnClickListener
 
-            if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*60)){
+            if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*600)){
                 if (isNetworkConnected){
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
