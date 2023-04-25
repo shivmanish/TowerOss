@@ -39,30 +39,44 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("refresh:${AppPreferences.getInstance().refresh}")
         AppLogger.log("refresh:${AppPreferences.getInstance().bearerToken}")
         val loginTime = AppPreferences.getInstance().getLong("loginTime")
-        val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
+        val loginTimeDiff = ((System.currentTimeMillis() - loginTime)/(1000*60*60)) // second,minute,hour
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
-            if (!Utils.isNetworkConnected(this@SplashActivity)){
-                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            else if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > (30*600)){
+//            val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+            if (Utils.isNetworkConnected(this@SplashActivity)){
                 val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }else{
-                if (isNetworkConnected) {
-                    showLoader()
-                    loginViewModel.getProfileData()
-                }
-                else{
+                if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > 72){
+                    val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
                     AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
             }
+//            else if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > (30*600)){
+//                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }else{
+//                if (isNetworkConnected) {
+//                    showLoader()
+//                    loginViewModel.getProfileData()
+//                }
+//                else{
+//                    AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
+//                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(intent)
+//                }
+//            }
         }
 
         loginViewModel.loginResponse?.observe(this) {

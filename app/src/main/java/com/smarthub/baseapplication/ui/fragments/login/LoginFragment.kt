@@ -118,9 +118,9 @@ class LoginFragment : BaseFragment() {
                     AppPreferences.getInstance().saveString("accessToken", it.data.access)
                     AppPreferences.getInstance().saveString("refreshToken", it.data.refresh)
 
-                    val loginTime = AppPreferences.getInstance().getLong("loginTime")
-                    val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
-                    AppLogger.log("loginTimeDiff:$loginTimeDiff")
+//                    val loginTime = AppPreferences.getInstance().getLong("loginTime")
+//                    val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
+//                    AppLogger.log("loginTimeDiff:$loginTimeDiff")
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
                     AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
 
