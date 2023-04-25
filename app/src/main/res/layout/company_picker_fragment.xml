@@ -113,7 +113,7 @@
 
         <TextView
             android:padding="@dimen/dp10"
-            android:text="Login"
+            android:text="Next"
             android:textSize="15sp"
             android:textColor="#3F4D68"
             android:id="@+id/login"

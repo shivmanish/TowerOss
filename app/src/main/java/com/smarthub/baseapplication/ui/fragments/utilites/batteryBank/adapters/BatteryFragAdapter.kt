@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
@@ -560,7 +561,7 @@ class BatteryFragAdapter(var baseFragment: BaseFragment, var listener: BatterryB
                 holder.binding.itemTitleStr.text = list[position]
                 if (datalist!=null){
                     holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                        override fun itemClicked() {
+                        override fun itemClicked(item : com.smarthub.baseapplication.model.siteIBoard.Attachments) {
                             listener.attachmentItemClicked()
                         }
                     })

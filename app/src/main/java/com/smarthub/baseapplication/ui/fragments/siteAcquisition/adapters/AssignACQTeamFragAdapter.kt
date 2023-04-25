@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.AssignAcqTeamItemBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
@@ -289,8 +290,8 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 try {
                     if (datalist!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
-                                listener.attachmentItemClicked()
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -317,7 +318,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
 
 
     interface AssignACQTeamListListener {
-       fun attachmentItemClicked()
+       fun attachmentItemClicked(item : Attachments)
        fun addAttachment()
        fun departmentTextSelected(department:String,userListText:CustomUserSpinner,executiveName:TextView,executiveNumber:TextView,selectedName:String?)
        fun geographyTextSelected(geograpgy:String,userListText:CustomSpinner,selectedItem:String?)

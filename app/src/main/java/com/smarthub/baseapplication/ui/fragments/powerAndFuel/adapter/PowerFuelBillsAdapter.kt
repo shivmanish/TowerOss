@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerFuelBillsItemBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
@@ -159,7 +160,7 @@ class PowerFuelBillsAdapter(var listener: PowerBillsClickListener, var baseFragm
 
             if (data.attachment!=null){
                 holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),data.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                    override fun itemClicked() {
+                    override fun itemClicked(item : Attachments) {
                         listener.attachmentItemClicked()
                     }
                 })

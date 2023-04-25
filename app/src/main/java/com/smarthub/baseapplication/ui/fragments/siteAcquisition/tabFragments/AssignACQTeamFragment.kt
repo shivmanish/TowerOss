@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.SiteAcqTeamNonSwitLayoutBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
@@ -21,6 +22,7 @@ import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AssignACQTeamFragAdapter
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.ImageViewBottomSheet
 import com.smarthub.baseapplication.ui.fragments.task.TaskViewModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -96,8 +98,9 @@ class AssignACQTeamFragment(var acqTeamData:NewSiteAcquiAllData?, var parentInde
         super.onDestroy()
     }
 
-    override fun attachmentItemClicked() {
-       AppLogger.log("Attachment clicked")
+    override fun attachmentItemClicked(item: Attachments) {
+        val bm = ImageViewBottomSheet(item)
+        bm.show(childFragmentManager,"sdg")
     }
 
     override fun addAttachment() {

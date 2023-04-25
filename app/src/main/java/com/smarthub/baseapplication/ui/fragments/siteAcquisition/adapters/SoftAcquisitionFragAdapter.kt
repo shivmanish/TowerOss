@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.AcqAgreementTermItemsBinding
 import com.smarthub.baseapplication.databinding.AcqPayeeAcountTableBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqAgreementTerm
@@ -359,9 +360,9 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     if (datalist!=null){
                         holder.recyclerListener.adapter=
                             ImageAttachmentCommonAdapter(context,datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
-                                listener.attachmentItemClicked()
-                            }
+                                override fun itemClicked(item : Attachments) {
+                                    listener.attachmentItemClicked()
+                                }
                         })
                     }
                     else
