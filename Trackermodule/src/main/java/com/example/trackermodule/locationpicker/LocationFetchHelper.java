@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat;
 public class LocationFetchHelper implements LocationFetchCallback {
     LocationManager locationManager;
     LocationListener locationListener;
-    LocationFetchCallback locationFetchCallback;
+    public LocationFetchCallback locationFetchCallback;
     public LocationFetchHelper(Context context, LocationFetchCallback locationFetchCallback) {
         locationManager = (LocationManager)
                 context.getSystemService(Context.LOCATION_SERVICE);

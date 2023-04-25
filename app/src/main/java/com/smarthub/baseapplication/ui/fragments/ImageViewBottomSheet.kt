@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.trackermodule.locationpicker.AddresData
+import com.example.trackermodule.locationpicker.LocationFetchCallback
+import com.example.trackermodule.locationpicker.LocationFetchHelper
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.GeoTagImageViewBinding
 import com.smarthub.baseapplication.model.siteIBoard.Attachments
@@ -29,12 +33,22 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
         return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        locca?.locationFetchCallback = null
+    }
+    var locca : LocationFetchHelper?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cancel.setOnClickListener {
             dialog?.dismiss()
         }
-
+        locca = LocationFetchHelper(requireContext()) { addresData ->
+            Toast.makeText(requireContext(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
+            binding.textLattitude.text = addresData.lattitude
+            binding.textLongitude.text = addresData.longitude
+            binding.textLocality.text = addresData.Locality
+        }
         Glide
             .with(this)
             .load(item.fullPath)
