@@ -101,6 +101,11 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
     private List addressdetails;
     private double mLatitude;
     private double mLongitude;
+
+    private double PremLatitude;
+    private double PremLongitude;
+    private boolean isFirsttime = true;
+
     private String userCountryISOCode = null;
     private String place_id = "";
     private String place_url = " ";
@@ -141,6 +146,8 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         ImageView imgCurrentloc = findViewById(R.id.imgCurrentloc);
         Button txtSelectLocation = findViewById(R.id.fab_select_location);
         Button canel = findViewById(R.id.fab_cancel);
+        PremLatitude = getIntent().getFloatExtra("lattitude",0.0f);
+        PremLongitude = getIntent().getFloatExtra("longitude",0.0f);
         canel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,6 +280,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         imgCurrentloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isFirsttime  = false;
                 LocationPickerActivity.this.showCurrentLocationOnMap(false);
                 doAfterPermissionProvided = 2;
                 doAfterLocationSwitchedOn = 2;
@@ -283,6 +291,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         directionTool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isFirsttime  = false;
                 LocationPickerActivity.this.showCurrentLocationOnMap(true);
                 doAfterPermissionProvided = 3;
                 doAfterLocationSwitchedOn = 3;
@@ -379,49 +388,54 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
     }
 
     private void showCurrentLocationOnMap(final boolean isDirectionClicked) {
+        if(isFirsttime && PremLatitude != 0.0){
+                mLatitude = PremLatitude;
+                mLongitude = PremLongitude;
+                LocationPickerActivity.this.getAddressByGeoCodingLatLng();
+        }else {
+            if (checkAndRequestPermissions()) {
 
-        if (checkAndRequestPermissions()) {
+                @SuppressLint("MissingPermission")
+                Task<Location> lastLocation = fusedLocationProviderClient.getLastLocation();
+                lastLocation.addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            mMap.clear();
+                            if (isDirectionClicked) {
+                                currentLatitude = location.getLatitude();
+                                currentLongitude = location.getLongitude();
+                                //Go to Map for Directions
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
+                                        "http://maps.google.com/maps?saddr=" + currentLatitude + ", " + currentLongitude + "&daddr=" + mLatitude + ", " + mLongitude + ""));
+                                LocationPickerActivity.this.startActivity(intent);
+                            } else {
 
-            @SuppressLint("MissingPermission")
-            Task<Location> lastLocation = fusedLocationProviderClient.getLastLocation();
-            lastLocation.addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
-                        mMap.clear();
-                        if (isDirectionClicked) {
-                            currentLatitude = location.getLatitude();
-                            currentLongitude = location.getLongitude();
-                            //Go to Map for Directions
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
-                                    "http://maps.google.com/maps?saddr=" + currentLatitude + ", " + currentLongitude + "&daddr=" + mLatitude + ", " + mLongitude + ""));
-                            LocationPickerActivity.this.startActivity(intent);
+                                //Go to Current Location
+                                mLatitude = location.getLatitude();
+                                mLongitude = location.getLongitude();
+                                LocationPickerActivity.this.getAddressByGeoCodingLatLng();
+                            }
+
                         } else {
-                            //Go to Current Location
-                            mLatitude = location.getLatitude();
-                            mLongitude = location.getLongitude();
-                            LocationPickerActivity.this.getAddressByGeoCodingLatLng();
-                        }
+                            //Gps not enabled if loc is null
+                            LocationPickerActivity.this.getSettingsLocation();
+                            Toast.makeText(LocationPickerActivity.this, "Location not Available", Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        //Gps not enabled if loc is null
-                        LocationPickerActivity.this.getSettingsLocation();
-                        Toast.makeText(LocationPickerActivity.this, "Location not Available", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                lastLocation.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //If perm provided then gps not enabled
+//                getSettingsLocation();
+                        Toast.makeText(LocationPickerActivity.this, "Location Not Availabe", Toast.LENGTH_SHORT).show();
 
                     }
-                }
-            });
-            lastLocation.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    //If perm provided then gps not enabled
-//                getSettingsLocation();
-                    Toast.makeText(LocationPickerActivity.this, "Location Not Availabe", Toast.LENGTH_SHORT).show();
-
-                }
-            });
+                });
+            }
         }
-
     }
 
     public Bitmap resizeMapIcons(String iconName, int width, int height) {
