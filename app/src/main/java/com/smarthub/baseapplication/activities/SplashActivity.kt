@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.ui.fragments.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class SplashActivity : BaseActivity() {
@@ -41,26 +42,16 @@ class SplashActivity : BaseActivity() {
         val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
-//            || loginTimeDiff > (30*60*60)
-//             val intent = Intent(this@SplashActivity, LocationPickerActivity::class.java)
-//            startActivity(intent)
-//            return@setOnClickListener
-
-            if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*600)){
-                if (isNetworkConnected){
-                    val intent = Intent(this@SplashActivity,LoginActivity::class.java)
-                    startActivity(intent)
-
-
-
-                    finish()
-                }else {
-                    showNetworkAlert()
-                }
+            if (!Utils.isNetworkConnected(this@SplashActivity)){
+                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > (30*600)){
+                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                startActivity(intent)
+                finish()
             }else{
-//                val intent = Intent(this@SplashActivity,DashboardActivity::class.java)
-//                startActivity(intent)
-//                finish()
                 if (isNetworkConnected) {
                     showLoader()
                     loginViewModel.getProfileData()

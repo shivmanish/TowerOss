@@ -53,13 +53,13 @@ class LoginFragment : BaseFragment() {
             loginValidation()
         }
 
-        if (!Utils.isNetworkConnected(requireContext())){
-            binding?.login?.isEnabled = false
-            binding?.login?.backgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.grey)))
-        }else{
-            binding?.login?.isEnabled = true
-            binding?.login?.backgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.yellow)))
-        }
+//        if (!Utils.isNetworkConnected(requireContext())){
+//            binding?.login?.isEnabled = false
+//            binding?.login?.backgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.grey)))
+//        }else{
+//            binding?.login?.isEnabled = true
+//            binding?.login?.backgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.yellow)))
+//        }
         binding?.textRegister?.setOnClickListener {
             Utils.hideKeyboard(requireContext(),it)
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegistrationFirstStep())
@@ -183,7 +183,8 @@ class LoginFragment : BaseFragment() {
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 requireActivity().finish()
-            }else{
+            }
+            else{
                 Toast.makeText(requireContext(),"Enter valid credential", Toast.LENGTH_LONG).show()
             }
         }
