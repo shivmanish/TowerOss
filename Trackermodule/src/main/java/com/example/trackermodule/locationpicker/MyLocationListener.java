@@ -6,8 +6,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MyLocationListener implements LocationListener {
-Context context;
+    Context context;
     LocationFetchCallback locationFetchCallback;
 
     public MyLocationListener(Context context, LocationFetchCallback locationFetchCallback) {
@@ -43,8 +41,7 @@ Context context;
                 System.out.println(addresses.get(0).getLocality());
                 cityName = addresses.get(0).getLocality();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         String s = longitude + "\n" + latitude + "\n\nMy Current City is: "
@@ -59,18 +56,18 @@ Context context;
 
     @Override
     public void onProviderDisabled(String provider) {
-        Toast.makeText(context,"onProviderDisabled",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "onProviderDisabled", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(context,"onProviderEnabled",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "onProviderEnabled", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        Toast.makeText(context,"onStatusChanged",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "onStatusChanged", Toast.LENGTH_SHORT).show();
     }
 
 }

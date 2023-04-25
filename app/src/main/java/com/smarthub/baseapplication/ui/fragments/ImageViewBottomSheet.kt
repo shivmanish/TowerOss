@@ -35,7 +35,7 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
 
     override fun onDestroy() {
         super.onDestroy()
-        locca?.locationFetchCallback = null
+        locca?.stoplocation()
     }
     var locca : LocationFetchHelper?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,8 +43,8 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
         binding.cancel.setOnClickListener {
             dialog?.dismiss()
         }
-        locca = LocationFetchHelper(requireContext()) { addresData ->
-            Toast.makeText(requireContext(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
+        locca = LocationFetchHelper(requireActivity()) { addresData ->
+            Toast.makeText(requireActivity(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
             binding.textLattitude.text = addresData.lattitude
             binding.textLongitude.text = addresData.longitude
             binding.textLocality.text = addresData.Locality

@@ -48,6 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:adjustViewBounds="true"
             android:minHeight="@dimen/_100sdp"
+            android:maxHeight="@dimen/_300sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
