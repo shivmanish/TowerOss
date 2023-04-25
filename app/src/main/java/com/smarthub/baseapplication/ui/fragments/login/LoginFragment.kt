@@ -123,11 +123,8 @@ class LoginFragment : BaseFragment() {
                     AppLogger.log("loginTimeDiff:$loginTimeDiff")
                     Toast.makeText(requireContext(),"LoginSuccessful",Toast.LENGTH_LONG).show()
                     AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
-                    loginViewModel?.getProfileData()
-//                    val intent = Intent (requireContext(), DashboardActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                    startActivity(intent)
-//                    requireActivity().finish()
+
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCompanyPickerFragment())
                     return@observe
                 }else{
                     Toast.makeText(requireContext(),"error:"+it.message,Toast.LENGTH_LONG).show()
@@ -142,25 +139,25 @@ class LoginFragment : BaseFragment() {
 
         }
 
-        if (loginViewModel?.profileResponse?.hasActiveObservers() == true){
-            loginViewModel?.profileResponse?.removeObservers(viewLifecycleOwner)
-        }
-        loginViewModel?.profileResponse?.observe(viewLifecycleOwner) {
-            hideLoader()
-            if (it != null && it.status==Resource.Status.SUCCESS) {
-                if (it.data?.isNotEmpty()==true) {
-                    AppController.getInstance().ownerName = it.data[0].ownercode
-                    AppPreferences.getInstance().saveString("company",AppController.getInstance().ownerName)
-                }
-                AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
-                val intent = Intent (requireContext(), DashboardActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                requireActivity().finish()
-            }else{
-                Toast.makeText(requireContext(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
-            }
-        }
+//        if (loginViewModel?.profileResponse?.hasActiveObservers() == true){
+//            loginViewModel?.profileResponse?.removeObservers(viewLifecycleOwner)
+//        }
+//        loginViewModel?.profileResponse?.observe(viewLifecycleOwner) {
+//            hideLoader()
+//            if (it != null && it.status==Resource.Status.SUCCESS) {
+//                if (it.data?.isNotEmpty()==true) {
+//                    AppController.getInstance().ownerName = it.data[0].ownercode
+//                    AppPreferences.getInstance().saveString("company",AppController.getInstance().ownerName)
+//                }
+//                AppPreferences.getInstance().saveLong("loginTime",System.currentTimeMillis())
+//                val intent = Intent (requireContext(), DashboardActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                startActivity(intent)
+//                requireActivity().finish()
+//            }else{
+//                Toast.makeText(requireContext(), AppConstants.GENERIC_ERROR, Toast.LENGTH_LONG).show()
+//            }
+//        }
 
         user?.username = binding?.userMail?.text.toString()
         if (Utils.isNetworkConnected(requireContext())){

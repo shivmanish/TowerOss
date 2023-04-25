@@ -21,6 +21,11 @@
             android:id="@+id/action_loginFragment_to_registrationFirstStep"
             app:destination="@id/registrationFirstStep"
             app:popUpTo="@id/loginFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_companyPickerFragment"
+            app:destination="@id/companyPickerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -157,5 +162,9 @@
             app:destination="@id/registrationOtpFragment"
             app:popUpTo="@id/registrationFirstStep" />
     </fragment>
+    <fragment
+        android:id="@+id/companyPickerFragment"
+        android:name="com.smarthub.baseapplication.ui.fragments.login.CompanyPickerFragment"
+        android:label="CompanyPickerFragment" />
 
 </navigation>

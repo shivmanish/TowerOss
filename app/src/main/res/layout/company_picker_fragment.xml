@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentContainerView"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/login_bg"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.6"
+            android:src="@drawable/ic_ellipse_login2"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:src="@drawable/img_tower"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:src="@drawable/bg_login_bottom_right"
+            android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:clickable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                app:layout_constraintWidth_percent="0.6"
+                android:src="@drawable/bg_login_bottom_left"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.88"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.95"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <TextView
+            android:text="Select Company"
+            android:textSize="@dimen/dp28"
+            android:textColor="#ffffff"
+            android:id="@+id/login1"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp2"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:paddingVertical="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/dp25"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/company_item_view"
+            tools:itemCount="3"
+            app:layout_constraintBottom_toTopOf="@+id/login"
+            app:layout_constraintTop_toBottomOf="@+id/login1"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <TextView
+            android:padding="@dimen/dp10"
+            android:text="Login"
+            android:textSize="15sp"
+            android:textColor="#3F4D68"
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="@dimen/dp45"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/dp20"
+            android:background="@drawable/login_yellow_bg"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
