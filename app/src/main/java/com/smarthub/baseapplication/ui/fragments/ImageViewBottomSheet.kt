@@ -39,6 +39,7 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
             dialog?.dismiss()
         }
         binding.titleText.text = item.title
+        binding.detailText.text = item.detail
         Glide
             .with(this)
             .load(item.fullPath)
@@ -53,7 +54,7 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
         }else binding.textLongitude.visibility = View.GONE
 
         if (item.place?.isNullOrEmpty()==false) {
-            binding.textLocality.text = "${item.place} ${Utils.getFullFormatedDate(item.created_at)}"
+            binding.textLocality.text = "${item.place} ${Utils.getDateTime(item.created_at.substring(0,19))}"
         }else binding.textLocality.visibility = View.GONE
     }
 

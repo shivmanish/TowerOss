@@ -64,51 +64,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/text_lattitude"
-            android:maxEms="15"
-            android:textSize="@dimen/_9sdp"
-            android:text="19.2324433"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:background="@drawable/drop_shadow1"
-            app:layout_constraintBottom_toTopOf="@+id/text_longitude"
-            app:layout_constraintStart_toStartOf="@+id/view_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/text_longitude"
-            android:maxEms="15"
-            android:textSize="@dimen/_9sdp"
-            android:text="17.2324433"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/view_image"
-            app:layout_constraintStart_toStartOf="@+id/view_image"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/drop_shadow1"/>
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/text_locality"
-            android:maxEms="15"
-            android:textSize="@dimen/_9sdp"
-            android:text="Delhi"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
             android:background="@drawable/drop_shadow1"
+            android:paddingEnd="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="@+id/view_image"
-            app:layout_constraintStart_toEndOf="@+id/text_longitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toStartOf="@+id/view_image">
+            <TextView
+                android:maxLines="1"
+                android:id="@+id/text_lattitude"
+                android:maxEms="15"
+                android:textSize="@dimen/_9sdp"
+                android:text="19.2324433"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintBottom_toTopOf="@+id/text_longitude"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:maxLines="1"
+                android:id="@+id/text_longitude"
+                android:maxEms="15"
+                android:textSize="@dimen/_9sdp"
+                android:text="17.2324433"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:maxLines="1"
+                android:id="@+id/text_locality"
+                android:maxEms="15"
+                android:textSize="@dimen/_9sdp"
+                android:text="Delhi"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_longitude"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

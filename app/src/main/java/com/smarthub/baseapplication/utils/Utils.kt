@@ -405,7 +405,7 @@ object Utils {
         var date=d
         if (d.isEmpty())
             return null
-        val format="yyyy-MM-dd'T'HH:mm:ss.SSS"
+        val format="yyyy-MM-dd'T'HH:mm:ss"
         var currentFormate:String?="dd-MMM-yyyy"
         if (d.length in 1..9)
             currentFormate="MMM-yyyy"
@@ -422,20 +422,15 @@ object Utils {
         return date
     }
 
-    fun getDateTime(d : String) : String?{
-        var date=d
-        if (d.isEmpty())
-            return null
-        val format="yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        var currentFormate:String?="dd-MM-yyyy HH:mm"
+    fun getDateTime(date : String) : String?{
+        AppLogger.log("compareDate:$date")
         try {
-            val inputFormat: DateFormat = SimpleDateFormat(currentFormate)
-            val outputFormat: DateFormat = SimpleDateFormat(format)
-            val inputDateStr = date
-            val inputDate: Date = inputFormat.parse(inputDateStr)
-             date = outputFormat.format(inputDate)
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val sdf1 = SimpleDateFormat("yyyy-MMM-dd HH:mm")
+            val secondDate: Date = sdf.parse(date.replace("T"," "))
+            return sdf1.format(secondDate)
         }catch (e:java.lang.Exception){
-            AppLogger.log("getFullFormatedDate error :${e.localizedMessage}")
+            AppLogger.log("getDateTime error :${e.localizedMessage}")
         }
         return date
     }
