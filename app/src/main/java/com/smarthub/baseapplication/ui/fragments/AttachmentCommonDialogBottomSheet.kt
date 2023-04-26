@@ -111,7 +111,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 model.sourceSchemaName = sourceSchemaName
                 model.sourceSchemaId = sourceSchemaId
                 model.detail=binding.fileDetails.text.toString()
-                model.title=binding.titleText.text.toString()
+                model.title=binding.titelText.text.toString()
                 model.locLongitude=textLongitude?.substring(0,9)
                 model.locLatitude=textLattitude?.substring(0,9)
                 model.place=textLocality +" "+Utils.getCurrentFormatedDate()
