@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.GeoTagImageViewBinding
 import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.utils.Utils
 
 
 class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragment() {
@@ -37,6 +38,7 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
         binding.cancel.setOnClickListener {
             dialog?.dismiss()
         }
+        binding.titleText.text = item.title
         Glide
             .with(this)
             .load(item.fullPath)
@@ -51,7 +53,7 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
         }else binding.textLongitude.visibility = View.GONE
 
         if (item.place?.isNullOrEmpty()==false) {
-            binding.textLocality.text = "${item.place}"
+            binding.textLocality.text = "${item.place} ${Utils.getFullFormatedDate(item.created_at)}"
         }else binding.textLocality.visibility = View.GONE
     }
 

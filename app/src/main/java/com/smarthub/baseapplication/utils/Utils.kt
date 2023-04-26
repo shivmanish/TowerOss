@@ -422,6 +422,24 @@ object Utils {
         return date
     }
 
+    fun getDateTime(d : String) : String?{
+        var date=d
+        if (d.isEmpty())
+            return null
+        val format="yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        var currentFormate:String?="dd-MM-yyyy HH:mm"
+        try {
+            val inputFormat: DateFormat = SimpleDateFormat(currentFormate)
+            val outputFormat: DateFormat = SimpleDateFormat(format)
+            val inputDateStr = date
+            val inputDate: Date = inputFormat.parse(inputDateStr)
+             date = outputFormat.format(inputDate)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("getFullFormatedDate error :${e.localizedMessage}")
+        }
+        return date
+    }
+
     fun get12hrformate(time:String):String{
         var s = time
         AppLogger.log("getformatedtime:$s")
