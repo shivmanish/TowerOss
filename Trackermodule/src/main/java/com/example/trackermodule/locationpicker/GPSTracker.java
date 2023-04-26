@@ -148,8 +148,11 @@ public class GPSTracker extends Service implements LocationListener {
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
-//            val data =
-            mcallback.refreshData();
+            AddresData data = new AddresData();
+            data.lattitude = String.valueOf(latitude);
+            data.longitude = String.valueOf(longitude);
+            data.Locality = getLocality(mContext);
+            mcallback.OnLocationFetched(data);
         }
     }
 
