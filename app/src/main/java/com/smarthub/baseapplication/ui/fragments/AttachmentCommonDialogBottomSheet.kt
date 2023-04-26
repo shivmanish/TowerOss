@@ -63,6 +63,9 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
     override fun onDestroy() {
         super.onDestroy()
 //        locca?.stoplocation()
+        if(gPSTracker!=null){
+            gPSTracker!!.stopUsingGPS()
+        }
     }
 //    var locca : LocationFetchHelper?=null
     var textLattitude : String?=null
