@@ -40,7 +40,7 @@ class CompanyPickerAdapter(var context: Context?, var listner: CompanyPickerAdap
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         val item = searchQatModels[position]
         holder.binding.company.text = item?.ownername
-        holder.binding.company.setCompoundDrawablesWithIntrinsicBounds(if (currentSelected == position) R.drawable.btn_select_checked else R.drawable.btn_lang_unchecked,
+        holder.binding.company.setCompoundDrawablesWithIntrinsicBounds(if (currentSelected == position) R.drawable.radio_select else R.drawable.radio_unselect,
             0, 0,0)
         holder.binding.company.setOnClickListener {
             val old = currentSelected

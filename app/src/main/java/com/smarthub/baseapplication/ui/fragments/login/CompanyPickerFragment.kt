@@ -68,6 +68,8 @@ class CompanyPickerFragment : BaseFragment() , CompanyPickerAdapter.CompanyPicke
                         if (data.ownernameall.size==1){
                             historyItem = data.ownernameall[0]
                             processSelection()
+                        }else if (data.ownernameall.isNotEmpty()){
+                            historyItem = data.ownernameall[0]
                         }
                         adapter.updateList(data.ownernameall)
                     }
