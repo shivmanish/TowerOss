@@ -16,6 +16,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.trackermodule.locationpicker.AddresData
+import com.example.trackermodule.locationpicker.GPSTracker
+import com.example.trackermodule.locationpicker.LocationFetchCallback
 import com.example.trackermodule.locationpicker.LocationFetchHelper
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddAttachmentDialougeBinding
@@ -35,7 +38,6 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
 
     lateinit var binding: AddAttachmentDialougeBinding
     lateinit var homeViewModel : HomeViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
@@ -46,6 +48,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         dialog!!.window!!.setGravity(Gravity.BOTTOM)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog!!.window!!.setWindowAnimations(R.style.DialogAnimation)
+
         return binding.root
     }
 
@@ -59,13 +62,13 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
 
     override fun onDestroy() {
         super.onDestroy()
-        locca?.stoplocation()
+//        locca?.stoplocation()
     }
-    var locca : LocationFetchHelper?=null
+//    var locca : LocationFetchHelper?=null
     var textLattitude : String?=null
     var textLongitude : String?=null
     var textLocality : String?=null
-
+    var gPSTracker:GPSTracker? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cancel.setOnClickListener{
@@ -74,12 +77,32 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         textLattitude = "17.23434320003"
         textLongitude = "21.23434320003"
         textLocality = "Delhi"
+        gPSTracker = GPSTracker(requireContext(),object :LocationFetchCallback{
+            override fun OnLocationFetched(addresData: AddresData?) {
+            }
+
+            override fun refreshData() {
+                textLattitude = gPSTracker!!.getLatitude().toString()
+                textLongitude = gPSTracker!!.getLongitude().toString()
+                textLocality = gPSTracker!!.getLocality(requireContext())
+                Toast.makeText(requireActivity(), "latlong address is called ${textLattitude} and ${textLocality}", Toast.LENGTH_SHORT).show()
+                gPSTracker!!.stopUsingGPS()
+            }
+        })
+        if(!gPSTracker!!.getIsGPSTrackingEnabled()){
+            gPSTracker!!.showSettingsAlert()
+        }
+
+
+
+/*
         locca = LocationFetchHelper(requireActivity()) { addresData ->
             Toast.makeText(requireActivity(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
             textLattitude = addresData.lattitude
             textLongitude = addresData.longitude
             textLocality = addresData.Locality
         }
+*/
         binding.submit.setOnClickListener {
             if (itemPath.isNotEmpty() && binding.titleText.text.toString().isNotEmpty()){
                 showProgressLayout()
@@ -91,7 +114,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 model.title=binding.titleText.text.toString()
                 model.locLongitude=textLongitude?.substring(0,9)
                 model.locLatitude=textLattitude?.substring(0,9)
-                model.place=textLocality
+                model.place=textLocality +" "+Utils.getCurrentFormatedDate()
                 homeViewModel.addAttachmentData(model)
             }
             else
