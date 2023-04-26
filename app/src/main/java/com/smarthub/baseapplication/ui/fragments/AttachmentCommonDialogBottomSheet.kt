@@ -63,6 +63,9 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
     override fun onDestroy() {
         super.onDestroy()
 //        locca?.stoplocation()
+        if(gPSTracker!=null){
+            gPSTracker!!.stopUsingGPS()
+        }
     }
 //    var locca : LocationFetchHelper?=null
     var textLattitude : String?=null
@@ -77,18 +80,13 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         textLattitude = "17.23434320003"
         textLongitude = "21.23434320003"
         textLocality = "Delhi"
-        gPSTracker = GPSTracker(requireContext(),object :LocationFetchCallback{
-            override fun OnLocationFetched(addresData: AddresData?) {
-            }
-
-            override fun refreshData() {
-                textLattitude = gPSTracker!!.getLatitude().toString()
-                textLongitude = gPSTracker!!.getLongitude().toString()
-                textLocality = gPSTracker!!.getLocality(requireContext())
+        gPSTracker = GPSTracker(requireContext()){
+                textLattitude = it!!.lattitude
+                textLongitude = it!!.longitude
+                textLocality = it!!.Locality
                 Toast.makeText(requireActivity(), "latlong address is called ${textLattitude} and ${textLocality}", Toast.LENGTH_SHORT).show()
-                gPSTracker!!.stopUsingGPS()
-            }
-        })
+
+        }
         if(!gPSTracker!!.getIsGPSTrackingEnabled()){
             gPSTracker!!.showSettingsAlert()
         }
