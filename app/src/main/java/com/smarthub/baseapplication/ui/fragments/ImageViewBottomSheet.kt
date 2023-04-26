@@ -32,27 +32,27 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
         dialog!!.window!!.setWindowAnimations(R.style.DialogAnimation)
         return binding.root
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        locca?.stoplocation()
-    }
-    var locca : LocationFetchHelper?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cancel.setOnClickListener {
             dialog?.dismiss()
         }
-        locca = LocationFetchHelper(requireActivity()) { addresData ->
-            Toast.makeText(requireActivity(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
-            binding.textLattitude.text = addresData.lattitude
-            binding.textLongitude.text = addresData.longitude
-            binding.textLocality.text = addresData.Locality
-        }
         Glide
             .with(this)
             .load(item.fullPath)
             .into(binding.viewImage)
+        if (item.locLatitude?.isNullOrEmpty()==false) {
+            binding.textLattitude.text = "${item.locLatitude}"
+            binding.textLattitude.visibility = View.VISIBLE
+        }
+        else binding.textLattitude.visibility = View.GONE
+        if (item.locLongitude?.isNullOrEmpty()==false) {
+            binding.textLongitude.text = "${item.locLongitude}"
+        }else binding.textLongitude.visibility = View.GONE
+
+        if (item.place?.isNullOrEmpty()==false) {
+            binding.textLocality.text = "${item.place}"
+        }else binding.textLocality.visibility = View.GONE
     }
 
     override fun getTheme(): Int {

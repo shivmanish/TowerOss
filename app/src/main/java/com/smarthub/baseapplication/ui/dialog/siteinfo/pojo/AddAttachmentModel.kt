@@ -12,4 +12,7 @@ class AddAttachmentModel{
     var type: String? = "1"
     var title: String? = "Image 1"
     var detail: String ?= "Detail 1"
+    var place: String?=""
+    var locLatitude: String?=""
+    var locLongitude: String?=""
 }

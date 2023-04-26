@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.trackermodule.locationpicker.LocationFetchHelper
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddAttachmentDialougeBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -56,12 +57,29 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         return true
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        locca?.stoplocation()
+    }
+    var locca : LocationFetchHelper?=null
+    var textLattitude : String?=null
+    var textLongitude : String?=null
+    var textLocality : String?=null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cancel.setOnClickListener{
             dialog?.dismiss()
         }
-
+        textLattitude = "17.23434320003"
+        textLongitude = "21.23434320003"
+        textLocality = "Delhi"
+        locca = LocationFetchHelper(requireActivity()) { addresData ->
+            Toast.makeText(requireActivity(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
+            textLattitude = addresData.lattitude
+            textLongitude = addresData.longitude
+            textLocality = addresData.Locality
+        }
         binding.submit.setOnClickListener {
             if (itemPath.isNotEmpty() && binding.titleText.text.toString().isNotEmpty()){
                 showProgressLayout()
@@ -71,6 +89,9 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 model.sourceSchemaId = sourceSchemaId
                 model.detail=binding.fileDetails.text.toString()
                 model.title=binding.titleText.text.toString()
+                model.locLongitude=textLongitude?.substring(0,9)
+                model.locLatitude=textLattitude?.substring(0,9)
+                model.place=textLocality
                 homeViewModel.addAttachmentData(model)
             }
             else
@@ -117,6 +138,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 AppLogger.log("something wrong:"+it.message)
             }
         }
+
     }
 
     var ORIGINAL_IMAGE_PATH:String?=null

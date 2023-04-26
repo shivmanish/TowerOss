@@ -13,5 +13,8 @@ data class Attachments(
     val sourceSchemaId: Int,
     val sourceSchemaName: String,
     val title: String,
-    val type: Int
+    val type: Int,
+    val place: String?=null,
+    val locLatitude: String?=null,
+    val locLongitude: String?=null,
 )
