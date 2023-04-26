@@ -112,7 +112,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 model.title=binding.titelText.text.toString()
                 model.locLongitude=textLongitude?.substring(0,9)
                 model.locLatitude=textLattitude?.substring(0,9)
-                model.place=textLocality +" "+Utils.getCurrentFormatedDate()
+                model.place=textLocality
                 homeViewModel.addAttachmentData(model)
             }
             else

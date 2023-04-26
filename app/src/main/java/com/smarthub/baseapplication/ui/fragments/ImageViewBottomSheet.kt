@@ -39,23 +39,13 @@ class ImageViewBottomSheet(var item: Attachments) : BaseBottomSheetDialogFragmen
             dialog?.dismiss()
         }
         binding.titleText.text = item.title
-        binding.detailText.text = item.detail
+//        binding.detailText.text = item.detail
         Glide
             .with(this)
             .load(item.fullPath)
             .into(binding.viewImage)
-        if (item.locLatitude?.isNullOrEmpty()==false) {
-            binding.textLattitude.text = "${item.locLatitude}"
-            binding.textLattitude.visibility = View.VISIBLE
-        }
-        else binding.textLattitude.visibility = View.GONE
-        if (item.locLongitude?.isNullOrEmpty()==false) {
-            binding.textLongitude.text = "${item.locLongitude}"
-        }else binding.textLongitude.visibility = View.GONE
-
-        if (item.place?.isNullOrEmpty()==false) {
-            binding.textLocality.text = "${item.place} ${Utils.getDateTime(item.created_at.substring(0,19))}"
-        }else binding.textLocality.visibility = View.GONE
+        binding.latLong.text = "Lat/Long :${item.locLatitude}/${item.locLongitude}"
+        binding.locality.text = "Place :${item.place} ${Utils.getDateTime(item.created_at.substring(0,19))}"
     }
 
     override fun getTheme(): Int {
