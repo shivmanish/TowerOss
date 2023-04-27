@@ -83,9 +83,9 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         textLocality = "Delhi"
         gPSTracker = GPSTracker(requireContext()){
                 textLattitude = it!!.lattitude
-                textLongitude = it!!.longitude
-                textLocality = it!!.Locality
-                Toast.makeText(requireActivity(), "latlong address is called ${textLattitude} and ${textLocality}", Toast.LENGTH_SHORT).show()
+                textLongitude = it.longitude
+                textLocality = it.Locality
+//                Toast.makeText(requireActivity(), "latlong address is called ${textLattitude} and ${textLocality}", Toast.LENGTH_SHORT).show()
 
         }
         if(!gPSTracker!!.getIsGPSTrackingEnabled()){
