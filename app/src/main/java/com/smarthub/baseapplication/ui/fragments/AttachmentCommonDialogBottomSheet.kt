@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.trackermodule.locationpicker.AddresData
 import com.example.trackermodule.locationpicker.GPSTracker
 import com.example.trackermodule.locationpicker.LocationFetchCallback
@@ -209,6 +210,8 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                     Glide
                         .with(requireActivity())
                         .load(itemPath)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
                         .into(binding.imageIcon)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -241,6 +244,8 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 Glide
                     .with(requireActivity())
                     .load(itemPath)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .into(binding.imageIcon)
             }
             else -> {
