@@ -351,7 +351,9 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.siteAccessDetailsItemClicked(PowerMcb!!,serviceRequestAllData)
+                    if(PowerMcb!=null) {
+                        listener.siteAccessDetailsItemClicked(PowerMcb!!, serviceRequestAllData)
+                    }
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
