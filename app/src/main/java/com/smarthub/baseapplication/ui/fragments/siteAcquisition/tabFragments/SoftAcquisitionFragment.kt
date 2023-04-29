@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
@@ -16,6 +17,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqU
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SoftAcquisitionFragAdapter
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.ImageViewBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.PayeeAccDetailsViewDialouge
 import com.smarthub.baseapplication.utils.AppController
@@ -80,8 +82,9 @@ class SoftAcquisitionFragment(var softAcqData:NewSiteAcquiAllData?, var parentIn
         super.onDestroy()
     }
 
-    override fun attachmentItemClicked() {
-       AppLogger.log("Attachment clicked")
+    override fun attachmentItemClicked(item: Attachments) {
+        val bm = ImageViewBottomSheet(item)
+        bm.show(childFragmentManager,"sdg")
     }
 
     override fun viewPayeeAccountClicked(position: Int, data: SAcqPayeeAccountDetail) {

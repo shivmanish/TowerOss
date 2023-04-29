@@ -158,6 +158,7 @@ class TaskSearchTabNewFragment(
         binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        Trackingflag = true
         if(Trackingflag){
             binding.trackinglayout.visibility = View.VISIBLE
         }else{
@@ -949,12 +950,13 @@ class TaskSearchTabNewFragment(
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideLoader()
-                AppLogger.log("TaskSearchTabNewFragment Something went wrong in Updating Task Data")
+                AppLogger.log("TaskSearchTabNewFragment Task Data Updated successfully")
+//                AppLogger.log("TaskSearchTabNewFragment Something went wrong in Updating Task Data")
             }
             else if (it != null) {
                 AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("TaskSearchTabNewFragment Something went wrong in Updating Task Data")
+//                AppLogger.log("TaskSearchTabNewFragment Something went wrong in Updating Task Data")
 
             }
         }
