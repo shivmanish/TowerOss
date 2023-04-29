@@ -690,16 +690,20 @@ class TaskSearchTabNewFragment(
             hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
-                if (it.data.Status.isNotEmpty()){
-                    var data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
-                    taskDetailData?.ModuleId=data?.id.toString()
-                    taskDetailData?.ModuleName=data!!.Instruction
-                    val tempTaskDataUpdate=TaskDataUpdateModel()
-                    tempTaskDataUpdate.ModuleId=data.id.toInt()
-                    tempTaskDataUpdate.ModuleName=data.Instruction
-                    tempTaskDataUpdate.updatemodule=taskDetailData?.id
-                    taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
-                    setUpQatData()
+                try {
+                    if (it.data.Status.isNotEmpty()){
+                        var data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
+                        taskDetailData?.ModuleId=data?.id.toString()
+                        taskDetailData?.ModuleName=data!!.Instruction
+                        val tempTaskDataUpdate=TaskDataUpdateModel()
+                        tempTaskDataUpdate.ModuleId=data.id.toInt()
+                        tempTaskDataUpdate.ModuleName=data.Instruction
+                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+                        setUpQatData()
+                    }
+                } catch (e:java.lang.Exception){
+
                 }
 
             }
@@ -729,16 +733,20 @@ class TaskSearchTabNewFragment(
             hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
-                if (it.data.Status.isNotEmpty()){
-                    val data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
-                    taskDetailData?.ModuleId=data?.id.toString()
-                    taskDetailData?.ModuleName=data!!.Instruction
-                    val tempTaskDataUpdate=TaskDataUpdateModel()
-                    tempTaskDataUpdate.ModuleId=data.id.toInt()
-                    tempTaskDataUpdate.ModuleName=data.Instruction
-                    tempTaskDataUpdate.updatemodule=taskDetailData?.id
-                    taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
-                    setUpQatData()
+                try {
+                    if (it.data.Status.isNotEmpty()){
+                        val data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
+                        taskDetailData?.ModuleId=data?.id.toString()
+                        taskDetailData?.ModuleName=data!!.Instruction
+                        val tempTaskDataUpdate=TaskDataUpdateModel()
+                        tempTaskDataUpdate.ModuleId=data.id.toInt()
+                        tempTaskDataUpdate.ModuleName=data.Instruction
+                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+                        setUpQatData()
+                    }
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("e:"+e.localizedMessage)
                 }
 
             }
@@ -766,13 +774,7 @@ class TaskSearchTabNewFragment(
         var data = QalLaunchModel(qATMainLaunchNew, AppController.getInstance().siteid, AppController.getInstance().ownerName)
 
         homeViewModel.qatLaunchMain(data)
-//        val bottomSheetDialogFragment = LaunchQatBottomSheet(object : LaunchQatBottomSheet.LaunchQatBottomSheetListener{
-//            override fun onQatCreated(data: QalLaunchModel) {
-//                showLoader()
-//                homeViewModel.qatLaunchMain(data)
-//            }
-//        },qatMainModel!!)
-//        bottomSheetDialogFragment.show(childFragmentManager, "category")
+
     }
 
     fun setUpQatData() {
