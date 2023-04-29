@@ -17,10 +17,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.trackermodule.locationpicker.AddresData
 import com.example.trackermodule.locationpicker.GPSTracker
-import com.example.trackermodule.locationpicker.LocationFetchCallback
-import com.example.trackermodule.locationpicker.LocationFetchHelper
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddAttachmentDialougeBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -35,11 +32,19 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 import java.io.File
 
 
-class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceSchemaId:String, var listner: AddAttachmentListner) : BaseBottomSheetDialogFragment() {
+class AttachmentCommonDialogBottomSheet(
+    var sourceSchemaName: String,
+    var sourceSchemaId: String,
+    var listner: AddAttachmentListner,
+) : BaseBottomSheetDialogFragment() {
 
     lateinit var binding: AddAttachmentDialougeBinding
-    lateinit var homeViewModel : HomeViewModel
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    lateinit var homeViewModel: HomeViewModel
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         binding = AddAttachmentDialougeBinding.inflate(inflater)
@@ -64,34 +69,35 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
     override fun onDestroy() {
         super.onDestroy()
 //        locca?.stoplocation()
-        if(gPSTracker!=null){
+        if (gPSTracker != null) {
             gPSTracker!!.stopUsingGPS()
         }
     }
-//    var locca : LocationFetchHelper?=null
-    var textLattitude : String?=null
-    var textLongitude : String?=null
-    var textLocality : String?=null
-    var gPSTracker:GPSTracker? = null
+
+    //    var locca : LocationFetchHelper?=null
+    var textLattitude: String? = null
+    var textLongitude: String? = null
+    var textLocality: String? = null
+    var gPSTracker: GPSTracker? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cancel.setOnClickListener{
+        binding.cancel.setOnClickListener {
             dialog?.dismiss()
         }
         textLattitude = "17.23434320003"
         textLongitude = "21.23434320003"
         textLocality = "Delhi"
-        gPSTracker = GPSTracker(requireContext()){
-                textLattitude = it!!.lattitude
-                textLongitude = it.longitude
-                textLocality = it.Locality
+        gPSTracker = GPSTracker(requireContext()) {
+            textLattitude = it!!.lattitude
+            textLongitude = it.longitude
+            textLocality = it.Locality
+            println("latlong address is called ${textLattitude} and ${textLocality}")
 //                Toast.makeText(requireActivity(), "latlong address is called ${textLattitude} and ${textLocality}", Toast.LENGTH_SHORT).show()
 
         }
-        if(!gPSTracker!!.getIsGPSTrackingEnabled()){
+        if (!gPSTracker!!.getIsGPSTrackingEnabled()) {
             gPSTracker!!.showSettingsAlert()
         }
-
 
 
 /*
@@ -103,23 +109,23 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         }
 */
         binding.submit.setOnClickListener {
-            if (itemPath.isNotEmpty() && binding.titleText.text.toString().isNotEmpty()){
+            if (itemPath.isNotEmpty() && binding.titleText.text.toString().isNotEmpty()) {
                 showProgressLayout()
                 val model = AddAttachmentModel()
                 model.file = itemPath
                 model.sourceSchemaName = sourceSchemaName
                 model.sourceSchemaId = sourceSchemaId
-                model.detail=binding.fileDetails.text.toString()
-                model.title=binding.titelText.text.toString()
-                model.locLongitude=textLongitude?.substring(0,9)
-                model.locLatitude=textLattitude?.substring(0,9)
-                model.place=textLocality
+                model.detail = binding.fileDetails.text.toString()
+                model.title = binding.titelText.text.toString()
+                model.locLongitude = textLongitude?.substring(0, 9)
+                model.locLatitude = textLattitude?.substring(0, 9)
+                model.place = textLocality
                 homeViewModel.addAttachmentData(model)
-            }
-            else
-            {
+            } else {
                 AppLogger.log("attachment not selected or titled not set")
-               Toast.makeText(context,"Please Select an attachment and set Title",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,
+                    "Please Select an attachment and set Title",
+                    Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -135,12 +141,15 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                     .setImageAdapter(GlideAdapter())
                     .setMinCount(1)
                     .setMaxCount(1)
-                    .setActionBarColor(Color.parseColor("#ffffff"), Color.parseColor("#ffffff"), true)
+                    .setActionBarColor(Color.parseColor("#ffffff"),
+                        Color.parseColor("#ffffff"),
+                        true)
                     .setActionBarTitleColor(Color.parseColor("#000000"))
                     .setAlbumSpanCount(1, 2)
                     .setButtonInAlbumActivity(true)
                     .setReachLimitAutomaticClose(false)
-                    .setHomeAsUpIndicatorDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_arrow_back_24))
+                    .setHomeAsUpIndicatorDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_baseline_arrow_back_24))
                     .setAllViewTitle("All of your photos")
                     .setActionBarTitle("Select Images")
                     .textOnImagesSelectionLimitReached("You can't select any more.")
@@ -150,20 +159,21 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         }
         if (homeViewModel.addAttachmentModel?.hasActiveObservers() == true)
             homeViewModel.addAttachmentModel?.removeObservers(this)
-        homeViewModel.addAttachmentModel?.observe(viewLifecycleOwner){
-            if (it.status == Resource.Status.SUCCESS && it.data!=null){
+        homeViewModel.addAttachmentModel?.observe(viewLifecycleOwner) {
+            if (it.status == Resource.Status.SUCCESS && it.data != null) {
                 listner.attachmentAdded()
                 hideProgressLayout()
                 dismiss()
-                Toast.makeText(requireContext(),"file uploaded successfully",Toast.LENGTH_SHORT).show()
-            }else{
-                AppLogger.log("something wrong:"+it.message)
+                Toast.makeText(requireContext(), "file uploaded successfully", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                AppLogger.log("something wrong:" + it.message)
             }
         }
 
     }
 
-    var ORIGINAL_IMAGE_PATH:String?=null
+    var ORIGINAL_IMAGE_PATH: String? = null
     private fun openCamera() {
         val uri: Uri
         if (Utils.hasCamera(requireContext())) {
@@ -171,41 +181,86 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 try {
                     val createImageFile = File(requireActivity().cacheDir, "temp.jpg")
-                    uri = if (Build.VERSION.SDK_INT >= 24) FileProvider.getUriForFile(requireContext(), "${requireActivity().packageName}.provider", createImageFile)
-                    else Uri.fromFile(createImageFile)
+                    uri =
+                        if (Build.VERSION.SDK_INT >= 24) FileProvider.getUriForFile(requireContext(),
+                            "${requireActivity().packageName}.provider",
+                            createImageFile)
+                        else Uri.fromFile(createImageFile)
                     ORIGINAL_IMAGE_PATH = createImageFile.absolutePath
                     intent.putExtra("output", uri)
                     startForPIPCameraResult.launch(intent)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     AppLogger.log("openCamera Exception :" + e.localizedMessage)
-                    Toast.makeText(requireContext(), "Error occurred while trying to open camera, please try again", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(),
+                        "Error occurred while trying to open camera, please try again",
+                        Toast.LENGTH_LONG).show()
                 }
             }
         } else {
-            Toast.makeText(requireContext(), "Camera not found on this device", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Camera not found on this device", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
-    private val startForPIPCameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        when (result.resultCode) {
-            Activity.RESULT_OK -> {
-                try {
-                    val intent2 = Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE")
-                    val file = File(ORIGINAL_IMAGE_PATH)
-                    if (file.exists()) {
-                        Log.v("FILE_TEST", "file not null on " + file.absolutePath)
-                    } else {
-                        Log.v("FILE_TEST", "file is null")
+    private val startForPIPCameraResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            when (result.resultCode) {
+                Activity.RESULT_OK -> {
+                    try {
+                        val intent2 = Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE")
+                        val file = File(ORIGINAL_IMAGE_PATH)
+                        if (file.exists()) {
+                            Log.v("FILE_TEST", "file not null on " + file.absolutePath)
+                        } else {
+                            Log.v("FILE_TEST", "file is null")
+                        }
+                        val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            FileProvider.getUriForFile(requireActivity(),
+                                requireActivity().applicationContext.packageName + ".provider",
+                                file)
+                        } else {
+                            Uri.fromFile(file)
+                        }
+                        intent2.data = uri
+                        requireActivity().sendBroadcast(intent2)
+                        itemPath = file.absolutePath
+                        AppLogger.log("itemPath${itemPath}")
+                        Glide
+                            .with(requireActivity())
+                            .load(itemPath)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(binding.imageIcon)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        AppLogger.log("startForPIPCameraResult Exception :" + e.localizedMessage)
+                        Toast.makeText(
+                            requireContext(),
+                            "Error occurred while trying to take a picture, please try again",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-                    val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        FileProvider.getUriForFile(requireActivity(), requireActivity().applicationContext.packageName + ".provider", file)
+                }
+                else -> {
+                    Toast.makeText(requireContext(), "Image not selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+
+
+    var itemPath = ""
+    private val startForImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            when (result.resultCode) {
+                Activity.RESULT_OK -> {
+                    val fileUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        result.data?.getParcelableExtra(FishBun.INTENT_PATH, Uri::class.java)
                     } else {
-                        Uri.fromFile(file)
+                        result.data?.getParcelableExtra(FishBun.INTENT_PATH)
                     }
-                    intent2.data = uri
-                    requireActivity().sendBroadcast(intent2)
-                    itemPath = file.absolutePath
+                    itemPath = FileUtilities.getRealPath(context, fileUri)
                     AppLogger.log("itemPath${itemPath}")
                     Glide
                         .with(requireActivity())
@@ -213,57 +268,25 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
                         .into(binding.imageIcon)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    AppLogger.log("startForPIPCameraResult Exception :" + e.localizedMessage)
-                    Toast.makeText(
-                        requireContext(),
-                        "Error occurred while trying to take a picture, please try again",
-                        Toast.LENGTH_LONG
-                    ).show()
+                }
+                else -> {
+                    Toast.makeText(requireContext(), "Image picker cancelled", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
-            else -> {
-                Toast.makeText(requireContext(), "Image not selected", Toast.LENGTH_SHORT).show()
-            }
         }
-    }
 
-
-    var itemPath =""
-    private val startForImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        when (result.resultCode) {
-            Activity.RESULT_OK -> {
-                val fileUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    result.data?.getParcelableExtra(FishBun.INTENT_PATH,Uri::class.java)
-                } else {
-                    result.data?.getParcelableExtra(FishBun.INTENT_PATH)
-                }
-                itemPath = FileUtilities.getRealPath(context, fileUri)
-                AppLogger.log("itemPath${itemPath}")
-                Glide
-                    .with(requireActivity())
-                    .load(itemPath)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .into(binding.imageIcon)
-            }
-            else -> {
-                Toast.makeText(requireContext(), "Image picker cancelled", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    fun showProgressLayout(){
+    fun showProgressLayout() {
         if (binding.progressLayout.visibility != View.VISIBLE)
             binding.progressLayout.visibility = View.VISIBLE
     }
-    fun hideProgressLayout(){
+
+    fun hideProgressLayout() {
         if (binding.progressLayout.visibility == View.VISIBLE)
             binding.progressLayout.visibility = View.GONE
     }
 
- interface AddAttachmentListner{
-     fun attachmentAdded()
- }
+    interface AddAttachmentListner {
+        fun attachmentAdded()
+    }
 }
