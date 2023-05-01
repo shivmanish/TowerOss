@@ -16,6 +16,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.trackermodule.locationpicker.AddresData
+import com.example.trackermodule.locationpicker.GPSTracker
+import com.example.trackermodule.locationpicker.LocationFetchCallback
+import com.example.trackermodule.locationpicker.LocationFetchHelper
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddAttachmentDialougeBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -34,7 +39,6 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
 
     lateinit var binding: AddAttachmentDialougeBinding
     lateinit var homeViewModel : HomeViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
@@ -45,6 +49,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         dialog!!.window!!.setGravity(Gravity.BOTTOM)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog!!.window!!.setWindowAnimations(R.style.DialogAnimation)
+
         return binding.root
     }
 
@@ -56,12 +61,47 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
         return true
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+//        locca?.stoplocation()
+        if(gPSTracker!=null){
+            gPSTracker!!.stopUsingGPS()
+        }
+    }
+//    var locca : LocationFetchHelper?=null
+    var textLattitude : String?=null
+    var textLongitude : String?=null
+    var textLocality : String?=null
+    var gPSTracker:GPSTracker? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cancel.setOnClickListener{
             dialog?.dismiss()
         }
+        textLattitude = "17.23434320003"
+        textLongitude = "21.23434320003"
+        textLocality = "Delhi"
+        gPSTracker = GPSTracker(requireContext()){
+                textLattitude = it!!.lattitude
+                textLongitude = it.longitude
+                textLocality = it.Locality
+//                Toast.makeText(requireActivity(), "latlong address is called ${textLattitude} and ${textLocality}", Toast.LENGTH_SHORT).show()
 
+        }
+        if(!gPSTracker!!.getIsGPSTrackingEnabled()){
+            gPSTracker!!.showSettingsAlert()
+        }
+
+
+
+/*
+        locca = LocationFetchHelper(requireActivity()) { addresData ->
+            Toast.makeText(requireActivity(), "latlong address is called ${addresData!!.lattitude} and ${addresData.Locality}", Toast.LENGTH_SHORT)
+            textLattitude = addresData.lattitude
+            textLongitude = addresData.longitude
+            textLocality = addresData.Locality
+        }
+*/
         binding.submit.setOnClickListener {
             if (itemPath.isNotEmpty() && binding.titleText.text.toString().isNotEmpty()){
                 showProgressLayout()
@@ -70,7 +110,10 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 model.sourceSchemaName = sourceSchemaName
                 model.sourceSchemaId = sourceSchemaId
                 model.detail=binding.fileDetails.text.toString()
-                model.title=binding.titleText.text.toString()
+                model.title=binding.titelText.text.toString()
+                model.locLongitude=textLongitude?.substring(0,9)
+                model.locLatitude=textLattitude?.substring(0,9)
+                model.place=textLocality
                 homeViewModel.addAttachmentData(model)
             }
             else
@@ -117,6 +160,7 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 AppLogger.log("something wrong:"+it.message)
             }
         }
+
     }
 
     var ORIGINAL_IMAGE_PATH:String?=null
@@ -166,6 +210,8 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                     Glide
                         .with(requireActivity())
                         .load(itemPath)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
                         .into(binding.imageIcon)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -198,6 +244,8 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 Glide
                     .with(requireActivity())
                     .load(itemPath)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .into(binding.imageIcon)
             }
             else -> {

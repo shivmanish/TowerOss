@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/cancel"
+        android:translationZ="@dimen/dp7"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/cross_ico"
+        android:padding="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/drawable_cross_back"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:minHeight="@dimen/dp200"
+        android:background="@drawable/dialog_bg"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_layout"
+        android:paddingBottom="@dimen/_20sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/view_image"
+            app:layout_constraintTop_toTopOf="@+id/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:adjustViewBounds="true"
+            android:minHeight="@dimen/_200sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:text="Attachment"
+            android:textSize="@dimen/_11sdp"
+            android:paddingHorizontal="3dp"
+            android:background="@drawable/top_shadow"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/tab_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drop_shadow1"
+            android:paddingEnd="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_image"
+            app:layout_constraintStart_toStartOf="@+id/view_image">
+            <TextView
+                android:maxLines="1"
+                android:id="@+id/lat_long"
+                android:maxEms="15"
+                android:textSize="@dimen/_9sdp"
+                android:text="Lat/Long :17.878488693/19.575858696"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintBottom_toTopOf="@+id/locality"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:maxLines="1"
+                android:id="@+id/locality"
+                android:maxEms="15"
+                android:textSize="@dimen/_9sdp"
+                android:text="Place :Hyderabad"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

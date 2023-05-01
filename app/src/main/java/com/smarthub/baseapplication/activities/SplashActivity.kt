@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.ui.fragments.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
+import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.LoginViewModel
 
 class SplashActivity : BaseActivity() {
@@ -38,40 +39,44 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("refresh:${AppPreferences.getInstance().refresh}")
         AppLogger.log("refresh:${AppPreferences.getInstance().bearerToken}")
         val loginTime = AppPreferences.getInstance().getLong("loginTime")
-        val loginTimeDiff = (System.currentTimeMillis() - loginTime)/1000
+        val loginTimeDiff = ((System.currentTimeMillis() - loginTime)/(1000*60*60)) // second,minute,hour
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
-//            || loginTimeDiff > (30*60*60)
-//             val intent = Intent(this@SplashActivity, LocationPickerActivity::class.java)
+//            val intent = Intent(this@SplashActivity,LoginActivity::class.java)
 //            startActivity(intent)
-//            return@setOnClickListener
-
-            if (AppPreferences.getInstance().token.isNullOrEmpty()|| loginTimeDiff > (30*60)){
-                if (isNetworkConnected){
+//            finish()
+            if (Utils.isNetworkConnected(this@SplashActivity)){
+                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > 72){
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
-
-
-
                     finish()
-                }else {
-                    showNetworkAlert()
-                }
-            }else{
-//                val intent = Intent(this@SplashActivity,DashboardActivity::class.java)
-//                startActivity(intent)
-//                finish()
-                if (isNetworkConnected) {
-                    showLoader()
-                    loginViewModel.getProfileData()
-                }
-                else{
+                }else{
                     AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
             }
+//            else if (AppPreferences.getInstance().token.isNullOrEmpty() || loginTimeDiff > (30*600)){
+//                val intent = Intent(this@SplashActivity,LoginActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }else{
+//                if (isNetworkConnected) {
+//                    showLoader()
+//                    loginViewModel.getProfileData()
+//                }
+//                else{
+//                    AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
+//                    val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(intent)
+//                }
+//            }
         }
 
         loginViewModel.loginResponse?.observe(this) {

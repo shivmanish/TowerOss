@@ -1,5 +1,7 @@
 package com.smarthub.baseapplication.model.profile.viewProfile.newData
 
+import com.smarthub.baseapplication.model.profile.CompanyData
+
 data class ProfileData(
     val active: String,
     val approvedby: String,
@@ -32,5 +34,6 @@ data class ProfileData(
     val roles: List<String>,
     val state: List<String>,
     val title: String,
+    val ownernameall: List<CompanyData?>?,
     val username: String
 )

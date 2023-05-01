@@ -28,7 +28,7 @@ class ImageAttachmentCommonAdapter(var context:Context, var list:ArrayList<Attac
         val attachmentsItem:Attachments=list[position]
         AppLogger.log("image full path : ${attachmentsItem.fullPath}")
         holder.itemView.setOnClickListener {
-            listener.itemClicked()
+            listener.itemClicked(attachmentsItem)
         }
         Glide.with(context).
         load(attachmentsItem.fullPath)
@@ -39,6 +39,6 @@ class ImageAttachmentCommonAdapter(var context:Context, var list:ArrayList<Attac
         return list.size
     }
     interface ItemClickListener{
-        fun itemClicked()
+        fun itemClicked(item : Attachments)
     }
 }
