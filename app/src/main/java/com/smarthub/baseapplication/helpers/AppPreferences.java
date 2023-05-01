@@ -430,6 +430,18 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         }
     }
 
+    public void setDropDown(CustomSpinner customSpinner,String name,ArrayList<Integer> ids){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        if (ids!=null && !ids.isEmpty()){
+            String id = ids.get(0).toString();
+            customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+        }else{
+            customSpinner.setSpinnerData(dropDownNewItem.getData());
+        }
+    }
+
     public void setDropDown(TextView customSpinner, String name, ArrayList<Integer> ids){
         List<DropDownItem> list = getDropDownList(name);
         if (ids!=null && !ids.isEmpty()){
@@ -440,10 +452,11 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
                     return;
                 }
             }
-            if (!list.isEmpty()){
-                customSpinner.setText(list.get(0).getName());
-            }
+//            if (!list.isEmpty()){
+//                customSpinner.setText(list.get(0).getName());
+//            }
         }
+        customSpinner.setText("");
     }
 
     public void setDropDown(TextView customSpinner, String name, List<Integer> ids){
