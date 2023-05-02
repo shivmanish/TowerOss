@@ -183,10 +183,10 @@ class AddTaskInfoFragment : BaseFragment() {
         binding.priority.setSpinnerData(PRiorityList)
         binding.assigneeDepartment.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener{
             override fun itemSelected(departmentName: DropDownItem) {
-                AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
+                AppLogger.log("assigneeDepartment :${departmentName.name}")
 //                Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
                 viewmodel.getDepartmentUsers(GetUserList(departmentName.name,AppController.getInstance().ownerName))
-                observerData()
+//                observerData()
 
             }
         })
@@ -203,12 +203,16 @@ class AddTaskInfoFragment : BaseFragment() {
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                if (it.data.Department.data.isEmpty()){
+                    Toast.makeText(requireContext(),"Empty user list",Toast.LENGTH_SHORT).show()
+                }
                 AppLogger.log("AddTaskInfoFragment departmentDataDataResponse loaded successfull ")
                 if (taskInfo!=null)
                     binding.assigneeDepartment.setSpinnerData(it.data.Department.data,taskInfo?.AssigneeDepartment)
                 else
                     binding.assigneeDepartment.setSpinnerData(it.data.Department.data)
-            }else AppLogger.log("Department not fetched")
+            }
+            else AppLogger.log("Department not fetched")
         }
         observerData()
 

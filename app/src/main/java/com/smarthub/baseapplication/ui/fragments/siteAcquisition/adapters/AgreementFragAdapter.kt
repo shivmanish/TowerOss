@@ -330,7 +330,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
                     if (datalist!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -357,7 +357,7 @@ class AgreementFragAdapter(var baseFragment: BaseFragment, var listener: Agreeme
 
 
     interface AgreementListListener {
-       fun attachmentItemClicked()
+       fun attachmentItemClicked(item: Attachments)
        fun addAttachment()
        fun viewPoItemClicked(position: Int,data:SAcqPODetail)
        fun editPoItemClicked(position: Int,data:SAcqPODetail)

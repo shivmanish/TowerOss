@@ -258,7 +258,7 @@
                         android:textSize="15sp"
                         android:drawablePadding="10dp"
                         android:textColor="#F7CB46"
-                        android:drawableStart="@drawable/mic"
+                        android:drawableStart="@drawable/mobile_icon"
                         android:id="@+id/sign_with_phone_test"
                         android:layout_width="wrap_content"
                         android:textStyle="bold"

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPODetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SiteAcqAgreement
@@ -16,6 +17,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqU
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AgreementFragAdapter
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
+import com.smarthub.baseapplication.ui.fragments.ImageViewBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AgreementPoEditDialouge
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.AgreementPoViewDialouge
 import com.smarthub.baseapplication.utils.AppController
@@ -78,9 +80,11 @@ class AgreementFragment(var acqAgree:NewSiteAcquiAllData?, var parentIndex:Int):
         super.onDestroy()
     }
 
-    override fun attachmentItemClicked() {
-       AppLogger.log("Attachment clicked")
+    override fun attachmentItemClicked(item: Attachments) {
+        val bm = ImageViewBottomSheet(item)
+        bm.show(childFragmentManager,"sdg")
     }
+
 
     override fun viewPoItemClicked(position: Int, data: SAcqPODetail) {
         val bm = AgreementPoViewDialouge(R.layout.tower_po_view_dialouge,data)

@@ -4,5 +4,5 @@ import com.smarthub.baseapplication.utils.AppController
 
 data class GetUserList(
     val department: String  = "D1",
-    val ownerName: String  = AppController.getInstance().ownerName
+    val ownername: String  = AppController.getInstance().ownerName
 )

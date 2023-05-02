@@ -13,14 +13,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.smarthub.baseapplication.databinding.TaskThirdFragmnetBinding
+import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.qatcheck.QATMainLaunchNew
+import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.taskModel.TaskInfoItem
+import com.smarthub.baseapplication.model.workflow.TaskDataListItem
+import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 
-class TaskThirdFragment:Fragment() {
+class TaskThirdFragment:BaseFragment() {
     lateinit var binding:TaskThirdFragmnetBinding
     lateinit var viewmodel: TaskViewModel
-    private lateinit var progressDialog : ProgressDialog
+//    private lateinit var progressDialog : ProgressDialog
     var taskInfo : TaskInfoItem? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -36,9 +43,9 @@ class TaskThirdFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        progressDialog = ProgressDialog(requireContext())
-        progressDialog.setMessage("Please Wait...")
-        progressDialog.setCanceledOnTouchOutside(true)
+//        progressDialog = ProgressDialog(requireContext())
+//        progressDialog.setMessage("Please Wait...")
+//        progressDialog.setCanceledOnTouchOutside(true)
         if(taskInfo!=null){
             viewmodel.processTemplatemanual.NotificationSettingfornewaction= taskInfo?.NotificationSettingfornewaction=="True"
             viewmodel.processTemplatemanual.Automaticescalationofoverdueitems= taskInfo?.Automaticescalationofoverdueitems=="True"
@@ -47,8 +54,7 @@ class TaskThirdFragment:Fragment() {
         }
         setPriviousFilledData()
         binding.Submit.setOnClickListener {
-            if (!progressDialog.isShowing)
-                progressDialog.show()
+            showLoader()
             viewmodel.processTemplatemanual.NotificationSettingfornewaction=binding.notificationSwitch.isChecked
             viewmodel.processTemplatemanual.Automaticescalationofoverdueitems=binding.AutoEsclationSwitch.isChecked
             viewmodel.processTemplatemanual.Reminderofoutstandingactions=binding.reminderSwitch.isChecked
@@ -64,11 +70,10 @@ class TaskThirdFragment:Fragment() {
             if (viewmodel.getCreateNewTask()?.hasActiveObservers() == true)
                 viewmodel.getCreateNewTask()?.removeObservers(viewLifecycleOwner)
             viewmodel.getCreateNewTask()?.observe(viewLifecycleOwner){
-                if (progressDialog.isShowing){
-                    progressDialog.dismiss()
-                }
+                hideLoader()
                 if (it!=null && it.Error == ""){
 //                    call UI update api for task
+//                    createQatCardItem(it)
                     Toast.makeText(context,"Task Created SuccessFully",Toast.LENGTH_LONG).show()
                     requireActivity().finish()
                 }
@@ -120,6 +125,100 @@ class TaskThirdFragment:Fragment() {
         })
 
 
+    }
+
+    private fun createQatCardItem(taskDetailData: TaskDataListItem?){
+
+        if (viewmodel.updateTaskDataResponse?.hasActiveObservers() == true) {
+            viewmodel.updateTaskDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.updateTaskDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("TaskSearchTabNewFragment TaskData Updating in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS  ) {
+                AppLogger.log("TaskSearchTabNewFragment Task Data Updated successfully")
+                Toast.makeText(context,"Task Created SuccessFully",Toast.LENGTH_LONG).show()
+                requireActivity().finish()
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("TaskSearchTabNewFragment Task Data Updated successfully")
+//                AppLogger.log("TaskSearchTabNewFragment Something went wrong in Updating Task Data")
+            }
+            else if (it != null) {
+                AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
+            } else {
+//                AppLogger.log("TaskSearchTabNewFragment Something went wrong in Updating Task Data")
+
+            }
+        }
+
+        if (viewmodel.qatUpdateModel?.hasActiveObservers() == true){
+            viewmodel.qatUpdateModel?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.qatUpdateModel?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("TaskSearchTabNewFragment data creating in progress ")
+                return@observe
+            }
+            hideLoader()
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
+                if (it.data.Status.isNotEmpty()){
+                    val data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
+                    taskDetailData?.ModuleId=data?.id.toString()
+                    taskDetailData?.ModuleName=data!!.Instruction
+                    val tempTaskDataUpdate= TaskDataUpdateModel()
+                    tempTaskDataUpdate.ModuleId=data.id.toInt()
+                    tempTaskDataUpdate.ModuleName=data.Instruction
+                    tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                    viewmodel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+//                    setUpQatData()
+                }
+
+            }
+            else if (it != null) {
+                AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating Data")
+
+            }
+        }
+//        viewmodel.qatUpdateModel?.observe(viewLifecycleOwner) {
+//            if (it!=null && it.status == Resource.Status.LOADING){
+//
+//                return@observe
+//            }
+//            hideLoader()
+//            if (it?.data != null && it.status == Resource.Status.SUCCESS){
+//                AppLogger.log("Service request Fragment card Data fetched successfully")
+//                Toast.makeText(context,"Task Created SuccessFully",Toast.LENGTH_LONG).show()
+//                requireActivity().finish()
+//            }
+//            else {
+//                AppLogger.log("Service Request Fragment Something went wrong")
+//                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+        val list =  ArrayList<String>()
+        list.add("Test")
+        val item = QATMainLaunchNew(
+            AssignedTo = "9236120050",
+            GeoLevel = "1",
+            "",
+            "",
+            list,
+            "2011-10-01",
+            true,
+            "1"
+        )
+        val qATMainLaunchNew = ArrayList<QATMainLaunchNew>()
+        qATMainLaunchNew.add(item)
+        var data = QalLaunchModel(qATMainLaunchNew, AppController.getInstance().siteid, AppController.getInstance().ownerName)
+        viewmodel.qatLaunchMain(data)
     }
 
     fun setPriviousFilledData(){

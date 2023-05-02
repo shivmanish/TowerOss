@@ -395,7 +395,7 @@ public class HomeRepo {
         map.put("locLongitude", RequestBody.create(MediaType.parse("multipart/form-data"), model.getLocLongitude()));
         map.put("place", RequestBody.create(MediaType.parse("multipart/form-data"), model.getPlace()));
         AppLogger.INSTANCE.log("attachment model data=====>"+map);
-        apiClient.addAttachmentData("https://infraoss.in", map).enqueue(new Callback<List<AddAttachmentModel>>() {
+        apiClient.addAttachmentData("https://infraoss.in/fms/createupdate", map).enqueue(new Callback<List<AddAttachmentModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<AddAttachmentModel>> call, Response<List<AddAttachmentModel>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {

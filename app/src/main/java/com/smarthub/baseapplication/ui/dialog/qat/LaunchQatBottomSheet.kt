@@ -52,16 +52,7 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
             dismiss()
         }
         setDatePickerView(binding.txtTargetDate)
-//        if (alertViewModel.departmentDropdown.hasActiveObservers())
-//            alertViewModel.departmentDropdown.removeObservers(viewLifecycleOwner)
-//        alertViewModel.departmentDropdown.observe(viewLifecycleOwner) {
-//            //response will get here
-//            if (it?.data != null) {
-//                binding.assigneeDepartment.setSpinnerData(it.data.department)
-//                if (it.data.department.isNotEmpty())
-//                    alertViewModel.getUser(GetUserList(it.data.department[0], AppController.getInstance().ownerName))
-//            }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
-//        }
+
         alertViewModel.getDepartments(DropdownParam("SMRT","department"))
 
         if (alertViewModel.userDataResponseLiveData.hasActiveObservers())
@@ -72,13 +63,6 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
                 binding.assignTo.setSpinnerData(it.data)
             }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
         })
-
-//        binding.assigneeDepartment.itemSelectedListener = object :CustomStringSpinner.ItemSelectedListener{
-//            override fun itemSelected(item: String) {
-//                if (item.isNotEmpty())
-//                    alertViewModel.getUser(GetUserList(item, AppController.getInstance().ownerName))
-//            }
-//        }
 
         val dropdownList = ArrayList<DropDownItem>()
         if (qatMainModel.item!=null && qatMainModel.item?.isNotEmpty() == true && qatMainModel.item!![0].QATMainLaunch.isNotEmpty())

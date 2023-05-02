@@ -111,8 +111,8 @@ class AttachmentCommonDialogBottomSheet(var sourceSchemaName:String, var sourceS
                 model.sourceSchemaId = sourceSchemaId
                 model.detail=binding.fileDetails.text.toString()
                 model.title=binding.titelText.text.toString()
-                model.locLongitude=textLongitude?.substring(0,9)
-                model.locLatitude=textLattitude?.substring(0,9)
+                model.locLongitude=if (textLongitude?.isNotEmpty() == true && textLongitude?.length!!>10) textLongitude?.substring(0,9) else textLongitude
+                model.locLatitude=if (textLattitude?.isNotEmpty() == true && textLattitude?.length!!>10) textLattitude?.substring(0,9) else textLattitude
                 model.place=textLocality
                 homeViewModel.addAttachmentData(model)
             }

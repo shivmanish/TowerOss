@@ -51,7 +51,7 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
             if (attachments!=null){
                 holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(context,filterAttachment(attachmentsItem.id,attachments),object : ImageAttachmentCommonAdapter.ItemClickListener{
                     override fun itemClicked(item : Attachments) {
-                        listener.attachmentItemClicked()
+                        listener.attachmentItemClicked(item)
                     }
                 })
             }
@@ -84,7 +84,7 @@ class AttachmentConditionalAdapter(var context:Context, var attachments:ArrayLis
         return filteredAttachments
     }
     interface AttachmentConditionsListener{
-        fun attachmentItemClicked()
+        fun attachmentItemClicked(item: Attachments)
         fun addAttachmentItemClicked(catagoeyId:Int)
     }
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import okhttp3.internal.UTC
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -72,9 +73,13 @@ open class BaseFragment : Fragment(){
 
     fun showLoader(){
         if (Utils.isNetworkConnected()) {
-            if (progressDialog != null && progressDialog?.isShowing == false) {
-                progressDialog?.show()
-            }
+           try {
+               if (progressDialog != null && progressDialog?.isShowing == false) {
+                   progressDialog?.show()
+               }
+           }catch (e:Exception){
+               e.printStackTrace()
+           }
         }
     }
 
