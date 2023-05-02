@@ -309,14 +309,14 @@ object Utils {
         return registerData
     }
 
-    fun getCreateNewTaskDummyData(): Processtemplatecallmanual {
-        var processTemplatemanual = Processtemplatecallmanual(
-            "",false,"",false,
-            "",false,false,false,0,0,"","",
-            "","",ArrayList(),"","", false,"","",false,
-            "","","","","","")
-        return processTemplatemanual
-    }
+//    fun getCreateNewTaskDummyData(): Processtemplatecallmanual {
+//        var processTemplatemanual = Processtemplatecallmanual(
+//            "",false,"",false,
+//            "",false,false,false,0,0,"","",
+//            "","",ArrayList(),"","", false,"","",false,
+//            "","","","","","")
+//        return processTemplatemanual
+//    }
 
     fun compareDate(date : String) : Int{
         AppLogger.log("compareDate:$date")

@@ -156,7 +156,6 @@ class TaskSearchTabNewFragment(
         super.onViewCreated(view, savedInstanceState)
         setDataObserver()
         AppLogger.log("TaskTAbList===>: ${Gson().toJson(TaskTabListmodel)}")
-        binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.collapsingLayout.tag = NotificationSettingGeoTracking
@@ -190,7 +189,7 @@ class TaskSearchTabNewFragment(
         binding.mapView.setOnClickListener {
             mapView()
         }
-        binding.closeBtn.setOnClickListener {
+        binding.submitBtn.setOnClickListener {
             if (isFancing) {
                 val userlatlongdata = LatlongData()
                 val start_lattitiude_string =
@@ -212,12 +211,15 @@ class TaskSearchTabNewFragment(
                     Util.getDistanceFromLatlongmanually(userPosition, sitePosition)
                 if (distance_btwn_user_and_site <= fancingDistance) {
                     //Close Request Hit
+                    showLoader()
                 } else {
-                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
-                        .show()
+                    binding.taskSubmitMsg.visibility = View.VISIBLE
+                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
                 }
             } else {
                 //Close Request Hit
+                showLoader()
+
             }
 
         }
@@ -231,17 +233,14 @@ class TaskSearchTabNewFragment(
                 PatrollerPriference(requireContext()).settime("")
                 PatrollerPriference(requireContext()).setStartLattitude("Na")
                 PatrollerPriference(requireContext()).setStartLongitude("Na")
-//                startServiceBackground()
+                startServiceBackground()
             } else {
-//                mapView()
-                if (mServiceIntent != null) {
-                    PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
-                    LocationService.is_canceled_by_me = true
-                    requireContext().stopService(mServiceIntent)
-                    PatrollerPriference(requireContext()).settime("")
-                    binding.start.text = "Start"
-                }
-
+                mapView()
+                PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
+                LocationService.is_canceled_by_me = true
+                requireContext().stopService(mServiceIntent)
+                PatrollerPriference(requireContext()).settime("")
+                binding.start.text = "Start"
             }
         }
         binding.messages.setOnClickListener {
@@ -262,24 +261,6 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 if (it.data.isNotEmpty()) {
                     taskDetailData = it.data[0]
-                    NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
-                    AppLogger.log("fetched task NotificationSettingGeoTracking =====> : $NotificationSettingGeoTracking")
-
-                    if(NotificationSettingGeoTracking){
-                        binding.dropdownImg.visibility = View.VISIBLE
-                    }else{
-                        binding.dropdownImg.visibility = View.GONE
-                        binding.viewpager.setPadding(10,2,10,10)
-                    }
-                    if (binding.collapsingLayout.tag as Boolean) {
-                        binding.collapsingLayout.visibility = View.VISIBLE
-                        binding.topLine.visibility = View.VISIBLE
-                        binding.dropdownImg.setImageResource(R.drawable.down_arrow)
-                    } else {
-                        binding.collapsingLayout.visibility = View.GONE
-                        binding.topLine.visibility = View.GONE
-                        binding.dropdownImg.setImageResource(R.drawable.ic_arrow_up_faq)
-                    }
 
                     mapAppBarUiData(taskDetailData)
                     setParentData()
@@ -1526,6 +1507,36 @@ class TaskSearchTabNewFragment(
     }
 
     fun mapAppBarUiData(data:TaskDataListItem?){
+        NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
+        isFancing = taskDetailData?.NotificationSettingGeoFencing!!
+        fancingDistance = taskDetailData!!.Distance
+        AppLogger.log("fetched task NotificationSettingGeoTracking =====> : $NotificationSettingGeoTracking")
+
+        binding.collapsingLayout.tag = NotificationSettingGeoTracking
+        if(NotificationSettingGeoTracking){
+            binding.dropdownImg.visibility = View.VISIBLE
+            binding.mapView.visibility = View.VISIBLE
+        }else{
+            binding.dropdownImg.visibility = View.GONE
+            binding.mapView.visibility = View.GONE
+            binding.viewpager.setPadding(10,2,10,10)
+        }
+        if (binding.collapsingLayout.tag as Boolean) {
+            binding.collapsingLayout.visibility = View.VISIBLE
+            binding.topLine.visibility = View.VISIBLE
+            binding.dropdownImg.setImageResource(R.drawable.down_arrow)
+        } else {
+            binding.collapsingLayout.visibility = View.GONE
+            binding.topLine.visibility = View.GONE
+            binding.dropdownImg.setImageResource(R.drawable.ic_arrow_up_faq)
+        }
+
+//        if (taskDetailData?.NotificationSettingGeoFencing == true) {
+//            binding.taskSubmitMsg.visibility = View.VISIBLE
+//        } else {
+//            binding.taskSubmitMsg.visibility = View.GONE
+//        }
+
         binding.title.text=data?.Taskname
         binding.sla.text=data?.SLA
         binding.StartedDate.text=Utils.getFormatedDate(data?.startdate,"dd-MMM-yyyy")

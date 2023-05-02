@@ -553,15 +553,15 @@
                 android:layout_height="match_parent">
                 <TextView
                     android:id="@+id/submit_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_textblue"
-                    android:text="Submit"
+                    android:text="Re-open Prev Task"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
-                    android:paddingHorizontal="@dimen/dp23"
+                    android:paddingHorizontal="@dimen/dp3"
                     android:paddingVertical="@dimen/dp6"
-                    android:textSize="@dimen/dp15"
+                    android:textSize="@dimen/dp11"
                     android:layout_marginStart="@dimen/dp8"
                     android:layout_marginBottom="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
@@ -597,12 +597,12 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/yellow"
                     android:background="@drawable/rounded_textblue"
-                    android:text="Close Task"
+                    android:text="Successfully Close"
                     android:textColor="@color/color1"
                     android:fontFamily="@font/poppins_regular"
-                    android:paddingHorizontal="@dimen/dp11"
+                    android:paddingHorizontal="@dimen/dp3"
                     android:paddingVertical="@dimen/dp7"
-                    android:textSize="@dimen/dp13"
+                    android:textSize="@dimen/dp11"
                     android:layout_marginStart="@dimen/dp2"
                     app:layout_constraintStart_toEndOf="@+id/dot_2"
                     app:layout_constraintTop_toTopOf="@+id/submit_btn"
@@ -640,7 +640,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:id="@+id/collapsing_layout"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginBottom="@dimen/dp7"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toTopOf="@+id/top_line">
@@ -721,6 +721,21 @@
                         app:layout_constraintEnd_toStartOf="@+id/start"
                         app:layout_constraintTop_toTopOf="@+id/task_start_time"
                         app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
+
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:visibility="visible"
+                        android:id="@+id/task_submit_msg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You are currently outside fencing distance. Task can only be Closed within 2000 m: "
+                        android:textSize="13dp"
+                        android:textColor="@color/color1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginStart="@dimen/dp10"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/task_start_date_time_lebel"
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
