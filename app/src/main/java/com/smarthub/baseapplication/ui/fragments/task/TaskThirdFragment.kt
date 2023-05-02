@@ -59,9 +59,11 @@ class TaskThirdFragment:BaseFragment() {
             viewmodel.processTemplatemanual.Automaticescalationofoverdueitems=binding.AutoEsclationSwitch.isChecked
             viewmodel.processTemplatemanual.Reminderofoutstandingactions=binding.reminderSwitch.isChecked
             viewmodel.processTemplatemanual.NotificationSettingGeoTracking=binding.GeoTrackingSwitch.isChecked
-//            viewmodel.processTemplatemanual.NotificationSettingGeoTracking=binding.GeoTrackingSwitch.isChecked
             viewmodel.processTemplatemanual.NotificationSettingGeoFencing=binding.GeoFencingDistanceSwitch.isChecked
-            viewmodel.processTemplatemanual.Distance=binding.GeoFencingDistanceEdit.text.toString()
+            if (viewmodel.processTemplatemanual.Distance.isNullOrEmpty())
+                viewmodel.processTemplatemanual.Distance = "0.0"
+            if (!binding.GeoFencingDistanceEdit.text.toString().isNullOrEmpty())
+                viewmodel.processTemplatemanual.Distance=binding.GeoFencingDistanceEdit.text.toString()
             if(taskInfo!=null)
                 viewmodel.processTemplatemanual.Taskid=taskInfo?.id?.toInt()!!
             AppLogger.log("all data: ${Gson().toJson(viewmodel.processTemplatemanual)}")

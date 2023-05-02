@@ -15,8 +15,13 @@ public class APIClientPatroller {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
 
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl("https://fibeross.net")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .client(client)
+//                .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://fibeross.net")
+                .baseUrl("https://49.50.77.81:8686")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
