@@ -10,8 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitObjectInstance {
 
     private static Retrofit retrofit;
-//    public static String BASE_URL = "https://fibeross.net/";
-    public static String BASE_URL = "http://49.50.77.81:8686/";
+    public static String BASE_URL = "https://fibeross.net/";
+//    public static String BASE_URL = "http://49.50.77.81:8686/";
 
     public static Retrofit getInstance(){
         Gson g = new GsonBuilder().setLenient().create();

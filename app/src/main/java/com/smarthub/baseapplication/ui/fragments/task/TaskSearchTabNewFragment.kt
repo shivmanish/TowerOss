@@ -116,7 +116,7 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 class TaskSearchTabNewFragment(
     var siteID: String?, var taskId: String, var taskDetailId: String?,
     var lattitude: String, var longitude: String, var tempWhere: String,var isFancing:Boolean,
-    var fancingDistance :Double,var Trackingflag:Boolean) : BaseFragment(),
+    var fancingDistance :Double,var NotificationSettingGeoTracking:Boolean) : BaseFragment(),
     TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener {
     private lateinit var binding: FragmentSearchTaskBinding
     lateinit var taskViewModel: TaskViewModel
@@ -159,12 +159,21 @@ class TaskSearchTabNewFragment(
         binding.collapsingLayout.tag = false
         binding.horizontalOnlyList.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        Trackingflag = true
-        if(Trackingflag){
-            binding.trackinglayout.visibility = View.VISIBLE
+        binding.collapsingLayout.tag = NotificationSettingGeoTracking
+        if(NotificationSettingGeoTracking){
+            binding.dropdownImg.visibility = View.VISIBLE
         }else{
-            binding.trackinglayout.visibility = View.GONE
+            binding.dropdownImg.visibility = View.GONE
             binding.viewpager.setPadding(10,2,10,10)
+        }
+        if (binding.collapsingLayout.tag as Boolean) {
+            binding.collapsingLayout.visibility = View.VISIBLE
+            binding.topLine.visibility = View.VISIBLE
+            binding.dropdownImg.setImageResource(R.drawable.down_arrow)
+        } else {
+            binding.collapsingLayout.visibility = View.GONE
+            binding.topLine.visibility = View.GONE
+            binding.dropdownImg.setImageResource(R.drawable.ic_arrow_up_faq)
         }
         binding.dropdownImg.setOnClickListener {
             binding.collapsingLayout.tag = !(binding.collapsingLayout.tag as Boolean)
@@ -252,10 +261,29 @@ class TaskSearchTabNewFragment(
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 if (it.data.isNotEmpty()) {
-                    AppLogger.log("fetched task data =====> : ${Gson().toJson(it.data[0])}")
                     taskDetailData = it.data[0]
+                    NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
+                    AppLogger.log("fetched task NotificationSettingGeoTracking =====> : $NotificationSettingGeoTracking")
+
+                    if(NotificationSettingGeoTracking){
+                        binding.dropdownImg.visibility = View.VISIBLE
+                    }else{
+                        binding.dropdownImg.visibility = View.GONE
+                        binding.viewpager.setPadding(10,2,10,10)
+                    }
+                    if (binding.collapsingLayout.tag as Boolean) {
+                        binding.collapsingLayout.visibility = View.VISIBLE
+                        binding.topLine.visibility = View.VISIBLE
+                        binding.dropdownImg.setImageResource(R.drawable.down_arrow)
+                    } else {
+                        binding.collapsingLayout.visibility = View.GONE
+                        binding.topLine.visibility = View.GONE
+                        binding.dropdownImg.setImageResource(R.drawable.ic_arrow_up_faq)
+                    }
+
                     mapAppBarUiData(taskDetailData)
                     setParentData()
+
                 } else
                     AppLogger.log("not any assigned task found at task Id $taskDetailId")
             } else {
@@ -418,7 +446,7 @@ class TaskSearchTabNewFragment(
     }
 
     private fun setDataObserver() {
-        AppLogger.log("Tracking flag:${Trackingflag}")
+        AppLogger.log("NotificationSettingGeoTracking flag:${NotificationSettingGeoTracking}")
         taskViewModel.fetchTaskDetails(taskDetailId)
         if (homeViewModel.siteInfoDataResponse?.hasActiveObservers() == true)
             homeViewModel.siteInfoDataResponse?.removeObservers(viewLifecycleOwner)
@@ -771,7 +799,7 @@ class TaskSearchTabNewFragment(
         )
         val qATMainLaunchNew = ArrayList<QATMainLaunchNew>()
         qATMainLaunchNew.add(item)
-        var data = QalLaunchModel(qATMainLaunchNew, AppController.getInstance().siteid, AppController.getInstance().ownerName)
+        val data = QalLaunchModel(qATMainLaunchNew, AppController.getInstance().siteid, AppController.getInstance().ownerName)
 
         homeViewModel.qatLaunchMain(data)
 

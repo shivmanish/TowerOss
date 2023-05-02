@@ -28,7 +28,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
     var trackingId:String = "474"
     var taskDetailId:String ? = null
     var tempWhere = "[22,24]"
-    var Trackingflag = false
+    var NotificationSettingGeoTracking = false
     var NotificationSettingGeoFencing = false
     var Distance :Double = 0.0
 
@@ -65,9 +65,10 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
             }catch (e:Exception){
                 AppLogger.log("errorr in fetching Distance:${e.localizedMessage}")
             }
+
         }
 
-        Trackingflag=intent.getBooleanExtra("Trackingflag",false)
+        NotificationSettingGeoTracking=intent.getBooleanExtra("NotificationSettingGeoTracking",false)
         if (intent.hasExtra("Distance")){
             try {
                  intent.getStringExtra("Distance")?.toDouble()?.let {
@@ -180,7 +181,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
 
     private fun mapUIData(){
-        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere,NotificationSettingGeoFencing,Distance,Trackingflag))
+        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere,NotificationSettingGeoFencing,Distance,NotificationSettingGeoTracking))
 //        binding.titleText.text ="Task\n${item.Processname}"
 //
 //        binding.listItem.adapter = TaskAdapter(applicationContext,this)

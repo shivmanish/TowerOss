@@ -161,7 +161,7 @@ class MyTaskItemAdapter(var listener: TaskListener,var token:String) : RecyclerV
                     intent.putExtra("title","Edit Task")
                     intent.putExtra("Distance", item.Distance)
                     intent.putExtra("NotificationSettingGeoFencing", item.NotificationSettingGeoFencing)
-                    intent.putExtra("Trackingflag", true )
+                    intent.putExtra("NotificationSettingGeoTracking", item.NotificationSettingGeoTracking )
                     holder.itemView.context.startActivity(intent)
                 }
             }

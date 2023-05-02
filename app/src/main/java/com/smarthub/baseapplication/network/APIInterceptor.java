@@ -28,10 +28,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class APIInterceptor {
-    public static final String BASE_URL = "http://49.50.77.81:8686/";
-//    public static final String BASE_URL = "https://fibeross.net/";
-//    public static final String DYNAMIC_BASE_URL = "https://fibeross.net";
-    public static final String DYNAMIC_BASE_URL = "http://49.50.77.81:8686";
+//    public static final String BASE_URL = "http://49.50.77.81:8686/";
+    public static final String BASE_URL = "https://fibeross.net/";
+    public static final String DYNAMIC_BASE_URL = "https://fibeross.net";
+//    public static final String DYNAMIC_BASE_URL = "http://49.50.77.81:8686";
     private static final Retrofit.Builder builder = createInstance();
     public static Retrofit retrofit = builder.build();
 

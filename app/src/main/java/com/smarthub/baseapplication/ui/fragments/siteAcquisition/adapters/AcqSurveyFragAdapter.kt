@@ -1038,10 +1038,11 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if (AppController.getInstance().attachmentsConditionsList.Attachment!=null){
-                    attachmentsList=AppController.getInstance().attachmentsConditionsList.Attachment
-                }
                 try {
+                    if (AppController.getInstance().attachmentsConditionsList.Attachment!=null){
+                        attachmentsList=AppController.getInstance().attachmentsConditionsList.Attachment
+                    }
+
                     if (datalist!=null){
                         holder.recyclerListener.adapter= AttachmentConditionalAdapter(baseFragment.requireContext(),datalist?.attachment,
                             attachmentsList!!,22,datalist?.id,

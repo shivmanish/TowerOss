@@ -31,5 +31,6 @@ data class TaskDataListItem(
     val siteid: String,
     val sitename: String,
     val startdate: String,
+    val NotificationSettingGeoTracking: Boolean,
     val workorderid: String
 )
