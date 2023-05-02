@@ -153,8 +153,9 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 holder.binding.itemTitleStr.text = list[position]
                 if (datalist!=null){
                     // view mode
-                    if (datalist?.Acquisitiontype?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype)
+//                    if (datalist?.Acquisitiontype?.isNotEmpty() == true)
+//                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
                     if (datalist?.AcquisitionMode?.isNotEmpty() == true)
                         AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionMode,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
                     if (datalist?.VendorCompany?.isNotEmpty() == true)
@@ -195,10 +196,11 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 }
                 else
                     AppLogger.log("error in Power Connection details data")
-                if (datalist!=null && datalist?.Acquisitiontype?.isNotEmpty() == true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
+                AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype)
+//                if (datalist!=null && datalist?.Acquisitiontype?.isNotEmpty() == true)
+//                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
+//                else
+//                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
                 if (datalist!=null && datalist?.AcquisitionMode?.isNotEmpty() == true)
                     AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
                 else

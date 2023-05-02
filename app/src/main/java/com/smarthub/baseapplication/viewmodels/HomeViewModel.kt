@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.home.alerts.AlertAllDataResponse
 import com.smarthub.baseapplication.model.logs.LogsDataModel
 import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel
@@ -134,6 +135,7 @@ class HomeViewModel : ViewModel() {
     var departmentDataDataResponse:SingleLiveEvent<Resource<DepartmentDataModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
     var attachmentConditionModel:SingleLiveEvent<Resource<AttachmentConditionsDataModel>>? = null
+    var homeAlertsDataModel:SingleLiveEvent<Resource<AlertAllDataResponse>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -188,6 +190,7 @@ class HomeViewModel : ViewModel() {
         departmentDataDataResponse=homeRepo?.departmentDataModel
         addAttachmentModel=homeRepo?.addAttachmentModel
         attachmentConditionModel=homeRepo?.attachmentConsitionsModel
+        homeAlertsDataModel=alertRepo?.homeAlertResponseLivedata
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -242,6 +245,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchHomeData(){
         homeRepo?.fetchHomeData()
+    }
+    fun fetchHomeAlertData(){
+        alertRepo?.getHomeAlertDetails()
     }
 
 
