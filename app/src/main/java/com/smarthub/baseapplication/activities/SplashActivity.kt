@@ -42,11 +42,11 @@ class SplashActivity : BaseActivity() {
         val loginTimeDiff = ((System.currentTimeMillis() - loginTime)/(1000*60*60)) // second,minute,hour
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
-            AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
-            val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            return@setOnClickListener
+//            AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
+//            val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            startActivity(intent)
+//            return@setOnClickListener
 
             if (Utils.isNetworkConnected(this@SplashActivity)){
                 val intent = Intent(this@SplashActivity,LoginActivity::class.java)

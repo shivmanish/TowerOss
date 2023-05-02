@@ -13,7 +13,7 @@ data class Processtemplatecallmanual(
     var SLA: Int?=null,
     var Taskid: Int?=null,
     var Taskinstruction: String?=null,
-    var Distance: String?=null,
+    var Distance: String="0.0",
     var Taskname: String?=null,
     var Weightage: String?=null,
     var Where: List<Any>?=null,
