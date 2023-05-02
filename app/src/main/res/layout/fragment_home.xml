@@ -527,20 +527,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
+                <ImageView
+                    android:id="@+id/alert_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp3"
+                    android:layout_marginStart="@dimen/dp15"
+                    android:src="@drawable/ic_menu_send_alert"
+                    app:layout_constraintBottom_toBottomOf="@+id/open_faults_title"
+                    app:layout_constraintTop_toTopOf="@+id/open_faults_title"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
                 <TextView
-                    android:text="Open Faults"
+                    android:text="Alerts"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:id="@+id/open_faults_title"
-                    android:layout_marginStart="@dimen/dp15"
                     android:layout_marginTop="@dimen/dp8"
+                    android:layout_marginLeft="@dimen/dp5"
                     android:fontFamily="@font/poppins_medium"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/alert_icon"
                     app:layout_constraintTop_toBottomOf="@+id/see_all_task"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/open_fault_count"
+                    android:id="@+id/Alert_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp5"
@@ -558,20 +569,32 @@
                     android:layout_height="match_parent"
                     app:layout_constraintTop_toBottomOf="@+id/open_faults_title"
                     app:layout_constraintBottom_toBottomOf="parent">
-                    <TextView
-                        android:id="@+id/work_in_progress"
-                        android:layout_width="wrap_content"
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/Alerts_list"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp50"
-                        android:layout_marginStart="@dimen/dp5"
-                        android:textColor="@color/color1"
-                        android:text="Work In Progress...."
-                        android:fontFamily="@font/poppins_semibold"
-                        android:gravity="center"
-                        android:textSize="18sp"
+                        android:layout_marginHorizontal="@dimen/dp15"
+                        android:layout_marginVertical="@dimen/dp3"
+                        android:layout_marginTop="4dp"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        tools:itemCount="4"
+                        tools:listitem="@layout/home_alerts_list_item" />
+
+                    <TextView
+                        android:text="@string/See_all"
+                        android:textSize="12sp"
+                        android:id="@+id/see_all_Alerts"
+                        android:layout_marginEnd="@dimen/dp3"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:fontFamily="@font/poppins_medium"
+                        app:layout_constraintEnd_toEndOf="@+id/Alerts_list"
+                        app:layout_constraintTop_toBottomOf="@+id/Alerts_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

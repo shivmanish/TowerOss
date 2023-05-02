@@ -6,6 +6,7 @@ import com.smarthub.baseapplication.helpers.AppPreferences;
 import com.smarthub.baseapplication.helpers.Resource;
 import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
+import com.smarthub.baseapplication.model.home.alerts.AlertAllDataResponse;
 import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
@@ -40,6 +41,7 @@ public class AlertRepo {
     private static final Object LOCK = new Object();
     private SingleLiveEvent<Resource<SearchList>> siteSearchResponse;
     private SingleLiveEvent<Resource<SendAlertResponse>> sendAlertResponseLivedata;
+    private SingleLiveEvent<Resource<AlertAllDataResponse>> homeAlertResponseLivedata;
     private SingleLiveEvent<Resource<SendAlertResponseNew>> sendAlertResponseLivedataNew;
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponseLiveData;
     private SingleLiveEvent<Resource<DepartmentDropdown>> departmentDropDownData;
@@ -60,12 +62,17 @@ public class AlertRepo {
         departmentDropDownData = new SingleLiveEvent<>();
         siteSearchResponse = new SingleLiveEvent<>();
         sendAlertResponseLivedataNew = new SingleLiveEvent<>();
+        homeAlertResponseLivedata = new SingleLiveEvent<>();
 
     }
 
     public SingleLiveEvent<Resource<SendAlertResponse>> getAlertResponseLiveData() {
         return sendAlertResponseLivedata;
     }
+    public SingleLiveEvent<Resource<AlertAllDataResponse>> getHomeAlertResponseLivedata(){
+        return homeAlertResponseLivedata;
+    }
+
 
     public SingleLiveEvent<Resource<SendAlertResponseNew>> getAlertResponseLiveDataNew() {
         return sendAlertResponseLivedataNew;
@@ -157,6 +164,46 @@ public class AlertRepo {
                     sendAlertResponseLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     sendAlertResponseLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+    public void getHomeAlertDetails() {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Get","all");
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        apiClient.getAllAlert(jsonObject).enqueue(new Callback<AlertAllDataResponse>() {
+            @Override
+            public void onResponse(Call<AlertAllDataResponse> call, Response<AlertAllDataResponse> response) {
+                if (response.isSuccessful()){
+                    reportSuccessResponse(response);
+                } else if (response.errorBody()!=null){
+                    AppLogger.INSTANCE.log("getHomeAlertDetails error :"+response);
+                }else {
+                    AppLogger.INSTANCE.log("getHomeAlertDetails error :"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AlertAllDataResponse> call, Throwable t) {
+                reportErrorResponse(null, t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<AlertAllDataResponse> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("getHomeAlertDetails reportSuccessResponse :"+ response);
+                    homeAlertResponseLivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(APIError response, String iThrowableLocalMessage) {
+                if (response != null) {
+                    homeAlertResponseLivedata.postValue(Resource.error(response.getMessage(), null, 400));
+                } else if (iThrowableLocalMessage != null)
+                    homeAlertResponseLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    homeAlertResponseLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }

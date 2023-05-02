@@ -31,6 +31,7 @@ import com.smarthub.baseapplication.viewmodels.HomeViewModel
 class HomeFragment : Fragment(),TaskListener {
 
     lateinit var adapterList : MyTaskItemAdapter
+    lateinit var alertAdapterList : HomeAlertItemAdapter
     private val binding get() = _binding!!
     lateinit var homeViewModel : HomeViewModel
     private var _binding: FragmentHomeBinding? = null
@@ -65,6 +66,9 @@ class HomeFragment : Fragment(),TaskListener {
         binding.seeAllTask.setOnClickListener {
             (requireActivity() as DashboardActivity).openTaskMenu()
         }
+        binding.AlertsList.setHasFixedSize(true)
+        alertAdapterList = HomeAlertItemAdapter(this@HomeFragment,"home_navigation")
+        binding.AlertsList.adapter = alertAdapterList
 
         if (homeViewModel.homeData()?.hasActiveObservers() == true)
             homeViewModel.homeData()?.removeObservers(viewLifecycleOwner)
@@ -78,6 +82,26 @@ class HomeFragment : Fragment(),TaskListener {
                 }
             }else{
                 AppLogger.log("data not fetched")
+            }
+        }
+        if (homeViewModel.homeAlertsDataModel?.hasActiveObservers() == true)
+            homeViewModel.homeAlertsDataModel?.removeObservers(viewLifecycleOwner)
+        homeViewModel.homeAlertsDataModel?.observe(viewLifecycleOwner){
+            if (it!=null && it.status == Resource.Status.SUCCESS){
+                if (it.data != null && it.status == Resource.Status.LOADING) {
+                    alertAdapterList.addItem("loading")
+                    return@observe
+                }
+                if (it.data!=null && it.data.data?.isNotEmpty()==true){
+                    AppLogger.log("home alert data fetched:"+ Gson().toJson(it))
+                    binding.AlertCount.text=it.data.data.size.toString()
+                    alertAdapterList.updateList(it.data.data)
+                }else{
+                    alertAdapterList.addItem("no_data")
+                    AppLogger.log("home alert null or empty fetched data:")
+                }
+            }else{
+                AppLogger.log("home alert data not fetched")
             }
         }
 
@@ -115,7 +139,7 @@ class HomeFragment : Fragment(),TaskListener {
                 }
             }
         }
-        var b = Utils.isNetworkConnected(requireContext())
+        val b = Utils.isNetworkConnected(requireContext())
         AppLogger.log("home screen network:$b")
         if (b) {
             homeViewModel.fetchHomeData()
@@ -132,6 +156,7 @@ class HomeFragment : Fragment(),TaskListener {
                 binding.tastCount.text = list.size.toString()
             }
         }
+        homeViewModel.fetchHomeAlertData()
     }
 
     private fun mapUIData(data: HomeResponse){
