@@ -724,7 +724,7 @@
 
                     <TextView
                         android:padding="@dimen/_5sdp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:id="@+id/task_submit_msg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
