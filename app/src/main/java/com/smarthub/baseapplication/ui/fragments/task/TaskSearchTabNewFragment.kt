@@ -176,7 +176,7 @@ class TaskSearchTabNewFragment(
         }
         binding.dropdownImg.setOnClickListener {
             binding.collapsingLayout.tag = !(binding.collapsingLayout.tag as Boolean)
-            if (binding.collapsingLayout.tag) {
+            if (binding.collapsingLayout.tag as Boolean) {
                 binding.collapsingLayout.visibility = View.VISIBLE
                 binding.topLine.visibility = View.VISIBLE
                 binding.dropdownImg.setImageResource(R.drawable.down_arrow)
