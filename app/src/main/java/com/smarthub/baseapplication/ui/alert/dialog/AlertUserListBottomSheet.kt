@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import com.smarthub.baseapplication.databinding.AlertListBottomSheetBinding
 import com.smarthub.baseapplication.ui.alert.adapter.SelectCallBack
 import com.smarthub.baseapplication.ui.alert.adapter.UserListAdapter
@@ -29,7 +30,8 @@ class AlertUserListBottomSheet(contentLayoutId: Int, var viewModel: AlertViewMod
         binding.containerLayout.layoutParams.height = (Utils.getScreenHeight()*0.90).toInt()
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        AppLogger.log("size :${viewModel.userDataList.size}")
+        AppLogger.log("AlertUserListBottomSheet user size :${viewModel.userDataList.size}")
+        AppLogger.log("AlertUserListBottomSheet user :${Gson().toJson(viewModel.userDataList)}")
         binding.recyclerView.adapter = UserListAdapter(viewModel.userDataList,viewModel.selecteduserposition, listner )
 
         binding.icMenuClose.setOnClickListener {

@@ -110,10 +110,12 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
         viewmodel.userDataResponseLiveData.observe(viewLifecycleOwner, Observer {
             //response will get here
             hideLoader()
-            viewmodel.userDataList.clear()
-            viewmodel.userDataList.addAll(it.data!!)
-            val bm = AlertUserListBottomSheet(R.layout.alert_list_bottom_sheet, viewmodel, this)
-            bm.show(childFragmentManager, "categoery")
+            if (it.data!=null){
+                viewmodel.userDataList.clear()
+                viewmodel.userDataList.addAll(it.data)
+                val bm = AlertUserListBottomSheet(R.layout.alert_list_bottom_sheet, viewmodel, this)
+                bm.show(childFragmentManager, "categoery")
+            }
 
         })
 
@@ -146,9 +148,9 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     override fun getuser() {
         showLoader()
         if (customStringSpinner!=null)
-            viewmodel.getUser(GetUserList(customStringSpinner!!.selectedValue, AppController.getInstance().ownerName))
+            viewmodel.getDepartmentUsers(GetUserList(customStringSpinner!!.selectedValue, AppController.getInstance().ownerName))
         else
-            viewmodel.getUser(GetUserList("D1",AppController.getInstance().ownerName))
+            viewmodel.getDepartmentUsers(GetUserList("D1",AppController.getInstance().ownerName))
     }
     var customStringSpinner: CustomStringSpinner?=null
     var customStringSpinner1: CustomStringSpinner?=null
