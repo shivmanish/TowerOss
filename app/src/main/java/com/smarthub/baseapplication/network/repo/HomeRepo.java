@@ -2069,7 +2069,9 @@ public class HomeRepo {
     public void siteInfoDropDownNew() {
         getDepartmentRequest();
         AttachmentsConditionsRequestAll();
-        apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        apiClient.siteInfoDropDownNew(jsonObject).enqueue(new Callback<DropDownNew>() {
             @Override
             public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {
                 if (response.isSuccessful()) {

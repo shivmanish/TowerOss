@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AlertStatusBinding
+import com.smarthub.baseapplication.model.home.alerts.AlertAllData
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.alert.adapter.AlertImageAdapter
@@ -39,6 +40,10 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     var item: SearchListItem?=null
     var loadingProgress: ProgressBar?=null
     lateinit var searchResultAdapter : SearchResultAdapter
+    companion object{
+        var itemNew = SearchListItem("Search Site","448")
+        var homeAlertData:AlertAllData?=null
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AlertStatusBinding.inflate(inflater)
@@ -164,9 +169,6 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
         searchCardView.setOnClickListener {
             findNavController().navigate(AlertStatusFragmentDirections.actionAlertStatusFragmentToSearchIdFragment())
         }
-    }
-    companion object{
-        var itemNew = SearchListItem("Search Site","448")
     }
     override fun onResume() {
         if (searchCardView!=null)

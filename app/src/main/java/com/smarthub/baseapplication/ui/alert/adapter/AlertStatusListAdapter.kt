@@ -222,10 +222,8 @@ class AlertStatusListAdapter(var baseFragment: BaseFragment, var listener: Alert
                 }
                 holder.binding.itemTitle.text = list[position] as String
 
-                AppPreferences.getInstance()
-                    .setDropDownByName(holder.binding.spinIssueType, SendAlertDropDowns.SAIssueType.name,type)
-                AppPreferences.getInstance()
-                    .setDropDown(holder.binding.spinSeverity, SendAlertDropDowns.SASeverity.name)
+                AppPreferences.getInstance().setDropDownByName(holder.binding.spinIssueType, SendAlertDropDowns.SAIssueType.name,type)
+                AppPreferences.getInstance().setDropDown(holder.binding.spinSeverity, SendAlertDropDowns.SASeverity.name)
 
 
             }

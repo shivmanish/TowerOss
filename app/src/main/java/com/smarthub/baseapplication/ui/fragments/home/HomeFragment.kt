@@ -17,6 +17,8 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.home.alerts.AlertAllData
+import com.smarthub.baseapplication.ui.alert.AlertStatusFragment
 import com.smarthub.baseapplication.ui.dialog.home.AdNewSiteInfoBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.AttachmentDialogBottomSheet
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -24,11 +26,12 @@ import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.AssignTaskDialouge
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.ViewTaskBottomSheet
 import com.smarthub.baseapplication.utils.AppConstants
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class HomeFragment : Fragment(),TaskListener {
+class HomeFragment : Fragment(),TaskListener,HomeAlertItemAdapter.HomeAlertListner {
 
     lateinit var adapterList : MyTaskItemAdapter
     lateinit var alertAdapterList : HomeAlertItemAdapter
@@ -94,8 +97,11 @@ class HomeFragment : Fragment(),TaskListener {
                 }
                 if (it.data!=null && it.data.data?.isNotEmpty()==true){
                     AppLogger.log("home alert data fetched:"+ Gson().toJson(it))
-                    binding.AlertCount.text=it.data.data.size.toString()
-                    alertAdapterList.updateList(it.data.data)
+                    val filteredList=filterAlertList(it.data.data)
+                    binding.AlertCount.text=filteredList.size.toString()
+                    if (filteredList.size==0)
+                        binding.seeAllAlerts.visibility=View.GONE
+                    alertAdapterList.updateList(filteredList)
                 }else{
                     alertAdapterList.addItem("no_data")
                     AppLogger.log("home alert null or empty fetched data:")
@@ -260,6 +266,25 @@ class HomeFragment : Fragment(),TaskListener {
             }
         }
         return filteredTaskList
+    }
+
+    fun filterAlertList(allAlerts:ArrayList<AlertAllData>):ArrayList<AlertAllData>{
+        val tempList:ArrayList<AlertAllData> = ArrayList()
+        for(item in allAlerts){
+            for (subItem in item.Sendalertsupportdata){
+                if (subItem.SuRecepientusername==AppPreferences.getInstance().getString("loggedUser")){
+                    tempList.add(item)
+                    break
+                }
+            }
+
+        }
+        return  tempList
+    }
+
+    override fun alertAction(data: AlertAllData) {
+        AlertStatusFragment.homeAlertData=data
+        findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToAlertStatusFragment2())
     }
 
 

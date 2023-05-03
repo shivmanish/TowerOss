@@ -167,7 +167,7 @@ public interface APIClient {
     Call<UpdateTaskDataModel> dynamicTaskUiModelUpdate(@Body TaskDropDownModel data);
 
     @POST(EndPoints.SITE_INFO_DROP_DOWN_NEW)
-    Call<DropDownNew> siteInfoDropDownNew();
+    Call<DropDownNew> siteInfoDropDownNew(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA)

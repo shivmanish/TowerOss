@@ -11,15 +11,17 @@ import com.smarthub.baseapplication.activities.TaskDetailActivity
 import com.smarthub.baseapplication.databinding.HomeAlertsListItemBinding
 import com.smarthub.baseapplication.databinding.HomeTaskHeaderBinding
 import com.smarthub.baseapplication.databinding.HomeTaskListItemBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.home.MyTeamTask
 import com.smarthub.baseapplication.model.home.alerts.AlertAllData
+import com.smarthub.baseapplication.ui.alert.AlertStatusFragment
 import com.smarthub.baseapplication.ui.fragments.task.TaskActivity
 import com.smarthub.baseapplication.ui.fragments.task.TaskListener
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 
 
-class HomeAlertItemAdapter(var listener: TaskListener, var token:String) : RecyclerView.Adapter<HomeAlertItemAdapter.ViewHold>() {
+class HomeAlertItemAdapter(var listener: HomeAlertListner, var token:String) : RecyclerView.Adapter<HomeAlertItemAdapter.ViewHold>() {
 
     var list : ArrayList<Any> = ArrayList()
     var originalList : ArrayList<Any> = ArrayList()
@@ -31,8 +33,10 @@ class HomeAlertItemAdapter(var listener: TaskListener, var token:String) : Recyc
 
         fun bindData(data : AlertAllData){
             binding.alertName.text = data.SAIssueType
+            binding.siteId.text = data.sitename
             binding.senderName.text = data.UserFirstName+ " "+data.UserLastName
-//            binding.TaskId.text=data.workorderid
+            binding.dateTextSubtitle.text=Utils.getFormatedDate(data.TentativeDate,"dd MMM yyyy")
+            binding.clocktimeTextSubtitle.text=Utils.get12hrformate(data.TentativeDate.substring(11,19) )
         }
     }
 
@@ -110,11 +114,18 @@ class HomeAlertItemAdapter(var listener: TaskListener, var token:String) : Recyc
             holder.itemView.setOnClickListener {
 //                listener.closeTask(item,token)
             }
+            holder.binding.AlertAction.setOnClickListener {
+                listener.alertAction(item)
+            }
 
         }
     }
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    interface HomeAlertListner{
+        fun alertAction(data:AlertAllData)
     }
 }
