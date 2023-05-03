@@ -68,7 +68,9 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
         }
 
-        NotificationSettingGeoTracking=intent.getBooleanExtra("NotificationSettingGeoTracking",false)
+        if (intent.hasExtra("NotificationSettingGeoTracking"))
+            NotificationSettingGeoTracking=intent.getBooleanExtra("NotificationSettingGeoTracking",false)
+
         if (intent.hasExtra("Distance")){
             try {
                  intent.getStringExtra("Distance")?.toDouble()?.let {
