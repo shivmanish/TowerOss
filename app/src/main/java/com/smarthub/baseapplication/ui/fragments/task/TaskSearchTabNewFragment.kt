@@ -1167,37 +1167,7 @@ class TaskSearchTabNewFragment(
             }
 
             override fun addNew() {
-                showLoader()
-                if (homeViewModel.updateSiteAcqDataResponse?.hasActiveObservers() == true){
-                    homeViewModel.updateSiteAcqDataResponse?.removeObservers(viewLifecycleOwner)
-                }
-                homeViewModel.updateSiteAcqDataResponse?.observe(viewLifecycleOwner) {
-                    if (it != null && it.status == Resource.Status.LOADING) {
-                        AppLogger.log("TaskSearchTabNewFragment SiteAcq data creating in progress ")
-                        return@observe
-                    }
-                    if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqSiteAcquisition==200 ) {
-                        AppLogger.log("TaskSearchTabNewFragment card SiteAcq Data Created successfully")
-                        taskDetailData?.ModuleId=it.data.data.cardId.toString()
-                        taskDetailData?.ModuleName=it.data.data.name
-                        val tempTaskDataUpdate=TaskDataUpdateModel()
-                        tempTaskDataUpdate.ModuleId=it.data.data.cardId
-                        tempTaskDataUpdate.ModuleName=it.data.data.name
-                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
-                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
-                    }
-                    else if (it?.data != null && it.status == Resource.Status.SUCCESS){
-                        hideLoader()
-                        AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating SiteAcq Data")
-                    }
-                    else if (it != null) {
-                        AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
-                    } else {
-                        AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating SiteAcq Data")
-
-                    }
-                }
-                homeViewModel.updateSiteAcq(UpdateSiteAcquiAllData())
+                addNewAcq()
             }
 
         })
@@ -1205,27 +1175,37 @@ class TaskSearchTabNewFragment(
         if (homeViewModel.siteAgreementModel?.hasActiveObservers() == true) {
             homeViewModel.siteAgreementModel?.removeObservers(viewLifecycleOwner)
         }
-        homeViewModel.siteAgreementModel?.observe(viewLifecycleOwner, Observer {
+        homeViewModel.siteAgreementModel?.observe(viewLifecycleOwner) {
             hideLoader()
-            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.SAcqSiteAcquisition != null) {
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
-                if (taskDetailData?.ModuleId!="0" && it.data.SAcqSiteAcquisition?.size!!>0){
-                    var data:NewSiteAcquiAllData?=null
-                    var dataIndex:Int?=null
-                    for (item in it.data.SAcqSiteAcquisition!!){
-                        if (item.id.toString()==taskDetailData?.ModuleId){
-                            data=item
-                            dataIndex=it.data.SAcqSiteAcquisition?.indexOf(item)
+                if (taskDetailData?.ModuleId != "0" && it.data.SAcqSiteAcquisition?.size!! > 0) {
+                    val data: NewSiteAcquiAllData?
+                    val dataIndex: Int?
+                    for (i in 0..it.data.SAcqSiteAcquisition!!.size.minus(1)) {
+                        val item = it.data.SAcqSiteAcquisition!![i]
+                        if (item.id.toString() == taskDetailData?.ModuleId) {
+                            data = item
+                            dataIndex = it.data.SAcqSiteAcquisition?.indexOf(item)
 
-                            binding.viewpager.adapter = SiteAcquisitionTaskTabAdapter(childFragmentManager, data,dataIndex!!,subTaskTabList)
+                            binding.viewpager.adapter = SiteAcquisitionTaskTabAdapter(
+                                childFragmentManager,
+                                data,
+                                dataIndex!!,
+                                subTaskTabList
+                            )
                             binding.tabs.setupWithViewPager(binding.viewpager)
                             setViewPager()
                             break
+                        } else if (i == it.data.SAcqSiteAcquisition!!.size.minus(1)) {
+                            addNewAcq()
                         }
                     }
+                }else{
+                    addNewAcq()
                 }
                 serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
-                previousListSize=it.data.SAcqSiteAcquisition?.size!!
+                previousListSize = it.data.SAcqSiteAcquisition?.size!!
 
             } else if (it != null) {
                 Toast.makeText(
@@ -1236,10 +1216,14 @@ class TaskSearchTabNewFragment(
                 AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
             } else {
                 AppLogger.log("planDesign Fragment Something went wrong")
-                Toast.makeText(requireContext(), "planDesign Fragment Something went wrong", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    "planDesign Fragment Something went wrong",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
-        })
+        }
 
         if (taskViewModel.updateTaskDataResponse?.hasActiveObservers() == true){
             taskViewModel.updateTaskDataResponse?.removeObservers(viewLifecycleOwner)
@@ -1269,6 +1253,40 @@ class TaskSearchTabNewFragment(
         }
         showLoader()
         homeViewModel.fetchSiteAgreementModelRequest(AppController.getInstance().siteid)
+    }
+
+    fun addNewAcq() {
+        showLoader()
+        if (homeViewModel.updateSiteAcqDataResponse?.hasActiveObservers() == true){
+            homeViewModel.updateSiteAcqDataResponse?.removeObservers(viewLifecycleOwner)
+        }
+        homeViewModel.updateSiteAcqDataResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("TaskSearchTabNewFragment SiteAcq data creating in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqSiteAcquisition==200 ) {
+                AppLogger.log("TaskSearchTabNewFragment card SiteAcq Data Created successfully")
+                taskDetailData?.ModuleId=it.data.data.cardId.toString()
+                taskDetailData?.ModuleName=it.data.data.name
+                val tempTaskDataUpdate=TaskDataUpdateModel()
+                tempTaskDataUpdate.ModuleId=it.data.data.cardId
+                tempTaskDataUpdate.ModuleName=it.data.data.name
+                tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+            }
+            else if (it?.data != null && it.status == Resource.Status.SUCCESS){
+                hideLoader()
+                AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating SiteAcq Data")
+            }
+            else if (it != null) {
+                AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating SiteAcq Data")
+
+            }
+        }
+        homeViewModel.updateSiteAcq(UpdateSiteAcquiAllData())
     }
 
     fun setUpUtilityUqipData() {
