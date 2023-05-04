@@ -1392,6 +1392,24 @@ public class HomeRepo {
     }
 
     public void qatMainRequestAll(String id) {
+        if (!Utils.INSTANCE.isNetworkConnected(AppController.getInstance())) {
+            String cache_data = AppPreferences.getInstance().getString("qatMainRequestAll" + id);
+            if (cache_data != null && !cache_data.isEmpty()) {
+                try {
+                    QatMainModel cacheobject = new Gson().fromJson(cache_data, QatMainModel.class);
+                    if (cacheobject != null) {
+                        qatMainModelResponse.postValue(Resource.success(cacheobject, 200));
+                        return;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+            qatMainModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            return;
+        }
+
         ArrayList<String> list = new ArrayList<>();
         list.add("QATMainLaunch");
         SiteInfoParam siteInfoParam = new SiteInfoParam(list, Integer.parseInt(id), AppController.getInstance().ownerName);

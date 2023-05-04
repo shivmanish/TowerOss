@@ -614,75 +614,6 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.fetchPowerAndFuel(siteID.toString())
     }
-//    fun setUpTowerAndCvilData() {
-//        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
-//            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
-//        }
-//        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
-//            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
-//            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                TwrInfraDetails.Id=id
-//                TwrInfraDetails.TowerModelData=data
-//                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                PoleFragment.Id=id
-//                PoleFragment.TowerModelData=data
-//                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedEquipmentRoomItem(
-//                id: String,
-//                data: ArrayList<NewTowerCivilAllData>?,
-//            ) {
-//                TowerEquipmentFragemnt.EquipmentModelData = data
-//                TowerEquipmentFragemnt.Id=id
-//                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                TowerEarthingFragment.Id=id
-//                TowerEarthingFragment.EarthingModelData=data
-//                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//            }
-//
-//        },siteID.toString())
-//        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-//        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
-//
-//            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
-//                AppLogger.log("planDesign Fragment card Data fetched successfully")
-//                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
-//            } else if (it != null) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "planDesign Fragment error :${it.message}, data : ${it.data}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
-//            } else {
-//                AppLogger.log("planDesign Fragment Something went wrong")
-//                Toast.makeText(requireContext(),
-//                    "planDesign Fragment Something went wrong",
-//                    Toast.LENGTH_SHORT)
-//                    .show()
-//            }
-//        })
-//        (requireActivity() as BaseActivity).showLoader()
-//        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
-//    }
 
     fun filterTowerList(data:ArrayList<NewTowerCivilAllData>):ArrayList<FilterdTwrData>{
         val filteredData:ArrayList<FilterdTwrData> = ArrayList()
@@ -710,49 +641,6 @@ class TaskSearchTabNewFragment(
         }
 
     }
-
-//    private fun openCreateLaunchBottomSheet(qatMainModel : QatMainModel?) {
-//        homeViewModel.qatUpdateModel?.observe(viewLifecycleOwner) {
-//            if (it != null && it.status == Resource.Status.LOADING) {
-//                AppLogger.log("TaskSearchTabNewFragment data creating in progress ")
-//                return@observe
-//            }
-//            hideLoader()
-//            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
-//                AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
-//                try {
-//                    if (it.data.Status.isNotEmpty()){
-//                        var data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
-//                        taskDetailData?.ModuleId=data?.id.toString()
-//                        taskDetailData?.ModuleName=data!!.Instruction
-//                        val tempTaskDataUpdate=TaskDataUpdateModel()
-//                        tempTaskDataUpdate.ModuleId=data.id.toInt()
-//                        tempTaskDataUpdate.ModuleName=data.Instruction
-//                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
-//                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
-//                        setUpQatData()
-//                    }
-//                } catch (e:java.lang.Exception){
-//
-//                }
-//
-//            }
-//            else if (it != null) {
-//                AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
-//            } else {
-//                AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating Data")
-//
-//            }
-//        }
-//
-//        val bottomSheetDialogFragment = LaunchQatBottomSheet(object : LaunchQatBottomSheet.LaunchQatBottomSheetListener{
-//            override fun onQatCreated(data: QalLaunchModel) {
-//                showLoader()
-//                homeViewModel.qatLaunchMain(data)
-//            }
-//        },qatMainModel!!)
-//        bottomSheetDialogFragment.show(childFragmentManager, "category")
-//    }
 
     private fun openCreateLaunchBottomSheet() {
         if (homeViewModel.qatUpdateModel?.hasActiveObservers() == true) {
@@ -1685,7 +1573,7 @@ class TaskSearchTabNewFragment(
         if ( taskDetailData?.ReWorkflow==null ||  taskDetailData?.ReWorkflow?.isEmpty()==true){
             binding.closeBtn.visibility = View.GONE
         }else binding.closeBtn.visibility = View.GONE
-        
+
         NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
         isFancing = taskDetailData?.NotificationSettingGeoFencing!!
         fancingDistance = taskDetailData!!.Distance
