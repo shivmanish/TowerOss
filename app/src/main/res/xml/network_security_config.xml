@@ -6,5 +6,7 @@
         <domain includeSubdomains="true">49.50.77.81:8181</domain>
         <domain includeSubdomains="true">https://fibeross.net</domain>
         <domain includeSubdomains="true">http://49.50.77.81:8686</domain>
+        <domain includeSubdomains="true">http://49.50.77.81:8126</domain>
+        <domain includeSubdomains="true">https://infraoss.in</domain>
     </domain-config>
 </network-security-config>
