@@ -70,7 +70,7 @@ class RfSurvayTeamFragAdapter(var baseFragment:BaseFragment, var listener: RfLis
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_survey_fragment, parent, false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_survey_team_item, parent, false)
         return ViewHold(view)
     }
 

@@ -7,8 +7,6 @@
     android:layout_height="match_parent">
 
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:orientation="vertical"
         android:layout_marginTop="10dp"
@@ -16,7 +14,7 @@
         tools:itemCount="3"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/list_item"
-        tools:listitem="@layout/Rf_survey_team_item"
+        tools:listitem="@layout/rf_survey_team_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

@@ -49,6 +49,7 @@ class RfMainFrqagment(var id:String) : BaseFragment(), RfAdapterListener {
             if (it!=null && it.status == Resource.Status.LOADING){
                 return@observe
             }
+            hideLoader()
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.RfSurvey!=null){
                AppLogger.log("SstSbcMainFrqagment card Data fetched successfully")
                 hideLoader()
@@ -91,6 +92,7 @@ class RfMainFrqagment(var id:String) : BaseFragment(), RfAdapterListener {
         super.onViewPageSelected()
         if (!isDataLoaded){
             adapter.addLoading()
+            showLoader()
             viewmodel.fetchRfRequest(id)
         }
         AppLogger.log("onViewPageSelected PlanAndDesign")

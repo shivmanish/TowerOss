@@ -20,15 +20,15 @@ class AssignRfTeamFragment(var rfSurvey:RfSurvey?, var parentIndex:Int?): BaseFr
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = RfDataListLayoutBinding.inflate(inflater, container, false)
-        Toast.makeText(requireContext(),"this is called 3", Toast.LENGTH_SHORT).show()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= RfSurvayTeamFragAdapter(this@AssignRfTeamFragment,this@AssignRfTeamFragment,rfSurvey)
-        binding.listItem.adapter = adapter
-
+//        adapter= RfSurvayTeamFragAdapter(this@AssignRfTeamFragment,this@AssignRfTeamFragment,rfSurvey)
+//        binding.listItem.adapter = adapter
+        Toast.makeText(requireContext(),"this is called 3", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

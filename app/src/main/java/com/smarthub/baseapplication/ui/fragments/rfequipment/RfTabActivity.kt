@@ -6,6 +6,7 @@ import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
+import com.smarthub.baseapplication.databinding.ActivityRfSurveyBinding
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfSurvey
@@ -19,11 +20,11 @@ class RfTabActivity : BaseActivity() {
         var parentIndex: Int? = 0
     }
 
-    lateinit var binding: ActivityNewSiteAcquisitionBinding
+    lateinit var binding: ActivityRfSurveyBinding
     lateinit var adapter: RfTabAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNewSiteAcquisitionBinding.inflate(layoutInflater)
+        binding = ActivityRfSurveyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
     }
