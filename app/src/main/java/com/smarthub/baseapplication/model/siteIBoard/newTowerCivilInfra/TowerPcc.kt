@@ -1,19 +1,21 @@
 package com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra
 
-data class TowerPcc(
-    val ActualCompletionDate: String,
-    val StartDAte: String,
-    val TAT: Int,
-    val VendorEmailId: String,
-    val VendorExecutiveName: String,
-    val VendorExecutiveNumber: String,
-    val attachment: List<Any>,
-    val created_at: String,
-    val created_by: Int,
-    val id: Int,
-    val isActive: Boolean,
-    val licenseeCompany: Int,
-    val modified_at: String,
-    val modified_by: Int,
-    val remark: String
-)
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
+
+class TowerPcc{
+    var ActualCompletionDate: String?=null
+    var StartDAte: String?=null
+    var TAT: Int?=null
+    var VendorEmailId: String?=null
+    var VendorExecutiveName: String?=null
+    var VendorExecutiveNumber: String?=null
+    var attachment: ArrayList<Attachments>?=null
+    var created_at: String?=null
+    var created_by: Int?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var licenseeCompany: Int?=null
+    var modified_at: String?=null
+    var modified_by: Int?=null
+    var remark: String?=null
+}
