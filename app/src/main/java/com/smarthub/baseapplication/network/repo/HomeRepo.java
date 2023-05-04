@@ -845,6 +845,33 @@ public class HomeRepo {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         jsonObject.addProperty("homepage", "");
+        if (AppController.getInstance().profileData!=null){
+            jsonObject.addProperty("National", AppController.getInstance().profileData.getNational());
+
+            if (AppController.getInstance().profileData.getRegion()!=null && !AppController.getInstance().profileData.getRegion().isEmpty())
+                jsonObject.addProperty("Region", AppController.getInstance().profileData.getRegion().get(0));
+            else jsonObject.addProperty("Region", "");
+
+            if (AppController.getInstance().profileData.getState()!=null && !AppController.getInstance().profileData.getState().isEmpty())
+                jsonObject.addProperty("State", AppController.getInstance().profileData.getState().get(0));
+            else jsonObject.addProperty("State", "");
+            jsonObject.addProperty("Cluster", "");
+            if (AppController.getInstance().profileData.getMaintenancepoint()!=null && !AppController.getInstance().profileData.getMaintenancepoint().isEmpty())
+                jsonObject.addProperty("MaintenancePoint", AppController.getInstance().profileData.getMaintenancepoint().get(0));
+            else jsonObject.addProperty("MaintenancePoint", "");
+            jsonObject.addProperty("Area", "");
+            jsonObject.addProperty("Objectname", "");
+            jsonObject.addProperty("geolevel", "national");
+        }else{
+            jsonObject.addProperty("National", "INDIA");
+            jsonObject.addProperty("Region", "");
+            jsonObject.addProperty("State", "");
+            jsonObject.addProperty("MaintenancePoint", "");
+            jsonObject.addProperty("Area", "");
+            jsonObject.addProperty("Objectname", "");
+            jsonObject.addProperty("geolevel", "national");
+        }
+
         apiClient.fetchHomeData(jsonObject).enqueue(new Callback<HomeResponse>() {
             @Override
             public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {

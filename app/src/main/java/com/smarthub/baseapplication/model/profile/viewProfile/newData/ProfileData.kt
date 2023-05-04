@@ -29,7 +29,7 @@ data class ProfileData(
     val officeaddress: Officeaddress,
     val phone: String,
     val priviledgename: List<String>,
-    val region: List<String>,
+    val region: List<String>?,
     val requestname: String,
     val roles: List<String>,
     val state: List<String>,
