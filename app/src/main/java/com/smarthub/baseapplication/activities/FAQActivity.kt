@@ -1,9 +1,9 @@
 package com.smarthub.baseapplication.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.ui.adapter.PageAdapter_faq

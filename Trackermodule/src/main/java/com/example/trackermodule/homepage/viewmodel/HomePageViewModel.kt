@@ -5,16 +5,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.patrollerapp.db.CourseRepository
 import com.example.patrollerapp.db.LatlongData
-import com.example.patrollerapp.homepage.HomePage
-import com.example.patrollerapp.homepage.pojo.UploadLatLong
 import com.example.patrollerapp.homepage.pojo.UserDetailsService
 import com.example.patrollerapp.homepage.pojo.response.UserDataResponse
 import com.example.patrollerapp.util.PatrollerPriference

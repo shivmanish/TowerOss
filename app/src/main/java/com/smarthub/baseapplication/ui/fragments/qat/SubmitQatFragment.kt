@@ -13,13 +13,14 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.ui.adapter.qat.OpenQatAdapter
 import com.smarthub.baseapplication.ui.adapter.qat.SubmittedQatAdapter
 import com.smarthub.baseapplication.listeners.QatProfileListener
+import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.utils.Utils
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class SubmitQatFragment : Fragment(), QatProfileListener {
+class SubmitQatFragment : BaseFragment(), QatProfileListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView

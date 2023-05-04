@@ -2,10 +2,9 @@ package com.smarthub.baseapplication.ui.fragments.qat
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityQatDetailsBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.listeners.PunchPointListener

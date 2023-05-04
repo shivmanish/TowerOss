@@ -1,14 +1,16 @@
-package com.smarthub.baseapplication.activities
+package com.example.trackermodule.homepage
 
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
-import android.content.DialogInterface
-import android.content.Intent
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.smarthub.baseapplication.utils.Utils
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
@@ -51,9 +53,41 @@ open class BaseActivity : AppCompatActivity() {
         }
         datePickerDialog.show()
     }
+    fun getFormatedDate(d : String?,format:String) : String{
+        var date: String? ="2023-03-08"
+        if (d!=null && d.length>=10){
+            date=d.substring(0,10)
+        }else{
+            return ""
+        }
+
+//        AppLogger.log("getformatedDate:$date")
+        try {
+            val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val outputFormat: DateFormat = SimpleDateFormat(format)
+            val inputDateStr = date
+            val inputDate: Date = inputFormat.parse(inputDateStr)
+            date = outputFormat.format(inputDate)
+        }catch (e:java.lang.Exception){
+//            AppLogger.log("compareDate error :${e.localizedMessage}")
+        }
+        return date!!
+    }
+
+    fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        val isConnected = activeNetwork != null && activeNetwork.isConnected
+        return if (isConnected) {
+            true
+        } else {
+            Log.d("Network", "Not Connected")
+            false
+        }
+    }
 
     private fun showDate(year: Int, month: Int, day: Int,textView : TextView) {
-        textView.text = Utils.getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"dd-MMM-yyyy")
+        textView.text = getFormatedDate(StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day)).toString(),"dd-MMM-yyyy")
 //        textView.text =
 //            StringBuilder().append(year).append("-").append(String.format("%02d",month)).append("-").append(String.format("%02d",day))
     }
@@ -62,7 +96,7 @@ open class BaseActivity : AppCompatActivity() {
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun showLoader(){
-        if (Utils.isNetworkConnected()) {
+        if (isNetworkConnected()) {
             if (!progressDialog.isShowing) progressDialog.show()
         }
     }

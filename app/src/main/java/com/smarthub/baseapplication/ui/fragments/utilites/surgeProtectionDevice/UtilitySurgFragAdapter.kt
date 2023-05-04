@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.UtilitySurgProtectionDeviceDetailsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentSurgeProtectionDevice

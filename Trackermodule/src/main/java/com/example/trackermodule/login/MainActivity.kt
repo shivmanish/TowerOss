@@ -11,17 +11,17 @@ import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.patrollerapp.login.viewmodel.MainActivityViewmodel
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.trackermodule.databinding.ActivityMainBinding
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.snackbar.Snackbar
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     lateinit var activityMainBinding: ActivityMainBinding
     lateinit var viewmodel: MainActivityViewmodel
     var pin = ""

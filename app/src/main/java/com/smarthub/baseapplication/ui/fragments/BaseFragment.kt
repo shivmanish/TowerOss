@@ -1,18 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments
 import android.app.DatePickerDialog
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
-import okhttp3.internal.UTC
 import java.lang.Exception
-import java.text.SimpleDateFormat
 import java.util.*
 
 

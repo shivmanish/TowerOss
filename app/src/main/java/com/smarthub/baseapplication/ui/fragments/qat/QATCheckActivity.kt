@@ -1,15 +1,15 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityQatcheckBinding
 
-class QATCheckActivity : AppCompatActivity() {
+class QATCheckActivity : BaseActivity() {
 
     lateinit var binding : ActivityQatcheckBinding
     override fun onCreate(savedInstanceState: Bundle?) {

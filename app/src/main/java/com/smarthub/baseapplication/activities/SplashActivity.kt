@@ -15,13 +15,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.trackermodule.locationpicker.LocationPickerActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.profile.viewProfile.newData.ProfileData
-import com.smarthub.baseapplication.ui.fragments.project.DemoActivity
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
@@ -45,10 +44,10 @@ class SplashActivity : BaseActivity() {
         AppLogger.log("loginTimeDiff:$loginTimeDiff")
         findViewById<View>(R.id.manage_site).setOnClickListener {
             AppController.getInstance().ownerName = AppPreferences.getInstance().getString("company")
-//            val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            startActivity(intent)
-//            return@setOnClickListener
+            val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            return@setOnClickListener
 
             if (Utils.isNetworkConnected(this@SplashActivity)){
                 val intent = Intent(this@SplashActivity,LoginActivity::class.java)
@@ -117,7 +116,7 @@ class SplashActivity : BaseActivity() {
             if (it != null && it.status==Resource.Status.SUCCESS) {
 //                AppController.getInstance().ownerName = it.data?.get(0)?.ownercode
                 Log.d("status", "ownerName :${AppController.getInstance().ownerName}")
-                if (isNetworkConnected){
+                if (isNetworkConnected()){
                     if (it.data?.isNotEmpty()==true) {
                         AppController.getInstance().ownerName = it.data[0].ownercode
                         AppController.getInstance().profileData = it.data[0]
@@ -154,7 +153,7 @@ class SplashActivity : BaseActivity() {
             progressBar.visibility = View.VISIBLE
             exitText.text = "Loading..."
             Handler().postDelayed({
-                if (isNetworkConnected) {
+                if (isNetworkConnected()) {
                     b.dismiss()
                     val intent = Intent (this@SplashActivity, DashboardActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -171,20 +170,5 @@ class SplashActivity : BaseActivity() {
         }
         b.show()
     }
-
-    private val isNetworkConnected: Boolean
-        get() {
-            val manager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-            return if (SDK_INT >= Q)
-                manager.getNetworkCapabilities(manager.activeNetwork)?.let {
-                    it.hasTransport(TRANSPORT_WIFI) || it.hasTransport(TRANSPORT_CELLULAR) ||
-                            it.hasTransport(TRANSPORT_BLUETOOTH) ||
-                            it.hasTransport(TRANSPORT_ETHERNET) ||
-                            it.hasTransport(TRANSPORT_VPN)
-                } ?: false
-            else
-                @Suppress("DEPRECATION")
-                manager.activeNetworkInfo?.isConnected == true
-        }
 
 }

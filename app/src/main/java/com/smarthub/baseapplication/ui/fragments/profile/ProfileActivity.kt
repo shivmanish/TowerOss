@@ -2,7 +2,6 @@ package com.smarthub.baseapplication.ui.fragments.profile
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.activities.LoginActivity
 import com.smarthub.baseapplication.databinding.ActivityProfileBinding
 import com.smarthub.baseapplication.databinding.ProfileCustomMenuBinding

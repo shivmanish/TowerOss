@@ -1,10 +1,10 @@
 package com.smarthub.baseapplication.ui.alert
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.smarthub.baseapplication.R
+import com.example.trackermodule.homepage.BaseActivity
 
-class AlertActivity : AppCompatActivity() {
+class AlertActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

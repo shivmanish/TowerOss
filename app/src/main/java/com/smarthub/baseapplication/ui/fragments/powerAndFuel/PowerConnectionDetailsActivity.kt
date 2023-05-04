@@ -1,8 +1,8 @@
 package com.smarthub.baseapplication.ui.fragments.powerAndFuel
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityPowerConnectionDetailsBinding
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.NewPowerFuelAllData
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerConneDetailActivityAdapter
@@ -14,7 +14,7 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.pojo.PowerAndFuel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 
-class PowerConnectionDetailsActivity : AppCompatActivity() {
+class PowerConnectionDetailsActivity : BaseActivity() {
     lateinit var binding: ActivityPowerConnectionDetailsBinding
     lateinit var data: PowerAndFuel
     lateinit var adapter: PowerFuelTabAdapter

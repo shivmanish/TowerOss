@@ -2,11 +2,10 @@ package com.smarthub.baseapplication.ui.fragments.opcoTenancy
 
 import android.os.Bundle
 import androidx.annotation.IdRes
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.OpcofragmnetnewBinding
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData

@@ -1,9 +1,8 @@
 package com.smarthub.baseapplication.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
-import android.view.WindowManager
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.ui.adapter.LanguageListAdapter
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityLanguageBinding

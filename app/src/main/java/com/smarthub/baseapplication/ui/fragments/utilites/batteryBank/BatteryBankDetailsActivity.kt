@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.utilites.batteryBank
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivitySmpsdetailsBinding
@@ -11,7 +11,7 @@ import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.utilites.adapter.SMPSViewpagerAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.batteryBank.adapters.BatterryBankViewpagerAdapter
 
-class BatteryBankDetailsActivity : AppCompatActivity() {
+class BatteryBankDetailsActivity : BaseActivity() {
     lateinit var binding: ActivitySmpsdetailsBinding
     companion object{
         var utilityData: UtilityEquipmentAllData?=null

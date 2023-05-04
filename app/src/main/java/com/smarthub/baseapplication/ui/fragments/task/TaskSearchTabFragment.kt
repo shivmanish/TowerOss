@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patrollerapp.homepage.HomePage
+import com.example.trackermodule.homepage.HomePage
 import com.example.patrollerapp.util.LocationService
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.patrollerapp.util.Util
@@ -29,7 +29,6 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModelIt
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.dynamic.TitleItem
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
-import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoListAdapter
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
 import com.smarthub.baseapplication.ui.fragments.task.adapter.HorizontalTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter

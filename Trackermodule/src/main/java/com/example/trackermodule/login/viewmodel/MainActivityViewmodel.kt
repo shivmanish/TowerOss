@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.example.patrollerapp.homepage.HomePage
-import com.example.patrollerapp.login.OtpVerifyActivity
+import com.example.trackermodule.homepage.HomePage
+import com.example.trackermodule.login.OtpVerifyActivity
 import com.example.patrollerapp.login.pojo.LoginWithPasscode
 import com.example.patrollerapp.login.pojo.NormalResponse
 import com.example.patrollerapp.login.pojo.OptSendService

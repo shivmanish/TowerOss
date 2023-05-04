@@ -1,13 +1,13 @@
-package com.example.patrollerapp.login
+package com.example.trackermodule.login
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.patrollerapp.login.viewmodel.SetPinViewModel
 import com.example.trackermodule.databinding.ActivitySetPinBinding
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.snackbar.Snackbar
 
-class SetPinActivity : AppCompatActivity() {
+class SetPinActivity : BaseActivity() {
 
     lateinit var setPinBinding: ActivitySetPinBinding
     lateinit var setPinViewModel: SetPinViewModel

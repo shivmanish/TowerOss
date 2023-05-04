@@ -7,19 +7,10 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.trackermodule.R
 
 object PermissionUtils {
-    fun asktAccessFineLocationPermission(activity: AppCompatActivity, requestId: Int) {
-        ActivityCompat.requestPermissions(
-            activity,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            requestId
-        )
-    }
 
     fun checkAccessFineLocationGranted(context: Context): Boolean {
         return ContextCompat
