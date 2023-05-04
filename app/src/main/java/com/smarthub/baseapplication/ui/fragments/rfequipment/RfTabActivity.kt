@@ -2,9 +2,9 @@ package com.smarthub.baseapplication.ui.fragments.rfequipment
 
 import android.os.Bundle
 import android.widget.Toast
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
@@ -35,7 +35,7 @@ class RfTabActivity : BaseActivity() {
         }
         binding.DateLebel.text="Survey Date"
         binding.titel.text="ABCD"
-        Toast.makeText(requireContext(),"this is called 2", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"this is called 2", Toast.LENGTH_SHORT).show()
         binding.subTitle.text=AppController.getInstance().siteName
        binding.dateText.text = rfSurvey!!.created_at
         adapter = RfTabAdapter(supportFragmentManager, rfSurvey, parentIndex!!)
