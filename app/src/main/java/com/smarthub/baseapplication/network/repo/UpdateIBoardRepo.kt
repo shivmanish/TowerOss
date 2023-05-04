@@ -19,6 +19,8 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utility
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcModel
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.UpdateSstSbcResponseModel
 import com.smarthub.baseapplication.network.APIClient
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import retrofit2.Call
@@ -32,6 +34,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     var updateUtilityEquipResponse: SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var updateNocCompResponse: SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var updateSstSbcResponse: SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
+    var rfBasicResponselivedata: SingleLiveEvent<Resource<RfBasicResponse>>? = null
     var updateSiteInfoResponse: SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelResponse: SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
     var updateTwrCivilInfraResponse: SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
@@ -44,6 +47,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
         updateSiteInfoResponse=SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>()
         updatePowerFuelResponse=SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>()
         updateTwrCivilInfraResponse=SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>()
+        rfBasicResponselivedata = SingleLiveEvent<Resource<RfBasicResponse>>()
     }
 
 
@@ -216,6 +220,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
             }
         })
     }
+
+    fun updateRfData(data: RfMainResponse?) {
+        AppLogger.log("updateSstSbcData==> : ${Gson().toJson(data)}")
+        apiClient.updateRfServey(data).enqueue(object : Callback<RfBasicResponse> {
+            override fun onResponse(
+                call: Call<RfBasicResponse?>,
+                response: Response<RfBasicResponse?>
+            ) {
+                AppLogger.log("updateSstSbcData onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<RfBasicResponse?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log( "updateSstSbcData"+ " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<RfBasicResponse?>) {
+                if (response.body() != null) {
+                    rfBasicResponselivedata?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateSstSbcResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateSstSbcResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                    ) else updateSstSbcResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
 
     fun updateTwrCivilData(data: TowerCivilAllDataModel?) {
         AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")

@@ -191,6 +191,7 @@ class HomePage : AppCompatActivity(), OnMapReadyCallback {
             homePageBinding.start.visibility = View.GONE
             homePageBinding.pause.visibility = View.VISIBLE
             homePageBinding.stop.visibility = View.VISIBLE
+
             PatrollerPriference(this).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
             homePageViewModel.delate()
             PatrollerPriference(this).settime("")
