@@ -80,10 +80,11 @@ class AddTaskInfoFragment : BaseFragment() {
                  taskViewmodel.processTemplatemanual.SLA= binding.sla.text.toString().toIntOrNull()
                  taskViewmodel.processTemplatemanual.Weightage=binding.Weightage.text.toString()
                  taskViewmodel.processTemplatemanual.geolevel=binding.GeographyLevel.selectedValue.name
+                 taskViewmodel.processTemplatemanual.geolevel2=binding.GeographyLevel.selectedValue.name
                  taskViewmodel.processTemplatemanual.siteid= selectedSiteInfo.id.toString()
                  taskViewmodel.processTemplatemanual.sitename= selectedSiteInfo.name.toString()
-                 taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
                  taskViewmodel.processTemplatemanual.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
+                 taskViewmodel.processTemplatemanual.assigneedepartment2=binding.assigneeDepartment.selectedValue.name
                  taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.username
                  taskViewmodel.processTemplatemanual.priority=binding.priority.selectedValue.name
                  findNavController().navigate(R.id.actionToMoveSecondFrag)
@@ -183,10 +184,10 @@ class AddTaskInfoFragment : BaseFragment() {
         binding.priority.setSpinnerData(PRiorityList)
         binding.assigneeDepartment.setOnItemSelectionListener(object : CustomSpinner.ItemSelectedListener{
             override fun itemSelected(departmentName: DropDownItem) {
-                AppLogger.log("setOnItemSelectedListener :${departmentName.name}")
+                AppLogger.log("assigneeDepartment :${departmentName.name}")
 //                Toast.makeText(context,"setOnItemSelectedListener ${departmentName.name}",Toast.LENGTH_SHORT).show()
                 viewmodel.getDepartmentUsers(GetUserList(departmentName.name,AppController.getInstance().ownerName))
-                observerData()
+//                observerData()
 
             }
         })
@@ -203,12 +204,16 @@ class AddTaskInfoFragment : BaseFragment() {
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                if (it.data.Department.data.isEmpty()){
+                    Toast.makeText(requireContext(),"Empty user list",Toast.LENGTH_SHORT).show()
+                }
                 AppLogger.log("AddTaskInfoFragment departmentDataDataResponse loaded successfull ")
                 if (taskInfo!=null)
                     binding.assigneeDepartment.setSpinnerData(it.data.Department.data,taskInfo?.AssigneeDepartment)
                 else
                     binding.assigneeDepartment.setSpinnerData(it.data.Department.data)
-            }else AppLogger.log("Department not fetched")
+            }
+            else AppLogger.log("Department not fetched")
         }
         observerData()
 
@@ -259,10 +264,12 @@ class AddTaskInfoFragment : BaseFragment() {
         taskViewmodel.processTemplatemanual.SLA= taskInfo.SLA.toInt()
         taskViewmodel.processTemplatemanual.Weightage=taskInfo.Weightage
         taskViewmodel.processTemplatemanual.geolevel=taskInfo.geolevel
+        taskViewmodel.processTemplatemanual.geolevel2=taskInfo.geolevel
         taskViewmodel.processTemplatemanual.siteid= taskInfo.siteid
         taskViewmodel.processTemplatemanual.sitename= taskInfo.sitename
         taskViewmodel.processTemplatemanual.Taskname=taskInfo.Taskname
         taskViewmodel.processTemplatemanual.AssigneeDepartment=taskInfo.AssigneeDepartment
+        taskViewmodel.processTemplatemanual.assigneedepartment2=taskInfo.AssigneeDepartment
         taskViewmodel.processTemplatemanual.actorname=taskInfo.actorname
         taskViewmodel.processTemplatemanual.pictures=taskInfo.pictures=="True"
         taskViewmodel.processTemplatemanual.documents=taskInfo.documents=="True"

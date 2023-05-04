@@ -8,7 +8,14 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem
-import com.smarthub.baseapplication.model.taskModel.*
+import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
+import com.smarthub.baseapplication.model.qatcheck.update.QatUpdateModel
+import com.smarthub.baseapplication.model.taskModel.CreateNewTaskModel
+import com.smarthub.baseapplication.model.taskModel.CreateNewTaskResponse
+import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelData
+import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
+import com.smarthub.baseapplication.model.taskModel.GetTaskInfoPostData
+import com.smarthub.baseapplication.model.taskModel.TaskInfo
 import com.smarthub.baseapplication.model.taskModel.assignTask.AssignTaskNewModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
@@ -27,6 +34,7 @@ import retrofit2.Response
 
 class TaskActivityRepo(private var apiClient: APIClient) {
 
+    var qatUpdateModel: SingleLiveEvent<Resource<QatUpdateModel?>>? = null
     val createNewTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     val assignTaskResponse: MutableLiveData<CreateNewTaskResponse> = MutableLiveData()
     var updatedTaskResponse: SingleLiveEvent<Resource<UpdatedTaskResponseModel>>? = null
@@ -37,9 +45,52 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         geoGraphyDropDownDataResponse=SingleLiveEvent<Resource<GeoGraphyLevelData>>()
         taskInfoResponse=SingleLiveEvent<Resource<TaskInfo>>()
         updatedTaskResponse=SingleLiveEvent<Resource<UpdatedTaskResponseModel>>()
+        qatUpdateModel=SingleLiveEvent<Resource<QatUpdateModel?>>()
     }
 
-    
+    fun qatMainRequestAll(data: QalLaunchModel?) {
+        apiClient.fetchQatMainRequest(data).enqueue(object : Callback<QatUpdateModel?> {
+            override fun onResponse(
+                call: Call<QatUpdateModel?>,
+                response: Response<QatUpdateModel?>,
+            ) {
+                if (response.isSuccessful) {
+                    reportSuccessResponse(response)
+                } else if (response.errorBody() != null) {
+                    log("error :$response")
+                } else {
+                    log("error :$response")
+                }
+            }
+
+            override fun onFailure(call: Call<QatUpdateModel?>, t: Throwable) {
+                reportErrorResponse(t.localizedMessage)
+            }
+
+            private fun reportSuccessResponse(response: Response<QatUpdateModel?>) {
+                if (response.body() != null) {
+                    log("reportSuccessResponse :$response")
+                    qatUpdateModel?.postValue(
+                        Resource.success<QatUpdateModel?>(
+                            response.body()!!, 200
+                        )
+                    )
+                }
+            }
+
+            private fun reportErrorResponse(iThrowableLocalMessage: String?) {
+                if (iThrowableLocalMessage != null) qatUpdateModel?.postValue(
+                    Resource.error<QatUpdateModel>(
+                        iThrowableLocalMessage,
+                        null,
+                        500
+                    )
+                ) else qatUpdateModel?.postValue(
+                    Resource.error<QatUpdateModel>(AppConstants.GENERIC_ERROR, null, 500)
+                )
+            }
+        })
+    }
 
     fun createNewTask(data: CreateNewTaskModel?) {
         AppLogger.log("TaskData for create or update=====>:${Gson().toJson(data)}")
@@ -225,7 +276,8 @@ class TaskActivityRepo(private var apiClient: APIClient) {
         apiClient.updateTaskData(data!!).enqueue(object : Callback<UpdatedTaskResponseModel> {
             override fun onResponse(
                 call: Call<UpdatedTaskResponseModel?>,
-                response: Response<UpdatedTaskResponseModel?>, ) {
+                response: Response<UpdatedTaskResponseModel?>,
+            ) {
                 log("onResponse main : $response")
                 if ("$response"=="null"){
                     updatedTaskResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))

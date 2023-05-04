@@ -361,7 +361,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                         holder.recyclerListener.adapter=
                             ImageAttachmentCommonAdapter(context,datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                                 override fun itemClicked(item : Attachments) {
-                                    listener.attachmentItemClicked()
+                                    listener.attachmentItemClicked(item)
                                 }
                         })
                     }
@@ -388,7 +388,7 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
 
 
     interface SoftAcqListListener {
-       fun attachmentItemClicked()
+       fun attachmentItemClicked(item: Attachments)
        fun addAttachment()
        fun viewPayeeAccountClicked(position: Int,data:SAcqPayeeAccountDetail)
        fun editPayeeAccountClicked(position: Int,data:SAcqPayeeAccountDetail)

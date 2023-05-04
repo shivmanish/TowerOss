@@ -4,14 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
-
 import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding
-import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding.*
-import com.smarthub.baseapplication.databinding.ActivitySettingBinding
+import com.smarthub.baseapplication.databinding.ActivityForgotPasswordBinding.inflate
 
 class ForgotPasswordActivity : BaseActivity() {
 

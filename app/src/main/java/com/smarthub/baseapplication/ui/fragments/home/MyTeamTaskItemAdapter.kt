@@ -151,7 +151,7 @@ class MyTeamTaskItemAdapter(var listener: TaskListener, var token:String,var con
                     intent.putExtra("title","Edit Task")
                     intent.putExtra("Distance", item.Distance)
                     intent.putExtra("NotificationSettingGeoFencing", item.NotificationSettingGeoFencing)
-                    intent.putExtra("Trackingflag", item.Trackingflag)
+                    intent.putExtra("NotificationSettingGeoTracking", item.NotificationSettingGeoTracking)
                     holder.itemView.context.startActivity(intent)
                 }
 

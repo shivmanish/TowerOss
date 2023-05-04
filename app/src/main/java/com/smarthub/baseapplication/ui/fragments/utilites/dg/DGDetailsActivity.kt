@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.utilites.dg
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivitySmpsdetailsBinding
@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.Utility
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.fragments.utilites.dg.adapters.DGViewpagerAdapter
 
-class DGDetailsActivity : AppCompatActivity() {
+class DGDetailsActivity : BaseActivity() {
     lateinit var binding: ActivitySmpsdetailsBinding
     companion object{
         var utilityData: UtilityEquipmentAllData?=null

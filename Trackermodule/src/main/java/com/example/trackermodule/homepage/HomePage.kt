@@ -1,4 +1,4 @@
-package com.example.patrollerapp.homepage
+package com.example.trackermodule.homepage
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -18,7 +18,6 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +28,6 @@ import com.example.patrollerapp.util.LocationService
 import com.example.patrollerapp.util.LocationService.Companion.is_canceled_by_me
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.patrollerapp.util.Util
-import com.example.patrollerapp.util.Util.BitmapFromVector
 import com.example.trackermodule.R
 import com.example.trackermodule.databinding.ActivityHomePageBinding
 import com.example.trackermodule.util.EasyLocationProvider
@@ -45,7 +43,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.gson.Gson
 
 
-class HomePage : AppCompatActivity(), OnMapReadyCallback {
+class HomePage : BaseActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     var easyLocationProvider: EasyLocationProvider? = null
     lateinit var homePageBinding: ActivityHomePageBinding

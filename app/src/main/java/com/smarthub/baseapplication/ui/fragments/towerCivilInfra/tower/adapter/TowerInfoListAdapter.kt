@@ -1,8 +1,11 @@
 package com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -20,6 +23,16 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
     private var datalist: TowerAndCivilInfraTower?=null
     private var towerInfoData:TwrCivilInfraTowerDetail?=null
     private var insAccepData:TwrInstallationAndAcceptence?=null
+    private var excavationData:TowerExcavation?=null
+    private var pccData:TowerPcc?=null
+    private var barbendingData:TowerBarBending?=null
+    private var raftCastingData:TowerRaftShaft?=null
+    private var cubeTestingData:TowerCubeTesting?=null
+    private var cast1Data:TowerLiftCast1?=null
+    private var cast2Data:TowerLiftCast2?=null
+    private var templetFixingData:TowerTemplateFixing?=null
+    private var towerEarthingData:TowerTowerEarthing?=null
+    private var eractionData:TowerErection?=null
     fun setData(data: TowerAndCivilInfraTower?) {
         this.datalist=data!!
         notifyDataSetChanged()
@@ -37,12 +50,32 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
     var type4 = "Consumable Materials"
     var type5 = "Preventive Maintenance"
     var type6 = "Attachments"
+    var type7 = "Excavation"
+    var type8 = "PCC"
+    var type9 = "Bar-Bending"
+    var type10 = "Raft Casting"
+    var type11 = "Cube Testing"
+    var type12 = "1st Lift Cast"
+    var type13 = "2nd Lift Cast"
+    var type14 = "Template Fixing"
+    var type15 = "Tower Earthing"
+    var type16 = "Erection"
 
     init {
         list.add("Tower Details")
-        list.add("Installation & Acceptance")
-        list.add("PO Details")
+//        list.add("Installation & Acceptance")
+//        list.add("PO Details")
         list.add("Consumable Materials")
+        list.add("Excavation")
+        list.add("PCC")
+        list.add("Bar-Bending")
+        list.add("Raft Casting")
+        list.add("Cube Testing")
+        list.add("1st Lift Cast")
+        list.add("2nd Lift Cast")
+        list.add("Template Fixing")
+        list.add("Tower Earthing")
+        list.add("Erection")
         list.add("Preventive Maintenance")
         list.add("Attachments")
     }
@@ -165,6 +198,24 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
 
         }
     }
+    class ViewHold7(itemView: View) : ViewHold(itemView) {
+        var binding: TowerCivilDetailsCommonLayoutBinding = TowerCivilDetailsCommonLayoutBinding.bind(itemView)
+        val recyclerListener:RecyclerView = binding.root.findViewById(R.id.list_item)
+
+        init {
+            binding.root.findViewById<TextView>(R.id.Attachment_Titel).visibility=View.GONE
+            binding.collapsingLayout.tag = false
+            if ((binding.collapsingLayout.tag as Boolean)) {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+            } else {
+                binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+            }
+
+        }
+    }
+
 
     override fun getItemViewType(position: Int): Int {
         if (list[position]==type1)
@@ -179,6 +230,26 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
             return 5
         else if (list[position]==type6)
             return 6
+        else if (list[position]==type7)
+            return 7
+        else if (list[position]==type8)
+            return 8
+        else if (list[position]==type9)
+            return 9
+        else if (list[position]==type10)
+            return 10
+        else if (list[position]==type11)
+            return 11
+        else if (list[position]==type12)
+            return 12
+        else if (list[position]==type13)
+            return 13
+        else if (list[position]==type14)
+            return 14
+        else if (list[position]==type15)
+            return 15
+        else if (list[position]==type16)
+            return 16
         return 0
     }
 
@@ -208,6 +279,10 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
             6 -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.tower_civil_infra_attachment_common, parent, false)
                 return ViewHold6(view,listener)
+            }
+            7,8,9,10,11,12,13,14,15,16 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.tower_civil_details_common_layout, parent, false)
+                return ViewHold7(view)
             }
 
         }
@@ -535,7 +610,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
                         if (datalist!=null){
-                            listener.addAttachment()
+                            listener.addAttachment("TowerAndCivilInfraTower",datalist?.id.toString())
                         }
                         else
                             Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
@@ -566,6 +641,713 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     AppLogger.log("Acq Survey error : ${e.localizedMessage}")
                 }
             }
+            is ViewHold7-> {
+                holder.binding.imgEdit.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+                }
+                if (currentOpened == position) {
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
+                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                    holder.binding.itemLine.visibility = View.GONE
+                    holder.binding.itemCollapse.visibility = View.VISIBLE
+                    holder.binding.imgEdit.visibility = View.VISIBLE
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+
+                }
+                else {
+                    holder.binding.collapsingLayout.tag = false
+                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
+                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
+                    holder.binding.itemLine.visibility = View.VISIBLE
+                    holder.binding.itemCollapse.visibility = View.GONE
+                    holder.binding.imgEdit.visibility = View.GONE
+                }
+                holder.binding.collapsingLayout.setOnClickListener {
+                    updateList(position)
+                }
+                holder.binding.itemTitleStr.text = list[position]
+                holder.binding.StartDateEdit.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        var cmp:Int=0
+                        if (holder.binding.ActualCompletionDateEdit.text.toString().isNotEmpty()){
+                            cmp=Utils.dateDiffrence(holder.binding.StartDateEdit.text.toString(),holder.binding.ActualCompletionDateEdit.text.toString())
+                        }
+                        if(cmp<0){
+                            AppLogger.log("Invalid End date")
+                            holder.binding.TatEdit.text="0"
+                        }
+                        else{
+                            holder.binding.TatEdit.text=String.format("%02d",cmp)
+                        }
+                    }
+                })
+
+                holder.binding.ActualCompletionDateEdit.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        var cmp:Int=0
+                        if (holder.binding.StartDateEdit.text.toString().isEmpty()){
+                            AppLogger.log("Please Select Started to calculate TAT")
+                        }
+                        else{
+                            cmp=Utils.dateDiffrence(holder.binding.StartDateEdit.text.toString(),holder.binding.ActualCompletionDateEdit.text.toString())
+                        }
+                        if(cmp<0){
+                            AppLogger.log("Invalid End date")
+//                    Toast.makeText(context,"Invalid End date", Toast.LENGTH_SHORT).show()
+                            holder.binding.TatEdit.text="0"
+                        }
+                        else{
+                            holder.binding.TatEdit.text=String.format("%02d",cmp)
+                        }
+                    }
+
+                })
+                baseFragment.setDatePickerView(holder.binding.StartDateEdit)
+                baseFragment.setDatePickerView(holder.binding.ActualCompletionDateEdit)
+                if (list[position]==type7){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerExcavation?.isNotEmpty()==true)
+                        excavationData=datalist?.TowerAndCivilInfraTowerExcavation?.get(0)
+                    if (excavationData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(excavationData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(excavationData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=excavationData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=excavationData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=excavationData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=excavationData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=excavationData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(excavationData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(excavationData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=excavationData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(excavationData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(excavationData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(excavationData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(excavationData?.remark)
+                    }
+
+                    try {
+                    if (excavationData!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),excavationData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type8){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerPcc?.isNotEmpty()==true)
+                        pccData=datalist?.TowerAndCivilInfraTowerPcc?.get(0)
+                    if (pccData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(pccData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(pccData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=pccData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=pccData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=pccData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=pccData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=pccData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(pccData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(pccData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=pccData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(pccData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(pccData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(pccData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(pccData?.remark)
+                    }
+
+                    try {
+                    if (pccData!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),pccData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type9){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerBarBending?.isNotEmpty()==true)
+                        barbendingData=datalist?.TowerAndCivilInfraTowerBarBending?.get(0)
+                    if (barbendingData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(barbendingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(barbendingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=barbendingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=barbendingData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=barbendingData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=barbendingData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=barbendingData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(barbendingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(barbendingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=barbendingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(barbendingData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(barbendingData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(barbendingData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(barbendingData?.remark)
+                    }
+
+                    try {
+                    if (barbendingData!=null&& barbendingData?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),barbendingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type10){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerRaftShaft?.isNotEmpty()==true)
+                        raftCastingData=datalist?.TowerAndCivilInfraTowerRaftShaft?.get(0)
+                    if (raftCastingData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(raftCastingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(raftCastingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=raftCastingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=raftCastingData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=raftCastingData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=raftCastingData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=raftCastingData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(raftCastingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(raftCastingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=raftCastingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(raftCastingData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(raftCastingData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(raftCastingData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(raftCastingData?.remark)
+                    }
+
+                    try {
+                    if (raftCastingData!=null&& raftCastingData?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),raftCastingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type11){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerCubeTesting?.isNotEmpty()==true)
+                        cubeTestingData=datalist?.TowerAndCivilInfraTowerCubeTesting?.get(0)
+                    if (cubeTestingData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(cubeTestingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(cubeTestingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=cubeTestingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=cubeTestingData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=cubeTestingData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=cubeTestingData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=cubeTestingData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(cubeTestingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(cubeTestingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=cubeTestingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(cubeTestingData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(cubeTestingData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(cubeTestingData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(cubeTestingData?.remark)
+                    }
+
+                    try {
+                    if (cubeTestingData!=null&& cubeTestingData?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),cubeTestingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type12){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerLiftCast1?.isNotEmpty()==true)
+                        cast1Data=datalist?.TowerAndCivilInfraTowerLiftCast1?.get(0)
+                    if (cast1Data!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(cast1Data?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(cast1Data?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=cast1Data?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=cast1Data?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=cast1Data?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=cast1Data?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=cast1Data?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(cast1Data?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(cast1Data?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=cast1Data?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(cast1Data?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(cast1Data?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(cast1Data?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(cast1Data?.remark)
+                    }
+
+                    try {
+                    if (cast1Data!=null&& cast1Data?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),cast1Data?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type13){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerLiftCast2?.isNotEmpty()==true)
+                        cast2Data=datalist?.TowerAndCivilInfraTowerLiftCast2?.get(0)
+                    if (cast2Data!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(cast2Data?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(cast2Data?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=cast2Data?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=cast2Data?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=cast2Data?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=cast2Data?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=cast2Data?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(cast2Data?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(cast2Data?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=cast2Data?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(cast2Data?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(cast2Data?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(cast2Data?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(cast2Data?.remark)
+                    }
+
+                    try {
+                    if (cast2Data!=null&& cast2Data?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),cast2Data?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+
+                }
+                if (list[position]==type14){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerTemplateFixing?.isNotEmpty()==true)
+                        templetFixingData=datalist?.TowerAndCivilInfraTowerTemplateFixing?.get(0)
+                    if (templetFixingData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(templetFixingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(templetFixingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=templetFixingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=templetFixingData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=templetFixingData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=templetFixingData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=templetFixingData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(templetFixingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(templetFixingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=templetFixingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(templetFixingData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(templetFixingData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(templetFixingData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(templetFixingData?.remark)
+                    }
+
+                    try {
+                    if (templetFixingData!=null&& templetFixingData?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),templetFixingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+                }
+                if (list[position]==type15){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerTowerEarthing?.isNotEmpty()==true)
+                        towerEarthingData=datalist?.TowerAndCivilInfraTowerTowerEarthing?.get(0)
+                    if (towerEarthingData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(towerEarthingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(towerEarthingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=towerEarthingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=towerEarthingData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=towerEarthingData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=towerEarthingData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=towerEarthingData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(towerEarthingData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(towerEarthingData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=towerEarthingData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(towerEarthingData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(towerEarthingData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(towerEarthingData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(towerEarthingData?.remark)
+                    }
+
+                    try {
+                    if (towerEarthingData!=null&& towerEarthingData?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),towerEarthingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+                }
+                if (list[position]==type16){
+                    if (datalist!=null && datalist?.TowerAndCivilInfraTowerErection?.isNotEmpty()==true)
+                        eractionData=datalist?.TowerAndCivilInfraTowerErection?.get(0)
+                    if (eractionData!=null){
+                        //view mode
+                        holder.binding.StartDate.text=Utils.getFormatedDate(eractionData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDate.text=Utils.getFormatedDate(eractionData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.Tat.text=eractionData?.TAT?.toString()
+                        holder.binding.VendorExecutiveName.text=eractionData?.VendorExecutiveName
+                        holder.binding.VendorExecutiveEmail.text=eractionData?.VendorEmailId
+                        holder.binding.VendorExecutiveNumber.text=eractionData?.VendorExecutiveNumber
+                        holder.binding.Remarks.text=eractionData?.remark
+
+                        // edit mode
+                        holder.binding.StartDateEdit.text=Utils.getFormatedDate(eractionData?.StartDAte,"dd-MMM-yyyy")
+                        holder.binding.ActualCompletionDateEdit.text=Utils.getFormatedDate(eractionData?.ActualCompletionDate,"dd-MMM-yyyy")
+                        holder.binding.TatEdit.text=eractionData?.TAT?.toString()
+                        holder.binding.VendorExecutiveNameEdit.setText(eractionData?.VendorExecutiveName)
+                        holder.binding.VendorExecutiveEmailEdit.setText(eractionData?.VendorEmailId)
+                        holder.binding.VendorExecutiveNumberEdit.setText(eractionData?.VendorExecutiveNumber)
+                        holder.binding.remarksEdit.setText(eractionData?.remark)
+                    }
+
+                    try {
+                    if (eractionData!=null&& eractionData?.attachment!=null){
+                        holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),eractionData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
+                            override fun itemClicked(item : Attachments) {
+                                listener.attachmentItemClicked()
+                            }
+                        })
+                    }
+                    else
+                        AppLogger.log("Attachments Error")
+                }catch (e:java.lang.Exception){
+                    AppLogger.log("Acq Survey error : ${e.localizedMessage}")
+                }
+                }
+                holder.binding.update.setOnClickListener {
+                    val tempTowerAllData= TowerAndCivilInfraTower()
+                    if (list[position]==type7){
+                        val tempData=TowerExcavation()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (excavationData!=null)
+                                it.id=excavationData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerExcavation= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type8){
+                        val tempData=TowerPcc()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (pccData!=null)
+                                it.id=pccData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerPcc= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type9){
+                        val tempData=TowerBarBending()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (barbendingData!=null)
+                                it.id=barbendingData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerBarBending= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type10){
+                        val tempData=TowerRaftShaft()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (raftCastingData!=null)
+                                it.id=raftCastingData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerRaftShaft= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type11){
+                        val tempData=TowerCubeTesting()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (cubeTestingData!=null)
+                                it.id=cubeTestingData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerCubeTesting= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type12){
+                        val tempData=TowerLiftCast1()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (cast1Data!=null)
+                                it.id=cast1Data?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerLiftCast1= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type13){
+                        val tempData=TowerLiftCast2()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (cast2Data!=null)
+                                it.id=cast2Data?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerLiftCast2= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type14){
+                        val tempData=TowerTemplateFixing()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (templetFixingData!=null)
+                                it.id=templetFixingData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerTemplateFixing= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type15){
+                        val tempData=TowerTowerEarthing()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (towerEarthingData!=null)
+                                it.id=towerEarthingData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerTowerEarthing= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                    else if (list[position]==type16){
+                        val tempData=TowerErection()
+                        tempData.let {
+                            it.StartDAte=Utils.getFullFormatedDate(holder.binding.StartDateEdit.text.toString())
+                            it.ActualCompletionDate=Utils.getFullFormatedDate(holder.binding.ActualCompletionDateEdit.text.toString())
+                            it.TAT=holder.binding.TatEdit.text.toString().toIntOrNull()
+                            it.VendorEmailId=holder.binding.VendorExecutiveEmailEdit.text.toString()
+                            it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
+                            it.VendorExecutiveNumber=holder.binding.VendorExecutiveNumberEdit.text.toString()
+                            it.remark=holder.binding.remarksEdit.text.toString()
+                            if (eractionData!=null)
+                                it.id=eractionData?.id
+                        }
+                        tempTowerAllData.TowerAndCivilInfraTowerErection= arrayListOf(tempData)
+                        if (datalist!=null)
+                            tempTowerAllData.id=datalist?.id
+                        listener.updateTowerData(tempTowerAllData)
+                    }
+                }
+                holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    if (list[position]==type7){
+                        if (excavationData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerExcavation",excavationData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type8){
+                        if (pccData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerPcc",pccData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type9){
+                        if (barbendingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerBarBending",barbendingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type10){
+                        if (raftCastingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerRaftShaft",raftCastingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type11){
+                        if (cubeTestingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerCubeTesting",cubeTestingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type12){
+                        if (cast1Data!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerLiftCast1",cast1Data?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type13){
+                        if (cast2Data!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerLiftCast2",cast2Data?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type14){
+                        if (templetFixingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerTemplateFixing",templetFixingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type15){
+                        if (towerEarthingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerTowerEarthing",towerEarthingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type16){
+                        if (eractionData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerErection",eractionData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
         }
     }
 
@@ -584,7 +1366,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
 
     interface TowerInfoListListener {
        fun attachmentItemClicked()
-       fun addAttachment()
+       fun addAttachment(schemaName:String,schemaId:String)
         fun updateTowerData(updatedData:TowerAndCivilInfraTower)
         fun editPoClicked(data:TwrCivilPODetail)
         fun viewPoClicked(data:TwrCivilPODetail)

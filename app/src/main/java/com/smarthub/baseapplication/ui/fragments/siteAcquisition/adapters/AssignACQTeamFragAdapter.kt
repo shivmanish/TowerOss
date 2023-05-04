@@ -23,6 +23,7 @@ import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.widgets.CustomSpinner
 import com.smarthub.baseapplication.widgets.CustomUserSpinner
+import java.lang.Exception
 
 class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: AssignACQTeamListListener, data:NewSiteAcquiAllData?) : RecyclerView.Adapter<AssignACQTeamFragAdapter.ViewHold>() {
     private var datalist: AssignACQTeamDAta?=null
@@ -152,8 +153,9 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 holder.binding.itemTitleStr.text = list[position]
                 if (datalist!=null){
                     // view mode
-                    if (datalist?.Acquisitiontype?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype)
+//                    if (datalist?.Acquisitiontype?.isNotEmpty() == true)
+//                        AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
                     if (datalist?.AcquisitionMode?.isNotEmpty() == true)
                         AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionMode,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
                     if (datalist?.VendorCompany?.isNotEmpty() == true)
@@ -194,10 +196,11 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                 }
                 else
                     AppLogger.log("error in Power Connection details data")
-                if (datalist!=null && datalist?.Acquisitiontype?.isNotEmpty() == true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
+                AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype)
+//                if (datalist!=null && datalist?.Acquisitiontype?.isNotEmpty() == true)
+//                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name,datalist?.Acquisitiontype?.get(0).toString())
+//                else
+//                    AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
                 if (datalist!=null && datalist?.AcquisitionMode?.isNotEmpty() == true)
                     AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name,datalist?.AcquisitionMode?.get(0).toString())
                 else
@@ -226,7 +229,12 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                         it.PONumber=holder.binding.PONumberEdit.text.toString()
                         it.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
-                        it.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
+                        try {
+                            it.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
+                        }catch (e :Exception){
+                            it.POLineItemNo=0
+                        }
+
                         it.POAmount=holder.binding.POAmountEdit.text.toString()
                         it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
                         it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()

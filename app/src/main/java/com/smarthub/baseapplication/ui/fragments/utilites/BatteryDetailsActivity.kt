@@ -1,8 +1,8 @@
-package com.smarthub.baseapplication.ui.utilites
+package com.smarthub.baseapplication.ui.fragments.utilites
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityBatteryBankDetailsBinding
@@ -10,7 +10,7 @@ import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.AcUtility
 import com.smarthub.baseapplication.model.siteInfo.utilitiesEquip.BatteryBank
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 
-class BatteryDetailsActivity : AppCompatActivity() {
+class BatteryDetailsActivity : BaseActivity() {
     lateinit var binding:ActivityBatteryBankDetailsBinding
     companion object{
         var utilityBatteryBankData:ArrayList<BatteryBank>?=null
@@ -40,9 +40,9 @@ class BatteryDetailsActivity : AppCompatActivity() {
 
 
 fun initview(){
-    if(position==1) {
+    if(position ==1) {
         binding.title.text = "Battery Bank"
-        if(utilityBatteryBankData!=null) {
+        if(utilityBatteryBankData !=null) {
 //            binding.viewpager.adapter =
 //               BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
             binding.tabs.setupWithViewPager(binding.viewpager)
@@ -59,9 +59,9 @@ fun initview(){
         else Toast.makeText(binding.tabs.context,"Something Went Wrong", Toast.LENGTH_SHORT).show()
 
     }
-    else if(position==3){
+    else if(position ==3){
         binding.title.text = "DG"
-        if(utilityBatteryBankData!=null) {
+        if(utilityBatteryBankData !=null) {
 //            binding.viewpager.adapter =
 //                BatteryViewpagerAdapter(supportFragmentManager, utilityBatteryBankData!!, id!!)
             binding.tabs.setupWithViewPager(binding.viewpager)

@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.serviceRequest.SRDetails
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
@@ -1037,16 +1038,17 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                if (AppController.getInstance().attachmentsConditionsList.Attachment!=null){
-                    attachmentsList=AppController.getInstance().attachmentsConditionsList.Attachment
-                }
                 try {
+                    if (AppController.getInstance().attachmentsConditionsList.Attachment!=null){
+                        attachmentsList=AppController.getInstance().attachmentsConditionsList.Attachment
+                    }
+
                     if (datalist!=null){
                         holder.recyclerListener.adapter= AttachmentConditionalAdapter(baseFragment.requireContext(),datalist?.attachment,
                             attachmentsList!!,22,datalist?.id,
                             object : AttachmentConditionalAdapter.AttachmentConditionsListener{
-                                override fun attachmentItemClicked() {
-                                    listener.attachmentItemClicked()
+                                override fun attachmentItemClicked(item: Attachments) {
+                                    listener.attachmentItemClicked(item)
                                 }
                                 override fun addAttachmentItemClicked(categoryId:Int) {
                                     listener.addAttachment(categoryId)
@@ -1058,8 +1060,8 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                             ArrayList(),
                             attachmentsList!!,22,null,
                             object : AttachmentConditionalAdapter.AttachmentConditionsListener{
-                                override fun attachmentItemClicked() {
-                                    listener.attachmentItemClicked()
+                                override fun attachmentItemClicked(item: Attachments) {
+                                    listener.attachmentItemClicked(item)
                                 }
                                 override fun addAttachmentItemClicked(categoryId:Int) {
                                     listener.addAttachment(categoryId)
@@ -1087,7 +1089,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
 
 
     interface AcqSurveyListListener {
-       fun attachmentItemClicked()
+       fun attachmentItemClicked(item: Attachments)
        fun addAttachment(categoryId:Int)
        fun viewInsidePremisesClicked(position: Int,data:SAcqInsidePremise)
        fun editInsidePremisesClicked(position: Int,data:SAcqInsidePremise)

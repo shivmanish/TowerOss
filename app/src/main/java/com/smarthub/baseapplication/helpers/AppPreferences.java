@@ -416,16 +416,16 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         }
     }
 
-    public void setDropDown(CustomSpinner customSpinner, String name, EditText customText){
-        Gson gson = new Gson();
-        String jsonString = getString(name);
-        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-        try{
-            customSpinner.setSpinnerData(dropDownNewItem.getData(),customText);
-        }catch (Exception e){
-            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
-        }
-    }
+//    public void setDropDown(CustomSpinner customSpinner, String name, EditText customText){
+//        Gson gson = new Gson();
+//        String jsonString = getString(name);
+//        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+//        try{
+//            customSpinner.setSpinnerData(dropDownNewItem.getData(),customText);
+//        }catch (Exception e){
+//            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+//        }
+//    }
 
     public void setDropDown(TextView customSpinner, String name, String id){
         List<DropDownItem> list = getDropDownList(name);
@@ -434,6 +434,22 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
                 customSpinner.setText(i.getName());
                 return;
             }
+        }
+    }
+
+    public void setDropDown(CustomSpinner customSpinner,String name,ArrayList<Integer> ids){
+        try {
+            Gson gson = new Gson();
+            String jsonString = getString(name);
+            DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+            if (ids!=null && !ids.isEmpty()){
+                String id = ids.get(0).toString();
+                customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+            }else{
+                customSpinner.setSpinnerData(dropDownNewItem.getData());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

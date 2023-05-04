@@ -8,6 +8,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew
 import com.smarthub.baseapplication.model.home.HomeResponse
 import com.smarthub.baseapplication.model.home.MyTeamTask
+import com.smarthub.baseapplication.model.home.alerts.AlertAllDataResponse
 import com.smarthub.baseapplication.model.logs.LogsDataModel
 import com.smarthub.baseapplication.model.logs.PostLogData
 import com.smarthub.baseapplication.model.notification.newData.AddNotificationModel
@@ -63,6 +64,7 @@ import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceReques
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
 import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel
+import com.smarthub.baseapplication.model.taskModel.update.CloseTaskModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.EndPoints
@@ -106,6 +108,7 @@ class HomeViewModel : ViewModel() {
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
+    var closeTaskModel: SingleLiveEvent<Resource<CloseTaskModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoTenencyAllDataModel?>>?=null
@@ -138,6 +141,7 @@ class HomeViewModel : ViewModel() {
     var departmentDataDataResponse:SingleLiveEvent<Resource<DepartmentDataModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
     var attachmentConditionModel:SingleLiveEvent<Resource<AttachmentConditionsDataModel>>? = null
+    var homeAlertsDataModel:SingleLiveEvent<Resource<AlertAllDataResponse>>? = null
 
     init {
         homeRepo = HomeRepo(APIInterceptor.get())
@@ -158,6 +162,7 @@ class HomeViewModel : ViewModel() {
         opcoTenancyListResponse = homeRepo?.opcoResponseData
         serviceRequestAllData = homeRepo?.serviceRequestAllData
         generateSiteId = homeRepo?.generateSiteIdResponse
+        closeTaskModel = homeRepo?.closeTaskModel
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
         updateUtilityDataResponse = updateIBoardRepo?.updateUtilityEquipResponse
@@ -194,6 +199,7 @@ class HomeViewModel : ViewModel() {
         departmentDataDataResponse=homeRepo?.departmentDataModel
         addAttachmentModel=homeRepo?.addAttachmentModel
         attachmentConditionModel=homeRepo?.attachmentConsitionsModel
+        homeAlertsDataModel=alertRepo?.homeAlertResponseLivedata
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -215,6 +221,14 @@ class HomeViewModel : ViewModel() {
 
     fun updateBasicInfo(basicinfoModel: BasicinfoModel){
         homeRepo?.updateSiteInfo(basicinfoModel)
+    }
+
+    fun closeTask(taskId: String,remark : String){
+        homeRepo?.closeTask(taskId,remark)
+    }
+
+    fun reopenTask(taskId: String,remark : String){
+        homeRepo?.reopenTask(taskId,remark)
     }
 
     fun createSite(basicinfoModel: CreateSiteModel){
@@ -248,6 +262,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchHomeData(){
         homeRepo?.fetchHomeData()
+    }
+    fun fetchHomeAlertData(){
+        alertRepo?.getHomeAlertDetails()
     }
 
 

@@ -2,6 +2,7 @@ package com.smarthub.baseapplication.model.taskModel
 
 data class Processtemplatecallmanual(
     var AssigneeDepartment: String?=null,
+    var assigneedepartment2: String?=null,
     var Automaticescalationofoverdueitems: Boolean?=null,
     var FeatureName: String?=null,
     var NotificationSettingfornewaction: Boolean?=null,
@@ -11,9 +12,9 @@ data class Processtemplatecallmanual(
     var NotificationSettingGeoFencing: Boolean?=null,
     var SLA: Int?=null,
     var Taskid: Int?=null,
-    var Taskinstruction: String?=null,
-    var Distance: String?=null,
-    var Taskname: String?=null,
+    var Taskinstruction: String?="Test Instruction",
+    var Distance: String="0.0",
+    var Taskname: String="Test",
     var Weightage: String?=null,
     var Where: List<Any>?=null,
     var Workflow: String?=null,
@@ -21,11 +22,14 @@ data class Processtemplatecallmanual(
     var documents: Boolean?=null,
     var enddate: String?=null,
     var geolevel: String?=null,
+    var geolevel2: String?=null,
     var pictures: Boolean?=null,
     var priority: String?=null,
     var remark: String?=null,
     var role: String?=null,
     var siteid: String?=null,
     var sitename: String?=null,
+    var dynamicflag: Boolean=true,
+    var validationflag: Boolean=true,
     var startdate: String?=null
 )

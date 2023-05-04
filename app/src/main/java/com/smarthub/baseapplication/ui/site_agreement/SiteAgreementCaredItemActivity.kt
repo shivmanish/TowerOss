@@ -1,16 +1,12 @@
 package com.smarthub.baseapplication.ui.site_agreement
 
 import android.os.Bundle
-import android.widget.Toast
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
-import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.Siteacquisition
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.ui.site_agreement.adapter.SiteAgreemetAdapter
-import com.smarthub.baseapplication.utils.AppLogger
-import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
 class SiteAgreementCaredItemActivity : BaseActivity() {
 

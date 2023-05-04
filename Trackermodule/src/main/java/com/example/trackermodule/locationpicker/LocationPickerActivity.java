@@ -41,11 +41,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.trackermodule.R;
+import com.example.trackermodule.homepage.BaseActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.Status;
@@ -87,7 +87,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class LocationPickerActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class LocationPickerActivity extends BaseActivity implements OnMapReadyCallback {
     private static final int REQUEST_CHECK_SETTINGS = 2;
     private final String TAG = LocationPickerActivity.class.getSimpleName();
     private String userAddress = "";

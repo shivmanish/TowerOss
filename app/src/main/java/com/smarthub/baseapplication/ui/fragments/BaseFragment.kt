@@ -1,28 +1,21 @@
 package com.smarthub.baseapplication.ui.fragments
 import android.app.DatePickerDialog
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
-import okhttp3.internal.UTC
-import java.text.SimpleDateFormat
+import java.lang.Exception
 import java.util.*
 
 
 open class BaseFragment : Fragment(){
 
-    var progressDialog : ProgressDialog?=null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        progressDialog = ProgressDialog(requireContext())
-        progressDialog?.setMessage("Loading ...")
-        progressDialog?.setCancelable(true)
     }
 
     override fun onResume() {
@@ -72,16 +65,21 @@ open class BaseFragment : Fragment(){
 
     fun showLoader(){
         if (Utils.isNetworkConnected()) {
-            if (progressDialog != null && progressDialog?.isShowing == false) {
-                progressDialog?.show()
+            try {
+                (requireActivity() as BaseActivity).showLoader()
+            }catch (e:Exception){
+                e.printStackTrace()
             }
         }
     }
 
    open fun hideLoader(){
-        if (progressDialog!=null && progressDialog?.isShowing == true){
-            progressDialog?.hide()
-        }
+       try {
+           (requireActivity() as BaseActivity).hideLoader()
+       }catch (e:Exception){
+           e.printStackTrace()
+       }
+
     }
 
     open fun onViewPageSelected(){

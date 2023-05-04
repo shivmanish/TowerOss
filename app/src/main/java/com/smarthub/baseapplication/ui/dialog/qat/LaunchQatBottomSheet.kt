@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.qatcheck.QATMainLaunchNew
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
+import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.ui.alert.dialog.AlertUserListBottomSheet
 import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
@@ -52,16 +53,7 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
             dismiss()
         }
         setDatePickerView(binding.txtTargetDate)
-//        if (alertViewModel.departmentDropdown.hasActiveObservers())
-//            alertViewModel.departmentDropdown.removeObservers(viewLifecycleOwner)
-//        alertViewModel.departmentDropdown.observe(viewLifecycleOwner) {
-//            //response will get here
-//            if (it?.data != null) {
-//                binding.assigneeDepartment.setSpinnerData(it.data.department)
-//                if (it.data.department.isNotEmpty())
-//                    alertViewModel.getUser(GetUserList(it.data.department[0], AppController.getInstance().ownerName))
-//            }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
-//        }
+
         alertViewModel.getDepartments(DropdownParam("SMRT","department"))
 
         if (alertViewModel.userDataResponseLiveData.hasActiveObservers())
@@ -72,13 +64,6 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
                 binding.assignTo.setSpinnerData(it.data)
             }else Toast.makeText(requireContext(),"Department not fetched", Toast.LENGTH_LONG).show()
         })
-
-//        binding.assigneeDepartment.itemSelectedListener = object :CustomStringSpinner.ItemSelectedListener{
-//            override fun itemSelected(item: String) {
-//                if (item.isNotEmpty())
-//                    alertViewModel.getUser(GetUserList(item, AppController.getInstance().ownerName))
-//            }
-//        }
 
         val dropdownList = ArrayList<DropDownItem>()
         if (qatMainModel.item!=null && qatMainModel.item?.isNotEmpty() == true && qatMainModel.item!![0].QATMainLaunch.isNotEmpty())
@@ -148,6 +133,28 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
                 binding.assigneeDepartment.setSpinnerData(it.data.Department.data)
             }else AppLogger.log("Department not fetched")
         }
+
+        if (viewmodel.QatMainTempletResponse?.hasActiveObservers() == true){
+            viewmodel.QatMainTempletResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.QatMainTempletResponse?.observe(viewLifecycleOwner) {
+            AppLogger.log("QatMain AllData fetched successfully")
+            if (it!=null && it.status == Resource.Status.LOADING){
+                showLoader()
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item?.isNotEmpty()==true){
+                AppLogger.log("QatMain Data fetched successfully")
+                val qatDropdownList=createQatDropdownList(it.data.item?.get(0)?.QATTemplateMain)
+                binding.txQatCategory.setSpinnerData(qatDropdownList)
+            }else if (it!=null) {
+                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+            else {
+                AppLogger.log("Service Request Fragment Something went wrong")
+            }
+        }
+        viewmodel.qatRequestAll(AppController.getInstance().siteid)
     }
     override fun getTheme() = R.style.NewDialogTask
 
@@ -165,5 +172,20 @@ class LaunchQatBottomSheet(var listener : LaunchQatBottomSheetListener,var qatMa
 
     interface LaunchQatBottomSheetListener{
         fun onQatCreated(data :QalLaunchModel)
+    }
+
+    fun createQatDropdownList(data:ArrayList<QatCardItem>?):ArrayList<DropDownItem>{
+        val dropDownDataList:ArrayList<DropDownItem> =ArrayList()
+        if (data!=null){
+            for (item in data){
+                val dropDownData = DropDownItem("","")
+                dropDownData.id=item.id
+                dropDownData.name=item.Name
+                dropDownDataList.add(dropDownData)
+            }
+        }
+        AppLogger.log("dropDownDataList Data size===>${dropDownDataList.size}")
+        AppLogger.log("QatTempletMain Data size===>${data?.size}")
+        return dropDownDataList
     }
 }

@@ -18,12 +18,14 @@ import com.example.trackermodule.locationpicker.MapUtility
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.PowerConnectionFragBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.*
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.AttachmentConditionsDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.ImageViewBottomSheet
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AcqSurveyFragAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.dialouge.*
 import com.smarthub.baseapplication.utils.AppController
@@ -119,8 +121,9 @@ class AcquisitionSurveyFragment(var acqSurveyData:NewSiteAcquiAllData?, var pare
         super.onDestroy()
     }
 
-    override fun attachmentItemClicked() {
-       AppLogger.log("Attachment clicked")
+    override fun attachmentItemClicked(item: Attachments) {
+        val bm = ImageViewBottomSheet(item)
+        bm.show(childFragmentManager,"sdg")
     }
 
     override fun viewInsidePremisesClicked(position: Int, data: SAcqInsidePremise) {

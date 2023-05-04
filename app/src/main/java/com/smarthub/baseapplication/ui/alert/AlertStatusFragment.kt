@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AlertStatusBinding
+import com.smarthub.baseapplication.model.home.alerts.AlertAllData
 import com.smarthub.baseapplication.model.register.dropdown.DropdownParam
 import com.smarthub.baseapplication.model.search.SearchListItem
 import com.smarthub.baseapplication.ui.alert.adapter.AlertImageAdapter
@@ -39,6 +40,10 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     var item: SearchListItem?=null
     var loadingProgress: ProgressBar?=null
     lateinit var searchResultAdapter : SearchResultAdapter
+    companion object{
+        var itemNew = SearchListItem("Search Site","448")
+        var homeAlertData:AlertAllData?=null
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AlertStatusBinding.inflate(inflater)
@@ -105,10 +110,12 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
         viewmodel.userDataResponseLiveData.observe(viewLifecycleOwner, Observer {
             //response will get here
             hideLoader()
-            viewmodel.userDataList.clear()
-            viewmodel.userDataList.addAll(it.data!!)
-            val bm = AlertUserListBottomSheet(R.layout.alert_list_bottom_sheet, viewmodel, this)
-            bm.show(childFragmentManager, "categoery")
+            if (it.data!=null){
+                viewmodel.userDataList.clear()
+                viewmodel.userDataList.addAll(it.data)
+                val bm = AlertUserListBottomSheet(R.layout.alert_list_bottom_sheet, viewmodel, this)
+                bm.show(childFragmentManager, "categoery")
+            }
 
         })
 
@@ -141,9 +148,9 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
     override fun getuser() {
         showLoader()
         if (customStringSpinner!=null)
-            viewmodel.getUser(GetUserList(customStringSpinner!!.selectedValue, AppController.getInstance().ownerName))
+            viewmodel.getDepartmentUsers(GetUserList(customStringSpinner!!.selectedValue, AppController.getInstance().ownerName))
         else
-            viewmodel.getUser(GetUserList("D1",AppController.getInstance().ownerName))
+            viewmodel.getDepartmentUsers(GetUserList("D1",AppController.getInstance().ownerName))
     }
     var customStringSpinner: CustomStringSpinner?=null
     var customStringSpinner1: CustomStringSpinner?=null
@@ -164,9 +171,6 @@ class AlertStatusFragment : BaseFragment(), AlertStatusListener, AlertImageAdapt
         searchCardView.setOnClickListener {
             findNavController().navigate(AlertStatusFragmentDirections.actionAlertStatusFragmentToSearchIdFragment())
         }
-    }
-    companion object{
-        var itemNew = SearchListItem("Search Site","448")
     }
     override fun onResume() {
         if (searchCardView!=null)
