@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.TowerFragmentBinding
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
 import com.smarthub.baseapplication.ui.fragments.AttachmentCommonDialogBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.ui.fragments.ImageViewBottomSheet
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.bottomSheet.*
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerInfoListAdapter
 import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.dialouge.*
@@ -75,7 +77,9 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
         }
         super.onDestroy()
     }
-    override fun attachmentItemClicked() {
+    override fun attachmentItemClicked(item : Attachments) {
+        val bm = ImageViewBottomSheet(item)
+        bm.show(childFragmentManager,"sdg")
 //        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 

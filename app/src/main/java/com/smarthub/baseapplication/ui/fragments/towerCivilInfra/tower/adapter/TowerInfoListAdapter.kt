@@ -631,7 +631,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (datalist!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -741,7 +741,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (excavationData!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),excavationData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -779,7 +779,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (pccData!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),pccData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -817,7 +817,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (barbendingData!=null&& barbendingData?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),barbendingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -855,7 +855,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (raftCastingData!=null&& raftCastingData?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),raftCastingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -893,7 +893,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (cubeTestingData!=null&& cubeTestingData?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),cubeTestingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -931,7 +931,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (cast1Data!=null&& cast1Data?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),cast1Data?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -969,7 +969,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (cast2Data!=null&& cast2Data?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),cast2Data?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -1007,7 +1007,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (templetFixingData!=null&& templetFixingData?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),templetFixingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -1044,7 +1044,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (towerEarthingData!=null&& towerEarthingData?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),towerEarthingData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -1081,7 +1081,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     if (eractionData!=null&& eractionData?.attachment!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),eractionData?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
                             override fun itemClicked(item : Attachments) {
-                                listener.attachmentItemClicked()
+                                listener.attachmentItemClicked(item)
                             }
                         })
                     }
@@ -1365,7 +1365,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
 
 
     interface TowerInfoListListener {
-       fun attachmentItemClicked()
+       fun attachmentItemClicked(item : Attachments)
        fun addAttachment(schemaName:String,schemaId:String)
         fun updateTowerData(updatedData:TowerAndCivilInfraTower)
         fun editPoClicked(data:TwrCivilPODetail)
