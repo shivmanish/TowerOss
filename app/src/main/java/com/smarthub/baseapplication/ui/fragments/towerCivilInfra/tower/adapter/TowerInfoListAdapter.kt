@@ -610,7 +610,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     holder.binding.itemCollapse.visibility = View.VISIBLE
                     holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
                         if (datalist!=null){
-                            listener.addAttachment()
+                            listener.addAttachment("TowerAndCivilInfraTower",datalist?.id.toString())
                         }
                         else
                             Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
@@ -1274,6 +1274,78 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                         listener.updateTowerData(tempTowerAllData)
                     }
                 }
+                holder.binding.root.findViewById<View>(R.id.attach_card).setOnClickListener {
+                    if (list[position]==type7){
+                        if (excavationData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerExcavation",excavationData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type8){
+                        if (pccData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerPcc",pccData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type9){
+                        if (barbendingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerBarBending",barbendingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type10){
+                        if (raftCastingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerRaftShaft",raftCastingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type11){
+                        if (cubeTestingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerCubeTesting",cubeTestingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type12){
+                        if (cast1Data!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerLiftCast1",cast1Data?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type13){
+                        if (cast2Data!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerLiftCast2",cast2Data?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type14){
+                        if (templetFixingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerTemplateFixing",templetFixingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type15){
+                        if (towerEarthingData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerTowerEarthing",towerEarthingData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                    else if (list[position]==type16){
+                        if (eractionData!=null){
+                            listener.addAttachment("TowerAndCivilInfraTowerErection",eractionData?.id.toString())
+                        }
+                        else
+                            Toast.makeText(baseFragment.requireContext(),"Firstly fill data then Add Attachment",Toast.LENGTH_SHORT).show()
+                    }
+                }
 
             }
         }
@@ -1294,7 +1366,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
 
     interface TowerInfoListListener {
        fun attachmentItemClicked()
-       fun addAttachment()
+       fun addAttachment(schemaName:String,schemaId:String)
         fun updateTowerData(updatedData:TowerAndCivilInfraTower)
         fun editPoClicked(data:TwrCivilPODetail)
         fun viewPoClicked(data:TwrCivilPODetail)

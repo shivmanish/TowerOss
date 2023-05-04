@@ -79,8 +79,8 @@ class TowerInfoFragment(var towerdata:TowerAndCivilInfraTower?,var fullData: New
 //        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun addAttachment() {
-        val bm = AttachmentCommonDialogBottomSheet("TowerAndCivilInfraTower",towerdata?.id.toString(),
+    override fun addAttachment(schemaName:String,schemaId:String) {
+        val bm = AttachmentCommonDialogBottomSheet(schemaName,schemaId,
             object : AttachmentCommonDialogBottomSheet.AddAttachmentListner {
                 override fun attachmentAdded(){
                     viewmodel?.TowerAndCivilRequestAll(AppController.getInstance().siteid)
