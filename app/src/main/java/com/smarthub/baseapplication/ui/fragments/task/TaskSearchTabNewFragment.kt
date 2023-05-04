@@ -49,6 +49,7 @@ import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.dialog.qat.LaunchQatBottomSheet
+import com.smarthub.baseapplication.ui.dialog.task.CloseTaskBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.NocCompPageAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.TaskNocDataAdapter
@@ -137,8 +138,8 @@ class TaskSearchTabNewFragment(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
 //        siteID = "1526"
-        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
         TaskTabListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         tempWhere = tempWhere.replace("[", "")
@@ -190,37 +191,39 @@ class TaskSearchTabNewFragment(
             mapView()
         }
         binding.submitBtn.setOnClickListener {
-            if (isFancing) {
-                val userlatlongdata = LatlongData()
-                val start_lattitiude_string =
-                    PatrollerPriference(requireContext()).getStartLattitude()
-                val start_longitude_string =
-                    PatrollerPriference(requireContext()).getStartLongitude().toDouble()
-                if (start_lattitiude_string.equals("Na", true)) {
-                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
-                        .show()
-                    return@setOnClickListener
-                }
-                userlatlongdata.start_lattitiude = start_lattitiude_string.toDouble()
-                userlatlongdata.start_longitude = start_longitude_string.toDouble()
+            openCloseTaskBottomSheet()
 
-                var userPosition =
-                    LatLng(userlatlongdata.start_lattitiude, userlatlongdata.start_longitude)
-                var sitePosition = LatLng(lattitude.toDouble(), longitude.toDouble())
-                val distance_btwn_user_and_site =
-                    Util.getDistanceFromLatlongmanually(userPosition, sitePosition)
-                if (distance_btwn_user_and_site <= fancingDistance) {
-                    //Close Request Hit
-                    showLoader()
-                } else {
-                    binding.taskSubmitMsg.visibility = View.VISIBLE
-                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
-                }
-            } else {
-                //Close Request Hit
-                showLoader()
-
-            }
+//            if (isFancing) {
+//                val userlatlongdata = LatlongData()
+//                val start_lattitiude_string =
+//                    PatrollerPriference(requireContext()).getStartLattitude()
+//                val start_longitude_string =
+//                    PatrollerPriference(requireContext()).getStartLongitude().toDouble()
+//                if (start_lattitiude_string.equals("Na", true)) {
+//                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
+//                    return@setOnClickListener
+//                }
+//                userlatlongdata.start_lattitiude = start_lattitiude_string.toDouble()
+//                userlatlongdata.start_longitude = start_longitude_string.toDouble()
+//
+//                var userPosition =
+//                    LatLng(userlatlongdata.start_lattitiude, userlatlongdata.start_longitude)
+//                var sitePosition = LatLng(lattitude.toDouble(), longitude.toDouble())
+//                val distance_btwn_user_and_site =
+//                    Util.getDistanceFromLatlongmanually(userPosition, sitePosition)
+//                if (distance_btwn_user_and_site <= fancingDistance) {
+//                    //Close Request Hit
+//                    showLoader()
+//                    openCloseTaskBottomSheet()
+//                } else {
+//                    binding.taskSubmitMsg.visibility = View.VISIBLE
+//                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
+//                }
+//            } else {
+//                //Close Request Hit
+//                showLoader()
+//
+//            }
 
         }
         binding.start.setOnClickListener {
@@ -457,7 +460,7 @@ class TaskSearchTabNewFragment(
             }
         }
         homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
-//        siteDetailViewModel.fetchDropDown()
+
     }
 
     fun setUpServiceRequestData() {
@@ -691,6 +694,11 @@ class TaskSearchTabNewFragment(
         return filteredData
     }
 
+    private fun openCloseTaskBottomSheet() {
+        val bottomSheetDialogFragment = CloseTaskBottomSheet(taskId)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
 //    private fun openCreateLaunchBottomSheet(qatMainModel : QatMainModel?) {
 //        homeViewModel.qatUpdateModel?.observe(viewLifecycleOwner) {
 //            if (it != null && it.status == Resource.Status.LOADING) {
@@ -908,6 +916,18 @@ class TaskSearchTabNewFragment(
         showLoader()
         homeViewModel.qatMainRequestAll(AppController.getInstance().taskSiteId)
     }
+
+//    override fun onDetach() {
+//        super.onDetach()
+//        if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
+//            homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
+//        }
+//        if (homeViewModel.updateNocCompDataResponse?.hasActiveObservers() == true) {
+//            homeViewModel.updateNocCompDataResponse?.removeObservers(viewLifecycleOwner)
+//        }
+//        if (taskViewModel.taskDataList?.hasActiveObservers() == true)
+//            taskViewModel.taskDataList?.removeObservers(this)
+//    }
     fun setUpQatDataNew() {
         var moduleId = taskDetailData!!.ModuleId
         if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {

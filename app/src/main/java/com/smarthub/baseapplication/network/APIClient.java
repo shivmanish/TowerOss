@@ -86,6 +86,7 @@ import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataMod
 import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
+import com.smarthub.baseapplication.model.taskModel.update.CloseTaskModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel;
 import com.smarthub.baseapplication.model.workflow.UpdatedTaskResponseModel;
@@ -315,6 +316,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<BasicInfoDialougeResponse> updateSiteInfo(@Body BasicinfoModel basicinfoModel);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<CloseTaskModel> closeTask(@Body JsonObject basicinfoModel);
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
     Call<SiteacquisitionAgreement> updateAgreementSiteInfo(@Body SiteacquisitionAgreement siteacquisitionAgreement);

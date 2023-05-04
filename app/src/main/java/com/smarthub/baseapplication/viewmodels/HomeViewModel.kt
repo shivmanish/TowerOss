@@ -64,6 +64,7 @@ import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceReques
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.model.taskModel.GeoGraphyLevelPostData
 import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel
+import com.smarthub.baseapplication.model.taskModel.update.CloseTaskModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
 import com.smarthub.baseapplication.network.APIInterceptor
 import com.smarthub.baseapplication.network.EndPoints
@@ -105,6 +106,7 @@ class HomeViewModel : ViewModel() {
     var siteDropData: SingleLiveEvent<Resource<SiteInfoDropDownData>>? = null
     var basicInfoUpdate: SingleLiveEvent<Resource<BasicInfoDialougeResponse>>? = null
     var generateSiteId: SingleLiveEvent<Resource<GenerateSiteIdResponse>>? = null
+    var closeTaskModel: SingleLiveEvent<Resource<CloseTaskModel>>? = null
     private var taskDataList: SingleLiveEvent<Resource<TaskDataList?>>? = null
     private var siteInfoModelUpdate: SingleLiveEvent<Resource<SiteInfoModelUpdate?>>? = null
     var opcoTenencyModelResponse : SingleLiveEvent<Resource<OpcoTenencyAllDataModel?>>?=null
@@ -156,6 +158,7 @@ class HomeViewModel : ViewModel() {
         opcoTenancyListResponse = homeRepo?.opcoResponseData
         serviceRequestAllData = homeRepo?.serviceRequestAllData
         generateSiteId = homeRepo?.generateSiteIdResponse
+        closeTaskModel = homeRepo?.closeTaskModel
         taskDataList = homeRepo?.taskDataList
         serviceRequestModelResponse = homeRepo?.serviceRequestModel
         updateUtilityDataResponse = updateIBoardRepo?.updateUtilityEquipResponse
@@ -212,6 +215,10 @@ class HomeViewModel : ViewModel() {
 
     fun updateBasicInfo(basicinfoModel: BasicinfoModel){
         homeRepo?.updateSiteInfo(basicinfoModel)
+    }
+
+    fun closeTask(taskId: String,remark : String){
+        homeRepo?.closeTask(taskId,remark)
     }
 
     fun createSite(basicinfoModel: CreateSiteModel){

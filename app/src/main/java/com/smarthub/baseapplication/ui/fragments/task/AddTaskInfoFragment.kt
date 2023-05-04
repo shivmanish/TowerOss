@@ -83,7 +83,6 @@ class AddTaskInfoFragment : BaseFragment() {
                  taskViewmodel.processTemplatemanual.geolevel2=binding.GeographyLevel.selectedValue.name
                  taskViewmodel.processTemplatemanual.siteid= selectedSiteInfo.id.toString()
                  taskViewmodel.processTemplatemanual.sitename= selectedSiteInfo.name.toString()
-                 taskViewmodel.processTemplatemanual.Taskname=binding.TaskName.text.toString()
                  taskViewmodel.processTemplatemanual.AssigneeDepartment=binding.assigneeDepartment.selectedValue.name
                  taskViewmodel.processTemplatemanual.assigneedepartment2=binding.assigneeDepartment.selectedValue.name
                  taskViewmodel.processTemplatemanual.actorname=binding.assignTo.selectedValue.username

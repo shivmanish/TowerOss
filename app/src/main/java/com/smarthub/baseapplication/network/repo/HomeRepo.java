@@ -57,6 +57,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
 import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel;
+import com.smarthub.baseapplication.model.taskModel.update.CloseTaskModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -93,6 +94,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<TaskModelData>> taskResponse;
     private SingleLiveEvent<Resource<ServiceRequestAllData>> serRequestData;
     private SingleLiveEvent<Resource<BasicInfoDialougeResponse>> basicInfoUpdate;
+    private SingleLiveEvent<Resource<CloseTaskModel>> closeTaskModel;
     private SingleLiveEvent<Resource<SiteInfoModelNew>> siteInfoModelNew;
     private SingleLiveEvent<Resource<NotificationNew>> notificationNew;
     private SingleLiveEvent<Resource<SiteInfoModelUpdate>> siteInfoUpdate;
@@ -227,6 +229,10 @@ public class HomeRepo {
         return basicInfoUpdate;
     }
 
+    public SingleLiveEvent<Resource<CloseTaskModel>> getCloseTaskModel() {
+        return closeTaskModel;
+    }
+
     public SingleLiveEvent<Resource<UserDataResponse>> getUserDataResponse() {
         return userDataResponse;
     }
@@ -238,6 +244,7 @@ public class HomeRepo {
         taskResponse = new SingleLiveEvent<>();
         serRequestData = new SingleLiveEvent<>();
         basicInfoUpdate = new SingleLiveEvent<>();
+        closeTaskModel = new SingleLiveEvent<>();
         siteInfoResponse = new SingleLiveEvent<>();
         siteSearchResponse = new SingleLiveEvent<>();
         dropDownResoonse = new SingleLiveEvent<>();
@@ -513,6 +520,46 @@ public class HomeRepo {
         });
     }
 
+    public void closeTask(String taskId,String remark) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Approve",taskId);
+        jsonObject.addProperty("status","Closed");
+        jsonObject.addProperty("remark",remark);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        apiClient.closeTask(jsonObject).enqueue(new Callback<CloseTaskModel>() {
+            @Override
+            public void onResponse(@NonNull Call<CloseTaskModel> call, Response<CloseTaskModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CloseTaskModel> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<CloseTaskModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    closeTaskModel.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    closeTaskModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    closeTaskModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
     public void updateSiteInfo(BasicinfoModel basicinfoModel) {
         BasicInfoDialougeResponse d = (basicInfoUpdate.getValue() != null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
