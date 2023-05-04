@@ -91,7 +91,7 @@ class ActivityCaptureSiteFragment: BaseFragment(),CapturedSite {
     fun setSelectedTabAndItsData(data:TaskDropDownModel){
         selectedTaskList=viewmodel.processTemplatemanual.Where as ArrayList<String>
         selectedTabItemList.clear()
-        if (selectedTaskList[0].startsWith("q")){
+        if (selectedTaskList.isNotEmpty() && selectedTaskList[0].startsWith("q")){
             currentSelectedTab=data.size
             selectedQatId=selectedTaskList[0].replace("q_","")
         }

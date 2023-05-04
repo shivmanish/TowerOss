@@ -11,12 +11,13 @@ import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.smarthub.baseapplication.activities.BaseActivity
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
 import java.util.*
 
 open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
-    var progressDialog : ProgressDialog?=null
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
@@ -27,9 +28,6 @@ open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        progressDialog = ProgressDialog(requireContext())
-        progressDialog?.setMessage("Loading ...")
-        progressDialog?.setCancelable(true)
     }
 
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
@@ -105,15 +103,19 @@ open class BaseBottomSheetDialogFragment() :BottomSheetDialogFragment() {
 
     fun showLoader(){
         if (Utils.isNetworkConnected()) {
-            if (progressDialog != null && progressDialog?.isShowing == false) {
-                progressDialog?.show()
+            try {
+                (requireActivity() as BaseActivity).showLoader()
+            }catch (e:Exception){
+//                AppLogger.log("showLoader error:"+e.localizedMessage)
             }
         }
     }
 
     open fun hideLoader(){
-        if (progressDialog!=null && progressDialog?.isShowing == true){
-            progressDialog?.hide()
+        try {
+            (requireActivity() as BaseActivity).hideLoader()
+        }catch (e:Exception){
+            AppLogger.log("hideLoader error:"+e.localizedMessage)
         }
     }
 

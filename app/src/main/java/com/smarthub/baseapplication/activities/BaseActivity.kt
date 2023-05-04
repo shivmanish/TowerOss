@@ -63,12 +63,12 @@ open class BaseActivity : AppCompatActivity() {
 
     fun showLoader(){
         if (Utils.isNetworkConnected()) {
-            if (progressDialog != null && !progressDialog.isShowing) progressDialog.show()
+            if (!progressDialog.isShowing) progressDialog.show()
         }
     }
 
     fun hideLoader(){
-        if (progressDialog!=null && progressDialog.isShowing) progressDialog.dismiss()
+        if (progressDialog.isShowing) progressDialog.dismiss()
     }
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount === 0) {

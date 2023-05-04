@@ -49,6 +49,8 @@ import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.dialog.qat.LaunchQatBottomSheet
+import com.smarthub.baseapplication.ui.dialog.task.CloseTaskBottomSheet
+import com.smarthub.baseapplication.ui.dialog.task.ReopenTaskBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.NocCompPageAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.TaskNocDataAdapter
@@ -137,8 +139,8 @@ class TaskSearchTabNewFragment(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
 //        siteID = "1526"
-        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
         val json = Utils.getJsonDataFromAsset(requireContext(), "taskDropDown.json")
         TaskTabListmodel = Gson().fromJson(json, TaskDropDownModel::class.java)
         tempWhere = tempWhere.replace("[", "")
@@ -189,38 +191,43 @@ class TaskSearchTabNewFragment(
         binding.mapView.setOnClickListener {
             mapView()
         }
+        binding.closeBtn.setOnClickListener {
+            reOpenTaskBottomSheet()
+        }
         binding.submitBtn.setOnClickListener {
-            if (isFancing) {
-                val userlatlongdata = LatlongData()
-                val start_lattitiude_string =
-                    PatrollerPriference(requireContext()).getStartLattitude()
-                val start_longitude_string =
-                    PatrollerPriference(requireContext()).getStartLongitude().toDouble()
-                if (start_lattitiude_string.equals("Na", true)) {
-                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT)
-                        .show()
-                    return@setOnClickListener
-                }
-                userlatlongdata.start_lattitiude = start_lattitiude_string.toDouble()
-                userlatlongdata.start_longitude = start_longitude_string.toDouble()
+            openCloseTaskBottomSheet()
 
-                var userPosition =
-                    LatLng(userlatlongdata.start_lattitiude, userlatlongdata.start_longitude)
-                var sitePosition = LatLng(lattitude.toDouble(), longitude.toDouble())
-                val distance_btwn_user_and_site =
-                    Util.getDistanceFromLatlongmanually(userPosition, sitePosition)
-                if (distance_btwn_user_and_site <= fancingDistance) {
-                    //Close Request Hit
-                    showLoader()
-                } else {
-                    binding.taskSubmitMsg.visibility = View.VISIBLE
-                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
-                }
-            } else {
-                //Close Request Hit
-                showLoader()
-
-            }
+//            if (isFancing) {
+//                val userlatlongdata = LatlongData()
+//                val start_lattitiude_string =
+//                    PatrollerPriference(requireContext()).getStartLattitude()
+//                val start_longitude_string =
+//                    PatrollerPriference(requireContext()).getStartLongitude().toDouble()
+//                if (start_lattitiude_string.equals("Na", true)) {
+//                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
+//                    return@setOnClickListener
+//                }
+//                userlatlongdata.start_lattitiude = start_lattitiude_string.toDouble()
+//                userlatlongdata.start_longitude = start_longitude_string.toDouble()
+//
+//                var userPosition =
+//                    LatLng(userlatlongdata.start_lattitiude, userlatlongdata.start_longitude)
+//                var sitePosition = LatLng(lattitude.toDouble(), longitude.toDouble())
+//                val distance_btwn_user_and_site =
+//                    Util.getDistanceFromLatlongmanually(userPosition, sitePosition)
+//                if (distance_btwn_user_and_site <= fancingDistance) {
+//                    //Close Request Hit
+//                    showLoader()
+//                    openCloseTaskBottomSheet()
+//                } else {
+//                    binding.taskSubmitMsg.visibility = View.VISIBLE
+//                    Snackbar.make(binding.AssignToName, "You are not in feance !", Snackbar.LENGTH_SHORT).show()
+//                }
+//            } else {
+//                //Close Request Hit
+//                showLoader()
+//
+//            }
 
         }
         binding.start.setOnClickListener {
@@ -457,7 +464,7 @@ class TaskSearchTabNewFragment(
             }
         }
         homeViewModel.siteInfoRequestAll(AppController.getInstance().siteid)
-//        siteDetailViewModel.fetchDropDown()
+
     }
 
     fun setUpServiceRequestData() {
@@ -607,75 +614,6 @@ class TaskSearchTabNewFragment(
         (requireActivity() as BaseActivity).showLoader()
         homeViewModel.fetchPowerAndFuel(siteID.toString())
     }
-//    fun setUpTowerAndCvilData() {
-//        if (homeViewModel.TowerCivilInfraModelResponse?.hasActiveObservers() == true) {
-//            homeViewModel.TowerCivilInfraModelResponse?.removeObservers(viewLifecycleOwner)
-//        }
-//        val serviceFragAdapterAdapter = TaskCivilInfraAdapter(requireContext(),object :
-//            TaskCivilInfraAdapter.TaskCivilInfraAdapterListner {
-//            override fun clickedTowerItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                TwrInfraDetails.Id=id
-//                TwrInfraDetails.TowerModelData=data
-//                binding.viewpager.adapter = TowerPageAdapter(childFragmentManager, filterTowerList(data!!),id)
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedPoleItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                PoleFragment.Id=id
-//                PoleFragment.TowerModelData=data
-//                binding.viewpager.adapter = PoleFragPageAdapter(childFragmentManager, filterTowerList(data!!),id)
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedEquipmentRoomItem(
-//                id: String,
-//                data: ArrayList<NewTowerCivilAllData>?,
-//            ) {
-//                TowerEquipmentFragemnt.EquipmentModelData = data
-//                TowerEquipmentFragemnt.Id=id
-//                binding.viewpager.adapter = TowerEquipmentFragmentAdapter(childFragmentManager, filterTowerList(data!!))
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//
-//            }
-//
-//            override fun clickedEarthingItem(id: String, data: ArrayList<NewTowerCivilAllData>?) {
-//                TowerEarthingFragment.Id=id
-//                TowerEarthingFragment.EarthingModelData=data
-//                binding.viewpager.adapter = TowerEarthingAdapter(childFragmentManager, filterTowerList(data!!))
-//                binding.tabs.setupWithViewPager(binding.viewpager)
-//                setViewPager()
-//            }
-//
-//        },siteID.toString())
-//        binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-//        homeViewModel?.TowerCivilInfraModelResponse?.observe(viewLifecycleOwner, Observer {
-//
-//            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
-//                AppLogger.log("planDesign Fragment card Data fetched successfully")
-//                serviceFragAdapterAdapter.setData(it.data.TowerAndCivilInfra)
-//            } else if (it != null) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "planDesign Fragment error :${it.message}, data : ${it.data}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                AppLogger.log("planDesign Fragment error :${it.message}, data : ${it.data}")
-//            } else {
-//                AppLogger.log("planDesign Fragment Something went wrong")
-//                Toast.makeText(requireContext(),
-//                    "planDesign Fragment Something went wrong",
-//                    Toast.LENGTH_SHORT)
-//                    .show()
-//            }
-//        })
-//        (requireActivity() as BaseActivity).showLoader()
-//        homeViewModel.TowerAndCivilRequestAll(siteID.toString())
-//    }
 
     fun filterTowerList(data:ArrayList<NewTowerCivilAllData>):ArrayList<FilterdTwrData>{
         val filteredData:ArrayList<FilterdTwrData> = ArrayList()
@@ -691,50 +629,23 @@ class TaskSearchTabNewFragment(
         return filteredData
     }
 
-//    private fun openCreateLaunchBottomSheet(qatMainModel : QatMainModel?) {
-//        homeViewModel.qatUpdateModel?.observe(viewLifecycleOwner) {
-//            if (it != null && it.status == Resource.Status.LOADING) {
-//                AppLogger.log("TaskSearchTabNewFragment data creating in progress ")
-//                return@observe
-//            }
-//            hideLoader()
-//            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
-//                AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
-//                try {
-//                    if (it.data.Status.isNotEmpty()){
-//                        var data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
-//                        taskDetailData?.ModuleId=data?.id.toString()
-//                        taskDetailData?.ModuleName=data!!.Instruction
-//                        val tempTaskDataUpdate=TaskDataUpdateModel()
-//                        tempTaskDataUpdate.ModuleId=data.id.toInt()
-//                        tempTaskDataUpdate.ModuleName=data.Instruction
-//                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
-//                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
-//                        setUpQatData()
-//                    }
-//                } catch (e:java.lang.Exception){
-//
-//                }
-//
-//            }
-//            else if (it != null) {
-//                AppLogger.log("TaskSearchTabNewFragment error :${it.message}, data : ${it.data}")
-//            } else {
-//                AppLogger.log("TaskSearchTabNewFragment Something went wrong in creating Data")
-//
-//            }
-//        }
-//
-//        val bottomSheetDialogFragment = LaunchQatBottomSheet(object : LaunchQatBottomSheet.LaunchQatBottomSheetListener{
-//            override fun onQatCreated(data: QalLaunchModel) {
-//                showLoader()
-//                homeViewModel.qatLaunchMain(data)
-//            }
-//        },qatMainModel!!)
-//        bottomSheetDialogFragment.show(childFragmentManager, "category")
-//    }
+    private fun openCloseTaskBottomSheet() {
+        val bottomSheetDialogFragment = CloseTaskBottomSheet(taskId)
+        bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
+    private fun reOpenTaskBottomSheet() {
+        taskDetailData?.ReWorkflow?.let{
+            val bottomSheetDialogFragment = ReopenTaskBottomSheet(it)
+            bottomSheetDialogFragment.show(childFragmentManager, "category")
+        }
+
+    }
 
     private fun openCreateLaunchBottomSheet() {
+        if (homeViewModel.qatUpdateModel?.hasActiveObservers() == true) {
+            homeViewModel.qatUpdateModel?.removeObservers(viewLifecycleOwner)
+        }
         homeViewModel.qatUpdateModel?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
                 AppLogger.log("TaskSearchTabNewFragment data creating in progress ")
@@ -744,17 +655,10 @@ class TaskSearchTabNewFragment(
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("TaskSearchTabNewFragment card Data Created successfully")
                 try {
-                    if (it.data.Status.isNotEmpty()){
-                        val data = it.data.Status[0].data.result?.get(0)?.QATMainLaunch?.get(0)
-                        taskDetailData?.ModuleId=data?.id.toString()
-                        taskDetailData?.ModuleName=data!!.Instruction
-                        val tempTaskDataUpdate=TaskDataUpdateModel()
-                        tempTaskDataUpdate.ModuleId=data.id.toInt()
-                        tempTaskDataUpdate.ModuleName=data.Instruction
-                        tempTaskDataUpdate.updatemodule=taskDetailData?.id
-                        taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
-                        setUpQatData()
-                    }
+                    val tempTaskDataUpdate=TaskDataUpdateModel()
+                    tempTaskDataUpdate.updatemodule=taskDetailData?.id
+                    taskViewModel.updateTaskDataWithDataId(tempTaskDataUpdate,taskDetailData?.id!!)
+                    setUpQatDataNew()
                 }catch (e:java.lang.Exception){
                     AppLogger.log("e:"+e.localizedMessage)
                 }
@@ -770,15 +674,16 @@ class TaskSearchTabNewFragment(
         AppLogger.log("taskDetailData!!.ModuleId${taskDetailData!!.ModuleId}")
         val list =  ArrayList<String>()
         list.add(taskDetailData!!.ModuleId)
+        list.add("89")
         val item = QATMainLaunchNew(
             AssignedTo = "${taskDetailData?.actorname}",
-            GeoLevel = "1",
-            "",
+            GeoLevel = "0",
+            "Qat test",
             "",
             list,
-            "${taskDetailData?.enddate}",
+            "2023-05-10",
             true,
-            "${taskDetailData?.AssigneeDepartment}"
+            "D1"
         )
         val qATMainLaunchNew = ArrayList<QATMainLaunchNew>()
         qATMainLaunchNew.add(item)
@@ -905,6 +810,141 @@ class TaskSearchTabNewFragment(
 //                Toast.makeText(requireContext(),
 //                    "Service request Fragment error :${it.message}, data : ${it.data}",
 //                    Toast.LENGTH_SHORT).show()
+//                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
+            }
+        })
+        showLoader()
+        homeViewModel.qatMainRequestAll(AppController.getInstance().taskSiteId)
+    }
+
+//    override fun onDetach() {
+//        super.onDetach()
+//        if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
+//            homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
+//        }
+//        if (homeViewModel.updateNocCompDataResponse?.hasActiveObservers() == true) {
+//            homeViewModel.updateNocCompDataResponse?.removeObservers(viewLifecycleOwner)
+//        }
+//        if (taskViewModel.taskDataList?.hasActiveObservers() == true)
+//            taskViewModel.taskDataList?.removeObservers(this)
+//    }
+    fun setUpQatDataNew() {
+        var moduleId = taskDetailData!!.ModuleId
+        if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
+            homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        homeViewModel.QatModelResponse?.observe(viewLifecycleOwner, Observer {
+
+            if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.item != null && it.data.item?.isNotEmpty() == true) {
+//                if (moduleId==null || moduleId.isEmpty()) {
+//                    openCreateLaunchBottomSheet(it.data)
+//                    return@Observer
+//                }
+                hideLoader()
+                val serviceFragAdapterAdapter =
+                    TaskQATListAdapter(requireContext(), object : TaskQATListAdapter.QatTaskAdapterListener {
+                        override fun clickedItem(qATMainLaunch: QATMainLaunch?, Id: String, mainindex: Int) {
+                            val data : List<Category> = qATMainLaunch!!.Category
+                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                            binding.viewpager.adapter = serviceFragAdapterAdapter
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                        }
+
+                        override fun addNew() {
+//                            openCreateLaunchBottomSheet()
+                        }
+                    }, siteID.toString())
+                binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+                AppLogger.log("setUpQatData Fragment card Data fetched successfully")
+                isDataLoaded = true
+                AppLogger.log("size :${it.data.item?.size}")
+
+                if (it.data.item!![0].QATMainLaunch.isNotEmpty()){
+                    val qATMainLaunch: QATMainLaunch = it.data.item!![0].QATMainLaunch[0]
+                    val data : List<Category> = qATMainLaunch.Category
+                    val mainindex=0
+                    serviceFragAdapterAdapter.setData(qATMainLaunch)
+                    val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                    binding.viewpager.adapter = serviceFragAdapterAdapter
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                    for (i in it.data.item!![0].QATMainLaunch){
+                        if (i.id == moduleId){
+                            val qATMainLaunch: QATMainLaunch = i
+                            val data : List<Category> = qATMainLaunch.Category
+                            val mainindex=0
+                            serviceFragAdapterAdapter.data = qATMainLaunch.Category
+                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                            binding.viewpager.adapter = serviceFragAdapterAdapter
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                            return@Observer
+                        }
+                    }
+//                    openCreateLaunchBottomSheet()
+
+                }
+                else {
+                    Toast.makeText(requireContext(),"Qat data not found",Toast.LENGTH_SHORT).show()
+//                    openCreateLaunchBottomSheet()
+                }
+
+            } else if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.itemNew != null && it.data.itemNew?.isNotEmpty() == true) {
+
+                hideLoader()
+                val serviceFragAdapterAdapter =
+                    TaskQATListAdapter(requireContext(), object : TaskQATListAdapter.QatTaskAdapterListener {
+                        override fun clickedItem(qATMainLaunch: QATMainLaunch?, Id: String, mainindex: Int) {
+                            val data : List<Category> = qATMainLaunch!!.Category
+                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                            binding.viewpager.adapter = serviceFragAdapterAdapter
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                        }
+
+                        override fun addNew() {
+//                            openCreateLaunchBottomSheet()
+                        }
+                    }, siteID.toString())
+                binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
+//                serviceFragAdapterAdapter.addNew()
+
+                AppLogger.log("setUpQatData Fragment card Data fetched successfully")
+                it.data.item = it.data.itemNew
+                isDataLoaded = true
+                if (it.data.itemNew!![0].QATMainLaunch.isNotEmpty()){
+                    val qATMainLaunch: QATMainLaunch = it.data.itemNew!![0].QATMainLaunch[0]
+                    val data : List<Category> = qATMainLaunch.Category
+                    val mainindex=0
+                    serviceFragAdapterAdapter.setData(qATMainLaunch)
+                    val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                    binding.viewpager.adapter = serviceFragAdapterAdapter
+                    binding.tabs.setupWithViewPager(binding.viewpager)
+                    setViewPager()
+                    for (i in it.data.itemNew!![0].QATMainLaunch){
+                        if (i.id == moduleId){
+                            val qATMainLaunch: QATMainLaunch = i
+                            val data : List<Category> = qATMainLaunch.Category
+                            val mainindex=0
+                            serviceFragAdapterAdapter.data = qATMainLaunch.Category
+                            val serviceFragAdapterAdapter = PageAdapterQat(childFragmentManager,data,mainindex)
+                            binding.viewpager.adapter = serviceFragAdapterAdapter
+                            binding.tabs.setupWithViewPager(binding.viewpager)
+                            setViewPager()
+                            return@Observer
+                        }
+                    }
+//                    openCreateLaunchBottomSheet()
+                }else {
+//                    openCreateLaunchBottomSheet()
+                    Toast.makeText(requireContext(),"Qat data not found",Toast.LENGTH_SHORT).show()
+                }
+            } else if (it != null) {
+//                openCreateLaunchBottomSheet()
+                Toast.makeText(requireContext(),
+                    "Service request Fragment error :${it.message}, data : ${it.data}",
+                    Toast.LENGTH_SHORT).show()
 //                AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
         })
@@ -1530,6 +1570,10 @@ class TaskSearchTabNewFragment(
     }
 
     fun mapAppBarUiData(data:TaskDataListItem?){
+        if ( taskDetailData?.ReWorkflow==null ||  taskDetailData?.ReWorkflow?.isEmpty()==true){
+            binding.closeBtn.visibility = View.GONE
+        }else binding.closeBtn.visibility = View.GONE
+
         NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
         isFancing = taskDetailData?.NotificationSettingGeoFencing!!
         fancingDistance = taskDetailData!!.Distance
