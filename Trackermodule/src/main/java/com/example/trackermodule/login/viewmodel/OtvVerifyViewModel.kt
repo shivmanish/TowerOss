@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.example.patrollerapp.login.SetPinActivity
+import com.example.trackermodule.login.SetPinActivity
 import com.example.patrollerapp.login.pojo.NormalResponse
 import com.example.patrollerapp.login.pojo.OtpVerifyService
 import com.example.patrollerapp.util.PatrollerPriference

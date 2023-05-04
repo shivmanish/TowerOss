@@ -11,8 +11,8 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.DialogAddImageBinding
 import com.smarthub.baseapplication.databinding.FragmentGalleryBinding
@@ -22,7 +22,7 @@ import com.smarthub.baseapplication.ui.adapter.GridItemAdapter
 import com.smarthub.baseapplication.utils.FileUtilities
 
 
-class SiteImages : AppCompatActivity() {
+class SiteImages : BaseActivity() {
     lateinit var binding : FragmentGalleryBinding
     lateinit var dialogBinding : DialogAddImageBinding
 

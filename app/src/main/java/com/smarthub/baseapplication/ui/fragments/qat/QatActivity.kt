@@ -1,17 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityQatBinding
-import com.smarthub.baseapplication.model.siteInfo.qat.QatCardItem
-import com.smarthub.baseapplication.model.siteInfo.qat.QatTemplateModel
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
 
-class QatActivity : AppCompatActivity() {
+class QatActivity : BaseActivity() {
     companion object{
         var data : List<Category>?=null
         var mainindex:Int?=-1

@@ -3,7 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.services_request
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.NewCustomerDetailFragmentBinding
 import com.smarthub.baseapplication.databinding.TabNameItemBinding
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataItem

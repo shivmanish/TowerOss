@@ -1,15 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.ui.adapter.AtpListAdapter
 import com.smarthub.baseapplication.ui.adapter.history.AtpMainListAdapter
 import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
 import com.smarthub.baseapplication.listeners.QatProfileListener
 
-class AtpMainActivity : AppCompatActivity(), QatProfileListener {
+class AtpMainActivity : BaseActivity(), QatProfileListener {
 
     var binding: AtpMainScreenBinding? = null
 

@@ -1,17 +1,17 @@
 package com.smarthub.baseapplication.ui.fragments.logs
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityLogBinding
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.logs.LogsDataInfo
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class LogActivity : AppCompatActivity() {
+class LogActivity : BaseActivity() {
     lateinit var viewmodel: HomeViewModel
     lateinit var binding: ActivityLogBinding
     lateinit var adapter: LogAdapter

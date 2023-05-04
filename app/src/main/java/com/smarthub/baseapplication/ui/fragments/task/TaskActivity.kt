@@ -5,7 +5,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.TaskActivityBinding
 
 class TaskActivity : BaseActivity() {

@@ -33,7 +33,7 @@ class SubmitAlertFragment: BaseFragment() {
         viewmodel.sendAlertResponseLivedata.observe(viewLifecycleOwner) {
             //response will get here
             hideLoader()
-            if (it?.data != null) {
+            if (it?.data != null && it.data.isNotEmpty()) {
                 reportedBy = it.data[0].ReportedBy
                 mapUiData(it.data[0])
             }

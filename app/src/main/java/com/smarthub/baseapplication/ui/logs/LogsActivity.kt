@@ -1,10 +1,10 @@
 package com.smarthub.baseapplication.ui.logs
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityLogsBinding
 
-class LogsActivity : AppCompatActivity() {
+class LogsActivity : BaseActivity() {
     lateinit var binding: ActivityLogsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

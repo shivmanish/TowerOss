@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.ui.fragments.project
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
 
-open class DemoActivity : AppCompatActivity() {
+open class DemoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)

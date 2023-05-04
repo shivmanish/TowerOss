@@ -566,31 +566,40 @@
                     android:layout_marginBottom="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
-                <ImageView
-                    android:id="@+id/dot_1"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:layout_marginStart="@dimen/dp2"
-                    android:src="@drawable/circle_gray"
+                <LinearLayout
+                    android:id="@+id/line"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@+id/submit_btn"
-                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
-                <View
-                    android:id="@+id/dot_connecter_line"
-                    android:layout_width="20dp"
-                    android:layout_height="2dp"
-                    android:background="@color/light_gray"
-                    app:layout_constraintStart_toEndOf="@+id/dot_1"
-                    app:layout_constraintTop_toTopOf="@+id/dot_1"
-                    app:layout_constraintBottom_toBottomOf="@+id/dot_1"/>
-                <ImageView
-                    android:id="@+id/dot_2"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:src="@drawable/circle_gray"
-                    app:layout_constraintStart_toEndOf="@+id/dot_connecter_line"
-                    app:layout_constraintTop_toTopOf="@+id/dot_1"
-                    app:layout_constraintBottom_toBottomOf="@+id/dot_1"/>
+                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"
+                    app:layout_constraintTop_toTopOf="@+id/submit_btn">
+                    <ImageView
+                        android:id="@+id/dot_1"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginStart="@dimen/dp2"
+                        android:src="@drawable/circle_gray"
+                        app:layout_constraintStart_toEndOf="@+id/submit_btn"
+                        app:layout_constraintTop_toTopOf="@+id/submit_btn"
+                        app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
+                    <View
+                        android:id="@+id/dot_connecter_line"
+                        android:layout_width="20dp"
+                        android:layout_height="2dp"
+                        android:background="@color/light_gray"
+                        app:layout_constraintStart_toEndOf="@+id/dot_1"
+                        android:layout_gravity="center"/>
+                    <ImageView
+                        android:id="@+id/dot_2"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:src="@drawable/circle_gray"
+                        app:layout_constraintStart_toEndOf="@+id/dot_connecter_line"
+                        app:layout_constraintTop_toTopOf="@+id/dot_1"
+                        app:layout_constraintBottom_toBottomOf="@+id/dot_1"/>
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/close_btn"
                     android:layout_width="wrap_content"
@@ -604,7 +613,7 @@
                     android:paddingVertical="@dimen/dp7"
                     android:textSize="@dimen/dp11"
                     android:layout_marginStart="@dimen/dp2"
-                    app:layout_constraintStart_toEndOf="@+id/dot_2"
+                    app:layout_constraintStart_toEndOf="@+id/line"
                     app:layout_constraintTop_toTopOf="@+id/submit_btn"
                     app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
                 <ImageView

@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SearchActivityBinding
 import com.smarthub.baseapplication.viewmodels.SearchActivityViewModel

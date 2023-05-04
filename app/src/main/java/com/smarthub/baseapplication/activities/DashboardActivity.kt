@@ -1,24 +1,19 @@
 package com.smarthub.baseapplication.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.patrollerapp.util.PatrollerPriference
-import com.example.trackermodule.util.MyApplication
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityMainBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.ui.fragments.search.SearchFragment
 import com.smarthub.baseapplication.ui.fragments.sitedetail.SiteDetailViewModel
-import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.viewmodels.MainViewModel
 
 class  DashboardActivity : BaseActivity() {

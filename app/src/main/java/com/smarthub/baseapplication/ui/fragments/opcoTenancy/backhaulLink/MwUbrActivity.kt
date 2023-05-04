@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.MwUbrActivityBinding
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.BackhaulLinkData
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData

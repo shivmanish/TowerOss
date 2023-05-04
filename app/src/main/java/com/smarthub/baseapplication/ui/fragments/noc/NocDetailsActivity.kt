@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.ui.fragments.noc
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.NocNewActivityDetailsBinding
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllData
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData

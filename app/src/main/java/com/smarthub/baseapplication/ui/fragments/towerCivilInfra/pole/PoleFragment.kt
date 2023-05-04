@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityTwrCivilPoleFragmentBinding
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData

@@ -1,19 +1,18 @@
-package com.example.patrollerapp.login
+package com.example.trackermodule.login
 
 import android.content.IntentFilter
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.patrollerapp.login.callback.OTPReceiveListener
 import com.example.patrollerapp.login.viewmodel.OtvVerifyViewModel
 import com.example.trackermodule.databinding.ActivityOtpVerifyBinding
+import com.example.trackermodule.homepage.BaseActivity
 import com.example.trackermodule.login.sms.MySMSBroadcastReceiver
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 
 
-class OtpVerifyActivity : AppCompatActivity() {
+class OtpVerifyActivity : BaseActivity() {
     lateinit var  mySMSBroadcastReceiver : MySMSBroadcastReceiver
     lateinit var otpVerifyBinding: ActivityOtpVerifyBinding
     lateinit var viewmodel: OtvVerifyViewModel

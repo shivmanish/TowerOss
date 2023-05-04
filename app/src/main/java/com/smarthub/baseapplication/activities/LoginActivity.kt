@@ -1,5 +1,6 @@
 package com.smarthub.baseapplication.activities
 import android.os.Bundle
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityLoginBinding
 
 class LoginActivity : BaseActivity() {

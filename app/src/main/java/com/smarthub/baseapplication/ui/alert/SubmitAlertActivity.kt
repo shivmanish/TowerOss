@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.activities.DashboardActivity
 import com.smarthub.baseapplication.databinding.SubmitAlertActivityBinding
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment

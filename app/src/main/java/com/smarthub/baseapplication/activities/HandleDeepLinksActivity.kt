@@ -3,12 +3,12 @@ package com.smarthub.baseapplication.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityHandleDeepLinksBinding
 import com.smarthub.baseapplication.ui.alert.SubmitAlertActivity
 import com.smarthub.baseapplication.utils.AppLogger
 
-class HandleDeepLinksActivity : AppCompatActivity() {
+class HandleDeepLinksActivity : BaseActivity() {
     var binding: ActivityHandleDeepLinksBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

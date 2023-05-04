@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.trackermodule.homepage.BaseActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,7 +24,7 @@ import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponseItem
 import com.smarthub.baseapplication.ui.mapui.viewmodel.MapViewModel
 
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : BaseActivity(), OnMapReadyCallback {
     private var mapObj: GoogleMap? = null
     var candraw: Boolean = false
     var mapFragment: SupportMapFragment? = null

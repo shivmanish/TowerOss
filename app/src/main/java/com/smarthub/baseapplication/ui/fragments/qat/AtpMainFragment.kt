@@ -1,28 +1,17 @@
 package com.smarthub.baseapplication.ui.fragments.qat
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
 import com.smarthub.baseapplication.R
+import com.smarthub.baseapplication.databinding.AtpMainFragmentBinding
+import com.smarthub.baseapplication.databinding.QatAddNewDialogBinding
+import com.smarthub.baseapplication.listeners.QatListListener
 import com.smarthub.baseapplication.ui.adapter.AtpCardListAdapter
 import com.smarthub.baseapplication.ui.adapter.AtpListAdapter
-import com.smarthub.baseapplication.ui.adapter.qat.QatTitleAdapter
-import com.smarthub.baseapplication.databinding.AtpMainFragmentBinding
-import com.smarthub.baseapplication.databinding.AtpMainScreenBinding
-import com.smarthub.baseapplication.databinding.QatAddNewDialogBinding
-import com.smarthub.baseapplication.databinding.QatNestedListBinding
-import com.smarthub.baseapplication.listeners.QatListListener
-import com.smarthub.baseapplication.listeners.QatProfileListener
 
 class AtpMainFragment : Fragment(), QatListListener {
 

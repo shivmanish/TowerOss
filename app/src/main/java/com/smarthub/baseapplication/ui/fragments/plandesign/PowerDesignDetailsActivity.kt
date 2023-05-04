@@ -1,9 +1,9 @@
 package com.smarthub.baseapplication.ui.fragments.plandesign
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ActivityPlanDesignDetailsBinding
 import com.smarthub.baseapplication.helpers.Resource
@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
-class PowerDesignDetailsActivity : AppCompatActivity() {
+class PowerDesignDetailsActivity : BaseActivity() {
     lateinit var binding:ActivityPlanDesignDetailsBinding
     lateinit var viewmodel: HomeViewModel
     lateinit var adapter: PowerDesignDetailPageAdapter

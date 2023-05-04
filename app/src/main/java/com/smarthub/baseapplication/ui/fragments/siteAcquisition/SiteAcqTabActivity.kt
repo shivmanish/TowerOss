@@ -3,7 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.siteAcquisition
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.ActivityNewSiteAcquisitionBinding
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.ui.dialog.utils.CommonBottomSheetDialog

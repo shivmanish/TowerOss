@@ -12,17 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patrollerapp.db.LatlongData
-import com.example.patrollerapp.homepage.HomePage
+import com.example.trackermodule.homepage.HomePage
 import com.example.patrollerapp.util.LocationService
 import com.example.patrollerapp.util.PatrollerPriference
 import com.example.patrollerapp.util.Util
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.activities.BaseActivity
+import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -38,17 +35,14 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.Allsit
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.FilterdTwrData
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.NewTowerCivilAllData
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityEquipmentAllData
-import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.utilityUpdate.UpdateUtilityEquipmentAllData
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanAndDesignDataItem
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.Category
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QATMainLaunch
-import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel
 import com.smarthub.baseapplication.model.workflow.TaskDataListItem
 import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
-import com.smarthub.baseapplication.ui.dialog.qat.LaunchQatBottomSheet
 import com.smarthub.baseapplication.ui.dialog.task.CloseTaskBottomSheet
 import com.smarthub.baseapplication.ui.dialog.task.ReopenTaskBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
@@ -67,35 +61,20 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnectionDet
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.PowerFuelTabAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TaskPowerConnDataAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.adapter.TaskPowerConnectionListListener
-import com.smarthub.baseapplication.ui.fragments.qat.OpenQatFragment
-import com.smarthub.baseapplication.ui.fragments.qat.SubmitQatFragment
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.PageAdapterQat
-import com.smarthub.baseapplication.ui.fragments.qat.adapter.QatMainAdapterListener
 import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQATListAdapter
-import com.smarthub.baseapplication.ui.fragments.qat.adapter.TaskQatViewPagerAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestActivity
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicePageAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.ServicesDataAdapterListener
 import com.smarthub.baseapplication.ui.fragments.services_request.adapter.TaskServicesDataAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAcqTabActivity
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.TaskSiteAcqsitionFragAdapter
-import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTabAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.SiteAcquisitionTaskTabAdapter
 import com.smarthub.baseapplication.ui.fragments.sstSbc.SstSbcTaskTabAdapter
 import com.smarthub.baseapplication.ui.fragments.sstSbc.TaskSstSbcDataAdapter
 import com.smarthub.baseapplication.ui.fragments.sstSbc.TaskSstSbcDataAdapterListener
-import com.smarthub.baseapplication.ui.fragments.sstSbc.adapter.SstSbcTabAdapter
 import com.smarthub.baseapplication.ui.fragments.task.adapter.TaskSiteInfoAdapter
 import com.smarthub.baseapplication.ui.fragments.task.editdialog.SiteInfoEditBottomSheet
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.*
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.PoleFragment
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.pole.adapters.PoleFragPageAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.TwrInfraDetails
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.tower.adapter.TowerPageAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.TowerEarthingFragment
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.earthing.adapters.TowerEarthingAdapter
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.TowerEquipmentFragemnt
-import com.smarthub.baseapplication.ui.fragments.towerCivilInfra.equipmentRoom.adapters.TowerEquipmentFragmentAdapter
 import com.smarthub.baseapplication.ui.fragments.utilites.SMPSDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.ACDetailsActivity
 import com.smarthub.baseapplication.ui.fragments.utilites.ac.adapters.ACViewpagerAdapter
@@ -525,7 +504,7 @@ class TaskSearchTabNewFragment(
             }
         }, siteID.toString())
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-        homeViewModel?.PlanDesignModelResponse?.observe(viewLifecycleOwner, Observer {
+        homeViewModel.PlanDesignModelResponse?.observe(viewLifecycleOwner, Observer {
 
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
@@ -591,7 +570,7 @@ class TaskSearchTabNewFragment(
             }
         })
         binding.horizontalOnlyList.adapter = serviceFragAdapterAdapter
-        homeViewModel?.powerAndFuelResponse?.observe(viewLifecycleOwner, Observer {
+        homeViewModel.powerAndFuelResponse?.observe(viewLifecycleOwner, Observer {
 
             if (it?.data != null && it.status == Resource.Status.SUCCESS) {
                 AppLogger.log("planDesign Fragment card Data fetched successfully")
@@ -1572,7 +1551,11 @@ class TaskSearchTabNewFragment(
     fun mapAppBarUiData(data:TaskDataListItem?){
         if ( taskDetailData?.ReWorkflow==null ||  taskDetailData?.ReWorkflow?.isEmpty()==true){
             binding.closeBtn.visibility = View.GONE
-        }else binding.closeBtn.visibility = View.GONE
+            binding.line.visibility = View.GONE
+        }else {
+            binding.line.visibility = View.VISIBLE
+            binding.closeBtn.visibility = View.VISIBLE
+        }
 
         NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
         isFancing = taskDetailData?.NotificationSettingGeoFencing!!
