@@ -50,6 +50,7 @@ import com.smarthub.baseapplication.model.workflow.TaskDataUpdateModel
 import com.smarthub.baseapplication.ui.alert.dialog.ChatFragment
 import com.smarthub.baseapplication.ui.dialog.qat.LaunchQatBottomSheet
 import com.smarthub.baseapplication.ui.dialog.task.CloseTaskBottomSheet
+import com.smarthub.baseapplication.ui.dialog.task.ReopenTaskBottomSheet
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.noc.NocCompPageAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.TaskNocDataAdapter
@@ -189,6 +190,9 @@ class TaskSearchTabNewFragment(
         }
         binding.mapView.setOnClickListener {
             mapView()
+        }
+        binding.closeBtn.setOnClickListener {
+            reOpenTaskBottomSheet()
         }
         binding.submitBtn.setOnClickListener {
             openCloseTaskBottomSheet()
@@ -697,6 +701,14 @@ class TaskSearchTabNewFragment(
     private fun openCloseTaskBottomSheet() {
         val bottomSheetDialogFragment = CloseTaskBottomSheet(taskId)
         bottomSheetDialogFragment.show(childFragmentManager, "category")
+    }
+
+    private fun reOpenTaskBottomSheet() {
+        taskDetailData?.ReWorkflow?.let{
+            val bottomSheetDialogFragment = ReopenTaskBottomSheet(it)
+            bottomSheetDialogFragment.show(childFragmentManager, "category")
+        }
+
     }
 
 //    private fun openCreateLaunchBottomSheet(qatMainModel : QatMainModel?) {
@@ -1670,6 +1682,10 @@ class TaskSearchTabNewFragment(
     }
 
     fun mapAppBarUiData(data:TaskDataListItem?){
+        if ( taskDetailData?.ReWorkflow==null ||  taskDetailData?.ReWorkflow?.isEmpty()==true){
+            binding.closeBtn.visibility = View.GONE
+        }else binding.closeBtn.visibility = View.GONE
+        
         NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
         isFancing = taskDetailData?.NotificationSettingGeoFencing!!
         fancingDistance = taskDetailData!!.Distance

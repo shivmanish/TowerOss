@@ -221,6 +221,10 @@ class HomeViewModel : ViewModel() {
         homeRepo?.closeTask(taskId,remark)
     }
 
+    fun reopenTask(taskId: String,remark : String){
+        homeRepo?.reopenTask(taskId,remark)
+    }
+
     fun createSite(basicinfoModel: CreateSiteModel){
         homeRepo?.createSite(basicinfoModel)
     }

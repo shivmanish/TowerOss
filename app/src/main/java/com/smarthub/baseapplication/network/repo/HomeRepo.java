@@ -560,6 +560,46 @@ public class HomeRepo {
             }
         });
     }
+    public void reopenTask(String taskId,String remark) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Approve",taskId);
+        jsonObject.addProperty("status","Idle");
+        jsonObject.addProperty("remark",remark);
+        jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        apiClient.closeTask(jsonObject).enqueue(new Callback<CloseTaskModel>() {
+            @Override
+            public void onResponse(@NonNull Call<CloseTaskModel> call, Response<CloseTaskModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CloseTaskModel> call, @NonNull Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<CloseTaskModel> response) {
+
+                if (response.body() != null) {
+                    AppLogger.INSTANCE.log("reportSuccessResponse :" + response.toString());
+                    closeTaskModel.postValue(Resource.success(response.body(), 200));
+
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    closeTaskModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    closeTaskModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
     public void updateSiteInfo(BasicinfoModel basicinfoModel) {
         BasicInfoDialougeResponse d = (basicInfoUpdate.getValue() != null) ? basicInfoUpdate.getValue().data : null;
         basicInfoUpdate.postValue(Resource.loading(d, 200));
