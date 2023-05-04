@@ -105,7 +105,7 @@ class SstSbcMainFrqagment(var id:String) : BaseFragment(), SstSbcAdapterListener
     
 
     override fun clickedItem(data : SstSbcAllData?,index:Int) {
-        SstSbcTabActivity.siteacquisition=data
+        SstSbcTabActivity.sstSbcData=data
         SstSbcTabActivity.parentIndex=index
         requireActivity().startActivity(Intent(requireContext(), SstSbcTabActivity::class.java))
 

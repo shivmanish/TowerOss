@@ -101,6 +101,11 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
     private List addressdetails;
     private double mLatitude;
     private double mLongitude;
+
+    private double PremLatitude;
+    private double PremLongitude;
+    private boolean isFirsttime = true;
+
     private String userCountryISOCode = null;
     private String place_id = "";
     private String place_url = " ";
@@ -108,9 +113,9 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
     private static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 2;
     private boolean mLocationPermissionGranted;
     private TextView imgSearch;
-    private TextView citydetail;
+    private EditText citydetail;
     private EditText addressline1;
-    private EditText addressline2;
+    private EditText addressline2, pincode, lattitude, longitude;
     int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
     //inital zoom
@@ -136,16 +141,29 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
         setContentView(R.layout.activity_location_picker);
-        if(getSupportActionBar()!=null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().hide();
         ImageView imgCurrentloc = findViewById(R.id.imgCurrentloc);
         Button txtSelectLocation = findViewById(R.id.fab_select_location);
+        Button canel = findViewById(R.id.fab_cancel);
+        PremLatitude = getIntent().getFloatExtra("lattitude",0.0f);
+        PremLongitude = getIntent().getFloatExtra("longitude",0.0f);
+        canel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         ImageView directionTool = findViewById(R.id.direction_tool);
         ImageView googleMapTool = findViewById(R.id.google_maps_tool);
 
         imgSearch = findViewById(R.id.imgSearch);
         addressline2 = findViewById(R.id.addressline2);
+        pincode = findViewById(R.id.pincode);
         citydetail = findViewById(R.id.citydetails);
+        lattitude = findViewById(R.id.lattitude);
+        longitude = findViewById(R.id.longitude);
+        addressline1 = findViewById(R.id.addressline1);
 
 
         // Initialize bundle
@@ -227,7 +245,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
             @Override
             public void onClick(View view) {
                 if (!Places.isInitialized()) {
-                    Places.initialize(LocationPickerActivity.this.getApplicationContext(),MapUtility.apiKey);
+                    Places.initialize(LocationPickerActivity.this.getApplicationContext(), MapUtility.apiKey);
                 }
 
                 // Set the fields to specify which types of place data to return.
@@ -251,7 +269,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
                 intent.putExtra(MapUtility.ADDRESS, imgSearch.getText().toString().trim());
                 intent.putExtra(MapUtility.LATITUDE, mLatitude);
                 intent.putExtra(MapUtility.LONGITUDE, mLongitude);
-                intent.putExtra("fullAddress",addressBundle);
+                intent.putExtra("fullAddress", addressBundle);
                 intent.putExtra("id", place_id);//if you want place id
                 intent.putExtra("url", place_url);//if you want place url
                 LocationPickerActivity.this.setResult(Activity.RESULT_OK, intent);
@@ -262,6 +280,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         imgCurrentloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isFirsttime  = false;
                 LocationPickerActivity.this.showCurrentLocationOnMap(false);
                 doAfterPermissionProvided = 2;
                 doAfterLocationSwitchedOn = 2;
@@ -272,6 +291,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         directionTool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isFirsttime  = false;
                 LocationPickerActivity.this.showCurrentLocationOnMap(true);
                 doAfterPermissionProvided = 3;
                 doAfterLocationSwitchedOn = 3;
@@ -289,9 +309,9 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         });
 
         try {
-            Toast.makeText(getApplicationContext(),this.getResources().getString(R.string.edittext_hint),Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,this.getResources().getString(R.string.edittext_hint),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), this.getResources().getString(R.string.edittext_hint), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, this.getResources().getString(R.string.edittext_hint), Toast.LENGTH_SHORT).show();
 
         }
 
@@ -312,7 +332,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
             if (resultCode == RESULT_OK) {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 userAddress = place.getAddress();
-              //  addressdetails=place.getAddressComponents();
+                //  addressdetails=place.getAddressComponents();
                 imgSearch.setText("" + userAddress);
                 mLatitude = place.getLatLng().latitude;
                 mLongitude = place.getLatLng().longitude;
@@ -368,55 +388,62 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
     }
 
     private void showCurrentLocationOnMap(final boolean isDirectionClicked) {
+        if(isFirsttime && PremLatitude != 0.0){
+                mLatitude = PremLatitude;
+                mLongitude = PremLongitude;
+                LocationPickerActivity.this.getAddressByGeoCodingLatLng();
+        }else {
+            if (checkAndRequestPermissions()) {
 
-        if (checkAndRequestPermissions()) {
+                @SuppressLint("MissingPermission")
+                Task<Location> lastLocation = fusedLocationProviderClient.getLastLocation();
+                lastLocation.addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            mMap.clear();
+                            if (isDirectionClicked) {
+                                currentLatitude = location.getLatitude();
+                                currentLongitude = location.getLongitude();
+                                //Go to Map for Directions
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
+                                        "http://maps.google.com/maps?saddr=" + currentLatitude + ", " + currentLongitude + "&daddr=" + mLatitude + ", " + mLongitude + ""));
+                                LocationPickerActivity.this.startActivity(intent);
+                            } else {
 
-            @SuppressLint("MissingPermission")
-            Task<Location> lastLocation = fusedLocationProviderClient.getLastLocation();
-            lastLocation.addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
-                        mMap.clear();
-                        if (isDirectionClicked) {
-                            currentLatitude = location.getLatitude();
-                            currentLongitude = location.getLongitude();
-                            //Go to Map for Directions
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
-                                    "http://maps.google.com/maps?saddr=" + currentLatitude + ", " + currentLongitude + "&daddr=" + mLatitude + ", " + mLongitude + ""));
-                            LocationPickerActivity.this.startActivity(intent);
+                                //Go to Current Location
+                                mLatitude = location.getLatitude();
+                                mLongitude = location.getLongitude();
+                                LocationPickerActivity.this.getAddressByGeoCodingLatLng();
+                            }
+
                         } else {
-                            //Go to Current Location
-                            mLatitude = location.getLatitude();
-                            mLongitude = location.getLongitude();
-                            LocationPickerActivity.this.getAddressByGeoCodingLatLng();
-                        }
+                            //Gps not enabled if loc is null
+                            LocationPickerActivity.this.getSettingsLocation();
+                            Toast.makeText(LocationPickerActivity.this, "Location not Available", Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        //Gps not enabled if loc is null
-                        LocationPickerActivity.this.getSettingsLocation();
-                        Toast.makeText(LocationPickerActivity.this, "Location not Available", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                lastLocation.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //If perm provided then gps not enabled
+//                getSettingsLocation();
+                        Toast.makeText(LocationPickerActivity.this, "Location Not Availabe", Toast.LENGTH_SHORT).show();
 
                     }
-                }
-            });
-            lastLocation.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    //If perm provided then gps not enabled
-//                getSettingsLocation();
-                    Toast.makeText(LocationPickerActivity.this, "Location Not Availabe", Toast.LENGTH_SHORT).show();
-
-                }
-            });
+                });
+            }
         }
-
     }
-    public Bitmap resizeMapIcons(String iconName, int width, int height){
-        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+
+    public Bitmap resizeMapIcons(String iconName, int width, int height) {
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(iconName, "drawable", getPackageName()));
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
         return resizedBitmap;
     }
+
     private void addMarker() {
         CameraUpdate cameraUpdate;
         String SPACE = " , ";
@@ -426,11 +453,11 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
             try {
                 mMap.clear();
                 imgSearch.setText("" + userAddress);
-                markerOptions = new MarkerOptions().position(coordinate).title(userAddress).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("ic_pointer",100,100)));
-                if(isZooming) {
-                   //  camera will not Update
+                markerOptions = new MarkerOptions().position(coordinate).title(userAddress).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("ic_pointer", 100, 100)));
+                if (isZooming) {
+                    //  camera will not Update
                     cameraUpdate = CameraUpdateFactory.newLatLngZoom(coordinate, mMap.getCameraPosition().zoom);
-                }else {
+                } else {
                     // camera will Update zoom
                     cameraUpdate = CameraUpdateFactory.newLatLngZoom(coordinate, 18);
 
@@ -446,19 +473,29 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
                 ex.printStackTrace();
             }
         }
-        try{
+        try {
             userAddressline2 = userAddressline2.substring(0, userAddressline2.indexOf(userCity));
-           // userAddressline.replace(userCity,"");
-          //  userAddressline.replace(userPostalCode,"");
-         //   userAddressline.replace(userState,"");
-          //  userAddressline.replace(userCountry,"");
-        }catch (Exception ex){ Log.d(TAG,"address error "+ex);}
+            // userAddressline.replace(userCity,"");
+            //  userAddressline.replace(userPostalCode,"");
+            //   userAddressline.replace(userState,"");
+            //  userAddressline.replace(userCountry,"");
+        } catch (Exception ex) {
+            Log.d(TAG, "address error " + ex);
+        }
 
         try {
-            addressline2.setText(userAddressline2);
-            citydetail.setText(userCity+SPACE+userPostalCode+SPACE+userState+SPACE+userCountry);
+//            addressline2.setText(userAddressline2);
+            addressline2.setText(userCountry);
+            pincode.setText(userPostalCode);
+            citydetail.setText(userState);
+            longitude.setText(String.valueOf(mLongitude));
+            lattitude.setText(String.valueOf(mLatitude));
+            addressline1.setText(userAddress);
 
-        }catch (Exception ex){ ex.printStackTrace();}
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
     }
 
@@ -507,7 +544,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
                 mLatitude = latLng.latitude;
                 mLongitude = latLng.longitude;
                 Log.e("latlng", latLng + "");
-                isZooming=true;
+                isZooming = true;
                 LocationPickerActivity.this.addMarker();
                 if (!MapUtility.isNetworkAvailable(LocationPickerActivity.this)) {
                     MapUtility.showToast(LocationPickerActivity.this, "Please Connect to Internet");
@@ -633,7 +670,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         outState.putDouble("latitude", mLatitude);
         outState.putDouble("longitude", mLongitude);
         outState.putString("userAddress", userAddress);
-        outState.putBundle("addressBundle",addressBundle);
+        outState.putBundle("addressBundle", addressBundle);
         outState.putDouble("currentLatitude", currentLatitude);
         outState.putDouble("currentLongitude", currentLongitude);
         outState.putString("userCountryISOCode", userCountryISOCode);
@@ -703,6 +740,7 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
     @SuppressLint("StaticFieldLeak")
     private class GetAddressFromLatLng extends AsyncTask<Double, Void, Bundle> {
         Double latitude, longitude;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -727,34 +765,34 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
 
                     String address = addresses.get(0).getAddressLine(0);
                     if (address != null)
-                        addressBundle.putString("addressline2",address);
-                        sb.append(address).append(" ");
+                        addressBundle.putString("addressline2", address);
+                    sb.append(address).append(" ");
 
 
                     String city = addresses.get(0).getLocality();
                     if (city != null)
-                        addressBundle.putString("city",city);
-                        sb.append(city).append(" ");
+                        addressBundle.putString("city", city);
+                    sb.append(city).append(" ");
 
 
                     String state = addresses.get(0).getAdminArea();
                     if (state != null)
-                        addressBundle.putString("state",state);
-                        sb.append(state).append(" ");
+                        addressBundle.putString("state", state);
+                    sb.append(state).append(" ");
 
 
                     String country = addresses.get(0).getCountryName();
                     if (country != null)
-                        addressBundle.putString("country",country);
-                        sb.append(country).append(" ");
+                        addressBundle.putString("country", country);
+                    sb.append(country).append(" ");
 
                     String postalCode = addresses.get(0).getPostalCode();
                     if (postalCode != null)
-                        addressBundle.putString("postalcode",postalCode);
-                        sb.append(postalCode).append(" ");
-                   // return sb.toString();
+                        addressBundle.putString("postalcode", postalCode);
+                    sb.append(postalCode).append(" ");
+                    // return sb.toString();
 
-                    addressBundle.putString("fulladdress",sb.toString());
+                    addressBundle.putString("fulladdress", sb.toString());
 
                     return addressBundle;
                 } else {
@@ -762,13 +800,13 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                addressBundle.putBoolean("error",true);
+                addressBundle.putBoolean("error", true);
                 return addressBundle;
                 //return roundAvoid(latitude) + "," + roundAvoid(longitude);
 
             }
 
-           // return bu;
+            // return bu;
         }
 
 
@@ -891,8 +929,8 @@ public class LocationPickerActivity extends AppCompatActivity implements OnMapRe
         }
 
         fusedLocationProviderClient.requestLocationUpdates(locationRequest,
-                locationCallback,
-                null /* Looper */)
+                        locationCallback,
+                        null /* Looper */)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

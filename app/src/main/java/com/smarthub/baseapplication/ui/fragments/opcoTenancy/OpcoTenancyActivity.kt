@@ -46,7 +46,15 @@ class OpcoTenancyActivity : BaseActivity() {
         }
         binding.siteId.text=AppController.getInstance().siteName
         binding.subTitle.text=Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.OpcoSiteId
-        binding.rfiDate.text= Utils.getFormatedDate(Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.RFIAcceptanceDate?.substring(0,10)!!,"dd-MMM-yyyy")
+        try {
+            binding.rfiDate.text =
+                Utils.getFormatedDate(Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.RFIAcceptanceDate?.substring(
+                    0,
+                    10)!!, "dd-MMM-yyyy")
+
+        }catch (e:Exception) {
+            e.printStackTrace()
+        }
         binding.titel.text= Opcodata?.Opcoinfo?.get(0)?.SRInfo01?.get(0)?.OpcoName
         binding.addMore.setOnClickListener(){
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)

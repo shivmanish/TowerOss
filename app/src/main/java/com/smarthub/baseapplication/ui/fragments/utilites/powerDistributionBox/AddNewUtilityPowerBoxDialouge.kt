@@ -37,7 +37,7 @@ class AddNewUtilityPowerBoxDialouge (var fullData:UtilityEquipmentAllData?, var 
             dismiss()
         }
         
-        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,binding.VendorCodeEdit)
         AppPreferences.getInstance().setDropDown(binding.TypeEdit,DropDowns.PDBType.name)
 
 

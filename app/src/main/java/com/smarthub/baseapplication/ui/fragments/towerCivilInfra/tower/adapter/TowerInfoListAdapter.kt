@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
@@ -401,16 +402,15 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                     holder.binding.VendorExecutiveNumberEdit.setText(insAccepData?.VendorExecutiveNumber)
                     holder.binding.VendorExecutiveEmailEdit.setText(insAccepData?.VendorEmailId)
                     holder.binding.remarksEdit.setText(insAccepData?.remark)
-                    holder.binding.VendorCodeEdit.setText(insAccepData?.VendorCode)
                     holder.binding.InstallationDateEdit.text=Utils.getFormatedDate(insAccepData?.InstallationDate,"dd-MMM-yyyy")
                     holder.binding.AcceptenceDateEdit.text=Utils.getFormatedDate(insAccepData?.AcceptanceDate,"dd-MMM-yyyy")
                 }
                 if (insAccepData!=null && insAccepData?.VendorCompany?.isNotEmpty()==true){
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,insAccepData?.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,insAccepData?.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                     AppPreferences.getInstance().setDropDown(holder.binding.vendorName,DropDowns.VendorCompany.name,insAccepData?.VendorCompany?.get(0).toString())
                 }
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
                 if (insAccepData!=null && insAccepData?.AcceptanceStatus?.isNotEmpty()==true){
                     AppPreferences.getInstance().setDropDown(holder.binding.acceptenceStatus,DropDowns.AcceptanceStatus.name,insAccepData?.AcceptanceStatus?.get(0).toString())
                     AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name,insAccepData?.AcceptanceStatus?.get(0).toString())
@@ -555,7 +555,7 @@ class TowerInfoListAdapter(var baseFragment: BaseFragment, var listener: TowerIn
                 try {
                     if (datalist!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
+                            override fun itemClicked(item : Attachments) {
                                 listener.attachmentItemClicked()
                             }
                         })

@@ -19,9 +19,8 @@ class OutsidePremisesTableAdapter (var context : Context, var listener : AcqSurv
 
 
     fun addItem(){
-        val data=SAcqOutsidePremise(arrayListOf(0),"",arrayListOf(0),"","")
-        this.list?.add(data)
-        notifyItemInserted(list?.size!!.plus(1))
+        val data=SAcqOutsidePremise()
+        listener.editOutsidePremisesClicked(-1,data)
     }
 
     fun removeItem(position:Int){
@@ -34,7 +33,7 @@ class OutsidePremisesTableAdapter (var context : Context, var listener : AcqSurv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.outside_permises_table_items,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.outside_permises_table_items,parent,false)
         return ViewHold(view)
     }
 
@@ -44,8 +43,8 @@ class OutsidePremisesTableAdapter (var context : Context, var listener : AcqSurv
             performOptionsMenuClick(position,it,item)
         }
         try {
-            if (item.ExternalStructureType.isNotEmpty())
-                AppPreferences.getInstance().setDropDown(holder.binding.ExternalStructureType,DropDowns.ExternalStructureType.name,item.ExternalStructureType.get(0).toString())
+            if (item.ExternalStructureType?.isNotEmpty()==true)
+                AppPreferences.getInstance().setDropDown(holder.binding.ExternalStructureType,DropDowns.ExternalStructureType.name,item.ExternalStructureType?.get(0).toString())
             holder.binding.DistanceFromBoundry.text=item.DistanceFromBoundry
             holder.binding.HeightAGL.text=item.Height
             holder.binding.SrNo.text=position.plus(1).toString()

@@ -25,6 +25,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
+import com.smarthub.baseapplication.model.qatcheck.update.QatUpdateModel;
 import com.smarthub.baseapplication.model.register.RegisterData;
 import com.smarthub.baseapplication.model.register.RegstationResponse;
 import com.smarthub.baseapplication.model.register.dropdown.DepartmentDropdown;
@@ -38,6 +39,8 @@ import com.smarthub.baseapplication.model.search.SearchSiteOpcoSiteId;
 import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentConditionsDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompModel;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.updateNocComp.UpdateNocCompResponseModel;
@@ -78,6 +81,7 @@ import com.smarthub.baseapplication.model.taskModel.GetTaskInfoPostData;
 import com.smarthub.baseapplication.model.taskModel.TaskAssignModel;
 import com.smarthub.baseapplication.model.taskModel.TaskInfo;
 import com.smarthub.baseapplication.model.taskModel.assignTask.AssignTaskNewModel;
+import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.GetTaskDataModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.model.taskModel.dropdown.UpdateTaskDataModel;
@@ -96,6 +100,8 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse;
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse;
 import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
 import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
@@ -173,6 +179,10 @@ public interface APIClient {
     Call<AllsiteInfoDataModel> fetchSiteInfo(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<AttachmentConditionsDataModel> fetchAttachmentConditions(@Body JsonObject data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
     Call<UpdateSiteInfoResponseModel> updateSiteInfoRequest(@Body AllsiteInfoDataModel data);
 
@@ -207,7 +217,7 @@ public interface APIClient {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
-    Call<QatMainModel> fetchQatMainRequest(@Body QalLaunchModel data);
+    Call<QatUpdateModel> fetchQatMainRequest(@Body QalLaunchModel data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)
@@ -234,8 +244,18 @@ public interface APIClient {
     Call<SstSbcAllDataModel> fetchSstSbcModelRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<RfMainResponse> fetchRfSurveyRequest(@Body JsonObject data);
+
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
     Call<UpdateSstSbcResponseModel> updateSstSbcRequest(@Body UpdateSstSbcModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<RfBasicResponse> updateRfServey(@Body RfMainResponse data);
+
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)
@@ -364,6 +384,10 @@ public interface APIClient {
     Call<UserDataResponse> getuserlist(@Body GetUserList data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<UserDataResponse> getuserByWorkflowlist(@Body GetUserList data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_NEW)
     Call<MarkerResponse> getmaplatlong(@Body MapMarkerService data);
 
@@ -386,6 +410,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.WORKFLOW_DATA_URL)
     Call<TaskInfo> getTaskInfo(@Body GetTaskInfoPostData data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.WORKFLOW_DATA_URL)
+    Call<DepartmentDataModel> getDepartmentWithId(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_DATA)

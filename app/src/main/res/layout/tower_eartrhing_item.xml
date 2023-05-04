@@ -2,8 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/dp5"
-    android:layout_marginLeft="@dimen/dp5"
     android:elevation="@dimen/dp30"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -114,9 +112,9 @@
                 android:fontFamily="@font/poppins_regular"
                 android:layout_width="0dp"
                 android:gravity="center"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:ellipsize="marquee"
-                android:text="Pit Size"
+                android:text="Earthing Cable Length(m)"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -127,9 +125,9 @@
                 android:fontFamily="@font/poppins_regular"
                 android:layout_width="0dp"
                 android:gravity="center"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:ellipsize="marquee"
-                android:text="Pit Depth (m)"
+                android:text="Pit Depth\n(m)"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -140,9 +138,9 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_width="0dp"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:ellipsize="marquee"
-                android:text="Pit Rod Material"
+                android:text="Earthing Cable\nType"
                 android:gravity="center"
                 style="@style/RowTextItemInfo"
                 android:layout_height="wrap_content"/>

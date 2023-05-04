@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.AcqAgreementTermItemsBinding
 import com.smarthub.baseapplication.databinding.AcqPayeeAcountTableBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.NewSiteAcquiAllData
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqAgreementTerm
@@ -31,10 +32,10 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
     init {
         try {
             if (data!=null && data.SAcqAssignACQTeam?.isNotEmpty()!!){
-                datalist=data.SAcqSoftAcquisition!!.get(0)
+                datalist=data.SAcqSoftAcquisition?.get(0)
             }
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"TowerInfoFrag error :${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
         }
     }
 
@@ -155,6 +156,14 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
+                holder.binding.imgEdit.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
+                holder.binding.cancel.setOnClickListener {
+                    holder.binding.viewLayout.visibility = View.VISIBLE
+                    holder.binding.editLayout.visibility = View.GONE
+                }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
@@ -163,15 +172,6 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     holder.binding.imgEdit.visibility = View.VISIBLE
                     holder.binding.viewLayout.visibility = View.VISIBLE
                     holder.binding.editLayout.visibility = View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.GONE
-                        holder.binding.editLayout.visibility = View.VISIBLE
-                    }
-                    holder.binding.cancel.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.VISIBLE
-                        holder.binding.editLayout.visibility = View.GONE
-                    }
 
                 }
                 else {
@@ -186,171 +186,111 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     updateList(position)
                 }
                 holder.binding.itemTitleStr.text = list[position]
-                try {
-                    if (datalist!=null && datalist?.SAcqSoftAcquisitionAgreementTerm?.isNotEmpty()==true){
-                        agreeData=datalist?.SAcqSoftAcquisitionAgreementTerm?.get(0)
-                    }
-                    if (agreeData!=null ){
-                        //view mode
-                        if(agreeData?.Acquisitiontype?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.AgreementType,DropDowns.Acquisitiontype.name,agreeData?.Acquisitiontype?.get(0).toString())
-                        if(agreeData?.PropertyOwnership?.isNotEmpty()==true)
-                            AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,agreeData?.PropertyOwnership?.get(0).toString())
-                        holder.binding.PropertyType.text=agreeData?.PropertyType.toString()
-                        holder.binding.RentAymentPeriod.text=agreeData?.Rentpaymentperiod.toString()
-                        holder.binding.EBBillingBasis.text=agreeData?.EBBillingBasis.toString()
-                        holder.binding.EBInclusiveInRental.text=agreeData?.EBInclusiveInRental.toString()
-                        holder.binding.RentEscalationPeriod.text=agreeData?.RentEscalationPeriod
-                        holder.binding.AcquisitionArea.text=agreeData?.AcquisitionArea
-                        holder.binding.AgreementPeriod.text=agreeData?.AgreementPeriod
-                        holder.binding.LockInPeriod.text=agreeData?.LockInPeriod
-                        holder.binding.AnnualRentAmount.text=agreeData?.AnnualRentAmount
-                        holder.binding.PeriodicRentAmount.text=agreeData?.PeriodicRentAmount
-                        holder.binding.RentEscalation.text=agreeData?.RentEscalation
-                        holder.binding.EBBillLimitMin.text=agreeData?.EBBillLimitmin
-                        holder.binding.EBBillLimitMax.text=agreeData?.EBBillLimitmax
-                        holder.binding.EBPerUnitRate.text=agreeData?.EBPUnitRate
-                        holder.binding.OnetimeAmount.text=agreeData?.OnetimeAmount
-                        holder.binding.SecurityDepositAmount.text=agreeData?.SecurityDepositAmount
-                        holder.binding.remarks.text=agreeData?.remark
-
-                        //edit mode
-                        holder.binding.PropertyTypeEdit.text=agreeData?.PropertyType.toString()
-                        holder.binding.RentAymentPeriodEdit.text=agreeData?.Rentpaymentperiod.toString()
-                        holder.binding.EBBillingBasisEdit.text=agreeData?.EBBillingBasis.toString()
-                        holder.binding.EBInclusiveInRentalEdit.text=agreeData?.EBInclusiveInRental.toString()
-                        holder.binding.RentEscalationPeriodEdit.setText(agreeData?.RentEscalationPeriod)
-                        holder.binding.AcquisitionAreaEdit.setText(agreeData?.AcquisitionArea)
-                        holder.binding.AgreementPeriodEdit.setText(agreeData?.AgreementPeriod)
-                        holder.binding.LockInPeriodEdit.setText(agreeData?.LockInPeriod)
-                        holder.binding.AnnualRentAmountEdit.setText(agreeData?.AnnualRentAmount)
-                        holder.binding.PeriodicRentAmountEdit.setText(agreeData?.PeriodicRentAmount)
-                        holder.binding.RentEscalationEdit.setText(agreeData?.RentEscalation)
-                        holder.binding.MinEBBillLimitEdit.setText(agreeData?.EBBillLimitmin)
-                        holder.binding.MaxEBBillLimitEdit.setText(agreeData?.EBBillLimitmax)
-                        holder.binding.EBPerUnitRateEdit.setText(agreeData?.EBPUnitRate)
-                        holder.binding.OnetimeAmountEdit.setText(agreeData?.OnetimeAmount)
-                        holder.binding.SecurityDepositAmountEdit.setText(agreeData?.SecurityDepositAmount)
-                        holder.binding.remarksEdit.setText(agreeData?.remark)
-
-                    }
-                    else
-                        AppLogger.log("error in soft Acquisition data or Agreement terms data")
-
-                    if(agreeData!=null && agreeData?.Acquisitiontype?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.AgreementTypeEdit,DropDowns.Acquisitiontype.name,agreeData?.Acquisitiontype?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.AgreementTypeEdit,DropDowns.Acquisitiontype.name)
-                    if(agreeData!=null && agreeData?.PropertyOwnership?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnershipEdit,DropDowns.PropertyOwnership.name,agreeData?.PropertyOwnership?.get(0).toString())
-                    else
-                        AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnershipEdit,DropDowns.PropertyOwnership.name)
-
-                }catch (e:java.lang.Exception){
-                    AppLogger.log("ToewerInfoadapter error : ${e.localizedMessage}")
+                if (datalist!=null && datalist?.SAcqSoftAcquisitionAgreementTerm?.isNotEmpty()==true){
+                    agreeData=datalist?.SAcqSoftAcquisitionAgreementTerm?.get(0)
                 }
+                else
+                    AppLogger.log("error in soft Acquisition data or Agreement terms data")
+                if (agreeData!=null ){
+                    //view mode
+                    if(agreeData?.Acquisitiontype?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.AgreementType,DropDowns.Acquisitiontype.name,agreeData?.Acquisitiontype?.get(0).toString())
+                    if(agreeData?.PropertyOwnership?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnership,DropDowns.PropertyOwnership.name,agreeData?.PropertyOwnership?.get(0).toString())
+                    holder.binding.RentEscalationPeriod.text=agreeData?.RentEscalationPeriod
+                    holder.binding.AcquisitionArea.text=agreeData?.AcquisitionArea
+                    holder.binding.AgreementPeriod.text=agreeData?.AgreementPeriod
+                    holder.binding.LockInPeriod.text=agreeData?.LockInPeriod
+                    holder.binding.AnnualRentAmount.text=agreeData?.AnnualRentAmount
+                    holder.binding.PeriodicRentAmount.text=agreeData?.PeriodicRentAmount
+                    holder.binding.RentEscalation.text=agreeData?.RentEscalation
+                    holder.binding.EBBillLimitMin.text=agreeData?.EBBillLimitmin
+                    holder.binding.EBBillLimitMax.text=agreeData?.EBBillLimitmax
+                    holder.binding.EBPerUnitRate.text=agreeData?.EBPUnitRate
+                    holder.binding.OnetimeAmount.text=agreeData?.OnetimeAmount
+                    holder.binding.SecurityDepositAmount.text=agreeData?.SecurityDepositAmount
+                    holder.binding.remarks.text=agreeData?.remark
+
+                    //edit mode
+                    holder.binding.RentEscalationPeriodEdit.setText(agreeData?.RentEscalationPeriod)
+                    holder.binding.AcquisitionAreaEdit.setText(agreeData?.AcquisitionArea)
+                    holder.binding.AgreementPeriodEdit.setText(agreeData?.AgreementPeriod)
+                    holder.binding.LockInPeriodEdit.setText(agreeData?.LockInPeriod)
+                    holder.binding.AnnualRentAmountEdit.setText(agreeData?.AnnualRentAmount)
+                    holder.binding.PeriodicRentAmountEdit.setText(agreeData?.PeriodicRentAmount)
+                    holder.binding.RentEscalationEdit.setText(agreeData?.RentEscalation)
+                    holder.binding.MinEBBillLimitEdit.setText(agreeData?.EBBillLimitmin)
+                    holder.binding.MaxEBBillLimitEdit.setText(agreeData?.EBBillLimitmax)
+                    holder.binding.EBPerUnitRateEdit.setText(agreeData?.EBPUnitRate)
+                    holder.binding.OnetimeAmountEdit.setText(agreeData?.OnetimeAmount)
+                    holder.binding.SecurityDepositAmountEdit.setText(agreeData?.SecurityDepositAmount)
+                    holder.binding.remarksEdit.setText(agreeData?.remark)
+
+                }
+                if(agreeData!=null && agreeData?.Acquisitiontype?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.AgreementTypeEdit,DropDowns.Acquisitiontype.name,agreeData?.Acquisitiontype?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AgreementTypeEdit,DropDowns.Acquisitiontype.name)
+                if(agreeData!=null && agreeData?.PropertyOwnership?.isNotEmpty()==true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnershipEdit,DropDowns.PropertyOwnership.name,agreeData?.PropertyOwnership?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyOwnershipEdit,DropDowns.PropertyOwnership.name)
+                if(agreeData!=null && agreeData?.PropertyType!=null && agreeData?.PropertyType!!>0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyTypeEdit,DropDowns.PropertyType.name,agreeData?.PropertyType.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.PropertyType,DropDowns.PropertyType.name,agreeData?.PropertyType.toString())
+                }
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.AgreementTypeEdit,DropDowns.PropertyType.name)
+                if(agreeData!=null && agreeData?.Rentpaymentperiod!=null && agreeData?.Rentpaymentperiod!!>0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.RentAymentPeriodEdit,DropDowns.RentPaymentPeriod.name,agreeData?.Rentpaymentperiod.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.RentAymentPeriod,DropDowns.RentPaymentPeriod.name,agreeData?.Rentpaymentperiod.toString())
+                }
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.RentAymentPeriodEdit,DropDowns.RentPaymentPeriod.name)
+                if(agreeData!=null && agreeData?.EBBillingBasis!=null && agreeData?.EBBillingBasis!!>0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBBillingBasisEdit,DropDowns.EBInclusiveBasis.name,agreeData?.EBBillingBasis.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBBillingBasis,DropDowns.EBInclusiveBasis.name,agreeData?.EBBillingBasis.toString())
+                }
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBBillingBasisEdit,DropDowns.EBInclusiveBasis.name)
+                if(agreeData!=null && agreeData?.EBInclusiveInRental!=null && agreeData?.EBInclusiveInRental!!>0){
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBInclusiveInRentalEdit,DropDowns.EBInclusiveinRental.name,agreeData?.EBInclusiveInRental.toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBInclusiveInRental,DropDowns.EBInclusiveinRental.name,agreeData?.EBInclusiveInRental.toString())
+                }
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.EBInclusiveInRentalEdit,DropDowns.EBInclusiveinRental.name)
 
                 holder.binding.update.setOnClickListener {
-                    if (agreeData!=null){
-                        agreeData?.let {
-                            it.PropertyType=holder.binding.PropertyTypeEdit.text.toString().toInt()
-                            it.AcquisitionArea=holder.binding.AcquisitionAreaEdit.text.toString()
-                            it.AgreementPeriod=holder.binding.AgreementPeriodEdit.text.toString()
-                            it.LockInPeriod=holder.binding.LockInPeriodEdit.text.toString()
-                            it.AnnualRentAmount=holder.binding.AnnualRentAmountEdit.text.toString()
-                            it.Rentpaymentperiod=holder.binding.RentAymentPeriodEdit.text.toString().toInt()
-                            it.PeriodicRentAmount=holder.binding.PeriodicRentAmountEdit.text.toString()
-                            it.RentEscalationPeriod=holder.binding.RentEscalationPeriodEdit.text.toString()
-                            it.RentEscalation=holder.binding.RentEscalationEdit.text.toString()
-                            it.EBInclusiveInRental=holder.binding.EBInclusiveInRentalEdit.text.toString().toInt()
-                            it.EBBillLimitmin=holder.binding.MinEBBillLimitEdit.text.toString()
-                            it.EBBillLimitmax=holder.binding.MaxEBBillLimitEdit.text.toString()
-                            it.EBBillingBasis=holder.binding.EBBillingBasisEdit.text.toString().toInt()
-                            it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
-                            it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
-                            it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
-                            it.remark=holder.binding.remarksEdit.text.toString()
-                            it.isActive=null
-                            it.created_at=null
-                            it.modified_at=null
-                            if (it.Acquisitiontype?.isNotEmpty()==true)
-                                it.Acquisitiontype!![0] = holder.binding.AgreementTypeEdit.selectedValue.id.toInt()
-                            else
-                                it.Acquisitiontype?.add(holder.binding.AgreementTypeEdit.selectedValue.id.toInt())
+                    val tempAgreeData=SoftAcqAgreementTerm()
+                    tempAgreeData.let {
+                        it.PropertyType=holder.binding.PropertyTypeEdit.selectedValue.id.toIntOrNull()
+                        it.AcquisitionArea=holder.binding.AcquisitionAreaEdit.text.toString()
+                        it.AgreementPeriod=holder.binding.AgreementPeriodEdit.text.toString()
+                        it.LockInPeriod=holder.binding.LockInPeriodEdit.text.toString()
+                        it.AnnualRentAmount=holder.binding.AnnualRentAmountEdit.text.toString()
+                        it.Rentpaymentperiod=holder.binding.RentAymentPeriodEdit.selectedValue.id.toIntOrNull()
+                        it.PeriodicRentAmount=holder.binding.PeriodicRentAmountEdit.text.toString()
+                        it.RentEscalationPeriod=holder.binding.RentEscalationPeriodEdit.text.toString()
+                        it.RentEscalation=holder.binding.RentEscalationEdit.text.toString()
+                        it.EBInclusiveInRental=holder.binding.EBInclusiveInRentalEdit.selectedValue.id.toIntOrNull()
+                        it.EBBillLimitmin=holder.binding.MinEBBillLimitEdit.text.toString()
+                        it.EBBillLimitmax=holder.binding.MaxEBBillLimitEdit.text.toString()
+                        it.EBBillingBasis=holder.binding.EBBillingBasisEdit.selectedValue.id.toIntOrNull()
+                        it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
+                        it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
+                        it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
+                        it.Acquisitiontype = arrayListOf(holder.binding.AgreementTypeEdit.selectedValue.id.toInt())
+                        it.PropertyOwnership = arrayListOf(holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt())
+                        if (agreeData!=null)
+                            it.id=agreeData?.id
 
-                            if (it.PropertyOwnership?.isNotEmpty()==true)
-                                it.PropertyOwnership!![0] = holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt()
-                            else
-                                it.PropertyOwnership?.add(holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt())
-                            val tempList:ArrayList<SoftAcqAgreementTerm> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData=datalist as SoftAcquisitionData
-                            tempData.SAcqSoftAcquisitionAgreementTerm=tempList
-                            tempData.SAcqPayeeAccountDetail= ArrayList()
-                            listener.updateAgreementTermClicked(tempData)
-                        }
                     }
-                    else if (datalist!=null && datalist?.SAcqSoftAcquisitionAgreementTerm?.isEmpty()==true){
-                        val tempAgreeData=SoftAcqAgreementTerm()
-                        tempAgreeData.let {
-                            it.PropertyType=0
-                            it.AcquisitionArea=holder.binding.AcquisitionAreaEdit.text.toString()
-                            it.AgreementPeriod=holder.binding.AgreementPeriodEdit.text.toString()
-                            it.LockInPeriod=holder.binding.LockInPeriodEdit.text.toString()
-                            it.AnnualRentAmount=holder.binding.AnnualRentAmountEdit.text.toString()
-                            it.Rentpaymentperiod=0
-                            it.PeriodicRentAmount=holder.binding.PeriodicRentAmountEdit.text.toString()
-                            it.RentEscalationPeriod=holder.binding.RentEscalationPeriodEdit.text.toString()
-                            it.RentEscalation=holder.binding.RentEscalationEdit.text.toString()
-                            it.EBInclusiveInRental=0
-                            it.EBBillLimitmin=holder.binding.MinEBBillLimitEdit.text.toString()
-                            it.EBBillLimitmax=holder.binding.MaxEBBillLimitEdit.text.toString()
-                            it.EBBillingBasis=0
-                            it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
-                            it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
-                            it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
-                            it.remark=holder.binding.remarksEdit.text.toString()
-                            it.Acquisitiontype = arrayListOf(holder.binding.AgreementTypeEdit.selectedValue.id.toInt())
-                            it.PropertyOwnership = arrayListOf(holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt())
-                            val tempList:ArrayList<SoftAcqAgreementTerm> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData=datalist as SoftAcquisitionData
-                            tempData.SAcqSoftAcquisitionAgreementTerm=tempList
-                            listener.updateAgreementTermClicked(tempData)
-                        }
-                    }
-                    else{
-                        val tempAgreeData=SoftAcqAgreementTerm()
-                        tempAgreeData.let {
-                            it.PropertyType=0
-                            it.AcquisitionArea=holder.binding.AcquisitionAreaEdit.text.toString()
-                            it.AgreementPeriod=holder.binding.AgreementPeriodEdit.text.toString()
-                            it.LockInPeriod=holder.binding.LockInPeriodEdit.text.toString()
-                            it.AnnualRentAmount=holder.binding.AnnualRentAmountEdit.text.toString()
-                            it.Rentpaymentperiod=0
-                            it.PeriodicRentAmount=holder.binding.PeriodicRentAmountEdit.text.toString()
-                            it.RentEscalationPeriod=holder.binding.RentEscalationPeriodEdit.text.toString()
-                            it.RentEscalation=holder.binding.RentEscalationEdit.text.toString()
-                            it.EBInclusiveInRental=0
-                            it.EBBillLimitmin=holder.binding.MinEBBillLimitEdit.text.toString()
-                            it.EBBillLimitmax=holder.binding.MaxEBBillLimitEdit.text.toString()
-                            it.EBBillingBasis=0
-                            it.EBPUnitRate=holder.binding.EBPerUnitRateEdit.text.toString()
-                            it.OnetimeAmount=holder.binding.OnetimeAmountEdit.text.toString()
-                            it.SecurityDepositAmount=holder.binding.SecurityDepositAmountEdit.text.toString()
-                            it.remark=holder.binding.remarksEdit.text.toString()
-                            it.Acquisitiontype = arrayListOf(holder.binding.AgreementTypeEdit.selectedValue.id.toInt())
-                            it.PropertyOwnership = arrayListOf(holder.binding.PropertyOwnershipEdit.selectedValue.id.toInt())
-                            val tempList:ArrayList<SoftAcqAgreementTerm> = ArrayList()
-                            tempList.clear()
-                            tempList.add(it)
-                            val tempData= SoftAcquisitionData()
-                            tempData.SAcqSoftAcquisitionAgreementTerm=tempList
-                            listener.updateAgreementTermClicked(tempData)
-                        }
-                    }
+                    val tempData= SoftAcquisitionData()
+                    tempData.SAcqSoftAcquisitionAgreementTerm= arrayListOf(tempAgreeData)
+                    if (datalist!=null)
+                        tempData.id=datalist?.id
+                    listener.updateAgreementTermClicked(tempData)
 
                 }
 
@@ -420,9 +360,9 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
                     if (datalist!=null){
                         holder.recyclerListener.adapter=
                             ImageAttachmentCommonAdapter(context,datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
-                                listener.attachmentItemClicked()
-                            }
+                                override fun itemClicked(item : Attachments) {
+                                    listener.attachmentItemClicked()
+                                }
                         })
                     }
                     else

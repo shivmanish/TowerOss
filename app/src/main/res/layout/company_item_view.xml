@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_5sdp"
+    android:layout_marginVertical="@dimen/_10sdp"
+    android:background="@drawable/lang_list_rounded_border"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:text="company"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:id="@+id/company"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_height="@dimen/dp45"
+        android:gravity="center"
+        android:drawableStart="@drawable/selected_check"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

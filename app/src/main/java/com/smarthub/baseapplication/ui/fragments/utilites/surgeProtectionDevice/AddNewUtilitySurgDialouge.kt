@@ -37,7 +37,7 @@ class AddNewUtilitySurgDialouge (var fullData:UtilityEquipmentAllData?, var list
             dismiss()
         }
         
-        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,binding.VendorCodeEdit)
 
 
         setDatePickerView(binding.InstallationDateEdit)

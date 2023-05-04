@@ -38,6 +38,7 @@
         <item>NOC &amp; Comp</item>
         <item>TWR &amp; Civil Infra</item>
         <item>Power &amp; fuel</item>
+        <item>Rf Survey</item>
         <item>QA &amp; Inspection</item>
 <!--        <item>Acquisition Survey</item>-->
     </string-array>
@@ -51,6 +52,7 @@
         <item>@drawable/utilities_equip</item>
         <item>@drawable/noc_comp</item>
         <item>@drawable/twr_civilinfra</item>
+        <item>@drawable/power_fuel</item>
         <item>@drawable/power_fuel</item>
         <item>@drawable/qa_inspection</item>
     </integer-array>
@@ -89,10 +91,10 @@
 
     <string-array name="spinner_item">
         <item>Select here</item>
-        <item>Array Item One</item>
-        <item>Array Item Two</item>
-        <item>Array Item Three</item>
-        <item>Array Item four</item>
+<!--        <item>Array Item One</item>-->
+<!--        <item>Array Item Two</item>-->
+<!--        <item>Array Item Three</item>-->
+<!--        <item>Array Item four</item>-->
     </string-array>
 
     <string name="lorem_ipsum">
@@ -262,6 +264,7 @@
 
     <string name="APT_checklist"><b><u>APT Checklist</u></b></string>
     <string name="Close_task"><b><u><font color='#3D4E6D'>Close Task</font></u></b></string>
+    <string name="Astric_Mark"><b><font color='#F54747'>*</font></b></string>
     <string name="See_all"><u><font color='#3D4E6D'>See All</font></u></string>
 
 

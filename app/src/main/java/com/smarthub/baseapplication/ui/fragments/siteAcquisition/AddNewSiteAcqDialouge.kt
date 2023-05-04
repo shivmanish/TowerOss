@@ -10,21 +10,28 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AddNewSiteAcqDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.AssignACQTeamDAta
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.siteAcqUpdate.UpdateSiteAcquiAllData
+import com.smarthub.baseapplication.ui.alert.model.request.GetUserList
+import com.smarthub.baseapplication.ui.alert.viewmodel.AlertViewModel
 import com.smarthub.baseapplication.ui.dialog.qat.BaseBottomSheetDialogFragment
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
+import com.smarthub.baseapplication.widgets.CustomSpinner
 
 class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSheetDialogFragment(){
 
     lateinit var binding: AddNewSiteAcqDialougeBinding
     lateinit var viewmodel: HomeViewModel
+    lateinit var alertViewmodel: AlertViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AddNewSiteAcqDialougeBinding.inflate(inflater)
-        viewmodel= ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        viewmodel= ViewModelProvider(this)[HomeViewModel::class.java]
+        alertViewmodel= ViewModelProvider(this)[AlertViewModel::class.java]
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,11 +43,22 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
         
         AppPreferences.getInstance().setDropDown(binding.AcquisitionTypeEdit,DropDowns.Acquisitiontype.name)
         AppPreferences.getInstance().setDropDown(binding.AcquisitionModeEdit,DropDowns.AcquisitionMode.name)
-        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name)
+        AppPreferences.getInstance().setDropDown(binding.VendorNameEdit,DropDowns.VendorCompany.name,binding.VendorCodeEdit)
+        AppPreferences.getInstance().setDropDown(binding.GeographyLevelEdit,DropDowns.GeographyLevel.name)
 
         setDatePickerView(binding.AcquisitionTargetDateEdit)
         setDatePickerView(binding.PODateEdit)
-
+        binding.GeographyLevelEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+            override fun itemSelected(geographySelected: DropDownItem) {
+                viewmodel.getDepartment(geographySelected.name)
+            }
+        }
+        binding.DepartmentEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+            override fun itemSelected(departmentName: DropDownItem) {
+                alertViewmodel.getDepartmentUsers(GetUserList(departmentName.name,
+                    AppController.getInstance().ownerName))
+            }
+        }
 
 //
         binding.Submit.setOnClickListener {
@@ -48,8 +66,8 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
             showProgressLayout()
             val data=AssignACQTeamDAta()
             data.let {
-                it.LeadName=binding.AcquisitionLeadNameEdit.text.toString()
-                it.ExecutiveName=binding.AcquisitionExecutiveNameEdit.text.toString()
+//                it.LeadName=binding.AcquisitionLeadNameEdit.text.toString()
+//                it.ExecutiveName=binding.AcquisitionExecutiveNameEdit.text.toString()
                 it.AcquisitionBudget=binding.AcquisitionBudgetEdit.text.toString().ifEmpty { "0" }
                 it.AcquisitionTargetDate=Utils.getFullFormatedDate(binding.AcquisitionTargetDateEdit.text.toString())
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
@@ -84,7 +102,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
         viewmodel.updateSiteAcqDataResponse?.observe(viewLifecycleOwner) {
             if (it != null && it.status == Resource.Status.LOADING) {
                 showProgressLayout()
-                AppLogger.log("SiteAgreemnets Fragment data loading in progress ")
+                AppLogger.log("AddNewSiteAcqDialouge data loading in progress ")
                 return@observe
             }
             if (it?.data != null && it.status == Resource.Status.SUCCESS && it.data.status.SAcqAssignACQTeam==200) {
@@ -96,16 +114,42 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
                 Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
-                AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                AppLogger.log("AddNewSiteAcqDialouge Something went wrong")
             }
             else if (it != null) {
-                AppLogger.log("SiteAgreemnets Fragment error :${it.message}, data : ${it.data}")
+                AppLogger.log("AddNewSiteAcqDialouge error :${it.message}, data : ${it.data}")
             } else {
-                AppLogger.log("SiteAgreemnets Fragment Something went wrong")
+                AppLogger.log("AddNewSiteAcqDialouge Something went wrong")
 
             }
         }
         hideProgressLayout()
+        if (viewmodel.departmentDataDataResponse?.hasActiveObservers()==true)
+            viewmodel.departmentDataDataResponse?.removeObservers(viewLifecycleOwner)
+        viewmodel.departmentDataDataResponse?.observe(viewLifecycleOwner){
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("AddNewSiteAcqDialouge departmentDataDataResponse loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("AddNewSiteAcqDialouge departmentDataDataResponse loaded successfull ")
+                binding.DepartmentEdit.setSpinnerData(it.data.Department.data)
+            }else AppLogger.log("Department not fetched")
+        }
+
+        
+        if (alertViewmodel.userDataResponseLiveData.hasActiveObservers())
+            alertViewmodel.userDataResponseLiveData.removeObservers(viewLifecycleOwner)
+        alertViewmodel.userDataResponseLiveData.observe(viewLifecycleOwner){
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("AddNewSiteAcqDialouge userDataResponseLiveData loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("AddNewSiteAcqDialouge userDataResponseLiveData loaded successfull ")
+                binding.AcquisitionExecutiveNameEdit.setSpinnerData(it.data,binding.AcquisitionLeadNameEdit,binding.AcquisitionExecutiveNumberEdit)
+            }else AppLogger.log("Department not fetched")
+        }
     }
 
     override fun getTheme() = R.style.NewDialogTask
@@ -121,6 +165,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
         if (binding.progressLayout.visibility == View.VISIBLE)
             binding.progressLayout.visibility = View.GONE
     }
+    
 
 
     interface AddSiteAcqDataListener{

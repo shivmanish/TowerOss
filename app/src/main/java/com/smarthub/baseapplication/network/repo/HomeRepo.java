@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.helpers.SingleLiveEvent;
 import com.smarthub.baseapplication.model.APIError;
 import com.smarthub.baseapplication.model.basicInfo.IdData;
 import com.smarthub.baseapplication.model.dropdown.newData.DropDownNew;
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem;
 import com.smarthub.baseapplication.model.home.HomeResponse;
 import com.smarthub.baseapplication.model.logs.LogsDataModel;
 import com.smarthub.baseapplication.model.logs.PostLogData;
@@ -21,6 +22,7 @@ import com.smarthub.baseapplication.model.project.ProjectModelData;
 import com.smarthub.baseapplication.model.project.TaskModelData;
 import com.smarthub.baseapplication.model.qatcheck.QalLaunchModel;
 import com.smarthub.baseapplication.model.qatcheck.punch_point.QatPunchPointModel;
+import com.smarthub.baseapplication.model.qatcheck.update.QatUpdateModel;
 import com.smarthub.baseapplication.model.search.SearchAliasNameItem;
 import com.smarthub.baseapplication.model.search.SearchList;
 import com.smarthub.baseapplication.model.search.SearchListItem;
@@ -32,6 +34,8 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllData;
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyAllDataItem;
 import com.smarthub.baseapplication.model.serviceRequest.acquisitionSurvey.AcquisitionSurveyModel;
 import com.smarthub.baseapplication.model.serviceRequest.new_site.GenerateSiteIdResponse;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentConditionsDataModel;
+import com.smarthub.baseapplication.model.siteIBoard.AttachmentsConditions;
 import com.smarthub.baseapplication.model.siteIBoard.newNocAndComp.NocCompAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newOpcoTenency.OpcoTenencyAllDataModel;
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelAllDataModel;
@@ -52,6 +56,7 @@ import com.smarthub.baseapplication.model.siteInfo.qat.SaveCheckpointModel;
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.QatMainModel;
 import com.smarthub.baseapplication.model.siteInfo.service_request.ServiceRequestModel;
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement;
+import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
@@ -60,9 +65,11 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
+import com.smarthub.baseapplication.utils.DropDowns;
 import com.smarthub.baseapplication.utils.Utils;
 
 import java.io.File;
@@ -98,6 +105,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<SiteInfoDropDownData>> dropDownResoonse;
     private SingleLiveEvent<Resource<DropDownNew>> dropDownResponseNew;
     private SingleLiveEvent<Resource<TaskDataList>> taskDataList;
+    private SingleLiveEvent<Resource<DepartmentDataModel>> departmentDataModel;
     private SingleLiveEvent<Resource<ServiceRequestModel>> serviceRequestModel;
     private SingleLiveEvent<Resource<AcquisitionSurveyModel>> acquisitionSurveyAllDataItem;
     private SingleLiveEvent<Resource<OpcoTenencyAllDataModel>> opcoTenencyModel;
@@ -106,9 +114,11 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<PowerFuelAllDataModel>> powerFuelModel;
     private SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>> siteAgreementModel;
     private SingleLiveEvent<Resource<SstSbcAllDataModel>> sstSbcModel;
+    private SingleLiveEvent<Resource<RfMainResponse>> rfResponesLivedata;
     private SingleLiveEvent<Resource<PlanAndDesignModel>> planAndDesignModel;
     private SingleLiveEvent<Resource<QatModel>> qatModelResponse;
     private SingleLiveEvent<Resource<QatMainModel>> qatMainModelResponse;
+    private SingleLiveEvent<Resource<QatUpdateModel>> qatUpdateModel;
     private SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>> utilityEquipModel;
     private SingleLiveEvent<Resource<LogsDataModel>> loglivedata;
     private SingleLiveEvent<Resource<SiteacquisitionAgreement>> updateAgreementInfo;
@@ -116,6 +126,7 @@ public class HomeRepo {
     private SingleLiveEvent<Resource<UserDataResponse>> userDataResponse;
     private SingleLiveEvent<Resource<AddNotificationResponse>> addNotificationResponse;
     private SingleLiveEvent<Resource<AllsiteInfoDataModel>> siteInfoDataModel;
+    private SingleLiveEvent<Resource<AttachmentConditionsDataModel>> attachmentConsitionsModel;
 
     public static HomeRepo getInstance(APIClient apiClient) {
         if (sInstance == null) {
@@ -132,6 +143,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<SiteInfoModelNew>> getSiteInfoModelNew() {
         return siteInfoModelNew;
+    }
+
+    public SingleLiveEvent<Resource<AttachmentConditionsDataModel>> getAttachmentConsitionsModel() {
+        return attachmentConsitionsModel;
     }
 
     public SingleLiveEvent<Resource<NotificationNew>> getNotificationNew() {
@@ -157,6 +172,9 @@ public class HomeRepo {
     public SingleLiveEvent<Resource<SstSbcAllDataModel>> getSstSbcModel() {
             return sstSbcModel;
         }
+    public SingleLiveEvent<Resource<RfMainResponse>> getRfSurveyModel() {
+        return rfResponesLivedata;
+    }
 
     public SingleLiveEvent<Resource<ServiceRequestModel>> getServiceRequestModel() {
         return serviceRequestModel;
@@ -192,6 +210,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<QatMainModel>> getQatMainModelResponse() {
         return qatMainModelResponse;
+    }
+
+    public SingleLiveEvent<Resource<QatUpdateModel>> getQatUpdateModel() {
+        return qatUpdateModel;
     }
 
     public SingleLiveEvent<Resource<OpcoDataList>> getOpcoResponseData() {
@@ -237,18 +259,22 @@ public class HomeRepo {
         utilityEquipModel = new SingleLiveEvent<>();
         siteInfoUpdate = new SingleLiveEvent<>();
         loglivedata = new SingleLiveEvent<>();
+        rfResponesLivedata = new SingleLiveEvent<>();
         siteAgreementModel = new SingleLiveEvent<>();
         sstSbcModel = new SingleLiveEvent<>();
         dropDownResponseNew = new SingleLiveEvent<>();
         siteInfoModelNew = new SingleLiveEvent<>();
         notificationNew = new SingleLiveEvent<>();
         qatModelResponse = new SingleLiveEvent<>();
+        qatUpdateModel = new SingleLiveEvent<>();
         qatMainModelResponse = new SingleLiveEvent<>();
         userDataResponse = new SingleLiveEvent<>();
         addNotificationResponse = new SingleLiveEvent<>();
         siteInfoDataModel = new SingleLiveEvent<>();
         acquisitionSurveyAllDataItem = new SingleLiveEvent<>();
         addAttachmentModel = new SingleLiveEvent<>();
+        departmentDataModel = new SingleLiveEvent<>();
+        attachmentConsitionsModel = new SingleLiveEvent<>();
     }
 
     public SingleLiveEvent<Resource<HomeResponse>> getHomeResponse() {
@@ -261,6 +287,10 @@ public class HomeRepo {
 
     public SingleLiveEvent<Resource<AllsiteInfoDataModel>> getSiteInfoDataModel() {
         return siteInfoDataModel;
+    }
+
+    public SingleLiveEvent<Resource<DepartmentDataModel>> getDepartmentDataModel() {
+        return departmentDataModel;
     }
 
     public SingleLiveEvent<Resource<AddAttachmentModel>> getAddAttachmentModel() {
@@ -365,8 +395,13 @@ public class HomeRepo {
         map.put("detail", RequestBody.create(MediaType.parse("multipart/form-data"), model.getDetail()));
         map.put("title", RequestBody.create(MediaType.parse("multipart/form-data"), model.getTitle()));
         map.put("type", RequestBody.create(MediaType.parse("multipart/form-data"), model.getType()));
-
-        apiClient.addAttachmentData("http://49.50.77.81:8126/fms/create", map).enqueue(new Callback<List<AddAttachmentModel>>() {
+        map.put("category", RequestBody.create(MediaType.parse("multipart/form-data"), model.getCategory().toString()));
+        map.put("siteId", RequestBody.create(MediaType.parse("multipart/form-data"), model.getSiteId().toString()));
+        map.put("locLatitude", RequestBody.create(MediaType.parse("multipart/form-data"), model.getLocLatitude()));
+        map.put("locLongitude", RequestBody.create(MediaType.parse("multipart/form-data"), model.getLocLongitude()));
+        map.put("place", RequestBody.create(MediaType.parse("multipart/form-data"), model.getPlace()));
+        AppLogger.INSTANCE.log("attachment model data=====>"+map);
+        apiClient.addAttachmentData("https://infraoss.in", map).enqueue(new Callback<List<AddAttachmentModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<AddAttachmentModel>> call, Response<List<AddAttachmentModel>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
@@ -1030,6 +1065,48 @@ public class HomeRepo {
         });
     }
 
+    public void AttachmentsConditionsRequestAll() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("Attachment", new JsonObject());
+        apiClient.fetchAttachmentConditions(jsonObject).enqueue(new Callback<AttachmentConditionsDataModel>() {
+            @Override
+            public void onResponse(Call<AttachmentConditionsDataModel> call, Response<AttachmentConditionsDataModel> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll error :" + response.errorBody());
+                } else {
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AttachmentConditionsDataModel> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+            }
+
+            private void reportSuccessResponse(Response<AttachmentConditionsDataModel> response) {
+
+                if (response.body() != null) {
+                    AppController.getInstance().attachmentsConditionsList=response.body();
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll reportSuccessResponse :" + response);
+                    attachmentConsitionsModel.postValue(Resource.success(response.body(), 200));
+                }
+                else
+                    AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll reportSuccessResponse : null");
+
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                AppLogger.INSTANCE.log("AttachmentsConditionsRequestAll reportSuccessResponse error :" + iThrowableLocalMessage);
+                if (iThrowableLocalMessage != null)
+                    attachmentConsitionsModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    attachmentConsitionsModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+    }
+
     public void siteAcquisitionSurveyById(String id) {
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
@@ -1077,6 +1154,7 @@ public class HomeRepo {
         jsonObject.addProperty("id", id);
         jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
         jsonObject.add("ServiceRequestMain", jsonArray);
+        AppLogger.INSTANCE.log("serviceRequestAll===>"+jsonObject);
         apiClient.fetchServiceRequest(jsonObject).enqueue(new Callback<ServiceRequestModel>() {
             @Override
             public void onResponse(Call<ServiceRequestModel> call, Response<ServiceRequestModel> response) {
@@ -1271,9 +1349,9 @@ public class HomeRepo {
     }
 
     public void qatMainRequestAll(QalLaunchModel data) {
-        apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatMainModel>() {
+        apiClient.fetchQatMainRequest(data).enqueue(new Callback<QatUpdateModel>() {
             @Override
-            public void onResponse(Call<QatMainModel> call, Response<QatMainModel> response) {
+            public void onResponse(Call<QatUpdateModel> call, Response<QatUpdateModel> response) {
                 if (response.isSuccessful()) {
                     reportSuccessResponse(response);
                 } else if (response.errorBody() != null) {
@@ -1284,23 +1362,23 @@ public class HomeRepo {
             }
 
             @Override
-            public void onFailure(Call<QatMainModel> call, Throwable t) {
+            public void onFailure(Call<QatUpdateModel> call, Throwable t) {
                 reportErrorResponse(t.getLocalizedMessage());
             }
 
-            private void reportSuccessResponse(Response<QatMainModel> response) {
+            private void reportSuccessResponse(Response<QatUpdateModel> response) {
 
                 if (response.body() != null) {
                     AppLogger.INSTANCE.log("reportSuccessResponse :" + response);
-                    qatMainModelResponse.postValue(Resource.success(response.body(), 200));
+                    qatUpdateModel.postValue(Resource.success(response.body(), 200));
                 }
             }
 
             private void reportErrorResponse(String iThrowableLocalMessage) {
                 if (iThrowableLocalMessage != null)
-                    qatMainModelResponse.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                    qatUpdateModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
-                    qatMainModelResponse.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+                    qatUpdateModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
     }
@@ -1493,6 +1571,50 @@ public class HomeRepo {
                     sstSbcModel.postValue(Resource.error(iThrowableLocalMessage, null, 500));
                 else
                     sstSbcModel.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
+            }
+        });
+
+
+    }
+    public void RfRequestAll(String id) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id", id);
+        jsonObject.addProperty("ownername", AppController.getInstance().ownerName);
+        jsonObject.add("RfSurvey", new JsonArray());
+        apiClient.fetchRfSurveyRequest(jsonObject).enqueue(new Callback<RfMainResponse>() {
+            @Override
+            public void onResponse(Call<RfMainResponse> call, Response<RfMainResponse> response) {
+                if (response.isSuccessful()) {
+                    reportSuccessResponse(response);
+                } else if (response.errorBody() != null) {
+                    AppLogger.INSTANCE.log("error :" + response);
+                } else {
+                    AppLogger.INSTANCE.log("error :" + response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RfMainResponse> call, Throwable t) {
+                reportErrorResponse(t.getLocalizedMessage());
+
+
+            }
+
+            private void reportSuccessResponse(Response<RfMainResponse> response) {
+
+                if (response.body() != null) {
+                    String data_json = new Gson().toJson(response.body());
+                    AppPreferences.getInstance().saveString("siteAgreementRequestAll" + id, data_json);
+
+                    rfResponesLivedata.postValue(Resource.success(response.body(), 200));
+                }
+            }
+
+            private void reportErrorResponse(String iThrowableLocalMessage) {
+                if (iThrowableLocalMessage != null)
+                    rfResponesLivedata.postValue(Resource.error(iThrowableLocalMessage, null, 500));
+                else
+                    rfResponesLivedata.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500));
             }
         });
 
@@ -1995,7 +2117,8 @@ public class HomeRepo {
     }
 
     public void siteInfoDropDownNew() {
-
+//        getDepartmentRequest();
+        AttachmentsConditionsRequestAll();
         apiClient.siteInfoDropDownNew().enqueue(new Callback<DropDownNew>() {
             @Override
             public void onResponse(Call<DropDownNew> call, Response<DropDownNew> response) {

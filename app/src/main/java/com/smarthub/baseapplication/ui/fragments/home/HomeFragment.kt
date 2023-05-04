@@ -40,9 +40,6 @@ class HomeFragment : Fragment(),TaskListener {
         setDataDropDownObserver()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.searchBoxLayout.setOnClickListener {
-//            set menu selection for site iBoard
-        }
         binding.addMore.setOnClickListener{
             val dalouge = CommonBottomSheetDialog(R.layout.add_more_botom_sheet_dailog)
             dalouge.show(childFragmentManager,"")
@@ -53,9 +50,9 @@ class HomeFragment : Fragment(),TaskListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.notificationLayout.setOnClickListener {
-            val addImageTest  = AttachmentDialogBottomSheet("TowerAndCivilInfraTowerTowerDetail","68")
-            addImageTest.show(childFragmentManager,"add image")
-//            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
+//            val addImageTest  = AttachmentDialogBottomSheet("TowerAndCivilInfraTowerTowerDetail","68")
+//            addImageTest.show(childFragmentManager,"add image")
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationsFragment())
 //            Log.d("notification Nvigate","navigated from home to navigation fragment")
         }
         binding.addNewSite.setOnClickListener {
@@ -219,17 +216,22 @@ class HomeFragment : Fragment(),TaskListener {
         val filteredTaskList:ArrayList<MyTeamTask> = ArrayList()
         for (item in allTaskList){
             if (item.Where.isNotEmpty()){
-                val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
-                if (subTaskTabList.isNotEmpty()){
-                    try {
-                        val tempTab=subTaskTabList[0].toInt().div(10)
-                        if (tempTab==2 || tempTab==6)
-                            filteredTaskList.add(item)
-                    }
-                    catch (e:Exception){
-                        AppLogger.log("${e.localizedMessage}")
+                if (item.Where.contains("q_")){
+                    filteredTaskList.add(item)
+                }else{
+                    val subTaskTabList=item.Where.replace("[","").replace("]","").split(",")
+                    if (subTaskTabList.isNotEmpty()){
+                        try {
+                            val tempTab=subTaskTabList[0].toInt().div(10)
+                            if (tempTab==2 || tempTab==6 || tempTab==10)
+                                filteredTaskList.add(item)
+                        }
+                        catch (e:Exception){
+                            AppLogger.log("${e.localizedMessage}")
+                        }
                     }
                 }
+
             }
         }
         return filteredTaskList

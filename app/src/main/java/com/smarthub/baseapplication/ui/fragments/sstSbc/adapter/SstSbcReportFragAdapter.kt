@@ -3,15 +3,20 @@ package com.smarthub.baseapplication.ui.fragments.sstSbc.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SstSbcTestReportItemsBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.AllsiteInfoDataModel
+import com.smarthub.baseapplication.model.siteIBoard.newSiteInfoDataModel.SiteAddressData
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.*
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -20,10 +25,15 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
     private var datalist: SstSbcTestReport?=null
     private var buildingData: SstSbcBuildingDetail?=null
     private var landData: SstSbcLandDetail?=null
-    private var siteAdd: Siteaddres?=null
+    private var siteAdd: SiteAddressData?=null
 
     fun setData(data: SstSbcTestReport?) {
         this.datalist=data!!
+        if (AppController.getInstance().newSiteInfoModel!=null){
+            if (AppController.getInstance().newSiteInfoModel.Siteaddress!=null && AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
+                siteAdd= AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
+            }
+        }
         notifyDataSetChanged()
     }
     init {
@@ -150,8 +160,11 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                         buildingData=datalist?.SstSbcBuildingDetail?.get(0)
                     if (datalist?.SstSbcLandDetail!=null && datalist?.SstSbcLandDetail?.isNotEmpty()==true)
                         landData=datalist?.SstSbcLandDetail?.get(0)
-                    if (datalist?.Siteaddress!=null && datalist?.Siteaddress?.isNotEmpty()==true)
-                        siteAdd=datalist?.Siteaddress?.get(0)
+                }
+                if (AppController.getInstance().newSiteInfoModel!=null){
+                    if (AppController.getInstance().newSiteInfoModel.Siteaddress!=null && AppController.getInstance().newSiteInfoModel.Siteaddress?.isNotEmpty()==true){
+                        siteAdd= AppController.getInstance().newSiteInfoModel.Siteaddress?.get(0)
+                    }
                 }
                 if (siteAdd!=null){
                     // view Mode
@@ -162,10 +175,10 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                     holder.binding.SiteLongitude.text=siteAdd?.locLongitude
                     // edit mode
                     holder.binding.AddressLine1Edit.setText(siteAdd?.address1)
-                    holder.binding.AddressLine2Edit.setText(siteAdd?.address2)
-                    holder.binding.PostalCodeEdit.setText(siteAdd?.pincode)
-                    holder.binding.SiteLatitudeEdit.setText(siteAdd?.locLatitude)
-                    holder.binding.SiteLongitudeEdit.setText(siteAdd?.locLongitude)
+                    holder.binding.AddressLine2Edit.text=siteAdd?.address2
+                    holder.binding.PostalCodeEdit.text=siteAdd?.pincode
+                    holder.binding.SiteLatitudeEdit.text=siteAdd?.locLatitude
+                    holder.binding.SiteLongitudeEdit.text=siteAdd?.locLongitude
                 }
                 if (buildingData!=null){
                     //view mode
@@ -230,9 +243,10 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                 holder.binding.update.setOnClickListener {
                     val tempBuildingData=SstSbcBuildingDetail()
                     val tempLandData=SstSbcLandDetail()
-                    val tempSiteAddData=Siteaddres()
                     val tempTestReportData= SstSbcTestReport()
-                    tempSiteAddData.let {
+                    val temSiteAddData=SiteAddressData()
+                    val temSiteInfoAllData= AllsiteInfoDataModel()
+                    temSiteAddData.let {
                         it.address1=holder.binding.AddressLine1Edit.text.toString()
                         it.address2=holder.binding.AddressLine2Edit.text.toString()
                         it.locLongitude=holder.binding.SiteLongitudeEdit.text.toString()
@@ -268,12 +282,13 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                     tempTestReportData.let {
                         it.SstSbcBuildingDetail= arrayListOf(tempBuildingData)
                         it.SstSbcLandDetail= arrayListOf(tempLandData)
-                        it.Siteaddress= arrayListOf(tempSiteAddData)
                         if (datalist!=null){
                             it.attachment=datalist?.attachment
                             it.id=datalist?.id
                         }
                     }
+                    temSiteInfoAllData.Siteaddress= arrayListOf(temSiteAddData)
+                    listener.updateAddress(temSiteInfoAllData)
                     listener.updateTeamClicked(tempTestReportData)
                 }
 
@@ -281,6 +296,27 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                 baseFragment.setDatePickerView(holder.binding.BuildingTestReportDateEdit)
                 baseFragment.setDatePickerView(holder.binding.LandTestReportDateEdit)
                 baseFragment.setDatePickerView(holder.binding.SiteTestingDateEdit)
+                holder.binding.AddressLine2Edit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+                }
+                holder.binding.SiteLatitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+                }
+                holder.binding.SiteLongitudeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+
+                }
+                holder.binding.PostalCodeEdit.setOnClickListener {
+                    listener.initiateAddressActivity(
+                        holder.binding.AddressLine2Edit,holder.binding.SiteLatitudeEdit,
+                        holder.binding.SiteLongitudeEdit,holder.binding.PostalCodeEdit)
+                }
             }
             is ViewHold2 -> {
                 if (currentOpened == position) {
@@ -311,7 +347,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                 try {
                     if (datalist!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
+                            override fun itemClicked(item : Attachments) {
                                 listener.attachmentItemClicked()
                             }
                         })
@@ -342,6 +378,8 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
        fun attachmentItemClicked()
        fun addAttachment()
        fun updateTeamClicked(data:SstSbcTestReport)
+       fun updateAddress(data: AllsiteInfoDataModel?)
+        fun initiateAddressActivity(address2: TextView?, siteLat: TextView, siteLong: TextView, postalCode: TextView)
     }
 
 }

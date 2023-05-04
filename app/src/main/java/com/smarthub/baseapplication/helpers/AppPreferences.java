@@ -25,12 +25,16 @@ import com.smarthub.baseapplication.model.taskModel.dropdown.TaskDropDownModel;
 import com.smarthub.baseapplication.network.APIClient;
 import com.smarthub.baseapplication.network.APIInterceptor;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
+import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.utils.AppConstants;
 import com.smarthub.baseapplication.utils.AppController;
 import com.smarthub.baseapplication.utils.AppLogger;
 import com.smarthub.baseapplication.utils.DropDowns;
 import com.smarthub.baseapplication.utils.Utils;
 import com.smarthub.baseapplication.widgets.CustomSpinner;
+import com.smarthub.baseapplication.widgets.CustomUserSpinner;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -319,6 +323,8 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         AppPreferences.getInstance().saveString(DROPDOWNDATANEW, "fetched");
         for (DropDownNewItem item : data.getDropdown()){
             Gson gson = new Gson();
+            DropDownItem dItem = new DropDownItem("-Select-","-1","null");
+            item.getData().add(0,dItem);
             String stringDatajson = gson.toJson(item);
             AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
         }
@@ -328,6 +334,8 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         try{
             DropDownNew data= new Gson().fromJson(modelJson,DropDownNew.class);
             for (DropDownNewItem item : data.getDropdown()){
+                DropDownItem dItem = new DropDownItem("-Select-","-1","null");
+                item.getData().add(0,dItem);
                 Gson gson = new Gson();
                 String stringDatajson = gson.toJson(item);
                 AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
@@ -353,6 +361,24 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         String jsonString = getString(name);
         DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
         customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+    }
+
+    public void setDropDown(CustomSpinner customSpinner,String name,ArrayList<Integer> ids){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        if (ids!=null && !ids.isEmpty()){
+            String id = ids.get(0).toString();
+            customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+        }else{
+            customSpinner.setSpinnerData(dropDownNewItem.getData());
+        }
+    }
+    public void setDropDown(CustomSpinner customSpinner,String name,String id,TextView customText){
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        customSpinner.setSpinnerData(dropDownNewItem.getData(),id,customText);
     }
     public List<DropDownItem>  getDropDown(String name){
         Gson gson = new Gson();
@@ -409,6 +435,20 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
                 return;
             }
         }
+    }
+
+    public void setDropDown(TextView customSpinner, String name, ArrayList<Integer> ids){
+        List<DropDownItem> list = getDropDownList(name);
+        if (ids!=null && !ids.isEmpty()){
+            String id = ids.get(0).toString();
+            for (DropDownItem i : list) {
+                if (i.getId().equalsIgnoreCase(id)) {
+                    customSpinner.setText(i.getName());
+                    return;
+                }
+            }
+        }
+        customSpinner.setText("");
     }
 
     public void setDropDown(TextView customSpinner, String name, String id,TextView customText){

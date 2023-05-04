@@ -47,12 +47,12 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
                 AppLogger.log("Service request Fragment card Data fetched successfully")
                 AppLogger.log("size :${it.data.ServiceRequestMain?.size}")
             }else if (it!=null) {
-                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Service request Fragment error :${it.message}, data : ${it.data}", Toast.LENGTH_SHORT).show()
                 AppLogger.log("Service request Fragment error :${it.message}, data : ${it.data}")
             }
             else {
                 AppLogger.log("Service Request Fragment Something went wrong")
-                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Service Request Fragment Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -117,7 +117,7 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
     }
 
     override fun viewSectorCellsDetailsClicked(position: Int) {
-        Toast.makeText(requireContext(),"view sector celss item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"view sector celss item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun editBackhaulMicrowaveClicked(
@@ -154,15 +154,15 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
     }
 
     override fun viewBackhaulFiberClicked(position: Int) {
-        Toast.makeText(requireContext(),"View Backhaul Fiber item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"View Backhaul Fiber item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun editEquipmentClicked(position: Int) {
-        Toast.makeText(requireContext(),"Edit Equipment item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"Edit Equipment item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun viewEquipmentClicked(position: Int) {
-        Toast.makeText(requireContext(),"View Equipment item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"View Equipment item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun editPowerMcbClicked(position: Int) {
@@ -170,7 +170,7 @@ class OppoTssrTabFragment(var data : ServiceRequestAllDataItem?, var Id: String?
     }
 
     override fun viewPowerMcbClicked(position: Int) {
-        Toast.makeText(requireContext(),"view Power Mcb item clicked",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(),"view Power Mcb item clicked",Toast.LENGTH_SHORT).show()
     }
 
     override fun requestinfoClicked(

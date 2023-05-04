@@ -89,11 +89,11 @@ class TowerAddNew (var fulldata: NewTowerCivilAllData?,var listner:AddNewTowerLi
                 listner.addNew()
                 hideProgressLayout()
                 dismiss()
-                Toast.makeText(context,"Data Added successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Data Added successfully", Toast.LENGTH_SHORT).show()
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerAddNew Fragment Something went wrong")
             }
             else if (it != null) {

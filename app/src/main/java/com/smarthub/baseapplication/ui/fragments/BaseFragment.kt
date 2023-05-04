@@ -46,15 +46,20 @@ open class BaseFragment : Fragment(){
 
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog(
-            requireContext(),
-            { arg0, arg1, arg2, arg3 ->
-                // arg1 = year
-                // arg2 = month
-                // arg3 = day
-                showDate(arg1, arg2 + 1, arg3,view)
-            }, year, month, day
-        ).show()
+        val datePickerDialog = DatePickerDialog(requireContext(), { arg0, arg1, arg2, arg3 ->
+            // arg1 = year
+            // arg2 = month
+            // arg3 = day
+            showDate(arg1, arg2 + 1, arg3,view)
+        }, year, month, day
+        )
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE,"clear") { dialog, which ->
+            view.text = ""
+        }
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEUTRAL,"cancel") { dialog, which ->
+            datePickerDialog.dismiss()
+        }
+        datePickerDialog.show()
     }
 
     open fun showDate(year: Int, month: Int, day: Int,textView : TextView) {

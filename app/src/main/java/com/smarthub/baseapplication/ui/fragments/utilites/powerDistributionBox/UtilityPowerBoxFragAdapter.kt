@@ -157,9 +157,9 @@ class UtilityPowerBoxFragAdapter(var baseActivity: BaseActivity, var listener: U
                 }
 
                 if (InsAccepData!=null && InsAccepData.VendorCompany?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,InsAccepData.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit, DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
                 if (equipmentData?.Type!=null)
                     AppPreferences.getInstance().setDropDown(holder.binding.TypeEdit, DropDowns.PDBType.name,equipmentData.Type)
                 else

@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.AcqPayeeAccViewDialougeBinding
+import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqPayeeAccountDetail
+import com.smarthub.baseapplication.utils.DropDowns
 
 class PayeeAccDetailsViewDialouge (contentLayoutId: Int, var data: SAcqPayeeAccountDetail) : BottomSheetDialogFragment(contentLayoutId){
 
@@ -17,6 +19,8 @@ class PayeeAccDetailsViewDialouge (contentLayoutId: Int, var data: SAcqPayeeAcco
         binding.canecl.setOnClickListener {
             dismiss()
         }
+        if (data.PayeeStatus!=null && data.PayeeStatus!! >0)
+            AppPreferences.getInstance().setDropDown(binding.PayeeStatus, DropDowns.PayeeStatus.name,data.PayeeStatus.toString())
         binding.Share.text=data.Share
         binding.PayeeName.text=data.PayeeName
         binding.AccountNo.text=data.AccountNumber
@@ -25,7 +29,6 @@ class PayeeAccDetailsViewDialouge (contentLayoutId: Int, var data: SAcqPayeeAcco
         binding.PayeeBank.text=data.PayeeBank
         binding.IFSCCode.text=data.BankIFSCode
         binding.GSTNumber.text=data.GSTIN
-        binding.PayeeStatus.text=data.PayeeStatus.toString()
 
     }
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -21,10 +20,9 @@ class PayeeAccountTableAdapter (var context : Context, var listener : SoftAcquis
         val modelList:ArrayList<Int> = ArrayList()
         modelList.clear()
         modelList.add(0)
-        val data = SAcqPayeeAccountDetail("","","","","",
-            "","",0,"")
-        list?.add(data)
-        notifyItemInserted(list?.size!!.plus(1))
+        val data = SAcqPayeeAccountDetail()
+        listener.editPayeeAccountClicked(-1,data)
+
     }
 
     fun removeItem(position:Int){

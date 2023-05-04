@@ -45,7 +45,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             PowerMcb=opcoTssrdata?.PowerAndMCB?.get(0)?.PowerRequirements?.get(0)
             tSSRExecutiveInfo=opcoTssrdata?.TSSRExecutiveInfo?.get(0)
         }catch (e:java.lang.Exception){
-            Toast.makeText(context,"tssr frag error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+//            Toast.makeText(context,"tssr frag error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
         }
     }
     open class ViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -284,7 +284,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
 
                }catch (e:java.lang.Exception){
                    AppLogger.log("opcotssr rf feasibility error : ${e.localizedMessage}")
-                   Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+//                   Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
 
                }
             }
@@ -318,7 +318,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
                     holder.FiberTableList.adapter=BackhaulFiberTableAdapter(context,listener,BackhaulFeasibility!!,serviceRequestAllData)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("opcotssr Backhaul feasibility error : ${e.localizedMessage}")
-                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -346,12 +346,14 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
                     holder.tssrEquipmentTableList.adapter=tssrEquipmentTableAdapter(context,listener,opcoTssrdata?.Equipments?.get(0)?.OpcoTSSREquipmentTable!!)
                 }catch (e:java.lang.Exception){
                     AppLogger.log("opcotssr Equipment error : ${e.localizedMessage}")
-                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.siteAccessDetailsItemClicked(PowerMcb!!,serviceRequestAllData)
+                    if(PowerMcb!=null) {
+                        listener.siteAccessDetailsItemClicked(PowerMcb!!, serviceRequestAllData)
+                    }
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -381,7 +383,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
                 }
                 catch (e:java.lang.Exception){
                     AppLogger.log("opcotssr Power mcb error : ${e.localizedMessage}")
-                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold5 -> {
@@ -415,7 +417,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
                     holder.binding.remarks.text=""
                 }catch (e:java.lang.Exception){
                     AppLogger.log("opcotssr tssrExecutive info error : ${e.localizedMessage}")
-                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context,"error :${e.localizedMessage}",Toast.LENGTH_LONG).show()
                 }
             }
             is ViewHold6 -> {

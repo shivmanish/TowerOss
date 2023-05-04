@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
@@ -491,7 +492,6 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                     holder.binding.AcceptenceDate.text=Utils.getFormatedDate(InsAccepData?.AcceptanceDate,"dd-MMM-yyyy")
 
                     // edit mode
-                    holder.binding.VendorCodeEdit.setText(InsAccepData?.VendorCode)
                     holder.binding.VendorExcutiveNameEdit.setText(InsAccepData?.VendorExecutiveName)
                     holder.binding.VendorExecutiveEmailEdit.setText(InsAccepData?.VendorEmailId)
                     holder.binding.VendorExecutiveNumberEdit.setText(InsAccepData?.VendorExecutiveNumber)
@@ -505,9 +505,9 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
 
                 }
                 if (InsAccepData!=null && InsAccepData?.VendorCompany?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,InsAccepData?.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,InsAccepData?.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
                 if (InsAccepData!=null && InsAccepData?.AcceptanceStatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.AcceptenceStatusEdit,DropDowns.AcceptanceStatus.name,InsAccepData?.AcceptanceStatus?.get(0).toString())
                 else
@@ -650,7 +650,7 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                 holder.binding.itemTitleStr.text = list[position]
                 if (datalist!=null){
                     holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                        override fun itemClicked() {
+                        override fun itemClicked(item : com.smarthub.baseapplication.model.siteIBoard.Attachments) {
                             listener.attachmentItemClicked()
                         }
                     })

@@ -3,8 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/dp5"
-    android:layout_marginLeft="@dimen/dp5"
     android:elevation="@dimen/dp30"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
@@ -77,330 +75,711 @@
         android:visibility="visible"
         android:id="@+id/item_collapse"
         android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="@dimen/dp10"
         app:layout_constraintTop_toBottomOf="@+id/item_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
+            android:id="@+id/view_layout"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:scrollbars="vertical"
-                android:layout_marginBottom="@dimen/dp10"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp10"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:visibility="visible"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <GridLayout
-                    android:visibility="visible"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Type"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/Type"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Type"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                        <TextView
-                            android:text="Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Size"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal"
                             android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="L : "
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <TextView
-                                    android:id="@+id/SizeL"
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
-                                    android:text=""
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-                            <View
-                                android:layout_marginVertical="@dimen/dp4"
-                                android:layout_marginHorizontal="@dimen/dp3"
-                                android:layout_width="1dp"
-                                android:background="@color/color1"
-                                android:layout_height="match_parent"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="B : "
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <TextView
-                                    android:id="@+id/SizeB"
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
-                                    android:text=""
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-                            <View
-                                android:layout_marginVertical="@dimen/dp4"
-                                android:layout_marginHorizontal="@dimen/dp3"
-                                android:layout_width="1dp"
-                                android:background="@color/color1"
-                                android:layout_height="match_parent"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="H : "
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <TextView
-                                    android:id="@+id/SizeH"
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
-                                    android:text=""
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-
+                            <TextView
+                                android:text="L : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/SizeL"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:text=""
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
                         </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Make Type"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/MakeType"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Material Used"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/MaterialUsed"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="Foundation Size"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:orientation="horizontal"
                             android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="L : "
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <TextView
-                                    android:id="@+id/FoundationSizeL"
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
-                                    android:text=""
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-                            <View
-                                android:layout_marginVertical="@dimen/dp4"
-                                android:layout_marginHorizontal="@dimen/dp3"
-                                android:layout_width="1dp"
-                                android:background="@color/color1"
-                                android:layout_height="match_parent"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="B : "
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <TextView
-                                    android:id="@+id/FoundationSizeB"
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
-                                    android:text=""
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-                            <View
-                                android:layout_marginVertical="@dimen/dp4"
-                                android:layout_marginHorizontal="@dimen/dp3"
-                                android:layout_width="1dp"
-                                android:background="@color/color1"
-                                android:layout_height="match_parent"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:text="H : "
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <TextView
-                                    android:id="@+id/FoundationSizeH"
-                                    android:maxLines="1"
-                                    android:ellipsize="marquee"
-                                    android:text=""
-                                    style="@style/RowTestItemEdit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-
+                            <TextView
+                                android:text="B : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/SizeB"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:text=""
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
                         </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="H : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/SizeH"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:text=""
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Make Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/MakeType"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Material Used"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/MaterialUsed"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Foundation Size"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                     <LinearLayout
-                        android:paddingTop="0dp"
-                        android:layout_width="0dp"
-                        style="@style/ColumnItemInfo"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
                         android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="L : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/FoundationSizeL"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:text=""
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="B : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/FoundationSizeB"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:text=""
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="H : "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/FoundationSizeH"
+                                android:maxLines="1"
+                                android:ellipsize="marquee"
+                                android:text=""
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:text="Foundation Type"
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/FoundationType"
-                            android:maxLines="1"
-                            android:ellipsize="marquee"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            />
                     </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
 
-                </GridLayout>
+                    <TextView
+                        android:text="Foundation Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/FoundationType"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Location Mark"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/Location_mark"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+            </GridLayout>
+            <TextView
+                android:text="Remarks"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/Remarks"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:textSize="15sp"
+                style="@style/RowTestItemEdit"
+                android:text=""
+                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/edit_layout"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:visibility="visible"
+                android:columnCount="2"
+                android:layout_marginHorizontal="@dimen/dp5"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemWithoutMarginInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Type_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Size (m)"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="L: "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:id="@+id/SizeL_edit"
+                                android:text=""
+                                android:inputType="numberDecimal"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="B: "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:id="@+id/SizeB_edit"
+                                android:text=""
+                                android:inputType="numberDecimal"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="H: "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:id="@+id/SizeH_edit"
+                                android:text=""
+                                android:inputType="numberDecimal"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemWithoutMarginInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Make Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Make_Type_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemWithoutMarginInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Material Used"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Material_Used_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Foundation Size (m)"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="L: "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:id="@+id/FoundationSizeL_edit"
+                                android:text=""
+                                android:inputType="numberDecimal"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="B: "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:id="@+id/FoundationSizeB_edit"
+                                android:text=""
+                                android:inputType="numberDecimal"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+                        <View
+                            android:layout_marginVertical="@dimen/dp4"
+                            android:layout_marginHorizontal="@dimen/dp3"
+                            android:layout_width="1dp"
+                            android:background="@color/color1"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="H: "
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:id="@+id/FoundationSizeH_edit"
+                                android:text=""
+                                android:inputType="numberDecimal"
+                                style="@style/RowTestItemEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemWithoutMarginInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Foundation Type"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
+                        android:id="@+id/Foundation_Type_Edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemWithoutMarginInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Location Mark"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/Location_Mark_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp6" />
+                </LinearLayout>
+
+
+            </GridLayout>
+            <TextView
+                android:text="Remarks"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                style="@style/RowTextItemInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/remarks_edit"
+                android:textSize="15sp"
+                style="@style/RowTestItemEdit"
+                android:text=""
+                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:alpha="0.37"
+                android:background="#263238"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp6" />
+            <LinearLayout
+                android:id="@+id/bottom_layout"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
 
                 <TextView
-                    android:text="Location Mark"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:id="@+id/cancel"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cancel"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
                 <TextView
-                    android:id="@+id/Location_Mark"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-
-                    android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
-                    android:text=""
-                    android:layout_marginTop="@dimen/dp1"
-                    android:layout_marginRight="@dimen/dp10"
+                    android:id="@+id/update"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Remarks"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    style="@style/RowTextItemInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/remark"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"
-
-                    android:textSize="15sp"
-                    style="@style/RowTestItemEdit"
-                    android:text=""
-                    android:layout_marginTop="@dimen/dp1"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:background="@drawable/yellow_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Update"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp5"
+                    android:paddingHorizontal="@dimen/dp12"
+                    android:textColor="#3D4E6D"
+                    android:textSize="@dimen/dp15"/>
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

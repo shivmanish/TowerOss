@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginRight="@dimen/dp5"
     android:layout_marginLeft="@dimen/dp5"
     android:elevation="@dimen/dp30"
@@ -84,11 +84,10 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/view_layout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp10"
-            android:paddingBottom="20dp"
             android:layout_height="wrap_content">
             <GridLayout
                 android:visibility="visible"
@@ -104,32 +103,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Type"
+                        android:text="Total Acquisition Area (Sq m)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/AcquisitionType"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        style="@style/RowTestItemEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:paddingTop="0dp"
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Acquisition Area (Sq m)"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/AcquisitionArea"
+                        android:id="@+id/TotalAcquisitionArea"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         android:text=""
@@ -137,7 +116,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -159,6 +137,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -180,7 +159,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -202,6 +180,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -223,7 +202,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -245,6 +223,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -266,7 +245,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -288,6 +266,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -309,7 +288,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -331,6 +309,7 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -352,7 +331,6 @@
                         android:layout_height="wrap_content"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:paddingTop="0dp"
                     android:layout_width="0dp"
@@ -389,8 +367,7 @@
                 android:id="@+id/remarks"
                 android:maxLines="1"
                 android:ellipsize="marquee"
-                android:hint="Left Corner of Roof "
-                android:textSize="15sp"
+                android:textSize="13sp"
                 style="@style/RowTestItemEdit"
                 android:text=""
                 android:layout_marginTop="@dimen/dp1"
@@ -401,10 +378,9 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/edit_layout"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
             android:layout_height="wrap_content">
             <GridLayout
                 android:visibility="visible"
@@ -419,34 +395,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Type"
+                        android:text="Total Acquisition Area (Sq m)"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/Acquisition_type_edit"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    style="@style/ColumnItemInfo"
-                    android:layout_height="wrap_content">
-
                     <TextView
-                        android:text="Acquisition Area (Sq m)"
-                        style="@style/RowTextItemInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/Acquisition_Area_edit"
+                        android:id="@+id/Total_Acquisition_Area_edit"
                         android:text=""
                         android:inputType="number"
                         style="@style/RowTestItemEdit"
@@ -460,7 +414,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp5" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -486,6 +439,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -511,7 +465,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -534,6 +487,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -556,7 +510,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -579,6 +532,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -601,7 +555,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -624,6 +577,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -646,7 +600,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -669,6 +622,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -693,7 +647,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -732,8 +685,7 @@
                 android:layout_height="wrap_content"/>
             <EditText
                 android:id="@+id/remarks_edit"
-                android:hint="Left Corner of Roof "
-                android:textSize="15sp"
+                android:textSize="13sp"
                 style="@style/RowTestItemEdit"
                 android:text=""
                 android:layout_marginTop="@dimen/dp1"
@@ -788,6 +740,132 @@
 
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginHorizontal="@dimen/dp8"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/RowTestItemEdit"
+                android:text="Location Marking for key"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <LinearLayout
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/add_items_Location_Marking_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:padding="4dp"
+                        android:src="@drawable/add"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/dp20"
+                        android:layout_height="20dp"
+                        android:background="@drawable/circleblue_1" />
+                    <TextView
+                        android:padding="5dp"
+                        android:text="Add"
+                        android:textSize="@dimen/dp15"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/color1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight=".5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="2"
+                android:ellipsize="marquee"
+                android:textStyle="bold"
+                android:text="Serial No."
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="marquee"
+                android:text="Object"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="marquee"
+                android:text="Boundary in\nDirection-A"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp13"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="0dp"
+                android:maxLines="2"
+                android:ellipsize="marquee"
+                android:text="Boundary in\nDirection-B"
+                android:gravity="center"
+                style="@style/RowTextItemInfo"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="@dimen/dp8"
+            android:paddingBottom="20dp"
+            android:layout_marginRight="@dimen/dp2"
+            android:id="@+id/Location_Marking_Table_Item"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp8"
+            tools:itemCount="5"
+            tools:listitem="@layout/acq_feasibility_details_table_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 

@@ -35,16 +35,15 @@ class TowerPoEditAdapter (var data: TwrCivilPODetail,var childId:Int?,var parent
             dismiss()
         }
         binding.PoItemEdit.setText(data.POItem)
-        binding.VendorCodeEdit.setText(data.VendorCode)
         binding.PoNumberEdit.setText(data.PONumber)
         binding.PoAmountEdit.setText(data.POAmount)
         binding.PoLineNumberEdit.setText(data.POLineNo.toString())
         binding.PoDateEdit.text=Utils.getFormatedDate(data.PODate,"dd-MMM-yyyy")
         binding.remarksEdit.setText(data.remark)
         if (data.VendorCompany?.isNotEmpty()==true)
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString())
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name, data.VendorCompany?.get(0).toString(),binding.VendorCodeEdit)
         else
-            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name)
+            AppPreferences.getInstance().setDropDown(binding.VendorNameEdit, DropDowns.VendorCompany.name,binding.VendorCodeEdit)
         setDatePickerView( binding.PoDateEdit)
         binding.update.setOnClickListener {
             showProgressLayout()
@@ -87,7 +86,7 @@ class TowerPoEditAdapter (var data: TwrCivilPODetail,var childId:Int?,var parent
             }
             else if (it?.data != null && it.status == Resource.Status.SUCCESS){
                 hideProgressLayout()
-                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context,"Something went wrong in update data . Try again", Toast.LENGTH_SHORT).show()
                 AppLogger.log("TowerPoEditAdapter Something went wrong in updating data")
             }
             else if (it != null) {

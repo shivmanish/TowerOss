@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/drawable_cross_back"/>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:minHeight="@dimen/dp500"
+        android:minHeight="@dimen/dp700"
         android:background="@drawable/dialog_bg"
         android:layout_marginTop="@dimen/dp15"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp15"
-            android:text="Add Service Request Details"
+            android:text="Add Earthing"
             android:textSize="15dp"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/light_black"
@@ -46,10 +46,12 @@
             android:layout_height="1dp"
             android:layout_width="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text"/>
+
         <androidx.core.widget.NestedScrollView
             app:layout_constraintTop_toBottomOf="@+id/title_line"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp5"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
             <LinearLayout
@@ -61,229 +63,287 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <GridLayout
-                    android:columnCount="2"
+                <LinearLayout
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Earthing Pit Depth" />
-                        <EditText
-                            android:id="@+id/Earthing_Pit_Depth"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="10"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Earthing Road Material" />
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/Earthing_Road_Material"
-                            style="@style/SpinnerTheme"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/RowTextItemInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Pit Size" />
-                        <EditText
-                            android:id="@+id/height"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="10"
-                            style="@style/RowTestItemEdit"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:alpha="0.37"
-                            android:background="#263238" />
-                    </LinearLayout>
-
-                </GridLayout>
-                <GridLayout
-                    android:columnCount="2"
+                    android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/circleblue_1"
+                        android:layout_marginStart="@dimen/dp10"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_line"
+                        />
+                    <TextView
+                        android:id="@+id/titel_Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:text="Earthing Details"
+                        android:textSize="@dimen/dp16"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/color1"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins"
+                        app:layout_constraintStart_toEndOf="@+id/dot_img"
+                        app:layout_constraintTop_toTopOf="@+id/dot_img"
+                        app:layout_constraintBottom_toBottomOf="@+id/dot_img"/>
+                </LinearLayout>
+
+                <GridLayout
+                    android:visibility="visible"
+                    android:columnCount="2"
+                    android:layout_marginHorizontal="@dimen/dp5"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
+                        android:paddingTop="@dimen/dp1"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Pit Size (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Installation Date" />
-                        <TextView
-                            android:id="@+id/installation_date"
-                            style="@style/RowTestItemEdit"
-                            android:maxLength="10"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="10-12-2022"
-                            app:drawableRightCompat="@drawable/icon_date" />
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="L: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/PitSizeL_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="B: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/PitSizeB_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_marginVertical="@dimen/dp4"
+                                android:layout_marginHorizontal="@dimen/dp3"
+                                android:layout_width="1dp"
+                                android:background="@color/color1"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:text="H: "
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <EditText
+                                    android:id="@+id/PitSizeH_edit"
+                                    android:text=""
+                                    android:inputType="numberDecimal"
+                                    style="@style/RowTestItemEdit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </LinearLayout>
 
+                        </LinearLayout>
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
-                        android:layout_marginTop="@dimen/dp5"
+                        android:paddingTop="@dimen/dp1"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Pit Depth (m)"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Operational Date" />
-                        <TextView
-                            android:id="@+id/operational_date"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Pit_Depth_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
                             style="@style/RowTestItemEdit"
-                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="19-12-2023"
-                            app:drawableRightCompat="@drawable/icon_date" />
-
+                            />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
 
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Pit Rod Material"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Operational Status" />
+                            android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/operational_status"
+                            android:id="@+id/Pit_Rod_Material_edit"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20" />
-
+                            android:layout_height="wrap_content" />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
                     </LinearLayout>
                     <LinearLayout
-                        style="@style/ColumnItemInfo"
                         android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:text="Earthing Cable Type"
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Used For" />
+                            android:layout_height="wrap_content"/>
                         <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/used_for"
+                            android:id="@+id/Earthing_Cable_Type_edit"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp20" />
-
+                            android:layout_height="wrap_content" />
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/dp8"
                             android:alpha="0.37"
-                            android:background="#263238" />
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp3" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Earthing Cable Length (m)"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Earthing_Cable_Length_edit"
+                            android:text=""
+                            android:inputType="numberDecimal"
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        style="@style/ColumnItemWithoutMarginInfo"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Location Mark"
+                            style="@style/RowTextItemInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/Location_Mark_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                        <View
+                            android:alpha="0.37"
+                            android:background="#263238"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp6" />
+                    </LinearLayout>
 
 
                 </GridLayout>
-
                 <TextView
+                    android:text="Remarks"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
                     style="@style/RowTextItemInfo"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp20"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Location Mark" />
+                    android:layout_height="wrap_content"/>
                 <EditText
-                    android:id="@+id/Location_mark"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp10"
+                    android:id="@+id/remarks_edit"
+                    android:textSize="15sp"
+                    style="@style/RowTestItemEdit"
+                    android:text=""
+                    android:layout_marginTop="@dimen/dp1"
                     android:layout_marginRight="@dimen/dp10"
-                    android:hint="100"
-                    style="@style/RowTestItemEdit"/>
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_marginTop="@dimen/dp8"
                     android:alpha="0.37"
-                    android:background="#263238" />
-
+                    android:background="#263238"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp6" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

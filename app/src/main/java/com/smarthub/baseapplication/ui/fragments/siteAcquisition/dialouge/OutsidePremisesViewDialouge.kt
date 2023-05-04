@@ -6,15 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smarthub.baseapplication.R
-import com.smarthub.baseapplication.databinding.InsidePremisesViewDialougeBinding
 import com.smarthub.baseapplication.databinding.OutsidePremisesViewDialougeBinding
-import com.smarthub.baseapplication.databinding.TowerConsumableViewDialougeBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
-import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerConsumableMaterial
-import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqInsidePremise
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SAcqOutsidePremise
 import com.smarthub.baseapplication.utils.DropDowns
-import com.smarthub.baseapplication.utils.Utils
 
 class OutsidePremisesViewDialouge (contentLayoutId: Int, var data: SAcqOutsidePremise) : BottomSheetDialogFragment(contentLayoutId){
 
@@ -24,11 +19,12 @@ class OutsidePremisesViewDialouge (contentLayoutId: Int, var data: SAcqOutsidePr
         binding.canecl.setOnClickListener {
             dismiss()
         }
-        if (data.ExternalStructureType.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.ExternalStructureType, DropDowns.ExternalStructureType.name,data.ExternalStructureType.get(0).toString())
-       if (data.Direction.isNotEmpty())
-            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentre, DropDowns.Direction.name,data.Direction.get(0).toString())
-
+        if (data.ExternalStructureType!=null && data.ExternalStructureType?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.ExternalStructureType, DropDowns.ExternalStructureType.name,data.ExternalStructureType?.get(0).toString())
+       if (data.Direction!=null && data.Direction?.isNotEmpty()==true)
+            AppPreferences.getInstance().setDropDown(binding.DirectionFromCentre, DropDowns.Direction.name,data.Direction?.get(0).toString())
+        if (data.MajorShadowCasting!=null && data.MajorShadowCasting!!>=0)
+            AppPreferences.getInstance().setDropDown(binding.MajorShadowCasting, DropDowns.MajorShadowCasting.name,data.MajorShadowCasting.toString())
         binding.DistanceFromBoundary.text=data.DistanceFromBoundry
         binding.HeightAGL.text=data.Height
         binding.remark.text=data.remark

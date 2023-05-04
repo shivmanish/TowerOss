@@ -270,13 +270,11 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <TextView
+                        <com.smarthub.baseapplication.widgets.CustomSpinner
                             android:id="@+id/Payee_status_edit"
-                            android:text=""
-                            style="@style/RowTestItemEdit"
-                            android:drawableEnd="@drawable/down_arrow"
+                            style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
@@ -305,6 +303,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
+                android:visibility="gone"
                 android:gravity="center_vertical"
                 android:id="@+id/cancel_txt"
                 android:layout_width="wrap_content"

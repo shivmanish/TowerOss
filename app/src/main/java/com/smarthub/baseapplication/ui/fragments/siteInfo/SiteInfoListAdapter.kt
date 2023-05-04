@@ -231,14 +231,13 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                         AppPreferences.getInstance().setDropDown(holder.binding.siteStatus,DropDowns.Sitestatus.name,siteBasicinfo?.Sitestatus?.get(0).toString())
                     if (siteBasicinfo?.Sitecategory?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.siteCategory,DropDowns.Sitecategory.name,siteBasicinfo?.Sitecategory?.get(0).toString())
-                    if (siteBasicinfo?.Sitetype?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo?.Sitetype?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.siteType,DropDowns.Sitetype.name,siteBasicinfo?.Sitetype)
                     if (siteBasicinfo?.Projectname?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.txtProjectName,DropDowns.Projectname.name,siteBasicinfo?.Projectname?.get(0).toString())
                     if (siteBasicinfo?.Costcentre?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.costCenter,DropDowns.Costcentre.name,siteBasicinfo?.Costcentre?.get(0).toString())
-                    if (siteBasicinfo?.Opcositetype?.isNotEmpty()==true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name,siteBasicinfo?.Opcositetype?.get(0).toString())
+                    if (siteBasicinfo?.Sitetype?.isNotEmpty()==true)
+                        AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name,siteBasicinfo?.Sitetype?.get(0).toString())
                     if (siteBasicinfo?.Acquisitiontype?.isNotEmpty()==true)
                         AppPreferences.getInstance().setDropDown(holder.binding.AcquisitionType,DropDowns.Acquisitiontype.name,siteBasicinfo?.Acquisitiontype?.get(0).toString())
                     if (siteBasicinfo?.PropertyType!=null && siteBasicinfo?.PropertyType!!>0)
@@ -270,6 +269,7 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     holder.binding.SiteLatitudeEdit.setText(siteAddress?.locLatitude)
                     holder.binding.SiteLongitudeEdit.setText(siteAddress?.locLongitude)
                 }
+
                 if (siteBasicinfo!=null && siteBasicinfo?.Sitestatus?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteStatusEdit,DropDowns.Sitestatus.name,siteBasicinfo?.Sitestatus?.get(0).toString())
                 else
@@ -278,10 +278,12 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteCategoryEdit,DropDowns.Sitecategory.name,siteBasicinfo?.Sitecategory?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteCategoryEdit,DropDowns.Sitecategory.name)
+
                 if (siteBasicinfo!=null && siteBasicinfo?.Sitetype?.isNotEmpty() == true)
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name,siteBasicinfo?.Sitetype?.get(0).toString())
                 else
                     AppPreferences.getInstance().setDropDown(holder.binding.SiteTypeEdit,DropDowns.Sitetype.name)
+
                 if (siteBasicinfo!=null && siteBasicinfo?.Projectname?.isNotEmpty()==true)
                     AppPreferences.getInstance().setDropDown(holder.binding.ProjectNameEdit,DropDowns.Projectname.name,siteBasicinfo?.Projectname?.get(0).toString())
                 else
@@ -316,6 +318,7 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                         it.aliasName=holder.binding.SiteAlternateNameEdit.text.toString()
                         it.Sitestatus= arrayListOf(holder.binding.SiteStatusEdit.selectedValue.id.toInt())
                         it.Sitecategory= arrayListOf(holder.binding.SiteCategoryEdit.selectedValue.id.toInt())
+                        it.Sitetype= arrayListOf(holder.binding.SiteTypeEdit.selectedValue.id.toInt())
                         it.Opcositetype= arrayListOf(holder.binding.SiteTypeEdit.selectedValue.id.toInt())
                         it.Costcentre= arrayListOf(holder.binding.CostCenterEdit.selectedValue.id.toInt())
                         it.Projectname= arrayListOf(holder.binding.ProjectNameEdit.selectedValue.id.toInt())

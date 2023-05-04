@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.SstSbcTeamItemBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcTeam
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
@@ -148,7 +149,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                     if (datalist?.Type!= null && datalist?.Type!! > 0)
                         AppPreferences.getInstance().setDropDown(holder.binding.TestType,DropDowns.SstSbcType.name,datalist?.Type.toString())
                     if (datalist?.VendorCompany?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
+                        AppPreferences.getInstance().setDropDown(holder.binding.VendorName,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString(),holder.binding.VendorCode)
 
                     holder.binding.Budget.text=datalist?.Budget
                     holder.binding.PONumber.text=datalist?.PONumber
@@ -179,9 +180,9 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                     AppPreferences.getInstance().setDropDown(holder.binding.TestTypeEdit,DropDowns.SstSbcType.name)
 
                 if (datalist!=null && datalist?.VendorCompany?.isNotEmpty() == true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString())
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,datalist?.VendorCompany?.get(0).toString(),holder.binding.VendorCodeEdit)
                 else
-                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name)
+                    AppPreferences.getInstance().setDropDown(holder.binding.VendorNameEdit,DropDowns.VendorCompany.name,holder.binding.VendorCodeEdit)
 
                 holder.binding.update.setOnClickListener {
                     val tempData=SstSbcTeam()
@@ -238,7 +239,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                 try {
                     if (datalist!=null){
                         holder.recyclerListener.adapter= ImageAttachmentCommonAdapter(baseFragment.requireContext(),datalist?.attachment!!,object : ImageAttachmentCommonAdapter.ItemClickListener{
-                            override fun itemClicked() {
+                            override fun itemClicked(item : Attachments) {
                                 listener.attachmentItemClicked()
                             }
                         })

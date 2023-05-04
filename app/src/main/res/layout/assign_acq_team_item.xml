@@ -145,12 +145,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Lead Name"
+                        android:text="Acquisition Executive Name"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/AcquisitionLeadName"
+                        android:id="@+id/AcquisitionExecutiveName"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         android:text=""
@@ -166,12 +166,33 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Executive Name"
+                        android:text="Acquisition Executive Number"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/AcquisitionExecutiveName"
+                        android:id="@+id/AcquisitionExecutiveNumber"
+                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="0dp"
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Acquisition Lead Name"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/AcquisitionLeadName"
                         android:maxLines="1"
                         android:ellipsize="marquee"
                         android:text=""
@@ -502,13 +523,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/Geography_Level_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        android:drawableEnd="@drawable/down_arrow"
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View
@@ -516,7 +533,7 @@
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp5" />
+                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -528,13 +545,9 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <com.smarthub.baseapplication.widgets.CustomSpinner
                         android:id="@+id/Department_edit"
-                        android:maxLines="1"
-                        android:ellipsize="marquee"
-                        android:text=""
-                        android:drawableEnd="@drawable/down_arrow"
-                        style="@style/RowTestItemEdit"
+                        style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <View
@@ -542,7 +555,7 @@
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp5" />
+                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -551,12 +564,34 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Lead Name"
+                        android:text="Acquisition Executive Name"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/AcquisitionLeadName_edit"
+                    <com.smarthub.baseapplication.widgets.CustomUserSpinner
+                        android:id="@+id/AcquisitionExecutiveName_edit"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <View
+                        android:alpha="0.37"
+                        android:background="#263238"
+                        android:layout_height="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    style="@style/ColumnItemInfo"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Acquisition Executive Number"
+                        style="@style/RowTextItemInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/AcquisitionExecutive_Number_edit"
                         android:text="ddcc"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
@@ -575,14 +610,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Acquisition Executive Name"
+                        android:text="Acquisition Lead Name"
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
-                        android:id="@+id/AcquisitionExecutiveName_edit"
-
-                        android:text=""
+                    <TextView
+                        android:id="@+id/AcquisitionLeadName_edit"
+                        android:text="ddcc"
                         style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -724,7 +758,7 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/VendorCode_edit"
                         android:text=""
                         style="@style/RowTestItemEdit"

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.location.Location
 import android.net.ConnectivityManager
 import android.os.Build
 import android.text.TextUtils
@@ -16,12 +17,14 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.google.android.gms.maps.model.LatLng
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.register.RegisterData
@@ -402,7 +405,7 @@ object Utils {
         var date=d
         if (d.isEmpty())
             return null
-        val format="yyyy-MM-dd'T'HH:mm:ss.SSS"
+        val format="yyyy-MM-dd'T'HH:mm:ss"
         var currentFormate:String?="dd-MMM-yyyy"
         if (d.length in 1..9)
             currentFormate="MMM-yyyy"
@@ -415,6 +418,19 @@ object Utils {
              date = outputFormat.format(inputDate)
         }catch (e:java.lang.Exception){
             AppLogger.log("getFullFormatedDate error :${e.localizedMessage}")
+        }
+        return date
+    }
+
+    fun getDateTime(date : String) : String?{
+        AppLogger.log("compareDate:$date")
+        try {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val sdf1 = SimpleDateFormat("yyyy-MMM-dd HH:mm")
+            val secondDate: Date = sdf.parse(date.replace("T"," "))
+            return sdf1.format(secondDate)
+        }catch (e:java.lang.Exception){
+            AppLogger.log("getDateTime error :${e.localizedMessage}")
         }
         return date
     }
@@ -461,7 +477,7 @@ object Utils {
         context: Context,
         title: String,
         message: String,
-        listener: DialogInterface.OnClickListener
+        listener: DialogInterface.OnClickListener,
     ) {
         val builder = AlertDialog.Builder(context)
         builder.setPositiveButton("Yes", listener)
@@ -472,6 +488,28 @@ object Utils {
         alert.setMessage(message)
         alert.setCancelable(false)
         alert.show()
+    }
+
+    fun calculateDistanceLatLong(lat1:String,long1:String,lat2:String,long2:String,textView:TextView?){
+        AppLogger.log("calculateDistanceLatLong called")
+        val startPoint = Location("locationA")
+        val endPoint = Location("locationA")
+        var location1:LatLng?=null
+        var location2 :LatLng?=null
+        if (lat1.isNotEmpty() && long1.isNotEmpty()){
+            startPoint.latitude=lat1.toDouble()
+            startPoint.longitude=long1.toDouble()
+        }
+//            location1= LatLng(lat1.toDouble(),long1.toDouble())
+        if (lat2.isNotEmpty() && long2.isNotEmpty()){
+            endPoint.longitude=long2.toDouble()
+            endPoint.latitude=lat2.toDouble()
+        }
+        textView?.text= startPoint.distanceTo(endPoint).toInt().toString()
+//            location2=LatLng(lat2.toDouble(),long2.toDouble())
+//        if (location1!=null && location2!=null){
+//            textView?.text= location1.d.toString()
+//        }
     }
 
 }

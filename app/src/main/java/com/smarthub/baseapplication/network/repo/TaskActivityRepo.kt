@@ -6,6 +6,8 @@ import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.helpers.SingleLiveEvent
 import com.smarthub.baseapplication.model.APIError
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
+import com.smarthub.baseapplication.model.dropdown.newData.DropDownNewItem
 import com.smarthub.baseapplication.model.taskModel.*
 import com.smarthub.baseapplication.model.taskModel.assignTask.AssignTaskNewModel
 import com.smarthub.baseapplication.model.workflow.TaskDataList
@@ -17,6 +19,7 @@ import com.smarthub.baseapplication.network.EndPoints
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.AppLogger.log
+import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils.isNetworkConnected
 import retrofit2.Call
 import retrofit2.Callback
@@ -94,6 +97,14 @@ class TaskActivityRepo(private var apiClient: APIClient) {
 
             private fun reportSuccessResponse(response: Response<GeoGraphyLevelData?>) {
                 if (response.body() != null) {
+                    val geoGraphyLevelList=ArrayList<DropDownItem>()
+                    geoGraphyLevelList.clear()
+                    for (x in 0..response.body()?.Data?.size!!.minus(1)){
+                        geoGraphyLevelList.add(DropDownItem(response.body()?.Data?.get(x)!!,"$x"))
+                    }
+                    AppLogger.log("getGeoGraphylevelDropdownData GeoGraphy reportSuccessResponse Level: ${response.body()}")
+                    AppPreferences.getInstance().saveString(DropDowns.GeographyLevel.name, Gson().toJson(DropDownNewItem(geoGraphyLevelList, DropDowns.GeographyLevel.name,true)))
+                    AppLogger.log("getGeoGraphylevelDropdownData GeoGraphy reportSuccessResponse GeoGraphy Level savePreData: ${AppPreferences.getInstance().getString(DropDowns.GeographyLevel.name)}")
                     geoGraphyDropDownDataResponse?.postValue(Resource.success(response.body()!!,200))
                 }
             }
