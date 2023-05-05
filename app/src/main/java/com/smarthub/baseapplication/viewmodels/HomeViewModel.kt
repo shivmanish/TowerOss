@@ -480,7 +480,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getDepartment(data:String?) {
-//        homeRepo?.getDepartmentWithGeographyRequest(data)
+        homeRepo?.getDepartmentWithGeographyRequest(data)
     }
 
     fun getDepartmentUsers(data: GetUserList) {
