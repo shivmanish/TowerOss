@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.databinding.PlandesignPowerRequirementsBindi
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignPowerRequirement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -97,7 +98,8 @@ class PlanDesignPowerAdapter (var context: Context, var listener:PowerListner, a
         when(holder){
             is PowerViewHold->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.editPowerRequiements(data)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.editPowerRequiements(data)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

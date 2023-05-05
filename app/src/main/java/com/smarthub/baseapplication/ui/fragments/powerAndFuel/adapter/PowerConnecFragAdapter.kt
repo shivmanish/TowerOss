@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.Powe
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPaymentTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelPoTableAdapter
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.tableAdapters.PowerFuelTariffTableAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -271,8 +272,10 @@ class PowerConnecFragAdapter(var baseFragment: BaseFragment, var listener: Power
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE
@@ -375,8 +378,10 @@ class PowerConnecFragAdapter(var baseFragment: BaseFragment, var listener: Power
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE

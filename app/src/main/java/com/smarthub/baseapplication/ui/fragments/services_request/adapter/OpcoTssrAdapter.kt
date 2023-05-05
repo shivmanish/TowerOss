@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.model.serviceRequest.ServiceRequestAllDataIt
 import com.smarthub.baseapplication.model.serviceRequest.opcoTssr.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.services_request.tableAdapters.*
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -252,7 +253,8 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked(RfFeasibility,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.detailsItemClicked(RfFeasibility,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -290,7 +292,8 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked(BackhaulFeasibility,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.requestinfoClicked(BackhaulFeasibility,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -351,7 +354,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    if(PowerMcb!=null) {
+                    if(PowerMcb!=null &&  AppController.getInstance().isTaskEditable) {
                         listener.siteAccessDetailsItemClicked(PowerMcb!!, serviceRequestAllData)
                     }
                 }
@@ -388,7 +391,8 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             }
             is ViewHold5 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.TSSRExecutiveInfo(tSSRExecutiveInfo!!,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.TSSRExecutiveInfo(tSSRExecutiveInfo!!,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

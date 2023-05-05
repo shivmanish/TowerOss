@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newTowerCivilInfra.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -219,8 +220,10 @@ class PoleInfoFragAdapter (var baseFragment: BaseFragment, var listener: PoleInf
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE
@@ -360,8 +363,10 @@ class PoleInfoFragAdapter (var baseFragment: BaseFragment, var listener: PoleInf
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE

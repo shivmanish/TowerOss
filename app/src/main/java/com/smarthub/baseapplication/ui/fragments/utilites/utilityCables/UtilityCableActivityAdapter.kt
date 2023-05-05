@@ -9,6 +9,7 @@ import com.example.trackermodule.homepage.BaseActivity
 import com.smarthub.baseapplication.databinding.UtilityCableDetailsBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteIBoard.newUtilityEquipment.UtilityCableDetail
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
 
@@ -84,8 +85,10 @@ class UtilityCableActivityAdapter(var baseActivity: BaseActivity, var listener: 
                     holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.GONE
-                        holder.binding.editLayout.visibility = View.VISIBLE
+                        if (AppController.getInstance().isTaskEditable) {
+                            holder.binding.viewLayout.visibility = View.GONE
+                            holder.binding.editLayout.visibility = View.VISIBLE
+                        }
                     }
                     holder.binding.cancel.setOnClickListener {
                         holder.binding.viewLayout.visibility = View.VISIBLE

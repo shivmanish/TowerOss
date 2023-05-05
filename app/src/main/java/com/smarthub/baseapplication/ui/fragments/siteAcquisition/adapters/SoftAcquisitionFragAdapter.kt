@@ -18,6 +18,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcqA
 import com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition.SoftAcquisitionData
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tableAdapters.PayeeAccountTableAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -157,8 +158,10 @@ class SoftAcquisitionFragAdapter(var context: Context, var listener: SoftAcqList
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE

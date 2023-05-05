@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 
 class NominalsFragmentAdapter(var listener: SiteLeaseListListener) :
     RecyclerView.Adapter<NominalsFragmentAdapter.ViewHold>() {
@@ -97,7 +98,8 @@ class NominalsFragmentAdapter(var listener: SiteLeaseListListener) :
         when(holder){
             is DetailsViewHold ->{
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.EditdetailsItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.EditdetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
+
 class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
     RecyclerView.Adapter<FeasibilityLeaseListAdapter.ViewHold>()  {
     var list: ArrayList<String> = ArrayList()
@@ -186,9 +188,9 @@ class FeasibilityLeaseListAdapter(var listener: FeasibilityListItemListener) :
                 holder.binding.iconLayout.visibility =
                     if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
 
-                holder.binding.imgEdit.setOnClickListener()
-                {
-                    listener.detailsItemClicked()
+                holder.binding.imgEdit.setOnClickListener() {
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.detailsItemClicked()
                 }
 
                 holder.binding.itemCollapse.visibility =

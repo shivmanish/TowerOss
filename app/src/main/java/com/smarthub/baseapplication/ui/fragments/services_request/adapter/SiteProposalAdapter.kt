@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SafetyAndAcces
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.AppController
 
 class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Adapter<SiteProposalAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
@@ -151,7 +152,8 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.detailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -184,7 +186,8 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
 
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.requestinfoClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -216,7 +219,8 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.geoConditionsDetailsItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.geoConditionsDetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -244,7 +248,8 @@ class SiteProposalAdapter(var listener: SiteProposalListener) : RecyclerView.Ada
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.siteAccessDetailsItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.siteAccessDetailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
