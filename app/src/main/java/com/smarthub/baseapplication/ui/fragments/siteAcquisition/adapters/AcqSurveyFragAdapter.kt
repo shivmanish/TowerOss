@@ -286,6 +286,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
+                        AppLogger.log("task editable flag====>${AppController.getInstance().isTaskEditable}")
                         if (AppController.getInstance().isTaskEditable) {
                             holder.binding.viewLayout.visibility = View.GONE
                             holder.binding.editLayout.visibility = View.VISIBLE

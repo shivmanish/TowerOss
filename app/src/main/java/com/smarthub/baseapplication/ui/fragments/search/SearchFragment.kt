@@ -148,8 +148,9 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
         })
 
         binding.viewOnIbo.setOnClickListener {
-           if (AppPreferences.getInstance().isSavedDropDown){
-               AppController.getInstance().isTaskEditable = true
+            AppController.getInstance().isTaskEditable = true
+            AppLogger.log("task editable flag on click iboard====>${AppController.getInstance().isTaskEditable}")
+            if (AppPreferences.getInstance().isSavedDropDown){
                if(searchHistoryList.contains(SearchListItem(item?.name,item?.id))){
                    searchHistoryList.remove(SearchListItem(item?.name,item?.id))
                }

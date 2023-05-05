@@ -90,7 +90,8 @@ class SiteDetailFragment : BaseFragment() {
         _sitebinding = SiteLocationDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         tabNames = siteDetailViewModel.getStrings(requireActivity())
-
+        AppController.getInstance().isTaskEditable = true
+        AppLogger.log("task editable flag on siteDetail Frag====>${AppController.getInstance().isTaskEditable}")
         root.findViewById<View>(R.id.btn_back).setOnClickListener { requireActivity().onBackPressed() }
         return root
     }
