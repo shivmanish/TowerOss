@@ -47,7 +47,7 @@ class CustomUserSpinner : AppCompatSpinner {
         }
         onItemSelectedListener = listener
     }
-    fun setSpinnerData(data: ArrayList<UserDataResponseItem>,LeadName: TextView,executiveNumber: TextView) {
+    fun setSpinnerData(data: ArrayList<UserDataResponseItem>,LeadName: TextView?,executiveNumber: TextView) {
         if (data.isEmpty())
             data.add(tempData)
         this.data = data
@@ -55,7 +55,8 @@ class CustomUserSpinner : AppCompatSpinner {
         val listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
-                LeadName.text=data[position].managername
+                if (LeadName!=null)
+                    LeadName.text=data[position].managername
                 executiveNumber.text=data[position].username
             }
 
@@ -83,7 +84,7 @@ class CustomUserSpinner : AppCompatSpinner {
         }
         onItemSelectedListener = listener
     }
-    fun setSpinnerDataByName(data: ArrayList<UserDataResponseItem>, selectedName: String?,LeadName: TextView,executiveNumber: TextView) {
+    fun setSpinnerDataByName(data: ArrayList<UserDataResponseItem>, selectedName: String?,LeadName: TextView?,executiveNumber: TextView) {
         if (data.isEmpty())
             data.add(tempData)
         this.data = data
@@ -92,7 +93,8 @@ class CustomUserSpinner : AppCompatSpinner {
         val listener = object : OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 onItemSelected(data[position])
-                LeadName.text=data[position].managername
+                if (LeadName!=null)
+                    LeadName.text=data[position].managername
                 executiveNumber.text=data[position].username
             }
 

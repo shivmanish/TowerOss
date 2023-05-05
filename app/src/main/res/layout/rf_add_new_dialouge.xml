@@ -128,7 +128,7 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
+                        <com.smarthub.baseapplication.widgets.CustomUserSpinner
                             android:id="@+id/excutive_name"
                             style="@style/SpinnerTheme"
                             android:layout_width="match_parent"
@@ -152,17 +152,19 @@
                             style="@style/RowTextItemInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <com.smarthub.baseapplication.widgets.CustomSpinner
-                            android:id="@+id/excutive_number"
-                            style="@style/SpinnerTheme"
+                        <TextView
+                            android:id="@+id/AcquisitionExecutive_Number_edit"
+                            android:text=""
+                            style="@style/RowTestItemEdit"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            />
                         <View
                             android:alpha="0.37"
                             android:background="#263238"
                             android:layout_height="1dp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/dp3" />
+                            android:layout_marginTop="@dimen/dp6" />
                     </LinearLayout>
 
 
@@ -214,7 +216,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:id="@+id/Submit"
+                android:id="@+id/Add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp5"
@@ -224,7 +226,7 @@
                 android:paddingBottom="@dimen/dp5"
                 android:paddingLeft="@dimen/dp15"
                 android:paddingRight="@dimen/dp15"
-                android:text="Submit"
+                android:text="Add"
                 android:textColor="#3D4E6D"
                 android:textSize="@dimen/dp15" />
 

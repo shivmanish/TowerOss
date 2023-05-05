@@ -21,6 +21,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.updateSstSbc.Upda
 import com.smarthub.baseapplication.network.APIClient
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.rfSurveyUpdate.UpdateRfSurveyResponseModel
 import com.smarthub.baseapplication.utils.AppConstants
 import com.smarthub.baseapplication.utils.AppLogger
 import retrofit2.Call
@@ -37,6 +38,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     var rfBasicResponselivedata: SingleLiveEvent<Resource<RfBasicResponse>>? = null
     var updateSiteInfoResponse: SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelResponse: SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
+    var updateRfSurveyResponse: SingleLiveEvent<Resource<UpdateRfSurveyResponseModel>>? = null
     var updateTwrCivilInfraResponse: SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
 
     init {
@@ -46,6 +48,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
         updateSstSbcResponse=SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>()
         updateSiteInfoResponse=SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>()
         updatePowerFuelResponse=SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>()
+        updateRfSurveyResponse=SingleLiveEvent<Resource<UpdateRfSurveyResponseModel>>()
         updateTwrCivilInfraResponse=SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>()
         rfBasicResponselivedata = SingleLiveEvent<Resource<RfBasicResponse>>()
     }
@@ -290,7 +293,7 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
     }
 
     fun updatePowerFuelData(data: PowerFuelAllDataModel?) {
-        AppLogger.log("updateSiteInfoData==> : ${Gson().toJson(data)}")
+        AppLogger.log("updatePowerFuelData==> : ${Gson().toJson(data)}")
         apiClient.updatePowerFuelRequest(data!!).enqueue(object : Callback<UpdatePowerFuelResponseModel> {
             override fun onResponse(
                 call: Call<UpdatePowerFuelResponseModel?>,
@@ -319,6 +322,40 @@ class UpdateIBoardRepo(private var apiClient: APIClient) {
                     updatePowerFuelResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
                     ) else
                     updatePowerFuelResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
+            }
+        })
+    }
+
+    fun updateRfSurveyData(data: RfMainResponse?) {
+        AppLogger.log("updateRfSurveyData==> : ${Gson().toJson(data)}")
+        apiClient.updateRfSurveyRequest(data!!).enqueue(object : Callback<UpdateRfSurveyResponseModel> {
+            override fun onResponse(
+                call: Call<UpdateRfSurveyResponseModel?>,
+                response: Response<UpdateRfSurveyResponseModel?>
+            ) {
+                AppLogger.log("$TAG onResponse get response $response")
+                reportSuccessResponse(response)
+            }
+
+            override fun onFailure(call: Call<UpdateRfSurveyResponseModel?>, t: Throwable) {
+                reportErrorResponse(null, t.localizedMessage)
+                AppLogger.log(TAG + " onResponse get response " + t.localizedMessage)
+
+            }
+
+            private fun reportSuccessResponse(response: Response<UpdateRfSurveyResponseModel?>) {
+                if (response.body() != null) {
+                    updateRfSurveyResponse?.postValue(Resource.success(response.body()!!,200))
+                }
+            }
+
+            private fun reportErrorResponse(response: APIError?, iThrowableLocalMessage: String?) {
+                if (response != null) {
+                    updateRfSurveyResponse?.postValue(Resource.error("${response.message}",null,201))
+                } else if (iThrowableLocalMessage != null)
+                    updateRfSurveyResponse?.postValue(Resource.error(iThrowableLocalMessage, null, 500)
+                    ) else
+                    updateRfSurveyResponse?.postValue(Resource.error(AppConstants.GENERIC_ERROR, null, 500))
             }
         })
     }

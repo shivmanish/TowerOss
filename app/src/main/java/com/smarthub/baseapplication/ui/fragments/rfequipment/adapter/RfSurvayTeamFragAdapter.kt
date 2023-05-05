@@ -3,6 +3,7 @@ package com.smarthub.baseapplication.ui.fragments.rfequipment.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.smarthub.baseapplication.R
@@ -10,6 +11,7 @@ import com.smarthub.baseapplication.databinding.RfSurveyTeamItemBinding
 import com.smarthub.baseapplication.databinding.SstSbcTeamItemBinding
 import com.smarthub.baseapplication.databinding.TowerAttachmentInfoBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
+import com.smarthub.baseapplication.model.dropdown.DropDownItem
 import com.smarthub.baseapplication.model.siteIBoard.Attachments
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcAllData
 import com.smarthub.baseapplication.model.siteIBoard.newsstSbc.SstSbcTeam
@@ -17,10 +19,13 @@ import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfSurvey
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfSurveyAssignTeam
+import com.smarthub.baseapplication.ui.fragments.siteAcquisition.adapters.AssignACQTeamFragAdapter
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
+import com.smarthub.baseapplication.widgets.CustomSpinner
+import com.smarthub.baseapplication.widgets.CustomUserSpinner
 
 class RfSurvayTeamFragAdapter(var baseFragment:BaseFragment, var listener: RfListListener, data:RfSurvey?) : RecyclerView.Adapter<RfSurvayTeamFragAdapter.ViewHold>() {
     private var datalist: RfSurveyAssignTeam?=null
@@ -35,7 +40,7 @@ class RfSurvayTeamFragAdapter(var baseFragment:BaseFragment, var listener: RfLis
                 datalist=data.RfSurveyAssignTeam!!.get(0)
             }
         }catch (e:java.lang.Exception){
-            AppLogger.log("TowerInfoFrag error :${e.localizedMessage}")
+            AppLogger.log("RfSurvayTeamFragAdapter error :${e.localizedMessage}")
         }
     }
 
@@ -69,52 +74,95 @@ class RfSurvayTeamFragAdapter(var baseFragment:BaseFragment, var listener: RfLis
 
     }
 
-
+    override fun getItemViewType(position: Int): Int {
+        if (list[position]==type1)
+            return 1
+        return 0
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHold {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.rf_survey_team_item, parent, false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.layout_empty, parent, false)
+        when (viewType) {
+            1 -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.rf_survey_team_item, parent, false)
+                return ViewHold1(view)
+            }
+
+        }
         return ViewHold(view)
     }
 
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         when (holder) {
             is ViewHold1 -> {
-                if (currentOpened == position) {
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                    holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
-                    holder.binding.itemLine.visibility = View.GONE
-                    holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
+                holder.binding.imgDropdown.visibility=View.GONE
+                holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
+                holder.binding.itemLine.visibility = View.GONE
+                holder.binding.itemCollapse.visibility = View.VISIBLE
+                holder.binding.imgEdit.visibility = View.VISIBLE
+                holder.binding.viewLayout.visibility = View.VISIBLE
+                holder.binding.editLayout.visibility = View.GONE
+
+                holder.binding.imgEdit.setOnClickListener {
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
+                }
+                holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE
                     holder.binding.editLayout.visibility = View.GONE
+                }
 
-                    holder.binding.imgEdit.setOnClickListener {
-                        if (AppController.getInstance().isTaskEditable) {
-                            holder.binding.viewLayout.visibility = View.GONE
-                            holder.binding.editLayout.visibility = View.VISIBLE
-                        }
-                    }
-                    holder.binding.cancel.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.VISIBLE
-                        holder.binding.editLayout.visibility = View.GONE
-                    }
-                }
-                else {
-                    holder.binding.collapsingLayout.tag = false
-                    holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
-                    holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
-                    holder.binding.itemLine.visibility = View.VISIBLE
-                    holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
-                }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
                 }
                 if(datalist!=null){
+                    // view mode
                     if (datalist?.Department?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.viewDepartment,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
-                    holder.binding.viewExcutiveName.text = datalist!!.ExecutiveName
-                    holder.binding.viewExcutiveNumber.text = datalist!!.ExecutiveMobile
-                    holder.binding.viewGeographyLevel.text = datalist!!.GeographyLevel
+                        AppPreferences.getInstance().setDropDown(holder.binding.Department,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
+                    holder.binding.AcquisitionExecutiveName.text=datalist?.ExecutiveName
+                    holder.binding.AcquisitionExecutiveNumber.text=datalist?.ExecutiveMobile
+                    holder.binding.GeographyLevel.text=datalist?.GeographyLevel
+                    holder.binding.remarks.text=datalist?.remark
+
+                    // edit mode
+                    holder.binding.AcquisitionExecutiveNumberEdit.text=datalist?.ExecutiveMobile
+                    holder.binding.remarksEdit.setText(datalist?.remark)
+                }
+                if (datalist!=null && datalist?.GeographyLevel?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDownByName(holder.binding.GeographyLevelEdit,DropDowns.GeographyLevel.name,datalist?.GeographyLevel)
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.GeographyLevelEdit,DropDowns.GeographyLevel.name)
+                if (datalist!=null && datalist?.Department?.isNotEmpty() == true)
+                    AppPreferences.getInstance().setDropDown(holder.binding.DepartmentEdit,DropDowns.Deaprtments.name,datalist?.Department?.get(0).toString())
+                else
+                    AppPreferences.getInstance().setDropDown(holder.binding.DepartmentEdit,DropDowns.Deaprtments.name)
+                holder.binding.update.setOnClickListener {
+                    val tempSurveyTeamData=RfSurveyAssignTeam()
+                    tempSurveyTeamData.let {
+                        it.GeographyLevel=holder.binding.GeographyLevelEdit.selectedValue.name
+                        it.Department=holder.binding.DepartmentEdit.getSelectedArray()
+                        it.ExecutiveMobile=holder.binding.AcquisitionExecutiveNumberEdit.text.toString()
+                        it.remark=holder.binding.remarksEdit.text.toString()
+                        it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.selectedValue.First_Name +" "+ holder.binding.AcquisitionExecutiveNameEdit.selectedValue.Last_Name
+                        if (datalist!=null)
+                            it.id=datalist?.id
+                    }
+                    listener.updateTeamClicked(tempSurveyTeamData)
+                }
+                holder.binding.DepartmentEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+                    override fun itemSelected(departmentName: DropDownItem) {
+                        listener.departmentTextSelected(departmentName.name,holder.binding.AcquisitionExecutiveNameEdit,
+                            holder.binding.AcquisitionExecutiveNumberEdit, holder.binding.AcquisitionExecutiveName.text.toString())
+                    }
+                }
+                holder.binding.GeographyLevelEdit.itemSelectedListener=object : CustomSpinner.ItemSelectedListener{
+                    override fun itemSelected(geographySelected: DropDownItem) {
+                        if (datalist!=null && datalist?.Department?.isNotEmpty() == true )
+                            listener.geographyTextSelected(geographySelected.name,holder.binding.DepartmentEdit,datalist?.Department?.get(0).toString())
+                        else
+                            listener.geographyTextSelected(geographySelected.name,holder.binding.DepartmentEdit,null)
+                    }
                 }
 
             }
@@ -135,7 +183,9 @@ class RfSurvayTeamFragAdapter(var baseFragment:BaseFragment, var listener: RfLis
 
 
     interface RfListListener {
-       fun updateTeamClicked(data:RfSurvey)
+       fun updateTeamClicked(data:RfSurveyAssignTeam)
+        fun departmentTextSelected(department:String, userListText: CustomUserSpinner, executiveNumber: TextView, selectedName:String?)
+        fun geographyTextSelected(geograpgy:String, userListText: CustomSpinner, selectedItem:String?)
     }
 
 }

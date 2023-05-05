@@ -1,13 +1,13 @@
 package com.smarthub.baseapplication.ui.fragments.rfequipment.pojo
 
-data class RfSurvey2(
-    val Observation: Int,
-    val created_at: String,
-    val created_by: Int,
-    val id: Int,
-    val isActive: Boolean,
-    val licenseeCompany: Int,
-    val modified_at: String,
-    val modified_by: Int,
-    val remark: String
-)
+class RfSurvey2{
+    var Observation: Int?=null
+    var created_at: String?=null
+    var created_by: Int?=null
+    var id: Int?=null
+    var isActive: Boolean?=null
+    var licenseeCompany: Int?=null
+    var modified_at: String?=null
+    var modified_by: Int?=null
+    var remark: String?=null
+}

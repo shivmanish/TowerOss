@@ -104,6 +104,7 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse;
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse;
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.rfSurveyUpdate.UpdateRfSurveyResponseModel;
 import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
 import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
@@ -282,6 +283,10 @@ public interface APIClient {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
     Call<UpdatePowerFuelResponseModel> updatePowerFuelRequest(@Body PowerFuelAllDataModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<UpdateRfSurveyResponseModel> updateRfSurveyRequest(@Body RfMainResponse data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_INFO_SEARCH_DATA_URL)

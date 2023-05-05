@@ -84,7 +84,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/view_layout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp10"
@@ -111,17 +111,10 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         style="@style/RowTestItemEdit"
-                        android:id="@+id/view_geography_level"
+                        android:id="@+id/Geography_level"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -134,17 +127,10 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         style="@style/RowTestItemEdit"
-                        android:id="@+id/view_department"
+                        android:id="@+id/Department"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -158,18 +144,10 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         style="@style/RowTestItemEdit"
-                        android:id="@+id/view_excutive_name"
+                        android:id="@+id/AcquisitionExecutiveName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -182,15 +160,9 @@
                         android:layout_height="wrap_content"/>
                     <TextView
                         style="@style/RowTestItemEdit"
-                        android:id="@+id/view_excutive_number"
+                        android:id="@+id/AcquisitionExecutiveNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                    <View
-                        android:alpha="0.37"
-                        android:background="#263238"
-                        android:layout_height="1dp"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
 
 
@@ -246,7 +218,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/geography_level"
+                        android:id="@+id/Geography_Level_edit"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -257,7 +229,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -269,7 +240,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/department"
+                        android:id="@+id/Department_edit"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -292,8 +263,8 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/excutive_name"
+                    <com.smarthub.baseapplication.widgets.CustomUserSpinner
+                        android:id="@+id/AcquisitionExecutiveName_edit"
                         style="@style/SpinnerTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -304,8 +275,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/dp3" />
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     style="@style/ColumnItemInfo"
@@ -316,22 +285,20 @@
                         style="@style/RowTextItemInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <com.smarthub.baseapplication.widgets.CustomSpinner
-                        android:id="@+id/excutive_number"
-                        style="@style/SpinnerTheme"
+                    <TextView
+                        android:id="@+id/AcquisitionExecutive_Number_edit"
+                        android:text=""
+                        style="@style/RowTestItemEdit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        />
                     <View
                         android:alpha="0.37"
                         android:background="#263238"
                         android:layout_height="1dp"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/dp3" />
+                        android:layout_marginTop="@dimen/dp6" />
                 </LinearLayout>
-
-
-
-
             </GridLayout>
             <TextView
                 android:text="Remarks"

@@ -81,6 +81,8 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse
 import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfSurvey
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.rfSurveyUpdate.UpdateRfSurveyResponseModel
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -137,6 +139,7 @@ class HomeViewModel : ViewModel() {
     var updateRflivedataResponse:SingleLiveEvent<Resource<RfBasicResponse>>? = null
     var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
+    var updateRfSurveyDataResponse:SingleLiveEvent<Resource<UpdateRfSurveyResponseModel>>? = null
     var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
     var departmentDataDataResponse:SingleLiveEvent<Resource<DepartmentDataModel>>? = null
     var addAttachmentModel:SingleLiveEvent<Resource<AddAttachmentModel>>? = null
@@ -195,6 +198,7 @@ class HomeViewModel : ViewModel() {
         updateRflivedataResponse = updateIBoardRepo?.rfBasicResponselivedata
         updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
         updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
+        updateRfSurveyDataResponse=updateIBoardRepo?.updateRfSurveyResponse
         updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
         departmentDataDataResponse=homeRepo?.departmentDataModel
         addAttachmentModel=homeRepo?.addAttachmentModel
@@ -467,6 +471,11 @@ class HomeViewModel : ViewModel() {
         val dataModel= PowerFuelAllDataModel()
         dataModel.PowerAndFuel= arrayListOf(data)
         updateIBoardRepo?.updatePowerFuelData(dataModel)
+    }
+    fun updateRfSurvey(data: RfSurvey) {
+        val dataModel= RfMainResponse()
+        dataModel.RfSurvey= arrayListOf(data)
+        updateIBoardRepo?.updateRfSurveyData(dataModel)
     }
 
     fun updateTwrCivilInfra(data: NewTowerCivilAllData) {

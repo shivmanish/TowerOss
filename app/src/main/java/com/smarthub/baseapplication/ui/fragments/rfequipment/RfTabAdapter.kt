@@ -24,7 +24,7 @@ class RfTabAdapter(manager: FragmentManager, var data: RfSurvey?, var parentInde
             1 -> {
                 AssignRfTeamFragment(data,parentIndex)
             }
-            2-> AssignRfTeamFragment(data,parentIndex)
+            2-> RfValidationFragment(data,parentIndex)
             else -> {
                 AssignRfTeamFragment(data,parentIndex)
             }

@@ -35,10 +35,9 @@ class RfTabActivity : BaseActivity() {
             onBackPressed()
         }
         binding.DateLebel.text="Survey Date"
-        binding.titel.text="ABCD"
-        Toast.makeText(this,"this is called 2", Toast.LENGTH_SHORT).show()
+        binding.titel.text="RF Survey"
         binding.subTitle.text=AppController.getInstance().siteName
-       binding.dateText.text = rfSurvey!!.created_at
+       binding.dateText.text = Utils.getFormatedDate(rfSurvey!!.created_at,"dd-MMM-yyyy")
         adapter = RfTabAdapter(supportFragmentManager, rfSurvey, parentIndex!!)
         binding.viewpager.adapter = adapter
         binding.tabs.setupWithViewPager(binding.viewpager)

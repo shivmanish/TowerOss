@@ -47,6 +47,7 @@ class RfMainFrqagment(var id:String) : BaseFragment(), RfAdapterListener {
         }
         viewmodel.rfMainResponse?.observe(viewLifecycleOwner) {
             if (it!=null && it.status == Resource.Status.LOADING){
+                adapter.addLoading()
                 return@observe
             }
             hideLoader()
@@ -78,7 +79,7 @@ class RfMainFrqagment(var id:String) : BaseFragment(), RfAdapterListener {
         }
         binding.addNew.setOnClickListener {
             val bmSheet = AddRfDialouge(id,(
-                    object : AddRfDialouge.AddSstSbcDataListener {
+                    object : AddRfDialouge.AddRfSurveyDataListener {
                         override fun addNewData(){
                             showLoader()
                             viewmodel.fetchRfRequest(AppController.getInstance().siteid)
@@ -108,7 +109,6 @@ class RfMainFrqagment(var id:String) : BaseFragment(), RfAdapterListener {
     
 
     override fun clickedItem(data : RfSurvey?, index:Int) {
-        Toast.makeText(requireContext(),"this is called ",Toast.LENGTH_SHORT).show()
         RfTabActivity.rfSurvey=data
         RfTabActivity.parentIndex=index
         requireActivity().startActivity(Intent(requireContext(), RfTabActivity::class.java))
