@@ -452,6 +452,8 @@ override fun onResume() {
             binding.start.text = "Start"
 
         }
+    }else{
+        binding.start.text = "Start"
     }
 }
 
@@ -459,18 +461,22 @@ private fun startServiceBackground() {
 
     if (!Util.isMyServiceRunning(mLocationService.javaClass, requireActivity())) {
         requireActivity().startService(mServiceIntent)
+/*
         Toast.makeText(
             requireContext(),
             getString(com.example.trackermodule.R.string.service_start_successfully),
             Toast.LENGTH_SHORT
         ).show()
+*/
         MyApplication.getInstance().isTaskEditable = true
     } else {
+/*
         Toast.makeText(
             requireContext(),
             getString(com.example.trackermodule.R.string.service_already_running),
             Toast.LENGTH_SHORT
         ).show()
+*/
     }
 
 }
