@@ -844,6 +844,19 @@
       ]
     },
     {
+      "name": "OkNotOk",
+      "data": [
+        {
+          "id": 1,
+          "name": "Ok"
+        },
+        {
+          "id": 2,
+          "name": "Not Ok"
+        }
+      ]
+    },
+    {
       "name": "MajorShadowCasting",
       "data": [
         {

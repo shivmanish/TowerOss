@@ -68,6 +68,7 @@ public enum DropDowns {
     TowerPoleInstallation,
     EBsupplythroBuildingMeter,
     OverallFeasibility,
+    OkNotOk,
     InstallationLocationType,
     PowerConnectionType,
     PaymentStatus,

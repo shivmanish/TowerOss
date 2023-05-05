@@ -420,7 +420,7 @@ class HomeViewModel : ViewModel() {
             if (cache_model.SAcqSiteAcquisition?.size == 0) {
                 cache_model.SAcqSiteAcquisition?.add(
                     NewSiteAcquiAllData(
-                        null, null, null, null, "", 0, false, ""
+                        null, null, null, null, null,null,"", 0, false, ""
                     )!!
                 )
             }

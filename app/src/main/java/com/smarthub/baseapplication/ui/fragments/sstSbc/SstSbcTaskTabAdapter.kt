@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.Ac
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.AgreementFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.AssignACQTeamFragment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.tabFragments.SoftAcquisitionFragment
+import com.smarthub.baseapplication.ui.fragments.sstSbc.tabFragments.RfSurveyValidationFragment
 import com.smarthub.baseapplication.ui.fragments.sstSbc.tabFragments.SstSbcReportFragment
 import com.smarthub.baseapplication.ui.fragments.sstSbc.tabFragments.SstSbcTeamFragment
 
@@ -28,6 +29,9 @@ class SstSbcTaskTabAdapter(manager: FragmentManager, var data: SstSbcAllData?, v
             "102" -> {
                 SstSbcReportFragment(data, parentIndex)
             }
+            "103" -> {
+                RfSurveyValidationFragment(data, parentIndex!!)
+            }
             else -> {
                 SstSbcTeamFragment(data, parentIndex)
             }
@@ -42,6 +46,9 @@ class SstSbcTaskTabAdapter(manager: FragmentManager, var data: SstSbcAllData?, v
             }
             "102" -> {
                 return "Test Report"
+            }
+            "103" -> {
+                return "Rf Survey Validation"
             }
         }
         return super.getPageTitle(position)

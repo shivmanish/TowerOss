@@ -67,7 +67,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
     var type2 = "External Structure"
     var type3 = "Power Connection Feasibility"
     var type4 = "Property Owner’s Detail"
-    var type5 = "Feasibility Detail"
+    var type5 = "Location Marking for Key Object"
     var type6 = "Attachments"
 
     init {
@@ -75,7 +75,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
         list.add("External Structure")
         list.add("Power Connection Feasibility")
         list.add("Property Owner’s Detail")
-        list.add("Feasibility Detail")
+        list.add("Location Marking for Key Object")
         list.add("Attachments")
     }
 
@@ -189,12 +189,12 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
             }
 
-            binding.addItemsLocationMarkingLayout.setOnClickListener {
-                addInsidePremisesTableItem()
+            binding.imgAdd.setOnClickListener {
+                addLocationMarkingTableItem()
             }
         }
 
-        private fun addInsidePremisesTableItem(){
+        private fun addLocationMarkingTableItem(){
             if (locationMarkingTableList.adapter!=null && locationMarkingTableList.adapter is LocationMarkingTableAdapter){
                 val adapter = locationMarkingTableList.adapter as LocationMarkingTableAdapter
                 adapter.addItem()
@@ -871,20 +871,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
                     holder.binding.itemLine.visibility = View.GONE
                     holder.binding.itemCollapse.visibility = View.VISIBLE
-                    holder.binding.imgEdit.visibility = View.VISIBLE
-                    holder.binding.viewLayout.visibility = View.VISIBLE
-                    holder.binding.editLayout.visibility = View.GONE
-
-                    holder.binding.imgEdit.setOnClickListener {
-                        if (AppController.getInstance().isTaskEditable) {
-                            holder.binding.viewLayout.visibility = View.GONE
-                            holder.binding.editLayout.visibility = View.VISIBLE
-                        }
-                    }
-                    holder.binding.cancel.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.VISIBLE
-                        holder.binding.editLayout.visibility = View.GONE
-                    }
+                    holder.binding.imgAdd.visibility = View.VISIBLE
                 }
                 else {
                     holder.binding.collapsingLayout.tag = false
@@ -892,7 +879,7 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
                     holder.binding.itemLine.visibility = View.VISIBLE
                     holder.binding.itemCollapse.visibility = View.GONE
-                    holder.binding.imgEdit.visibility = View.GONE
+                    holder.binding.imgAdd.visibility = View.GONE
                 }
                 holder.binding.collapsingLayout.setOnClickListener {
                     updateList(position)
@@ -905,125 +892,9 @@ class AcqSurveyFragAdapter(var baseFragment: BaseFragment, var listener: AcqSurv
                     holder.locationMarkingTableList.adapter=LocationMarkingTableAdapter(baseFragment.requireContext(),listener,feasibilityData?.SAcqLocationMarking)
                 }
                 else{
-                    holder.locationMarkingTableList.adapter=OutsidePremisesTableAdapter(baseFragment.requireContext(),listener,ArrayList())
-                }
-                if (feasibilityData!=null){
-                    // view mode
-                    if (feasibilityData?.TowerPoleType?.isNotEmpty() == true)
-                        AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleType,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
-                    if (feasibilityData?.FiberLMCLaying!= null && feasibilityData?.FiberLMCLaying!!>=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.FiberLMCLaying,DropDowns.FiberLMCLaying.name,feasibilityData?.FiberLMCLaying.toString())
-                    if (feasibilityData?.OwnerMeter!= null && feasibilityData?.OwnerMeter!!>=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.EBSupplyThroOwnerMeter,DropDowns.EBSupplyThroOwnerMeter.name,feasibilityData?.OwnerMeter.toString())
-                    if (feasibilityData?.EquipmentRoom!= null && feasibilityData?.EquipmentRoom!!>=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.EquipmentRoom,DropDowns.EquipmentRoom.name,feasibilityData?.EquipmentRoom.toString())
-                    if (feasibilityData?.RequiredAreaAvailable!= null && feasibilityData?.RequiredAreaAvailable!!>=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.RequiredAreaAvailable,DropDowns.RequiredAreaAvailable.name,feasibilityData?.RequiredAreaAvailable.toString())
-                    if (feasibilityData?.StatutoryPermission!= null && feasibilityData?.StatutoryPermission!!>=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissions,DropDowns.StatutoryPermissions.name,feasibilityData?.StatutoryPermission.toString())
-                    if (feasibilityData?.OverallFeasibility!= null && feasibilityData?.OverallFeasibility!!>=1)
-                        AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibility,DropDowns.OverallFeasibility.name,feasibilityData?.OverallFeasibility.toString())
-
-                    holder.binding.ExpectedPrice.text=feasibilityData?.ExpectedPrice
-                    holder.binding.AverageMarketRate.text=feasibilityData?.MarketPrice
-                    holder.binding.SurveyExecutiveName.text=feasibilityData?.ExecutiveName.toString()
-                    holder.binding.SurveyDate.text=Utils.getFormatedDate(feasibilityData?.SurveyDate,"dd-MMM-yyyy")
-                    holder.binding.remarks.text=feasibilityData?.remark
-
-                    // edit mode
-                    if (buildingData!=null && landData!=null){
-                        if (buildingData?.AcquisitionArea?.toFloatOrNull()!=null && landData?.AcquisitionArea?.toFloatOrNull()!=null){
-                            holder.binding.TotalAcquisitionAreaEdit.text=(buildingData?.AcquisitionArea?.toFloatOrNull()?.plus(landData?.AcquisitionArea!!.toFloat())).toString()
-                            holder.binding.TotalAcquisitionArea.text=(buildingData?.AcquisitionArea?.toFloatOrNull()?.plus(landData?.AcquisitionArea!!.toFloat())).toString()
-                        }
-                        else if (buildingData?.AcquisitionArea?.toFloatOrNull()!=null){
-                            holder.binding.TotalAcquisitionAreaEdit.text=buildingData?.AcquisitionArea
-                            holder.binding.TotalAcquisitionArea.text=buildingData?.AcquisitionArea
-                        }
-                        else if (landData?.AcquisitionArea?.toFloatOrNull()!=null){
-                            holder.binding.TotalAcquisitionAreaEdit.text=landData?.AcquisitionArea
-                            holder.binding.TotalAcquisitionArea.text=landData?.AcquisitionArea
-                        }
-                    }
-                    else if (buildingData!=null){
-                        if (buildingData?.AcquisitionArea?.toFloatOrNull()!=null){
-                            holder.binding.TotalAcquisitionAreaEdit.text=buildingData?.AcquisitionArea
-                            holder.binding.TotalAcquisitionArea.text=buildingData?.AcquisitionArea
-                        }
-                    }
-                    else if (landData!=null){
-                        if (landData?.AcquisitionArea?.toFloatOrNull()!=null){
-                            holder.binding.TotalAcquisitionAreaEdit.text=landData?.AcquisitionArea
-                            holder.binding.TotalAcquisitionArea.text=landData?.AcquisitionArea
-                        }
-                    }
-                    holder.binding.ExpectedPriceEdit.setText(feasibilityData?.ExpectedPrice)
-                    holder.binding.AverageMarketRateEdit.setText(feasibilityData?.MarketPrice)
-                    holder.binding.SurveyExecutiveNameEdit.setText(feasibilityData?.ExecutiveName)
-                    holder.binding.SurveyDateEdit.text=Utils.getFormatedDate(feasibilityData?.SurveyDate,"dd-MMM-yyyy")
-                    holder.binding.remarksEdit.setText(feasibilityData?.remark)
-
-
+                    holder.locationMarkingTableList.adapter=LocationMarkingTableAdapter(baseFragment.requireContext(),listener,ArrayList())
                 }
 
-                if (feasibilityData!=null && feasibilityData?.TowerPoleType?.isNotEmpty()==true)
-                    AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name,feasibilityData?.TowerPoleType?.get(0).toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.TowerPoleTypeEdit,DropDowns.TowerPoleType.name)
-                if (feasibilityData!=null && feasibilityData?.FiberLMCLaying!= null && feasibilityData?.FiberLMCLaying!!>=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.FiberLMCLayingEdit,DropDowns.FiberLMCLaying.name,feasibilityData?.FiberLMCLaying.toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.FiberLMCLayingEdit,DropDowns.FiberLMCLaying.name)
-                if (feasibilityData!=null && feasibilityData?.OwnerMeter!= null && feasibilityData?.OwnerMeter!!>=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.EBSupplyThroOwnerMeterEdit,DropDowns.EBSupplyThroOwnerMeter.name,feasibilityData?.OwnerMeter.toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.EBSupplyThroOwnerMeterEdit,DropDowns.EBSupplyThroOwnerMeter.name)
-                if (feasibilityData!=null && feasibilityData?.EquipmentRoom!= null && feasibilityData?.EquipmentRoom!!>=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.EquipmentRoomEdit,DropDowns.EquipmentRoom.name,feasibilityData?.EquipmentRoom.toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.EquipmentRoomEdit,DropDowns.EquipmentRoom.name)
-                if (feasibilityData!=null && feasibilityData?.RequiredAreaAvailable!= null && feasibilityData?.RequiredAreaAvailable!!>=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.RequiredAreaAvailableEdit,DropDowns.RequiredAreaAvailable.name,feasibilityData?.RequiredAreaAvailable.toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.RequiredAreaAvailableEdit,DropDowns.RequiredAreaAvailable.name)
-                if (feasibilityData!=null && feasibilityData?.StatutoryPermission!= null && feasibilityData?.StatutoryPermission!!>=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissionsEdit,DropDowns.StatutoryPermissions.name,feasibilityData?.StatutoryPermission.toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.StatutoryPermissionsEdit,DropDowns.StatutoryPermissions.name)
-                if (feasibilityData!=null && feasibilityData?.OverallFeasibility!= null && feasibilityData?.OverallFeasibility!!>=1)
-                    AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibilityEdit,DropDowns.OverallFeasibility.name,feasibilityData?.OverallFeasibility.toString())
-                else
-                    AppPreferences.getInstance().setDropDown(holder.binding.OverallFeasibilityEdit,DropDowns.OverallFeasibility.name)
-
-
-                baseFragment.setDatePickerView(holder.binding.SurveyDateEdit)
-                holder.binding.update.setOnClickListener {
-                    val tempfeasibilityData=SAcqFeasibilityDetail()
-                    tempfeasibilityData.let {
-                        if (holder.binding.TotalAcquisitionAreaEdit.text.toString().toIntOrNull()!=null)
-                            it.Area = holder.binding.TotalAcquisitionAreaEdit.text.toString()
-                        it.ExpectedPrice = holder.binding.ExpectedPriceEdit.text.toString()
-                        it.MarketPrice = holder.binding.AverageMarketRateEdit.text.toString()
-                        it.ExecutiveName = holder.binding.SurveyExecutiveNameEdit.text.toString()
-                        it.remark = holder.binding.remarksEdit.text.toString()
-                        it.SurveyDate = Utils.getFullFormatedDate(holder.binding.SurveyDateEdit.text.toString())
-                        it.TowerPoleType = arrayListOf(holder.binding.TowerPoleTypeEdit.selectedValue.id.toInt())
-                        it.FiberLMCLaying = holder.binding.FiberLMCLayingEdit.selectedValue.id.toIntOrNull()
-                        it.OwnerMeter = holder.binding.EBSupplyThroOwnerMeterEdit.selectedValue.id.toIntOrNull()
-                        it.EquipmentRoom = holder.binding.EquipmentRoomEdit.selectedValue.id.toIntOrNull()
-                        it.RequiredAreaAvailable = holder.binding.RequiredAreaAvailableEdit.selectedValue.id.toIntOrNull()
-                        it.StatutoryPermission = holder.binding.StatutoryPermissionsEdit.selectedValue.id.toIntOrNull()
-                        it.OverallFeasibility = holder.binding.OverallFeasibilityEdit.selectedValue.id.toIntOrNull()
-                        if (feasibilityData != null)
-                            it.id = feasibilityData?.id
-
-                        val tempData = AcquisitionSurveyData()
-                        tempData.SAcqFeasibilityDetail = arrayListOf(it)
-                        if (datalist != null)
-                            tempData.id = datalist?.id
-                        listener.updateItemClicked(tempData)
-                    }
-                }
 
             }
             is ViewHold6 -> {

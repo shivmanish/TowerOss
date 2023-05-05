@@ -5,6 +5,8 @@ data class NewSiteAcquiAllData(
     var SAcqAgreement: ArrayList<SiteAcqAgreement>?,
     var SAcqAssignACQTeam: ArrayList<AssignACQTeamDAta>?,
     var SAcqSoftAcquisition: ArrayList<SoftAcquisitionData>?,
+    var SAcqSiteFeasibility: ArrayList<SAcqFeasibilityDetail>?,
+    var SAcqSiteApproval: ArrayList<SAcqSiteApproval>?,
     var created_at: String,
     var id: Int,
     var isActive: Boolean,

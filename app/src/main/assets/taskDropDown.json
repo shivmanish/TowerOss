@@ -150,12 +150,22 @@
             },
             {
                 "id":23,
-                "name": "Soft Acquisition",
+                "name": "Site Feasibility",
                 "checked": false
             },
             {
                 "id":24,
+                "name": "Soft Acquisition",
+                "checked": false
+            },
+            {
+                "id":25,
                 "name": "Agreement",
+                "checked": false
+            },
+            {
+                "id":26,
+                "name": "Site Survey Validation",
                 "checked": false
             }
         ]
@@ -173,6 +183,11 @@
             {
                 "id": 102,
                 "name": "Test Report",
+                "checked": false
+            },
+            {
+                "id": 103,
+                "name": "Rf Survey Validation",
                 "checked": false
             }
         ]

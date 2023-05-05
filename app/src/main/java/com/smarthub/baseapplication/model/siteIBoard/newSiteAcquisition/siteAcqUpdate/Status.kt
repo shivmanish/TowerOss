@@ -10,6 +10,7 @@ data class Status(
     val SAcqPODetail: Int,
     val SAcqPowerConnectionFeasibility: Int,
     val SAcqFeasibilityDetail: Int,
+    val SAcqSiteFeasibility: Int,
     val SAcqPropertyOwnerDetail: Int,
     val SAcqExternalStructure: Int,
     val SAcqInsidePremise: Int,
