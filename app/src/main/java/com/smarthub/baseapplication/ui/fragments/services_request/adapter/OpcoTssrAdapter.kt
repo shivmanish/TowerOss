@@ -183,7 +183,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
 
             if ((binding.collapsingLayout.tag as Boolean)) {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
-                binding.titleLayout.setBacmmkgroundResource(R.drawable.bg_expansion_bar)
+                binding.titleLayout.setBackgroundResource(R.drawable.bg_expansion_bar)
             } else {
                 binding.imgDropdown.setImageResource(R.drawable.ic_arrow_down_black)
                 binding.titleLayout.setBackgroundResource(R.color.collapse_card_bg)
