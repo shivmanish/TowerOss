@@ -319,6 +319,19 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         prefsEditor.apply();
     }
 
+    public void saveDropDownData(DropDownNewItem item) {
+        try{
+            AppPreferences.getInstance().saveString(DROPDOWNDATANEW, "fetched");
+            Gson gson = new Gson();
+            DropDownItem dItem = new DropDownItem("-Select-","-1","null");
+            item.getData().add(0,dItem);
+            String stringDatajson = gson.toJson(item);
+            AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
+        }catch (Exception e){
+            AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+        }
+    }
+
     public void saveDropDownData(DropDownNew data) {
         AppPreferences.getInstance().saveString(DROPDOWNDATANEW, "fetched");
         for (DropDownNewItem item : data.getDropdown()){
