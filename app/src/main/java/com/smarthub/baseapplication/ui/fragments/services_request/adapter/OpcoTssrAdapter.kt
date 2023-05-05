@@ -175,7 +175,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
         var binding : OpcotssrAttachmentsBinding = OpcotssrAttachmentsBinding.bind(itemView)
         var adapter =  ImageAttachmentAdapter(object : ImageAttachmentAdapter.ItemClickListener{
             override fun itemClicked() {
-                listener.attachmentItemClicked()
+//                listener.attachmentItemClicked()
             }
         })
         init {
@@ -193,7 +193,7 @@ class OpcoTssrAdapter(var context : Context, var listener: OpcoTssrLisListener,v
             recyclerListener.adapter = adapter
 
             itemView.findViewById<View>(R.id.attach_card).setOnClickListener {
-                adapter.addItem()
+//                adapter.addItem()
             }
         }
     }
