@@ -60,6 +60,8 @@ import com.smarthub.baseapplication.model.taskModel.department.DepartmentDataMod
 import com.smarthub.baseapplication.model.taskModel.update.CloseTaskModel;
 import com.smarthub.baseapplication.model.workflow.TaskDataList;
 import com.smarthub.baseapplication.network.APIClient;
+import com.smarthub.baseapplication.network.APIInterceptor;
+import com.smarthub.baseapplication.network.EndPoints;
 import com.smarthub.baseapplication.network.pojo.site_info.SiteInfoDropDownData;
 import com.smarthub.baseapplication.ui.alert.model.response.UserDataResponse;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
@@ -532,6 +534,18 @@ public class HomeRepo {
         jsonObject.addProperty("status","Closed");
         jsonObject.addProperty("remark",remark);
         jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        if (!Utils.INSTANCE.isNetworkConnected()){
+            try {
+                AppPreferences.getInstance().saveTaskOfflineApi(new Gson().toJson(jsonObject), APIInterceptor.DYNAMIC_BASE_URL+ EndPoints.WORKFLOW_DATA_URL,"closeTask"+taskId);
+                CloseTaskModel model = new CloseTaskModel("","Data updated");
+                closeTaskModel.postValue(Resource.success(model, 200));
+            }catch (Exception e){
+                e.printStackTrace();
+                AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+            }
+            return;
+        }
+
         apiClient.closeTask(jsonObject).enqueue(new Callback<CloseTaskModel>() {
             @Override
             public void onResponse(@NonNull Call<CloseTaskModel> call, Response<CloseTaskModel> response) {
@@ -572,6 +586,17 @@ public class HomeRepo {
         jsonObject.addProperty("status","Idle");
         jsonObject.addProperty("remark",remark);
         jsonObject.addProperty("ownername",AppController.getInstance().ownerName);
+        if (!Utils.INSTANCE.isNetworkConnected()){
+            try {
+                AppPreferences.getInstance().saveTaskOfflineApi(new Gson().toJson(jsonObject), APIInterceptor.DYNAMIC_BASE_URL+ EndPoints.WORKFLOW_DATA_URL,"reOpenTask"+taskId);
+                CloseTaskModel model = new CloseTaskModel("","Data updated");
+                closeTaskModel.postValue(Resource.success(model, 200));
+            }catch (Exception e){
+                e.printStackTrace();
+                AppLogger.INSTANCE.log("e:"+e.getLocalizedMessage());
+            }
+            return;
+        }
         apiClient.closeTask(jsonObject).enqueue(new Callback<CloseTaskModel>() {
             @Override
             public void onResponse(@NonNull Call<CloseTaskModel> call, Response<CloseTaskModel> response) {

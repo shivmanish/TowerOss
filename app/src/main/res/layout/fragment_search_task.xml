@@ -552,12 +552,13 @@
                 android:layout_marginTop="@dimen/dp30"
                 android:layout_height="match_parent">
                 <TextView
-                    android:id="@+id/submit_btn"
+                    android:id="@+id/close_task_btn1"
                     android:layout_width="0dp"
+                    android:textColor="@color/color1"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/yellow"
+                    android:text="Successfully Close"
                     android:background="@drawable/rounded_textblue"
-                    android:text="Re-open Prev Task"
-                    android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
                     android:paddingHorizontal="@dimen/dp3"
                     android:paddingVertical="@dimen/dp6"
@@ -571,18 +572,18 @@
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/submit_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"
-                    app:layout_constraintTop_toTopOf="@+id/submit_btn">
+                    app:layout_constraintStart_toEndOf="@+id/close_task_btn1"
+                    app:layout_constraintBottom_toBottomOf="@+id/close_task_btn1"
+                    app:layout_constraintTop_toTopOf="@+id/close_task_btn1">
                     <ImageView
                         android:id="@+id/dot_1"
                         android:layout_width="8dp"
                         android:layout_height="8dp"
                         android:layout_marginStart="@dimen/dp2"
                         android:src="@drawable/circle_gray"
-                        app:layout_constraintStart_toEndOf="@+id/submit_btn"
-                        app:layout_constraintTop_toTopOf="@+id/submit_btn"
-                        app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
+                        app:layout_constraintStart_toEndOf="@+id/close_task_btn1"
+                        app:layout_constraintTop_toTopOf="@+id/close_task_btn1"
+                        app:layout_constraintBottom_toBottomOf="@+id/close_task_btn1"/>
                     <View
                         android:id="@+id/dot_connecter_line"
                         android:layout_width="20dp"
@@ -601,21 +602,20 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/close_btn"
+                    android:id="@+id/reopen_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/yellow"
                     android:background="@drawable/rounded_textblue"
-                    android:text="Successfully Close"
-                    android:textColor="@color/color1"
+                    android:text="Re-open Prev Task"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
                     android:paddingHorizontal="@dimen/dp3"
                     android:paddingVertical="@dimen/dp7"
                     android:textSize="@dimen/dp11"
                     android:layout_marginStart="@dimen/dp2"
                     app:layout_constraintStart_toEndOf="@+id/line"
-                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
+                    app:layout_constraintTop_toTopOf="@+id/close_task_btn1"
+                    app:layout_constraintBottom_toBottomOf="@+id/close_task_btn1"/>
                 <ImageView
                     android:id="@+id/map_view"
                     android:layout_width="wrap_content"
@@ -623,17 +623,17 @@
                     android:src="@drawable/ic_menu_map"
                     android:layout_marginEnd="@dimen/dp7"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
+                    app:layout_constraintTop_toTopOf="@+id/close_task_btn1"
+                    app:layout_constraintBottom_toBottomOf="@+id/close_task_btn1"/>
                 <ImageView
                     android:id="@+id/messages"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:src="@drawable/chat_icon"
                     app:layout_constraintEnd_toStartOf="@+id/map_view"
-                    app:layout_constraintStart_toEndOf="@+id/close_btn"
-                    app:layout_constraintTop_toTopOf="@+id/submit_btn"
-                    app:layout_constraintBottom_toBottomOf="@+id/submit_btn"/>
+                    app:layout_constraintStart_toEndOf="@+id/reopen_btn"
+                    app:layout_constraintTop_toTopOf="@+id/close_task_btn1"
+                    app:layout_constraintBottom_toBottomOf="@+id/close_task_btn1"/>
                 <View
                     android:visibility="gone"
                     android:id="@+id/top_line"
@@ -644,7 +644,7 @@
                     android:layout_marginBottom="@dimen/dp10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/submit_btn"
+                    app:layout_constraintBottom_toTopOf="@+id/close_task_btn1"
                    />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -657,51 +657,13 @@
                         android:id="@+id/task_start_date_time_lebel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Task Start at : "
+                        android:text="Task Start at : 18-04-2023 - 12:00 am"
                         android:textSize="13dp"
                         android:textColor="@color/color1"
                         android:fontFamily="@font/poppins_regular"
                         android:layout_marginStart="@dimen/dp10"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/task_start_time"
-                        app:layout_constraintBottom_toBottomOf="@+id/task_start_time"
-                        />
-                    <TextView
-                        android:id="@+id/task_start_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="02:12"
-                        android:textSize="14dp"
-                        android:textColor="@color/color1"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginStart="@dimen/dp1"
-                        app:layout_constraintStart_toEndOf="@+id/task_start_date_time_lebel"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                    <TextView
-                        android:id="@+id/time_date_seprater"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=";"
-                        android:textSize="14dp"
-                        android:textColor="@color/color1"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginHorizontal="@dimen/dp2"
-                        app:layout_constraintStart_toEndOf="@+id/task_start_time"
-                        app:layout_constraintTop_toTopOf="@+id/task_start_time"
-                        app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
-                    <TextView
-                        android:id="@+id/task_start_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="14-Feb-2023"
-                        android:textSize="14dp"
-                        android:textColor="@color/color1"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginStart="@dimen/dp1"
-                        app:layout_constraintStart_toEndOf="@+id/time_date_seprater"
-                        app:layout_constraintTop_toTopOf="@+id/task_start_time"
-                        app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                     <TextView
                         android:id="@+id/start"
                         android:layout_width="wrap_content"
@@ -714,22 +676,22 @@
                         android:padding="@dimen/dp5"
                         android:layout_marginStart="@dimen/dp1"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/task_start_time"
-                        app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
+                        app:layout_constraintTop_toTopOf="@+id/task_start_date_time_lebel"
+                        app:layout_constraintBottom_toBottomOf="@+id/task_start_date_time_lebel"/>
                     <TextView
                         android:id="@+id/Pause"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pause"
-                        android:visibility="gone"
                         android:textSize="14dp"
+                        android:visibility="gone"
                         android:textColor="@color/color1"
                         android:fontFamily="@font/poppins_semibold"
                         android:layout_marginEnd="@dimen/dp8"
                         android:padding="@dimen/dp5"
                         app:layout_constraintEnd_toStartOf="@+id/start"
-                        app:layout_constraintTop_toTopOf="@+id/task_start_time"
-                        app:layout_constraintBottom_toBottomOf="@+id/task_start_time"/>
+                        app:layout_constraintTop_toTopOf="@+id/task_start_date_time_lebel"
+                        app:layout_constraintBottom_toBottomOf="@+id/task_start_date_time_lebel"/>
 
                     <TextView
                         android:padding="@dimen/_5sdp"
