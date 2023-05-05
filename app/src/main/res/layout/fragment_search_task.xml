@@ -522,19 +522,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/milky_white"
         android:id="@+id/trackinglayout"
         android:paddingTop="@dimen/dp5"
+        android:background="@drawable/dialog_bg"
+        android:paddingBottom="@dimen/_18sdp"
         app:layout_constraintBottom_toBottomOf="parent">
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/dialog_bg"
             android:orientation="vertical"
             android:layout_marginHorizontal="@dimen/dp5"
-            app:cardElevation="@dimen/dp10"
-            android:outlineSpotShadowColor="@color/light_gray"
-            android:outlineAmbientShadowColor="@color/light_gray"
+            app:cardElevation="@dimen/dp1"
+            android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintBottom_toBottomOf="parent">
             <ImageView
                 android:id="@+id/dropdown_img"
