@@ -6,7 +6,7 @@ data class RfSurvey1(
     val Description: Any,
     val ExtraDate: Any,
     val Jio: Any,
-    val SurveyDate: Any,
+    val SurveyDate: String,
     val Vi: Any,
     val attachmentAirtel: List<Any>,
     val attachmentBsnl: List<Any>,
