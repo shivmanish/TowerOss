@@ -10,6 +10,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.AppController
 
 class TaskSiteInfoAdapter(var context : Context, var listener: TaskSiteInfoListener) : RecyclerView.Adapter<TaskSiteInfoAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
@@ -78,7 +79,8 @@ class TaskSiteInfoAdapter(var context : Context, var listener: TaskSiteInfoListe
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.taskSiteInfoItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.taskSiteInfoItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

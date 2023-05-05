@@ -87,6 +87,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.fragments.rfequipment.RfTabActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".ui.fragments.opcoTenancy.backhaulLink.MwUbrActivity"
             android:exported="false">
             <meta-data

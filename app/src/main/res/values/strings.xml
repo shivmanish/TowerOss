@@ -38,6 +38,7 @@
         <item>NOC &amp; Comp</item>
         <item>TWR &amp; Civil Infra</item>
         <item>Power &amp; fuel</item>
+        <item>Rf Survey</item>
         <item>QA &amp; Inspection</item>
 <!--        <item>Acquisition Survey</item>-->
     </string-array>
@@ -51,6 +52,7 @@
         <item>@drawable/utilities_equip</item>
         <item>@drawable/noc_comp</item>
         <item>@drawable/twr_civilinfra</item>
+        <item>@drawable/power_fuel</item>
         <item>@drawable/power_fuel</item>
         <item>@drawable/qa_inspection</item>
     </integer-array>

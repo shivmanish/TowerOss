@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.PlandesignEquiproomAttachmentsBi
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PlanningAndDesignEquipRoomEquipmentRoom
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -104,7 +105,8 @@ class equipmentRoomAdapter(var context:Context, var listener:equipmentRoomListne
          when(holder){
              is equipRoomViewHold->{
                  holder.binding.imgEdit.setOnClickListener {
-                     listener.editequipmentRoom(data)
+                     if (AppController.getInstance().isTaskEditable)
+                        listener.editequipmentRoom(data)
                  }
                  if (currentOpened == position) {
                      holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

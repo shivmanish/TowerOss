@@ -102,6 +102,8 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel;
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse;
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse;
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse;
 import com.smarthub.baseapplication.ui.mapui.pojo.MapMarkerService;
 import com.smarthub.baseapplication.ui.mapui.pojo.MarkerResponse;
 
@@ -244,8 +246,18 @@ public interface APIClient {
     Call<SstSbcAllDataModel> fetchSstSbcModelRequest(@Body JsonObject data);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.SITE_IBOARD_DATA_URL)
+    Call<RfMainResponse> fetchRfSurveyRequest(@Body JsonObject data);
+
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
     Call<UpdateSstSbcResponseModel> updateSstSbcRequest(@Body UpdateSstSbcModel data);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST(EndPoints.UPDATE_SITE_IBOARD_DATA_URL)
+    Call<RfBasicResponse> updateRfServey(@Body RfMainResponse data);
+
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST(EndPoints.SITE_IBOARD_DATA_URL)

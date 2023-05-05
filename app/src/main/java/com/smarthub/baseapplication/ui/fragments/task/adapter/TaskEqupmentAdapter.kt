@@ -10,6 +10,8 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.AppController
+
 //import com.smarthub.baseapplication.ui.fragments.services_request.adapter.EquipmentTableAdapter
 
 class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListener) : RecyclerView.Adapter<TaskEqupmentAdapter.ViewHold>() {
@@ -76,7 +78,8 @@ class TaskEqupmentAdapter(var context : Context, var listener: TaskEqupmentListe
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.detailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

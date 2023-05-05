@@ -13,6 +13,7 @@ import com.smarthub.baseapplication.databinding.SaPropertyInfoViewBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.model.siteInfo.siteAgreements.SiteacquisitionAgreement
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -198,7 +199,8 @@ class SANominalsFragmentAdapter(
         when (holder) {
             is AgreemetViewHold -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener!!.AgreementEditViewClick(siteAgreementsData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener!!.AgreementEditViewClick(siteAgreementsData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

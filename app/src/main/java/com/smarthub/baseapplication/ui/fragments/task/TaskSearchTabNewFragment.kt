@@ -1,11 +1,14 @@
 package com.smarthub.baseapplication.ui.fragments.task
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,6 +23,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.example.trackermodule.homepage.BaseActivity
+import com.example.trackermodule.util.MyApplication
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -141,8 +145,10 @@ class TaskSearchTabNewFragment(
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.collapsingLayout.tag = NotificationSettingGeoTracking
         if(NotificationSettingGeoTracking){
+            AppController.getInstance().isTaskEditable = false
             binding.dropdownImg.visibility = View.VISIBLE
         }else{
+            AppController.getInstance().isTaskEditable = true
             binding.dropdownImg.visibility = View.GONE
             binding.viewpager.setPadding(10,2,10,10)
         }
@@ -210,23 +216,63 @@ class TaskSearchTabNewFragment(
 
         }
         binding.start.setOnClickListener {
-            if (binding.start.text.toString().equals("Start", true)) {
-                PatrollerPriference(requireContext()).setstartTime(System.currentTimeMillis())
-                PatrollerPriference(requireContext()).setPauseTimestamp(0)
-                PatrollerPriference(requireContext()).setTotalPauseTime(0)
-                binding.start.text = "Stop"
-                PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
-                PatrollerPriference(requireContext()).settime("")
-                PatrollerPriference(requireContext()).setStartLattitude("Na")
-                PatrollerPriference(requireContext()).setStartLongitude("Na")
-                startServiceBackground()
+            if (siteID.equals(PatrollerPriference(requireContext()).getTaskID())) {
+                if (binding.start.text.toString().equals("Start", true)) {
+                    PatrollerPriference(requireContext()).setstartTime(System.currentTimeMillis())
+                    PatrollerPriference(requireContext()).setPauseTimestamp(0)
+                    PatrollerPriference(requireContext()).setTotalPauseTime(0)
+                    binding.start.text = "Stop"
+                    PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
+                    PatrollerPriference(requireContext()).settime("")
+                    PatrollerPriference(requireContext()).setStartLattitude("Na")
+                    PatrollerPriference(requireContext()).setStartLongitude("Na")
+                    PatrollerPriference(requireContext()).setOwnername(siteID!!)
+                    PatrollerPriference(requireContext()).setTaskID(taskId)
+                    startServiceBackground()
+                } else {
+//                    mapView()
+                    PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
+                    LocationService.is_canceled_by_me = true
+                    requireContext().stopService(mServiceIntent)
+                    PatrollerPriference(requireContext()).settime("")
+                    binding.start.text = "Start"
+                    AppController.getInstance().isTaskEditable = false
+                }
             } else {
-                mapView()
-                PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
-                LocationService.is_canceled_by_me = true
-                requireContext().stopService(mServiceIntent)
-                PatrollerPriference(requireContext()).settime("")
-                binding.start.text = "Start"
+                val dialog = Dialog(requireContext())
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(false)
+                dialog.setContentView(R.layout.tracker_dialouge)
+                val ok = dialog.findViewById<TextView>(R.id.ok)
+                val cancel = dialog.findViewById<TextView>(R.id.cancel)
+                cancel.setOnClickListener {
+                    dialog.dismiss()
+                    dialog.cancel()
+                }
+                ok.setOnClickListener {
+                    if (mServiceIntent != null) {
+                        PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
+                        LocationService.is_canceled_by_me = true
+                        requireContext().stopService(mServiceIntent)
+                        PatrollerPriference(requireContext()).settime("")
+                        binding.start.text = "Start"
+                    }
+                    PatrollerPriference(requireContext()).setstartTime(System.currentTimeMillis())
+                    PatrollerPriference(requireContext()).setPauseTimestamp(0)
+                    PatrollerPriference(requireContext()).setTotalPauseTime(0)
+                    binding.start.text = "Stop"
+                    PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
+                    PatrollerPriference(requireContext()).settime("")
+                    PatrollerPriference(requireContext()).setStartLattitude("Na")
+                    PatrollerPriference(requireContext()).setStartLongitude("Na")
+                    PatrollerPriference(requireContext()).setOwnername(siteID!!)
+                    PatrollerPriference(requireContext()).setTaskID(taskId)
+                    startServiceBackground()
+                    dialog.dismiss()
+                    dialog.cancel()
+                }
+                dialog.show()
+
             }
         }
         binding.messages.setOnClickListener {
@@ -365,32 +411,34 @@ class TaskSearchTabNewFragment(
 
     override fun onResume() {
         super.onResume()
-        if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
-                PatrollerPriference.PATROLING_STATUS_PAUSE, ignoreCase = true
-            )
-        ) {
-            binding.start.text = "Stop"
+        if (siteID.equals(PatrollerPriference(requireContext()).getTaskID())) {
+            if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                    PatrollerPriference.PATROLING_STATUS_PAUSE, ignoreCase = true
+                )
+            ) {
+                binding.start.text = "Stop"
 //            homePageBinding.pause.visibility = View.VISIBLE
 //            homePageBinding.stop.visibility = View.VISIBLE
 //            homePageBinding.pause.text = "Resume"
 
-        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
-                PatrollerPriference.PATROLING_STATUS_running, ignoreCase = true
-            )
-        ) {
+            } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                    PatrollerPriference.PATROLING_STATUS_running, ignoreCase = true
+                )
+            ) {
 
-            startServiceBackground()
-            binding.start.text = "Stop"
+                startServiceBackground()
+                binding.start.text = "Stop"
 //            homePageBinding.pause.visibility = View.VISIBLE
 //            homePageBinding.stop.visibility = View.VISIBLE
 //            homePageBinding.pause.text = "Pause"
 
-        } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
-                PatrollerPriference.PATROLING_STATUS_STOP, ignoreCase = true
-            )
-        ) {
-            binding.start.text = "Start"
+            } else if ((PatrollerPriference(requireContext()).getPtrollingStatus()).equals(
+                    PatrollerPriference.PATROLING_STATUS_STOP, ignoreCase = true
+                )
+            ) {
+                binding.start.text = "Start"
 
+            }
         }
     }
 
@@ -403,6 +451,7 @@ class TaskSearchTabNewFragment(
                 getString(com.example.trackermodule.R.string.service_start_successfully),
                 Toast.LENGTH_SHORT
             ).show()
+            MyApplication.getInstance().isTaskEditable = true
         } else {
             Toast.makeText(
                 requireContext(),
@@ -673,7 +722,7 @@ class TaskSearchTabNewFragment(
     }
 
     fun setUpQatData() {
-        var moduleId = taskDetailData!!.ModuleId
+        val moduleId = taskDetailData!!.ModuleId
         if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
             homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -1229,7 +1278,7 @@ class TaskSearchTabNewFragment(
                     addNewAcq()
                 }
                 serviceFragAdapterAdapter.setData(it.data.SAcqSiteAcquisition)
-                previousListSize = it.data.SAcqSiteAcquisition?.size!!
+                previousListSize=it.data.SAcqSiteAcquisition?.size!!
 
             } else if (it != null) {
                 Toast.makeText(
@@ -1564,9 +1613,11 @@ class TaskSearchTabNewFragment(
 
         binding.collapsingLayout.tag = NotificationSettingGeoTracking
         if(NotificationSettingGeoTracking){
+            AppController.getInstance().isTaskEditable = false
             binding.dropdownImg.visibility = View.VISIBLE
             binding.mapView.visibility = View.VISIBLE
         }else{
+            AppController.getInstance().isTaskEditable = true
             binding.dropdownImg.visibility = View.GONE
             binding.mapView.visibility = View.GONE
             binding.viewpager.setPadding(10,2,10,10)

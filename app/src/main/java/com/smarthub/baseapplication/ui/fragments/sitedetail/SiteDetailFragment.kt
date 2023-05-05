@@ -33,6 +33,7 @@ import com.smarthub.baseapplication.ui.fragments.opcoTenancy.OpcoTanacyFragment
 import com.smarthub.baseapplication.ui.fragments.plandesign.fragment.PlanDesignMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.powerAndFuel.PowerConnection
 import com.smarthub.baseapplication.ui.fragments.qat.QATMainFragment
+import com.smarthub.baseapplication.ui.fragments.rfequipment.RfMainFrqagment
 import com.smarthub.baseapplication.ui.fragments.services_request.ServicesRequestFrqagment
 import com.smarthub.baseapplication.ui.fragments.siteAcquisition.SiteAgreementFragment
 import com.smarthub.baseapplication.ui.fragments.siteInfo.SiteInfoNewFragment
@@ -181,7 +182,8 @@ class SiteDetailFragment : BaseFragment() {
                 7-> NocFragment(id)
                 8-> CivilInfraFragment(id)
                 9-> PowerConnection(id)
-                10-> QATMainFragment(id)
+                10 -> RfMainFrqagment(id)
+                11-> QATMainFragment(id)
 //                10-> AcquisitionSurveyFragmentNew(id)
                 else -> SiteInfoNewFragment(id)
             }

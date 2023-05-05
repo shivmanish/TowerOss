@@ -323,20 +323,19 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         AppPreferences.getInstance().saveString(DROPDOWNDATANEW, "fetched");
         for (DropDownNewItem item : data.getDropdown()){
             Gson gson = new Gson();
+            DropDownItem dItem = new DropDownItem("-Select-","-1","null");
+            item.getData().add(0,dItem);
             String stringDatajson = gson.toJson(item);
             AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
         }
-    }
-    public void saveDropDownData(DropDownNewItem item) {
-        Gson gson = new Gson();
-        String stringDatajson = gson.toJson(item);
-        AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
     }
     public void saveStaticDropDownData(Context context) {
         String modelJson= Utils.INSTANCE.getJsonDataFromAsset(context,"dropdown.json");
         try{
             DropDownNew data= new Gson().fromJson(modelJson,DropDownNew.class);
             for (DropDownNewItem item : data.getDropdown()){
+                DropDownItem dItem = new DropDownItem("-Select-","-1","null");
+                item.getData().add(0,dItem);
                 Gson gson = new Gson();
                 String stringDatajson = gson.toJson(item);
                 AppPreferences.getInstance().saveString(item.getName(), stringDatajson);
@@ -358,14 +357,10 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
     }
 
     public void setDropDown(CustomSpinner customSpinner,String name,String id){
-        try{
-            Gson gson = new Gson();
-            String jsonString = getString(name);
-            DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-            customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
-        }catch (Exception e){
-            AppLogger.INSTANCE.log("");
-        }
+        Gson gson = new Gson();
+        String jsonString = getString(name);
+        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+        customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
     }
     public void setDropDown(CustomSpinner customSpinner,String name,String id,TextView customText){
         Gson gson = new Gson();
@@ -394,7 +389,7 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         try{
             customSpinner.setSpinnerData(dropDownNewItem.getData());
         }catch (Exception e){
-            AppLogger.INSTANCE.log("setDropDowncustomSpinner" +name+"error:"+e.getLocalizedMessage());
+            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
         }
     }
 
@@ -409,16 +404,16 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
         }
     }
 
-    public void setDropDown(CustomSpinner customSpinner, String name, EditText customText){
-        Gson gson = new Gson();
-        String jsonString = getString(name);
-        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
-        try{
-            customSpinner.setSpinnerData(dropDownNewItem.getData(),customText);
-        }catch (Exception e){
-            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
-        }
-    }
+//    public void setDropDown(CustomSpinner customSpinner, String name, EditText customText){
+//        Gson gson = new Gson();
+//        String jsonString = getString(name);
+//        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+//        try{
+//            customSpinner.setSpinnerData(dropDownNewItem.getData(),customText);
+//        }catch (Exception e){
+//            AppLogger.INSTANCE.log("error:"+e.getLocalizedMessage());
+//        }
+//    }
 
     public void setDropDown(TextView customSpinner, String name, String id){
         List<DropDownItem> list = getDropDownList(name);
@@ -429,6 +424,18 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
             }
         }
     }
+
+//    public void setDropDown(CustomSpinner customSpinner,String name,ArrayList<Integer> ids){
+//        Gson gson = new Gson();
+//        String jsonString = getString(name);
+//        DropDownNewItem dropDownNewItem = gson.fromJson(jsonString,DropDownNewItem.class);
+//        if (ids!=null && !ids.isEmpty()){
+//            String id = ids.get(0).toString();
+//            customSpinner.setSpinnerData(dropDownNewItem.getData(),id);
+//        }else{
+//            customSpinner.setSpinnerData(dropDownNewItem.getData());
+//        }
+//    }
 
     public void setDropDown(CustomSpinner customSpinner,String name,ArrayList<Integer> ids){
         try {
@@ -456,27 +463,8 @@ public static String DROPDOWNDATANEW = "dropdowndatanew";
                     return;
                 }
             }
-//            if (!list.isEmpty()){
-//                customSpinner.setText(list.get(0).getName());
-//            }
         }
         customSpinner.setText("");
-    }
-
-    public void setDropDown(TextView customSpinner, String name, List<Integer> ids){
-        List<DropDownItem> list = getDropDownList(name);
-        if (ids!=null && !ids.isEmpty()){
-            String id = ids.get(0).toString();
-            for (DropDownItem i : list) {
-                if (i.getId().equalsIgnoreCase(id)) {
-                    customSpinner.setText(i.getName());
-                    return;
-                }
-            }
-            if (!list.isEmpty()){
-                customSpinner.setText(list.get(0).getName());
-            }
-        }
     }
 
     public void setDropDown(TextView customSpinner, String name, String id,TextView customText){

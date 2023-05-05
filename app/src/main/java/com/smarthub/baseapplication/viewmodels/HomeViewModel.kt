@@ -79,6 +79,8 @@ import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.AddAttachmentModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.BasicinfoModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.pojo.CreateSiteModel
 import com.smarthub.baseapplication.ui.dialog.siteinfo.repo.BasicInfoDialougeResponse
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfBasicResponse
+import com.smarthub.baseapplication.ui.fragments.rfequipment.pojo.RfMainResponse
 import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.Utils
@@ -121,6 +123,7 @@ class HomeViewModel : ViewModel() {
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
     var sstSbcModelResponse:SingleLiveEvent<Resource<SstSbcAllDataModel>>? = null
+    var rfMainResponse:SingleLiveEvent<Resource<RfMainResponse>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
     var notificationNew:SingleLiveEvent<Resource<NotificationNew>>? = null
@@ -131,6 +134,7 @@ class HomeViewModel : ViewModel() {
     var updateUtilityDataResponse:SingleLiveEvent<Resource<UpdateUtilityResponseModel>>? = null
     var updateNocCompDataResponse:SingleLiveEvent<Resource<UpdateNocCompResponseModel>>? = null
     var updateSstSbcDataResponse:SingleLiveEvent<Resource<UpdateSstSbcResponseModel>>? = null
+    var updateRflivedataResponse:SingleLiveEvent<Resource<RfBasicResponse>>? = null
     var updateSiteInfoDataResponse:SingleLiveEvent<Resource<UpdateSiteInfoResponseModel>>? = null
     var updatePowerFuelDataResponse:SingleLiveEvent<Resource<UpdatePowerFuelResponseModel>>? = null
     var updateTwrCivilInfraDataResponse:SingleLiveEvent<Resource<UpdateTwrCivilInfraResponseModel>>? = null
@@ -177,6 +181,7 @@ class HomeViewModel : ViewModel() {
         utilityEquipResponse=homeRepo?.utilityEquipModel
         siteAgreementModel = homeRepo?.siteAgreementModel
         sstSbcModelResponse = homeRepo?.sstSbcModel
+        rfMainResponse =  homeRepo?.getRfSurveyModel()
         siteInfoModelNew = homeRepo?.siteInfoModelNew
         notificationNew = homeRepo?.notificationNew
         userDataListResponse=homeRepo?.userDataResponse
@@ -187,6 +192,7 @@ class HomeViewModel : ViewModel() {
         updateUtilityDataResponse=updateIBoardRepo?.updateUtilityEquipResponse
         updateNocCompDataResponse=updateIBoardRepo?.updateNocCompResponse
         updateSstSbcDataResponse=updateIBoardRepo?.updateSstSbcResponse
+        updateRflivedataResponse = updateIBoardRepo?.rfBasicResponselivedata
         updateSiteInfoDataResponse=updateIBoardRepo?.updateSiteInfoResponse
         updatePowerFuelDataResponse=updateIBoardRepo?.updatePowerFuelResponse
         updateTwrCivilInfraDataResponse=updateIBoardRepo?.updateTwrCivilInfraResponse
@@ -325,6 +331,9 @@ class HomeViewModel : ViewModel() {
 
     fun fetchSstSbcModelRequest(id : String){
         homeRepo?.sstSbcRequestAll(id)
+    }
+    fun fetchRfRequest(id : String){
+        homeRepo?.RfRequestAll(id)
     }
 
     fun utilityRequestAll(id : String){
@@ -471,7 +480,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getDepartment(data:String?) {
-        homeRepo?.getDepartmentWithGeographyRequest(data)
+//        homeRepo?.getDepartmentWithGeographyRequest(data)
     }
 
     fun getDepartmentUsers(data: GetUserList) {
@@ -663,4 +672,11 @@ class HomeViewModel : ViewModel() {
         }
         updateIBoardRepo?.updateSstSbcData(dataModel)
     }
+
+    fun updateRfSurvey(data: RfMainResponse) {
+        AppLogger.log("data for update======>:${Gson().toJson(data)}")
+        if(!Utils.isNetworkConnected())
+        updateIBoardRepo?.updateRfData(data)
+    }
+
 }

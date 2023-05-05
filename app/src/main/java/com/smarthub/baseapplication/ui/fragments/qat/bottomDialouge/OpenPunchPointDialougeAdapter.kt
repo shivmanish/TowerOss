@@ -12,6 +12,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.rfEquipmentData
 import com.smarthub.baseapplication.model.siteInfo.qat.qat_main.PunchpointData
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -88,8 +89,10 @@ class OpenPunchPointDialougeAdapter(var listener: PunchPointItemListner, var con
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is ViewHold1) {
             holder.binding.imgEdit.setOnClickListener {
-                holder.binding.viewLayout.visibility=View.GONE
-                holder.binding.editLayout.visibility=View.VISIBLE
+                if (AppController.getInstance().isTaskEditable) {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
             }
             holder.binding.updateBtn.setOnClickListener {
                 holder.binding.viewLayout.visibility=View.VISIBLE

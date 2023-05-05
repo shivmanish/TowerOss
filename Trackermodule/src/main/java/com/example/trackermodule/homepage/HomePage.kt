@@ -31,6 +31,7 @@ import com.example.patrollerapp.util.Util
 import com.example.trackermodule.R
 import com.example.trackermodule.databinding.ActivityHomePageBinding
 import com.example.trackermodule.util.EasyLocationProvider
+import com.example.trackermodule.util.MyApplication
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -189,6 +190,7 @@ class HomePage : BaseActivity(), OnMapReadyCallback {
             homePageBinding.start.visibility = View.GONE
             homePageBinding.pause.visibility = View.VISIBLE
             homePageBinding.stop.visibility = View.VISIBLE
+
             PatrollerPriference(this).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_running)
             homePageViewModel.delate()
             PatrollerPriference(this).settime("")
@@ -292,6 +294,7 @@ class HomePage : BaseActivity(), OnMapReadyCallback {
         mLocationService = LocationService()
         if (!Util.isMyServiceRunning(mLocationService.javaClass, mActivity)) {
             startService(mServiceIntent)
+            MyApplication.getInstance().isTaskEditable = true
             Toast.makeText(
                 mActivity, getString(R.string.service_start_successfully), Toast.LENGTH_SHORT
             ).show()

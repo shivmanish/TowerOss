@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.model.siteInfo.nocAndCompModel.NocAndCompAll
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocFeePayTableAdapter
 import com.smarthub.baseapplication.ui.fragments.noc.tableAdapters.NocPoTableAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -249,7 +250,8 @@ class NocListAdapter(var context: Context, var listner: NOCListListener,NocAndCo
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditAppDetailsItem(applicationDetailsData)
+                        if (AppController.getInstance().isTaskEditable)
+                            listner.EditAppDetailsItem(applicationDetailsData)
                     }
                 }
                 else {
@@ -303,7 +305,8 @@ class NocListAdapter(var context: Context, var listner: NOCListListener,NocAndCo
                     holder.binding.imgEdit.visibility = View.VISIBLE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        listner.EditAuthorityDetails(authorityDetails)
+                        if (AppController.getInstance().isTaskEditable)
+                            listner.EditAuthorityDetails(authorityDetails)
                     }
                 }
                 else {

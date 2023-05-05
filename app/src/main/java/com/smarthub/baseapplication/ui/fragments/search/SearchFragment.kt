@@ -20,6 +20,7 @@ import com.smarthub.baseapplication.helpers.Resource
 import com.smarthub.baseapplication.model.search.*
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.mapui.MapActivity
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.viewmodels.HomeViewModel
 
@@ -148,6 +149,7 @@ class SearchFragment : BaseFragment(), SearchResultAdapter.SearchResultListener,
 
         binding.viewOnIbo.setOnClickListener {
            if (AppPreferences.getInstance().isSavedDropDown){
+               AppController.getInstance().isTaskEditable = true
                if(searchHistoryList.contains(SearchListItem(item?.name,item?.id))){
                    searchHistoryList.remove(SearchListItem(item?.name,item?.id))
                }

@@ -14,6 +14,7 @@ import com.smarthub.baseapplication.model.serviceRequest.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.model.siteInfo.SiteInfoModel
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 
 class FeasibilityoplanningAdapter(
@@ -181,7 +182,9 @@ class FeasibilityoplanningAdapter(
         when (holder) {
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked(siteDetails,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable) {
+                        listener.detailsItemClicked(siteDetails, serviceRequestAllData)
+                    }
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -231,7 +234,8 @@ class FeasibilityoplanningAdapter(
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked(radioAntena,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.requestinfoClicked(radioAntena,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -279,7 +283,8 @@ class FeasibilityoplanningAdapter(
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.geoConditionsDetailsItemClicked(backHaul,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.geoConditionsDetailsItemClicked(backHaul,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -336,7 +341,8 @@ class FeasibilityoplanningAdapter(
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener() {
-                    listener.operationInfoDetailsItemClicked(powerAndMcb,serviceRequestAllData)
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.operationInfoDetailsItemClicked(powerAndMcb,serviceRequestAllData)
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
