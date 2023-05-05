@@ -240,17 +240,19 @@ class TaskSearchTabFragment(
 
         if (!Util.isMyServiceRunning(mLocationService.javaClass, requireActivity())) {
             requireActivity().startService(mServiceIntent)
-            Toast.makeText(
+          /*  Toast.makeText(
                 requireContext(),
                 getString(com.example.trackermodule.R.string.service_start_successfully),
                 Toast.LENGTH_SHORT
-            ).show()
+            ).show()*/
         } else {
+/*
             Toast.makeText(
                 requireContext(),
                 getString(com.example.trackermodule.R.string.service_already_running),
                 Toast.LENGTH_SHORT
             ).show()
+*/
         }
 
     }

@@ -218,6 +218,7 @@ class HomePage : BaseActivity(), OnMapReadyCallback {
                 homePageBinding.start.visibility = View.VISIBLE
                 homePageBinding.pause.visibility = View.GONE
                 homePageBinding.stop.visibility = View.GONE
+                PatrollerPriference(this@HomePage).setTaskID("")
             }
         }
 
@@ -295,13 +296,13 @@ class HomePage : BaseActivity(), OnMapReadyCallback {
         if (!Util.isMyServiceRunning(mLocationService.javaClass, mActivity)) {
             startService(mServiceIntent)
             MyApplication.getInstance().isTaskEditable = true
-            Toast.makeText(
+           /* Toast.makeText(
                 mActivity, getString(R.string.service_start_successfully), Toast.LENGTH_SHORT
-            ).show()
+            ).show()*/
         } else {
-            Toast.makeText(
+           /* Toast.makeText(
                 mActivity, getString(R.string.service_already_running), Toast.LENGTH_SHORT
-            ).show()
+            ).show()*/
         }
 
     }

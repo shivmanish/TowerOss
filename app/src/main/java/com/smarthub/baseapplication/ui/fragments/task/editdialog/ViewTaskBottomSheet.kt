@@ -52,6 +52,7 @@ class ViewTaskBottomSheet(contentLayoutId: Int, val task: MyTeamTask, var viewMo
                 intent.putExtra("where", task.Where)
             intent.putExtra("siteId", task.siteid)
             intent.putExtra("Distance", task.Distance)
+            intent.putExtra("trackingId", task.id1)
             intent.putExtra("NotificationSettingGeoFencing", task.NotificationSettingGeoFencing)
             intent.putExtra("NotificationSettingGeoTracking", task.NotificationSettingGeoTracking)
             requireActivity().startActivity(intent)
