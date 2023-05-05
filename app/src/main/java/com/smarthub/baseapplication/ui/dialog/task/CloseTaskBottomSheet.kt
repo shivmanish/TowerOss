@@ -67,9 +67,4 @@ class CloseTaskBottomSheet(var taskId:String) : BaseBottomSheetDialogFragment() 
         dialog.behavior.skipCollapsed = false
         return dialog
     }
-
-    interface CloseTaskBottomSheetListener{
-        fun onTaskClosed(remark :String)
-    }
-
 }

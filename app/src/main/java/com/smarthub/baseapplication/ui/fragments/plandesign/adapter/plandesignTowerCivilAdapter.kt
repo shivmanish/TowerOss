@@ -16,6 +16,7 @@ import com.smarthub.baseapplication.model.siteInfo.planAndDesign.Pole
 import com.smarthub.baseapplication.model.siteInfo.planAndDesign.PoleDataNew
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.plandesign.tableAdapters.PoleTableAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 
@@ -216,7 +217,8 @@ class plandesignTowerCivilAdapter(
             }
             is PoleViewHold -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.editPole()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.editPole()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

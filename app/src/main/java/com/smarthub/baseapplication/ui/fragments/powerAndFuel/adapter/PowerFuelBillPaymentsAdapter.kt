@@ -15,6 +15,7 @@ import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelBills
 import com.smarthub.baseapplication.model.siteIBoard.newPowerFuel.PowerFuelEBPayments
 import com.smarthub.baseapplication.ui.fragments.BaseFragment
 import com.smarthub.baseapplication.ui.fragments.ImageAttachmentCommonAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 import com.smarthub.baseapplication.utils.DropDowns
 import com.smarthub.baseapplication.utils.Utils
@@ -84,8 +85,10 @@ class PowerFuelBillPaymentsAdapter(var listener: PowerBillPaymentsClickListener,
         if (holder is ViewHold1) {
             val data: PowerFuelEBPayments=list[position] as PowerFuelEBPayments
             holder.binding.imgEdit.setOnClickListener {
-                holder.binding.viewLayout.visibility = View.GONE
-                holder.binding.editLayout.visibility = View.VISIBLE
+                if (AppController.getInstance().isTaskEditable) {
+                    holder.binding.viewLayout.visibility = View.GONE
+                    holder.binding.editLayout.visibility = View.VISIBLE
+                }
             }
             holder.binding.cancel.setOnClickListener {
                 holder.binding.viewLayout.visibility = View.VISIBLE

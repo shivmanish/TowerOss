@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.opcoInfo.Opcoinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 import com.smarthub.baseapplication.utils.AppLogger
 
 class TaskAdapter(var context : Context, var listener: TaskLisListener) : RecyclerView.Adapter<TaskAdapter.ViewHold>() {
@@ -129,7 +130,8 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
 
             is ViewHold1 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.detailsItemClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.detailsItemClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)
@@ -176,7 +178,8 @@ class TaskAdapter(var context : Context, var listener: TaskLisListener) : Recycl
             }
             is ViewHold2 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    listener.requestinfoClicked()
+                    if (AppController.getInstance().isTaskEditable)
+                        listener.requestinfoClicked()
                 }
                 if (currentOpened == position) {
                     holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

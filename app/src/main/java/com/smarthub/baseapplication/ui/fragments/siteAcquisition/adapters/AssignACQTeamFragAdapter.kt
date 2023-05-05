@@ -131,8 +131,11 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.GONE
-                        holder.binding.editLayout.visibility = View.VISIBLE
+                        if (AppController.getInstance().isTaskEditable){
+                            holder.binding.viewLayout.visibility = View.GONE
+                            holder.binding.editLayout.visibility = View.VISIBLE
+                        }
+
                     }
                     holder.binding.cancel.setOnClickListener {
                         holder.binding.viewLayout.visibility = View.VISIBLE

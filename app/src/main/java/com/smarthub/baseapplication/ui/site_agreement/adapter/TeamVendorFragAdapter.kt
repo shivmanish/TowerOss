@@ -7,6 +7,7 @@ import com.smarthub.baseapplication.R
 import com.smarthub.baseapplication.databinding.ServiceRequestTeamvendorAttachmentBinding
 import com.smarthub.baseapplication.databinding.TeamVendorListItemBinding
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
+import com.smarthub.baseapplication.utils.AppController
 
 class TeamVendorFragAdapter (var listener: TeamVendorListItemListner) : RecyclerView.Adapter<TeamVendorFragAdapter.ViewHold>() {
 
@@ -96,7 +97,8 @@ class TeamVendorFragAdapter (var listener: TeamVendorListItemListner) : Recycler
     override fun onBindViewHolder(holder: ViewHold, position: Int) {
         if (holder is DetailsViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.EditdetailsItemClicked()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.EditdetailsItemClicked()
             }
             if (currentOpened == position) {
                 holder.binding.imgDropdown.setImageResource(R.drawable.ic_arrow_up)

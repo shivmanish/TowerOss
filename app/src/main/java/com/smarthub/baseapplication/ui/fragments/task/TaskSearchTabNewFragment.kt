@@ -23,6 +23,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.smarthub.baseapplication.R
 import com.example.trackermodule.homepage.BaseActivity
+import com.example.trackermodule.util.MyApplication
 import com.smarthub.baseapplication.databinding.FragmentSearchTaskBinding
 import com.smarthub.baseapplication.helpers.AppPreferences
 import com.smarthub.baseapplication.helpers.Resource
@@ -144,8 +145,10 @@ class TaskSearchTabNewFragment(
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.collapsingLayout.tag = NotificationSettingGeoTracking
         if(NotificationSettingGeoTracking){
+            AppController.getInstance().isTaskEditable = false
             binding.dropdownImg.visibility = View.VISIBLE
         }else{
+            AppController.getInstance().isTaskEditable = true
             binding.dropdownImg.visibility = View.GONE
             binding.viewpager.setPadding(10,2,10,10)
         }
@@ -173,11 +176,11 @@ class TaskSearchTabNewFragment(
         binding.mapView.setOnClickListener {
             mapView()
         }
-        binding.closeBtn.setOnClickListener {
-            reOpenTaskBottomSheet()
-        }
-        binding.submitBtn.setOnClickListener {
+        binding.closeTaskBtn1.setOnClickListener {
             openCloseTaskBottomSheet()
+        }
+        binding.reopenBtn.setOnClickListener {
+            reOpenTaskBottomSheet()
 
 //            if (isFancing) {
 //                val userlatlongdata = LatlongData()
@@ -227,16 +230,13 @@ class TaskSearchTabNewFragment(
                     PatrollerPriference(requireContext()).setTaskID(taskId)
                     startServiceBackground()
                 } else {
-//                mapView()
-                    if (mServiceIntent != null) {
-
-                        PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
-                        LocationService.is_canceled_by_me = true
-                        requireContext().stopService(mServiceIntent)
-                        PatrollerPriference(requireContext()).settime("")
-                        binding.start.text = "Start"
-                    }
-
+//                    mapView()
+                    PatrollerPriference(requireContext()).setPtrollingStatus(PatrollerPriference.PATROLING_STATUS_STOP)
+                    LocationService.is_canceled_by_me = true
+                    requireContext().stopService(mServiceIntent)
+                    PatrollerPriference(requireContext()).settime("")
+                    binding.start.text = "Start"
+                    AppController.getInstance().isTaskEditable = false
                 }
             } else {
                 val dialog = Dialog(requireContext())
@@ -451,6 +451,7 @@ class TaskSearchTabNewFragment(
                 getString(com.example.trackermodule.R.string.service_start_successfully),
                 Toast.LENGTH_SHORT
             ).show()
+            MyApplication.getInstance().isTaskEditable = true
         } else {
             Toast.makeText(
                 requireContext(),
@@ -721,7 +722,7 @@ class TaskSearchTabNewFragment(
     }
 
     fun setUpQatData() {
-        var moduleId = taskDetailData!!.ModuleId
+        val moduleId = taskDetailData!!.ModuleId
         if (homeViewModel.QatModelResponse?.hasActiveObservers() == true) {
             homeViewModel.QatModelResponse?.removeObservers(viewLifecycleOwner)
         }
@@ -1597,12 +1598,23 @@ class TaskSearchTabNewFragment(
     }
 
     fun mapAppBarUiData(data:TaskDataListItem?){
+        try{
+            AppLogger.log("taskStartDateTimeLebel:${taskDetailData?.startdate}")
+            binding.taskStartDateTimeLebel.text = "Start date :"+taskDetailData?.startdate?.let {
+                if (it.length>=16){
+                    it.substring(0,16)
+                }else it
+//                Utils.getFullFormatedDate(it)
+            }
+        }catch (e:java.lang.Exception){
+            AppLogger.log("e:${e.localizedMessage}")
+        }
         if ( taskDetailData?.ReWorkflow==null ||  taskDetailData?.ReWorkflow?.isEmpty()==true){
-            binding.closeBtn.visibility = View.GONE
+            binding.closeTaskBtn1.visibility = View.GONE
             binding.line.visibility = View.GONE
         }else {
             binding.line.visibility = View.VISIBLE
-            binding.closeBtn.visibility = View.VISIBLE
+            binding.closeTaskBtn1.visibility = View.VISIBLE
         }
 
         NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
@@ -1612,9 +1624,11 @@ class TaskSearchTabNewFragment(
 
         binding.collapsingLayout.tag = NotificationSettingGeoTracking
         if(NotificationSettingGeoTracking){
+            AppController.getInstance().isTaskEditable = false
             binding.dropdownImg.visibility = View.VISIBLE
             binding.mapView.visibility = View.VISIBLE
         }else{
+            AppController.getInstance().isTaskEditable = true
             binding.dropdownImg.visibility = View.GONE
             binding.mapView.visibility = View.GONE
             binding.viewpager.setPadding(10,2,10,10)

@@ -11,6 +11,7 @@ import com.smarthub.baseapplication.model.siteInfo.opcoInfo.OpcoDataItem
 import com.smarthub.baseapplication.ui.adapter.common.ImageAttachmentAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.TableAdapters.MaterialTableAdapter
 import com.smarthub.baseapplication.ui.fragments.opcoTenancy.TableAdapters.PoTableAdapter
+import com.smarthub.baseapplication.utils.AppController
 
 class BackhaulListAdapter(var context: Context, var listener: BackhaulListListener, opcodata: OpcoDataItem?) : RecyclerView.Adapter<BackhaulListAdapter.ViewHold>() {
 
@@ -303,7 +304,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         if (holder is LinkViewHold) {
 
             holder.binding.imgEdit.setOnClickListener {
-                listener.LinkItemEdit()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.LinkItemEdit()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -327,7 +329,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         }
         else if (holder is IDUViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.IduEditItem()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.IduEditItem()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -352,7 +355,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         }
         else if (holder is ODUViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.OduEditItem()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.OduEditItem()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -377,7 +381,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         }
         else if (holder is AntennaViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.OduEditItem()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.OduEditItem()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -402,7 +407,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         }
         else if (holder is InstallationTeamViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.InstllationItemEdit()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.InstllationItemEdit()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -451,7 +457,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         }
         else if (holder is LMCViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.LmcFiberItemEdit()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.LmcFiberItemEdit()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)
@@ -519,7 +526,8 @@ class BackhaulListAdapter(var context: Context, var listener: BackhaulListListen
         }
         else if (holder is CONNEVCTEDEQUIPMENTViewHold) {
             holder.binding.imgEdit.setOnClickListener {
-                listener.ConnectedEquipmentItemEdit()
+                if (AppController.getInstance().isTaskEditable)
+                    listener.ConnectedEquipmentItemEdit()
             }
             holder.binding.collapsingLayout.setOnClickListener {
                 updateList(position)

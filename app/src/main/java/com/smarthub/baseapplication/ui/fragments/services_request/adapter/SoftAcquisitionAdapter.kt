@@ -9,6 +9,7 @@ import com.smarthub.baseapplication.databinding.*
 import com.smarthub.baseapplication.model.siteInfo.*
 import com.smarthub.baseapplication.model.siteInfo.siteInfoData.SiteBasicinfo
 import com.smarthub.baseapplication.network.pojo.site_info.BasicInfoModelDropDown
+import com.smarthub.baseapplication.utils.AppController
 
 class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : RecyclerView.Adapter<SoftAcquisitionAdapter.ViewHold>() {
     var list : ArrayList<String> = ArrayList()
@@ -81,7 +82,8 @@ class SoftAcquisitionAdapter(var listener: SoftAcquisitionLisListener) : Recycle
                     holder.binding.itemLine.visibility = if (holder.binding.itemTitle.tag as Boolean) View.GONE else View.VISIBLE
                     holder.binding.iconLayout.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE
                     holder.binding.imgEdit.setOnClickListener {
-                        listener.detailsItemClicked()
+                        if (AppController.getInstance().isTaskEditable)
+                            listener.detailsItemClicked()
                     }
 
                     holder.binding.itemCollapse.visibility = if (holder.binding.itemTitle.tag as Boolean) View.VISIBLE else View.GONE

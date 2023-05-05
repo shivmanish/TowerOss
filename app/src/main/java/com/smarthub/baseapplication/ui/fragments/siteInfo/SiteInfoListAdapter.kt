@@ -194,8 +194,10 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     holder.binding.editLayout.visibility = View.GONE
 
                     holder.binding.imgEdit.setOnClickListener {
-                        holder.binding.viewLayout.visibility = View.GONE
-                        holder.binding.editLayout.visibility = View.VISIBLE
+                        if (AppController.getInstance().isTaskEditable) {
+                            holder.binding.viewLayout.visibility = View.GONE
+                            holder.binding.editLayout.visibility = View.VISIBLE
+                        }
                     }
                     holder.binding.cancel.setOnClickListener {
                         holder.binding.viewLayout.visibility = View.VISIBLE
@@ -365,8 +367,10 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
                     updateList(position)
                 }
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE
@@ -458,8 +462,10 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
             }
             is ViewHold3 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE
@@ -558,8 +564,10 @@ class SiteInfoListAdapter(var baseFragment: BaseFragment,var listener: SiteInfoL
             }
             is ViewHold4 -> {
                 holder.binding.imgEdit.setOnClickListener {
-                    holder.binding.viewLayout.visibility = View.GONE
-                    holder.binding.editLayout.visibility = View.VISIBLE
+                    if (AppController.getInstance().isTaskEditable) {
+                        holder.binding.viewLayout.visibility = View.GONE
+                        holder.binding.editLayout.visibility = View.VISIBLE
+                    }
                 }
                 holder.binding.cancel.setOnClickListener {
                     holder.binding.viewLayout.visibility = View.VISIBLE

@@ -181,13 +181,15 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 
 
     private fun mapUIData(){
+        AppController.getInstance().isTaskEditable = false
         setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere,NotificationSettingGeoFencing,Distance,NotificationSettingGeoTracking))
-//        binding.titleText.text ="Task\n${item.Processname}"
-//
-//        binding.listItem.adapter = TaskAdapter(applicationContext,this)
     }
 
     override fun onStop() {
