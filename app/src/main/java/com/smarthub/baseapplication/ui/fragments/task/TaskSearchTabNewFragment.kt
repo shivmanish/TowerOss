@@ -176,11 +176,11 @@ class TaskSearchTabNewFragment(
         binding.mapView.setOnClickListener {
             mapView()
         }
-        binding.closeBtn.setOnClickListener {
-            reOpenTaskBottomSheet()
-        }
-        binding.submitBtn.setOnClickListener {
+        binding.closeTaskBtn1.setOnClickListener {
             openCloseTaskBottomSheet()
+        }
+        binding.reopenBtn.setOnClickListener {
+            reOpenTaskBottomSheet()
 
 //            if (isFancing) {
 //                val userlatlongdata = LatlongData()
@@ -1598,12 +1598,23 @@ class TaskSearchTabNewFragment(
     }
 
     fun mapAppBarUiData(data:TaskDataListItem?){
+        try{
+            AppLogger.log("taskStartDateTimeLebel:${taskDetailData?.startdate}")
+            binding.taskStartDateTimeLebel.text = "Start date :"+taskDetailData?.startdate?.let {
+                if (it.length>=16){
+                    it.substring(0,16)
+                }else it
+//                Utils.getFullFormatedDate(it)
+            }
+        }catch (e:java.lang.Exception){
+            AppLogger.log("e:${e.localizedMessage}")
+        }
         if ( taskDetailData?.ReWorkflow==null ||  taskDetailData?.ReWorkflow?.isEmpty()==true){
-            binding.closeBtn.visibility = View.GONE
+            binding.closeTaskBtn1.visibility = View.GONE
             binding.line.visibility = View.GONE
         }else {
             binding.line.visibility = View.VISIBLE
-            binding.closeBtn.visibility = View.VISIBLE
+            binding.closeTaskBtn1.visibility = View.VISIBLE
         }
 
         NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
