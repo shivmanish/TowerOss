@@ -218,6 +218,7 @@ class HomePage : BaseActivity(), OnMapReadyCallback {
                 homePageBinding.start.visibility = View.VISIBLE
                 homePageBinding.pause.visibility = View.GONE
                 homePageBinding.stop.visibility = View.GONE
+                PatrollerPriference(this@HomePage).setTaskID("")
             }
         }
 
