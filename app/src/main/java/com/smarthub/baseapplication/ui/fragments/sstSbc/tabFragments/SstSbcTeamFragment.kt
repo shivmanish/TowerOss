@@ -59,6 +59,33 @@ class SstSbcTeamFragment(var sstSbcData:SstSbcAllData?, var parentIndex:Int?): B
         }
 
 
+        if (viewmodel.sstSbcOfflineModelResponse?.hasActiveObservers() == true) {
+            viewmodel.sstSbcOfflineModelResponse?.removeObservers(viewLifecycleOwner)
+        }
+        viewmodel.sstSbcOfflineModelResponse?.observe(viewLifecycleOwner) {
+            if (it != null && it.status == Resource.Status.LOADING) {
+                AppLogger.log("SstSbcTeamFragment data loading in progress ")
+                return@observe
+            }
+            if (it?.data != null && it.status == Resource.Status.SUCCESS) {
+                AppLogger.log("SstSbcTeamFragment card Data fetched successfully")
+                hideLoader()
+                try {
+                    sstSbcData=it.data.SstSbc?.get(0)
+                    adapter.setData(it.data.SstSbc?.get(0)?.SstSbcTeam?.get(0))
+                } catch (e: java.lang.Exception) {
+                    AppLogger.log("SstSbcTeamFragment error : ${e.localizedMessage}")
+                }
+                AppLogger.log("SiteAgreemnets size :${it.data.SstSbc?.size}")
+            } else if (it != null) {
+                AppLogger.log("SstSbcTeamFragment error :${it.message}, data : ${it.data}")
+            } else {
+                AppLogger.log("SstSbcTeamFragment Something went wrong")
+
+            }
+        }
+
+
 
 //        binding.swipeLayout.setOnRefreshListener {
 //            binding.swipeLayout.isRefreshing=false

@@ -125,6 +125,7 @@ class HomeViewModel : ViewModel() {
     var powerAndFuelResponse:SingleLiveEvent<Resource<PowerFuelAllDataModel>>? = null
     var siteAgreementModel:SingleLiveEvent<Resource<SiteAcquisitionAllDataModel>>? = null
     var sstSbcModelResponse:SingleLiveEvent<Resource<SstSbcAllDataModel>>? = null
+    var sstSbcOfflineModelResponse:SingleLiveEvent<Resource<SstSbcAllDataModel>>? = null
     var rfMainResponse:SingleLiveEvent<Resource<RfMainResponse>>? = null
     var siteInfoModelNew:SingleLiveEvent<Resource<SiteInfoModelNew>>? = null
     var utilityEquipResponse:SingleLiveEvent<Resource<UtilityEquipmentAllDataModel>>? = null
@@ -204,6 +205,7 @@ class HomeViewModel : ViewModel() {
         addAttachmentModel=homeRepo?.addAttachmentModel
         attachmentConditionModel=homeRepo?.attachmentConsitionsModel
         homeAlertsDataModel=alertRepo?.homeAlertResponseLivedata
+        sstSbcOfflineModelResponse = SingleLiveEvent()
     }
 
     fun updateData(basicinfoModel: BasicinfoModel){
@@ -676,7 +678,7 @@ class HomeViewModel : ViewModel() {
             AppPreferences.getInstance().saveTaskOfflineApi(Gson().toJson(dataModel), "${APIInterceptor.DYNAMIC_BASE_URL}${EndPoints.UPDATE_SITE_IBOARD_DATA_URL}","NocAndCompRequestAll${site_id}")
             AppLogger.log("saved data size with id:$site_id ====>: ${cache_model.SstSbc?.size}")
             AppLogger.log("saved data with id:$site_id ====>: ${Gson().toJson(cache_model)}")
-            sstSbcModelResponse?.postValue(Resource.success(cache_model,200))
+            sstSbcOfflineModelResponse?.postValue(Resource.success(cache_model,200))
             return
         }
         updateIBoardRepo?.updateSstSbcData(dataModel)
