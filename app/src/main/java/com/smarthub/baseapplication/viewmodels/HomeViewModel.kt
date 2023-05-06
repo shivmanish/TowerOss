@@ -685,7 +685,7 @@ class HomeViewModel : ViewModel() {
     fun updateRfSurvey(data: RfMainResponse) {
         AppLogger.log("data for update======>:${Gson().toJson(data)}")
         if(!Utils.isNetworkConnected())
-        updateIBoardRepo?.updateRfData(data)
+            updateIBoardRepo?.updateRfData(data)
     }
 
 }

@@ -64,13 +64,11 @@ open class BaseFragment : Fragment(){
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun showLoader(){
-        if (Utils.isNetworkConnected()) {
             try {
                 (requireActivity() as BaseActivity).showLoader()
             }catch (e:Exception){
                 e.printStackTrace()
             }
-        }
     }
 
    open fun hideLoader(){
