@@ -189,7 +189,7 @@ class TaskDetailActivity : BaseActivity(), TaskAdapter.TaskLisListener {
 
     private fun mapUIData(){
         AppController.getInstance().isTaskEditable = false
-        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere,NotificationSettingGeoFencing,Distance,NotificationSettingGeoTracking))
+        setFragment(TaskSearchTabNewFragment(siteId,trackingId,taskDetailId,lattitude,longitude,tempWhere,Distance,NotificationSettingGeoTracking))
     }
 
     override fun onStop() {
