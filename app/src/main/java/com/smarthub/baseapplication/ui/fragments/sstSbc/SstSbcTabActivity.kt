@@ -32,7 +32,7 @@ class SstSbcTabActivity : BaseActivity() {
             onBackPressed()
         }
         binding.DateLebel.text="PO Date"
-        binding.titel.text="SST / SBC"
+        binding.titel.text="SBC / SST"
         binding.subTitle.text=AppController.getInstance().siteName
         if (sstSbcData!=null && sstSbcData?.SstSbcTeam?.isNotEmpty()==true && sstSbcData?.SstSbcTeam?.get(0)?.PODate?.isNotEmpty()==true)
             binding.dateText.text=Utils.getFormatedDate(sstSbcData?.SstSbcTeam?.get(0)?.PODate,"dd-MMM-yyyy")

@@ -26,13 +26,13 @@ class SiteAcquisitionTabAdapter(manager: FragmentManager, var data: NewSiteAcqui
                return SiteFeasibilityFragment(data,parentIndex)
             }
             3-> {
-              return SoftAcquisitionFragment(data,parentIndex)
+                return SurveyApprovalFragment(data,parentIndex)
             }
             4-> {
-              return AgreementFragment(data,parentIndex)
+              return SoftAcquisitionFragment(data,parentIndex)
             }
             5-> {
-              return SurveyApprovalFragment(data,parentIndex)
+              return AgreementFragment(data,parentIndex)
             }
             else -> {
                 return AssignACQTeamFragment(data,parentIndex)
@@ -53,13 +53,13 @@ class SiteAcquisitionTabAdapter(manager: FragmentManager, var data: NewSiteAcqui
                 return "Site Feasibility"
             }
             3 -> {
-                return "Soft Acquisition"
+                return "Site Survey Approval"
             }
             4 -> {
-                return "Agreement"
+                return "Soft Acquisition"
             }
             5 -> {
-                return "Site Survey Validation"
+                return "Agreement"
             }
         }
         return super.getPageTitle(position)

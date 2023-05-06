@@ -43,7 +43,7 @@ class SstSbcTabAdapter(manager: FragmentManager, var data: SstSbcAllData?, var p
                 return "Test Report"
             }
             2 -> {
-                return "Rf Survey Validation"
+                return "SBC/SST Validation"
             }
         }
         return super.getPageTitle(position)

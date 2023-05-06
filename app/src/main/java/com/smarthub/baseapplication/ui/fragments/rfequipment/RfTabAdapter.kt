@@ -22,7 +22,7 @@ class RfTabAdapter(manager: FragmentManager, var data: RfSurvey?, var parentInde
                 AssignRfTeamFragment(data, parentIndex)
             }
             1 -> {
-                AssignRfTeamFragment(data,parentIndex)
+                RfSurveyFragment(data,parentIndex)
             }
             2-> RfValidationFragment(data,parentIndex)
             else -> {
@@ -35,13 +35,13 @@ class RfTabAdapter(manager: FragmentManager, var data: RfSurvey?, var parentInde
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "Assign RF Survey Team"
+                return "RF Survey Team"
             }
             1 -> {
                 return "RF Survey"
             }
             2->{
-                return "RF Survey Validation"
+                return "RF Survey Approval"
             }
         }
         return super.getPageTitle(position)
