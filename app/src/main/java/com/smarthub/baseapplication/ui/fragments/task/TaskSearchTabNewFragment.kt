@@ -100,7 +100,7 @@ import com.smarthub.baseapplication.viewmodels.TaskViewModel
 
 class TaskSearchTabNewFragment(
     var siteID: String?, var taskId: String, var taskDetailId: String?,
-    var lattitude: String, var longitude: String, var tempWhere: String, var isFancing: Boolean,
+    var lattitude: String, var longitude: String, var tempWhere: String,
     var fancingDistance: Double, var NotificationSettingGeoTracking: Boolean,
 ) : BaseFragment(),
     TaskSiteInfoAdapter.TaskSiteInfoListener, ServicesDataAdapterListener {
@@ -296,9 +296,8 @@ class TaskSearchTabNewFragment(
         addFragment(chatfragment)
     }
     if (taskViewModel.taskDataList?.hasActiveObservers() == true)
-    taskViewModel.taskDataList?.removeObservers(this)
-    taskViewModel.taskDataList?.observe(viewLifecycleOwner)
-    {
+        taskViewModel.taskDataList?.removeObservers(this)
+    taskViewModel.taskDataList?.observe(viewLifecycleOwner) {
         if (it != null && it.status == Resource.Status.LOADING) {
 //                showLoader()
             return@observe
@@ -1662,15 +1661,14 @@ fun mapAppBarUiData(data: TaskDataListItem?) {
         AppLogger.log("e:${e.localizedMessage}")
     }
     if (taskDetailData?.ReWorkflow == null || taskDetailData?.ReWorkflow?.isEmpty() == true) {
-        binding.closeTaskBtn1.visibility = View.GONE
+        binding.reopenBtn.visibility = View.GONE
         binding.line.visibility = View.GONE
     } else {
         binding.line.visibility = View.VISIBLE
-        binding.closeTaskBtn1.visibility = View.VISIBLE
+        binding.reopenBtn.visibility = View.VISIBLE
     }
 
     NotificationSettingGeoTracking = taskDetailData?.NotificationSettingGeoTracking!!
-    isFancing = taskDetailData?.NotificationSettingGeoFencing!!
     fancingDistance = taskDetailData!!.Distance
     AppLogger.log("fetched task NotificationSettingGeoTracking =====> : $NotificationSettingGeoTracking")
 
