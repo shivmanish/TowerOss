@@ -262,8 +262,8 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                         it.remark=holder.binding.LandRemarksEdit.text.toString()
                         it.TestingDate=Utils.getFullFormatedDate(holder.binding.SoilSampleCollectionDateEdit.text.toString())
                         it.TestReportDate=Utils.getFullFormatedDate(holder.binding.LandTestReportDateEdit.text.toString())
-                        it.LandType= arrayListOf(holder.binding.LandTypeEdit.selectedValue.id.toInt())
-                        it.SoilType= arrayListOf(holder.binding.SoilTypeEdit.selectedValue.id.toInt())
+                        it.LandType= holder.binding.LandTypeEdit.getSelectedArray()
+                        it.SoilType= holder.binding.SoilTypeEdit.getSelectedArray()
                         if (landData!=null)
                             it.id=landData?.id
                     }
@@ -276,7 +276,7 @@ class SstSbcReportFragAdapter(var baseFragment:BaseFragment, var listener: SstSb
                         it.remark=holder.binding.BuildingRemarksEdit.text.toString()
                         it.TestingDate=Utils.getFullFormatedDate(holder.binding.SoilSampleCollectionDateEdit.text.toString())
                         it.TestReportDate=Utils.getFullFormatedDate(holder.binding.LandTestReportDateEdit.text.toString())
-                        it.BuildingType= arrayListOf(holder.binding.BuildingTypeEdit.selectedValue.id.toInt())
+                        it.BuildingType= holder.binding.BuildingTypeEdit.getSelectedArray()
                         it.BuildingBuildType= holder.binding.BuildingBuildTypeEdit.selectedValue.id.toInt()
                         if (buildingData!=null)
                             it.id=buildingData?.id

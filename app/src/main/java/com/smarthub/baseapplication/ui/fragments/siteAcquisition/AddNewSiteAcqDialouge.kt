@@ -82,9 +82,9 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
                 it.VendorExecutiveEmailId=binding.VendorExecutiveEmailIDEdit.text.toString()
                 it.VendorExecutiveMobile=binding.VendorExecutiveNumberEdit.text.toString()
-                it.AcquisitionMode = arrayListOf(binding.AcquisitionModeEdit.selectedValue.id.toInt())
-                it.Acquisitiontype = arrayListOf(binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-                it.VendorCompany = arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+                it.AcquisitionMode = binding.AcquisitionModeEdit.getSelectedArray()
+                it.Acquisitiontype = binding.AcquisitionTypeEdit.getSelectedArray()
+                it.VendorCompany = binding.VendorNameEdit.getSelectedArray()
                 it.remark=binding.remarksEdit.text.toString()
 
                 val dataModel = UpdateSiteAcquiAllData()

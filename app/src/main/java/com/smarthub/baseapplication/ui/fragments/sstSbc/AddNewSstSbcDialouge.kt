@@ -59,7 +59,7 @@ class AddNewSstSbcDialouge (var listner:AddSstSbcDataListener) : BaseBottomSheet
                 it.VendorExecutiveEmailId=binding.VendorExecutiveEmailIDEdit.text.toString()
                 it.VendorExecutiveMobile=binding.VendorExecutiveNumberEdit.text.toString()
                 it.Type = binding.TestTypeEdit.selectedValue.id.toInt()
-                it.VendorCompany = arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+                it.VendorCompany = binding.VendorNameEdit.getSelectedArray()
                 it.remark=binding.remarksEdit.text.toString()
 
                 val dataModel = SstSbcAllData()

@@ -398,7 +398,7 @@ class DGFragAdapter(var baseFragment: BaseFragment, var listener: DGListListener
                         it.InstallationType=holder.binding.InstallationTypeEdit.selectedValue.id.toIntOrNull()
                         it.FuelType=holder.binding.FuelTypeEdit.selectedValue.id.toIntOrNull()
                         it.remark=holder.binding.remarksEdit.text.toString()
-                        it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
+                        it.OperationStatus= holder.binding.OperationalStatusEdit.getSelectedArray()
                         if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)
                             it.id=datalist?.Equipment?.get(0)?.id
                         val utilityDGData= UtilityEquipmentDG()

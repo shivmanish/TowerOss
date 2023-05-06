@@ -200,7 +200,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                         it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
                         it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
                         it.Type = holder.binding.TestTypeEdit.selectedValue.id.toIntOrNull()
-                        it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                        it.VendorCompany = holder.binding.VendorNameEdit.getSelectedArray()
                         it.remark=holder.binding.remarksEdit.text.toString()
                         if (datalist!=null){
                             it.attachment=datalist?.attachment

@@ -346,7 +346,7 @@ class ACFragAdapter(var baseFragment: BaseFragment, var listener: ACListListener
                         it.WarrantyPeriod=holder.binding.WarrantyPeriodEdit.text.toString()
                         it.WarrantyExpiryDate= Utils.getFullFormatedDate(holder.binding.WarrantyExpiryDateEdit.text.toString())
                         it.remark=holder.binding.remarksEdit.text.toString()
-                        it.OperationStatus= arrayListOf(holder.binding.OperationalStatusEdit.selectedValue.id.toInt())
+                        it.OperationStatus= holder.binding.OperationalStatusEdit.getSelectedArray()
                         if (datalist!=null && datalist?.Equipment?.isNotEmpty()==true)
                             it.id=datalist?.Equipment?.get(0)?.id
                         val utilityACData= UtilityEquipmentAC()

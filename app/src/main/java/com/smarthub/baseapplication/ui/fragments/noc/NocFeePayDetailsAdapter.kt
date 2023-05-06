@@ -152,7 +152,7 @@ class NocFeePayDetailsAdapter(var listener: NocFeePayClickListener, var list : A
                     it.Amount=holder.binding.AmountEdit.text.toString()
                     it.StatusDate=Utils.getFullFormatedDate(holder.binding.StatusDateEdit.text.toString())
                     it.PaymentMode= holder.binding.PaymentModeEdit.selectedValue.id.toIntOrNull()
-                    it.PaymentStatus= arrayListOf(holder.binding.PaymentStatusEdit.selectedValue.id.toInt())
+                    it.PaymentStatus= holder.binding.PaymentStatusEdit.getSelectedArray()
                     it.id=data.id
                     listener.updataDataClicked(it)
                 }

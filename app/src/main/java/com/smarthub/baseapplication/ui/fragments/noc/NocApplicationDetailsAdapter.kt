@@ -159,8 +159,8 @@ class NocApplicationDetailsAdapter(var listener: NocApplicationClickListener, ca
                     it.StatusDate=Utils.getFullFormatedDate(holder.binding.StatusDateEdit.text.toString())
                     it.IssueDate=Utils.getFullFormatedDate(holder.binding.IssueDateEdit.text.toString())
                     it.ExpiryDate=Utils.getFullFormatedDate(holder.binding.ExpiryDateEdit.text.toString())
-                    it.AuthorityApplicationType= arrayListOf(holder.binding.ApplicationTypeEdit.selectedValue.id.toInt())
-                    it.ApplicationStatus= arrayListOf(holder.binding.StatusEdit.selectedValue.id.toInt())
+                    it.AuthorityApplicationType= holder.binding.ApplicationTypeEdit.getSelectedArray()
+                    it.ApplicationStatus= holder.binding.StatusEdit.getSelectedArray()
                     it.Category= holder.binding.CategoryEdit.selectedValue.id.toInt()
                     it.id=data.id
                     listener.updataDataClicked(it)

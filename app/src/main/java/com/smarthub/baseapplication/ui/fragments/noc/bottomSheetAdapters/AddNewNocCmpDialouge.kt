@@ -60,8 +60,8 @@ class AddNewNocCmpDialouge (var listner: AddNocCompDataListener): BaseBottomShee
                 it.StatusDate=Utils.getFullFormatedDate(binding.StatusDateEdit.text.toString())
                 it.IssueDate=Utils.getFullFormatedDate(binding.IssueDateEdit.text.toString())
                 it.ExpiryDate=Utils.getFullFormatedDate(binding.ExpiryDateEdit.text.toString())
-                it.AuthorityApplicationType= arrayListOf(binding.ApplicationTypeEdit.selectedValue.id.toInt())
-                it.ApplicationStatus= arrayListOf(binding.StatusEdit.selectedValue.id.toInt())
+                it.AuthorityApplicationType= binding.ApplicationTypeEdit.getSelectedArray()
+                it.ApplicationStatus= binding.StatusEdit.getSelectedArray()
                 it.Category= binding.CategoryEdit.selectedValue.id.toInt()
             }
             tempNocCompAllData.ApplicationInitial= arrayListOf(tempApplicatioData)

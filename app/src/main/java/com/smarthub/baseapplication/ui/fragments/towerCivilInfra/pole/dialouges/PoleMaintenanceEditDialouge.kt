@@ -56,7 +56,7 @@ class PoleMaintenanceEditDialouge (var data: PreventiveMaintenance, var childId:
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
                 it.remark=binding.remarksEdit.text.toString()
                 it.PMDate=Utils.getFullFormatedDate(binding.PMDateEdit.text.toString())
-                it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+                it.VendorCompany= binding.VendorNameEdit.getSelectedArray()
                 tempPoleAllData.PreventiveMaintenance= arrayListOf(it)
             }
             if (childId!=null)

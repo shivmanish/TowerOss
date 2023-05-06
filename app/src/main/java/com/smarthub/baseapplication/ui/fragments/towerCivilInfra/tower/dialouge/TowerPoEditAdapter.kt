@@ -57,7 +57,7 @@ class TowerPoEditAdapter (var data: TwrCivilPODetail,var childId:Int?,var parent
                 it.remark=binding.remarksEdit.text.toString()
                 it.POLineNo=binding.PoLineNumberEdit.text.toString().toInt()
                 it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())!!
-                it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+                it.VendorCompany= binding.VendorNameEdit.getSelectedArray()
                 tempTowerAllData.PODetail= arrayListOf(it)
             }
             if (childId!=null)

@@ -59,7 +59,7 @@ class UtilityDGPoEditDialouge (var data: UtilityPoDetails, var fullData: Utility
                 it.remark=binding.remarksEdit.text.toString()
                 it.POLineNo=binding.PoLineNumberEdit.text.toString().toIntOrNull()
                 it.PODate=Utils.getFullFormatedDate(binding.PoDateEdit.text.toString())
-                it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+                it.VendorCompany= binding.VendorNameEdit.getSelectedArray()
 
                 val tempDGData= UtilityEquipmentDG()
                 tempDGData.PODetail= arrayListOf(it)

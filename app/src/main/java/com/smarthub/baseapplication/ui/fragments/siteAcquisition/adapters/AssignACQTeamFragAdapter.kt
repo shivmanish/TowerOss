@@ -243,10 +243,10 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
                         it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()
                         it.GeographyLevel=holder.binding.GeographyLevelEdit.selectedValue.name
-                        it.AcquisitionMode = arrayListOf(holder.binding.AcquisitionModeEdit.selectedValue.id.toInt())
-                        it.Acquisitiontype = arrayListOf(holder.binding.AcquisitionTypeEdit.selectedValue.id.toInt())
-                        it.VendorCompany = arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
-                        it.Department = arrayListOf(holder.binding.DepartmentEdit.selectedValue.id.toInt())
+                        it.AcquisitionMode = holder.binding.AcquisitionModeEdit.getSelectedArray()
+                        it.Acquisitiontype = holder.binding.AcquisitionTypeEdit.getSelectedArray()
+                        it.VendorCompany = holder.binding.VendorNameEdit.getSelectedArray()
+                        it.Department = holder.binding.DepartmentEdit.getSelectedArray()
                         it.remark=holder.binding.remarksEdit.text.toString()
                         if (datalist!=null)
                             it.id=datalist?.id

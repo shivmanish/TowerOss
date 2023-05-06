@@ -68,7 +68,7 @@ class AddNewACDialouge (var fullData:ArrayList<UtilityEquipmentAllData>?, var li
                 it.WarrantyPeriod=binding.WarrantyPeriodEdit.text.toString()
                 it.LocationMark=binding.OULocationMarkEdit.text.toString()
                 it.CopperTubing=binding.CopperTubingEdit.text.toString()
-                it.OperationStatus = arrayListOf(binding.OperationalStatusEdit.selectedValue.id.toInt())
+                it.OperationStatus = binding.OperationalStatusEdit.getSelectedArray()
                 it.remark=binding.remarksEdit.text.toString()
 
                 val utilityACData= UtilityEquipmentAC()

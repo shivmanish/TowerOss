@@ -146,7 +146,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
                     it.remark=holder.binding.remarksEdit.text.toString()
                     it.POLineNo=holder.binding.PoLineNumberEdit.text.toString().toIntOrNull()
                     it.PODate=Utils.getFullFormatedDate(holder.binding.PoDateEdit.text.toString())
-                    it.VendorCompany= arrayListOf(holder.binding.VendorNameEdit.selectedValue.id.toInt())
+                    it.VendorCompany= holder.binding.VendorNameEdit.getSelectedArray()
                     it.id=data?.id
                     listener.updataDataClicked(it)
                 }

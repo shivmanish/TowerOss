@@ -54,7 +54,7 @@ class UtilityDGMaintenanceEditDialouge (var data: UtilityPreventiveMaintenance, 
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
                 it.remark=binding.remarksEdit.text.toString()
                 it.PMDate=Utils.getFullFormatedDate(binding.PMDateEdit.text.toString())
-                it.VendorCompany= arrayListOf(binding.VendorNameEdit.selectedValue.id.toInt())
+                it.VendorCompany= binding.VendorNameEdit.getSelectedArray()
 
                 val tempDGData= UtilityEquipmentDG()
                 tempDGData.PreventiveMaintenance= arrayListOf(it)

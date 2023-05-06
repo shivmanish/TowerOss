@@ -66,8 +66,8 @@ class TowerAddNew (var fulldata: NewTowerCivilAllData?,var listner:AddNewTowerLi
                 it.InstalledType=binding.InstalledTypeEdit.selectedValue.id.toIntOrNull()
                 it.Camouflage=binding.CamouflageEdit.selectedValue.id.toIntOrNull()
                 it.LightningArrester=binding.LightningArresterEdit.selectedValue.id.toIntOrNull()
-                it.TowerPoleType= arrayListOf(binding.TowerTypeEdit.selectedValue.id.toInt())
-                it.FoundationType= arrayListOf(binding.FoundationTypeEdit.selectedValue.id.toInt())
+                it.TowerPoleType= binding.TowerTypeEdit.getSelectedArray()
+                it.FoundationType= binding.FoundationTypeEdit.getSelectedArray()
             }
             tempTowerAllData.TowerAndCivilInfraTowerTowerDetail= arrayListOf(tempTowerDetailData)
             if (fulldata!=null)

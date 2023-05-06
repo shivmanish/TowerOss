@@ -58,7 +58,7 @@ class EquipmentRoomAddNew (var fulldata: NewTowerCivilAllData?, var listner: Add
                 it.LocationMark=binding.LocationMarkEdit.text.toString()
                 it.remark=binding.remarksEdit.text.toString()
                 it.Type=binding.TypeEdit.selectedValue.id.toIntOrNull()
-                it.FoundationType= arrayListOf(binding.FoundationTypeEdit.selectedValue.id.toInt())
+                it.FoundationType= binding.FoundationTypeEdit.getSelectedArray()
             }
             tempEquipRoomAllData.TowerAndCivilInfraEquipmentRoomEquipmentRoomDetail= arrayListOf(tempEquipRoomDetailData)
             if (fulldata!=null)
