@@ -13,6 +13,6 @@ data class PODetails(
     @SerializedName("PONumber") var PONumber: String? = null,
     @SerializedName("PODate") var PODate: String? = null,
     @SerializedName("POLineNumber") var POLineNumber: String? = null,
-    @SerializedName("POAmount") var POAmount: String? = null
+    @SerializedName("POAmount") var POAmount: String? = "0"
 
 )

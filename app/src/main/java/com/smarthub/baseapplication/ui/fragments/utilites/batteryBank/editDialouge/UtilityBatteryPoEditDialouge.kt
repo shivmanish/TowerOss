@@ -52,7 +52,7 @@ class UtilityBatteryPoEditDialouge (var data: UtilityPoDetails, var fullData: Ut
             showProgressLayout()
 
             data.let {
-                it.POAmount=binding.PoAmountEdit.text.toString()
+                it.POAmount=if (binding.PoAmountEdit.text.toString().isNullOrEmpty()) "0" else binding.PoAmountEdit.text.toString()
                 it.POItem=binding.PoItemEdit.text.toString()
                 it.VendorCode=binding.VendorCodeEdit.text.toString()
                 it.PONumber=binding.PoNumberEdit.text.toString()

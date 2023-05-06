@@ -4,7 +4,7 @@ import com.smarthub.baseapplication.model.siteIBoard.Attachments
 
 class SstSbcTeam{
     var Budget: String?=null
-    var POAmount: String?=null
+    var POAmount: String?="0"
     var PODate: String?=null
     var POLineItemNo: Int?=null
     var PONumber: String?=null

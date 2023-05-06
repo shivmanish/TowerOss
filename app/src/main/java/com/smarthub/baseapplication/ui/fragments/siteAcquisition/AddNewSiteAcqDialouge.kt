@@ -78,7 +78,7 @@ class AddNewSiteAcqDialouge ( var listner:AddSiteAcqDataListener) : BaseBottomSh
                 }catch (e:Exception){
                     it.POLineItemNo=0
                 }
-                it.POAmount=binding.POAmountEdit.text.toString()
+                it.POAmount=if (binding.POAmountEdit.text.toString().isNullOrEmpty()) "0" else binding.POAmountEdit.text.toString()
                 it.VendorExecutiveName=binding.VendorExecutiveNameEdit.text.toString()
                 it.VendorExecutiveEmailId=binding.VendorExecutiveEmailIDEdit.text.toString()
                 it.VendorExecutiveMobile=binding.VendorExecutiveNumberEdit.text.toString()

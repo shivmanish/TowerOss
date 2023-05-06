@@ -139,7 +139,7 @@ class NocPoDetailsAdapter(var listener: NocPoClickListener, poDetails: ArrayList
             holder.binding.update.setOnClickListener {
                 val temPoData=NocPODetail()
                 temPoData.let {
-                    it.POAmount=holder.binding.PoAmountEdit.text.toString()
+                    it.POAmount=if (holder.binding.PoAmountEdit.text.toString().isNullOrEmpty()) "" else holder.binding.PoAmountEdit.text.toString()
                     it.POItem=holder.binding.PoItemEdit.text.toString()
                     it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                     it.PONumber=holder.binding.PoNumberEdit.text.toString()

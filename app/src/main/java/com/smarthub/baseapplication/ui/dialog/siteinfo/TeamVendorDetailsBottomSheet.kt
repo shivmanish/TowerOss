@@ -140,7 +140,7 @@ class TeamVendorDetailsBottomSheet(
                 this?.OfficeAddress = binding.address.text.toString()
                 this?.POLineItemNo = binding.polineitem.text.toString()
                 this?.PODate = binding.podate.text.toString()
-                this?.POAmount = binding.poamount.text.toString()
+                this?.POAmount = if (binding.poamount.text.toString().isNullOrEmpty()) "0" else binding.poamount.text.toString()
                 this?.VendorExecutiveName = binding.venderExcutivityName.text.toString()
                 this?.VendorExecutiveMobile = binding.vendorExcutiveNumber.text.toString()
                 this?.Remark = binding.remark.text.toString()

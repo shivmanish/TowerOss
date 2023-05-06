@@ -1,7 +1,7 @@
 package com.smarthub.baseapplication.model.siteInfo.siteAgreements
 
 data class PODetail(
-    val POAmount: String,
+    val POAmount: String="0",
     val PODate: String,
     val POLineNumber: String,
     val PONumber: String,

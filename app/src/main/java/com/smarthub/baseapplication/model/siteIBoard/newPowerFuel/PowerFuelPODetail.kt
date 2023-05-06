@@ -1,7 +1,7 @@
 package com.smarthub.baseapplication.model.siteIBoard.newPowerFuel
 
 data class PowerFuelPODetail(
-    var POAmount: String,
+    var POAmount: String="0",
     var PODate: String,
     var POItem: String,
     var POLineNo: Int,

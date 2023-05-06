@@ -184,7 +184,9 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                     // edit mode
                     holder.binding.AcquisitionLeadNameEdit.text=datalist?.LeadName
                     holder.binding.AcquisitionExecutiveNumberEdit.text=datalist?.ExecutiveMobile
-                    holder.binding.AcquisitionBudgetEdit.setText(datalist?.AcquisitionBudget)
+                    holder.binding.AcquisitionBudgetEdit.setText(
+                        if (datalist?.AcquisitionBudget.isNullOrEmpty()) "0" else datalist?.AcquisitionBudget
+                    )
                     holder.binding.PONumberEdit.setText(datalist?.PONumber)
                     holder.binding.POLineNoEdit.setText(datalist?.POLineItemNo.toString())
                     holder.binding.POAmountEdit.setText(datalist?.POAmount)
@@ -227,7 +229,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                         it.LeadName=holder.binding.AcquisitionExecutiveNameEdit.selectedValue.managername
                         it.ExecutiveName=holder.binding.AcquisitionExecutiveNameEdit.selectedValue.First_Name +" "+ holder.binding.AcquisitionExecutiveNameEdit.selectedValue.Last_Name
                         it.ExecutiveMobile=holder.binding.AcquisitionExecutiveNumberEdit.text.toString()
-                        it.AcquisitionBudget=holder.binding.AcquisitionBudgetEdit.text.toString()
+                        it.AcquisitionBudget=if (holder.binding.AcquisitionBudgetEdit.text.toString().isNullOrEmpty()) "0" else holder.binding.AcquisitionBudgetEdit.text.toString()
                         it.AcquisitionTargetDate=Utils.getFullFormatedDate(holder.binding.AcquisitionTargetDateEdit.text.toString())
                         it.VendorCode=holder.binding.VendorCodeEdit.text.toString()
                         it.PONumber=holder.binding.PONumberEdit.text.toString()
@@ -238,7 +240,7 @@ class AssignACQTeamFragAdapter(var baseFragment:BaseFragment, var listener: Assi
                             it.POLineItemNo=0
                         }
 
-                        it.POAmount=holder.binding.POAmountEdit.text.toString()
+                        it.POAmount=if (holder.binding.POAmountEdit.text.toString().isNullOrEmpty()) "0" else holder.binding.POAmountEdit.text.toString()
                         it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
                         it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
                         it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()

@@ -2,7 +2,7 @@ package com.smarthub.baseapplication.model.siteInfo.towerAndCivilInfra
 
 data class EquipmentModelAuthorityPODetails(
     val ItemDescription: String,
-    val POAmount: String,
+    val POAmount: String="0",
     val POCopy: String,
     val PODate: String,
     val PONumber: String,

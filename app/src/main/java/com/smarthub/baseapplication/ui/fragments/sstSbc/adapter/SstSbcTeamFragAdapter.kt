@@ -195,7 +195,7 @@ class SstSbcTeamFragAdapter(var baseFragment:BaseFragment, var listener: SstSbcT
                         it.PONumber=holder.binding.PONumberEdit.text.toString()
                         it.PODate=Utils.getFullFormatedDate(holder.binding.PODateEdit.text.toString())
                         it.POLineItemNo=holder.binding.POLineNoEdit.text.toString().toInt()
-                        it.POAmount=holder.binding.POAmountEdit.text.toString()
+                        it.POAmount=if (holder.binding.POAmountEdit.text.toString().isNullOrEmpty()) "0" else holder.binding.POAmountEdit.text.toString()
                         it.VendorExecutiveName=holder.binding.VendorExecutiveNameEdit.text.toString()
                         it.VendorExecutiveEmailId=holder.binding.VendorExecutiveEmailIDEdit.text.toString()
                         it.VendorExecutiveMobile=holder.binding.VendorExecutiveNumberEdit.text.toString()

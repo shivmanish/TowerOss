@@ -3,7 +3,7 @@ package com.smarthub.baseapplication.model.siteIBoard.newSiteAcquisition
 import com.smarthub.baseapplication.model.siteIBoard.Attachments
 
  class AssignACQTeamDAta {
-    var AcquisitionBudget: String? = null
+    var AcquisitionBudget: String? = "0"
     var GeographyLevel: String? = null
     var AcquisitionMode: ArrayList<Int>? = null
     var AcquisitionTargetDate: String? = null
@@ -12,7 +12,7 @@ import com.smarthub.baseapplication.model.siteIBoard.Attachments
     var ExecutiveName: String? = null
     var ExecutiveMobile: String? = null
     var LeadName: String?=null
-    var POAmount: String? = null
+    var POAmount: String? = "0"
     var PODate: String? = null
     var POLineItemNo: Int? = null
     var PONumber: String? = null
